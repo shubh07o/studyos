@@ -1,87 +1,83 @@
-# GK Interactive Learning Module & Live Portal System
+# StudyOS: Universal Multi-Subject Interactive Learning System
 
-## PROJECT OBJECTIVE
-This is an automated competitive exam preparation workspace. Whenever the user uploads or provides ANY study material (PDF, lecture notes, transcripts, images), the agent MUST automatically:
-1. Extract and preserve 100% of the content with ZERO data loss.
-2. Generate a single-file, self-contained interactive HTML learning module in `lectures/Lecture-XX-<Subject>-<Topic>.html`.
-3. Build an ultra-rigorous **Stage B: Active Recall** with multiple varied retrieval activities.
-4. Automatically register/link the new lecture into the root `index.html` (Master Subject & Chapter Portal).
-5. Automatically commit and push changes to GitHub (`shubh07o/gk-interactive-hub`) so that it instantly goes live on **GitHub Pages**!
+## CORE DIRECTIVE
+Transform ANY uploaded study material (PDFs, notes, lecture transcripts, sheets) into a clean, minimalist, high-retention interactive HTML learning module. 
 
----
-
-## 1. ZERO CONTENT LOSS RULE
-- Extract every single fact, date, number, person, place, exception, judicial case, quote, and diagram.
-- Do not abbreviate or drop minor details — in competitive exams like SSC CGL/CHSL/CPO, questions come from specific exceptions and trivia.
-- If notes mention Hindi mnemonics (e.g. "ATM without Money", "KMN", "BDSM", "TEARS OF OLD PM"), integrate them directly.
+This workspace is **NOT restricted to GK**. It is built for **ALL COMPETITIVE EXAM SUBJECTS**:
+- **Quantitative Aptitude / Mathematics**
+- **Reasoning & Logical Ability**
+- **English Language & Verbal Ability**
+- **General Studies (Polity, History, Geography, Economics, Science, Static GK)**
+- **Computer Knowledge & Special Modules**
 
 ---
 
-## 2. THE 6 MANDATORY LEARNING STAGES IN EVERY MODULE
-
-### STAGE A: UNDERSTAND (Visual Conceptual Lessons)
-- Topic-wise visual explanation cards.
-- Timelines for historical/chronological developments.
-- Comparison tables (e.g., Written vs Unwritten, Federal vs Unitary, Schedule 5 vs 6).
-- SVG diagrams or structured flowcharts.
-- Mnemonics & memory tricks highlighted with distinctive borders.
-- Exam alert badges on high-yield facts.
-
-### STAGE B: ACTIVE RECALL (Ultra-Rigorous Retrieval Lab)
-Active Recall is the core of long-term memory. It MUST include at least 4 of these interactive formats:
-1. **Click-to-Reveal Cards**: Question is shown first; user must mentally answer before revealing the hidden solution.
-2. **Interactive Fill in the Blanks**: Input boxes with instant JS validation (`✅ Correct` / `❌ Try again`).
-3. **Match the Following**: Interactive select dropdowns matching pairs (scholars, committees, dates, articles).
-4. **True / False Cards**: Prompt testing common misconceptions with reasoning on reveal.
-5. **Personality / Article Spotter**: "Who am I? / Which Schedule / Article am I?" challenge cards.
-
-### STAGE C: INTERACTIVE 3D FLASHCARDS
-- Front / back cards with smooth 3D flip animation.
-- Previous, Next, and Shuffle buttons.
-- Category tagging and status markers (Mastered ✅ / Difficult 🚩).
-- Full keyboard navigation (Spacebar to flip, Left/Right arrows to navigate).
-
-### STAGE D: EXAM QUIZ & PRACTICE
-- Minimum 20 exam-oriented MCQs (Basic, Moderate, Difficult).
-- 4 options with instant visual feedback (green for correct, red for wrong).
-- Detailed explanatory solution for every question.
-- Live score and accuracy % counters.
-- "Review Mistakes" filter and "Retake Quiz" shuffle options.
-
-### STAGE E: QUICK REVISION
-- Confusing Pairs Comparator (Side-by-side comparison of easily confused concepts).
-- 15+ High-Yield One-Liners.
-- Quick summary tables / cheat sheets.
-
-### STAGE F: FINAL MEMORY TEST
-- 10 to 15 question timed/unassisted memory evaluation without notes.
-- Performance scorecard with percentage circle.
-- Automated weakness diagnostic (identifies which specific topics need revision).
-- Prescribes exact revision focus.
+## 1. DESIGN PHILOSOPHY: ZERO AI SLOP
+- **Aesthetic Benchmark**: Linear, Notion, Vercel, Apple documentation.
+- **Color Palette**: Sophisticated zinc/slate monochrome (`#09090b` / `#111114` dark; `#fbfbfb` / `#ffffff` light) with subtle, purposeful accent cues.
+- **Typography**: Clean system sans typography, crisp monospaced tags (`#font-mono`), generous breathing space, disciplined font hierarchy.
+- **NO Slop**:
+  - No rainbow gradients or cartoonish glows.
+  - No cheesy marketing hype ("REVOLUTION", "TOPPERS MAGIC", "BECOME A TOPPER").
+  - No excessive emoji spam — use icons sparingly and functionally.
+  - No non-functional decorative widgets. Every component must serve active learning and memory consolidation.
 
 ---
 
-## 3. MASTER PORTAL (`index.html`) & GITHUB PAGES AUTOMATION
+## 2. SUBJECT-SPECIFIC LEARNING ADAPTATIONS
+The interactive modules must structurally adapt to the subject matter:
 
-Whenever a new lecture module is created:
-1. Save the file to `lectures/Lecture-XX-<Subject>-<Topic>.html`.
-2. Add a new `<a class="chapter-card">...</a>` to `index.html` under the relevant subject section.
-3. Update stats counters in `index.html` (total lectures count, MCQs, flashcards).
+| Subject | Specialized Pedagogical Components |
+|---|---|
+| **Mathematics / Quant** | • Formula derivation & application cards<br>• Step-by-step interactive problem solutions (click each step to reveal logic)<br>• Calculation tricks & mental arithmetic shortcuts<br>• Practice problem sets with variable difficulty |
+| **Reasoning** | • Pattern recognition rule cards<br>• Visual / matrix logic puzzles<br>• Step-by-step syllogism / arrangement flowcharts<br>• Timed speed drills |
+| **English Language** | • Grammar rules with highlighted exceptions<br>• Active recall vocabulary cards (Roots, Synonyms, Antonyms, Mnemonics)<br>• Error detection & sentence correction click-reveals<br>• Idioms & phrasal verb contextual matrices |
+| **General Studies / GK** | • Visual chronological timelines<br>• Comparative tabular matrices (Articles, features, geographic data)<br>• Memory mnemonics & high-yield one-liners<br>• Confusing pairs comparator |
+| **Computer Knowledge** | • Architectural diagrams, network layer breakdowns, shortcut matrices, protocol flashcards |
+
+---
+
+## 3. ZERO DATA LOSS RULE
+- Extract and preserve 100% of facts, rules, exceptions, formulas, cases, dates, and trivia.
+- Never summarize so aggressively that exam-relevant minutiae are lost.
+- In competitive examinations, cutoff-clearing marks come from rare exceptions, footnotes, and edge cases. Preserve every single one.
+
+---
+
+## 4. THE 6 STANDALONE MODULE STAGES
+
+Every generated file (`lectures/Lecture-XX-<Subject>-<Topic>.html`) must be 100% self-contained (all HTML, CSS, JS inline, zero CDN dependencies, fully offline) and include:
+
+1. **STAGE A: UNDERSTAND**  
+   Structured, clean conceptual cards. Tables, flowcharts, timelines, and subject-specific breakdowns.
+2. **STAGE B: ACTIVE RECALL (Ultra-Rigorous)**  
+   At least 4 different interactive formats:
+   - *Click-to-Reveal* cards (forces active retrieval before seeing answers)
+   - *Fill-in-the-Blanks* (with real-time string checking: `✅ Correct` / `❌ Try again`)
+   - *Match the Following* (interactive dropdown selector)
+   - *True / False* (with detailed rationale)
+   - *Identification / Formula Spotter* ("Which rule / formula / person am I?")
+3. **STAGE C: 3D FLASHCARDS**  
+   Front/back flip cards, category filter, shuffle, mastery tracking (Mastered / Difficult), keyboard shortcuts (`Spacebar` to flip, `Arrow keys` to navigate).
+4. **STAGE D: EXAM QUIZ & PRACTICE**  
+   At least 20 exam-grade MCQs (Basic, Moderate, Difficult). Immediate answer validation, full explanatory notes, score & accuracy %, filter incorrect answers, retake mode.
+5. **STAGE E: QUICK REVISION**  
+   High-yield one-liners, confusing pairs comparator, and fast reference cheat-sheets.
+6. **STAGE F: FINAL MEMORY TEST**  
+   Timed or unassisted diagnostic assessment with automatic weak-topic identification and revision prescriptions.
+
+---
+
+## 5. AUTOMATED WORKFLOW ON FILE UPLOAD
+Whenever the user uploads or pastes material:
+1. Identify the subject (Maths, Reasoning, English, General Studies, Computer).
+2. Generate `lectures/Lecture-XX-<Subject>-<Topic>.html` following the clean minimalist design.
+3. Automatically append the module card into the root `index.html` under its respective subject section and update counts.
 4. Execute git sync:
    ```powershell
    git add .
-   git commit -m "Add Lecture-XX: <Topic>"
+   git commit -m "Add <Subject>-XX: <Topic>"
    git push origin master
    ```
-5. Provide the user with:
-   - Local clickable file link: `file:///c:/Users/shubh/Downloads/Gk/lectures/Lecture-XX-...html`
-   - Master Portal local link: `file:///c:/Users/shubh/Downloads/Gk/index.html`
-   - **Live GitHub Pages URL**: `https://shubh07o.github.io/gk-interactive-hub/`
-
----
-
-## 4. STRICT TECHNICAL GUIDELINES
-- Standalone Single HTML File for lectures: All HTML, CSS, JavaScript, and data inline inside `<style>` and `<script>` tags.
-- Zero external CDN dependencies for logic/styling (system fonts, native SVGs) — must work 100% offline.
-- Dark / Light mode toggle with LocalStorage persistence.
-- Auto-save bookmarks, progress, and flashcard mastery status in LocalStorage.
+5. Return the local clickable link, root dashboard link, and live GitHub Pages link:
+   `https://shubh07o.github.io/gk-interactive-hub/`
