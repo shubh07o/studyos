@@ -3,34 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudyOS — Competitive Exam Learning Workspace</title>
+  <title>StudyOS — Hierarchical Academic Learning System</title>
   <style>
     :root {
       --bg: #09090b;
-      --surface: #111114;
-      --surface-elevated: #18181c;
-      --border: #222227;
-      --border-hover: #33333d;
-      --text: #f4f4f6;
-      --text-muted: #8b8b99;
-      --text-faint: #565664;
+      --sidebar-bg: #0e0e11;
+      --surface: #141418;
+      --surface-hover: #1c1c22;
+      --border: #24242c;
+      --border-subtle: #1c1c22;
+      --text: #f4f4f7;
+      --text-muted: #8c8c9a;
+      --text-faint: #555562;
       --accent: #3b82f6;
-      --accent-soft: rgba(59, 130, 246, 0.08);
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --success: #10b981;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
     [data-theme="light"] {
-      --bg: #fbfbfb;
+      --bg: #f8f9fa;
+      --sidebar-bg: #ffffff;
       --surface: #ffffff;
-      --surface-elevated: #f4f4f6;
-      --border: #e4e4e7;
-      --border-hover: #d1d1d6;
-      --text: #111114;
-      --text-muted: #6b6b7b;
-      --text-faint: #9c9ca8;
-      --accent: #1d4ed8;
-      --accent-soft: rgba(29, 78, 216, 0.05);
+      --surface-hover: #f1f3f5;
+      --border: #e6e8ec;
+      --border-subtle: #f1f3f5;
+      --text: #111116;
+      --text-muted: #646473;
+      --text-faint: #9ea0ad;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --success: #059669;
     }
 
     * {
@@ -51,32 +55,33 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* TOP BAR */
+    /* TOP HEADER */
     header {
+      background: var(--sidebar-bg);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      background: var(--bg);
-      z-index: 50;
+      z-index: 100;
       backdrop-filter: blur(10px);
     }
 
     .header-inner {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0.85rem 1.5rem;
+      padding: 0.75rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
     }
 
-    .brand {
+    .brand-area {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
-    .brand-mark {
+    .brand-logo {
       width: 28px;
       height: 28px;
       background: var(--text);
@@ -94,29 +99,30 @@
       font-size: 0.95rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      color: var(--text);
     }
 
-    .brand-subtitle {
+    .hierarchy-pill {
       font-size: 0.75rem;
       color: var(--text-muted);
-      margin-left: 0.5rem;
-      padding-left: 0.5rem;
-      border-left: 1px solid var(--border);
+      font-family: var(--font-mono);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
     }
 
-    .header-controls {
+    .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
-    .btn-toggle {
+    .theme-btn {
       background: var(--surface);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -126,451 +132,761 @@
       transition: all 0.15s ease;
     }
 
-    .btn-toggle:hover {
+    .theme-btn:hover {
       color: var(--text);
-      border-color: var(--border-hover);
+      border-color: var(--accent);
     }
 
-    /* HERO AREA */
-    .hero {
-      max-width: 1200px;
+    /* MAIN APP LAYOUT (SPLIT TREE VIEW) */
+    .app-layout {
+      max-width: 1400px;
+      width: 100%;
       margin: 0 auto;
-      width: 100%;
-      padding: 3rem 1.5rem 1.5rem;
+      flex: 1;
+      display: flex;
+      min-height: calc(100vh - 55px);
     }
 
-    .hero-eyebrow {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-heading {
-      font-size: 1.85rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-subheading {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 650px;
-    }
-
-    /* SEARCH & FILTER BAR */
-    .controls-strip {
-      max-width: 1200px;
-      margin: 1.5rem auto 0;
-      width: 100%;
-      padding: 0 1.5rem;
+    /* SIDEBAR (SUBJECTS & SECTIONS) */
+    aside.sidebar {
+      width: 320px;
+      border-right: 1px solid var(--border);
+      background: var(--sidebar-bg);
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      flex-shrink: 0;
     }
 
-    .search-box {
+    .sidebar-search-box {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .search-input-wrapper {
       position: relative;
-      width: 100%;
     }
 
-    .search-box input {
+    .search-input {
       width: 100%;
-      background: var(--surface);
+      background: var(--bg);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 0.75rem 1rem 0.75rem 2.5rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-family: var(--font-sans);
+      padding: 0.55rem 0.85rem 0.55rem 2.2rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
       outline: none;
+      font-family: var(--font-sans);
       transition: border-color 0.15s ease;
     }
 
-    .search-box input:focus {
-      border-color: var(--text-muted);
-    }
-
-    .search-box input::placeholder {
-      color: var(--text-faint);
+    .search-input:focus {
+      border-color: var(--accent);
     }
 
     .search-icon {
       position: absolute;
-      left: 0.85rem;
+      left: 0.75rem;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
-    /* SUBJECT TABS */
-    .subject-filter {
-      display: flex;
-      gap: 0.4rem;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding-bottom: 0.25rem;
-    }
-
-    .subject-filter::-webkit-scrollbar {
-      display: none;
-    }
-
-    .filter-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 0.45rem 0.85rem;
-      border-radius: 6px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s ease;
-    }
-
-    .filter-btn:hover {
-      color: var(--text);
-      border-color: var(--border-hover);
-    }
-
-    .filter-btn.active {
-      background: var(--surface-elevated);
-      color: var(--text);
-      border-color: var(--text-muted);
-    }
-
-    .badge-count {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 0.1rem 0.35rem;
-      border-radius: 3px;
-      background: var(--border);
-      color: var(--text);
-      margin-left: 0.35rem;
-    }
-
-    /* MAIN CONTENT */
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      width: 100%;
-      padding: 0 1.5rem 3rem;
+    .sidebar-tree {
+      overflow-y: auto;
       flex: 1;
+      padding: 0.85rem;
     }
 
-    .subject-group {
-      margin-bottom: 3rem;
+    .tree-subject-group {
+      margin-bottom: 1.25rem;
     }
 
-    .group-header {
+    .tree-subject-header {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-faint);
+      padding: 0.4rem 0.6rem;
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
+      align-items: center;
     }
 
-    .group-title {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+    .tree-section-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.55rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .tree-section-btn:hover {
+      background: var(--surface);
       color: var(--text);
+    }
+
+    .tree-section-btn.active {
+      background: var(--surface-hover);
+      color: var(--text);
+      border-color: var(--border);
+      font-weight: 600;
+    }
+
+    .badge-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      background: var(--border-subtle);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .tree-section-btn.active .badge-num {
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* RIGHT CONTENT WORKSPACE */
+    main.workspace {
+      flex: 1;
+      padding: 2rem 2.5rem;
+      overflow-y: auto;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb-strip {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-    }
-
-    .group-meta {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       font-family: var(--font-mono);
+      margin-bottom: 1rem;
     }
 
-    /* CARDS GRID */
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 1.25rem;
+    .bc-sep {
+      color: var(--text-faint);
     }
 
-    .module-card {
+    .bc-active {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .section-headline {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-description {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin-bottom: 2rem;
+    }
+
+    /* CHAPTER BLOCK (ACCORDION / CONTAINER) */
+    .chapter-block {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: border-color 0.15s ease;
+    }
+
+    .chapter-block:hover {
+      border-color: var(--border-hover);
+    }
+
+    .chapter-header {
+      padding: 1.15rem 1.35rem;
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .chapter-info h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .chapter-info p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .chapter-toggle-indicator {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+    }
+
+    .chapter-block.collapsed .chapter-header {
+      border-bottom: none;
+    }
+
+    .chapter-block.collapsed .chapter-toggle-indicator {
+      transform: rotate(-90deg);
+    }
+
+    .chapter-block.collapsed .lectures-list {
+      display: none;
+    }
+
+    /* LECTURES TABLE / LIST */
+    .lectures-list {
+      padding: 0.5rem 0;
+    }
+
+    .lecture-item {
+      padding: 1rem 1.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
       text-decoration: none;
       color: inherit;
+      transition: background 0.15s ease;
+    }
+
+    .lecture-item:last-child {
+      border-bottom: none;
+    }
+
+    .lecture-item:hover {
+      background: var(--surface-hover);
+    }
+
+    .lec-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      flex: 1;
+    }
+
+    .lec-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .lec-title-text h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .lec-title-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      line-height: 1.4;
+    }
+
+    .lec-tag-row {
+      display: flex;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .lec-tag {
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      background: var(--bg);
+      border: 1px solid var(--border-subtle);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+    }
+
+    .lec-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .lec-metrics {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .btn-action-open {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
       transition: all 0.15s ease;
     }
 
-    .module-card:hover {
-      border-color: var(--border-hover);
-      background: var(--surface-elevated);
-      transform: translateY(-1px);
+    .lecture-item:hover .btn-action-open {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
     }
 
-    .card-meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.75rem;
-    }
-
-    .card-id {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      background: var(--surface-elevated);
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-    }
-
-    .card-subtag {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .card-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-      letter-spacing: -0.01em;
-      line-height: 1.35;
-    }
-
-    .card-summary {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-      margin-bottom: 1rem;
-    }
-
-    .card-stats {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    .card-stats span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .card-footer {
-      border-top: 1px solid var(--border);
-      padding-top: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .status-badge {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .btn-launch {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .module-card:hover .btn-launch {
-      color: var(--accent);
-    }
-
-    /* EMPTY STATE */
-    .empty-state {
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      border: 1px dashed var(--border);
-      border-radius: 8px;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
+    /* UPCOMING PLACEHOLDER */
+    .empty-chapter-msg {
       padding: 1.5rem;
       text-align: center;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: auto;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+    }
+
+    @media (max-width: 900px) {
+      .app-layout {
+        flex-direction: column;
+      }
+      aside.sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      main.workspace {
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
 <body data-theme="dark">
 
+  <!-- TOP BAR -->
   <header>
     <div class="header-inner">
-      <div class="brand">
-        <div class="brand-mark">Σ</div>
+      <div class="brand-area">
+        <div class="brand-logo">Σ</div>
         <div>
           <span class="brand-title">StudyOS</span>
-          <span class="brand-subtitle">Interactive Learning & Revision System</span>
         </div>
+        <span class="hierarchy-pill">Hierarchy: Subject ➔ Section ➔ Chapter ➔ Lecture</span>
       </div>
-      <div class="header-controls">
-        <button class="btn-toggle" id="themeBtn" title="Toggle Theme">🌓</button>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" title="Toggle Theme">🌓</button>
       </div>
     </div>
   </header>
 
-  <div class="hero">
-    <div class="hero-eyebrow">All Subjects • Exam Archive</div>
-    <h1 class="hero-heading">Lecture Modules & Active Recall Hub</h1>
-    <p class="hero-subheading">
-      Self-contained interactive learning environments. Built with visual architecture, active retrieval exercises, 3D flashcards, and diagnostic evaluation.
-    </p>
+  <div class="app-layout">
+
+    <!-- LEFT SIDEBAR: SUBJECTS & SECTIONS TREE -->
+    <aside class="sidebar">
+      <div class="sidebar-search-box">
+        <div class="search-input-wrapper">
+          <span class="search-icon">⚲</span>
+          <input type="text" id="globalSearchInput" class="search-input" placeholder="Search across all 4 levels..." oninput="handleSearch()">
+        </div>
+      </div>
+
+      <nav class="sidebar-tree" id="sidebarTree">
+        <!-- Dynamically rendered tree of Subjects & Sections -->
+      </nav>
+    </aside>
+
+    <!-- RIGHT MAIN WORKSPACE -->
+    <main class="workspace" id="mainWorkspace">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb-strip" id="breadcrumbStrip">
+        <span>General Studies</span>
+        <span class="bc-sep">/</span>
+        <span class="bc-active">Indian Polity & Constitution</span>
+      </div>
+
+      <!-- Section Title & Description -->
+      <h1 class="section-headline" id="sectionHeadline">Indian Polity & Constitution</h1>
+      <p class="section-description" id="sectionDesc">
+        Constitutional architecture, historical demands, assembly committees, 12 schedules, fundamental rights, and executive powers.
+      </p>
+
+      <!-- Chapters Accordion Container -->
+      <div id="chaptersContainer">
+        <!-- Rendered Chapters & Nested Lectures -->
+      </div>
+    </main>
+
   </div>
-
-  <div class="controls-strip">
-    <div class="search-box">
-      <span class="search-icon">⚲</span>
-      <input type="text" id="searchInput" placeholder="Search chapters, topics, or keywords across all subjects..." oninput="filterCards()">
-    </div>
-
-    <div class="subject-filter">
-      <button class="filter-btn active" onclick="setSubject('all', this)">All Subjects <span class="badge-count" id="countAll">2</span></button>
-      <button class="filter-btn" onclick="setSubject('gs', this)">General Studies <span class="badge-count">2</span></button>
-      <button class="filter-btn" onclick="setSubject('maths', this)">Quantitative Aptitude <span class="badge-count">0</span></button>
-      <button class="filter-btn" onclick="setSubject('reasoning', this)">Reasoning Ability <span class="badge-count">0</span></button>
-      <button class="filter-btn" onclick="setSubject('english', this)">English Language <span class="badge-count">0</span></button>
-      <button class="filter-btn" onclick="setSubject('computer', this)">Computer & Tech <span class="badge-count">0</span></button>
-    </div>
-  </div>
-
-  <main>
-
-    <!-- GENERAL STUDIES / GK -->
-    <section class="subject-group" data-subject="gs">
-      <div class="group-header">
-        <h2 class="group-title">General Studies</h2>
-        <span class="group-meta">2 Modules</span>
-      </div>
-
-      <div class="module-grid">
-
-        <!-- LECTURE 01 -->
-        <a href="lectures/Lecture-01-Polity-Making-of-Constitution.html" class="module-card" data-keywords="polity constitution constituent assembly cabinet mission drafting nehru report ambedkar 1946 interim government">
-          <div>
-            <div class="card-meta-row">
-              <span class="card-id">POLITY-01</span>
-              <span class="card-subtag">Indian Polity</span>
-            </div>
-            <h3 class="card-title">Making of the Indian Constitution</h3>
-            <p class="card-summary">
-              Constitutional foundations, demand timeline (1928–1938), Cabinet Mission Plan 1946 (389 seats), Interim Government, Assembly working, Committees, Drafting process, and adoption statistics.
-            </p>
-            <div class="card-stats">
-              <span>• 6 Stages</span>
-              <span>• 20 MCQs</span>
-              <span>• 20 Flashcards</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="status-badge">Complete Module</span>
-            <span class="btn-launch">Open Study Module ➔</span>
-          </div>
-        </a>
-
-        <!-- LECTURE 02 -->
-        <a href="lectures/Lecture-02-Polity-Salient-Features-of-Constitution.html" class="module-card" data-keywords="polity salient features schedules federalism unitary parliamentary tears of old pm lists 42nd amendment languages">
-          <div>
-            <div class="card-meta-row">
-              <span class="card-id">POLITY-02</span>
-              <span class="card-subtag">Indian Polity</span>
-            </div>
-            <h3 class="card-title">Salient Features & The 12 Schedules</h3>
-            <p class="card-summary">
-              Lengthiest written constitution, federal vs unitary attributes, scholar perspectives, complete 12 schedules (TEARS OF OLD PM), Schedule 5 vs 6, 3 legislative lists, and language amendments.
-            </p>
-            <div class="card-stats">
-              <span>• 6 Stages</span>
-              <span>• 20 MCQs</span>
-              <span>• 22 Flashcards</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="status-badge">Complete Module</span>
-            <span class="btn-launch">Open Study Module ➔</span>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- QUANTITATIVE APTITUDE -->
-    <section class="subject-group" data-subject="maths" style="display:none;">
-      <div class="group-header">
-        <h2 class="group-title">Quantitative Aptitude</h2>
-        <span class="group-meta">0 Modules</span>
-      </div>
-      <div class="empty-state">
-        No modules uploaded yet for Quantitative Aptitude. Upload Maths notes/PDFs to generate interactive formula breakdowns, step-by-step problem templates, and speed drills.
-      </div>
-    </section>
-
-    <!-- REASONING ABILITY -->
-    <section class="subject-group" data-subject="reasoning" style="display:none;">
-      <div class="group-header">
-        <h2 class="group-title">Reasoning Ability</h2>
-        <span class="group-meta">0 Modules</span>
-      </div>
-      <div class="empty-state">
-        No modules uploaded yet for Reasoning. Upload Reasoning notes/PDFs to generate pattern recognizers, rule breakdowns, and timed logic sets.
-      </div>
-    </section>
-
-    <!-- ENGLISH LANGUAGE -->
-    <section class="subject-group" data-subject="english" style="display:none;">
-      <div class="group-header">
-        <h2 class="group-title">English Language</h2>
-        <span class="group-meta">0 Modules</span>
-      </div>
-      <div class="empty-state">
-        No modules uploaded yet for English. Upload English notes/PDFs to generate rule exception cards, vocabulary active recall drills, and sentence error spotters.
-      </div>
-    </section>
-
-    <!-- COMPUTER & TECH -->
-    <section class="subject-group" data-subject="computer" style="display:none;">
-      <div class="group-header">
-        <h2 class="group-title">Computer Knowledge</h2>
-        <span class="group-meta">0 Modules</span>
-      </div>
-      <div class="empty-state">
-        No modules uploaded yet for Computer Knowledge. Upload notes/PDFs to generate architectural diagrams, protocol flashcards, and shortcut drills.
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    StudyOS • Clean Minimalist Learning Architecture • Zero External Dependencies • LocalStorage Powered
-  </footer>
 
   <script>
+    /* ==========================================================
+       CURRICULUM DATA: 4-TIER HIERARCHY
+       Level 1: Subject
+       Level 2: Section / Sub-stream
+       Level 3: Chapter / Module Unit
+       Level 4: Standalone Interactive Lecture
+    ========================================================== */
+    const studyOSCurriculum = [
+      {
+        id: "gs",
+        name: "General Studies",
+        sections: [
+          {
+            id: "polity",
+            name: "Indian Polity & Constitution",
+            desc: "Constitutional architecture, historical demands, assembly committees, 12 schedules, and executive powers.",
+            chapters: [
+              {
+                id: "polity-ch1",
+                code: "CH-01",
+                title: "Constitutional Framework & Genesis",
+                desc: "Demands, British proposals, Cabinet Mission Plan 1946, Committees, Drafting, and 12 Schedules.",
+                lectures: [
+                  {
+                    id: "POL-01",
+                    title: "Lecture 01: Making of the Indian Constitution",
+                    desc: "Historical demand (1928-1938), Cabinet Mission 389 seats, Interim Government 1946, 8 Major & 13 Minor Committees, Drafting Committee (Ambedkar), 3 readings, and vital adoption stats.",
+                    url: "lectures/Lecture-01-Polity-Making-of-Constitution.html",
+                    stages: 6,
+                    mcqs: 20,
+                    flashcards: 20,
+                    tags: ["Cabinet Mission", "Drafting Committee", "Interim Govt", "389 Seats", "Adoption 1949"],
+                    status: "ready"
+                  },
+                  {
+                    id: "POL-02",
+                    title: "Lecture 02: Salient Features & The 12 Schedules",
+                    desc: "Lengthiest constitution, federalism debate (Wheare, Austin, Jennings), Federal vs Unitary traits, master mnemonic TEARS OF OLD PM, Schedule 5 vs 6 deep dive, 3 lists, and language amendments.",
+                    url: "lectures/Lecture-02-Polity-Salient-Features-of-Constitution.html",
+                    stages: 6,
+                    mcqs: 20,
+                    flashcards: 22,
+                    tags: ["TEARS OF OLD PM", "Schedule 5 & 6", "Article 249/250", "42nd Amendment", "I.R. Coelho"],
+                    status: "ready"
+                  }
+                ]
+              },
+              {
+                id: "polity-ch2",
+                code: "CH-02",
+                title: "Preamble, Union Territory & Citizenship",
+                desc: "Philosophy of the Preamble, Articles 1-4 (State reorganisations), and Articles 5-11 (Citizenship act & amendments).",
+                lectures: []
+              },
+              {
+                id: "polity-ch3",
+                code: "CH-03",
+                title: "Fundamental Rights, DPSP & Fundamental Duties",
+                desc: "Articles 12-35 (Writs, 6 basic rights), Directive Principles (Part IV), and Fundamental Duties (Part IV-A).",
+                lectures: []
+              },
+              {
+                id: "polity-ch4",
+                code: "CH-04",
+                title: "Union & State Executive",
+                desc: "President, Vice-President, Prime Minister, Governor, Chief Minister, and Attorney General.",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "history",
+            name: "Modern Indian History",
+            desc: "Advent of Europeans, Revolt of 1857, socio-religious reforms, and the Indian Freedom Struggle (1885-1947).",
+            chapters: [
+              {
+                id: "hist-ch1",
+                code: "CH-01",
+                title: "Advent of Europeans & British Conquest",
+                desc: "Portuguese, Dutch, French, English trade wars, Battle of Plassey (1757), and Buxar (1764).",
+                lectures: []
+              },
+              {
+                id: "hist-ch2",
+                code: "CH-02",
+                title: "Revolt of 1857 & Early Resistance",
+                desc: "Causes, key leaders (Mangal Pandey, Rani Lakshmibai), centers, and the Government of India Act 1858.",
+                lectures: []
+              },
+              {
+                id: "hist-ch3",
+                code: "CH-03",
+                title: "Indian National Movement (1885–1947)",
+                desc: "Moderate, Extremist, and Gandhian phases (Non-Cooperation, Civil Disobedience, Quit India).",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "geography",
+            name: "Geography (Physical & Indian)",
+            desc: "Geomorphology, climate zones, Indian drainage systems, physiography, and mineral resources.",
+            chapters: [
+              {
+                id: "geo-ch1",
+                code: "CH-01",
+                title: "Physiographic Divisions of India",
+                desc: "Northern Mountains (Himalayas), Great Northern Plains, Peninsular Plateau, and Coastal Plains.",
+                lectures: []
+              },
+              {
+                id: "geo-ch2",
+                code: "CH-02",
+                title: "Indian River Systems & Drainage",
+                desc: "Himalayan (Indus, Ganga, Brahmaputra) vs Peninsular rivers (Godavari, Krishna, Narmada, Tapi).",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "economics",
+            name: "Economics & Indian Economy",
+            desc: "National income concepts, inflation, monetary policy, banking, budget, and public finance.",
+            chapters: [
+              {
+                id: "eco-ch1",
+                code: "CH-01",
+                title: "National Income & Macro Fundamentals",
+                desc: "GDP, GNP, NNP, factor cost vs market price, and economic growth indicators.",
+                lectures: []
+              },
+              {
+                id: "eco-ch2",
+                code: "CH-02",
+                title: "Banking System & Monetary Policy",
+                desc: "RBI structure, repo rate, reverse repo rate, CRR, SLR, and money supply aggregates.",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "science",
+            name: "General Science (Physics, Chem, Bio)",
+            desc: "Applied scientific concepts frequently tested in national competitive examinations.",
+            chapters: [
+              {
+                id: "sci-ch1",
+                code: "CH-01",
+                title: "Human Physiology & Diseases (Biology)",
+                desc: "Digestive, circulatory, nervous systems, vitamins, deficiency diseases, and pathogens.",
+                lectures: []
+              },
+              {
+                id: "sci-ch2",
+                code: "CH-02",
+                title: "Mechanics, Optics & Energy (Physics)",
+                desc: "Newton's laws, gravitation, reflection, refraction, lenses, and electrical circuits.",
+                lectures: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "quant",
+        name: "Quantitative Aptitude",
+        sections: [
+          {
+            id: "arithmetic",
+            name: "Arithmetic Mathematics",
+            desc: "Fundamental arithmetic concepts: percentage ratios, profit & loss, time and work, speed-distance.",
+            chapters: [
+              {
+                id: "quant-ch1",
+                code: "CH-01",
+                title: "Percentage, Ratio & Proportion",
+                desc: "Fraction equivalents, successive percentage formula, scaling ratios.",
+                lectures: []
+              },
+              {
+                id: "quant-ch2",
+                code: "CH-02",
+                title: "Profit, Loss & Discount",
+                desc: "Cost price, selling price, marked price, cheating dealer problems, and discount cascades.",
+                lectures: []
+              },
+              {
+                id: "quant-ch3",
+                code: "CH-03",
+                title: "Time, Speed, Distance & Trains",
+                desc: "Relative speed principles, platform crossings, circular tracks, boats & streams.",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "adv-math",
+            name: "Advanced Mathematics",
+            desc: "Geometry, mensuration, trigonometry, algebra, and coordinate geometry.",
+            chapters: [
+              {
+                id: "quant-ch4",
+                code: "CH-01",
+                title: "Geometry & Mensuration (2D & 3D)",
+                desc: "Triangle theorems, circles, tangents, cyclic quadrilaterals, cone, cylinder, and sphere volumes.",
+                lectures: []
+              },
+              {
+                id: "quant-ch5",
+                code: "CH-02",
+                title: "Algebra & Trigonometric Identities",
+                desc: "Symmetric expressions, algebraic identities, value-putting methods, heights and distances.",
+                lectures: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "reasoning",
+        name: "Reasoning Ability",
+        sections: [
+          {
+            id: "verbal-reas",
+            name: "Verbal Reasoning",
+            desc: "Coding-decoding, blood relations, direction sense, syllogisms, and analogies.",
+            chapters: [
+              {
+                id: "reas-ch1",
+                code: "CH-01",
+                title: "Coding-Decoding & Letter Shift Patterns",
+                desc: "Direct letter coding, opposite letter pairs, matrix substitution, numerical decoding.",
+                lectures: []
+              },
+              {
+                id: "reas-ch2",
+                code: "CH-02",
+                title: "Syllogisms & Logical Venn Diagrams",
+                desc: "Venn diagram method, statement-conclusion deductions, either-or and possibility rules.",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "analytical-reas",
+            name: "Analytical & Non-Verbal",
+            desc: "Seating arrangements, puzzles, paper folding, mirror images, and cube cuts.",
+            chapters: [
+              {
+                id: "reas-ch3",
+                code: "CH-01",
+                title: "Linear & Circular Seating Arrangement",
+                desc: "Inward/outward facing circles, parallel rows, blood-relation integrated arrangements.",
+                lectures: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "english",
+        name: "English Language",
+        sections: [
+          {
+            id: "grammar-sec",
+            name: "Grammar & Error Detection",
+            desc: "Parts of speech, subject-verb agreement, voice, narration, and conditional clauses.",
+            chapters: [
+              {
+                id: "eng-ch1",
+                code: "CH-01",
+                title: "Subject-Verb Agreement & Nouns",
+                desc: "Rules of concord, collective nouns, singular-plural confusions, and prepositional traps.",
+                lectures: []
+              },
+              {
+                id: "eng-ch2",
+                code: "CH-02",
+                title: "Tenses & Conditionals",
+                desc: "Past perfect vs simple past, zero, 1st, 2nd, and 3rd conditionals, hypothetical clauses.",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "vocab-sec",
+            name: "Vocabulary & Comprehension",
+            desc: "Root words, idioms, phrasal verbs, one-word substitutions, and cloze tests.",
+            chapters: [
+              {
+                id: "eng-ch3",
+                code: "CH-01",
+                title: "Root Words & High-Frequency Idioms",
+                desc: "Etymology-based vocabulary retention, exam-frequent phrasal verbs and idioms.",
+                lectures: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "computer",
+        name: "Computer Knowledge",
+        sections: [
+          {
+            id: "comp-hardware",
+            name: "Hardware, Memory & OS",
+            desc: "CPU internal architecture, memory hierarchies (RAM/ROM/Cache), registers, and OS kernel basics.",
+            chapters: [
+              {
+                id: "comp-ch1",
+                code: "CH-01",
+                title: "CPU Architecture & Memory Hierarchy",
+                desc: "ALU, Control Unit, primary vs secondary memory, cache levels, and storage buses.",
+                lectures: []
+              }
+            ]
+          },
+          {
+            id: "comp-networks",
+            name: "Networking, Protocols & Security",
+            desc: "OSI 7-layer model, TCP/IP, IP addressing, cyber security protocols, and shortcuts.",
+            chapters: [
+              {
+                id: "comp-ch2",
+                code: "CH-01",
+                title: "Networking Models & Internet Protocols",
+                desc: "HTTP, HTTPS, FTP, DNS, SMTP, IPv4 vs IPv6, and firewall architectures.",
+                lectures: []
+              }
+            ]
+          }
+        ]
+      }
+    ];
+
+    /* CURRENT STATE */
+    let currentSubjectId = "gs";
+    let currentSectionId = "polity";
+
     /* THEME SWITCHER */
     const themeBtn = document.getElementById('themeBtn');
     themeBtn.addEventListener('click', () => {
@@ -579,37 +895,212 @@
       document.body.setAttribute('data-theme', target);
     });
 
-    /* SUBJECT FILTER */
-    function setSubject(sub, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    /* RENDER SIDEBAR TREE */
+    function renderSidebar() {
+      const treeContainer = document.getElementById('sidebarTree');
+      treeContainer.innerHTML = '';
 
-      const groups = document.querySelectorAll('.subject-group');
-      groups.forEach(g => {
-        if (sub === 'all') {
-          // Show groups that have modules or default to main active
-          g.style.display = g.getAttribute('data-subject') === 'gs' ? 'block' : 'none';
-        } else {
-          g.style.display = g.getAttribute('data-subject') === sub ? 'block' : 'none';
-        }
+      studyOSCurriculum.forEach(subject => {
+        const groupEl = document.createElement('div');
+        groupEl.className = 'tree-subject-group';
+
+        // Calculate total lectures in this subject
+        let subjectLecCount = 0;
+        subject.sections.forEach(s => {
+          s.chapters.forEach(c => {
+            subjectLecCount += c.lectures.length;
+          });
+        });
+
+        const headerEl = document.createElement('div');
+        headerEl.className = 'tree-subject-header';
+        headerEl.innerHTML = `
+          <span>${subject.name}</span>
+          <span style="font-size:0.68rem;">${subjectLecCount} active</span>
+        `;
+        groupEl.appendChild(headerEl);
+
+        subject.sections.forEach(sec => {
+          const btn = document.createElement('button');
+          btn.className = `tree-section-btn ${subject.id === currentSubjectId && sec.id === currentSectionId ? 'active' : ''}`;
+          
+          let secLecCount = 0;
+          sec.chapters.forEach(c => secLecCount += c.lectures.length);
+
+          btn.innerHTML = `
+            <span>${sec.name}</span>
+            <span class="badge-num">${secLecCount}</span>
+          `;
+
+          btn.addEventListener('click', () => {
+            currentSubjectId = subject.id;
+            currentSectionId = sec.id;
+            renderSidebar();
+            renderWorkspace();
+          });
+
+          groupEl.appendChild(btn);
+        });
+
+        treeContainer.appendChild(groupEl);
       });
     }
 
-    /* SEARCH FILTER */
-    function filterCards() {
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.module-card');
+    /* RENDER WORKSPACE ACCORDION VIEW */
+    function renderWorkspace() {
+      const subject = studyOSCurriculum.find(s => s.id === currentSubjectId);
+      const section = subject.sections.find(sec => sec.id === currentSectionId);
 
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        const kw = card.getAttribute('data-keywords') || '';
-        if (text.includes(q) || kw.includes(q)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+      // Update Breadcrumb & Header
+      document.getElementById('breadcrumbStrip').innerHTML = `
+        <span>${subject.name}</span>
+        <span class="bc-sep">/</span>
+        <span class="bc-active">${section.name}</span>
+      `;
+
+      document.getElementById('sectionHeadline').textContent = section.name;
+      document.getElementById('sectionDesc').textContent = section.desc;
+
+      // Render Chapters
+      const container = document.getElementById('chaptersContainer');
+      container.innerHTML = '';
+
+      section.chapters.forEach((chapter, index) => {
+        const block = document.createElement('div');
+        block.className = `chapter-block ${chapter.lectures.length === 0 ? 'collapsed' : ''}`;
+        block.setAttribute('data-chapter-id', chapter.id);
+
+        const lecCount = chapter.lectures.length;
+
+        block.innerHTML = `
+          <div class="chapter-header" onclick="toggleChapter('${chapter.id}')">
+            <div class="chapter-info">
+              <h3>
+                <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">${chapter.code}</span>
+                <span>${chapter.title}</span>
+                <span class="badge-num">${lecCount} ${lecCount === 1 ? 'Lecture' : 'Lectures'}</span>
+              </h3>
+              <p>${chapter.desc}</p>
+            </div>
+            <div class="chapter-toggle-indicator">▼</div>
+          </div>
+          <div class="lectures-list" id="list_${chapter.id}">
+            ${chapter.lectures.length > 0 ? chapter.lectures.map(lec => `
+              <a href="${lec.url}" class="lecture-item">
+                <div class="lec-left">
+                  <span class="lec-code">${lec.id}</span>
+                  <div class="lec-title-text">
+                    <h4>${lec.title}</h4>
+                    <p>${lec.desc}</p>
+                    <div class="lec-tag-row">
+                      ${lec.tags.map(t => `<span class="lec-tag">${t}</span>`).join('')}
+                    </div>
+                  </div>
+                </div>
+                <div class="lec-right">
+                  <div class="lec-metrics">
+                    <div>${lec.stages} Stages • ${lec.mcqs} MCQs</div>
+                    <div style="color:var(--success);">${lec.flashcards} Flashcards</div>
+                  </div>
+                  <span class="btn-action-open">Launch ➔</span>
+                </div>
+              </a>
+            `).join('') : `
+              <div class="empty-chapter-msg">
+                No lecture module added yet for this chapter. Upload your notes/PDF to automatically generate this module.
+              </div>
+            `}
+          </div>
+        `;
+
+        container.appendChild(block);
       });
     }
+
+    function toggleChapter(chId) {
+      const block = document.querySelector(`[data-chapter-id="${chId}"]`);
+      if (block) {
+        block.classList.toggle('collapsed');
+      }
+    }
+
+    /* SEARCH FILTER ACROSS ALL 4 TIERS */
+    function handleSearch() {
+      const query = document.getElementById('globalSearchInput').value.toLowerCase().trim();
+      if (!query) {
+        renderWorkspace();
+        return;
+      }
+
+      const container = document.getElementById('chaptersContainer');
+      container.innerHTML = '';
+
+      let matchesFound = 0;
+
+      // Search entire curriculum
+      studyOSCurriculum.forEach(subject => {
+        subject.sections.forEach(section => {
+          section.chapters.forEach(chapter => {
+            const chapterMatches = chapter.title.toLowerCase().includes(query) || chapter.desc.toLowerCase().includes(query);
+            const matchingLectures = chapter.lectures.filter(lec => 
+              lec.title.toLowerCase().includes(query) ||
+              lec.desc.toLowerCase().includes(query) ||
+              lec.tags.some(t => t.toLowerCase().includes(query))
+            );
+
+            if (chapterMatches || matchingLectures.length > 0) {
+              matchesFound++;
+              const block = document.createElement('div');
+              block.className = 'chapter-block';
+              block.innerHTML = `
+                <div class="chapter-header">
+                  <div class="chapter-info">
+                    <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--accent); margin-bottom:0.2rem;">
+                      ${subject.name} ➔ ${section.name}
+                    </div>
+                    <h3>
+                      <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">${chapter.code}</span>
+                      <span>${chapter.title}</span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="lectures-list">
+                  ${(matchingLectures.length > 0 ? matchingLectures : chapter.lectures).map(lec => `
+                    <a href="${lec.url}" class="lecture-item">
+                      <div class="lec-left">
+                        <span class="lec-code">${lec.id}</span>
+                        <div class="lec-title-text">
+                          <h4>${lec.title}</h4>
+                          <p>${lec.desc}</p>
+                        </div>
+                      </div>
+                      <div class="lec-right">
+                        <span class="btn-action-open">Launch ➔</span>
+                      </div>
+                    </a>
+                  `).join('')}
+                </div>
+              `;
+              container.appendChild(block);
+            }
+          });
+        });
+      });
+
+      if (matchesFound === 0) {
+        container.innerHTML = `
+          <div class="empty-chapter-msg" style="padding:3rem;">
+            No lectures or chapters found matching "${query}". Try searching for terms like "Schedules", "Cabinet Mission", or "Drafting".
+          </div>
+        `;
+      }
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSidebar();
+      renderWorkspace();
+    });
   </script>
 </body>
 </html>
