@@ -1,137 +1,87 @@
-# GK Interactive Learning Module Generator
+# GK Interactive Learning Module & Live Portal System
 
-## PROJECT PURPOSE
-This is a competitive exam preparation workspace. When the user uploads or provides ANY study material (PDF, notes, text, transcript), the agent MUST automatically transform it into a complete interactive learning HTML module WITHOUT asking any clarifying questions about the format or features.
+## PROJECT OBJECTIVE
+This is an automated competitive exam preparation workspace. Whenever the user uploads or provides ANY study material (PDF, lecture notes, transcripts, images), the agent MUST automatically:
+1. Extract and preserve 100% of the content with ZERO data loss.
+2. Generate a single-file, self-contained interactive HTML learning module in `lectures/Lecture-XX-<Subject>-<Topic>.html`.
+3. Build an ultra-rigorous **Stage B: Active Recall** with multiple varied retrieval activities.
+4. Automatically register/link the new lecture into the root `index.html` (Master Subject & Chapter Portal).
+5. Automatically commit and push changes to GitHub (`shubh07o/gk-interactive-hub`) so that it instantly goes live on **GitHub Pages**!
 
-## AUTOMATIC TRIGGER
-Whenever the user uploads a PDF, pastes notes, or shares any study content in this workspace:
-1. DO NOT ask "what should I do with this?"
-2. DO NOT ask "which features do you want?"
-3. DO NOT create a dashboard or management system
-4. IMMEDIATELY start building the interactive learning module
+---
 
-## STEP-BY-STEP PROCESS
+## 1. ZERO CONTENT LOSS RULE
+- Extract every single fact, date, number, person, place, exception, judicial case, quote, and diagram.
+- Do not abbreviate or drop minor details — in competitive exams like SSC CGL/CHSL/CPO, questions come from specific exceptions and trivia.
+- If notes mention Hindi mnemonics (e.g. "ATM without Money", "KMN", "BDSM", "TEARS OF OLD PM"), integrate them directly.
 
-### Step 1: Extract & Analyze Content
-- Read the entire material carefully
-- Identify all topics, subtopics, key facts, dates, names, places, events
-- Extract exam-oriented information
-- Find relationships between facts
-- Identify commonly confused facts
-- Preserve ALL important information — do not shorten unnecessarily
-- Do NOT invent facts
-- Mark unclear information as "requires verification"
+---
 
-### Step 2: Build ONE Self-Contained HTML File
-Output: `lectures/Lecture-XX-Topic-Name.html`
+## 2. THE 6 MANDATORY LEARNING STAGES IN EVERY MODULE
 
-The file must contain ALL HTML, CSS, JavaScript, and data inline. No separate files.
+### STAGE A: UNDERSTAND (Visual Conceptual Lessons)
+- Topic-wise visual explanation cards.
+- Timelines for historical/chronological developments.
+- Comparison tables (e.g., Written vs Unwritten, Federal vs Unitary, Schedule 5 vs 6).
+- SVG diagrams or structured flowcharts.
+- Mnemonics & memory tricks highlighted with distinctive borders.
+- Exam alert badges on high-yield facts.
 
-### Step 3: Include ALL 6 Learning Stages
+### STAGE B: ACTIVE RECALL (Ultra-Rigorous Retrieval Lab)
+Active Recall is the core of long-term memory. It MUST include at least 4 of these interactive formats:
+1. **Click-to-Reveal Cards**: Question is shown first; user must mentally answer before revealing the hidden solution.
+2. **Interactive Fill in the Blanks**: Input boxes with instant JS validation (`✅ Correct` / `❌ Try again`).
+3. **Match the Following**: Interactive select dropdowns matching pairs (scholars, committees, dates, articles).
+4. **True / False Cards**: Prompt testing common misconceptions with reasoning on reveal.
+5. **Personality / Article Spotter**: "Who am I? / Which Schedule / Article am I?" challenge cards.
 
-#### STAGE A — UNDERSTAND (Visual Lessons)
-- Topic-wise explanations with highlighted facts
-- Timelines for historical events
-- Comparison tables
-- SVG diagrams, maps, flowcharts where relevant
-- Important personalities and contributions
-- Memory tricks and mnemonics
-- Exam-oriented fact highlights
+### STAGE C: INTERACTIVE 3D FLASHCARDS
+- Front / back cards with smooth 3D flip animation.
+- Previous, Next, and Shuffle buttons.
+- Category tagging and status markers (Mastered ✅ / Difficult 🚩).
+- Full keyboard navigation (Spacebar to flip, Left/Right arrows to navigate).
 
-#### STAGE B — ACTIVE RECALL (Most Important)
-- Click to reveal answer
-- Fill in the blanks
-- Guess the correct fact
-- Question-answer cards
-- Identify the personality / place
-- Recall important dates
-- Match the following
-- True or False
-- Hide-and-reveal revision
-- NEVER show answers immediately — make the learner think first
+### STAGE D: EXAM QUIZ & PRACTICE
+- Minimum 20 exam-oriented MCQs (Basic, Moderate, Difficult).
+- 4 options with instant visual feedback (green for correct, red for wrong).
+- Detailed explanatory solution for every question.
+- Live score and accuracy % counters.
+- "Review Mistakes" filter and "Retake Quiz" shuffle options.
 
-#### STAGE C — INTERACTIVE FLASHCARDS
-- Front/back cards with smooth flip animation
-- Previous / Next / Shuffle
-- Mark difficult / Remembered / Forgotten buttons
-- Progress counter
-- Keyboard navigation (arrow keys, space to flip)
+### STAGE E: QUICK REVISION
+- Confusing Pairs Comparator (Side-by-side comparison of easily confused concepts).
+- 15+ High-Yield One-Liners.
+- Quick summary tables / cheat sheets.
 
-#### STAGE D — QUIZ & PRACTICE
-- Minimum 15 meaningful MCQs (when content supports it)
-- Basic, Moderate, and Difficult levels
-- Statement-based questions
-- Match the following
-- Chronological arrangement
-- Assertion & Reasoning (where appropriate)
-- Practice questions labelled clearly (not fake PYQs)
-- Features: one question at a time, submit button, correct answer reveal, explanation, score, accuracy, review incorrect, retake with shuffle
+### STAGE F: FINAL MEMORY TEST
+- 10 to 15 question timed/unassisted memory evaluation without notes.
+- Performance scorecard with percentage circle.
+- Automated weakness diagnostic (identifies which specific topics need revision).
+- Prescribes exact revision focus.
 
-#### STAGE E — QUICK REVISION
-- Important one-liners
-- Key dates, names, locations
-- Most important facts
-- Confusing facts
-- Frequently tested concepts
-- Designed for last-minute rapid revision
+---
 
-#### STAGE F — FINAL MEMORY TEST
-- Comprehensive recall test (no reading notes)
-- Performance report: attempted, correct, incorrect, accuracy %, weak topics, recommended revision areas
+## 3. MASTER PORTAL (`index.html`) & GITHUB PAGES AUTOMATION
 
-### Step 4: Smart Features
-- Progress tracking with LocalStorage
-- Section completion indicators
-- Bookmark important facts
-- Mark difficult questions
-- Save quiz results & flashcard status
-- Resume previous progress
-- Retry incorrect questions
-- Separate progress per lecture
+Whenever a new lecture module is created:
+1. Save the file to `lectures/Lecture-XX-<Subject>-<Topic>.html`.
+2. Add a new `<a class="chapter-card">...</a>` to `index.html` under the relevant subject section.
+3. Update stats counters in `index.html` (total lectures count, MCQs, flashcards).
+4. Execute git sync:
+   ```powershell
+   git add .
+   git commit -m "Add Lecture-XX: <Topic>"
+   git push origin master
+   ```
+5. Provide the user with:
+   - Local clickable file link: `file:///c:/Users/shubh/Downloads/Gk/lectures/Lecture-XX-...html`
+   - Master Portal local link: `file:///c:/Users/shubh/Downloads/Gk/index.html`
+   - **Live GitHub Pages URL**: `https://shubh07o.github.io/gk-interactive-hub/`
 
-### Step 5: UI/UX Design
-- Premium dark/light theme toggle
-- Minimal professional layout
-- Beautiful typography (system fonts, no external dependencies)
-- Clean cards with subtle animations
-- Interactive timelines
-- Progress indicators
-- Responsive mobile layout
-- Keyboard accessibility
-- Sidebar or top navigation between sections
-- No clutter
+---
 
-### Step 6: Subject-Specific Adaptations
-- **History**: timelines, personalities, events, chronology exercises
-- **Geography**: SVG maps, location diagrams, identification exercises
-- **Polity**: constitutional articles, comparisons, amendment flowcharts
-- **Science**: labelled diagrams, processes, concept quizzes
-- **Economics**: relationship diagrams, comparative tables, examples
-- **Static GK**: flashcard-heavy, one-liner drills, memory challenges
-
-### Step 7: Quality Control (Before Delivering)
-- Verify all facts match the source material
-- Check every MCQ answer and explanation
-- Test all interactive elements
-- Verify quiz scoring logic
-- Verify flashcard flip works
-- Verify LocalStorage progress saving
-- Check mobile responsiveness
-- Fix any JavaScript errors
-- Ensure no button is decorative / non-functional
-- Confirm single HTML file works standalone in browser
-
-## OUTPUT CONVENTION
-- File location: `lectures/` folder in this workspace
-- Naming: `Lecture-XX-Topic-Name.html` (XX = sequential number)
-- Check existing files in `lectures/` to determine next number
-- ALL content in ONE HTML file — no separate CSS/JS/JSON files
-
-## WHAT NOT TO DO
-- Do NOT build a dashboard or notes management system
-- Do NOT ask which features to include — include ALL stages every time
-- Do NOT create multiple files per lecture
-- Do NOT use external APIs or paid services
-- Do NOT pad questions with repetitive or fabricated content
-- Do NOT use external CDN fonts/libraries if possible (use system fonts)
-- Do NOT shorten or skip content from the source material
+## 4. STRICT TECHNICAL GUIDELINES
+- Standalone Single HTML File for lectures: All HTML, CSS, JavaScript, and data inline inside `<style>` and `<script>` tags.
+- Zero external CDN dependencies for logic/styling (system fonts, native SVGs) — must work 100% offline.
+- Dark / Light mode toggle with LocalStorage persistence.
+- Auto-save bookmarks, progress, and flashcard mastery status in LocalStorage.
