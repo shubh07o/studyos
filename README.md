@@ -1,37 +1,43 @@
-# GK Interactive Learning Modules
+# StudyOS — Universal Interactive Learning & Revision System
 
-This workspace transforms competitive exam study material into interactive HTML learning modules.
+A minimalist, high-retention digital learning environment for competitive exam preparation across all subjects:
+- **Quantitative Aptitude / Mathematics**
+- **Reasoning & Logical Ability**
+- **English Language & Comprehension**
+- **General Studies (Polity, History, Geography, Economics, Science, Static GK)**
+- **Computer Knowledge**
 
-## How to Use
+---
 
-1. Open this workspace in Antigravity
-2. Upload any PDF / paste any notes
-3. The agent will automatically create an interactive learning module in the `lectures/` folder
+## 🌐 Live Web Portal
+👉 **[https://shubh07o.github.io/studyos/](https://shubh07o.github.io/studyos/)**
 
-## Folder Structure
+---
+
+## 📁 Repository Structure
 
 ```
-Gk/
 ├── .gemini/
-│   └── AGENTS.md          ← Project instructions (do not edit)
-├── lectures/              ← Generated interactive HTML modules go here
-│   ├── Lecture-01-Topic.html
-│   ├── Lecture-02-Topic.html
+│   └── AGENTS.md          ← Automation engine & pedagogical instructions
+├── lectures/              ← Standalone interactive HTML modules
+│   ├── Lecture-01-Polity-Making-of-Constitution.html
+│   ├── Lecture-02-Polity-Salient-Features-of-Constitution.html
 │   └── ...
-└── README.md              ← This file
+├── index.html             ← Minimalist subject & chapter master portal
+└── README.md
 ```
 
-## What Each Module Contains
+## ✨ What Every Module Contains
+1. **Stage A: Understand** — Visual concepts, tables, flowcharts, subject-specific models.
+2. **Stage B: Active Recall** — Click-to-reveal, fill-in-the-blanks with real-time check, matching, true/false.
+3. **Stage C: 3D Flashcards** — Flip cards with keyboard navigation and mastery tracking.
+4. **Stage D: Exam Quiz** — 20+ exam-oriented MCQs with instant explanations and error review.
+5. **Stage E: Quick Revision** — Confusing pairs comparator & high-yield one-liners.
+6. **Stage F: Final Memory Test** — Unassisted diagnostic test with weak-topic analysis.
 
-| Stage | Description |
-|-------|-------------|
-| Understand | Visual lessons, timelines, tables, diagrams, mnemonics |
-| Active Recall | Click-to-reveal, fill blanks, match, true/false |
-| Flashcards | Flip cards with keyboard nav, shuffle, difficulty marking |
-| Quiz | 15+ MCQs with scoring, explanations, retake |
-| Quick Revision | One-liners, key facts, last-minute review |
-| Final Test | Comprehensive memory test with performance report |
+---
 
-## Opening Modules
-
-Just double-click any `.html` file in `lectures/` — it opens in your browser and works completely offline.
+## 🚀 Completely Offline & Autonomous
+- Every lecture is a single, self-contained `.html` file.
+- Works offline in any browser without external server or API dependencies.
+- Changes automatically sync to GitHub Pages on every new lecture upload.

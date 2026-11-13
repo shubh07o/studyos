@@ -80,4 +80,4 @@ Whenever the user uploads or pastes material:
    git push origin master
    ```
 5. Return the local clickable link, root dashboard link, and live GitHub Pages link:
-   `https://shubh07o.github.io/gk-interactive-hub/`
+   `https://shubh07o.github.io/studyos/`
