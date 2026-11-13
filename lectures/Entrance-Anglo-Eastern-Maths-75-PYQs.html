@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Written PYQs — Mathematics 75 Questions Hub (Neha Gupta Ma'am)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #060b16;
+      --bg-card: #0f172a;
+      --bg-card-hover: #1e293b;
+      --bg-glass: rgba(15, 23, 42, 0.88);
+      --border: #263554;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-sky: #38bdf8;
+      --accent-violet: #8b5cf6;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      background-image:
+        radial-gradient(circle at 12% 10%, rgba(56, 189, 248, 0.08), transparent 32%),
+        radial-gradient(circle at 88% 85%, rgba(139, 92, 246, 0.08), transparent 32%);
+      color: var(--text-primary);
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Clean Native HTML Math & Equation Styling */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #e0f2fe;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      padding: 1px 7px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.03em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 3px;
+      font-size: 0.88em;
+      line-height: 1.1;
+    }
+
+    .frac-num {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 4px 1px;
+    }
+
+    .frac-den {
+      padding: 1px 4px 0;
+    }
+
+    .sqrt {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .sqrt-rad {
+      font-size: 1.12em;
+      margin-right: 1px;
+    }
+
+    .sqrt-body {
+      border-top: 1.5px solid currentColor;
+      padding: 1px 3px 0;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 20px;
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-sky), var(--accent-violet));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+    }
+
+    .brand-text h1 {
+      font-size: 1.14rem;
+      font-weight: 800;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .stat-pill .val {
+      color: var(--accent-sky);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .timer-pill {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fcd34d;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Navigation & Filters */
+    .nav-container {
+      max-width: 1320px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(139, 92, 246, 0.22));
+      color: #fff;
+      border-color: var(--accent-sky);
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-sky);
+      color: #060b16;
+      border-color: var(--accent-sky);
+      font-weight: 700;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-sky);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1320px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-num {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-sky);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .badge-part {
+      background: rgba(139, 92, 246, 0.15);
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .badge-topic {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: var(--accent-amber);
+      color: #fbbf24;
+    }
+
+    .q-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.75;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.15s;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: var(--accent-sky);
+    }
+
+    .opt-key {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: var(--accent-emerald);
+      color: #ecfdf5;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #052e16;
+    }
+
+    .opt-btn.wrong {
+      background: rgba(244, 63, 94, 0.16);
+      border-color: var(--accent-rose);
+      color: #fff1f2;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    .exp-box {
+      margin-top: 20px;
+      background: rgba(15, 23, 42, 0.95);
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: none;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #34d399;
+      margin-bottom: 6px;
+      font-size: 0.92rem;
+    }
+
+    .exp-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.72;
+    }
+
+    .quiz-footer {
+      margin-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--accent-sky);
+      color: #060b16;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .nav-btn.secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Palette Sidebar */
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      position: sticky;
+      top: 84px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 6px;
+      max-height: 410px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 10px;
+    }
+
+    .p-num {
+      height: 34px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-sky);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
+      color: #fff;
+    }
+
+    .p-num.correct {
+      background: rgba(16, 185, 129, 0.24);
+      border-color: var(--accent-emerald);
+      color: #6ee7b7;
+    }
+
+    .p-num.wrong {
+      background: rgba(244, 63, 94, 0.24);
+      border-color: var(--accent-rose);
+      color: #fda4af;
+    }
+
+    /* Flashcards */
+    .flashcard-wrap {
+      max-width: 740px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 330px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #0f172a, #092226);
+    }
+
+    /* Formula Cheat Sheet */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 18px;
+    }
+
+    .formula-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .formula-card h3 {
+      font-size: 1rem;
+      color: var(--accent-sky);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .formula-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* Study Bank */
+    .search-bar {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.94rem;
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .bank-ans {
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">∑</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern Written PYQs — Mathematics Master Hub</h1>
+        <p>Complete 75 PYQs (Part 1: Q1–50 & Part 2: Q51–75) • Neha Gupta Ma'am (Budding Mariners Academy)</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="timer-pill" onclick="toggleTimer()" id="timer-display" title="Click to Pause/Resume Timer">⏱️ 00:00</div>
+      <div class="stat-pill">Attempted:<span class="val" id="stat-attempted">0/75</span></div>
+      <div class="stat-pill">Correct:<span class="val" id="stat-correct" style="color:#10b981;">0</span></div>
+      <div class="stat-pill">Accuracy:<span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved:<span class="val" id="stat-saved" style="color:#f59e0b;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Interactive Quiz (75 PYQs)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('formulas', this)">📐 Maths Formula & Tricks Sheet</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 75)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setFilter('ALL', this)">All 75 Questions</button>
+      <button class="sec-pill" onclick="setFilter('PART1', this)">Part 1 (Q1–Q50)</button>
+      <button class="sec-pill" onclick="setFilter('PART2', this)">Part 2 (Q51–Q75)</button>
+      <button class="sec-pill" onclick="setFilter('TRIG_GEOM', this)">📐 Trig & Geometry</button>
+      <button class="sec-pill" onclick="setFilter('ALGEBRA', this)">🔢 Algebra & Functions</button>
+      <button class="sec-pill" onclick="setFilter('ARITH_MENS', this)">📊 Mensuration & Quant</button>
+      <button class="sec-pill" onclick="setFilter('SAVED', this)">★ Saved</button>
+      <button class="sec-pill" onclick="setFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="ctrl-btn" onclick="revealCurrent()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 75</span>
+            <span class="badge badge-part" id="q-part-badge">Part 1</span>
+            <span class="badge badge-topic" id="q-topic-badge">Topic</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Step-by-Step Solution (Neha Gupta Ma'am)</div>
+          <div class="exp-text" id="q-exp-text"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQ(-1)">← Previous</button>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Keys: <b>1–4</b> Select Option • <b>← / →</b> Navigate</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQ(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.9rem;">
+          <span>Question Navigator</span>
+          <span id="palette-count" style="color:var(--text-secondary); font-size:0.78rem;">75 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face">
+          <div>
+            <div class="q-badges" style="margin-bottom:14px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 75</span>
+              <span class="badge badge-topic" id="fc-topic">Topic</span>
+            </div>
+            <div id="fc-q" style="font-size:1.18rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="text-align:center; color:var(--accent-sky); font-size:0.84rem;">🔄 Click Card or Press Spacebar to Flip</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <span class="badge badge-num" style="background:rgba(16,185,129,0.2); color:#6ee7b7; margin-bottom:10px; display:inline-block;">Correct Answer</span>
+            <div id="fc-ans" style="font-size:1.3rem; font-weight:800; color:#34d399; margin-bottom:14px;"></div>
+            <div id="fc-exp" style="font-size:0.95rem; color:#e2e8f0; line-height:1.65;"></div>
+          </div>
+          <p style="text-align:center; color:var(--text-secondary); font-size:0.8rem;">Click to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button class="nav-btn secondary" onclick="moveFC(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFC(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FORMULA CHEAT SHEET VIEW -->
+  <section id="view-formulas" class="view-section">
+    <div class="formula-grid">
+      <div class="formula-card">
+        <h3>📐 Trigonometry & Heights</h3>
+        <ul class="formula-list">
+          <li>• <b>Golden Identity:</b> यदि <span class="m-expr">sin θ + sin<sup>2</sup>θ = 1</span>, तो <span class="m-expr">cos<sup>2</sup>θ + cos<sup>4</sup>θ = 1</span></li>
+          <li>• <b>Complementary Angles:</b> यदि <span class="m-expr">B + C = 90°</span>, तो <span class="m-expr">tan B · tan C = 1</span></li>
+          <li>• <b>Astroid Elimination:</b> यदि <span class="m-expr">x = a cos<sup>3</sup>θ, y = b sin<sup>3</sup>θ</span>, तो <span class="m-expr">(x/a)<sup>2/3</sup> + (y/b)<sup>2/3</sup> = 1</span></li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>🔢 Quadratic Equations & Polynomials</h3>
+        <ul class="formula-list">
+          <li>• <b>Difference of Roots:</b> <span class="m-expr">|x<sub>1</sub> − x<sub>2</sub>| = <span class="frac"><span class="frac-num"><span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">b<sup>2</sup> − 4ac</span></span></span><span class="frac-den">a</span></span></span></li>
+          <li>• <b>Reciprocal Roots Condition:</b> <span class="m-expr">c = a</span> (गुणनफल <span class="m-expr">α · (1/α) = 1</span>)</li>
+          <li>• <b>Equal Roots Condition:</b> <span class="m-expr">D = b<sup>2</sup> − 4ac = 0</span></li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>📏 Geometry & Coordinate Tricks</h3>
+        <ul class="formula-list">
+          <li>• <b>Inscribed Equilateral Triangle in Circle:</b> भुजा <span class="m-expr">a = r<span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">3</span></span></span> और क्षेत्रफल <span class="m-expr">= <span class="frac"><span class="frac-num">3<span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">3</span></span></span><span class="frac-den">4</span></span>r<sup>2</sup></span></li>
+          <li>• <b>Cuboid Volume from Adjacent Faces:</b> <span class="m-expr">V = <span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">A<sub>1</sub> × A<sub>2</sub> × A<sub>3</sub></span></span></span></li>
+          <li>• <b>Clock Hour Hand Speed:</b> घंटे की सुई 1 मिनट में <span class="m-expr">0.5°</span> घूमती है।</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1;" placeholder="🔍 Search any Maths question, formula, or keyword (e.g., Tower, Quadratic, Circle, AP, Pipe)..." oninput="renderBank()" />
+      <button class="ctrl-btn" onclick="toggleBlur(this)">🙈 Hide Answers (Self-Test)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+const frac = (n, d) => `<span class="frac"><span class="frac-num">${n}</span><span class="frac-den">${d}</span></span>`;
+const sqrt = (x) => `<span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">${x}</span></span>`;
+const m = (c) => `<span class="m-expr">${c}</span>`;
+
+const RAW_QUESTIONS = [
+  // ================= PART 1: Q1 TO Q50 =================
+  {
+    id: 1, part: "PART1", cat: "TRIG_GEOM", topic: "Height & Distance",
+    q: `Figure M9 में, यदि ${m("∠60°")} और ${m("∠45°")} के कोण पर ${m("300 m")} ऊंचे टावर से दो बिंदु देखे जाते हैं, तो ${m("BC")} की लंबाई क्या होगी?`,
+    opts: [m("100 m"), m("300 m"), m(`100${sqrt("3")} m`), m(`200${sqrt("3")} m`)], ans: 2,
+    exp: `1. ${m(`tan 45° = ${frac("x", "d")} ⇒ x = d`)}.<br>2. ${m(`tan 60° = ${frac("300", "d")} ⇒ d = ${frac("300", sqrt("3"))} = 100${sqrt("3")} m`)}.<br>3. चूँकि ${m("x = d")}, अतः ${m(`BC = 100${sqrt("3")} m`)}।`
+  },
+  {
+    id: 2, part: "PART1", cat: "TRIG_GEOM", topic: "Trigonometric Identity",
+    q: `यदि ${m("sin θ = cos<sup>2</sup>θ")} है, तो ${m("cos<sup>2</sup>θ(1 + cos<sup>2</sup>θ)")} का मान क्या होगा?`,
+    opts: ["0", "1", "2", m("sin θ")], ans: 1,
+    exp: `${m("cos<sup>2</sup>θ(1 + cos<sup>2</sup>θ) = cos<sup>2</sup>θ + cos<sup>4</sup>θ = sin θ + sin<sup>2</sup>θ = cos<sup>2</sup>θ + sin<sup>2</sup>θ = 1")}।`
+  },
+  {
+    id: 3, part: "PART1", cat: "ALGEBRA", topic: "Algebraic Substitution",
+    q: `यदि ${m("a = 4b")} तथा ${m("c = 8b<sup>2</sup>")} हो, तो ${m(frac("c − a", "4b"))} का मान क्या होगा?`,
+    opts: [m("2b − 1"), m("2b + 1"), m("4b − 1"), m("b − 2")], ans: 0,
+    exp: `${m(`${frac("8b<sup>2</sup> − 4b", "4b")} = ${frac("4b(2b − 1)", "4b")} = 2b − 1`)}।`
+  },
+  {
+    id: 4, part: "PART1", cat: "ARITH_MENS", topic: "Percentage & Stock Gain",
+    q: `एक शेयर हफ्ते की शुरुआत ${m("87.5")} मूल्य पर करता है। अगले 4 दिनों का औसत लाभ ${m("0.5")} प्रति दिन है। यदि 5 दिनों में कुल ${m("5%")} की वृद्धि होती है, तो शुक्रवार को शेयर का मान कितना बढ़ा?`,
+    opts: [m("2.0"), m("2.375"), m("4.375"), m("1.5")], ans: 1,
+    exp: `1. 4 दिनों का कुल लाभ ${m("= 4 × 0.5 = 2.0")}।<br>2. 5 दिनों का कुल 5% लाभ ${m(`= 87.5 × ${frac("5", "100")} = 4.375`)}।<br>3. शुक्रवार का लाभ ${m("= 4.375 − 2.0 = 2.375")}।`
+  },
+  {
+    id: 5, part: "PART1", cat: "ARITH_MENS", topic: "Circumference & Fencing",
+    q: `एक वृत्ताकार मैदान की तारबंदी (Fencing) की कुल लागत ${m("$10/m")} की दर से ${m("$440")} है। मैदान की त्रिज्या (${m("r")}) ज्ञात कीजिए।`,
+    opts: [m("7 m"), m("14 m"), m("21 m"), m("3.5 m")], ans: 0,
+    exp: `परिधि ${m(`= ${frac("440", "10")} = 44 m`)}। ${m(`2πr = 44 ⇒ 2 × ${frac("22", "7")} × r = 44 ⇒ r = 7 m`)}।`
+  },
+  {
+    id: 6, part: "PART1", cat: "TRIG_GEOM", topic: "Trig Simplification",
+    q: `व्यंजक ${m(`${frac("sin x", "cos x")} · cos x · sin x + cos<sup>2</sup>x`)} का मान क्या होगा?`,
+    opts: ["0", "1", m("tan x"), "2"], ans: 1,
+    exp: `${m("sin<sup>2</sup>x + cos<sup>2</sup>x = 1")}।`
+  },
+  {
+    id: 7, part: "PART1", cat: "ALGEBRA", topic: "Even & Odd Properties",
+    q: `यदि ${m("x")} एक सम संख्या (Even) तथा ${m("y")} एक विषम संख्या (Odd) है, तो निम्नलिखित में से कौन सी संख्या सदैव विषम (Odd) होगी?`,
+    opts: [m("x · y"), m("x + 2y"), m("x<sup>y</sup>"), m("y<sup>x</sup>")], ans: 3,
+    exp: `${m("Odd<sup>Even</sup> = Odd")} (उदाहरण: ${m("3<sup>2</sup> = 9")}), अतः ${m("y<sup>x</sup>")} विषम संख्या होगी।`
+  },
+  {
+    id: 8, part: "PART1", cat: "ARITH_MENS", topic: "Rounding Decimals",
+    q: `संख्या ${m("86.345")} को एक दशमलव स्थान (One decimal place) तक सही मान में लिखिए:`,
+    opts: [m("86.4"), m("86.3"), m("86.35"), m("86.0")], ans: 1,
+    exp: `दशमलव के दूसरे स्थान पर अंक 4 है (जो 5 से छोटा है), इसलिए एक दशमलव स्थान तक मान ${m("86.3")} होगा।`
+  },
+  {
+    id: 9, part: "PART1", cat: "TRIG_GEOM", topic: "Circle Inscribed Angle",
+    q: `एक वृत्त के केंद्र पर बना कोण परिधि पर बने कोण का दोगुना होता है। यदि परिधि का कोण ${m("60°")} है, तो केंद्र कोण का मान होगा:`,
+    opts: [m("60°"), m("120°"), m("90°"), m("180°")], ans: 1,
+    exp: `केंद्र पर बना कोण ${m("= 2 × 60° = 120°")}।`
+  },
+  {
+    id: 10, part: "PART1", cat: "TRIG_GEOM", topic: "Parallel Lines Angles",
+    q: `यदि दो समांतर रेखाओं के बीच एकांतर आंतरिक कोण ${m("(180° − 2x)")} तथा ${m("(4x − 30°)")} एक-दूसरे के बराबर हैं, तो ${m("x")} का मान ज्ञात कीजिए:`,
+    opts: [m("35°"), m("45°"), m("30°"), m("60°")], ans: 0,
+    exp: `${m("180 − 2x = 4x − 30 ⇒ 6x = 210 ⇒ x = 35°")}।`
+  },
+  {
+    id: 11, part: "PART1", cat: "TRIG_GEOM", topic: "Coordinate Distance",
+    q: `बिंदु ${m("(3, −2)")} की मूल बिंदु ${m("(0, 0)")} से दूरी ज्ञात कीजिए:`,
+    opts: [m("3 units"), m(`${sqrt("13")} units (≈ 3.6)`), m("5 units"), m("2 units")], ans: 1,
+    exp: `दूरी ${m(`d = ${sqrt("(3−0)<sup>2</sup> + (−2−0)<sup>2</sup>")} = ${sqrt("9 + 4")} = ${sqrt("13")} units`)}।`
+  },
+  {
+    id: 12, part: "PART1", cat: "ARITH_MENS", topic: "Route Optimization",
+    q: `एक जहाज पोर्ट A से शुरू होकर Ports B, C, D की यात्रा बिना A पर वापस लौटे करता है। न्यूनतम दूरी तय करने वाला सही रूट क्या होगा? (A-C = 105, C-D = 35, D-B = 55)`,
+    opts: ["A → B → C → D", "A → C → D → B", "A → D → B → C", "A → C → B → D"], ans: 1,
+    exp: `रूट <b>A → C → D → B</b> की कुल दूरी ${m("= 105 + 35 + 55 = 195 miles")} (न्यूनतम) है।`
+  },
+  {
+    id: 13, part: "PART1", cat: "TRIG_GEOM", topic: "Exterior Angle Theorem",
+    q: `${m("ΔABC")} में बाह्य कोण ${m("a°")} का मान आंतरिक सुदूर कोणों (${m("y°")} और ${m("z°")}) के संदर्भ में क्या होगा?`,
+    opts: [m("y° + z°"), m("2x°"), m("x° + 90°"), m("180° − y°")], ans: 0,
+    exp: `बहिष्कोण प्रमेय (Exterior Angle Theorem) के अनुसार: ${m("a° = y° + z°")}।`
+  },
+  {
+    id: 14, part: "PART1", cat: "ALGEBRA", topic: "Linear Equations Word Problem",
+    q: `गायों और मुर्गियों के एक समूह में पैरों की संख्या सिरों की संख्या के दोगुने से 14 अधिक है। समूह में कितनी गायें हैं?`,
+    opts: ["5", "7", "12", "14"], ans: 1,
+    exp: `${m("4C + 2H = 2(C + H) + 14 ⇒ 2C = 14 ⇒ C = 7")} गायें।`
+  },
+  {
+    id: 15, part: "PART1", cat: "ALGEBRA", topic: "Quadratic Reciprocal Roots",
+    q: `यदि द्विघात समीकरण ${m("5x<sup>2</sup> + 13x + k = 0")} का एक मूल दूसरे का व्युत्क्रम (Reciprocal) है, तो ${m("k")} का मान क्या होगा?`,
+    opts: ["13", "5", "−5", "1"], ans: 1,
+    exp: `मूलों का गुणनफल ${m(`α · ${frac("1", "α")} = ${frac("k", "5")} ⇒ 1 = ${frac("k", "5")} ⇒ k = 5`)}।`
+  },
+  {
+    id: 16, part: "PART1", cat: "ALGEBRA", topic: "Logarithm & Richter Scale",
+    q: `यदि रिक्टर पैमाने पर तीव्रता 2 को ${m("log<sub>10</sub> 100")} से व्यक्त किया जाता है, तो तीव्रता 4 का मान तीव्रता 2 की तुलना में कितने गुना होगा?`,
+    opts: ["2 गुना", "10 गुना", "100 गुना", "1000 गुना"], ans: 2,
+    exp: `तीव्रता अनुपात ${m(`= ${frac("10<sup>4</sup>", "10<sup>2</sup>")} = 10<sup>2</sup> = 100 गुना`)}।`
+  },
+  {
+    id: 17, part: "PART1", cat: "ARITH_MENS", topic: "Time & Work",
+    q: `सीन एक घर को 10 घंटे में और डैन उसी घर को 12 घंटे में पेंट कर सकता है। सीन काम का ${m("1/3")} भाग पूरा करता है, जिसके बाद डैन बचा हुआ काम खत्म करता है। कुल कितना समय लगा?`,
+    opts: ["10 घंटे", "11 घंटे 20 मिनट", "12 घंटे", "9 घंटे 30 मिनट"], ans: 1,
+    exp: `सीन का समय ${m(`= ${frac("10", "3")} h = 3h 20m`)}। डैन का समय ${m(`= ${frac("2", "3")} × 12 = 8h`)}। कुल समय = <b>11 घंटे 20 मिनट</b>।`
+  },
+  {
+    id: 18, part: "PART1", cat: "TRIG_GEOM", topic: "Angle of Elevation",
+    q: `${m("15 m")} ऊंचे खंभे के आधार से ${m("15 m")} की दूरी पर स्थित बिंदु से शीर्ष का उन्नयन कोण ज्ञात कीजिए:`,
+    opts: [m("30°"), m("45°"), m("60°"), m("90°")], ans: 1,
+    exp: `${m(`tan θ = ${frac("15", "15")} = 1 ⇒ θ = 45°`)}।`
+  },
+  {
+    id: 19, part: "PART1", cat: "ALGEBRA", topic: "Quadratic Roots Difference",
+    q: `द्विघात समीकरण ${m("x<sup>2</sup> − 6x + 6 = 0")} के बड़े और छोटे मूलों के बीच का अंतर ज्ञात कीजिए:`,
+    opts: [m(sqrt("6")), m(`${sqrt("12")} (≈ 3.46)`), m("6"), m("3")], ans: 1,
+    exp: `${m(`|x<sub>1</sub> − x<sub>2</sub>| = ${frac(sqrt("b<sup>2</sup> − 4ac"), "a")} = ${sqrt("36 − 24")} = ${sqrt("12")}`)}।`
+  },
+  {
+    id: 20, part: "PART1", cat: "ARITH_MENS", topic: "Percentage",
+    q: `यदि किसी संख्या का ${m("25%")} मान ${m("36")} है, तो उसी संख्या का ${m("40%")} मान क्या होगा?`,
+    opts: [m("54"), m("57.6"), m("60"), m("72")], ans: 1,
+    exp: `संख्या ${m(`N = 36 × 4 = 144`)}। इसका 40% ${m(`= 144 × 0.4 = 57.6`)}।`
+  },
+  {
+    id: 21, part: "PART1", cat: "ARITH_MENS", topic: "Combined Mean",
+    q: `9 प्रेक्षणों का माध्य ${m("100")} है तथा 6 प्रेक्षणों का माध्य ${m("80")} है। सभी 15 प्रेक्षणों का संयुक्त माध्य ज्ञात कीजिए:`,
+    opts: [m("90"), m("92"), m("95"), m("88")], ans: 1,
+    exp: `संयुक्त माध्य ${m(`= ${frac("(9 × 100) + (6 × 80)", "15")} = ${frac("1380", "15")} = 92`)}।`
+  },
+  {
+    id: 22, part: "PART1", cat: "TRIG_GEOM", topic: "Trigonometric Identity",
+    q: `व्यंजक ${m("1 − 2 sin<sup>2</sup>θ − 2 cos<sup>2</sup>θ")} का मान क्या होगा?`,
+    opts: [m("1"), m("−1"), m("0"), m("2")], ans: 1,
+    exp: `${m("1 − 2(sin<sup>2</sup>θ + cos<sup>2</sup>θ) = 1 − 2(1) = −1")}।`
+  },
+  {
+    id: 23, part: "PART1", cat: "TRIG_GEOM", topic: "Area of Right Triangle",
+    q: `एक त्रिभुज की भुजाएँ ${m("5 cm")}, ${m("12 cm")} और ${m("13 cm")} हैं। इसका क्षेत्रफल ज्ञात कीजिए:`,
+    opts: [m("60 cm<sup>2</sup>"), m("30 cm<sup>2</sup>"), m("65 cm<sup>2</sup>"), m("25 cm<sup>2</sup>")], ans: 1,
+    exp: `समकोण त्रिभुज का क्षेत्रफल ${m(`= ${frac("1", "2")} × 5 × 12 = 30 cm<sup>2</sup>`)}।`
+  },
+  {
+    id: 24, part: "PART1", cat: "ALGEBRA", topic: "Exponents Comparison",
+    q: `यदि ${m(`A = ${frac("0.01 × 10<sup>20</sup>", "5")}`)} और ${m(`B = ${frac("0.1 × 10<sup>8</sup>", "2")}`)} हो, तो ${m("A")} और ${m("B")} में क्या संबंध है?`,
+    opts: [m("A > B"), m("A < B"), m("A = B"), m("A = 2B")], ans: 0,
+    exp: `${m("A = 2 × 10<sup>17</sup>")} तथा ${m("B = 5 × 10<sup>6</sup> ⇒ A > B")}।`
+  },
+  {
+    id: 25, part: "PART1", cat: "ALGEBRA", topic: "Quadratic Roots",
+    q: `समीकरण ${m("5x − x<sup>2</sup> = 6")} के मूल (Roots) क्या होंगे?`,
+    opts: [m("x = 1, 6"), m("x = 2, 3"), m("x = −2, −3"), m("x = 0, 5")], ans: 1,
+    exp: `${m("x<sup>2</sup> − 5x + 6 = 0 ⇒ (x − 2)(x − 3) = 0 ⇒ x = 2, 3")}।`
+  },
+  {
+    id: 26, part: "PART1", cat: "TRIG_GEOM", topic: "Trigonometric Equation",
+    q: `यदि ${m("sin θ − cos θ = 0")} हो (${m("0° ≤ θ ≤ 90°")}), तो ${m("θ")} का मान होगा:`,
+    opts: [m("30°"), m("45°"), m("60°"), m("90°")], ans: 1,
+    exp: `${m("sin θ = cos θ ⇒ tan θ = 1 ⇒ θ = 45°")}।`
+  },
+  {
+    id: 27, part: "PART1", cat: "TRIG_GEOM", topic: "Line Y-Intercept",
+    q: `रेखा ${m(`${frac("x", "a")} + ${frac("y", "b")} = 7`)} Y-अक्ष को किस बिंदु पर प्रतिच्छेद करेगी?`,
+    opts: [m("(a, 0)"), m("(0, 7b)"), m("(7a, 0)"), m("(0, b)")], ans: 1,
+    exp: `Y-अक्ष पर ${m("x = 0")} रखने पर: ${m(`${frac("y", "b")} = 7 ⇒ y = 7b`)}। अतः बिंदु ${m("(0, 7b)")} है।`
+  },
+  {
+    id: 28, part: "PART1", cat: "ARITH_MENS", topic: "Data Interpretation",
+    q: `प्रति 1000 व्यक्तियों पर वाहनों की संख्या दर्शाने वाले आरेख में Country I और J से अधिक वाहन किस देश में हैं?`,
+    opts: ["Country G", "Country A", "Country K", "Country M"], ans: 0,
+    exp: `दिए गए बार-चार्ट के अनुसार <b>Country G</b> में वाहनों की संख्या Country I और J दोनों से अधिक है।`
+  },
+  {
+    id: 29, part: "PART1", cat: "ALGEBRA", topic: "Fractional Equation",
+    q: `लेक्चर में हल किए गए भिन्नात्मक समीकरण ${m(`${frac("x", "5")} − ${frac("x", "9")} = 4`)} (मानक रूप) के अनुसार ${m("x")} का मान ज्ञात कीजिए:`,
+    opts: [m("x = 45"), m("x = 10"), m("x = 5"), m("x = 25")], ans: 0,
+    exp: `${m(`${frac("9x − 5x", "45")} = 4 ⇒ ${frac("4x", "45")} = 4 ⇒ x = 45`)}।`
+  },
+  {
+    id: 30, part: "PART1", cat: "TRIG_GEOM", topic: "Parametric Elimination",
+    q: `यदि ${m("x = a cos<sup>3</sup>θ")} और ${m("y = b sin<sup>3</sup>θ")} हो, तो ${m("θ")} का विलोपन (Elimination) करने पर सही संबंध क्या होगा?`,
+    opts: [
+      m("(x/a)<sup>2/3</sup> + (y/b)<sup>2/3</sup> = 1"),
+      m("(x/a)<sup>2</sup> + (y/b)<sup>2</sup> = 1"),
+      m("x<sup>2</sup> + y<sup>2</sup> = a<sup>2</sup>b<sup>2</sup>"),
+      m("x/a + y/b = 1")
+    ], ans: 0,
+    exp: `${m("cos<sup>2</sup>θ = (x/a)<sup>2/3</sup>")} और ${m("sin<sup>2</sup>θ = (y/b)<sup>2/3</sup>")} को जोड़ने पर ${m("(x/a)<sup>2/3</sup> + (y/b)<sup>2/3</sup> = 1")}।`
+  },
+  {
+    id: 31, part: "PART1", cat: "ALGEBRA", topic: "Algebraic Simplification",
+    q: `व्यंजक ${m(`${frac("x<sup>2</sup> − 3x − 4", "x + 1")} × ${frac("3", "x")}`)} को सरल कीजिए:`,
+    opts: [
+      m(frac("3(x − 4)", "x")),
+      m(frac("3(x + 4)", "x")),
+      m("3x − 12"),
+      m(frac("x − 4", "3x"))
+    ], ans: 0,
+    exp: `${m(`${frac("(x − 4)(x + 1)", "x + 1")} × ${frac("3", "x")} = ${frac("3(x − 4)", "x")}`)}।`
+  },
+  {
+    id: 32, part: "PART1", cat: "ARITH_MENS", topic: "Volume Ratio (Tank & Bucket)",
+    q: `एक ${m("100 cm × 20 cm × 40 cm")} आयताकार टंकी को त्रिज्या ${m("9 cm")} और ऊंचाई ${m("20 cm")} वाली बेलनाकार बाल्टी से भरने के लिए लगभग कितनी बाल्टियों की आवश्यकता होगी?`,
+    opts: ["16 बाल्टियाँ", "25 बाल्टियाँ", "10 बाल्टियाँ", "30 बाल्टियाँ"], ans: 0,
+    exp: `बाल्टियों की संख्या ${m(`= ${frac("100 × 20 × 40", "π × 9<sup>2</sup> × 20")} = ${frac("80000", "5089.38")} ≈ 15.7 ≈ 16`)}।`
+  },
+  {
+    id: 33, part: "PART1", cat: "ALGEBRA", topic: "Algebraic Fractions",
+    q: `व्यंजक ${m(`${frac("x + 1", "6x")} + ${frac("3x + 3", "6x")}`)} का न्यूनतम रूप क्या होगा?`,
+    opts: [
+      m(frac("2x + 2", "3x")),
+      m(frac("5x + 5", "6x")),
+      m(frac("x + 1", "x")),
+      m(frac("5", "6"))
+    ], ans: 0,
+    exp: `योग ${m(`= ${frac("4x + 4", "6x")} = ${frac("2x + 2", "3x")}`)}।`
+  },
+  {
+    id: 34, part: "PART1", cat: "TRIG_GEOM", topic: "Right Isosceles Triangle",
+    q: `समकोण समद्विबाहु त्रिभुज में समान भुजाएँ ${m("AC = BC = 2")} हैं। कर्ण (Hypotenuse) की लंबाई ज्ञात कीजिए:`,
+    opts: [m(`2${sqrt("2")}`), m("4"), m(sqrt("2")), m("8")], ans: 0,
+    exp: `कर्ण ${m(`h = ${sqrt("2<sup>2</sup> + 2<sup>2</sup>")} = ${sqrt("8")} = 2${sqrt("2")}`)}।`
+  },
+  {
+    id: 35, part: "PART1", cat: "TRIG_GEOM", topic: "Height & Distance",
+    q: `खंभे के आधार से ${m("15 m")} दूरी पर ${m("15 m")} ऊंचे खंभे का उन्नयन कोण क्या होगा?`,
+    opts: [m("45°"), m("30°"), m("60°"), m("90°")], ans: 0,
+    exp: `लंब और आधार बराबर हैं (${m("15 m")}), अतः कोण ${m("45°")} होगा।`
+  },
+  {
+    id: 36, part: "PART1", cat: "TRIG_GEOM", topic: "Line Segment Midpoint",
+    q: `रेखाखंड ${m("AC = 3 × CD")} है। यदि ${m("CD = 5")} है और ${m("B")}, ${m("AC")} का मध्य बिंदु है, तो ${m("BD")} की लंबाई ज्ञात कीजिए:`,
+    opts: [m("12.5"), m("15"), m("7.5"), m("10")], ans: 0,
+    exp: `${m("AC = 15 ⇒ BC = 7.5 ⇒ BD = BC + CD = 7.5 + 5 = 12.5")}।`
+  },
+  {
+    id: 37, part: "PART1", cat: "ALGEBRA", topic: "Number Word Problem",
+    q: `एक संख्या का ${m("1/3")} भाग उसके अनुवर्ती (Successor) के ${m("1/4")} भाग से 1 अधिक है। संख्या ज्ञात कीजिए:`,
+    opts: ["15", "12", "18", "20"], ans: 0,
+    exp: `${m(`${frac("n", "3")} − ${frac("n + 1", "4")} = 1 ⇒ 4n − 3n − 3 = 12 ⇒ n = 15`)}।`
+  },
+  {
+    id: 38, part: "PART1", cat: "TRIG_GEOM", topic: "Slope-Intercept Form",
+    q: `X-अक्ष से ${m("45°")} का कोण बनाने वाली और Y-अंतःखंड ${m("2")} रखने वाली रेखा का समीकरण क्या है?`,
+    opts: [m("y = x + 2"), m("y = 2x + 1"), m("y = x − 2"), m("y = −x + 2")], ans: 0,
+    exp: `${m("m = tan 45° = 1")} तथा ${m("c = 2 ⇒ y = mx + c ⇒ y = x + 2")}।`
+  },
+  {
+    id: 39, part: "PART1", cat: "ALGEBRA", topic: "Variable Substitution",
+    q: `यदि ${m("x = y<sup>2</sup>")} तथा ${m("y = 5/k")} हो, तो ${m("k = 1/2")} पर ${m("x")} का मान क्या होगा?`,
+    opts: ["100", "25", "10", "50"], ans: 0,
+    exp: `${m("y = 5 / (1/2) = 10 ⇒ x = 10<sup>2</sup> = 100")}।`
+  },
+  {
+    id: 40, part: "PART1", cat: "ARITH_MENS", topic: "Clock Angle Rotation",
+    q: `दोपहर 2:00 बजे से शाम 7:20 बजे तक घंटे की सुई कितने डिग्री घूमेगी?`,
+    opts: [m("160°"), m("150°"), m("180°"), m("140°")], ans: 0,
+    exp: `कुल समय = 5 घंटे 20 मिनट = 320 मिनट। घंटे की सुई का घुमाव ${m("= 320 × 0.5° = 160°")}।`
+  },
+  {
+    id: 41, part: "PART1", cat: "ARITH_MENS", topic: "Linear Ranking",
+    q: `36 छात्रों की कक्षा में राम का स्थान ऊपर से 18वाँ है। नीचे से उसका स्थान क्या होगा?`,
+    opts: ["19वाँ", "18वाँ", "17वाँ", "20वाँ"], ans: 0,
+    exp: `नीचे से स्थान ${m("= 36 − 18 + 1 = 19वाँ")}।`
+  },
+  {
+    id: 42, part: "PART1", cat: "ARITH_MENS", topic: "Equilateral Triangle in Circle",
+    q: `यदि वृत्त का क्षेत्रफल ${m("64π")} है, तो इसके अंदर बनने वाले समबाहु त्रिभुज का क्षेत्रफल ज्ञात कीजिए:`,
+    opts: [m("83.14 sq units"), m("110.5 sq units"), m("64 sq units"), m("48 sq units")], ans: 0,
+    exp: `त्रिज्या ${m("r = 8 ⇒")} भुजा ${m(`a = 8${sqrt("3")}`)}। क्षेत्रफल ${m(`= ${frac(sqrt("3"), "4")}(8${sqrt("3")})<sup>2</sup> = 48${sqrt("3")} ≈ 83.14 sq units`)}।`
+  },
+  {
+    id: 43, part: "PART1", cat: "ALGEBRA", topic: "Quadratic Roots Relation",
+    q: `यदि द्विघात समीकरण ${m("ax<sup>2</sup> + bx + c = 0")} का एक मूल दूसरे मूल का वर्ग (Square) है, तो मूलों का योग और गुणनफल संबंध क्या होगा?`,
+    opts: [
+      m("α + α<sup>2</sup> = −b/a, α<sup>3</sup> = c/a"),
+      m("α<sup>2</sup> = c/a"),
+      m("2α = −b/a"),
+      m("α<sup>3</sup> = −b/a")
+    ], ans: 0,
+    exp: `मूल ${m("α")} और ${m("α<sup>2</sup>")} लेने पर योग ${m("α + α<sup>2</sup> = −b/a")} तथा गुणनफल ${m("α<sup>3</sup> = c/a")}।`
+  },
+  {
+    id: 44, part: "PART1", cat: "ARITH_MENS", topic: "Percentage Exam Scores",
+    q: `दो छात्रों में से एक ने दूसरे से 9 अंक अधिक प्राप्त किए और उसके अंक दोनों के कुल अंकों के ${m("56%")} के बराबर हैं। उनके अंक ज्ञात कीजिए:`,
+    opts: ["42 और 33", "43 और 34", "41 और 32", "39 और 30"], ans: 0,
+    exp: `${m("A − B = 9")} और ${m("A = 0.56(A + B) ⇒ A : B = 14 : 11")}। अंतर 3 यूनिट = 9 ⇒ अंक <b>42 और 33</b> हैं।`
+  },
+  {
+    id: 45, part: "PART1", cat: "TRIG_GEOM", topic: "Complementary Angles",
+    q: `समकोण त्रिभुज ABC में ${m("∠A = 90°")} है। ${m("tan B · tan C")} का मान क्या होगा?`,
+    opts: ["1", "0", "−1", "2"], ans: 0,
+    exp: `${m("B + C = 90° ⇒ tan C = cot B ⇒ tan B · cot B = 1")}।`
+  },
+  {
+    id: 46, part: "PART1", cat: "ALGEBRA", topic: "Rational Expression",
+    q: `यदि ${m(`${frac("2x", "x<sup>2</sup> + x")} = ${frac("1", "2")}`)} हो, तो संबंधित व्यंजक ${m(`${frac("1", "x + 1")} − 2`)} का मान क्या होगा?`,
+    opts: [m("−7/4"), m("3/4"), m("−3/4"), m("1/2")], ans: 0,
+    exp: `${m(`${frac("2", "x + 1")} = ${frac("1", "2")} ⇒ x + 1 = 4 ⇒ ${frac("1", "4")} − 2 = −${frac("7", "4")}`)}।`
+  },
+  {
+    id: 47, part: "PART1", cat: "ALGEBRA", topic: "Discriminant Equal Roots",
+    q: `यदि द्विघात समीकरण ${m("3x<sup>2</sup> − 5x + k = 0")} के मूल समान (Equal) हैं, तो ${m("k")} का मान क्या होगा?`,
+    opts: [m("25/12"), m("12/25"), m("5/3"), m("25/4")], ans: 0,
+    exp: `${m(`b<sup>2</sup> − 4ac = 0 ⇒ 25 − 12k = 0 ⇒ k = ${frac("25", "12")}`)}।`
+  },
+  {
+    id: 48, part: "PART1", cat: "ARITH_MENS", topic: "Cylinder Volume",
+    q: `${m("30°")} के कोण और ${m("10 cm")} तिर्यक रेखा वाले बेलन का आयतन (${m("r = 5, h = 5√3")}) ज्ञात कीजिए:`,
+    opts: [m("680 cm<sup>3</sup>"), m("500 cm<sup>3</sup>"), m("420 cm<sup>3</sup>"), m("1000 cm<sup>3</sup>")], ans: 0,
+    exp: `${m(`r = 10 sin 30° = 5 cm, h = 10 cos 30° = 5${sqrt("3")} cm ⇒ V = πr<sup>2</sup>h ≈ 680 cm<sup>3</sup>`)}।`
+  },
+  {
+    id: 49, part: "PART1", cat: "ALGEBRA", topic: "Composite Functions",
+    q: `यदि ${m("f(x) = x<sup>2</sup> − 10")} और ${m("g(x) = 4x + 3")} हो, तो ${m("f(g(2))")} का मान ज्ञात कीजिए:`,
+    opts: ["111", "121", "100", "110"], ans: 0,
+    exp: `${m("g(2) = 11 ⇒ f(11) = 11<sup>2</sup> − 10 = 111")}।`
+  },
+  {
+    id: 50, part: "PART1", cat: "ALGEBRA", topic: "Remainder Theorem",
+    q: `जब ${m("3x<sup>3</sup> + 2x<sup>2</sup> + 2x + k")} को ${m("(x + 2)")} से विभाजित किया जाता है, तो शेषफल 4 प्राप्त होता है। ${m("k")} का मान क्या होगा?`,
+    opts: ["24", "20", "−24", "16"], ans: 0,
+    exp: `${m("P(−2) = 3(−8) + 2(4) + 2(−2) + k = 4 ⇒ −20 + k = 4 ⇒ k = 24")}।`
+  },
+
+  // ================= PART 2: Q51 TO Q75 =================
+  {
+    id: 51, part: "PART2", cat: "TRIG_GEOM", topic: "Complementary Product",
+    q: `समकोण त्रिभुज ${m("ABC")} में यदि ${m("∠A = 90°")} है, तो ${m("tan B · tan C")} का मान क्या होगा?`,
+    opts: ["1", "0", "−1", "2"], ans: 0,
+    exp: `${m("C = 90° − B ⇒ tan C = cot B ⇒ tan B · cot B = 1")}।`
+  },
+  {
+    id: 52, part: "PART2", cat: "ALGEBRA", topic: "Algebraic Fraction",
+    q: `यदि ${m(`${frac("2x", "x<sup>2</sup> + x")} = ${frac("1", "2")}`)} हो, तो संबंधित व्यंजक का मान ज्ञात कीजिए:`,
+    opts: [m("−7/4"), m("3/4"), m("−3/4"), m("1/2")], ans: 0,
+    exp: `${m("x = 3")} रखने पर व्यंजक का मान ${m("−7/4")} प्राप्त होता है।`
+  },
+  {
+    id: 53, part: "PART2", cat: "ALGEBRA", topic: "Equal Roots Condition",
+    q: `यदि द्विघात समीकरण ${m("3x<sup>2</sup> − 5x + k = 0")} के मूल समान (Equal) हैं, तो ${m("k")} का मान क्या होगा?`,
+    opts: [m("25/12"), m("12/25"), m("5/3"), m("25/4")], ans: 0,
+    exp: `विविक्तकर ${m("D = (−5)<sup>2</sup> − 4(3)(k) = 0 ⇒ k = 25/12")}।`
+  },
+  {
+    id: 54, part: "PART2", cat: "ARITH_MENS", topic: "Cylinder Volume",
+    q: `यदि बेलन की त्रिज्या ${m("r = 5 cm")} और ऊँचाई ${m("h = 10 cm")} (तिर्यक माप अनुसार) हो, तो बेलन का आयतन ज्ञात कीजिए:`,
+    opts: [m("785 cm<sup>3</sup>"), m("680 cm<sup>3</sup>"), m("500 cm<sup>3</sup>"), m("1000 cm<sup>3</sup>")], ans: 0,
+    exp: `${m("V = πr<sup>2</sup>h = 3.14 × 25 × 10 = 785 cm<sup>3</sup>")}।`
+  },
+  {
+    id: 55, part: "PART2", cat: "ALGEBRA", topic: "Composite Function",
+    q: `यदि ${m("f(x) = x<sup>2</sup> − 10")} और ${m("g(x) = 4x + 3")} हो, तो ${m("f(g(2))")} का मान ज्ञात कीजिए:`,
+    opts: ["111", "121", "100", "110"], ans: 0,
+    exp: `${m("g(2) = 4(2) + 3 = 11")} तथा ${m("f(11) = 121 − 10 = 111")}।`
+  },
+  {
+    id: 56, part: "PART2", cat: "ALGEBRA", topic: "Polynomial Remainder",
+    q: `जब बहुपद ${m("3x<sup>3</sup> + 2x<sup>2</sup> + 2x + k")} को ${m("(x + 2)")} से विभाजित किया जाता है, तो शेषफल 4 प्राप्त होता है। ${m("k")} का मान क्या होगा?`,
+    opts: ["24", "20", "−24", "16"], ans: 0,
+    exp: `${m("P(−2) = −24 + 8 − 4 + k = 4 ⇒ k = 24")}।`
+  },
+  {
+    id: 57, part: "PART2", cat: "ARITH_MENS", topic: "Cuboid Adjacent Faces",
+    q: `एक आयताकार ठोस के तीन संलग्न फलकों के क्षेत्रफल ${m("28 cm<sup>2</sup>")}, ${m("20 cm<sup>2</sup>")} और ${m("35 cm<sup>2</sup>")} हैं। ठोस का आयतन (Volume) क्या होगा?`,
+    opts: [m("140 cm<sup>3</sup>"), m("196 cm<sup>3</sup>"), m("280 cm<sup>3</sup>"), m("350 cm<sup>3</sup>")], ans: 0,
+    exp: `${m(`V = ${sqrt("28 × 20 × 35")} = ${sqrt("19600")} = 140 cm<sup>3</sup>`)}।`
+  },
+  {
+    id: 58, part: "PART2", cat: "ARITH_MENS", topic: "3D Volume Conservation",
+    q: `एक डिब्बे की ऊँचाई को ${m("30%")} बढ़ाया जाता है। आयतन समान रखने के लिए नई चौड़ाई क्या होगी यदि प्रारंभिक विमाएँ ${m("20 × 40 × 30")} हैं?`,
+    opts: [m("23.08 cm"), m("25.00 cm"), m("20.00 cm"), m("28.50 cm")], ans: 0,
+    exp: `नई चौड़ाई ${m(`= ${frac("30", "1.30")} ≈ 23.08 cm`)}।`
+  },
+  {
+    id: 59, part: "PART2", cat: "TRIG_GEOM", topic: "Segment Ratio",
+    q: `रेखाखंड में ${m("AC = 3 × CD")} है और ${m("CD = 5")}। यदि ${m("B")}, ${m("AC")} का मध्य बिंदु है, तो ${m("BD")} की लंबाई ज्ञात कीजिए:`,
+    opts: ["12.5", "15.0", "10.0", "7.5"], ans: 0,
+    exp: `${m("BC = 15 / 2 = 7.5 ⇒ BD = 7.5 + 5 = 12.5")}।`
+  },
+  {
+    id: 60, part: "PART2", cat: "TRIG_GEOM", topic: "Similar Triangles",
+    q: `समरूप त्रिभुज में यदि ${m("BD ∥ AE")} है और संगत भुजाओं का अनुपात ${m(`${frac("5", "x + 4")} = ${frac("3", "4")}`)} है, तो ${m("x")} की लंबाई क्या होगी?`,
+    opts: ["2.67", "3.50", "4.00", "1.80"], ans: 0,
+    exp: `${m("20 = 3x + 12 ⇒ 3x = 8 ⇒ x = 2.67")}।`
+  },
+  {
+    id: 61, part: "PART2", cat: "ARITH_MENS", topic: "Percentage Re-calculation",
+    q: `यदि किसी संख्या (144) का ${m("40%")} भाग निकाला जाए, तो परिणामी मान क्या होगा?`,
+    opts: ["57.6", "60.0", "48.0", "52.5"], ans: 0,
+    exp: `${m("144 × 0.40 = 57.6")}।`
+  },
+  {
+    id: 62, part: "PART2", cat: "ALGEBRA", topic: "Cube Root Equation",
+    q: `समीकरण ${m("(8x + 6)<sup>1/3</sup> = −3")} को हल करके ${m("x")} का मान ज्ञात कीजिए:`,
+    opts: [m("−4.125 (−33/8)"), m("−3.500"), m("4.125"), m("−2.750")], ans: 0,
+    exp: `घन करने पर: ${m("8x + 6 = −27 ⇒ 8x = −33 ⇒ x = −33/8 = −4.125")}।`
+  },
+  {
+    id: 63, part: "PART2", cat: "ALGEBRA", topic: "Linear Equation",
+    q: `समीकरण ${m("−18 + 14x = 32")} को हल करके ${m("x")} का मान ज्ञात कीजिए:`,
+    opts: [m("25/7 (3.57)"), m("16/7"), m("32/14"), m("14/5")], ans: 0,
+    exp: `${m(`14x = 50 ⇒ x = ${frac("50", "14")} = ${frac("25", "7")}`)}।`
+  },
+  {
+    id: 64, part: "PART2", cat: "TRIG_GEOM", topic: "Coordinate Triangle",
+    q: `बिंदुओं ${m("(4, 0)")}, ${m("(−4, 0)")} और ${m("(0, 3)")} को जोड़ने पर कौन सा त्रिभुज बनता है?`,
+    opts: [
+      "समद्विबाहु त्रिभुज (Isosceles Triangle)",
+      "समबाहु त्रिभुज (Equilateral Triangle)",
+      "विषमबाहु त्रिभुज (Scalene Triangle)",
+      "अधिककोण त्रिभुज"
+    ], ans: 0,
+    exp: `दो भुजाओं की लंबाई ${m(`${sqrt("4<sup>2</sup> + 3<sup>2</sup>")} = 5`)} समान है, अतः यह <b>समद्विबाहु त्रिभुज (Isosceles Triangle)</b> है।`
+  },
+  {
+    id: 65, part: "PART2", cat: "ALGEBRA", topic: "Function Substitution",
+    q: `यदि ${m("f(x) = x<sup>2</sup> − 7")} हो, तो ${m("f(a − 3)")} का मान क्या होगा?`,
+    opts: [
+      m("a<sup>2</sup> − 6a + 2"),
+      m("a<sup>2</sup> − 9"),
+      m("a<sup>2</sup> − 6a + 9"),
+      m("a<sup>2</sup> − 3a + 7")
+    ], ans: 0,
+    exp: `${m("f(a − 3) = (a − 3)<sup>2</sup> − 7 = a<sup>2</sup> − 6a + 9 − 7 = a<sup>2</sup> − 6a + 2")}।`
+  },
+  {
+    id: 66, part: "PART2", cat: "ARITH_MENS", topic: "Overlapping Averages",
+    q: `17 संख्याओं का औसत ${m("45")} है। प्रथम 9 संख्याओं का औसत ${m("51")} और अंतिम 9 का औसत ${m("36")} है। 9वीं संख्या ज्ञात कीजिए:`,
+    opts: ["18", "24", "15", "30"], ans: 0,
+    exp: `9वीं संख्या ${m("= (9×51 + 9×36) − (17×45) = 783 − 765 = 18")}।`
+  },
+  {
+    id: 67, part: "PART2", cat: "TRIG_GEOM", topic: "Trigonometric Identity",
+    q: `यदि ${m("sin θ + sin<sup>2</sup>θ = 1")} है, तो ${m("cos<sup>2</sup>θ + cos<sup>4</sup>θ")} का मान क्या होगा?`,
+    opts: ["1", "0", "2", "−1"], ans: 0,
+    exp: `${m("sin θ = cos<sup>2</sup>θ ⇒ cos<sup>2</sup>θ + cos<sup>4</sup>θ = sin θ + sin<sup>2</sup>θ = 1")}।`
+  },
+  {
+    id: 68, part: "PART2", cat: "TRIG_GEOM", topic: "Parallel Vertical Lines",
+    q: `समांतर रेखाओं ${m("2x + 4 = 0")} (अर्थात ${m("x = −2")}) और ${m("x = 5")} के बीच की लंबवत दूरी ज्ञात कीजिए:`,
+    opts: [m("7 units"), m("3 units"), m("10 units"), m("5 units")], ans: 0,
+    exp: `दूरी ${m("d = |5 − (−2)| = 7 units")}।`
+  },
+  {
+    id: 69, part: "PART2", cat: "ARITH_MENS", topic: "Shopping Discount",
+    q: `एक सेल में दो शर्ट खरीदने पर कम दाम वाली शर्ट पर ${m("50%")} डिस्काउंट मिलता है। यदि शर्ट्स की कीमत ₹120 और ₹90 है, तो कुल कितना भुगतान करना होगा?`,
+    opts: ["₹165", "₹180", "₹150", "₹210"], ans: 0,
+    exp: `कुल भुगतान ${m("= 120 + (90 का 50%) = 120 + 45 = ₹165")}।`
+  },
+  {
+    id: 70, part: "PART2", cat: "ALGEBRA", topic: "Exponential Equation",
+    q: `यदि ${m("3<sup>2x + 2</sup> = 81")} हो, तो ${m("x")} का मान क्या होगा?`,
+    opts: ["1", "2", "3", "0"], ans: 0,
+    exp: `${m("3<sup>2x + 2</sup> = 3<sup>4</sup> ⇒ 2x + 2 = 4 ⇒ x = 1")}।`
+  },
+  {
+    id: 71, part: "PART2", cat: "ARITH_MENS", topic: "Fraction Percentage",
+    q: `अंश में ${m("25%")} की कमी और हर में ${m("250%")} की वृद्धि करने पर भिन्न ${m("6/5")} बन जाता है। मूल भिन्न क्या था?`,
+    opts: [m("28/5"), m("14/5"), m("12/25"), m("7/5")], ans: 0,
+    exp: `${m(`${frac("N × 75", "D × 350")} = ${frac("6", "5")} ⇒ ${frac("N", "D")} = ${frac("28", "5")}`)}।`
+  },
+  {
+    id: 72, part: "PART2", cat: "ALGEBRA", topic: "Arithmetic Progression (AP)",
+    q: `एक AP का 14वाँ पद उसके 8वें पद का दोगुना है। यदि 6ठा पद ${m("−8")} है, तो प्रथम 20 पदों का योग ज्ञात कीजिए:`,
+    opts: [m("−340"), m("−320"), m("340"), m("−400")], ans: 0,
+    exp: `${m("a = −d")} तथा ${m("a + 5d = −8 ⇒ d = −2, a = 2")}। ${m("S<sub>20</sub> = 10[4 + 19(−2)] = −340")}।`
+  },
+  {
+    id: 73, part: "PART2", cat: "ARITH_MENS", topic: "Pipes & Cisterns",
+    q: `दो पाइपों में बड़ा पाइप 4 घंटे और छोटा पाइप 9 घंटे चलने पर आधा टैंक भरते हैं। छोटा पाइप अकेले भरने में बड़े से 10 घंटे अधिक लेता है। बड़ा पाइप अकेले टैंक कितने समय में भरेगा?`,
+    opts: ["10 घंटे", "12 घंटे", "15 घंटे", "20 घंटे"], ans: 0,
+    exp: `${m(`${frac("4", "x")} + ${frac("9", "x + 10")} = ${frac("1", "2")}`)} में ${m("x = 10 घंटे")} रखने पर समीकरण संतुष्ट होता है।`
+  },
+  {
+    id: 74, part: "PART2", cat: "TRIG_GEOM", topic: "Tower & Pole Elevation",
+    q: `${m("50 m")} ऊंचे टावर का शीर्ष एक इलेक्ट्रिकल पोल के निचले हिस्से के साथ ${m("60°")} और शीर्ष के साथ ${m("30°")} का अवनमन कोण बनाता है। पोल की ऊँचाई ज्ञात कीजिए:`,
+    opts: [m("33.33 m"), m("25.00 m"), m("16.67 m"), m("30.00 m")], ans: 0,
+    exp: `पोल की ऊँचाई ${m(`= 50(1 − ${frac("tan 30°", "tan 60°")}) = 50(1 − ${frac("1", "3")}) = 33.33 m`)}।`
+  },
+  {
+    id: 75, part: "PART2", cat: "ALGEBRA", topic: "Number Series",
+    q: `शृंखला में लुप्त संख्या ज्ञात करें: <b>5, 11, ?, 29, 41</b>`,
+    opts: ["19", "17", "21", "23"], ans: 0,
+    exp: `अंतर का पैटर्न: ${m("+6, +8, +10, +12")}। अतः ${m("11 + 8 = 19")}।`
+  }
+];
+
+// Deterministic rotation of options so the correct answer is distributed across A, B, C, D
+const QUESTIONS = RAW_QUESTIONS.map((item, idx) => {
+  const indexed = item.opts.map((t, i) => ({ t, c: i === item.ans }));
+  const shift = (idx * 3 + 1) % 4;
+  const rotated = [...indexed.slice(shift), ...indexed.slice(0, shift)];
+  return {
+    ...item,
+    opts: rotated.map(o => o.t),
+    ans: rotated.findIndex(o => o.c)
+  };
+});
+
+let filtered = [...QUESTIONS];
+let curIdx = 0;
+let fcIdx = 0;
+let userAns = {};
+let savedIds = new Set();
+
+// Live Timer
+let seconds = 0;
+let timerActive = true;
+setInterval(() => {
+  if (!timerActive) return;
+  seconds++;
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `⏱️ ${mins}:${secs}`;
+}, 1000);
+
+function toggleTimer() {
+  timerActive = !timerActive;
+  document.getElementById('timer-display').style.opacity = timerActive ? '1' : '0.5';
+}
+
+function renderQuiz() {
+  if (filtered.length === 0) {
+    document.getElementById('q-text').innerHTML = "इस फ़िल्टर में कोई प्रश्न नहीं है। कृपया 'All 75 Questions' पर क्लिक करें।";
+    document.getElementById('q-options').innerHTML = "";
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const q = filtered[curIdx];
+  document.getElementById('q-num-badge').textContent = `Q${q.id} / 75`;
+  document.getElementById('q-part-badge').textContent = q.part === 'PART1' ? 'Part 1 (Q1–50)' : 'Part 2 (Q51–75)';
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-text').innerHTML = q.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (savedIds.has(q.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save';
+  }
+
+  const optBox = document.getElementById('q-options');
+  optBox.innerHTML = '';
+  const chosen = userAns[q.id];
+  const keys = ['A', 'B', 'C', 'D'];
+
+  q.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (chosen !== undefined) {
+      btn.disabled = true;
+      if (idx === q.ans) btn.classList.add('correct');
+      else if (idx === chosen) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[idx]}</span><span>${optText}</span>`;
+    btn.onclick = () => chooseAnswer(q.id, idx);
+    optBox.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  if (chosen !== undefined) {
+    document.getElementById('q-exp-text').innerHTML = q.exp;
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = curIdx === 0;
+  document.getElementById('next-btn').disabled = curIdx === filtered.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function chooseAnswer(id, idx) {
+  userAns[id] = idx;
+  renderQuiz();
+}
+
+function revealCurrent() {
+  if (!filtered.length) return;
+  const q = filtered[curIdx];
+  userAns[q.id] = q.ans;
+  renderQuiz();
+}
+
+function moveQ(delta) {
+  const next = curIdx + delta;
+  if (next >= 0 && next < filtered.length) {
+    curIdx = next;
+    renderQuiz();
+  }
+}
+
+function toggleBookmark() {
+  if (!filtered.length) return;
+  const id = filtered[curIdx].id;
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderQuiz();
+}
+
+function setFilter(type, btn) {
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (type === 'ALL') filtered = [...QUESTIONS];
+  else if (type === 'PART1') filtered = QUESTIONS.filter(q => q.part === 'PART1');
+  else if (type === 'PART2') filtered = QUESTIONS.filter(q => q.part === 'PART2');
+  else if (type === 'TRIG_GEOM') filtered = QUESTIONS.filter(q => q.cat === 'TRIG_GEOM');
+  else if (type === 'ALGEBRA') filtered = QUESTIONS.filter(q => q.cat === 'ALGEBRA');
+  else if (type === 'ARITH_MENS') filtered = QUESTIONS.filter(q => q.cat === 'ARITH_MENS');
+  else if (type === 'SAVED') filtered = QUESTIONS.filter(q => savedIds.has(q.id));
+  else if (type === 'WRONG') filtered = QUESTIONS.filter(q => userAns[q.id] !== undefined && userAns[q.id] !== q.ans);
+
+  curIdx = 0;
+  renderQuiz();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filtered.length} Qs`;
+  grid.innerHTML = '';
+
+  filtered.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.className = 'p-num';
+    if (idx === curIdx) b.classList.add('current');
+    if (userAns[q.id] !== undefined) {
+      b.classList.add(userAns[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    b.textContent = q.id;
+    b.onclick = () => {
+      curIdx = idx;
+      renderQuiz();
+    };
+    grid.appendChild(b);
+  });
+}
+
+function updateStats() {
+  const keys = Object.keys(userAns);
+  const attempted = keys.length;
+  let correct = 0;
+  keys.forEach(k => {
+    const q = QUESTIONS.find(item => item.id === Number(k));
+    if (q && userAns[k] === q.ans) correct++;
+  });
+  const acc = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${attempted}/75`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = savedIds.size;
+}
+
+function resetQuiz() {
+  userAns = {};
+  seconds = 0;
+  renderQuiz();
+}
+
+// Flashcards
+function renderFC() {
+  const card = document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  const q = QUESTIONS[fcIdx];
+  document.getElementById('fc-num').textContent = `Card ${q.id} / 75`;
+  document.getElementById('fc-topic').textContent = `${q.part} • ${q.topic}`;
+  document.getElementById('fc-q').innerHTML = q.q;
+  document.getElementById('fc-ans').innerHTML = `(${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}`;
+  document.getElementById('fc-exp').innerHTML = q.exp;
+}
+
+function moveFC(delta) {
+  fcIdx = (fcIdx + delta + QUESTIONS.length) % QUESTIONS.length;
+  renderFC();
+}
+
+// Study Bank
+function renderBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const listEl = document.getElementById('bank-list');
+  const matches = QUESTIONS.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.exp.toLowerCase().includes(query) ||
+    String(q.id) === query
+  );
+
+  listEl.innerHTML = matches.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:8px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-part">${q.part}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#34d399; font-weight:700; margin-bottom:4px;">✔ Correct Answer: (${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</div>
+        <div style="font-size:0.92rem; color:#cbd5e1;">${q.exp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlur(btn) {
+  const el = document.getElementById('bank-list');
+  el.classList.toggle('hide-answers');
+  btn.textContent = el.classList.contains('hide-answers') ? '👁️ Show All Answers' : '🙈 Hide Answers (Self-Test)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${view}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = view === 'quiz' ? 'flex' : 'none';
+
+  if (view === 'flashcards') renderFC();
+  if (view === 'bank') renderBank();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const q = filtered[curIdx];
+      if (q && userAns[q.id] === undefined) chooseAnswer(q.id, parseInt(e.key) - 1);
+    } else if (e.key === 'ArrowRight') moveQ(1);
+    else if (e.key === 'ArrowLeft') moveQ(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('fc-card').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFC(1);
+    else if (e.key === 'ArrowLeft') moveFC(-1);
+  }
+});
+
+// Initialize Quiz
+renderQuiz();
+</script>
+</body>
+</html>

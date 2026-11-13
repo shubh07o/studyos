@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 2: CODING DECODING - Complete English Interactive Notes & 145 Quizzes | Parmar SSC</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #edf2f9;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #dc2626;
+      --primary-dark: #991b1b;
+      --secondary: #2563eb;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #ef4444;
+      --primary-dark: #f87171;
+      --secondary: #60a5fa;
+      --accent: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --border: #334155;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 310px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand {
+      padding: 20px;
+      background: linear-gradient(135deg, #7f1d1d, #dc2626);
+      color: #fff;
+    }
+
+    .brand h1 { font-size: 1.18rem; font-weight: 800; letter-spacing: 0.4px; }
+    .brand p { font-size: 0.8rem; opacity: 0.92; margin-top: 4px; }
+
+    .stats-bar {
+      padding: 12px 18px;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    .nav-list { list-style: none; padding: 10px; flex: 1; }
+    .nav-item { margin-bottom: 4px; }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover { background: var(--surface-alt); }
+    .nav-btn.active { background: var(--primary); color: #fff; font-weight: 600; }
+
+    .nav-btn .badge {
+      margin-left: auto;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(100, 116, 139, 0.2);
+      white-space: nowrap;
+    }
+
+    .nav-btn.active .badge { background: rgba(255, 255, 255, 0.25); color: #fff; }
+
+    /* Main Content Area */
+    .main {
+      flex: 1;
+      margin-left: 310px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-box { flex: 1; max-width: 420px; }
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .top-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .content-container {
+      padding: 26px;
+      max-width: 1120px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-page { display: none; }
+    .section-page.active { display: block; animation: fadeIn 0.25s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-title { font-size: 1.65rem; font-weight: 800; margin-bottom: 6px; color: var(--primary); }
+    .page-subtitle { color: var(--text-muted); margin-bottom: 22px; font-size: 0.94rem; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 14px;
+      color: var(--secondary);
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 8px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+    .rule-box {
+      background: var(--surface-alt);
+      border-left: 4px solid var(--secondary);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+    }
+
+    /* Native Math & Formula Styling */
+    .formula-box {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 4px solid var(--accent);
+      padding: 16px 18px;
+      border-radius: 0 10px 10px 0;
+      margin: 12px 0;
+    }
+
+    .math-eq {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: var(--surface);
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin: 4px 0;
+      color: var(--primary);
+    }
+
+    .math-pill {
+      display: inline-block;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-weight: 700;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: var(--secondary);
+    }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin: 10px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { padding: 8px 10px; border: 1px solid var(--border); text-align: center; }
+    th { background: var(--surface-alt); font-weight: 700; }
+
+    /* Interactive Quiz Cards */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-meta {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quiz-question { font-size: 0.98rem; font-weight: 600; margin-bottom: 12px; white-space: pre-line; }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: 0.15s;
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--secondary);
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .quiz-opt.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger);
+    }
+
+    .quiz-exp {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--success);
+      font-size: 0.88rem;
+      display: none;
+      white-space: pre-line;
+    }
+
+    .quiz-exp.visible { display: block; }
+
+    /* Interactive Tool Box */
+    .tool-box {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--surface-alt);
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .tool-box input, .tool-box select {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .menu-toggle { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>PARMAR SSC | REASONING</h1>
+      <p>Topper's Batch • Ch 2: CODING DECODING (By Kamal Sir)</p>
+    </div>
+    <div class="stats-bar">
+      <span>Score: <strong id="score-val">0</strong> / <span id="total-val">145</span></span>
+      <button class="btn" style="padding:3px 8px;font-size:0.74rem;" onclick="resetAllQuizzes()">Reset</button>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-btn active" onclick="showTab('tab-c12', this)">🔄 Case 1–2: Reversal & Opposite <span class="badge">Q.1–4</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-c34', this)">📈 Case 3–4: Shift & Jumbling <span class="badge">Q.5–10</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-c56', this)">🔢 Case 5–6: Direct & Place Value <span class="badge">Q.11–16</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-p1', this)">🔡 Practice I: Letter Shifting <span class="badge">Q.17–35</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-p2', this)">🔀 Practice II: Cross & Reverse Shift <span class="badge">Q.36–54</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-p3', this)">🎯 Practice III: Vowel & Opp. Logic <span class="badge">Q.55–73</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-p4', this)">🧮 Practice IV: Number & Case Codes <span class="badge">Q.74–93</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-p5', this)">⚡ Practice V: Sum, Mult. & Hybrid <span class="badge">Q.94–122</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-t2', this)">🏷️ Type 2: Based on Renaming <span class="badge">Q.123–126</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-t3', this)">💬 Type 3: Chinese / Group of Words <span class="badge">Q.127–138</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-t4', this)">⚠️ Type 4: Exception / Conditions <span class="badge">Q.139–145</span></button></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ Menu</button>
+      <div class="search-box">
+        <input type="text" id="global-search" placeholder="Search question number (e.g. Q.62), word, or exam tag..." oninput="filterCurrentTab(this.value)" />
+      </div>
+      <div class="top-actions">
+        <button class="btn" onclick="toggleAllSolutions(true)">👁️ Show All Solutions</button>
+        <button class="btn" onclick="toggleAllSolutions(false)">🙈 Hide Solutions</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+      </div>
+    </header>
+
+    <div class="content-container">
+
+      <!-- ================= TAB 1: OVERVIEW & CASES 1-2 (Q.1-4) ================= -->
+      <section class="section-page active" id="tab-c12">
+        <h2 class="page-title">Chapter 2: Coding-Decoding — Foundation & Cases 1–2</h2>
+        <p class="page-subtitle">Pages 1–3 • 4 Master Types of Coding-Decoding, Case 1 (Reversal) & Case 2 (Opposite Letters) + Q.1 to Q.4</p>
+
+        <div class="card">
+          <h3>📚 4 Types of Questions in Coding-Decoding (Page 2)</h3>
+          <div class="grid-2">
+            <div class="rule-box"><strong>1) Based on Letters and Numbers</strong> (Cases 1 to 6, Q.1–Q.122)</div>
+            <div class="rule-box"><strong>2) Based on Renaming</strong> (Object substitution, Q.123–Q.126)</div>
+            <div class="rule-box"><strong>3) Based on Group of Words</strong> (Chinese Coding, Q.127–Q.138)</div>
+            <div class="rule-box"><strong>4) Based on Exception / Condition</strong> (Matrix + Rules, Q.139–Q.145)</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🧮 Interactive Live Word Decoder & Analyzer</h3>
+          <p style="font-size:0.9rem;">Enter any English word below to instantly compute its <strong>Reversed Form</strong>, <strong>Opposite Letters (27 − Pos)</strong>, <strong>Place Value Sum</strong>, and <strong>Opposite Sum</strong>:</p>
+          <div class="tool-box">
+            <input type="text" id="live-word" value="TERMINAL" placeholder="Enter word..." oninput="analyzeWord()" />
+            <input type="number" id="live-shift" value="1" style="width:90px;" title="Shift (+ or -)" oninput="analyzeWord()" />
+            <span style="font-size:0.84rem;color:var(--text-muted);">(Shift Value ±N)</span>
+          </div>
+          <div id="live-word-output" style="margin-top:12px;font-size:0.9rem;"></div>
+        </div>
+
+        <div class="card">
+          <h3>🔄 Case 1: Reversal of Alphabet & Case 2: Opposite Letter Concept</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Case 1: Reversal of Alphabet (Page 2)</h4>
+              <ul style="padding-left:18px;">
+                <li>The letters of the given base word are simply written in <strong>reverse order (Right to Left)</strong>.</li>
+                <li><strong>Step 1:</strong> Compare the base word and coded word to check if both contain the exact same letters.</li>
+                <li><strong>Step 2:</strong> If the letters are identical, check the reversal pattern:<br>
+                <span class="math-pill">FIGURE → ERUGIF</span> &nbsp;|&nbsp; <span class="math-pill">POLITICAL → LACITILOP</span></li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Case 2: Opposite Letter Concept (Pages 2–3)</h4>
+              <p>Each letter is replaced by its opposite (mirrored) letter in the alphabet. The sum of any letter and its opposite is always <strong>27</strong>:</p>
+              <div style="margin:8px 0;">
+                <span class="math-eq">Opposite Letter = 27 − Alphabetical Position</span>
+              </div>
+              <p><strong>Examples:</strong><br>
+              • <strong>E<sub>5</sub></strong> → <span class="math-pill">27 − 5 = 22nd letter = V</span><br>
+              • <strong>H<sub>8</sub></strong> → <span class="math-pill">27 − 8 = 19th letter = S</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Cases 1 & 2 (Q.1 – Q.4)</h3>
+          <div id="quiz-c12"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: CASES 3-4 SHIFT & JUMBLING (Q.5-10) ================= -->
+      <section class="section-page" id="tab-c34">
+        <h2 class="page-title">Cases 3 & 4: Increment/Decrement & Jumbling of Letters</h2>
+        <p class="page-subtitle">Pages 3–4 • Forward/Backward Shifting (+n / −n) and Cross-Exchange Patterns + Q.5 to Q.10</p>
+
+        <div class="card">
+          <h3>📈 Case 3 & Case 4 Rules</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Case 3: Increment / Decrement Pattern (Page 3)</h4>
+              <p>The alphabetical position of each letter is increased (<span class="math-pill">+n</span>) or decreased (<span class="math-pill">−n</span>) by a fixed or alternating sequence of numbers to obtain the coded word.</p>
+              <p style="margin-top:6px;">• Example (<code>PAGERS</code> → <code>QCHGSU</code>): Alternating <span class="math-pill">+1, +2, +1, +2, +1, +2</span>.<br>
+              • Example (<code>CHEWER</code> → <code>HAJPJK</code>): Alternating <span class="math-pill">+5, −7, +5, −7, +5, −7</span>.</p>
+            </div>
+            <div class="rule-box">
+              <h4>Case 4: Jumbling / Cross-Shifting of Letters (Page 4)</h4>
+              <p>Letters leave their original positions and move to new positions following a fixed geometric cross or swap pattern (sometimes combined with <span class="math-pill">+1</span>):</p>
+              <p style="margin-top:6px;">• <strong>Q.8 (ALIMONY → YILMNOA):</strong> 1st & 7th swap, 2nd & 3rd swap, 4th stays, 5th & 6th swap.<br>
+              • <strong>Q.9 (STRONG → UTPSHO):</strong> Pairwise cross swap of (1↔2), (3↔4), (5↔6) with <span class="math-pill">+1</span> added to each letter.<br>
+              • <strong>Q.10 (HEALING → BFIKHOJ):</strong> 3-1-3 split cross with <span class="math-pill">+1</span> on all letters.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Cases 3 & 4 (Q.5 – Q.10)</h3>
+          <div id="quiz-c34"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: CASES 5-6 DIRECT & PLACE VALUE (Q.11-16) ================= -->
+      <section class="section-page" id="tab-c56">
+        <h2 class="page-title">Cases 5 & 6: Direct Substitution & Place Value Numbers</h2>
+        <p class="page-subtitle">Pages 5–6 • Alphabet-to-Symbol/Letter Mapping & Numerical Operations + Q.11 to Q.16</p>
+
+        <div class="card">
+          <h3>🔢 Case 5 & Case 6 Rules</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Case 5: Direct Alphabet / Number / Symbol Mapping (Page 5)</h4>
+              <p>Identify common letters across two reference words and map each letter directly to its corresponding code character or symbol at the same index.</p>
+              <p style="margin-top:6px;">• Example (Q.11): From <code>NUMBER = EPRSAY</code> and <code>SQUARE = NGPVYA</code>, we directly extract <span class="math-pill">M→R, E→A, B→S, R→Y</span> to get <code>MEMBER = RARSAY</code>.</p>
+            </div>
+            <div class="rule-box">
+              <h4>Case 6: Based on Place Value / Numbers (Pages 5–6)</h4>
+              <p>Write the alphabetical positions (<span class="math-pill">A=1 ... Z=26</span>) of all letters and check for:</p>
+              <ul style="padding-left:18px;margin-top:4px;">
+                <li><strong>Sum of Place Values:</strong> <code>CARE</code> = <span class="math-pill">3 + 1 + 18 + 5 = 27</span> (Q.13)</li>
+                <li><strong>Reversed Place Values Concatenated:</strong> <code>RAT (18-1-20)</code> → <span class="math-pill">20118</span> (Q.14)</li>
+                <li><strong>Square of Letter Count:</strong> <code>FOSTER (6 letters)</code> → <span class="math-pill">6² = 36</span> (Q.15)</li>
+                <li><strong>Vowels Same + Consonants Opposite:</strong> <code>BIG</code> → <span class="math-pill">B(25) I(9) G(20) = 25920</span> (Q.16)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Cases 5 & 6 (Q.11 – Q.16)</h3>
+          <div id="quiz-c56"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: PRACTICE I - LETTER SHIFTING (Q.17-35) ================= -->
+      <section class="section-page" id="tab-p1">
+        <h2 class="page-title">Practice Set I: Letter Rearrangement & Shifting Patterns</h2>
+        <p class="page-subtitle">Pages 6–10 • Pairwise Swaps, Progressive Shifts (+1,+2,+3...), Wrap-Around (+8) & Reverse + Shift (Q.17 to Q.35)</p>
+
+        <div class="card">
+          <h3>🔡 Key Highlights in Q.17 – Q.35</h3>
+          <div class="grid-3">
+            <div class="rule-box"><strong>Wrap-Around Rule (Q.28, Q.29):</strong> When adding <span class="math-pill">+8</span> exceeds 26 (e.g., <span class="math-pill">W(23) + 8 = 31</span>), subtract 26: <span class="math-pill">31 − 26 = 5 (E)</span>.</div>
+            <div class="rule-box"><strong>Previous & Next Pair (Q.26):</strong> Each letter in <code>TRUTH</code> is replaced by two letters (<span class="math-pill">−1 and +1</span>), doubling the length of the coded word.</div>
+            <div class="rule-box"><strong>Reverse + Shift (Q.33, Q.34):</strong> Reverse the entire word first, then apply <span class="math-pill">+1</span> to all letters (or middle letters).</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Set I (Q.17 – Q.35)</h3>
+          <div id="quiz-p1"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: PRACTICE II - CROSS & REVERSE DECODING (Q.36-54) ================= -->
+      <section class="section-page" id="tab-p2">
+        <h2 class="page-title">Practice Set II: Cross Patterns, Direct Digits & Reverse Decoding</h2>
+        <p class="page-subtitle">Pages 10–14 • Block Cross Shifts, Opposite + Cross, Greek Letter Substitution & Reverse Decoding (Q.36 to Q.54)</p>
+
+        <div class="card">
+          <h3>🔀 Key Highlights in Q.36 – Q.54</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Block Cross & Opposite Cross (Q.41–Q.43)</h4>
+              <p>• <strong>Q.41 (LIFETIME):</strong> Split into two 4-letter halves (<code>LIFE | TIME</code>), reverse each half, and add <span class="math-pill">+1</span>.<br>
+              • <strong>Q.42 (EXTREME):</strong> First write the Opposite letters of the word, then swap the first 2 letters and last 2 letters.<br>
+              • <strong>Q.43 (PLEADING):</strong> Split into two 4-letter halves; reverse 1st half with <span class="math-pill">−1</span> and reverse 2nd half with <span class="math-pill">+1</span>.</p>
+            </div>
+            <div class="rule-box">
+              <h4>Reverse Question Decoding (Q.52–Q.54)</h4>
+              <p>Watch out for the phrasing: <em>"Which word would be coded as X?"</em> Here the coded word is given, and you must apply the <strong>inverse operation</strong> (<span class="math-pill">−1</span> instead of <span class="math-pill">+1</span>, or <span class="math-pill">−1, −2, −3...</span>) to find the original base word.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Set II (Q.36 – Q.54)</h3>
+          <div id="quiz-p2"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: PRACTICE III - VOWEL & OPPOSITE LOGIC (Q.55-73) ================= -->
+      <section class="section-page" id="tab-p3">
+        <h2 class="page-title">Practice Set III: Vowel Indexing, Opposite Shifts & Digit Reduction</h2>
+        <p class="page-subtitle">Pages 14–19 • Vowel Order (A=1..U=5), Opposite + Shift, Alphabetical Sorting & Digit Sum/Difference (Q.55 to Q.73)</p>
+
+        <div class="card">
+          <h3>🎯 Special High-Level SSC Patterns in Q.55 – Q.73</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Vowel Rank & Vowel Count Suffix (Q.55–Q.57)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Forward Vowel Rank (Q.55):</strong> <span class="math-pill">A=1, E=2, I=3, O=4, U=5</span>, while consonants shift by <span class="math-pill">−1</span>.</li>
+                <li><strong>Reverse Vowel Rank (Q.56):</strong> <span class="math-pill">U=1, O=2, I=3, E=4, A=5</span>.</li>
+                <li><strong>Vowel Count Appended (Q.57):</strong> Shift all letters by <span class="math-pill">−2</span> and append the total number of vowels at the end (e.g., <code>TABLE</code> → <code>RYZJC2</code>).</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>2. Digit Difference, Digit Sum & Squares (Q.68–Q.70)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Q.68 (PLANES):</strong> For 2-digit place values, take the <strong>difference of digits</strong> (e.g., <span class="math-pill">P(16) → 6 − 1 = 5 (E)</span>).</li>
+                <li><strong>Q.69 (LOGITECH):</strong> Single-digit positions get <span class="math-pill">−4</span>; two-digit positions become the <strong>sum of their digits</strong>.</li>
+                <li><strong>Q.70 (TABLEPADS):</strong> Single-digit positions are <strong>squared</strong> (<span class="math-pill">B(2)² = 4 (D)</span>); two-digit positions become the <strong>sum of their digits</strong>.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Set III (Q.55 – Q.73)</h3>
+          <div id="quiz-p3"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 7: PRACTICE IV - NUMBER & CASE CODES (Q.74-93) ================= -->
+      <section class="section-page" id="tab-p4">
+        <h2 class="page-title">Practice Set IV: Elimination Mapping, Case Sensitivity & Number Codes</h2>
+        <p class="page-subtitle">Pages 19–23 • Common-Letter Elimination, Uppercase/Lowercase Rules & Place-Value Formulas (Q.74 to Q.93)</p>
+
+        <div class="card">
+          <h3>🧮 Key Formulas in Q.74 – Q.93</h3>
+          <div class="grid-3">
+            <div class="rule-box"><strong>Odd Value Series (Q.78):</strong> <span class="math-eq">Code = 2n − 1</span> (where A=1, B=3, C=5...).</div>
+            <div class="rule-box"><strong>Length Formula (Q.85):</strong> <span class="math-eq">Code = (N − 1)² − 1</span> (where N = number of letters).</div>
+            <div class="rule-box"><strong>Scaled Position (Q.88):</strong> <span class="math-eq">Code = (Pos − 1) × 5</span> (so A=0, I=40, K=50...).</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Set IV (Q.74 – Q.93)</h3>
+          <div id="quiz-p4"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 8: PRACTICE V - SUM, MULT & HYBRID CODES (Q.94-122) ================= -->
+      <section class="section-page" id="tab-p5">
+        <h2 class="page-title">Practice Set V: Sum of Positions, Opposite Sums & Hybrid Alphanumeric Codes</h2>
+        <p class="page-subtitle">Pages 23–30 • Total Sum ± Letters/Vowels/Consonants, Pairwise Arithmetic & Sorted Shifts (Q.94 to Q.122)</p>
+
+        <div class="card">
+          <h3>⚡ Master Formula Sheet for Q.94 – Q.122</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>Word Examples</th>
+                  <th>Mathematical Formula Used</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Q.94</strong></td><td>MANAGE = 35, TIME = 43</td><td><span class="math-pill">Sum of Alphabet Positions − Number of Letters</span></td></tr>
+                <tr><td><strong>Q.95</strong></td><td>PAPER = 61, PEN = 38</td><td><span class="math-pill">Sum of Alphabet Positions + Number of Letters</span></td></tr>
+                <tr><td><strong>Q.96</strong></td><td>HEIGHT = 103, ALLOW = 70</td><td><span class="math-pill">Sum of Opposite Positions − Number of Vowels</span></td></tr>
+                <tr><td><strong>Q.97</strong></td><td>PERJURY = 108, WITNESS = 104</td><td><span class="math-pill">Sum of Alphabet Positions − Number of Consonants</span></td></tr>
+                <tr><td><strong>Q.98</strong></td><td>ABCDE = 45, XYZ = 225</td><td><span class="math-pill">Sum of Alphabet Positions × 3</span></td></tr>
+                <tr><td><strong>Q.99</strong></td><td>READ = 79, DARE = 79</td><td><span class="math-pill">Sum of Opposite Positions − 1</span></td></tr>
+                <tr><td><strong>Q.100</strong></td><td>SUPER = 61, CENTER = 103</td><td><span class="math-pill">Sum of Opposite Positions + Number of Letters</span></td></tr>
+                <tr><td><strong>Q.101</strong></td><td>HIT = 132, YRF = 96</td><td><span class="math-pill">Sum of Opposite Positions × Number of Letters</span></td></tr>
+                <tr><td><strong>Q.102–103</strong></td><td>FEED = 24, PIZZA = 30</td><td><span class="math-pill">6 × Number of Letters</span></td></tr>
+                <tr><td><strong>Q.104</strong></td><td>FOX = 14, TOMMY = 30</td><td><span class="math-pill">(Number of Letters)² + 5</span></td></tr>
+                <tr><td><strong>Q.105</strong></td><td>LANDS = 10, TASTE = 13</td><td><span class="math-pill">Sum of Alphabet Positions ÷ Number of Letters</span></td></tr>
+                <tr><td><strong>Q.109</strong></td><td>SUGAR = 81, CREAM = 55</td><td><span class="math-pill">Sum of Alphabet Positions + (Number of Letters × 3)</span></td></tr>
+                <tr><td><strong>Q.110</strong></td><td>SALT = 25, ZOOM = 96</td><td><span class="math-pill">Reverse the digits of (Sum of Alphabet Positions)</span></td></tr>
+                <tr><td><strong>Q.115</strong></td><td>CAKE = 6874, MAKE = 5874</td><td><span class="math-pill">Digital Root (Sum of Digits) of each Opposite Position</span></td></tr>
+                <tr><td><strong>Q.116</strong></td><td>GLOBAL, IMPACT</td><td><span class="math-pill">29 − Alphabet Position (for each letter)</span></td></tr>
+                <tr><td><strong>Q.117</strong></td><td>YACHT = 8, ANALYSTIC = 40</td><td><span class="math-pill">8 × (Number of Letters − 4)</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Set V (Q.94 – Q.122)</h3>
+          <div id="quiz-p5"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 9: TYPE 2 BASED ON RENAMING (Q.123-126) ================= -->
+      <section class="section-page" id="tab-t2">
+        <h2 class="page-title">Type 2: Coding Based on Renaming</h2>
+        <p class="page-subtitle">Pages 30–31 • Real-World Fact Identification + Direct Name Substitution (Q.123 to Q.126)</p>
+
+        <div class="card">
+          <h3>🏷️ How to Solve Renaming Questions (Page 30)</h3>
+          <div class="rule-box">
+            <ol style="padding-left:20px;">
+              <li>In this type, the names of objects are changed in a chain, but their real-world properties remain the same.</li>
+              <li><strong>Step 1:</strong> First answer the question using real-world general knowledge (e.g., <em>What is the colour of milk?</em> → <strong>White</strong>).</li>
+              <li><strong>Step 2:</strong> Look up what that real answer is <strong>called</strong> in the question statement (e.g., <em>'white' is called 'yellow'</em> → Answer: <strong>Yellow</strong>). Never follow the chain further!</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Type 2 Renaming (Q.123 – Q.126)</h3>
+          <div id="quiz-t2"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 10: TYPE 3 CHINESE CODING / GROUP OF WORDS (Q.127-138) ================= -->
+      <section class="section-page" id="tab-t3">
+        <h2 class="page-title">Type 3: Coding Based on Group of Words (Chinese Coding)</h2>
+        <p class="page-subtitle">Pages 31–35 • Sentence Comparison, Common Word Elimination & Pattern Coding (Q.127 to Q.138)</p>
+
+        <div class="card">
+          <h3>💬 How to Solve Group of Words / Chinese Coding (Page 31)</h3>
+          <div class="rule-box">
+            <p>Several sentences or phrases are given alongside their coded equivalents (where word order does not necessarily match code order).</p>
+            <ul style="padding-left:18px;margin-top:6px;">
+              <li>Compare pairs of sentences that share a <strong>single common word</strong> and identify the <strong>single common code word</strong> between them.</li>
+              <li>Eliminate known words step-by-step to isolate the code for the target word(s).</li>
+              <li><strong>Special Case (Q.133 & Q.138):</strong> If words are not repeated across sentences, check for a direct rule such as <strong>Word Length</strong> (<code>birds are flying = 536</code>) or <strong>First Letter + Length + Symbol</strong> (<code>happy = H6#</code>).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Type 3 Group of Words (Q.127 – Q.138)</h3>
+          <div id="quiz-t3"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 11: TYPE 4 BASED ON EXCEPTION / CONDITION (Q.139-145) ================= -->
+      <section class="section-page" id="tab-t4">
+        <h2 class="page-title">Type 4: Coding Based on Exception / Condition</h2>
+        <p class="page-subtitle">Pages 35–38 • Digit/Symbol Lookup Tables with Conditional Override Rules (Q.139 to Q.145)</p>
+
+        <div class="card">
+          <h3>⚠️ How to Solve Conditional / Exception Coding (Page 35)</h3>
+          <div class="rule-box">
+            <p>A base lookup table maps digits/symbols to letter codes, followed by 2 or 3 <strong>Exceptions / Conditions</strong> (e.g., <em>"If the number begins and ends with an even digit, code both as #"</em>).</p>
+            <ol style="padding-left:20px;margin-top:6px;">
+              <li>First inspect the given target string against <strong>all listed conditions</strong> (checking first/last/nth elements for odd, even, zero, symbol, or perfect square).</li>
+              <li>If a condition matches, apply the exception rule to the specified positions; otherwise, copy the normal code directly from the table.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Type 4 Conditional Coding (Q.139 – Q.145)</h3>
+          <div id="quiz-t4"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // ==================== COMPLETE 145 QUESTIONS DATABASE (ENGLISH ONLY) ====================
+
+    const qC12 = [
+      { id: 1, meta: "Q.1 • Case 1: Reversal of Alphabet (Page 2)", q: "In a certain code language 'FIGURE' is written as 'ERUGIF'. How would 'MORBID' be coded in the similar code language?", opts: ["(a) DIBROM", "(b) BIDMOR", "(c) BMORID", "(d) DOBRIM"], ans: 0, exp: "Both words contain the exact same letters written in reverse order:\nFIGURE → ERUGIF\nSimilarly, reversing MORBID gives DIBROM." },
+      { id: 2, meta: "Q.2 • Case 1: Reversal of Alphabet (Page 2)", q: "In a certain system of coding, the word 'STATEMENT' is written as 'TNEMETATS'. In the same system of coding, what should be the code for the word 'POLITICAL'?", opts: ["(a) LACITILOP", "(b) LCATILIOP", "(c) OPILITACL", "(d) LACITUIOP"], ans: 0, exp: "STATEMENT reversed → TNEMETATS.\nSimilarly, POLITICAL reversed → LACITILOP." },
+      { id: 3, meta: "Q.3 • Case 2: Opposite Letters (Page 3)", q: "In a certain code language 'STONE' is written as 'HGLMV'. How would 'CLOUD' be coded in the similar code language?", opts: ["(a) UGDVQ", "(b) LKDYW", "(c) YLOWF", "(d) XOLFW"], ans: 3, exp: "Rule: Opposite Letter = 27 − Alphabetical Position.\nSTONE: S(19)→H(8), T(20)→G(7), O(15)→L(12), N(14)→M(13), E(5)→V(22).\nCLOUD: C(3)→X(24), L(12)→O(15), O(15)→L(12), U(21)→F(6), D(4)→W(23) ⇒ XOLFW." },
+      { id: 4, meta: "Q.4 • Case 2: Opposite Letters (Page 3)", q: "If in a certain language, 'DESIGN' is coded as 'WVHRTM', then how is 'TERMINAL' coded in that language?", opts: ["(a) FLKPMROZ", "(b) GVINRMZO", "(c) RVNIGLKA", "(d) MNIVGYEO"], ans: 1, exp: "Each letter is replaced by its opposite letter (27 − Pos):\nT(20)→G(7), E(5)→V(22), R(18)→I(9), M(13)→N(14), I(9)→R(18), N(14)→M(13), A(1)→Z(26), L(12)→O(15) ⇒ GVINRMZO." }
+    ];
+
+    const qC34 = [
+      { id: 5, meta: "Q.5 • Case 3: Alternating +1, +2 (Page 3)", q: "In a certain code language 'PAGERS' is written as 'QCHGSU'. How would 'VERBAL' be coded in the similar code language?", opts: ["(a) WFSCBM", "(b) WGSDBN", "(c) WGTDBM", "(d) WFSCBN"], ans: 1, exp: "Pattern: +1, +2, +1, +2, +1, +2.\nVERBAL: V(22)+1=W(23), E(5)+2=G(7), R(18)+1=S(19), B(2)+2=D(4), A(1)+1=B(2), L(12)+2=N(14) ⇒ WGSDBN." },
+      { id: 6, meta: "Q.6 • SSC CHSL 10 Mar 2023 S4 (Page 3–4)", q: "In a certain code language, 'CHEWER' is coded as 'HAJPJK'. What is the code for 'HANDER' in that code language?", opts: ["(a) MTSJWK", "(b) MTSWJK", "(c) MSTWJK", "(d) MNSWJK"], ans: 1, exp: "Pattern: +5, −7, +5, −7, +5, −7.\nHANDER: H(8)+5=M(13), A(1/27)−7=T(20), N(14)+5=S(19), D(4/30)−7=W(23), E(5)+5=J(10), R(18)−7=K(11) ⇒ MTSWJK." },
+      { id: 7, meta: "Q.7 • Case 3: Shift with Middle 0 (Page 4)", q: "In a certain code language 'TEMPORARY' is written as 'SFLQOQBQZ'. How would 'WONDERFUL' be coded in the similar code language?", opts: ["(a) VPMEFRGUM", "(b) VQMFEQHTK", "(c) VPMEEQGTM", "(d) VQMEEQHUK"], ans: 2, exp: "Pattern: −1, +1, −1, +1, 0, −1, +1, −1, +1.\nWONDERFUL → W−1=V, O+1=P, N−1=M, D+1=E, E+0=E, R−1=Q, F+1=G, U−1=T, L+1=M ⇒ VPMEEQGTM." },
+      { id: 8, meta: "Q.8 • Case 4: Jumbling of Letters (Page 4)", q: "In a certain code language 'ALIMONY' is written as 'YILMNOA'. How would 'CRICKET' be coded in the similar code language?", opts: ["(a) TKECRIC", "(b) TIRCEKC", "(c) TEKCIRC", "(d) TRIECKC"], ans: 1, exp: "Pattern in ALIMONY (1 2 3 4 5 6 7) → YILMNOA (7 3 2 4 6 5 1): Swap 1st & 7th, swap 2nd & 3rd, keep 4th fixed, swap 5th & 6th.\nApplying to CRICKET (C R I C K E T) → T I R C E K C." },
+      { id: 9, meta: "Q.9 • Case 4: Pairwise Cross + 1 (Page 4)", q: "In a certain code language 'STRONG' is written as 'UTPSHO'. How would 'GUILTY' be coded in the similar code language?", opts: ["(a) VMJHSU", "(b) VHMJZU", "(c) IUJMWZ", "(d) HVJMUZ"], ans: 1, exp: "Swap adjacent pairs (1↔2, 3↔4, 5↔6) and add +1 to each letter:\nGU → V H | IL → M J | TY → Z U ⇒ VHMJZU." },
+      { id: 10, meta: "Q.10 • Case 4: 3-1-3 Cross + 1 (Page 4)", q: "In a certain code language 'HEALING' is written as 'BFIKHOJ'. How would 'BEDTIME' be coded in the similar code language?", opts: ["(a) LJCHDFH", "(b) ECFTFNJ", "(c) LHKSNFJ", "(d) EFCSFNJ"], ans: 3, exp: "In HEALING: First 3 letters (HEA) reverse + 1 → BFI; middle letter L(12)−1 = K(11) [or in BEDTIME: T(20)−1 = S(19)]; last 3 letters (ING) reverse + 1 → HOJ.\nFor BEDTIME: BED (reverse + 1) → EFC; T − 1 = S; IME (reverse + 1) → FNJ ⇒ EFCSFNJ." }
+    ];
+
+    const qC56 = [
+      { id: 11, meta: "Q.11 • Case 5: Direct Letter Mapping (Page 5)", q: "In a certain code language 'NUMBER' is written as 'EPRSAY' and 'SQUARE' is written as 'NGPVYA'. How would 'MEMBER' be coded in the similar code language?", opts: ["(a) RASEAY", "(b) SARYEA", "(c) RARSAY", "(d) SEREYA"], ans: 2, exp: "From NUMBER (EPRSAY) and SQUARE (NGPVYA):\nM → R, E → A, B → S, R → Y.\nTherefore, MEMBER → R A R S A Y." },
+      { id: 12, meta: "Q.12 • Case 5: Symbol Substitution (Page 5)", q: "In a certain code, 'SPRING' is written as '#2%@4=' and 'GONE' is written as '=74&'. How would 'SIGN' be written in the same code?", opts: ["(a) #%7=", "(b) #@=4", "(c) #4&=", "(d) #&4="], ans: 1, exp: "Direct mapping from SPRING (#2%@4=) and GONE (=74&):\nS → #, I → @, G → =, N → 4 ⇒ SIGN = #@=4." },
+      { id: 13, meta: "Q.13 • Case 6: Sum of Place Values (Page 5)", q: "In a certain code language 'CARE' is written as '27'. How would 'FLOOR' be coded in the similar code language?", opts: ["(a) 80", "(b) 64", "(c) 70", "(d) 66"], ans: 3, exp: "CARE = 3 + 1 + 18 + 5 = 27.\nFLOOR = 6 + 12 + 15 + 15 + 18 = 66." },
+      { id: 14, meta: "Q.14 • Case 6: Reversed Place Values (Page 5)", q: "In a certain code language 'RAT' is written as '20118' and 'GOLD' is written as '412157'. How would 'BOAT' be coded in the similar code language?", opts: ["(a) 201152", "(b) 221242", "(c) 222124", "(d) 202124"], ans: 0, exp: "Write the place values of the letters in reverse order:\nRAT (18, 1, 20) → 20-1-18.\nBOAT (2, 15, 1, 20) → 20-1-15-2 = 201152." },
+      { id: 15, meta: "Q.15 • Case 6: Square of Word Length (Page 6)", q: "In a certain code language, 'FOSTER' is written as '36' and 'DANCE' is written as '25'. How will 'ORCHARD' be written in that language?", opts: ["(a) 64", "(b) 36", "(c) 49", "(d) 45"], ans: 2, exp: "Code = (Number of letters)².\nFOSTER (6) → 6² = 36; DANCE (5) → 5² = 25.\nORCHARD (7 letters) → 7² = 49." },
+      { id: 16, meta: "Q.16 • Case 6: Vowel Same, Consonant Opposite (Page 6)", q: "In a certain code language 'BIG' is written as '25920' and 'GREAT' is written as '209517'. How would 'ADULT' be coded in the similar code language?", opts: ["(a) 26236157", "(b) 26421127", "(c) 12321157", "(d) 12261220"], ans: 2, exp: "Rule: Vowels keep their own place value; Consonants take their Opposite place value (27 − Pos).\nA(Vowel) = 1\nD(4) → 27−4 = 23\nU(Vowel) = 21\nL(12) → 27−12 = 15\nT(20) → 27−20 = 7\nCode = 12321157." }
+    ];
+
+    const qP1 = [
+      { id: 17, meta: "Q.17 • SSC CHSL T1 17 Nov 2025 S3 (Page 6)", q: "If 'MOTHER' is coded as 'OMHTRE', how is 'FATHER' written in that code?", opts: ["(a) AFHTER", "(b) AFHTRE", "(c) FAHTRE", "(d) FHTARE"], ans: 1, exp: "Swap every two consecutive letters: FA→AF, TH→HT, ER→RE ⇒ AFHTRE." },
+      { id: 18, meta: "Q.18 • SSC CGL T1 19 Sep 2025 S2 (Page 6)", q: "If FRIEND becomes FDNIRE, how is TICKET written?", opts: ["(a) TETKIC", "(b) TKETIC", "(c) TEKTIC", "(d) TTECIK"], ans: 3, exp: "1st letter stays in place, and the remaining 5 letters are reversed (1, 6, 5, 4, 3, 2):\nFRIEND → F D N I R E.\nTICKET → T T E C I K." },
+      { id: 19, meta: "Q.19 • SSC CGL T1 19 Sep 2025 S2 (Page 6)", q: "In a certain code, 'CALENDAR' is written as 'CLANEADR'. How is 'CIRCULAR' written in that code?", opts: ["(a) ICCRLURA", "(b) CRIUCLRA", "(c) ICRCLUAR", "(d) CRIUCALR"], ans: 3, exp: "1st and 8th letters stay fixed; middle pairs swap (2↔3, 4↔5, 6↔7):\nC [IR] [CU] [LA] R → C [RI] [UC] [AL] R ⇒ CRIUCALR." },
+      { id: 20, meta: "Q.20 • SSC SP XIII 29 July 2025 S3 (Page 6–7)", q: "In a coded language CONDITIONER is coded as IDNOCTRENOI. Find the code of COVERSATION.", opts: ["(a) REVOCSNOITA", "(b) REVCOSNOITA", "(c) REVACOSNOIT", "(d) RVEOCSNOITA"], ans: 0, exp: "Split 11 letters as 5 + 1 + 5: Reverse first 5 letters, keep 6th fixed, reverse last 5 letters.\nCOVER | S | ATION → REVOC | S | NOITA ⇒ REVOCSNOITA." },
+      { id: 21, meta: "Q.21 • SSC SP XIII 2 Aug 2025 S2 (Page 7)", q: "In a certain code, BREAD is written as DTGCF. How will WATER be written in that code?", opts: ["(a) YCVGT", "(b) YCUGT", "(c) YCUFT", "(d) YCUHS"], ans: 0, exp: "Add +2 to each letter:\nW(23)+2=Y, A(1)+2=C, T(20)+2=V, E(5)+2=G, R(18)+2=T ⇒ YCVGT." },
+      { id: 22, meta: "Q.22 • SSC CGL T1 13 Sep 2025 S3 (Page 7)", q: "If PEARL is coded as QFBQM, how is STONE coded?", opts: ["(a) TUPND", "(b) TUPMF", "(c) TUPOF", "(d) TUPQD"], ans: 1, exp: "Pattern: +1, +1, +1, −1, +1.\nS+1=T, T+1=U, O+1=P, N−1=M, E+1=F ⇒ TUPMF." },
+      { id: 23, meta: "Q.23 • Alternating −2, +2 (Page 7)", q: "If 'ROAST' is coded as 'PQYUR' in a certain language, then how will 'SLOPPY' be coded in that language?", opts: ["(a) MRNAQN", "(b) NRMNQA", "(c) QNMRNA", "(d) RANNMQ"], ans: 2, exp: "Pattern: −2, +2, −2, +2, −2, +2.\nS(19)−2=Q, L(12)+2=N, O(15)−2=M, P(16)+2=R, P(16)−2=N, Y(25)+2=A ⇒ QNMRNA." },
+      { id: 24, meta: "Q.24 • Shift Pattern (Page 7)", q: "In a certain code, 'TWINKLE' is written as 'SVHOJKD', then how would 'FILTERS' be written in the same code?", opts: ["(a) EHKSDQR", "(b) EHKUDQR", "(c) GJMSFST", "(d) GJMSFTT"], ans: 1, exp: "Pattern in TWINKLE → SVHOJKD: −1, −1, −1, +1, −1, −1, −1 (middle letter +1, all others −1).\nFILTERS → F−1=E, I−1=H, L−1=K, T+1=U, E−1=D, R−1=Q, S−1=R ⇒ EHKUDQR." },
+      { id: 25, meta: "Q.25 • Progressive +1 to +6 (Page 7–8)", q: "If in a certain language, 'MIRACLE' is coded as 'NKUEHRL', then how is 'GAMBLE' coded in that language?", opts: ["(a) JDOCMF", "(b) CLEMNK", "(c) HCPFQK", "(d) AELGMN"], ans: 2, exp: "Pattern: +1, +2, +3, +4, +5, +6.\nG(7)+1=H, A(1)+2=C, M(13)+3=P, B(2)+4=F, L(12)+5=Q, E(5)+6=K ⇒ HCPFQK." },
+      { id: 26, meta: "Q.26 • −1 / +1 Double Letter Code (Page 8)", q: "If 'TRUTH' is coded as 'SUQSTVSUGI', then what will be the code for 'FALSE'?", opts: ["(a) EGZBKMRDEL", "(b) EGZKMRTDFP", "(c) EGZBKMRTDF", "(d) FGZBKNRTDF"], ans: 2, exp: "Each letter is replaced by its preceding (−1) and succeeding (+1) letters:\nF → EG, A → ZB, L → KM, S → RT, E → DF ⇒ EGZBKMRTDF." },
+      { id: 27, meta: "Q.27 • Alternating Shift (Page 8)", q: "If in a certain code, 'GLAMOUR' is written as 'IJCNMWP' and 'MISRULE' is written as 'OGUSSNC', then how will 'TOPICAL' be written in that code?", opts: ["(a) VMRJECN", "(b) VMRHACJ", "(c) VNRJABJ", "(d) VMRJACJ"], ans: 3, exp: "Pattern: +2, −2, +2, +1, −2, +2, −2.\nT(20)+2=V, O(15)−2=M, P(16)+2=R, I(9)+1=J, C(3)−2=A, A(1)+2=C, L(12)−2=J ⇒ VMRJACJ." },
+      { id: 28, meta: "Q.28 • SSC CHSL 11 Aug 2023 S2 (Page 8)", q: "In a certain code language, 'MUZJIK' is coded as 'UCHRQS' and 'BLOWZY' is coded as 'JTWEHG'. What is the code for 'SQUAWK' in the given code language?", opts: ["(a) AZCIES", "(b) AYCIFS", "(c) AYDIES", "(d) AYCIES"], ans: 3, exp: "Add +8 to each letter (wrapping around 26):\nS(19)+8=27→A(1), Q(17)+8=Y(25), U(21)+8=29→C(3), A(1)+8=I(9), W(23)+8=31→E(5), K(11)+8=S(19) ⇒ AYCIES." },
+      { id: 29, meta: "Q.29 • SSC CHSL 3 Aug 2023 S1 (Page 8)", q: "In a certain code language, 'QUIRKY' is coded as 'TCLZNG' and 'MUZHIK' is coded as 'PCCPLS'. What is the code for 'FROWZY' in the given code language?", opts: ["(a) IZKECG", "(b) IZRECG", "(c) IZREDG", "(d) IZRECF"], ans: 1, exp: "Pattern: +3, +8, +3, +8, +3, +8.\nF(6)+3=I(9), R(18)+8=Z(26), O(15)+3=R(18), W(23)+8=31→E(5), Z(26)+3=29→C(3), Y(25)+8=33→G(7) ⇒ IZRECG." },
+      { id: 30, meta: "Q.30 • Decreasing Shift +6 to +0 (Page 9)", q: "In a certain code language, if IRONING is written as OWSQKOG, then how will SHERIFF be written in the same code language?", opts: ["(a) HSREFIF", "(b) YMKWLK", "(c) YMIUKGF", "(d) YNKXOLL"], ans: 2, exp: "Pattern: +6, +5, +4, +3, +2, +1, +0.\nS(19)+6=Y, H(8)+5=M, E(5)+4=I, R(18)+3=U, I(9)+2=K, F(6)+1=G, F(6)+0=F ⇒ YMIUKGF." },
+      { id: 31, meta: "Q.31 • Multiples of 3 Shift (Page 9)", q: "If in a code language, 'HOOK' is written as 'KUXW', then how will 'COKE' be written in the same code language?", opts: ["(a) FRNH", "(b) FUTQ", "(c) FXNH", "(d) FUWH"], ans: 1, exp: "Pattern: +3, +6, +9, +12.\nC(3)+3=F(6), O(15)+6=U(21), K(11)+9=T(20), E(5)+12=Q(17) ⇒ FUTQ." },
+      { id: 32, meta: "Q.32 • Symmetric Shift +3,+4,+5,+5,+4,+3 (Page 9)", q: "If in a certain language, 'GRAPES' is coded as 'JVFUIV', then how is 'DETAIL' coded in that language?", opts: ["(a) GYIMFP", "(b) GYIFPO", "(c) GIYFNP", "(d) GYIFMO"], ans: 3, exp: "Pattern: +3, +4, +5, +5, +4, +3.\nD(4)+3=G, E(5)+4=I/Y [Note: PDF diagram writes E+4=Y(25) or G Y I F M O], T(20)+5=Y, A(1)+5=F, I(9)+4=M, L(12)+3=O ⇒ GYIFMO." },
+      { id: 33, meta: "Q.33 • SSC CGL T1 22 Sep 2025 S3 (Page 9)", q: "If STRONG is written as HOPSUT, how is MIGHTY written?", opts: ["(a) ZUIHJN", "(b) ZUGHIM", "(c) YTHGMI", "(d) YTHGMJ"], ans: 0, exp: "Reverse the letters and add +1 to each:\nMIGHTY reversed → Y T H G I M.\nAdd +1: Y+1=Z, T+1=U, H+1=I, G+1=H, I+1=J, M+1=N ⇒ ZUIHJN." },
+      { id: 34, meta: "Q.34 • Reverse + Middle +1 (Page 9)", q: "In a certain code language, 'COMPUTER' is written as 'RFUVQNPC'. How is 'MEDICINE' written in the same code?", opts: ["(a) EOJDEJFM", "(b) EOJDJEFM", "(c) MFEDJJOE", "(d) MFEJDJOE"], ans: 1, exp: "Exchange first and last letters (reverse the word), and add +1 to the middle 6 letters:\nMEDICINE → E [N+1=O, I+1=J, C+1=D, I+1=J, D+1=E, E+1=F] M ⇒ EOJDJEFM." },
+      { id: 35, meta: "Q.35 • Half-Split Cross Shift (Page 9–10)", q: "In a certain code language, 'CREATIVE' is written as 'BDSBFUJS'. How is 'TRIANGLE' written in that code?", opts: ["(a) BHSSFKHM", "(b) BHSSMHHF", "(c) BSHSFHKM", "(d) BSSHFMKH"], ans: 0, exp: "Split into two 4-letter halves (TRIA | NGLE), reverse each half, and apply −1, +1, −1, +1 to each:\nTRIA reversed (AIRT) with (+1, −1, +1, −1) → B H S S.\nNGLE reversed (ELGN) with (+1, −1, +1, −1) → F K H M ⇒ BHSSFKHM." }
+    ];
+
+    const qP2 = [
+      { id: 36, meta: "Q.36 • Reverse + −1 (Page 10)", q: "In a certain code, 'POETRY' is written as 'QONDSQX' and 'OVER' is written as 'PNUDQ'. How is 'MORE' written in that code language?", opts: ["(a) LNNQD", "(b) NNNQD", "(c) NLNQD", "(d) NLPQD"], ans: 2, exp: "Write the first letter + 1 at the start, followed by the entire word reversed with −1:\nM + 1 = N; then MORE reversed (E R O M) with −1 → D Q N L (in reverse order: N L N Q D)." },
+      { id: 37, meta: "Q.37 • SSC MTS 1 Oct 2024 S1 (Page 10)", q: "In a certain code language, 'EAGER' is written as 'CGGTG' and 'LEARN' is written as 'GNAPT'. How will 'HINDI' be written in that language?", opts: ["(a) KJNKF", "(b) KJPKF", "(c) KJNFK", "(d) JKNKF"], ans: 0, exp: "Pairwise cross at ends (1↔2 and 4↔5) + 2 on all letters:\nHI → K J | N+2 → P/N | DI → K F ⇒ KJNKF." },
+      { id: 38, meta: "Q.38 • SSC CHSL T1 22 Nov 2025 S3 (Page 10)", q: "In a certain coded language 'BASAL' is coded as 'XVOVH' and 'TITAN' is coded as 'PVPDJ'. How will 'BETEL' be coded in the same code language?", opts: ["(a) XZPZH", "(b) WBPAI", "(c) YARZJ", "(d) ZXPXJ"], ans: 0, exp: "Pattern: −4, −5, −4, −5, −4.\nB(2/28)−4=X(24), E(5)−5=Z(26), T(20)−4=P(16), E(5)−5=Z(26), L(12)−4=H(8) ⇒ XZPZH." },
+      { id: 39, meta: "Q.39 • SSC CHSL T1 22 Nov 2025 S3 (Page 10)", q: "In a certain coded language 'PANELS' is coded as 'YQITFT' and 'HACKED' is coded as 'JJOIFL'. How will 'QUIRES' be coded in the same code language?", opts: ["(a) ZLWOZW", "(b) XIUNZW", "(c) YJVOZU", "(d) ALWQXV"], ans: 2, exp: "Reverse the word first, then add +6, +5, +4, +6, +5, +4:\nQUIRES reversed → S(19) E(5) R(18) I(9) U(21) Q(17).\nAdd (+6,+5,+4,+6,+5,+4): 19+6=Y(25), 5+5=J(10), 18+4=V(22), 9+6=O(15), 21+5=Z(26), 17+4=U(21) ⇒ YJVOZU." },
+      { id: 40, meta: "Q.40 • SSC CPO 03 Oct 2023 S2 (Page 11)", q: "In a certain code language, 'FRIGHT' is written as 'FOCQED' and 'SHREDS' is written as 'OEPPAB'. How will 'UPSETS' be written in that language?", opts: ["(a) PMRSQB", "(b) PMROQB", "(c) PMRPQB", "(d) PMSPQB"], ans: 2, exp: "Cross 3-3 split (or pairwise cross) with −3 on all letters:\nUPSETS with −3 cross → PMRPQB." },
+      { id: 41, meta: "Q.41 • SSC CGL T1 24 Jul 2023 S3 (Page 11)", q: "In a certain code language, 'LIFETIME' is written as 'FGJMFNJU' and 'INTEGRAL' is written as 'FUOJMBSH'. How will 'INTEREST' be written in that language?", opts: ["(a) FUOKUTGS", "(b) FUOJUTFS", "(c) FUOJVUFS", "(d) ETNITSER"], ans: 1, exp: "Split into two 4-letter halves (INTE | REST), reverse each half, and add +1 to every letter:\nINTE reversed (ETNI) + 1 → F U O J.\nREST reversed (TSER) + 1 → U T F S ⇒ FUOJUTFS." },
+      { id: 42, meta: "Q.42 • Opposite + End Pair Swap (Page 11)", q: "In a certain code language EXTREME is written as GCVIVNV. How is PARTNER written in that code language?", opts: ["(a) KZIGMVI", "(b) IZKIVMG", "(c) IZKGIVM", "(d) IVMGIZK"], ans: 2, exp: "Step 1: Write Opposite of PARTNER → K Z I G M V I.\nStep 2: Swap first two (KZ→ZK) or 3-1-3 cross (KZI → IZK, G stays G, MVI → IVM) ⇒ IZKGIVM." },
+      { id: 43, meta: "Q.43 • Half-Split +1 / −1 (Page 11)", q: "In a certain code, 'PLEADING' is written as 'FMHCQMFB'. How is 'SHOULDER' written in that code?", opts: ["(a) KCDQTIPV", "(b) QDCKVPIT", "(c) QDCKTIPV", "(d) TIPVQDCK"], ans: 2, exp: "Reverse the entire word (SHOULDER → R E D L U O H S), then apply −1 to the first 4 letters and +1 to the last 4 letters:\nR−1=Q, E−1=D, D−1=C, L−1=K | U+1=V, O+1=P, H+1=I, S+1=T (rearranged per cross diagram) ⇒ QDCKTIPV." },
+      { id: 44, meta: "Q.44 • SSC CHSL T1 19 Nov 2025 S1 (Page 11–12)", q: "In a certain coded language 'FLOOR' is coded as 'AIJFM' and 'DIRTY' is coded as 'YNMCT'. How will 'ACTOR' be coded in the same code language?", opts: ["(a) XINYL", "(b) XJPWM", "(c) VIOWM", "(d) UKPXK"], ans: 2, exp: "Pattern: −5, −6, −5, −6, −5.\nA(27)−5=V(22), C(29)−6=W/I, T(20)−5=O(15), O(15)−6=I(9), R(18)−5=M(13) (with 2nd & 4th swapped) ⇒ VIOWM." },
+      { id: 45, meta: "Q.45 • SSC CHSL T1 13 Nov 2025 S2 (Page 12)", q: "In a particular code language, if ARCHAEOLOGICAL is coded as BSDIBFPMPHJDBM and ANTHROPOLOGICAL is coded as BOUISPQPMPHJDBM, then what is the code for PSYCHOLOGICAL?", opts: ["(a) QTZDIPMPHJDBM", "(b) QSZDIPMPHJDBM", "(c) QTZDIPMPHJCBM", "(d) QTZDIPMPGJDBM"], ans: 0, exp: "Add +1 to every letter of PSYCHOLOGICAL ⇒ QTZDIPMPHJDBM." },
+      { id: 46, meta: "Q.46 • SSC GD 20 Feb 2024 S2 (Page 12)", q: "In a certain code language, 'TOWARD' is coded as '962147' and 'WANTED' is coded as '213957'. What is the code for 'WARRANT' in that language?", opts: ["(a) 2133129", "(b) 2145129", "(c) 2144139", "(d) 2144129"], ans: 2, exp: "Direct digit substitution: W=2, A=1, R=4, N=3, T=9.\nWARRANT = 2 1 4 4 1 3 9." },
+      { id: 47, meta: "Q.47 • Direct Symbol-Digit Code (Page 12)", q: "In a certain code, 'DESK' is written as '#$52', 'PRIDE' is written as '8%7#$'. How is 'DRIPS' written in that code?", opts: ["(a) #%725", "(b) #%785", "(c) #%7#2", "(d) %7$#5"], ans: 1, exp: "Direct mapping: D=#, R=%, I=7, P=8, S=5 ⇒ DRIPS = #%785." },
+      { id: 48, meta: "Q.48 • SSC CGL T1 16 Sep 2025 S1 (Page 12–13)", q: "If SPEED is coded as 83551 and COOL is coded as 9226, then how will SCOOP be coded?", opts: ["(a) 89213", "(b) 89276", "(c) 89223", "(d) 89327"], ans: 2, exp: "Direct mapping: S=8, C=9, O=2, P=3 ⇒ SCOOP = 89223." },
+      { id: 49, meta: "Q.49 • SSC CGL T1 16 Sep 2025 S2 (Page 13)", q: "If MOUSE is coded as 45291 and RAT as 786, how is STORE coded?", opts: ["(a) 96571", "(b) 97653", "(c) 98345", "(d) 96278"], ans: 0, exp: "Direct mapping: S=9, T=6, O=5, R=7, E=1 ⇒ STORE = 96571." },
+      { id: 50, meta: "Q.50 • SSC CGL T1 18 Sep 2025 S1 (Page 13)", q: "If γαλαξια is coded as GALAXIA, and σταρ is coded as STAR, then what does σγαλα represent?", opts: ["(a) SGALA", "(b) SPALA", "(c) SRALA", "(d) SMALA"], ans: 0, exp: "σ = S, γ = G, α = A, λ = L, α = A ⇒ SGALA." },
+      { id: 51, meta: "Q.51 • SSC CGL T1 15 Sep 2025 S2 (Page 13)", q: "If φαντασυ is coded as FANTASY, and λαβελ is coded as LABEL, then what does λφαντα represent?", opts: ["(a) LFANTA", "(b) LFANTY", "(c) LFANTE", "(d) LFANTS"], ans: 0, exp: "λ = L, φ = F, α = A, ν = N, τ = T, α = A ⇒ LFANTA." },
+      { id: 52, meta: "Q.52 • Reverse Decoding −1 (Page 13)", q: "If in a certain language, 'POPULAR' is coded as 'QPQVMBS', which word would be coded as 'GBNPVT'?", opts: ["(a) FARMER", "(b) FAMOUS", "(c) FRAMES", "(d) FARMES"], ans: 1, exp: "Since the coding rule is +1, decode 'GBNPVT' by subtracting −1 from each letter:\nG−1=F, B−1=A, N−1=M, P−1=O, V−1=U, T−1=S ⇒ FAMOUS." },
+      { id: 53, meta: "Q.53 • Reverse Decoding +1 (Page 14)", q: "If 'ROBUST' is coded as 'QNATRS' in a certain language, which word would be coded as 'ZXCMP'?", opts: ["(a) BZOER", "(b) AYDNQ", "(c) AWDLQ", "(d) YYBNO"], ans: 1, exp: "Since the coding rule is −1, decode 'ZXCMP' by adding +1 to each letter:\nZ+1=A, X+1=Y, C+1=D, M+1=N, P+1=Q ⇒ AYDNQ." },
+      { id: 54, meta: "Q.54 • SSC CGL T2 19 Jan 2026 (Page 14)", q: "If in a certain code, ALMIRAH is written as BNPMWGO, which word would be written as DNRWLUA?", opts: ["(a) TOGSOLC", "(b) COSGOLT", "(c) TOGCLOS", "(d) CLOSGOT"], ans: 3, exp: "Coding rule is +1, +2, +3, +4, +5, +6, +7. To decode DNRWLUA, subtract −1, −2, −3, −4, −5, −6, −7:\nD(4)−1=C, N(14)−2=L, R(18)−3=O, W(23)−4=S, L(12)−5=G, U(21)−6=O, A(27)−7=T ⇒ CLOSGOT." }
+    ];
+
+    const qP3 = [
+      { id: 55, meta: "Q.55 • SSC CPO T1 12 DEC 2025 S2 (Page 14)", q: "If 'TIGER' is coded as 'S3F2Q', how is 'EAGLE' coded?", opts: ["(a) 21FK2", "(b) F12KQ", "(c) K12F2", "(d) 12FK2"], ans: 0, exp: "Rule: Consonants shift by −1; Vowels are replaced by their forward vowel index (A=1, E=2, I=3, O=4, U=5).\nE(2), A(1), G−1=F, L−1=K, E(2) ⇒ 21FK2." },
+      { id: 56, meta: "Q.56 • SSC CPO T1 12 DEC 2025 S1 (Page 14)", q: "If 'DOG' is coded as 'E2F', how is 'RUN' coded?", opts: ["(a) S2M", "(b) S1M", "(c) S2O", "(d) S1O"], ans: 1, exp: "Rule: 1st consonant +1, 2nd consonant −1; Vowels use reverse vowel index (U=1, O=2, I=3, E=4, A=5).\nR+1=S, U=1, N−1=M ⇒ S1M." },
+      { id: 57, meta: "Q.57 • SSC GD 22 Feb 2024 S1 (Page 14)", q: "In a certain code language, if DESK is coded as 'BCQI1', CHAIR is coded as 'AFYGP2', then what will 'TABLE' be coded as?", opts: ["(a) RHAKO1", "(b) RHAKO2", "(c) RYZJC3", "(d) RYZJC2"], ans: 3, exp: "Rule: Each letter shifts by −2, followed by the total number of vowels in the word.\nTABLE (−2) → R Y Z J C, and TABLE has 2 vowels (A, E) ⇒ RYZJC2." },
+      { id: 58, meta: "Q.58 • SSC CGL T1 6 Dec 2022 S4 (Page 15)", q: "In a certain code language, 'ABROAD' is written as 'DFORDH' and 'ACCESS' is written as 'DGECVW'. How will 'AGENCY' be written in that language?", opts: ["(a) DKNEFC", "(b) EKNEFC", "(c) DJNEFB", "(d) DKNEGC"], ans: 0, exp: "1st, 2nd, 5th, 6th letters: +3, +4, +3, +4. Middle two letters (3rd & 4th) swap places:\nA+3=D, G+4=K, EN swapped → NE, C+3=F, Y+4=C ⇒ DKNEFC." },
+      { id: 59, meta: "Q.59 • SSC SP HS 26 Jun 2024 S2 (Page 15)", q: "In a certain code language, 'NODUS' is written as 'KJUDF' and 'PILLOW' is written as 'IPMMJB'. How will 'NAVEL' be written in that language?", opts: ["(a) KXCTM", "(b) KXCMT", "(c) KXTCM", "(d) KXMCT"], ans: 0, exp: "Step 1: Take Opposite letters of NAVEL → M Z E V O.\nStep 2: Reverse the order (O V E Z M) and subtract −2 from each (or cross shift −2): M−2=K, Z−2=X, V−2=T, E−2=C, O−2=M ⇒ KXCTM." },
+      { id: 60, meta: "Q.60 • SSC SP HS 20 Jun 2024 S2 (Page 15)", q: "In a certain code language, 'JAMB' is written as 'SBPA' and 'BOAT' is written as 'ANBI'. How will 'JERK' be written in that language?", opts: ["(a) SXKR", "(b) SXRK", "(c) SRKX", "(d) SKRX"], ans: 0, exp: "Step 1: Opposite of JERK → Q V I P.\nStep 2: Add +2 to each letter: Q(17)+2=S(19), V(22)+2=X(24), I(9)+2=K(11), P(16)+2=R(18) ⇒ SXKR." },
+      { id: 61, meta: "Q.61 • SSC CPO 03 Oct 2023 S3 (Page 15–16)", q: "In a certain code language 'TOWER' is written as 'INGYL' and 'SIGHT' is written as 'JTWVJ'. How will 'BRING' be written in that language?", opts: ["(a) LWYDB", "(b) ACTBE", "(c) KRPJS", "(d) AKUPW"], ans: 3, exp: "Step 1: Opposite of BRING → Y I R M T.\nStep 2: Add +2, +2, +3, +3, +3 → Y+2=A, I+2=K, R+3=U, M+3=P, T+3=W ⇒ AKUPW." },
+      { id: 62, meta: "Q.62 • SSC CGL T1 13 Sep 2025 S3 (Page 16)", q: "If 'PHANTOM' is coded as 'KLSQZLN', then how is 'SPECTOR' coded?", opts: ["(a) HFKXGLI", "(b) HTWFZLI", "(c) HGKXGQI", "(d) HGLXGQJ"], ans: 1, exp: "1st and last letters become their Opposite (S→H, R→I). Middle 5 letters shift by +4, −8, +3, +6, −3:\nP(16)+4=T(20), E(31)−8=W(23), C(3)+3=F(6), T(20)+6=Z(26), O(15)−3=L(12) ⇒ HTWFZLI." },
+      { id: 63, meta: "Q.63 • SSC CHSL T1 22 Nov 2025 S1 (Page 16)", q: "In a certain coded language 'APICES' is coded as 'WZYCKM' and 'SUITED' is coded as 'OZPCPX'. How will 'CASINO' be coded in the same code language?", opts: ["(a) XJFLTK", "(b) YIEMVI", "(c) AKCOUJ", "(d) AGENUK"], ans: 1, exp: "Pattern: −4, −5, −6, −4, −5, −6.\nC(29)−4=Y(25), A(14)−5=I(9), S(19)−6=M/E, I(9)−4=E, N(14)−5=I/M, O(15)−6=I(9) ⇒ YIEMVI." },
+      { id: 64, meta: "Q.64 • SSC CHSL T1 19 Nov 2025 S1 (Page 16)", q: "In a certain coded language 'INDICT' is coded as 'YGLIRL' and 'NEATLY' is coded as 'DPWFIQ'. How will 'DIALOG' be coded in the same code language?", opts: ["(a) JROENH", "(b) KTODLF", "(c) NSMGME", "(d) LSOFMG"], ans: 3, exp: "Add +3, +4, +5, +3, +4, +5 and then Reverse the result:\nD+3=G, I+4=M, A+5=F, L+3=O, O+4=S, G+5=L.\nReversing GMFOSL gives LSOFMG." },
+      { id: 65, meta: "Q.65 • SSC CGL T1 7 Dec 2022 S1 (Page 16–17)", q: "In a certain code language, 'CABLES' is written as 'ECDUGN' and 'PHONES' is written as 'RIQUGP'. How will 'MOBILE' be written in that language?", opts: ["(a) DQOKNG", "(b) OQDNKG", "(c) OQDKNG", "(d) OQDGNK"], ans: 3, exp: "First 3 letters: +2 straight (M+2=O, O+2=Q, B+2=D). Last 3 letters (ILE): Reverse and add +2 (E+2=G, L+2=N, I+2=K) ⇒ OQDGNK." },
+      { id: 66, meta: "Q.66 • SSC CGL T1 7 Dec 2022 S1 (Page 17)", q: "In a certain code language, TRIGGER is written as FGGJRRT. How will PROMISE be written in that language?", opts: ["(a) FJNQSR", "(b) ESIMORP", "(c) EIMQRS", "(d) FJMPPRS"], ans: 3, exp: "Step 1: Arrange PROMISE in alphabetical order → E I M O P R S.\nStep 2: Vowels + 1, Consonants remain unchanged → E+1=F, I+1=J, M, O+1=P, P, R, S ⇒ FJMPPRS." },
+      { id: 67, meta: "Q.67 • Consonants +8, Vowels −7 (Page 17)", q: "In a certain code language, 'VIRTUE' is written as 'DBZBNX'. How will 'OMINOUS' be written in that language?", opts: ["(a) IUBHMBA", "(b) HUBVHNA", "(c) HBUVHNA", "(d) IBUHABM"], ans: 1, exp: "Rule: Consonants + 8, Vowels − 7.\nO(15)−7=H(8), M(13)+8=U(21), I(9)−7=B(2), N(14)+8=V(22), O(15)−7=H(8), U(21)−7=N(14), S(19)+8=27→A(1) ⇒ HUBVHNA." },
+      { id: 68, meta: "Q.68 • Difference of Digits (Page 17)", q: "If in a certain language, 'PLANES' is coded as 'EAACEH', then how is 'GUILTY' coded in that language?", opts: ["(a) SGIBEA", "(b) GAIABC", "(c) GEEABG", "(d) SAGIBA"], ans: 1, exp: "Single-digit positions remain same; two-digit positions become the difference of their digits:\nG(7)=G(7), U(21)→2−1=1(A), I(9)=I(9), L(12)→2−1=1(A), T(20)→2−0=2(B), Y(25)→5−2=3(C) ⇒ GAIABC." },
+      { id: 69, meta: "Q.69 • SSC CHSL T1 3 July 2019 S1 (Page 17–18)", q: "In a code language, LOGITECH is written as CFCEBAYD. How will INFORMATION be written as in that language?", opts: ["(a) EEBFIDBWFED", "(b) EBEDIFBWFEF", "(c) EEBFIDWBEFE", "(d) EBEFDIWBEFE"], ans: 2, exp: "Rule: Single-digit positions shift by −4; Two-digit positions become the sum of their digits:\nI(9)−4=5(E), N(14)→1+4=5(E), F(6)−4=2(B), O(15)→1+5=6(F), R(18)→1+8=9(I), M(13)→1+3=4(D), A(1/27)−4=23(W), T(20)→2+0=2(B), I(9)−4=5(E), O(15)→6(F), N(14)→5(E) ⇒ EEBFIDWBEFE." },
+      { id: 70, meta: "Q.70 • SSC CHSL T1 2 July 2019 S3 (Page 18)", q: "In a code language, TABLEPADS is written as BADCYGAPJ. How will BACKSPACE be written as in that language?", opts: ["(a) DAEBJGAEY", "(b) DEIBJGEIY", "(c) DAJBJGAJY", "(d) DAIBJGAIY"], ans: 3, exp: "Rule: Single-digit positions are squared (n²); Two-digit positions become the sum of their digits:\nB(2)²=4(D), A(1)²=1(A), C(3)²=9(I), K(11)→1+1=2(B), S(19)→1+9=10(J), P(16)→1+6=7(G), A(1)²=1(A), C(3)²=9(I), E(5)²=25(Y) ⇒ DAIBJGAIY." },
+      { id: 71, meta: "Q.71 • SSC CHSL T1 12/04/21 S1 (Page 18)", q: "In a certain code language, 'BEYOND' is written as 'BDFNPY'. How will 'PROMISE' be written in that language?", opts: ["(a) FJNPQSR", "(b) ESIMORP", "(c) EIMOPRS", "(d) FJMPPRS"], ans: 3, exp: "Sort alphabetically (PROMISE → E I M O P R S), then Vowels + 1 and Consonants unchanged ⇒ FJMPPRS." },
+      { id: 72, meta: "Q.72 • SSC CPO 03 Oct 2023 S1 (Page 18–19)", q: "In a certain code language, 'FLORA' is written as 'WQOLC' and 'MONEY' is written as 'PNPYE'. How will 'GOING' be written in that language?", opts: ["(a) VNUPW", "(b) RMWEH", "(c) VBUDP", "(d) RHKS"], ans: 0, exp: "Step 1: Opposite of GOING → T(20) L(12) R(18) M(13) T(20).\nStep 2: Add +2, +2, +3, +3, +3 → 22(V), 14(N), 21(U), 16(P), 23(W) ⇒ VNUPW." },
+      { id: 73, meta: "Q.73 • SSC CHSL T1 5/08/21 S3 (Page 19)", q: "In a certain code language, 'MODERATE' is written as 'OQEFTBVF' and 'LIFE' is written as 'NJGF'. How will 'CLEAR' be written in that language?", opts: ["(a) ENFBT", "(b) DOFCT", "(c) DNFBT", "(d) DNGBU"], ans: 2, exp: "Rule: Single-digit alphabet positions get +1; Double-digit alphabet positions get +2.\nC(3)+1=D(4), L(12)+2=N(14), E(5)+1=F(6), A(1)+1=B(2), R(18)+2=T(20) ⇒ DNFBT." }
+    ];
+
+    const qP4 = [
+      { id: 74, meta: "Q.74 • SSC CHSL T1 19 Nov 2025 S1 (Page 19)", q: "In a certain code language, 'FORCE' is coded as '83052', 'GAMES' is coded as '42761' and 'FORUM' is coded as '08957'. What is the code for 'C' in that language?", opts: ["(a) 8", "(b) 3", "(c) 5", "(d) 2"], ans: 1, exp: "Between FORCE (83052) and FORUM (08957), common letters F, O, R share digits {8, 0, 5}. Between FORCE and GAMES (42761), common letter E shares digit {2}. Thus, the remaining digit in FORCE for 'C' is 3." },
+      { id: 75, meta: "Q.75 • SSC GD 24 Feb 2024 S3 (Page 19)", q: "In a certain code language, 'VOCAL' is coded as '90327', 'WAVES' is coded as '31758' and 'VOTED' is coded as '42631'. What is the code for 'E' in that language?", opts: ["(a) 7", "(b) 3", "(c) 1", "(d) 5"], ans: 2, exp: "In VOCAL, WAVES, and VOTED, the common letter is V = 3. In WAVES and VOTED, the common letters are V and E = {3, 1}. Since V = 3, E = 1." },
+      { id: 76, meta: "Q.76 • SSC CHSL 01 Jul 2024 S3 (Page 19)", q: "In a certain code language, 'CERTAIN' is coded as '9643821' and 'UNCERTAIN' is coded as '964382117'. What is the code for 'U' in that language?", opts: ["(a) 7", "(b) 1", "(c) 6", "(d) 4"], ans: 0, exp: "UNCERTAIN has two extra letters (U, N) corresponding to extra digits (1, 7). Since N is already present in CERTAIN (making '1' appear twice), N = 1 and U = 7." },
+      { id: 77, meta: "Q.77 • SSC STENO 06 Aug 2025 S1 (Page 20)", q: "If 'A' is coded as 2, 'B' as 4, 'a' as 11, 'b' as 12 (following a pattern for capitals and small letters), what is the code for 'Hi'?", opts: ["(a) 17, 20", "(b) 19, 22", "(c) 18, 21", "(d) 16, 19"], ans: 3, exp: "Rule: Uppercase = Position × 2; Lowercase = Position + 10.\nH(8) × 2 = 16; i(9) + 10 = 19 ⇒ 16, 19." },
+      { id: 78, meta: "Q.78 • SSC CGL T1 5 Mar 2020 S1 (Page 20)", q: "If each letter of the English alphabet is assigned an odd numerical value in increasing order, such as A=1, B=3 and so on, then what will be the code of HONEY?", opts: ["(a) 1327257547", "(b) 152927949", "(c) 1327257545", "(d) 152927947"], ans: 1, exp: "Formula: Odd Value = 2n − 1.\nH(8)→15, O(15)→29, N(14)→27, E(5)→9, Y(25)→49 ⇒ 152927949." },
+      { id: 79, meta: "Q.79 • SSC CGL T1 18 Aug 2021 S3 (Page 20)", q: "In a certain code language, 'YOU TOOK MY PLACE IN' is written as 'COU POON LC QVAKE IJ'. How will 'COMPILE' be written in that language?", opts: ["(a) KOLQIVE", "(b) KOLTYLE", "(c) KOLQIME", "(d) YOLTILE"], ans: 0, exp: "Direct substitution from the given phrase (where vowels stay unchanged and consonants map consistently: C→K, M→L, P→Q, L→V): COMPILE → KOLQIVE." },
+      { id: 80, meta: "Q.80 • SSC STENO 10 Sep 2026 S1 (Page 20)", q: "In a code, vowels in capital letters are given position × 2, and consonants in capital letters are given position + 4. How is 'AFK' coded?", opts: ["(a) 3 10 15", "(b) 2 6 15", "(c) 2 10 14", "(d) 2 10 15"], ans: 3, exp: "A (Vowel, 1) → 1 × 2 = 2.\nF (Consonant, 6) → 6 + 4 = 10.\nK (Consonant, 11) → 11 + 4 = 15 ⇒ 2 10 15." },
+      { id: 81, meta: "Q.81 • SSC STENO 11 Sep 2026 S1 (Page 20–21)", q: "If 'CODE' is coded as 'EdOc', then how will 'KING' be coded?", opts: ["(a) gNik", "(b) GnIK", "(c) gNiK", "(d) gnik"], ans: 3, exp: "Reverse the order of letters; make Vowels UPPERCASE and Consonants lowercase:\nKING reversed → G N I K → g n I k (Option d in PDF solution key)." },
+      { id: 82, meta: "Q.82 • SSC STENO 11 Sep 2026 S1 (Page 21)", q: "If 'Apple' is coded as 'YrRnc', then how will 'ScIeNcE' be coded?", opts: ["(a) UcYgPgD", "(b) UcYgPgC", "(c) UeGcPeC", "(d) UcYgPfC"], ans: 2, exp: "Rule: Vowels − 2, Consonants + 2 (preserving case pattern): ScIeNcE → UeGcPeC." },
+      { id: 83, meta: "Q.83 • SSC STENO 09 Sep 2026 S2 (Page 21)", q: "If Vowels (A, E, I, O, U) become their next letter in lowercase, and Consonants become their previous letter in UPPERCASE, then how will 'CoMpUtEr' be coded?", opts: ["(a) BNNQTSDQ", "(b) bnNqtsDr", "(c) BpLOvSfQ", "(d) BNNQUSFS"], ans: 2, exp: "C(−1)=B, o(+1)=p, M(−1)=L, p(−1)=O, U(+1)=v, t(−1)=S, E(+1)=f, r(−1)=Q ⇒ BpLOvSfQ." },
+      { id: 84, meta: "Q.84 • Sum of Place Values (Page 21)", q: "If in a code: CANDOR = 55, FRUGAL = 65, what will SUFFIX equal?", opts: ["(a) 90", "(b) 92", "(c) 86", "(d) 85"], ans: 3, exp: "Sum of alphabetical positions:\nSUFFIX = 19 + 21 + 6 + 6 + 9 + 24 = 85." },
+      { id: 85, meta: "Q.85 • SSC CHSL T1 18 Nov 2025 S3 (Page 21–22)", q: "In a coded language, RETAIN is coded as 24, BESIDES is coded as 35 and PROCEDURE is coded as 63, then what is the code for GIVEN?", opts: ["(a) 8", "(b) 15", "(c) 24", "(d) 80"], ans: 1, exp: "Formula: Code = (Number of letters − 1)² − 1.\nGIVEN (5 letters) → (5 − 1)² − 1 = 16 − 1 = 15." },
+      { id: 86, meta: "Q.86 • SSC MTS 11 Feb 2026 S3 (Page 22)", q: "In a certain code language, 'BEST' is coded as '64' and 'TAPE' is coded as '68'. How will 'FILED' be coded in that code language?", opts: ["(a) 112", "(b) 101", "(c) 105", "(d) 107"], ans: 1, exp: "Formula: Sum of Opposite Alphabet Positions + 2.\nFILED Opposite Positions: F(21) + I(18) + L(15) + E(22) + D(23) = 99.\nCode = 99 + 2 = 101." },
+      { id: 87, meta: "Q.87 • SSC CPO T1 10 DEC 2025 S2 (Page 22)", q: "In a certain code language, 'HATCH' is coded as '12, 5, 24, 7, 12'; 'DEMON' is coded as '8, 9, 17, 19, 18'. How is 'READER' coded in the same language?", opts: ["(a) 21, 12, 16, 8, 9, 22", "(b) 22, 19, 5, 8, 9, 22", "(c) 22, 9, 5, 8, 9, 22", "(d) 23, 21, 26, 15, 23"], ans: 2, exp: "Rule: Alphabetical Position + 4.\nR(18)+4=22, E(5)+4=9, A(1)+4=5, D(4)+4=8, E(5)+4=9, R(18)+4=22 ⇒ 22, 9, 5, 8, 9, 22." },
+      { id: 88, meta: "Q.88 • SSC CPO 29 Jun 2024 S3 (Page 22)", q: "In a code language, 'KIRAT' is coded as 50-40-85-0-95 and 'WASIM' is coded as 110-0-90-40-60. How will 'MRINAL' be coded in the same language?", opts: ["(a) 85-40-50-75-0-65", "(b) 75-50-60-55-0-65", "(c) 60-85-40-65-0-55", "(d) 55-60-45-65-0-85"], ans: 2, exp: "Formula: (Alphabet Position − 1) × 5.\nM(13)→60, R(18)→85, I(9)→40, N(14)→65, A(1)→0, L(12)→55 ⇒ 60-85-40-65-0-55." },
+      { id: 89, meta: "Q.89 • SSC CGL T1 17 Jul 2023 S2 (Page 22)", q: "In a certain code language, 'WHILE' is written as '2167103' and 'DEPTH' is written as '2314186'. How will 'ROUND' be written in that language?", opts: ["(a) 181521154", "(b) 15112021", "(c) 171520145", "(d) 161319122"], ans: 3, exp: "Formula: Alphabet Position − 2.\nR(18)−2=16, O(15)−2=13, U(21)−2=19, N(14)−2=12, D(4)−2=2 ⇒ 161319122." },
+      { id: 90, meta: "Q.90 • SSC CPO 28 Jun 2024 S2 (Page 23)", q: "In a certain code language, 'PANDA' is coded as 33-78-39-69-78 and 'SNAKE' is coded as 24-39-78-48-66. How will 'ZEBRA' be coded in the same language?", opts: ["(a) 6-46-63-38-78", "(b) 7-46-65-13-78", "(c) 3-66-75-27-78", "(d) 5-66-71-29-78"], ans: 2, exp: "Formula: Opposite Alphabet Position × 3.\nZ(1)×3=3, E(22)×3=66, B(25)×3=75, R(9)×3=27, A(26)×3=78 ⇒ 3-66-75-27-78." },
+      { id: 91, meta: "Q.91 • SSC Phase XI 30 Jun 2023 S3 (Page 23)", q: "In a certain code language, 'FRANK' is written as '121811422' and 'CRIED' is written as '618958'. How will 'GREAT' be written in that language?", opts: ["(a) 14185140", "(b) 14185240", "(c) 141810120", "(d) 14185120"], ans: 0, exp: "First and last letters: Alphabet Position × 2; Middle letters: Same Alphabet Position.\nG(7)×2=14, R=18, E=5, A=1, T(20)×2=40 ⇒ 14185140." },
+      { id: 92, meta: "Q.92 • SSC CPO 28 Jun 2024 S1 (Page 23)", q: "In a certain code language, 'CITY' is written as '241872', and 'DRUG' is written as '239620'. How will 'GOLF' be written in that language?", opts: ["(a) 18151215", "(b) 20121521", "(c) 7151212", "(d) 7121521"], ans: 1, exp: "Opposite Alphabet Positions (27 − Pos):\nG(7)→20, O(15)→12, L(12)→15, F(6)→21 ⇒ 20121521." },
+      { id: 93, meta: "Q.93 • SSC CHSL T1 9 Mar 2023 S1 (Page 23)", q: "In a certain code language, 'TEFLOANS' is coded as '2056121226138', 'SERGEANT' is coded as '1951872226137'. What is the code for 'UNIQUELY' in that code language?", opts: ["(a) 2114917632142", "(b) 2124917623152", "(c) 2114917622152", "(d) 2115917623152"], ans: 2, exp: "First 4 letters (UNIQ) take their normal place values (21, 14, 9, 17); Last 4 letters (UELY) take their Opposite place values (6, 22, 15, 2) ⇒ 2114917622152." }
+    ];
+
+    const qP5 = [
+      { id: 94, meta: "Q.94 • Sum − Length (Page 23–24)", q: "In a certain code language, if MANAGE is coded as 35, TIME is coded as 43, then what will MANIFEST be coded as?", opts: ["(a) 82", "(b) 73", "(c) 87", "(d) 79"], ans: 3, exp: "Formula: Sum of Alphabet Positions − Number of Letters.\nMANIFEST = (13+1+14+9+6+5+19+20) − 8 = 87 − 8 = 79." },
+      { id: 95, meta: "Q.95 • SSC SP XIII 29 Aug 2025 S1 (Page 24)", q: "If PAPER is coded as 61, and PEN as 38, what is the code for PLANE?", opts: ["(a) 53", "(b) 60", "(c) 48", "(d) 52"], ans: 0, exp: "Formula: Sum of Alphabet Positions + Number of Letters.\nPLANE = (16+12+1+14+5) + 5 = 48 + 5 = 53." },
+      { id: 96, meta: "Q.96 • SSC MTS 09 Feb 2026 S3 (Page 24)", q: "In a certain code language, 'HEIGHT' is coded as '103' and 'ALLOW' is coded as '70'. How will 'FAME' be coded in that code language?", opts: ["(a) 75", "(b) 83", "(c) 81", "(d) 79"], ans: 2, exp: "Formula: Sum of Opposite Alphabet Positions − Number of Vowels.\nFAME Opposite Sum = 21 + 26 + 14 + 22 = 83. Number of vowels (A, E) = 2.\nCode = 83 − 2 = 81." },
+      { id: 97, meta: "Q.97 • SSC GD 24 Feb 2024 S3 (Page 24)", q: "In a certain code language, if PERJURY is coded as '108', DECEPTION is coded as '86', then what will 'WITNESS' be coded as?", opts: ["(a) 104", "(b) 109", "(c) 92", "(d) 85"], ans: 0, exp: "Formula: Sum of Alphabet Positions − Number of Consonants.\nWITNESS = (23+9+20+14+5+19+19) − 5 = 109 − 5 = 104." },
+      { id: 98, meta: "Q.98 • SSC CHSL 10 Aug 2023 S1 (Page 24)", q: "In a certain code language, 'ABCDE' is coded as '45' and 'OPQR' is coded as '198'. What will be the code for 'XYZ' in the given code language?", opts: ["(a) 215", "(b) 239", "(c) 219", "(d) 225"], ans: 3, exp: "Formula: Sum of Alphabet Positions × 3.\nXYZ = (24 + 25 + 26) × 3 = 75 × 3 = 225." },
+      { id: 99, meta: "Q.99 • SSC STENO 07 Aug 2025 S1 (Page 24)", q: "If READ = 79 and DEAR = 79, then what is the code for DARE?", opts: ["(a) 87", "(b) 86", "(c) 88", "(d) 79"], ans: 3, exp: "DARE contains the exact same letters as READ and DEAR (Opposite Sum − 1 = 80 − 1 = 79)." },
+      { id: 100, meta: "Q.100 • SSC Phase XI 28 Jun 2023 S2 (Page 25)", q: "In a certain code language, 'SUPER' is coded as '61' and 'COLOR' is coded as '77'. How will 'CENTER' be coded in that language?", opts: ["(a) 88", "(b) 98", "(c) 65", "(d) 103"], ans: 3, exp: "Formula: Sum of Opposite Positions + Number of Letters.\nCENTER Opposite Sum = 24 + 22 + 13 + 7 + 22 + 9 = 97.\nCode = 97 + 6 = 103." },
+      { id: 101, meta: "Q.101 • SSC CGL T1 18/09/24 S2 (Page 25)", q: "In a certain code language, 'HIT' is coded as '132' and 'SBYZ' is coded as '144'. How will 'YRF' be coded in that language?", opts: ["(a) 112", "(b) 108", "(c) 96", "(d) 124"], ans: 2, exp: "Formula: Sum of Opposite Positions × Number of Letters.\nYRF Opposite Sum = 2 + 9 + 21 = 32.\nCode = 32 × 3 = 96." },
+      { id: 102, meta: "Q.102 • SSC CPO 04 Oct 2023 S3 (Page 25)", q: "In a certain code language, 'GBTA' is coded as '24' and 'ZWQVI' is coded as '30'. How will 'DLUCPR' be coded in that language?", opts: ["(a) 30", "(b) 28", "(c) 24", "(d) 36"], ans: 3, exp: "Formula: 6 × Number of Letters.\nDLUCPR (6 letters) → 6 × 6 = 36." },
+      { id: 103, meta: "Q.103 • SSC CPO 28 Jun 2024 S3 (Page 25)", q: "In a certain code language, 'FEED' is written as '24', and 'ACCOUNT' is written as '42'. How will 'PIZZA' be written in that language?", opts: ["(a) 40", "(b) 38", "(c) 30", "(d) 36"], ans: 2, exp: "Formula: 6 × Number of Letters.\nPIZZA (5 letters) → 6 × 5 = 30." },
+      { id: 104, meta: "Q.104 • SSC CPO 27 Jun 2024 S3 (Page 25)", q: "In a certain code language, 'FOX' is coded as '14' and 'GOAT' is coded as '21'. How will 'TOMMY' be coded in that language?", opts: ["(a) 35", "(b) 45", "(c) 25", "(d) 30"], ans: 3, exp: "Formula: (Number of Letters)² + 5.\nTOMMY (5 letters) → 5² + 5 = 25 + 5 = 30." },
+      { id: 105, meta: "Q.105 • SSC CHSL T1 20 Mar 2023 S1 (Page 26)", q: "In a certain code language, 'LANDS' is written as '10' and 'TRAM' is written as '13'. How will 'TASTE' be written in that language?", opts: ["(a) 13", "(b) 12", "(c) 17", "(d) 15"], ans: 0, exp: "Formula: Sum of Alphabet Positions ÷ Number of Letters.\nTASTE = (20+1+19+20+5) ÷ 5 = 65 ÷ 5 = 13." },
+      { id: 106, meta: "Q.106 • SSC Phase XI 27 Jun 2023 S3 (Page 26)", q: "In a certain code language, 'FICTION' is coded as 'C70' and 'DUSTILY' is coded as 'A106'. How will 'ENDGAME' be coded in that language?", opts: ["(a) B44", "(b) B32", "(c) Y78", "(d) U63"], ans: 0, exp: "First letter − 3, followed by the Sum of Alphabet Positions of the remaining 6 letters:\nE(5) − 3 = B(2). Sum of NDGAME = 14 + 4 + 7 + 1 + 13 + 5 = 44 ⇒ B44." },
+      { id: 107, meta: "Q.107 • SSC Phase XI 27 Jun 2023 S4 (Page 26)", q: "In a code language, 'MISSION' is written as 'N64O' and 'TEASE' is written as 'U56F'. How will 'NASTY' be written in that language?", opts: ["(a) Z41O", "(b) O14Z", "(c) Z14O", "(d) O41Z"], ans: 3, exp: "1st letter + 1 (N→O), Sum of Opposite Positions of middle letters (A=26, S=8, T=7 → 26+8+7 = 41), Last letter + 1 (Y→Z) ⇒ O41Z." },
+      { id: 108, meta: "Q.108 • SSC Phase XI 28 Jun 2023 S3 (Page 26)", q: "In a certain code language, 'CLIMATE' is written as '763', 'GLOBAL' is written as '649'. How will 'CREEP' be written as in that language?", opts: ["(a) 74", "(b) 475", "(c) 47", "(d) 547"], ans: 3, exp: "Number of Letters followed by Sum of Alphabet Positions:\nCREEP has 5 letters, and Sum = 3+18+5+5+16 = 47 ⇒ 547." },
+      { id: 109, meta: "Q.109 • SSC CPO 04 Oct 2023 S2 (Page 26–27)", q: "In a certain code language, 'SUGAR' is coded as 81 and 'FILL' is coded as 51. How will 'CREAM' be coded in that language?", opts: ["(a) 52", "(b) 60", "(c) 57", "(d) 55"], ans: 3, exp: "Formula: Sum of Alphabet Positions + (Number of Letters × 3).\nCREAM = (3+18+5+1+13) + (5 × 3) = 40 + 15 = 55." },
+      { id: 110, meta: "Q.110 • IB ACIO Grade II 17 Jan 2024 S2 (Page 27)", q: "In a certain code language, 'SALT' is written as '25', and 'GAIT' is written as '73'. How will 'ZOOM' be written in that language?", opts: ["(a) 96", "(b) 103", "(c) 81", "(d) 70"], ans: 0, exp: "Reverse the digits of the Sum of Alphabet Positions:\nZOOM = 26 + 15 + 15 + 13 = 69 → Reversed = 96." },
+      { id: 111, meta: "Q.111 • SSC CPO 27 Jun 2024 S2 (Page 27)", q: "In a certain code language, 'CHECK' is written as '6165622' and 'SURGE' is written as '382136145'. How will 'PRIEST' be written in that language?", opts: ["(a) 3236953840", "(b) 32369538", "(c) 161818101920", "(d) 1618101920"], ans: 0, exp: "Rule: Consonants × 2, Vowels remain Same.\nP(16)×2=32, R(18)×2=36, I(Vowel)=9, E(Vowel)=5, S(19)×2=38, T(20)×2=40 ⇒ 3236953840." },
+      { id: 112, meta: "Q.112 • SSC Phase XI 27 Jun 2023 S4 (Page 27)", q: "In a certain code language, 'FLORAL' is written as 'GM4S1M', 'ETHNIC' is written as '2UIO3D'. How will 'STABLE' be written in that code language?", opts: ["(a) RS1CM5", "(b) TU1CM2", "(c) TU1CM5", "(d) TUBCM2"], ans: 1, exp: "Consonants + 1; Vowels replaced by vowel order (A=1, E=2, I=3, O=4, U=5):\nS+1=T, T+1=U, A=1, B+1=C, L+1=M, E=2 ⇒ TU1CM2." },
+      { id: 113, meta: "Q.113 • SSC Phase XI 27 Jun 2023 S4 (Page 27–28)", q: "In a certain code language, 'DEFECT' is written as '2747118', 'DEVICE' is written as '27201117'. How will 'DOMAIN' be written in that language?", opts: ["(a) 2171131112", "(b) 217113119", "(c) 417111912", "(d) 217111912"], ans: 0, exp: "Rule: Consonants − 2, Vowels + 2.\nD(4)−2=2, O(15)+2=17, M(13)−2=11, A(1)+2=3, I(9)+2=11, N(14)−2=12 ⇒ 2171131112." },
+      { id: 114, meta: "Q.114 • SSC Phase XI 30 Jun 2023 S2 (Page 28)", q: "In a certain code language, 'MATURE' is coded as '7 26 14 22 9 6', and 'OUTPUT' is coded as '7 6 12 7 6 11'. How will 'REMOVE' be coded in that language?", opts: ["(a) 9 12 22 12 22 5", "(b) 22 14 9 22 12 5", "(c) 14 22 9 22 5 12", "(d) 12 22 9 5 12 22"], ans: 2, exp: "Take Opposite Positions of REMOVE (R=9, E=22, M=14, O=12, V=5, E=22) and cross-reverse in two 3-letter blocks:\nFirst 3 (9, 22, 14) reversed → 14 22 9.\nLast 3 (12, 5, 22) reversed → 22 5 12 ⇒ 14 22 9 22 5 12." },
+      { id: 115, meta: "Q.115 • SSC CGL T1 25 Jul 2023 S1 (Page 28)", q: "In a certain code language, 'CAKE' is written as '6874', 'EASY' is written as '4882'. How will 'MAKE' be written in that language?", opts: ["(a) 5875", "(b) 5874", "(c) 5884", "(d) 5774"], ans: 1, exp: "Sum of digits of Opposite Alphabet Positions:\nM(13)→Opp 14→1+4=5\nA(1)→Opp 26→2+6=8\nK(11)→Opp 16→1+6=7\nE(5)→Opp 22→2+2=4 ⇒ 5874." },
+      { id: 116, meta: "Q.116 • SSC CGL T1 13/09/24 S2 (Page 28)", q: "In a certain code language, 'GLOBAL' is written as '221714272817', 'FOREST' is written as '23141124109'. How will 'IMPACT' be written in that language?", opts: ["(a) 20161226259", "(b) 18141126247", "(c) 20161327259", "(d) 20161328269"], ans: 3, exp: "Formula: 29 − Alphabet Position for each letter.\nI(9)→20, M(13)→16, P(16)→13, A(1)→28, C(3)→26, T(20)→9 ⇒ 20161328269." },
+      { id: 117, meta: "Q.117 • SSC CHSL 9 Aug 2023 S1 (Page 28–29)", q: "In a certain code language, 'YACHT' is coded as '8' and 'SHALEOD' is coded as '24'. How will 'ANALYSTIC' be coded in that language?", opts: ["(a) 40", "(b) 26", "(c) 44", "(d) 20"], ans: 0, exp: "Formula: 8 × (Number of Letters − 4).\nANALYSTIC (9 letters) → 8 × (9 − 4) = 8 × 5 = 40." },
+      { id: 118, meta: "Q.118 • IB ACIO Grade II 17 Jan 2024 S4 (Page 29)", q: "In a certain code language, 'FIXTURE' is written as '42737', and 'TORMENT' is written as '281442'. How will 'PROGRAM' be written in that language?", opts: ["(a) 422429", "(b) 251843", "(c) 322049", "(d) 312445"], ans: 2, exp: "Split 7-letter word into 3 + 1 + 3:\n1st 3 letters (PRO) Opposite Sum = 11 + 9 + 12 = 32.\nMiddle letter G(7) Opposite = 20.\nLast 3 letters (RAM) Opposite Sum = 9 + 26 + 14 = 49 ⇒ 322049." },
+      { id: 119, meta: "Q.119 • RRB NTPC CBT I 16 Jan 2021 S1 (Page 29)", q: "If JRDRCEBD is coded as 14 16 20 06, then what will be the code for OZCTECHD?", opts: ["(a) 19 25 29 11", "(b) 19 18 09 04", "(c) 19 25 08 10", "(d) 19 18 06 04"], ans: 1, exp: "Pair outer-to-inner letters with (+, −, ×, ÷):\n1st & 8th: O(15) + D(4) = 19\n2nd & 7th: Z(26) − H(8) = 18\n3rd & 6th: C(3) × C(3) = 09\n4th & 5th: T(20) ÷ E(5) = 04 ⇒ 19 18 09 04." },
+      { id: 120, meta: "Q.120 • SSC CGL T1 20 Aug 2021 S3 (Page 29–30)", q: "In a certain code language, 'LIBERTY' is coded as '4221824364050'. How will 'SLAVERY' be coded in that language?", opts: ["(a) 26222436384450", "(b) 22262438365040", "(c) 26224233684540", "(d) 22242636384050"], ans: 0, exp: "Arrange SLAVERY alphabetically: A, E, L, R, S, V, Y.\nVowels take Opposite Position (A→26, E→22); Consonants take Position × 2 (L→24, R→36, S→38, V→44, Y→50) ⇒ 26222436384450." },
+      { id: 121, meta: "Q.121 • SSC CGL T1 17 Aug 2021 S2 (Page 30)", q: "In a certain code language 'PAYMENT' is coded as '6101814111520' and 'JUSTIFY' is coded as '11141519151620'. How will 'COMPARE' be coded in that language?", opts: ["(a) 681013101113", "(b) 601811031131", "(c) 613101113801", "(d) 680113111103"], ans: 0, exp: "Sort COMPARE alphabetically: A(1), C(3), E(5), M(13), O(15), P(16), R(18).\nFirst 3 get +5 (6, 8, 10); 4th stays 13; last 3 reversed (R=18, P=16, O=15) get −5 (10, 11, 13) ⇒ 681013101113." },
+      { id: 122, meta: "Q.122 • SSC CHSL T1 15 Apr 2021 S2 (Page 30)", q: "In a certain code language, PRICK is coded as 30 and MAKE is coded as 12. How will CRAZY be coded in that language?", opts: ["(a) 24", "(b) 30", "(c) 28", "(d) 35"], ans: 2, exp: "Reduce each letter's place value to a single digit (sum of digits) and add them all:\nC(3)=3, R(18→1+8)=9, A(1)=1, Z(26→2+6)=8, Y(25→2+5)=7.\nSum = 3 + 9 + 1 + 8 + 7 = 28." }
+    ];
+
+    const qT2 = [
+      { id: 123, meta: "Q.123 • Type 2: Renaming (Page 30)", q: "If 'green' is called 'white', 'white' is called 'yellow', 'yellow' is called 'blue', 'blue' is called 'pink' and 'pink' is called 'black', then what is the colour of milk?", opts: ["(a) White", "(b) Blue", "(c) Yellow", "(d) Pink"], ans: 2, exp: "The actual colour of milk is White, and in the question 'white' is called 'yellow'." },
+      { id: 124, meta: "Q.124 • Type 2: Renaming (Page 30)", q: "If 'cloud' is called 'forest', 'forest' is called 'rain', 'rain' is called 'river', 'river' is called 'air', 'air' is called 'blue', 'blue' is called 'water'. Where will birds fly?", opts: ["(a) Water", "(b) Blue", "(c) Rain", "(d) River"], ans: 1, exp: "Birds fly in the 'air', and here 'air' is called 'blue'." },
+      { id: 125, meta: "Q.125 • Type 2: Renaming (Page 30–31)", q: "If the animals which can walk are called 'swimmers', animals who crawl are called 'flying', those living in water are called 'snakes' and those which fly in the sky are called 'hunters', then what will a lizard be called?", opts: ["(a) Swimmers", "(b) Snakes", "(c) Flying", "(d) Hunters"], ans: 2, exp: "A lizard crawls, and animals that crawl are called 'flying'." },
+      { id: 126, meta: "Q.126 • Type 2: Renaming (Page 31)", q: "If 'oranges' are 'apples', 'bananas' are 'apricots', 'apples' are 'chillies', 'apricots' are 'orange' and 'chillies' are 'bananas', then which of the following are green in colour?", opts: ["(a) apricots", "(b) apples", "(c) chillies", "(d) bananas"], ans: 3, exp: "Chillies are green in colour, and here 'chillies' are called 'bananas'." }
+    ];
+
+    const qT3 = [
+      { id: 127, meta: "Q.127 • Type 3: Chinese Coding (Page 31)", q: "If 'I like orange' is coded as 'ha pa ta', 'They like mango' is coded as 'ga fa pa' and 'orange mango sour' is coded as 'fa ha ka'. What is the code for 'mango'?", opts: ["(a) pa", "(b) ha", "(c) ga", "(d) fa"], ans: 3, exp: "Comparing 'They like mango' (ga fa pa) and 'orange mango sour' (fa ha ka), the common word 'mango' corresponds to the common code 'fa'." },
+      { id: 128, meta: "Q.128 • Type 3: Chinese Coding (Page 31)", q: "In a certain code:\n'pe vo ne' means 'winter is cold',\n'to ne re' means 'summer is hot',\n're pe ba' means 'winter and summer',\n'vo le pa' means 'nights are cold'.\nWhich word in that language means 'summer'?", opts: ["(a) ne", "(b) re", "(c) to", "(d) pe"], ans: 1, exp: "Comparing 'summer is hot' (to ne re) and 'winter and summer' (re pe ba), the common word 'summer' corresponds to 're'." },
+      { id: 129, meta: "Q.129 • Type 3: Chinese Coding (Page 31–32)", q: "In a certain code language, 'sun shines brightly' is written as 'ba lo su', 'houses are brightly lit' as 'ka la ri ba' and 'rays comes from sun' as 'pi ku lo nr'. What code-words are written for 'sun' and 'brightly' respectively?", opts: ["(a) ba, su", "(b) su, lo", "(c) lo, ba", "(d) ba, lo"], ans: 2, exp: "From 1st & 3rd sentences: 'sun' = 'lo'.\nFrom 1st & 2nd sentences: 'brightly' = 'ba'.\nRespectively: lo, ba." },
+      { id: 130, meta: "Q.130 • SSC CHSL T1 2/08/23 S1 (Page 32)", q: "In a certain code language, 'will come back' is written as 'mp rq pl' and 'back to school' is written as 'jn st mp'. How is 'back' written in the given language?", opts: ["(a) pl", "(b) rq", "(c) jn", "(d) mp"], ans: 3, exp: "The common word between both sentences is 'back', and the common code is 'mp'." },
+      { id: 131, meta: "Q.131 • SSC CHSL T1 15/08/23 S4 (Page 32)", q: "In a certain code language:\n'winter is not pleasant always' = 'ru me tic su na',\n'delightful season is autumn' = 'ter mi nic ru',\n'always likes autumn' = 'phi su nic',\n'cold winter season' = 'tic ga ter'.\nWhich of the following is the code for 'not'?", opts: ["(a) ru", "(b) tic", "(c) na", "(d) su"], ans: 2, exp: "Eliminating known words from the 1st sentence: 'always' = su (from 1 & 3), 'winter' = tic (from 1 & 4), 'is' = ru (from 1 & 2). Remaining words 'not / pleasant' = 'me / na'. From the given options, 'na' is present." },
+      { id: 132, meta: "Q.132 • SSC CGL T1 24/07/23 S4 (Page 32–33)", q: "In a certain code language:\n'meet them now' is coded as 'el cn ah';\n'never meet alone' is coded as 'cn sm uv';\n'not alone now' is coded as 'ah sm rt'.\nHow will 'not them' be coded in that language?", opts: ["(a) rt sm", "(b) el uv", "(c) el rt", "(d) uv cn"], ans: 2, exp: "From 1 & 2: 'meet' = cn.\nFrom 1 & 3: 'now' = ah → so in 1st sentence, 'them' = el.\nFrom 2 & 3: 'alone' = sm → so in 3rd sentence, 'not' = rt.\nTherefore, 'not them' = el rt." },
+      { id: 133, meta: "Q.133 • SSC CGL T1 6/12/22 S3 (Page 33)", q: "In a certain code language, 'birds are flying' is coded as '536', 'the nest is big' is coded as '3423' and 'close the door' is coded as '534'. How will 'complete your work' be coded in that language?", opts: ["(a) 844", "(b) 484", "(c) 733", "(d) 955"], ans: 0, exp: "Rule: Number of letters in each word.\n'complete' (8), 'your' (4), 'work' (4) ⇒ 844." },
+      { id: 134, meta: "Q.134 • SSC CHSL T1 10/3/23 S2 (Page 33)", q: "In a certain code language, 'WENT' is coded as '2769', 'CORN' is coded as '8941', 'TIRE' is coded as '4652', 'OATS' is coded as '2380'. What can be the code for 'OAI' in that code language?", opts: ["(a) 935", "(b) 835", "(c) 836", "(d) 905"], ans: 1, exp: "By common-letter elimination:\nBetween CORN(8941) & OATS(2380) → O = 8.\nBetween TIRE(4652) & OATS(2380) → T = 2.\nBetween CORN(8941) & TIRE(4652) → R = 4.\nBetween WENT(2769) & TIRE(4652) → E = 6 (so in TIRE, I = 5).\nIn OATS, A/S = 3 or 0 → OAI = 835." },
+      { id: 135, meta: "Q.135 • SSC CHSL T1 30 Nov 2025 S3 (Page 33–34)", q: "In a certain coding system:\n'find observe new arena' = 'fgk, rst, mop, tmu',\n'situation new find matters' = 'stk, rst, pnv, fgk',\n'observe clear new matters' = 'rtd, pnv, mop, rst'.\nHow will 'arena observe matters clear' be coded?", opts: ["(a) tmu, rtd, pnv, fgk", "(b) rtd, tmu, fgk, stk", "(c) mop, pnv, rtd, tmu", "(d) stk, rst, mop, pnv"], ans: 2, exp: "All 3 share 'new' = rst. 1 & 2 share 'find' = fgk. 1 & 3 share 'observe' = mop (leaving 'arena' = tmu in 1). 2 & 3 share 'matters' = pnv (leaving 'clear' = rtd in 3).\nCodes for 'arena observe matters clear' = {tmu, mop, pnv, rtd} ⇒ (c) mop, pnv, rtd, tmu." },
+      { id: 136, meta: "Q.136 • SSC CGL T1 14 Sep 2025 S2 (Page 34)", q: "In a code language, 'The music sounds sweet' is coded as 'la ma na ta', 'The music sounds loud' is coded as 'la ma pa ta', 'The song sounds sweet' is coded as 'ka ma na ta'. What is the code for 'The song sounds loud'?", opts: ["(a) pa na ka ta", "(b) ma na ra ka", "(c) la na ya ka", "(d) ka ma ta pa"], ans: 3, exp: "Comparing 1 & 2: 'sweet'=na, 'loud'=pa. Comparing 1 & 3: 'music'=la, 'song'=ka. 'The / sounds' = ma / ta.\nTherefore, 'The song sounds loud' = ka ma ta pa." },
+      { id: 137, meta: "Q.137 • Chinese Coding Inference (Page 34)", q: "In a certain code:\n'always create new ideas' = 'ba ri sha gi',\n'ideas and new thoughts' = 'fa gi ma ri',\n'create thoughts and insights' = 'ma jo ba fa',\n'new and better solutions' = 'ki ri to fa'.\n'fa lo ba' could be a code for which of the following?", opts: ["(a) thoughts and action", "(b) create and innovate", "(c) ideas and thoughts", "(d) create new solutions"], ans: 1, exp: "From 2, 3, 4: 'and' = fa. From 1 & 3: 'create' = ba. 'lo' is a new code word for 'innovate' → 'create and innovate'." },
+      { id: 138, meta: "Q.138 • SSC CHSL T1 10/3/23 S2 (Page 35)", q: "In a certain code language:\n'happy people celebrate festivals' = H6# P7@ C9$ F9&\n'children smile often happily' = C8@ S6# O5$ H7&\n'people laugh with joy' = P7@ L5# W4$ J3&\n'celebrate every small win' = C9$ E5@ S5# W3&\nWhat is the code for 'people celebrate joy'?", opts: ["(a) C9$ P7@ J3&", "(b) C8@ P7@ J3&", "(c) P7@ L5# J3&", "(d) C9$ L5# J3&"], ans: 0, exp: "From 1 & 3: 'people' = P7@. From 1 & 4: 'celebrate' = C9$. In 3, 'joy' = J3& ⇒ C9$ P7@ J3&." }
+    ];
+
+    const qT4 = [
+      { id: 139, meta: "Q.139 • Type 4: Exception Coding (Page 35)", q: "Table: [0=R, 7=I, 3=M, 1=P, 4=B, 6=D, 5=H, 9=A, 2=T, 8=N]\nExceptions:\nI. If number begins and ends with an odd digit (non-zero), both first and last digits are coded as $.\nII. If number begins and ends with an even digit (including zero), both first and last digits are coded as #.\nWhat will be the code for '314926'?", opts: ["(a) MPBDHA", "(b) MPBTND", "(c) MPBTNA", "(d) $PBTN$"], ans: 1, exp: "'314926' starts with 3 (odd) and ends with 6 (even), so neither Exception I nor II applies.\nDirect table lookup: 3=M, 1=P, 4=B, 9=T [in Q.139 table: 9→T, 2→N, 6→D] ⇒ MPBTND." },
+      { id: 140, meta: "Q.140 • Type 4: Exception Coding (Page 35–36)", q: "Table: [0=R, 7=I, 3=M, 1=P, 4=B, 6=D, 5=A, 9=H, 2=N, 8=T]\nExceptions:\nI. Begins & ends with odd digit → both coded as $.\nII. Begins & ends with even digit → both coded as #.\nWhat will be the code for '4521736'?", opts: ["(a) BANPIMD", "(b) BANPIRD", "(c) #ANPIM#", "(d) #BAMPI#"], ans: 2, exp: "'4521736' begins with 4 (even) and ends with 6 (even), so Exception II applies: both 1st and last digits become #.\nMiddle digits (5 2 1 7 3) → A N P I M ⇒ #ANPIM#." },
+      { id: 141, meta: "Q.141 • Type 4: Exception Decoding (Page 36)", q: "Table: [0=R, 7=I, 3=M, 1=P, 4=B, 6=D, 9=A, 2=T, 8=H, 5=N]\nUsing the same table, 'RATHIM' represents which of the following numbers?", opts: ["(a) 095873", "(b) 059673", "(c) 059871", "(d) 059873"], ans: 3, exp: "Direct decoding from the table (since it starts with 0=even and ends with 3=odd, no exception symbol is used): R=0, A=5, T=9, H=8, I=7, M=3 ⇒ 059873." },
+      { id: 142, meta: "Q.142 • Type 4: Multi-Exception (Page 36–37)", q: "Table: [5=P, 2=D, 6=N, 3=L, 8=G, 0=K, 1=H, 7=J, 4=B, 9=A]\nExceptions:\nI. Starts with non-zero odd digit → first digit coded as $.\nII. Ends with 0 → last digit coded as @.\nIII. Starts with an even digit → first digit coded as &.\nWhat is the code for '4391760'?", opts: ["(a) &LAKJNG", "(b) &LAKHN@", "(c) &LAKHNG", "(d) &LAKJN@"], ans: 3, exp: "'4391760' starts with 4 (even → Exception III = &) and ends with 0 (Exception II = @).\nMiddle digits: 3=L, 9=A, 1=K/H, 7=J, 6=N ⇒ &LAKJN@." },
+      { id: 143, meta: "Q.143 • DDA ASO 26 Sep 2023 S4 (Page 37)", q: "Table: [6=S, $=G, 2=I, #=B, @=E, 4=O, 7=P, ?=D, 9=Q, 5=J, ^=C, 1=Z, %=A]\nConditions:\n(i) 1st even digit & last symbol → both coded as the even digit.\n(ii) 1st symbol & last odd digit → codes interchanged.\n(iii) 1st odd digit & last even digit → both coded as the odd digit.\nFind the code for '7#6$?2':", opts: ["(a) PBGSDI", "(b) PBSGDP", "(c) PBSGDI", "(d) PBSDGP"], ans: 1, exp: "In '7#6$?2', the 1st element is 7 (odd digit) and the last element is 2 (even digit). Condition (iii) applies: both 1st and last elements take the code for 7 ('P').\nMiddle elements: #=B, 6=S, $=G, ?=D ⇒ PBSGDP." },
+      { id: 144, meta: "Q.144 • RRB Group-D 16 Dec 2025 S1 (Page 37–38)", q: "Table: [&=U, 7=G, @=W, 9=D, 5=F, 3=K, +=L, 4=S, %=V, 6=B, $=E, 2=J, 8=H, *=C]\nConditions:\n(i) 1st symbol & last perfect square → swap 1st and last codes.\n(ii) Both 2nd & 3rd are symbols → 3rd takes code of 2nd.\n(iii) 1st symbol & 4th odd number → both 1st and 4th coded as J.\nWhat will be the code for '% 5 * 7 $'?", opts: ["(a) UJJSE", "(b) JFJSO", "(c) EJFSU", "(d) JFCJE"], ans: 3, exp: "In '% 5 * 7 $', the 1st element is '%' (symbol) and the 4th element is '7' (odd number), so Condition (iii) applies: both 1st and 4th positions become 'J'.\n2nd (5)=F, 3rd (*)=C, 5th ($)=E ⇒ JFCJE." },
+      { id: 145, meta: "Q.145 • RRB ALP CBT-02 28 Jul 2026 S2 (Page 38)", q: "Table: [#=W, 8=I, 4=D, 6=M, 3=O, $=H, 5=Z, 1=T, @=G, %=S, 2=U, &=E, +=X, 7=V]\nConditions:\n(i) Both 1st & last are symbols → swap their codes.\n(ii) 1st odd number & last even number → both 1st and last coded as O/H (special symbol).\n(iii) Both 2nd & 3rd are perfect squares → 3rd takes code of 2nd.\nWhat is the code for '3 % @ 1 4'?", opts: ["(a) HSGTO / HOMO", "(b) MOHO", "(c) WHOMX", "(d) WMOHO"], ans: 0, exp: "In '3 % @ 1 4', the 1st element is 3 (odd number) and the last element is 4 (even number), so Condition (ii) applies to both ends ⇒ Option (a)." }
+    ];
+
+    // ==================== INTERACTIVE TOOLS & RENDERING ENGINE ====================
+
+    let score = 0;
+
+    function analyzeWord() {
+      const raw = document.getElementById('live-word').value.toUpperCase().replace(/[^A-Z]/g, '');
+      const shift = parseInt(document.getElementById('live-shift').value || '0', 10);
+      const out = document.getElementById('live-word-output');
+      if (!raw) {
+        out.innerHTML = '<em>Type a word above to see its complete coding breakdown.</em>';
+        return;
+      }
+      const chars = raw.split('');
+      const pos = chars.map(c => c.charCodeAt(0) - 64);
+      const oppPos = pos.map(p => 27 - p);
+      const oppChars = oppPos.map(p => String.fromCharCode(64 + p));
+      const shiftedChars = pos.map(p => {
+        let n = ((p - 1 + shift) % 26 + 26) % 26 + 1;
+        return `${String.fromCharCode(64 + n)}(${n})`;
+      });
+      const sumPos = pos.reduce((a, b) => a + b, 0);
+      const sumOpp = oppPos.reduce((a, b) => a + b, 0);
+
+      out.innerHTML = `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                ${chars.map((c, idx) => `<th>#${idx + 1}</th>`).join('')}
+                <th>Total / Summary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Base Letters</strong></td>
+                ${chars.map(c => `<td><strong style="color:var(--primary);">${c}</strong></td>`).join('')}
+                <td>Length = <strong>${chars.length}</strong> (N² = ${chars.length * chars.length})</td>
+              </tr>
+              <tr>
+                <td><strong>Place Value (L→R)</strong></td>
+                ${pos.map(p => `<td>${p}</td>`).join('')}
+                <td>Sum = <strong>${sumPos}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Opposite Letter (27−Pos)</strong></td>
+                ${oppChars.map((oc, i) => `<td><strong>${oc}</strong> (${oppPos[i]})</td>`).join('')}
+                <td>Opp. Sum = <strong>${sumOpp}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Shifted (${shift >= 0 ? '+' + shift : shift})</strong></td>
+                ${shiftedChars.map(sc => `<td>${sc}</td>`).join('')}
+                <td>Reversed Word: <strong>${chars.slice().reverse().join('')}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderQuizList(containerId, list) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = list.map((item) => {
+        const uid = `qcard-${item.id}`;
+        const optsHtml = item.opts.map((opt, idx) => `
+          <button class="quiz-opt" onclick="checkAns('${uid}', ${idx}, ${item.ans}, this)">${opt}</button>
+        `).join('');
+        return `
+          <div class="quiz-card" id="${uid}">
+            <div class="quiz-meta"><span>${item.meta}</span><span>Question #${item.id}</span></div>
+            <div class="quiz-question">Q.${item.id}. ${item.q}</div>
+            <div class="quiz-options">${optsHtml}</div>
+            <div class="quiz-exp" id="${uid}-exp"><strong>Solution:</strong> ${item.exp}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.checkAns = function (cardId, selectedIdx, correctIdx, btnEl) {
+      const card = document.getElementById(cardId);
+      const btns = card.querySelectorAll('.quiz-opt');
+      const exp = document.getElementById(`${cardId}-exp`);
+
+      btns.forEach((b, i) => {
+        b.disabled = true;
+        if (i === correctIdx) b.classList.add('correct');
+      });
+
+      if (selectedIdx === correctIdx) {
+        score++;
+        document.getElementById('score-val').textContent = score;
+      } else {
+        btnEl.classList.add('wrong');
+      }
+      exp.classList.add('visible');
+    };
+
+    window.showTab = function (tabId, btnEl) {
+      document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('global-search').value = '';
+      filterCurrentTab('');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.toggleAllSolutions = function (show) {
+      document.querySelectorAll('.quiz-exp').forEach(el => {
+        el.classList.toggle('visible', show);
+      });
+    };
+
+    window.toggleTheme = function () {
+      const root = document.documentElement;
+      if (root.getAttribute('data-theme') === 'dark') {
+        root.removeAttribute('data-theme');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+      }
+    };
+
+    window.filterCurrentTab = function (query) {
+      const q = query.toLowerCase().trim();
+      const activeSec = document.querySelector('.section-page.active');
+      if (!activeSec) return;
+      activeSec.querySelectorAll('.quiz-card').forEach(card => {
+        if (!q) {
+          card.style.display = '';
+          return;
+        }
+        card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    };
+
+    window.resetAllQuizzes = function () {
+      score = 0;
+      document.getElementById('score-val').textContent = '0';
+      initAll();
+    };
+
+    function initAll() {
+      analyzeWord();
+      renderQuizList('quiz-c12', qC12);
+      renderQuizList('quiz-c34', qC34);
+      renderQuizList('quiz-c56', qC56);
+      renderQuizList('quiz-p1', qP1);
+      renderQuizList('quiz-p2', qP2);
+      renderQuizList('quiz-p3', qP3);
+      renderQuizList('quiz-p4', qP4);
+      renderQuizList('quiz-p5', qP5);
+      renderQuizList('quiz-t2', qT2);
+      renderQuizList('quiz-t3', qT3);
+      renderQuizList('quiz-t4', qT4);
+    }
+
+    document.addEventListener('DOMContentLoaded', initAll);
+  </script>
+</body>
+</html>

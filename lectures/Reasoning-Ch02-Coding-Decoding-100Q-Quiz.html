@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coding & Decoding Century Practice Quiz - Parmar SSC</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #ca8a04;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-badge {
+      background: #f59e0b;
+      color: #0f172a;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .brand h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .mode-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1e293b;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .mode-switch input {
+      accent-color: #f59e0b;
+      cursor: pointer;
+    }
+
+    .timer {
+      font-family: monospace;
+      font-size: 1.1rem;
+      background: #1e293b;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    .btn-danger:hover {
+      opacity: 0.9;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    /* Main Layout */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 1.5rem;
+      max-width: 1400px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1.25rem;
+      flex: 1;
+    }
+
+    /* Question Area */
+    .question-card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .q-num {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .q-tag {
+      font-size: 0.78rem;
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      font-weight: 600;
+      border: 1px solid #bfdbfe;
+    }
+
+    .q-body {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      white-space: pre-line;
+    }
+
+    .q-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      overflow-x: auto;
+      display: block;
+    }
+
+    .q-table th, .q-table td {
+      border: 1px solid #cbd5e1;
+      padding: 0.5rem 0.65rem;
+      text-align: center;
+      min-width: 38px;
+    }
+
+    .q-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.9rem 1.1rem;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      color: var(--text);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: #93c5fd;
+      background: #f8fafc;
+    }
+
+    .opt-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+    .option-btn.selected .opt-letter {
+      background: var(--primary);
+      color: white;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+    .option-btn.correct .opt-letter {
+      background: var(--success);
+      color: white;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+    .option-btn.wrong .opt-letter {
+      background: var(--danger);
+      color: white;
+    }
+
+    .feedback-banner {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .q-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .nav-group {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    /* Sidebar Palette */
+    .sidebar {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: fit-content;
+      max-height: calc(100vh - 95px);
+      position: sticky;
+      top: 75px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .stat-box {
+      padding: 0.5rem 0.65rem;
+      border-radius: 6px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.45rem;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+      max-height: 420px;
+    }
+
+    .p-btn {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s;
+    }
+
+    .p-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .p-btn.current {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+
+    .p-btn.answered {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .p-btn.correct {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+    }
+
+    .p-btn.wrong {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+
+    .p-btn.review {
+      background: var(--warning);
+      color: white;
+      border-color: var(--warning);
+    }
+
+    /* Result Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+
+    .modal {
+      background: white;
+      max-width: 520px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #eff6ff;
+      border: 4px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1.25rem auto;
+    }
+
+    .score-circle span {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .result-breakdown {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+      text-align: left;
+    }
+
+    @media (max-width: 950px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+      .palette-grid {
+        grid-template-columns: repeat(8, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+      .palette-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="brand-badge">PARMAR SSC</span>
+      <h1>Coding & Decoding Century Quiz (104 Qs)</h1>
+    </div>
+    <div class="header-controls">
+      <label class="mode-switch" title="Instant answer check on click">
+        <input type="checkbox" id="practiceModeToggle" checked />
+        <span>Instant Practice Mode</span>
+      </label>
+      <div class="timer" id="timerDisplay">00:00:00</div>
+      <button class="btn btn-danger" onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="question-card">
+      <div>
+        <div class="q-header">
+          <span class="q-num" id="qNumber">Question 1 of 104</span>
+          <span class="q-tag" id="qTag">SSC Exam</span>
+        </div>
+        <div class="q-body" id="qText"></div>
+        <div id="qTableContainer"></div>
+        <div class="options-list" id="optionsContainer"></div>
+        <div class="feedback-banner" id="feedbackBanner"></div>
+      </div>
+
+      <div class="q-footer">
+        <div class="nav-group">
+          <button class="btn btn-outline" onclick="clearResponse()">Clear</button>
+          <button class="btn btn-outline" onclick="toggleReview()">Mark for Review</button>
+        </div>
+        <div class="nav-group">
+          <button class="btn btn-outline" id="prevBtn" onclick="changeQuestion(-1)">← Previous</button>
+          <button class="btn btn-primary" id="nextBtn" onclick="changeQuestion(1)">Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h3 style="font-size: 1rem;">Question Palette</h3>
+      <div class="stats-grid">
+        <div class="stat-box"><span>Answered</span><span id="statAnswered" style="color:var(--primary)">0</span></div>
+        <div class="stat-box"><span>Correct</span><span id="statCorrect" style="color:var(--success)">0</span></div>
+        <div class="stat-box"><span>Wrong</span><span id="statWrong" style="color:var(--danger)">0</span></div>
+        <div class="stat-box"><span>Marked</span><span id="statReview" style="color:var(--warning)">0</span></div>
+      </div>
+      <div class="palette-grid" id="paletteGrid"></div>
+      <button class="btn btn-outline" style="width:100%" onclick="resetQuiz()">Reset All Progress</button>
+    </aside>
+  </main>
+
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal">
+      <h2>Quiz Summary</h2>
+      <p style="color:var(--muted); font-size:0.9rem;">SSC Coding & Decoding Century PDF</p>
+      <div class="score-circle">
+        <span id="finalScore">0</span>
+        <small style="color:var(--muted); font-size:0.75rem;">/ 208 Marks</small>
+      </div>
+      <div class="result-breakdown">
+        <div class="stat-box"><span>Attempted</span><span id="resAttempted">0</span></div>
+        <div class="stat-box"><span>Correct (+2)</span><span id="resCorrect" style="color:var(--success)">0</span></div>
+        <div class="stat-box"><span>Wrong (-0.5)</span><span id="resWrong" style="color:var(--danger)">0</span></div>
+        <div class="stat-box"><span>Unattempted</span><span id="resSkipped">0</span></div>
+      </div>
+      <div style="display:flex; gap:0.75rem; justify-content:center; margin-top:1rem;">
+        <button class="btn btn-primary" onclick="closeModal()">Review Answers</button>
+        <button class="btn btn-outline" onclick="resetQuiz(); closeModal();">Restart Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { id: 1, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language, MACHINE is written as NZXSRMV. How is ROBOT written in that code language?", options: ["JMLYG", "ILYLG", "JLYLG", "IMYLG"], ans: "B" },
+      { id: 2, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language, 'train reaches station late' is written as 'mo qi ra se', 'bus reaches market early' is written as 'lu qi ta vo' and 'train and bus' is written as 'mo lu pe'. What is the code for 'reaches'?", options: ["qi", "mo", "lu", "ra"], ans: "A" },
+      { id: 3, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "If 'hospital' is called 'school', 'school' is called 'market', 'market' is called 'library', 'library' is called 'park' and 'park' is called 'hospital', then where will you go if you want to borrow a book?", options: ["School", "Market", "Park", "Hospital"], ans: "C" },
+      { id: 4, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language, 'bright students win' is written as 'di ka ru', 'hardworking students succeed' is written as 'fo ka ne' and 'bright and hardworking' is written as 'di fo la'. What is the code for 'students'?", options: ["la", "di", "fo", "ka"], ans: "D" },
+      { id: 5, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language, the code of a word is the average of the alphabetical positions of all its letters. What is the code of \"IMAGE\"?", options: ["6", "7", "8", "9"], ans: "B" },
+      { id: 6, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language SUMMER is written as 'VTLNDQ' and WINTER is written as 'ZHMUDQ'. How will SPRING be written in the same code language?", options: ["VOQJMF", "VQOMJF", "VOPJNF", "VOJPFN"], ans: "A" },
+      { id: 7, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language, 'doctor checks patient daily' is written as 'ja mo li su', 'nurse checks report carefully' is written as 'pe mo ra ki', 'patient gets medicine daily' is written as 'li fu ta su' and 'medicine and report' is written as 'ta ra ne'. What is the code for 'doctor'?", options: ["mo", "ja", "li", "ta"], ans: "B" },
+      { id: 8, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language GARDEN is written as 'JZUGDQ' and FLOWER is written as 'IKRZDU'. How will LEAVES be written in the same code language?", options: ["QDDYDV", "OEDYDV", "OBDZDV", "ODDYDV"], ans: "D" },
+      { id: 9, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "In a certain code language, 'silver ring shines' is written as 'na tu ke', 'gold ring costs' is written as 'pa tu mi' and 'silver and gold' is written as 'na pa zo'. What is the code for 'ring'?", options: ["tu", "na", "pa", "zo"], ans: "A" },
+      { id: 10, tag: "SSC Phase-14 (Matriculation) 2026 S3", q: "If 'mother' is called 'sister', 'sister' is called 'daughter', 'daughter' is called 'wife', 'wife' is called 'aunt' and 'aunt' is called 'mother', then what will a woman call her female child?", options: ["Sister", "Daughter", "Wife", "Aunt"], ans: "C" },
+      { id: 11, tag: "SSC Steno Exam 2026 (11 Sep, 2026 Shift-1)", q: "Instructions: In a certain code language, a specific rule is applied to transform words. Analyze the given example and then apply the same rule to find the coded form of the target word.\nIf \"Apple\" is coded as \"yrRnC\", then how will \"ScIeNcE\" be coded?", options: ["UcYgPgD", "UcYgPgC", "UagCPac", "UcYgPfC"], ans: "C" },
+      { id: 12, tag: "SSC CGL Tier-02 2022 (6 March 2023)", q: "In a code language, 'PLUMAGE' is written as 'GICOWNR' and 'CRUSH' is written as 'JUWTE'. How will 'TRIBAL' be written in that language?", options: ["NCDKTV", "NCBJTV", "NCDJTV", "NCBKTV"], ans: "A" },
+      { id: 13, tag: "SSC CGL Tier-02 2024 Paper-01 (18 Jan, 2025)", q: "In a certain code language, 'POSE' is coded as '3517' and 'SILK' is coded as '4638'. What is the code for 'S' in the given code language?", options: ["4", "1", "8", "3"], ans: "D" },
+      { id: 14, tag: "SSC CGL Tier-02 2024 Paper-01 (20 Jan, 2025)", q: "In a certain code language, 'he enjoys music' is coded as 'lo po jo' and 'music and dance' is coded as 'kb jo fk'. How is 'music' coded in the given language?", options: ["jo", "po", "lo", "fk"], ans: "A" },
+      { id: 15, tag: "SSC CGL Tier-02 2024 Paper-01 (20 Jan, 2025)", q: "In a certain code language, 'CURB' is coded as '3517' and 'BOAT' is coded as '4638'. What is the code for 'B' in the given code language?", options: ["4", "8", "3", "7"], ans: "C" },
+      { id: 16, tag: "SSC CGL 2025 Tier-02 Paper-01 (19 Jan, 2026)", q: "In a certain language, COMPUTER is coded as OCPMTURE. How is KEYBOARD coded in that code?", options: ["KYEOBARD", "EKBYAODR", "EKYOBARD", "KYEOBADR"], ans: "B" },
+      { id: 17, tag: "SSC CGL 2025 Tier-01 S3", q: "If MAP is coded as 13116, what is the code for LAP?", options: ["12116", "12115", "12117", "12114"], ans: "A" },
+      { id: 18, tag: "SSC CGL 2025 Tier-01 S3", q: "In a code language, CHAIR becomes BGBHQ, what is the code for STOOL?", options: ["RSPNK", "RSPML", "RSQMK", "RSPKN"], ans: "A" },
+      { id: 19, tag: "SSC CGL 2025 Tier-01 S3", q: "If \"WORLD\" is coded as 23-15-18-12-4, how will \"DORLW\" be coded?", options: ["4-15-18-12-23", "23-12-18-15-4", "12-4-15-23-18", "18-4-23-15-12"], ans: "A" },
+      { id: 20, tag: "SSC CGL 2025 Tier-01 S2", q: "In certain code language, 'MAKE' is coded as '4523', 'RICE' is coded as '1298', 'MORE' is coded as '5927' and 'CALM' is coded as '8465'. What is the code for 'LKO' in that language?", options: ["645", "637", "622", "678"], ans: "B" },
+      { id: 21, tag: "SSC CGL 2025 Tier-01 S2", q: "In a code language:\n'dog cat bird' is coded as 'pqr, stu, vwx'\n'bird fish dog' is coded as 'vwx, yz, pqr'\n'fish cat lion' is coded as 'yz, stu, abc'\nWhat is the code for 'dog fish cat'?", options: ["pqr, yz, stu", "pqy, xc, tuv", "pqm, zu, tuv", "pur, ub, etc"], ans: "A" },
+      { id: 22, tag: "SSC CGL 2025 Tier-01 S1", q: "If in a certain language, 'COVERT' is written as 'BNUFQS', how is 'ABSENT' written in that code?", options: ["ZARFMS", "ZATRDS", "ZATSRD", "ZASTRD"], ans: "A" },
+      { id: 23, tag: "SSC CGL 2025 Tier-01 S2", q: "If BAG is coded as CBH, how is RAT written?", options: ["SBU", "SBT", "QBS", "TBU"], ans: "A" },
+      { id: 24, tag: "SSC CGL 2025 Tier-01 S1", q: "If WINDOW is coded as XJOEPX, how is XJOEPX coded?", options: ["YKPFQY", "YKPFQX", "YKOEQY", "YKPEQY"], ans: "A" },
+      { id: 25, tag: "SSC CGL 2025 Tier-01 S1", q: "In a code language, \"The book is interesting\" is coded as \"mo no lo po\", \"The book is boring\" is coded as \"mo no to po\", \"The movie is interesting\" is coded as \"do no lo po\". What is the code for \"The movie is boring\"?", options: ["mo do po to", "do no po to", "no so mo po", "ko fo vo po"], ans: "B" },
+      { id: 26, tag: "SSC CGL 2025 Tier-01 S3", q: "If in a certain code, 'NORTH' is written as 'HTRON', how will 'ORTHN' be written?", options: ["RUKPN", "NHTRO", "XAHNL", "UJKE"], ans: "B" },
+      { id: 27, tag: "SSC CGL 2025 Tier-01 S1", q: "If \"MANDELA\" is coded as \"JXKABIX\", what is the code for \"GANDHI\"?", options: ["DEZJAG", "DFZKAG", "EZALEF", "DXKAEF"], ans: "D" },
+      { id: 28, tag: "SSC CGL 2025 Tier-01 S3", q: "In a certain code, BEAR is written as YVZI. How is LION written in that code?", options: ["ORLM", "KJOL", "MJOL", "NJOL"], ans: "A" },
+      { id: 29, tag: "SSC CGL 2025 Tier-01 S3", q: "If MONEY is coded as NPOFZ, how is NPOFZ coded?", options: ["QQPGZ", "OQPGA", "QQPGC", "NPQGZ"], ans: "B" },
+      { id: 30, tag: "SSC CGL 2025 Tier-01 S3", q: "In a certain code language, 'stop cool cream brick' is coded as 'at bt ct mt', 'through truck cool' is coded as 'vt kt at' and 'brick clear truck' is coded as 'ct ot kt'.\nHow will 'stop clear cream' be coded in the same language?", options: ["at, ct, mt", "bt, ot, mt", "vt, ot, mt", "ct, ot, kt"], ans: "B" },
+      { id: 31, tag: "SSC CGL 2025 Tier-01 S3", q: "If 'COLD' is coded as 'DPME', how is 'HEAT' coded?", options: ["IFBU", "GZBU", "HGZU", "IDBU"], ans: "A" },
+      { id: 32, tag: "SSC CGL 2025 Tier-01 S3", q: "If \"LINCOLN\" is written as \"JGLAMJL\", how will \"OBAMA\" be written?", options: ["MZYKY", "NZXJZ", "MBZJY", "NZXLZ"], ans: "A" },
+      { id: 33, tag: "SSC CGL 2025 Tier-01 S3", q: "If MONKEY is written as XDJMNL, then how is TIGER written in that code?", options: ["ZMHDR", "QDFHS", "ZMHFS", "ZMHDS"], ans: "B" },
+      { id: 34, tag: "SSC CGL 2025 Tier-01 S1", q: "If THRIVE is coded as UISJWF, how is UISJWF coded?", options: ["VJTKXG", "VJTLXG", "VKTKXG", "VJTKXH"], ans: "A" },
+      { id: 35, tag: "SSC CGL 2025 Tier-01 S2", q: "If in a code, PEARL is written as SHDUO, how is STONE written?", options: ["VWRSH", "VWRHS", "VWRQH", "VWRSN"], ans: "C" },
+      { id: 36, tag: "SSC CGL 2025 Tier-01 S2", q: "If MISSION is coded as NJTTJPO, how is NJTTJPO coded?", options: ["OKUUKQP", "NKTUKPP", "OKTUKQP", "OKUULQP"], ans: "A" },
+      { id: 37, tag: "SSC CGL 2025 Tier-01 S2", q: "Instruction: In a language, if 'red green blue' is coded as 'ka ta na', 'blue white black' as 'na ja sa', and 'white red' as 'ja ka',\nQuestion: what is the code for 'green'?", options: ["ta", "na", "ka", "ja"], ans: "A" },
+      { id: 38, tag: "SSC CGL 2025 Tier-01 S3", q: "In a certain code, MOBILE is written as NQCKNG. How will TABLET be written?", options: ["UDCMFU", "UECMDS", "UCCNGV", "UFCMGV"], ans: "C" },
+      { id: 39, tag: "SSC CGL 2025 Tier-01 S3", q: "In a certain code If 'FISH' is coded as '6-9-19-8', how will 'HSIF' be coded?", options: ["8-19-9-6", "15-22-18-3", "8-8-19-10", "4-12-5-7"], ans: "A" },
+      { id: 40, tag: "SSC CGL 2025 Tier-01 S1", q: "If \"MODI\" is written as \"OQFK\", how will \"BAPU\" be written?", options: ["DCQW", "CBRU", "DCRV", "DCRW"], ans: "D" },
+      { id: 41, tag: "SSC CGL 2025 Tier-01 S1", q: "In a certain code language, 'trick on him twice' is coded as 'wl, dl, kl, sl', 'him slow twice' is coded as 'kl, jl, sl', 'case on him' is coded as 'pl, dl, kl'. How will 'on slow trick' be coded in the same language?", options: ["dl, kl, wl", "dl, jl, wl", "pl, jl, wl", "dl, sl, wl"], ans: "B" },
+      { id: 42, tag: "SSC CGL 2025 Tier-01 S3", q: "If \"EUROPE\" is coded as \"AQNKLA\", how is \"RUSSIA\" coded?", options: ["NOWOEU", "NUUMHX", "OVTTEV", "NQOOEW"], ans: "D" },
+      { id: 43, tag: "SSC CGL 2025 Tier-01 S2", q: "If COLD is coded as DPME, then HEAT will be coded as?", options: ["IFBU", "GFBT", "IFAT", "HFAT"], ans: "A" },
+      { id: 44, tag: "SSC CGL 2025 Tier-01 S2", q: "Instruction: In a code language:\n'apple banana orange' is coded as 'abc, def, ghi'\n'orange grapes apple' is coded as 'ghi, jkl, abc'\n'grapes banana mango' is coded as 'jkl, def, mno'\nQuestion: What is the code for 'apple grapes banana'?", options: ["aec, jim, def", "adu, joy, def", "abc, jkl, def", "auy, jkl, der"], ans: "C" },
+      { id: 45, tag: "SSC CGL 2025 Tier-01 S1", q: "If HELMET is coded as IFMNFU, how is IFMNFU coded?", options: ["JGNOGV", "JGNNGV", "JGNOGU", "JGMOHV"], ans: "A" },
+      { id: 46, tag: "SSC CGL 2025 Tier-01 S1", q: "If in a code language, 'CAR' is written as 'FDW', then 'BAT' is written as?", options: ["EDY", "GEX", "FCX", "FBY"], ans: "A" },
+      { id: 47, tag: "SSC CGL 2025 Tier-01 S2", q: "If \"GANDHI\" is written as \"HBOEIJ\", how will \"NEHRU\" be written?", options: ["PGITV", "OFISV", "OFHRU", "OEGRV"], ans: "B" },
+      { id: 48, tag: "SSC CGL 2025 Tier-01 S3", q: "If \"CRANE\" is coded as \"DSBOF\", how is \"DSBOF\" coded?", options: ["ETCPG", "DTCOP", "ESCPF", "DTCPF"], ans: "A" },
+      { id: 49, tag: "SSC CGL 2025 Tier-01 S2", q: "Comprehension: In a certain code,\n\"check list has been generated\" is written as \"jo ke al si ha\",\n\"His idea has check\" is written as \"of al fu ha\",\n\"number in check list\" is written as \"ha ya go ke\",\n\"His number generated there\" is written as \"ya si fu xo\".\nWhich of the following may represent 'My number has been generated'?", options: ["si ne jo ke na", "ya ne al ke si", "jo si ya al ne", "ne fu ya ke al"], ans: "C" },
+      { id: 50, tag: "SSC CGL 2025 Tier-01 S2", q: "If FRIEND becomes FDNIRE, how is TICKET written?", options: ["TETKIC", "TKETIC", "TEKTIC", "TTECIK"], ans: "D" },
+      { id: 51, tag: "SSC CGL 2025 Tier-01 S2", q: "Instruction: In a certain code language, Greek letters are used to represent English letters consistently. Using the provided code, decode the target sequence.\nIf γαλαξια is coded as GALAXIA, σταρ is coded as STAR,\nQuestion: Then what does σγαλα represent?", options: ["SGALA", "SPALA", "SRALA", "SMALA"], ans: "A" },
+      { id: 52, tag: "SSC CGL 2025 Tier-01 S1", q: "Instruction: In a code language, \"The tree grows tall\" is coded as \"so mo no lo\", \"The tree grows short\" is coded as \"so mo po lo\", \"The plant grows tall\" is coded as \"to mo no lo\".\nQuestion: What is the code for \"The plant grows short\"?", options: ["to mo lo po", "so lo to fo", "po ko go jo", "no ko mo no"], ans: "A" },
+      { id: 53, tag: "SSC CGL 2025 Tier-01 S2", q: "If \"CANADA\" is written as \"ADANAC\", what is \"MEXICO\" written as?", options: ["OCIXME", "OCIXEM", "OCXEIM", "OCMXIE"], ans: "B" },
+      { id: 54, tag: "SSC CGL 2025 Tier-01 S3", q: "If in a certain code 'TRUTH' is written as 'UQSVI', then how will 'FALSE' be written?", options: ["GXMTF", "GZJUF", "GPLTF", "GQLTF"], ans: "B" },
+      { id: 55, tag: "SSC CGL 2025 Tier-01 S3", q: "Instruction: In a certain coding system:\n'dream focus build skill' is coded as 'trq, xnz, hmd, clv'\n'focus logic dream' is coded as 'trq, jkp, xnz'\n'trust logic build dream' is coded as 'xnj, clv, jkp, trq'\nQuestion: What is the code for 'build skill logic trust'?", options: ["clv, hmd, jkp, xnj", "clv, xnj, jkp, trq", "hmd, xnz, jkp, xnj", "hmd, clv, xnj, xnz"], ans: "A" },
+      { id: 56, tag: "SSC CGL 2025 Tier-01 S2", q: "In a certain code language, each letter is assigned a unique digit. Based on the given codes for specific words, determine the code for the target word using the same logic. If MOUSE is coded as 45291 and RAT as 786, how is STORE coded?", options: ["96571", "97653", "98345", "96278"], ans: "A" },
+      { id: 57, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, 'bright colour rainbow' is coded as 'mq bj st' and 'sunny bright day' is coded as 'nv bj fm'. How is 'bright' coded in that language?", options: ["bj", "nv", "st", "mq"], ans: "A" },
+      { id: 58, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, 'open the door' is coded as 'wu ko tn' and 'door is solid' is coded as 'ko gk mb'. How is 'door' coded in the given language?", options: ["tn", "ko", "gk", "wu"], ans: "B" },
+      { id: 59, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, 'VTPM' is coded as '37' and 'CGNK' is coded as '73'. How will 'MVLC' be coded in the same language?", options: ["64", "58", "81", "72"], ans: "B" },
+      { id: 60, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, 'FUTURE' is written as 'IXWXUH' and 'ISLAND' is written as 'LVODQG'. How will 'JERSEY' be written in that language?", options: ["KGTVGA", "KHTUHA", "MHTVGB", "MHUVHB"], ans: "D" },
+      { id: 61, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, FIGURE is coded as 'VSUGJW' and COPIED is coded as 'YMLSWX'. What will be the code for BLANKET?", options: ["ZPANQWH", "ZPMNQHW", "ZPANQHW", "ZPNAQWH"], ans: "A" },
+      { id: 62, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, 'CASE' is written as 'FTBD' and 'CAKE' is written as 'FLBD'. How will 'CALF' be written in that language?", options: ["GMDB", "GBMD", "GMBD", "GBDM"], ans: "C" },
+      { id: 63, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, 'FRAMED' is coded as '497621' and 'DREAMT' is coded as '769542'. What is the code for 'T' in that language?", options: ["5", "1", "4", "7"], ans: "A" },
+      { id: 64, tag: "SSC CGL Tier-01 2024", q: "In a certain code language, 'D' is coded as '16', 'B' is coded as '4' and 'T' is coded as '400'. How will 'H' be coded in the same language?", options: ["8", "64", "25", "36"], ans: "B" },
+      { id: 65, tag: "Reasoning Practice", q: "In a family of six members - K, L, M, N, O, and P, there are three generations and two married couples. P is a contractor and the grandfather of M. L is a homemaker and the grandmother of N. K is a doctor and the father of N. There are two doctors, one contractor, one homemaker, and two students in the family. O is not a student. How is M related to N?", options: ["Brother/भाई", "Sister/बहन", "Daughter/पुत्री", "Data inadequate/जानकारी अपर्याप्त"], ans: "D" },
+      { id: 66, tag: "Reasoning Practice", q: "K is the wife of L. M is the brother of K. N is the sister of L. How is M related to L?", options: ["Brother/भाई", "Father-in-law/ससुर", "Brother-in-law/ब्रदर-इन-लॉ (साला)", "Nephew/भतीजा / भांजा"], ans: "C" },
+      { id: 67, tag: "Reasoning Practice", q: "Pointing to a man, Neha said, \"His only brother is the father of my daughter's father.\" How is that man related to Neha's husband?", options: ["Father/पिता", "Paternal uncle/चाचा / ताऊ", "Brother/भाई", "Maternal uncle/मामा"], ans: "B" },
+      { id: 68, tag: "Conditional Coding", q: "An employee ID number follows a variable structure based on the Department Code (the first two digits):\nRule 1: If the Department Code starts with '7' (e.g., 7X), the Branch Code is 4 digits long, immediately followed by a 3-digit Serial Number.\nRule 2: If the Department Code starts with '4' (e.g., 4X), the Branch Code is 3 digits long, immediately followed by a 4-digit Serial Number.\nFor the ID number 483196045, what is the Branch Code?", options: ["48", "3196", "319", "6045"], ans: "C" },
+      { id: 69, tag: "Symbol Coding", q: "In a certain code language, 'GARDEN' is written as '* % $ @ # &' and 'SPREAD' is written as '^ ! $ # % @'. How will 'GRAPES' be written in that code language?", options: ["* % $ ! # ^", "* $ ! % # ^", "* $ % ! # ^", "* $ % ! ^ #"], ans: "C" },
+      { id: 70, tag: "Mixed Coding", q: "In a certain code language:\n'fresh fruits give energy' is coded as: F5# F6@ G4$ E6&\n'energy drinks boost health' is coded as: E6& D6% B5* H6^\n'give fresh organic drinks' is coded as: G4$ F5# O7+ D6%\n'fruits boost daily stamina' is coded as: F6@ B5* D5= S7?\nWhat is the code for 'fruits energy boost'?", options: ["F6@ E6& B5*", "F5# E6& B5*", "F6@ D6% B5*", "G4$ E6& F6@"], ans: "A" },
+      { id: 71, tag: "Substitutional Coding", q: "In a certain code language, 'river water is sweet' is coded as 'pn gl zx dk', 'sweet mango tastes good' is coded as 'zx bt hr mj', 'river water looks clear' is coded as 'pn gl ya vw', and 'mango tastes very sweet' is coded as 'bt hr zx cf'. How will 'river water is' be coded in that code language?", options: ["pn gl dk", "zx bt hr", "gl dk ya", "bt hr mj"], ans: "A" },
+      { id: 72, tag: "Binary Coding", q: "In a certain code language, numbers are represented using only two symbols: # and $. 0 is represented by # and 1 is represented by $. Subsequent numbers are represented as follows:\n2 is represented as $#,\n3 is represented as $$,\n4 is represented as $##,\n5 is represented as $#$, and so on.\nHow will 75 be represented in this code language?", options: ["###$#$#", "##$##$$", "$##$#$$", "##$$$##"], ans: "C" },
+      { id: 73, tag: "Substitutional Coding", q: "In a certain code language:\n'brave heart wins glory' is coded as 'dfl, rst, kpm, vbn'\n'glory needs pure heart' is coded as 'rst, zxc, vbn, qwe'\n'pure spirit wins peace' is coded as 'kpm, qwe, jhg, tly'\nWhat is the code for 'brave needs pure wins'?", options: ["dfl, rst, qwe, kpm", "dfl, zxc, qwe, kpm", "zxc, vbn, kpm, dfl", "qwe, zxc, rst, vbn"], ans: "B" },
+      { id: 74, tag: "Substitutional Coding", q: "In a certain code language, 'apple mango grape' is coded as 'ri so na', 'grape banana orange' is coded as 'na tu pe', and 'orange apple guava' is coded as 'pe so ze'. What is the code for 'orange' in that language? (Note: All the codes are two-letter codes only.)", options: ["na", "pe", "so", "tu"], ans: "B" },
+      { id: 75, tag: "Substitutional Coding", q: "In a certain code language, 'winter is cold' is coded as '41 73 29', 'summer is hot' is coded as '29 85 64', and 'cold and hot' is coded as '73 64 52'. How is 'and' coded in the given language?", options: ["64", "52", "73", "29"], ans: "B" },
+      { id: 76, tag: "Substitutional Coding", q: "In a certain code language, 'winter is cold' is coded as '41 72 63', 'summer is hot' is coded as '72 85 29', and 'cold and hot' is coded as '63 85 14'. How is 'and' coded in that language?", options: ["85", "63", "14", "29"], ans: "C" },
+      { id: 77, tag: "Substitutional Coding", q: "In a certain code language, 'MANGO APPLE ORANGE' is written as 'na pa ta', 'APPLE BANANA GRAPES' is written as 'ta da ka', and 'BANANA MANGO GUAVA' is written as 'na da ma'. How is 'ORANGE' written in that language?", options: ["da", "pa", "ta", "ka"], ans: "B" },
+      { id: 78, tag: "Substitutional Coding", q: "In a certain code language,\n'fresh green apple' is coded as 'ro ta nk',\n'green leaf plant' is coded as 'ta si vx' and\n'plant fresh flower' is coded as 'ro si ju'.\nWhat is the code for the word 'flower' in that code language?", options: ["si", "ro", "ju", "ta"], ans: "C" },
+      { id: 79, tag: "Substitutional Coding", q: "In a code language, 'birds fly high' is written as 'zo ma kin', 'planes fly fast' is written as 'kin ro bu', and 'birds are fast' is written as 'zo bu val'. What is the code for the word 'val' in this language?", options: ["fast", "are", "birds", "high"], ans: "B" },
+      { id: 80, tag: "Alphanumeric Coding", q: "In a certain code language, 'MARKET' is written as '13B18L5U'. How will 'CREDIT' be written in that language?", options: ["3T5E9U", "3S5F9U", "3S5E9U", "3R5E9T"], ans: "C" },
+      { id: 81, tag: "Alphanumeric Coding", q: "In a certain code language, 'COLD' is written as '4MP3'. How will 'HEAT' be written in that language?", options: ["20FB8", "20BF8", "8BF20", "20BF7"], ans: "B" },
+      { id: 82, tag: "Alphanumeric Coding", q: "In a certain code language, 'BASKET' is written as '2Z1911V20'. How will 'POCKET' be written in that language?", options: ["16L311V20", "16L311E20", "16O311V20", "16M311V20"], ans: "A" },
+      { id: 83, tag: "Direct Letter Coding", q: "In a certain code language, 'GLARE' is written as '51382', 'FROST' is written as '98476' and 'GIFTS' is written as '50967'. Which word will be coded as '91382' in that code language?", options: ["FLOTE", "FLARE", "FLORE", "FROTE"], ans: "B" },
+      { id: 84, tag: "Substitutional Coding", q: "In a certain code language, 'fast runners win medals' is coded as '9 # kp 4', and 'medals make champions fast' is coded as '7 kp @ 9'. What is the code for 'champions' in that language?", options: ["9", "kp or 9", "7 or @", "# or 4"], ans: "C" },
+      { id: 85, tag: "Substitutional Coding", q: "In a certain code language,\n'sky is blue' is coded as '481',\n'sea is deep' is coded as '246',\n'blue sea water' is coded as '169'.\nWhat is the code for the word 'water' in that language?", options: ["4", "6", "9", "1"], ans: "C" },
+      {
+        id: 86, tag: "Matrix & Conditional Coding",
+        q: "A group of numbers/symbols is coded using letter codes as per the codes given below and the conditions that follow.\nConditions:\n(i) If the first element is an odd number and the last element is a symbol, their codes are to be interchanged.\n(ii) If the first element is a symbol and the last element is an even number, both are to be coded as ©.\n(iii) If the first element is an even number and the last element is an odd number, both are to be coded as the code for the first element.\nWhat will be the code for the following group: 7 @ 6 * %",
+        table: {
+          headers: ["2", "@", "7", "#", "4", "$", "8", "3", "9", "%", "6", "&", "*", "5"],
+          codes:   ["R", "M", "K", "T", "P", "J", "B", "W", "D", "H", "N", "A", "F", "Q"]
+        },
+        options: ["KMDAW", "WMDAK", "WMDAW", "WMDNA"], ans: "B"
+      },
+      {
+        id: 87, tag: "Matrix & Conditional Coding",
+        q: "In this question, a group of numbers/symbols is coded using letter codes as per the table given below and the conditions that follow.\nConditions:\n(i) If the first element is an odd number and the last element is an even number, both are to be coded as '¥'.\n(ii) If both the first and the last elements are symbols, their codes are to be interchanged.\n(iii) If the first element is an even number and the last element is a symbol, the first element is to be coded as the code for the last element.\nWhat is the code for the following group: # 4 6 7 &",
+        table: {
+          headers: ["2", "7", "#", "4", "$", "9", "@", "6", "%", "3", "&", "8"],
+          codes:   ["M", "K", "R", "D", "P", "T", "H", "B", "W", "F", "J", "N"]
+        },
+        options: ["RDBKJ", "JDBKR", "JBDKR", "¥DBK¥"], ans: "B"
+      },
+      {
+        id: 88, tag: "Matrix & Conditional Coding",
+        q: "A group of numbers/symbols is coded using letter codes as per the table given below and the conditions that follow.\nConditions:\n(i) If the first element is a symbol and the last element is a number, the codes for these two (the first and the last elements) are to be interchanged.\n(ii) If both the second and third elements are multiples of 2, the third element is to be coded as the code for the second element.\n(iii) If the second element is an odd number and the last element is a symbol, the second and last elements are to be coded as *.\nWhat will be the code for the following group: $ 7 6 @ 4",
+        table: {
+          headers: ["%", "7", "$", "@", "6", "3", "#", "9", "&", "2", "!", "8", "4"],
+          codes:   ["K", "F", "M", "H", "R", "T", "D", "W", "P", "B", "L", "Q", "G"]
+        },
+        options: ["MFRHG", "GFRHM", "GFRHG", "G*RH*"], ans: "B"
+      },
+      {
+        id: 89, tag: "Matrix & Conditional Coding",
+        q: "In this question, a group of numbers/symbols is coded using letters as per the given table and the conditions which follow.\nConditions:\n(i) If the first element is a symbol and the last element is an even number, the codes for the first and the last elements are to be interchanged.\n(ii) If the first element is an odd number and the last element is a symbol, both are to be coded as '8'.\n(iii) If both the first and last elements are odd numbers, both are to be coded as the code for the first element.\nFind the code for: % 7 9 & 3 4",
+        table: {
+          headers: ["4", "$", "7", "&", "2", "#", "9", "@", "8", "%", "3"],
+          codes:   ["D", "G", "H", "J", "K", "M", "N", "P", "R", "T", "W"]
+        },
+        options: ["THNJWD", "DHNJWT", "DHJNWT", "8HNJW8"], ans: "B"
+      },
+      {
+        id: 90, tag: "Matrix & Conditional Coding",
+        q: "In this question, a group of numbers/symbols is coded using letters as per the table given below and the conditions that follow.\nConditions:\n(i) If the first element is an even number and the last element is a symbol, both are to be coded as Z.\n(ii) If both the first and the last elements are odd numbers, their codes are to be interchanged.\n(iii) If the third element is an odd number and the fifth element is an even number, both are to be coded as the code for the fifth element.\nFind the correct combination of codes for: 9 @ 7 # 6 *",
+        table: {
+          headers: ["4", "@", "9", "#", "1", "$", "6", "%", "2", "*", "7", "5"],
+          codes:   ["P", "D", "H", "K", "M", "R", "T", "F", "W", "B", "Y", "J"]
+        },
+        options: ["HDYKTB", "HDTKTB", "ZDYKTZ", "HDTKTY"], ans: "B"
+      },
+      { id: 91, tag: "Conditional Coding", q: "An employee identification number follows a specific format based on the Department Code (the first two digits):\nRule 1: If the Department Code starts with '4' (e.g., 4X), the Office Code is 4 digits long, immediately followed by a 3-digit Serial Number.\nRule 2: If the Department Code starts with '7' (e.g., 7X), the Office Code is 3 digits long, immediately followed by a 4-digit Serial Number.\nFor the employee identification number 748159263, what are the digits of the Office Code?", options: ["748", "815", "8159", "9263"], ans: "B" },
+      { id: 92, tag: "Conditional Coding", q: "An employee ID uses a variable structure based on the Department Code (first two digits):\nRule 1: If the Department Code is '14', the Branch Code is 4 digits long, immediately followed by a 3-digit Rank Code.\nRule 2: If the Department Code is '28', the Branch Code is 3 digits long, immediately followed by a 4-digit Rank Code.\nFor the employee ID 287416029, what is the Branch Code?", options: ["28", "741", "7416", "6029"], ans: "B" },
+      { id: 93, tag: "Conditional Coding", q: "A student registration number follows a variable structure based on the Stream Code (the first three digits):\nRule 1: If the Stream Code starts with '4' (e.g., 4XX), the Institute Code is 4 digits long, immediately followed by a 3-digit Serial Number.\nRule 2: If the Stream Code starts with '7' (e.g., 7XX), the Institute Code is 5 digits long, immediately followed by a 2-digit Serial Number.\nFor the registration number 7154826903, what is the Institute Code?", options: ["715", "4826", "48269", "6903"], ans: "C" },
+      { id: 94, tag: "Conditional Coding", q: "An invoice number uses a variable structure based on the Department Code (the first three digits):\nRule 1: If the Department Code begins with '3' (e.g., 3XX), the Vendor Code is 4 digits long, immediately followed by a 3-digit Serial Number.\nRule 2: If the Department Code begins with '7' (e.g., 7XX), the Vendor Code is 5 digits long, immediately followed by a 2-digit Serial Number.\nFor the invoice number 7418965230, what is the Vendor Code?", options: ["741", "8965", "89652", "896523"], ans: "C" },
+      { id: 95, tag: "Conditional Coding", q: "An account number follows a variable structure based on the Branch Code (first three digits):\nRule 1: If the Branch Code starts with '7' (e.g., 7XX), it is immediately followed by a 4-digit Category Code and then a 3-digit User ID.\nRule 2: If the Branch Code starts with '3' (e.g., 3XX), it is immediately followed by a 5-digit Category Code and then a 2-digit User ID.\nFor the account number 3846194285, what is the Category Code?", options: ["384", "6194", "61942", "19428"], ans: "C" },
+      { id: 96, tag: "Mixed Coding", q: "In a certain code language:\n'great leaders inspire youth' is coded as: G5# L7@ I7$ Y5%\n'inspire many young minds' is coded as: I7$ M4& Y5* M5^\n'youth achieve great goals' is coded as: Y5% A7! G5# G5+\n'many leaders guide youth' is coded as: M4& L7@ G5= Y5%\nWhat is the code for 'leaders inspire youth'?", options: ["L7@ I7$ Y5%", "L7@ G5# Y5%", "I7$ M4& Y5%", "L7@ I7$ M5^"], ans: "A" },
+      { id: 97, tag: "Mixed Coding", q: "In a certain code language:\n'fresh fruit taste sweet' is coded as 'F5# F5$ T5@ S5%'\n'green plants need water' is coded as 'G5# P6$ N4@ W5%'\n'plants taste sweet always' is coded as 'P6$ T5@ S5% A6&'\n'fresh water taste good' is coded as 'F5# W5% T5@ G4*'\nWhat is the code for 'fresh plants water'?", options: ["P6$ F5# W5%", "P6$ T5@ W5%", "F5$ P6$ W5%", "F5# G5# P6$"], ans: "A" },
+      { id: 98, tag: "Word Substitution", q: "In a certain code language, if Lucknow is called Bhopal, Bhopal is called Patna, Patna is called Dispur, Dispur is called Ranchi, and Ranchi is called Shimla, then which city is the capital of Bihar?", options: ["Bhopal/भोपाल", "Patna/पटना", "Dispur/दिसपुर", "Ranchi/रांची"], ans: "C" },
+      { id: 99, tag: "Word Substitution", q: "In a certain code language, if 'sparrow' is called 'pigeon', 'pigeon' is called 'peacock', 'peacock' is called 'parrot', 'parrot' is called 'crow', and 'crow' is called 'eagle', then which of the following is the national bird of India?", options: ["Pigeon/कबूतर", "Parrot/तोता", "Peacock/मोर", "Eagle/चील"], ans: "B" },
+      { id: 100, tag: "Word Substitution", q: "In a certain code language, if 'peacock' is called 'tiger', 'tiger' is called 'cheetah', 'cheetah' is called 'elephant', 'elephant' is called 'lion', and 'lion' is called 'zebra', then which of the following is the national animal of India?", options: ["Tiger/बाघ", "Cheetah/चीता", "Elephant/हाथी", "Lion/शेर"], ans: "B" },
+      { id: 101, tag: "Word Substitution", q: "In a certain code language, if 'Mars' is called 'Venus', 'Venus' is called 'Jupiter', 'Jupiter' is called 'Saturn', 'Saturn' is called 'Mercury', and 'Mercury' is called 'Neptune', then which planet is known as the 'Red Planet'?", options: ["Jupiter/बृहस्पति", "Venus/शुक्र", "Saturn/शनि", "Mars/मंगल"], ans: "B" },
+      { id: 102, tag: "Word Substitution", q: "In a certain code language, if 'Bhopal' is called 'Lucknow', 'Lucknow' is called 'Patna', 'Patna' is called 'Ranchi', 'Ranchi' is called 'Dispur', and 'Dispur' is called 'Shimla', then which of the following is the capital of Uttar Pradesh?", options: ["Lucknow/लखनऊ", "Ranchi/राँची", "Patna/पटना", "Dispur/दिसपुर"], ans: "C" },
+      { id: 103, tag: "Word Substitution", q: "In a certain code language, if 'rose' is called 'lotus', 'lotus' is called 'sunflower', 'sunflower' is called 'lily', 'lily' is called 'jasmine', and 'jasmine' is called 'marigold', then which of the following is the National Flower of India?", options: ["Rose/गुलाब", "Lotus/कमल", "Lily/कुमुदिनी", "Sunflower/सूरजमुखी"], ans: "D" },
+      { id: 104, tag: "Binary Coding", q: "In a certain code system, there are only two symbols used to represent numbers: @ and #. 0 is represented by @ and 1 by #. The subsequent numbers are represented as follows:\n2 is represented as #@,\n3 is represented as ##,\n4 is represented as #@@,\n5 is represented as #@# and so on.\nHow will 73 be represented in this code system?", options: ["#@#@@#@", "#@@#@@#", "##@@#@@", "#@@#@#@"], ans: "B" }
+    ];
+
+    let currentIdx = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+    let reviewMarked = new Array(questions.length).fill(false);
+    let isSubmitted = false;
+    let secondsElapsed = 0;
+    let timerInterval = null;
+
+    const letters = ["A", "B", "C", "D"];
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        if (!isSubmitted) {
+          secondsElapsed++;
+          const hrs = String(Math.floor(secondsElapsed / 3600)).padStart(2, '0');
+          const mins = String(Math.floor((secondsElapsed % 3600) / 60)).padStart(2, '0');
+          const secs = String(secondsElapsed % 60).padStart(2, '0');
+          document.getElementById("timerDisplay").textContent = `${hrs}:${mins}:${secs}`;
+        }
+      }, 1000);
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById("paletteGrid");
+      grid.innerHTML = "";
+      const practiceMode = document.getElementById("practiceModeToggle").checked;
+
+      let answered = 0, correct = 0, wrong = 0, review = 0;
+
+      questions.forEach((item, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "p-btn";
+        btn.textContent = item.id;
+
+        if (idx === currentIdx) btn.classList.add("current");
+
+        const ua = userAnswers[idx];
+        if (ua !== null) {
+          answered++;
+          if (practiceMode || isSubmitted) {
+            if (ua === item.ans) {
+              btn.classList.add("correct");
+              correct++;
+            } else {
+              btn.classList.add("wrong");
+              wrong++;
+            }
+          } else {
+            btn.classList.add("answered");
+          }
+        } else if (reviewMarked[idx]) {
+          btn.classList.add("review");
+        }
+
+        if (reviewMarked[idx]) review++;
+
+        btn.onclick = () => {
+          currentIdx = idx;
+          renderQuestion();
+          renderPalette();
+        };
+        grid.appendChild(btn);
+      });
+
+      document.getElementById("statAnswered").textContent = answered;
+      document.getElementById("statCorrect").textContent = (practiceMode || isSubmitted) ? correct : "-";
+      document.getElementById("statWrong").textContent = (practiceMode || isSubmitted) ? wrong : "-";
+      document.getElementById("statReview").textContent = review;
+    }
+
+    function renderQuestion() {
+      const item = questions[currentIdx];
+      const practiceMode = document.getElementById("practiceModeToggle").checked;
+      const ua = userAnswers[currentIdx];
+
+      document.getElementById("qNumber").textContent = `Question ${item.id} of ${questions.length}`;
+      document.getElementById("qTag").textContent = item.tag;
+      document.getElementById("qText").textContent = item.q;
+
+      // Render Table if present
+      const tableContainer = document.getElementById("qTableContainer");
+      tableContainer.innerHTML = "";
+      if (item.table) {
+        const tbl = document.createElement("table");
+        tbl.className = "q-table";
+        const tr1 = document.createElement("tr");
+        tr1.innerHTML = `<th>Element</th>` + item.table.headers.map(h => `<th>${h}</th>`).join("");
+        const tr2 = document.createElement("tr");
+        tr2.innerHTML = `<th>Code</th>` + item.table.codes.map(c => `<td>${c}</td>`).join("");
+        tbl.appendChild(tr1);
+        tbl.appendChild(tr2);
+        tableContainer.appendChild(tbl);
+      }
+
+      const optsDiv = document.getElementById("optionsContainer");
+      optsDiv.innerHTML = "";
+
+      item.options.forEach((optText, i) => {
+        const letter = letters[i];
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+
+        const showResult = (practiceMode && ua !== null) || isSubmitted;
+
+        if (showResult) {
+          if (letter === item.ans) btn.classList.add("correct");
+          else if (ua === letter && ua !== item.ans) btn.classList.add("wrong");
+        } else if (ua === letter) {
+          btn.classList.add("selected");
+        }
+
+        btn.innerHTML = `
+          <span class="opt-letter">${letter}</span>
+          <span>${optText}</span>
+        `;
+
+        btn.onclick = () => selectOption(letter);
+        optsDiv.appendChild(btn);
+      });
+
+      const banner = document.getElementById("feedbackBanner");
+      if ((practiceMode && ua !== null) || isSubmitted) {
+        banner.style.display = "block";
+        if (ua === item.ans) {
+          banner.style.background = "#dcfce7";
+          banner.style.color = "#166534";
+          banner.textContent = `✓ Correct! Official Answer Key: Option (${item.ans})`;
+        } else if (ua === null) {
+          banner.style.background = "#fef9c3";
+          banner.style.color = "#854d0e";
+          banner.textContent = `Unattempted. Official Answer Key: Option (${item.ans})`;
+        } else {
+          banner.style.background = "#fee2e2";
+          banner.style.color = "#991b1b";
+          banner.textContent = `✗ Incorrect. You selected (${ua}), Official Answer Key is Option (${item.ans})`;
+        }
+      } else {
+        banner.style.display = "none";
+      }
+
+      document.getElementById("prevBtn").disabled = currentIdx === 0;
+      document.getElementById("nextBtn").disabled = currentIdx === questions.length - 1;
+    }
+
+    function selectOption(letter) {
+      if (isSubmitted) return;
+      userAnswers[currentIdx] = letter;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function clearResponse() {
+      if (isSubmitted) return;
+      userAnswers[currentIdx] = null;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function toggleReview() {
+      reviewMarked[currentIdx] = !reviewMarked[currentIdx];
+      renderPalette();
+    }
+
+    function changeQuestion(dir) {
+      const next = currentIdx + dir;
+      if (next >= 0 && next < questions.length) {
+        currentIdx = next;
+        renderQuestion();
+        renderPalette();
+      }
+    }
+
+    function submitQuiz() {
+      isSubmitted = true;
+      let attempted = 0, correct = 0, wrong = 0;
+
+      questions.forEach((q, i) => {
+        if (userAnswers[i] !== null) {
+          attempted++;
+          if (userAnswers[i] === q.ans) correct++;
+          else wrong++;
+        }
+      });
+
+      const score = (correct * 2) - (wrong * 0.5);
+      document.getElementById("finalScore").textContent = score.toFixed(1);
+      document.getElementById("resAttempted").textContent = attempted;
+      document.getElementById("resCorrect").textContent = correct;
+      document.getElementById("resWrong").textContent = wrong;
+      document.getElementById("resSkipped").textContent = questions.length - attempted;
+
+      document.getElementById("resultModal").style.display = "flex";
+      renderQuestion();
+      renderPalette();
+    }
+
+    function closeModal() {
+      document.getElementById("resultModal").style.display = "none";
+    }
+
+    function resetQuiz() {
+      userAnswers.fill(null);
+      reviewMarked.fill(false);
+      isSubmitted = false;
+      secondsElapsed = 0;
+      currentIdx = 0;
+      renderQuestion();
+      renderPalette();
+    }
+
+    document.getElementById("practiceModeToggle").addEventListener("change", () => {
+      renderQuestion();
+      renderPalette();
+    });
+
+    // Keyboard navigation (Left/Right arrows & 1-4 / A-D keys)
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") changeQuestion(1);
+      else if (e.key === "ArrowLeft") changeQuestion(-1);
+      else if (["1", "a", "A"].includes(e.key)) selectOption("A");
+      else if (["2", "b", "B"].includes(e.key)) selectOption("B");
+      else if (["3", "c", "C"].includes(e.key)) selectOption("C");
+      else if (["4", "d", "D"].includes(e.key)) selectOption("D");
+    });
+
+    // Initialize
+    startTimer();
+    renderQuestion();
+    renderPalette();
+  </script>
+</body>
+</html>

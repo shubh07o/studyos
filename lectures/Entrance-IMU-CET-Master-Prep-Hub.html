@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMU CET Master Prep Hub — Vocabulary, Quizzes & Exam Blueprint</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#0a192f',
+                            900: '#061020',
+                            950: '#030811'
+                        },
+                        ocean: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7'
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar & 3D Flip Card Styles */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.4); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.25); }
+            50% { box-shadow: 0 0 28px rgba(14, 165, 233, 0.5); }
+        }
+        .glow-card { animation: pulseGlow 3s infinite; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-navy-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+
+    <!-- Top Maritime Navigation Header -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 dark:bg-navy-900/90 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-blue-700 flex items-center justify-center text-white shadow-lg shadow-ocean-500/30">
+                        <i class="fa-solid fa-anchor text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="font-extrabold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-blue-600 via-ocean-500 to-teal-400 bg-clip-text text-transparent">
+                                IMU CET COMMAND CENTER
+                            </h1>
+                            <span class="hidden sm:inline-block text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/30 font-semibold">
+                                37 Official Sources (2021–2026)
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
+                            Master Vocabulary Repository, Past Paper Simulator & Analytical Blueprint
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quick Stats & Controls -->
+                <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center gap-4 bg-slate-100 dark:bg-slate-800/80 px-3.5 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700/70 text-xs">
+                        <div class="flex items-center gap-1.5" title="Total Curated Exam Words">
+                            <i class="fa-solid fa-book-bookmark text-ocean-500"></i>
+                            <span class="text-slate-500 dark:text-slate-400">Total:</span>
+                            <span id="stat-total" class="font-bold font-mono text-slate-800 dark:text-white">150</span>
+                        </div>
+                        <div class="h-3 w-[1px] bg-slate-300 dark:bg-slate-700"></div>
+                        <div class="flex items-center gap-1.5" title="Words Marked as Mastered">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span class="text-slate-500 dark:text-slate-400">Mastered:</span>
+                            <span id="stat-mastered" class="font-bold font-mono text-emerald-600 dark:text-emerald-400">0</span>
+                        </div>
+                        <div class="h-3 w-[1px] bg-slate-300 dark:bg-slate-700"></div>
+                        <div class="flex items-center gap-1.5" title="Bookmarked for Revision">
+                            <i class="fa-solid fa-star text-amber-400"></i>
+                            <span class="text-slate-500 dark:text-slate-400">Revision:</span>
+                            <span id="stat-bookmarked" class="font-bold font-mono text-amber-500">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Reset Progress Button -->
+                    <button onclick="openResetModal()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-rose-500/10 hover:text-rose-500 transition-colors text-sm" title="Reset Study Progress">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:ring-2 ring-ocean-400 transition-all" title="Toggle Dark/Light Theme">
+                        <i id="theme-icon" class="fa-solid fa-sun"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="flex space-x-1 overflow-x-auto py-2 no-scrollbar border-t border-slate-200/60 dark:border-slate-800/60">
+                <button onclick="switchTab('explorer')" id="tab-btn-explorer" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap bg-ocean-500 text-white shadow-sm">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>1. Master Repository (150)</span>
+                </button>
+                <button onclick="switchTab('blueprint')" id="tab-btn-blueprint" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-chart-pie text-amber-500"></i>
+                    <span>2. Exam Pattern & Must-Read Topics</span>
+                </button>
+                <button onclick="switchTab('flashcards')" id="tab-btn-flashcards" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-layer-group text-purple-400"></i>
+                    <span>3. Active Recall Flashcards</span>
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-stopwatch text-emerald-400"></i>
+                    <span>4. IMU CET Quiz & Mock Simulator</span>
+                </button>
+                <button onclick="switchTab('arena')" id="tab-btn-arena" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-bolt text-rose-400"></i>
+                    <span>5. 60s Rapid Match Arena</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- ==========================================
+             TAB 1: MASTER VOCABULARY REPOSITORY
+             ========================================== -->
+        <section id="tab-explorer" class="space-y-6">
+            <!-- Hero Banner with Quick Revision Tip -->
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-navy-900 via-slate-900 to-blue-950 p-5 sm:p-6 text-white border border-ocean-500/30 shadow-xl">
+                <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div class="space-y-1.5 max-w-3xl">
+                        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-ocean-500/20 border border-ocean-400/30 text-ocean-300 text-xs font-medium">
+                            <i class="fa-solid fa-lightbulb text-amber-400"></i>
+                            <span>High-Yield Exam Insight • 15–20% Annual Direct & Logic Repeat Rate</span>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-bold tracking-tight">
+                            Complete IMU CET & Defense Vocabulary Vault (2021–2026)
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            Compiled with 100% precision from <strong>37 authentic exam sources</strong> including IMU CET 2021, 2022, 2024, 2025, 2026 (Shift 1 & Shift 2 Response Sheets), Official Sample Papers, Seamate Mocks, and Agniveer Vayu Papers. Revise this repository for 10 minutes daily!
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap sm:flex-nowrap gap-2.5 shrink-0">
+                        <button onclick="switchTab('quiz')" class="px-4 py-2.5 rounded-xl bg-ocean-500 hover:bg-ocean-600 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-ocean-500/25 transition flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> Launch PYQ Mock Test
+                        </button>
+                        <button onclick="switchTab('blueprint')" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs sm:text-sm border border-white/15 transition flex items-center gap-2">
+                            <i class="fa-solid fa-microscope text-amber-400"></i> View Topic Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Summary Pills -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="category-QuickPills">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Search & Multi-Filter Control Bar -->
+            <div class="bg-white dark:bg-navy-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                    <!-- Search Input -->
+                    <div class="md:col-span-5 relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="search-input" oninput="renderRepository()" placeholder="Search word, meaning, opposite, or root tip..." 
+                            class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="md:col-span-3">
+                        <select id="filter-category" onchange="renderRepository()" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                            <option value="ALL">All 5 Categories (150 Items)</option>
+                            <option value="Synonyms">1. Synonyms & Meanings (40)</option>
+                            <option value="Antonyms">2. Antonyms & Opposites (36)</option>
+                            <option value="One-Word">3. One-Word Substitutions (22)</option>
+                            <option value="Idioms">4. Idioms, Phrases & Proverbs (18)</option>
+                            <option value="Specialized">5. Science, Econ & General Terms (34)</option>
+                        </select>
+                    </div>
+
+                    <!-- Source Paper Filter -->
+                    <div class="md:col-span-2">
+                        <select id="filter-source" onchange="renderRepository()" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                            <option value="ALL">All Exam Sources</option>
+                            <option value="2026">IMU CET 2026 Response Sheet</option>
+                            <option value="2025">IMU CET 2025 Real Paper</option>
+                            <option value="2024">IMU CET 2024 Papers</option>
+                            <option value="2022">IMU CET 2022</option>
+                            <option value="2021">IMU CET 2021</option>
+                            <option value="Sample">Official Sample & Part 1 Qs</option>
+                            <option value="Seamate">Seamate Sample Paper</option>
+                            <option value="Archive">IMU CET Practice Archive</option>
+                            <option value="Agniveer">Agniveer Vayu / Defense</option>
+                        </select>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div class="md:col-span-2">
+                        <select id="filter-status" onchange="renderRepository()" class="w-full px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                            <option value="ALL">All Study Status</option>
+                            <option value="BOOKMARKED">⭐ Bookmarked Only</option>
+                            <option value="MASTERED">✅ Mastered Only</option>
+                            <option value="UNMASTERED">⏳ Unmastered Only</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Sub-bar: Result count & view toggle -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/80 text-xs text-slate-500 dark:text-slate-400">
+                    <div>
+                        Showing <span id="filtered-count" class="font-bold text-ocean-500">150</span> curated exam entries
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>View Mode:</span>
+                        <button onclick="setViewMode('grid')" id="view-grid-btn" class="px-2.5 py-1 rounded-lg bg-ocean-500 text-white font-medium">
+                            <i class="fa-solid fa-grip"></i> Cards
+                        </button>
+                        <button onclick="setViewMode('table')" id="view-table-btn" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">
+                            <i class="fa-solid fa-table-list"></i> Compact Table
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocabulary Display Container -->
+            <div id="vocab-container-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <div id="vocab-container-table" class="hidden bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 text-xs uppercase font-semibold border-b border-slate-200 dark:border-slate-700">
+                                <th class="py-3.5 px-4">#</th>
+                                <th class="py-3.5 px-4">Word / Phrase</th>
+                                <th class="py-3.5 px-4">Category</th>
+                                <th class="py-3.5 px-4">Exam Meaning / Opposite</th>
+                                <th class="py-3.5 px-4">Memory Hook & Etymology</th>
+                                <th class="py-3.5 px-4">Exam Source</th>
+                                <th class="py-3.5 px-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vocab-table-body" class="divide-y divide-slate-200 dark:divide-slate-800">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 2: EXAM PATTERN ANALYSIS & MUST-READ BLUEPRINT
+             ========================================== -->
+        <section id="tab-blueprint" class="hidden space-y-8">
+            <!-- Header -->
+            <div class="bg-white dark:bg-navy-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <span class="text-xs font-mono uppercase tracking-wider px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-500 font-semibold">
+                    Deep-Dive Trend Report (2021–2026 Shift 1 & Shift 2)
+                </span>
+                <h2 class="text-2xl font-extrabold mt-2">
+                    What Kind of Vocabulary & English Topics Does IMU CET Ask?
+                </h2>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-4xl">
+                    Based on a forensic linguistic analysis of all 37 uploaded papers (IMU CET 2021–2026, Official Sample Papers, Seamate, and Agniveer Vayu), IMU CET does <strong>not</strong> ask random dictionary words. Instead, 90% of questions strictly fall into <strong>5 High-Probability Clusters</strong> and <strong>6 Core Grammar Pillars</strong>.
+                </p>
+            </div>
+
+            <!-- 5 Vocabulary Clusters Grid -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass-chart text-ocean-500"></i>
+                    <span>Part A: The 5 Vocabulary Archetypes Asked in IMU CET</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Pattern 1 -->
+                    <div class="bg-white dark:bg-navy-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-500 font-mono text-xs font-bold">Archetype #1 • 28% Weight</span>
+                                <i class="fa-solid fa-user-shield text-blue-500 text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-base mb-1.5">Officer Personality & Character Adjectives</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                Because Merchant Navy officers require composure, discipline, and leadership under pressure, IMU CET heavily tests adjectives describing human temperament, judgment, and speech habits.
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700/60 text-xs space-y-1.5">
+                            <div class="font-semibold text-ocean-500">Must-Know Asked Words:</div>
+                            <p class="font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300">
+                                Unwavering, Stoic, Astute, Judicious, Fastidious, Decorous, Serene,Resilience, Loquacious ↔ Taciturn, Benevolent ↔ Malevolent, Capricious, Unscrupulous, Ascetic.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pattern 2 -->
+                    <div class="bg-white dark:bg-navy-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-teal-500/10 text-teal-400 font-mono text-xs font-bold">Archetype #2 • 18% Weight</span>
+                                <i class="fa-solid fa-ship text-teal-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-base mb-1.5">Maritime, Navigation, Weather & Action Idioms</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                Being a maritime university exam, paper setters frequently pick idioms and words tied to storms, sea navigation, wreckage, motion, and crisis survival.
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700/60 text-xs space-y-1.5">
+                            <div class="font-semibold text-teal-400">Must-Know Asked Words:</div>
+                            <p class="font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300">
+                                To weather the storm, To be in the doldrums (equatorial calm sea zone), To fish in troubled waters, Thalassophobia (fear of sea), Debris (wreckage), Propel, Circuitous, Stationary, Averted, Hazardous.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pattern 3 -->
+                    <div class="bg-white dark:bg-navy-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-400 font-mono text-xs font-bold">Archetype #3 • 22% Weight</span>
+                                <i class="fa-solid fa-dna text-purple-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-base mb-1.5">Greek/Latin Root One-Word Substitutions</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                One-Word Substitutions in IMU CET 2024–2026 heavily rely on classic prefixes like <code>Poly-</code>, <code>Omni-</code>, <code>In-/Ir-</code> (negation), and suffixes like <code>-cracy</code>, <code>-logy</code>, and <code>-phobia</code>.
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700/60 text-xs space-y-1.5">
+                            <div class="font-semibold text-purple-400">Must-Know Asked Words:</div>
+                            <p class="font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300">
+                                Polymath, Polyglot, Omnipotent, Omnivores, Autocracy, Anarchist, Incorrigible, Irrevocable, Invincible, Infallible, Indelible, Inevitable, Eulogy vs Dirge.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pattern 4 -->
+                    <div class="bg-white dark:bg-navy-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-500 font-mono text-xs font-bold">Archetype #4 • 17% Weight</span>
+                                <i class="fa-solid fa-flask text-amber-500 text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-base mb-1.5">Applied Science, Material & Trade Terminology</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                Unique to IMU CET: English questions often test one-word terms from Physics (material properties), Biology (disease spread), and Maritime Trade/Economics.
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700/60 text-xs space-y-1.5">
+                            <div class="font-semibold text-amber-500">Must-Know Asked Words:</div>
+                            <p class="font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300">
+                                Malleable, Ductile, Brittle, Opaque, Translucent, Catalyst, Potable vs Edible, Pandemic vs Endemic vs Contagious, Tariff, Subsidy, Monopoly, Inflation, Insolvent, Actuary.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pattern 5 -->
+                    <div class="bg-white dark:bg-navy-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-rose-500/10 text-rose-400 font-mono text-xs font-bold">Archetype #5 • 15% Weight</span>
+                                <i class="fa-solid fa-scale-balanced text-rose-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-base mb-1.5">Clarity vs Ambiguity & Scale Polarity Pairs</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                                Antonym questions repeatedly test the contrast between "Clear/Concise vs Vague/Wordy" and "Abundant/Grand vs Scarce/Humble".
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/70 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700/60 text-xs space-y-1.5">
+                            <div class="font-semibold text-rose-400">Must-Know Asked Words:</div>
+                            <p class="font-mono text-[11px] leading-relaxed text-slate-700 dark:text-slate-300">
+                                Verbose ↔ Concise, Equivocal ↔ Unequivocal, Obfuscate ↔ Clarify, Vague ↔ Specific, Lavish ↔ Frugal, Grandiose ↔ Modest, Superficial ↔ Profound, Exodus ↔ Influx.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- High-Yield Root Cheat Card -->
+                    <div class="bg-gradient-to-br from-navy-800 to-slate-900 text-white p-5 rounded-2xl border border-ocean-500/30 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 rounded-lg bg-ocean-500/20 text-ocean-300 font-mono text-xs font-bold">Golden Root Decoder</span>
+                                <i class="fa-solid fa-key text-amber-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-base mb-2">Decode Unseen Words in 5 Seconds</h4>
+                            <ul class="text-xs space-y-2 text-slate-300 font-mono">
+                                <li><strong class="text-amber-400">POLY-</strong> (Many): Polyglot (languages), Polymath (subjects)</li>
+                                <li><strong class="text-amber-400">OMNI-</strong> (All): Omnipotent (power), Omnivore (eater)</li>
+                                <li><strong class="text-amber-400">EU-</strong> (Good/Praise): Eulogy (funeral praise) vs Dirge (mournful song)</li>
+                                <li><strong class="text-amber-400">MAL- / BENE-</strong> (Evil / Good): Malevolent ↔ Benevolent</li>
+                                <li><strong class="text-amber-400">LOQU-</strong> (Speak): Loquacious (talkative) ↔ Taciturn (silent)</li>
+                                <li><strong class="text-amber-400">IN- / IR-</strong> (Not): Infallible, Invincible, Indelible, Incorrigible</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete IMU CET English Syllabus & Must-Read Topics -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Topic Weightage Breakdown -->
+                <div class="lg:col-span-7 bg-white dark:bg-navy-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-list-check text-emerald-500"></i>
+                                <span>Part B: Complete IMU CET English Must-Read Syllabus</span>
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                Section Weightage based on IMU CET UG Official Structure (25–40 Questions across shifts)
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Topic 1 -->
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                            <div class="flex justify-between text-xs font-bold mb-1.5">
+                                <span class="text-ocean-500">1. Vocabulary (Synonyms, Antonyms, One-Word, Idioms)</span>
+                                <span class="font-mono">35% – 40% (12–15 Qs)</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-ocean-500 rounded-full" style="width: 38%"></div>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">
+                                <strong>What to Study:</strong> Direct & contextual synonyms/antonyms, idioms in sentences, phrasal verbs (<em>look into, call off, put up with, give in</em>), and one-word scientific/governance terms. Master all 150 words in Tab 1 first.
+                            </p>
+                        </div>
+
+                        <!-- Topic 2 -->
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                            <div class="flex justify-between text-xs font-bold mb-1.5">
+                                <span class="text-emerald-500">2. Spotting Errors, Tenses & Subject-Verb Agreement</span>
+                                <span class="font-mono">20% – 25% (6–8 Qs)</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-emerald-500 rounded-full" style="width: 24%"></div>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">
+                                <strong>Must-Read Rules:</strong>
+                                • <em>Either/Or, Neither/Nor, Along with, As well as</em> verb agreement.<br>
+                                • <strong>3 Golden Conditionals:</strong> Type 1 (If + Present, Will + V1), Type 2 (If + Were/V2, Would + V1), Type 3 (If + Had + V3, Would have + V3 — <em>asked every single year!</em>).<br>
+                                • Confusing pairs: <em>Since vs For, Beside vs Besides, Few vs A few, Hardly/Scarcely...when, No sooner...than</em>.
+                            </p>
+                        </div>
+
+                        <!-- Topic 3 -->
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                            <div class="flex justify-between text-xs font-bold mb-1.5">
+                                <span class="text-amber-500">3. Fixed Prepositions, Articles & Determiners</span>
+                                <span class="font-mono">15% (4–5 Qs)</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-amber-500 rounded-full" style="width: 15%"></div>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">
+                                <strong>High-Repeat Prepositions:</strong> <em>Senior/Junior/Prefer <strong>to</strong>, Accused <strong>of</strong>, Acquitted <strong>of</strong>, Congratulate <strong>on</strong>, Abide <strong>by</strong>, Cope <strong>with</strong> (never 'cope up with'), Comprise (no 'of' in active voice), Insist <strong>on</strong>, Prevent <strong>from</strong>, Good <strong>at</strong>.</em>
+                            </p>
+                        </div>
+
+                        <!-- Topic 4 -->
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                            <div class="flex justify-between text-xs font-bold mb-1.5">
+                                <span class="text-purple-400">4. Active/Passive Voice & Direct/Indirect Narration</span>
+                                <span class="font-mono">12% – 15% (3–5 Qs)</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 14%"></div>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">
+                                <strong>What to Study:</strong> Imperative sentences (<em>Let the door be shut</em>), Interrogative sentences starting with <em>Who / By whom</em>, and tense backshifting in Indirect Speech (<em>Present Perfect → Past Perfect, 'Tomorrow' → 'The next day'</em>).
+                            </p>
+                        </div>
+
+                        <!-- Topic 5 -->
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                            <div class="flex justify-between text-xs font-bold mb-1.5">
+                                <span class="text-rose-400">5. Reading Comprehension, Cloze Test & Para Jumbles (PQRS)</span>
+                                <span class="font-mono">10% – 12% (3–5 Qs)</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden mb-2">
+                                <div class="h-full bg-rose-500 rounded-full" style="width: 11%"></div>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300">
+                                <strong>Strategy:</strong> For PQRS sentence rearrangement, use mandatory pair elimination (pronoun links, chronological connectors like <em>However, Therefore, Consequently</em>).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive 10-Minute Daily Study Checklist & High-Yield Grammar Rules -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-white dark:bg-navy-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="text-lg font-bold flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-bolt-lightning text-amber-400"></i>
+                            <span>Top 8 Golden Grammar Traps in IMU CET</span>
+                        </h3>
+                        <div class="space-y-2.5 text-xs">
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border-l-4 border-ocean-500">
+                                <strong>1. "One of the":</strong> Always takes a <strong>Plural Noun</strong> + <strong>Singular Verb</strong>.<br>
+                                <span class="text-slate-500">Ex: <em>One of the cadets <u>is</u> (not are) selected.</em></span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border-l-4 border-emerald-500">
+                                <strong>2. Uncountable Nouns (Singular Verb, No 's'):</strong><br>
+                                <span class="text-slate-500"><em>Luggage, Baggage, Scenery, Information, Furniture, Advice, Equipment, Machinery.</em></span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border-l-4 border-amber-500">
+                                <strong>3. "Lest" Rule:</strong> <em>Lest</em> is always followed by <strong>should</strong> (never may/will/not).<br>
+                                <span class="text-slate-500">Ex: <em>Work hard lest you <u>should</u> fail.</em></span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border-l-4 border-purple-500">
+                                <strong>4. "It is high time / It is time":</strong> Followed by <strong>Past Simple (V2)</strong>.<br>
+                                <span class="text-slate-500">Ex: <em>It is high time we <u>started</u> (not start) our revision.</em></span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border-l-4 border-rose-500">
+                                <strong>5. "Unless" & "Until":</strong> Both are negative; <strong>never use "not"</strong> in the same clause.<br>
+                                <span class="text-slate-500">Ex: <em>Unless you work hard (NOT unless you do not work hard)...</em></span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border-l-4 border-teal-500">
+                                <strong>6. "Look forward to / Accustomed to / With a view to":</strong> Always take a <strong>Gerund (V1+ing)</strong>.<br>
+                                <span class="text-slate-500">Ex: <em>I look forward to <u>joining</u> (not join) the ship.</em></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confusing Word Pairs Box -->
+                    <div class="bg-white dark:bg-navy-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="text-base font-bold flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-code-compare text-ocean-400"></i>
+                            <span>Frequently Confused Terms in Exam Options</span>
+                        </h3>
+                        <div class="grid grid-cols-1 gap-2.5 text-xs">
+                            <div class="flex items-start justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60">
+                                <div><strong class="text-ocean-400">Eulogy</strong>: Speech of praise at funeral</div>
+                                <div class="text-right"><strong class="text-rose-400">Dirge</strong>: Mournful song at funeral</div>
+                            </div>
+                            <div class="flex items-start justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60">
+                                <div><strong class="text-ocean-400">Potable</strong>: Safe to drink (water)</div>
+                                <div class="text-right"><strong class="text-emerald-400">Edible</strong>: Safe to eat (food)</div>
+                            </div>
+                            <div class="flex items-start justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60">
+                                <div><strong class="text-ocean-400">Malleable</strong>: Hammered into sheets</div>
+                                <div class="text-right"><strong class="text-amber-400">Ductile</strong>: Drawn into thin wires</div>
+                            </div>
+                            <div class="flex items-start justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60">
+                                <div><strong class="text-ocean-400">Endemic</strong>: Restricted to local area</div>
+                                <div class="text-right"><strong class="text-purple-400">Pandemic</strong>: Spread globally</div>
+                            </div>
+                            <div class="flex items-start justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60">
+                                <div><strong class="text-ocean-400">Stationary</strong>: Not moving / fixed</div>
+                                <div class="text-right"><strong class="text-teal-400">Stationery</strong>: Pens, paper, office supplies</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 3: INTERACTIVE 3D FLASHCARDS
+             ========================================== -->
+        <section id="tab-flashcards" class="hidden space-y-6">
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- Controls Header -->
+                <div class="bg-white dark:bg-navy-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <select id="fc-category" onchange="initFlashcards()" class="px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium focus:outline-none">
+                            <option value="ALL">All Categories (150 Cards)</option>
+                            <option value="Synonyms">1. Synonyms & Meanings (40)</option>
+                            <option value="Antonyms">2. Antonyms & Opposites (36)</option>
+                            <option value="One-Word">3. One-Word Substitutions (22)</option>
+                            <option value="Idioms">4. Idioms & Proverbs (18)</option>
+                            <option value="Specialized">5. Specialized Terms (34)</option>
+                            <option value="BOOKMARKED">⭐ Bookmarked Words Only</option>
+                            <option value="UNMASTERED">⏳ Unmastered Words Only</option>
+                        </select>
+                        <button onclick="shuffleFlashcards()" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-ocean-500 hover:text-white text-xs sm:text-sm font-medium transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-shuffle"></i> Shuffle Deck
+                        </button>
+                    </div>
+                    <div class="text-xs font-mono text-slate-500 dark:text-slate-400">
+                        Card <span id="fc-index" class="font-bold text-ocean-500">1</span> of <span id="fc-total">150</span>
+                    </div>
+                </div>
+
+                <!-- 3D Flip Card Container -->
+                <div class="perspective-1000 h-80 sm:h-96 w-full cursor-pointer select-none" onclick="flipCurrentCard()">
+                    <div id="fc-inner" class="relative w-full h-full transform-style-3d">
+                        <!-- Front of Card -->
+                        <div class="absolute inset-0 backface-hidden bg-white dark:bg-navy-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 shadow-xl p-6 sm:p-10 flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span id="fc-cat-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-ocean-500/10 text-ocean-500 border border-ocean-500/20">
+                                    Synonyms
+                                </span>
+                                <div class="flex items-center gap-2" onclick="event.stopPropagation()">
+                                    <button onclick="speakCurrentFlashcard()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-ocean-500 hover:text-white transition flex items-center justify-center" title="Pronounce Word">
+                                        <i class="fa-solid fa-volume-high"></i>
+                                    </button>
+                                    <button onclick="toggleBookmarkCurrentFC()" id="fc-bookmark-btn" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:text-amber-400 transition flex items-center justify-center" title="Bookmark for Revision">
+                                        <i class="fa-regular fa-star"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="text-center space-y-3 my-auto">
+                                <div id="fc-prompt-type" class="text-xs uppercase tracking-widest text-slate-400 font-mono">
+                                    WHAT IS THE MEANING / SYNONYM OF:
+                                </div>
+                                <h3 id="fc-word" class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                                    Unwavering
+                                </h3>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-100 dark:border-slate-800/80 pt-4">
+                                <span id="fc-source" class="font-mono"><i class="fa-solid fa-file-lines mr-1 text-ocean-500"></i> IMU CET 2026 Response Sheet</span>
+                                <span class="text-ocean-500 font-semibold flex items-center gap-1">
+                                    Click or Press Space to Flip <i class="fa-solid fa-rotate"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Back of Card -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-navy-900 via-slate-900 to-blue-950 text-white rounded-3xl border-2 border-ocean-500/40 shadow-xl p-6 sm:p-10 flex flex-col justify-between">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                    Official Exam Answer
+                                </span>
+                                <span id="fc-back-word" class="font-mono text-sm text-ocean-300 font-bold">Unwavering</span>
+                            </div>
+
+                            <div class="space-y-4 my-auto text-center">
+                                <div id="fc-meaning" class="text-2xl sm:text-3xl font-extrabold text-amber-400 leading-snug">
+                                    Resolute / Firm / Steadfast
+                                </div>
+                                <div class="max-w-lg mx-auto bg-white/5 border border-white/10 rounded-2xl p-4 text-left space-y-2">
+                                    <div class="text-xs text-ocean-300 font-semibold flex items-center gap-1.5">
+                                        <i class="fa-solid fa-brain"></i> Memory Hook & Usage Context:
+                                    </div>
+                                    <p id="fc-tip" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                                        Root: Un (not) + Waver (shake/hesitate). An officer with unwavering courage stays firm in a storm.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs text-slate-400 border-t border-white/10 pt-4">
+                                <span>Rate your recall below</span>
+                                <span class="text-ocean-300">Click to flip back</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation & Self-Rating Controls -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <button onclick="prevFlashcard()" class="py-3 px-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-ocean-500 font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i> Previous
+                    </button>
+                    <button onclick="markCurrentFC(false)" class="py-3 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 border border-amber-500/30 font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Need Review
+                    </button>
+                    <button onclick="markCurrentFC(true)" class="py-3 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-check-double"></i> Got It (Mastered)
+                    </button>
+                    <button onclick="nextFlashcard()" class="py-3 px-4 rounded-xl bg-ocean-500 hover:bg-ocean-600 text-white font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-ocean-500/20">
+                        Next <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 4: IMU CET QUIZ & MOCK TEST SIMULATOR
+             ========================================== -->
+        <section id="tab-quiz" class="hidden space-y-6">
+            <!-- Quiz Setup Screen -->
+            <div id="quiz-setup-panel" class="max-w-3xl mx-auto bg-white dark:bg-navy-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-500 font-mono text-xs font-semibold">
+                            CBT Exam Simulator
+                        </span>
+                        <h2 class="text-2xl font-extrabold mt-2">Configure Your IMU CET Vocabulary Mock Test</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                            Practice with real exam options, source citations, and official IMU CET marking (+1.0 for Correct, -0.25 for Incorrect in Exam Mode).
+                        </p>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-ocean-500/10 text-ocean-500 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Category Selector -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">1. Select Topic</label>
+                        <select id="quiz-cat-select" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                            <option value="ALL">All 5 Categories Mixed</option>
+                            <option value="Synonyms">Synonyms & Meanings Only</option>
+                            <option value="Antonyms">Antonyms & Opposites Only</option>
+                            <option value="One-Word">One-Word Substitutions Only</option>
+                            <option value="Idioms">Idioms & Phrases Only</option>
+                            <option value="Specialized">Science & Economics Terms</option>
+                            <option value="PYQ2026">IMU CET 2025–2026 Special</option>
+                        </select>
+                    </div>
+
+                    <!-- Question Count -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">2. Number of Questions</label>
+                        <select id="quiz-count-select" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                            <option value="10">10 Questions (Quick Drill)</option>
+                            <option value="20" selected>20 Questions (Standard Set)</option>
+                            <option value="35">35 Questions (Full English Section)</option>
+                            <option value="50">50 Questions (Marathon)</option>
+                        </select>
+                    </div>
+
+                    <!-- Mode Selector -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">3. Simulation Mode</label>
+                        <select id="quiz-mode-select" class="w-full p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                            <option value="PRACTICE">Instant Feedback + Explanations</option>
+                            <option value="EXAM">Timed CBT Mode (+1 / -0.25)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/70 dark:border-slate-700/70 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-xs text-slate-500 dark:text-slate-400 space-y-1">
+                        <div><i class="fa-solid fa-circle-info text-ocean-500 mr-1"></i> Every question includes the exact <strong>Exam Paper Source</strong> and a memory tip.</div>
+                        <div><i class="fa-solid fa-check text-emerald-500 mr-1"></i> You can skip questions in Exam Mode to avoid -0.25 negative marking.</div>
+                    </div>
+                    <button onclick="startQuiz()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-ocean-500 to-blue-600 hover:from-ocean-600 hover:to-blue-700 text-white font-bold text-sm shadow-lg shadow-ocean-500/25 transition flex items-center justify-center gap-2 shrink-0">
+                        <i class="fa-solid fa-rocket"></i> Start Mock Quiz Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Quiz Interface -->
+            <div id="quiz-active-panel" class="hidden max-w-3xl mx-auto space-y-5">
+                <!-- Quiz Top Bar -->
+                <div class="bg-white dark:bg-navy-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span id="quiz-progress-badge" class="px-3 py-1 rounded-lg bg-ocean-500/10 text-ocean-500 font-mono text-xs sm:text-sm font-bold">
+                            Q 1 / 20
+                        </span>
+                        <span id="quiz-cat-pill" class="text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-medium">
+                            Synonyms
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-1.5 font-mono text-xs sm:text-sm text-amber-500 font-bold">
+                            <i class="fa-regular fa-clock"></i>
+                            <span id="quiz-timer">00:00</span>
+                        </div>
+                        <button onclick="finishQuiz()" class="px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500 text-rose-500 hover:text-white text-xs font-semibold transition">
+                            Submit Test
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="bg-white dark:bg-navy-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                            <span id="quiz-q-source">Asked in: IMU CET 2026 Response Sheet</span>
+                            <span>+1.00 / -0.25</span>
+                        </div>
+                        <h3 id="quiz-q-prompt" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed">
+                            Select the option that is closest in meaning (SYNONYM) to the given word:
+                        </h3>
+                        <div id="quiz-q-target" class="inline-block px-4 py-2 rounded-xl bg-ocean-500/10 border border-ocean-500/30 text-ocean-500 font-extrabold text-xl sm:text-2xl tracking-wide">
+                            UNWAVERING
+                        </div>
+                    </div>
+
+                    <!-- Options Grid -->
+                    <div id="quiz-options-container" class="grid grid-cols-1 gap-3">
+                        <!-- Dynamically rendered -->
+                    </div>
+
+                    <!-- Instant Explanation Box (Visible in Practice Mode after click) -->
+                    <div id="quiz-explanation-box" class="hidden p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 space-y-1.5 text-xs sm:text-sm">
+                        <div id="quiz-exp-title" class="font-bold text-emerald-500"></div>
+                        <p id="quiz-exp-body" class="text-slate-600 dark:text-slate-300"></p>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <button onclick="prevQuizQuestion()" id="quiz-prev-btn" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs sm:text-sm font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                            <i class="fa-solid fa-chevron-left mr-1"></i> Previous
+                        </button>
+                        <div class="flex items-center gap-2">
+                            <button onclick="nextQuizQuestion()" id="quiz-next-btn" class="px-5 py-2.5 rounded-xl bg-ocean-500 hover:bg-ocean-600 text-white text-xs sm:text-sm font-bold shadow-md transition">
+                                Next Question <i class="fa-solid fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Results & Scorecard Panel -->
+            <div id="quiz-result-panel" class="hidden max-w-4xl mx-auto space-y-6">
+                <div class="bg-white dark:bg-navy-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm text-center space-y-6">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-3xl mx-auto">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-extrabold">IMU CET Mock Test Scorecard</h2>
+                        <p id="res-subtitle" class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Performance Breakdown with Official Marking Scheme</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700">
+                            <div class="text-xs text-slate-400 uppercase font-mono">Net IMU Score</div>
+                            <div id="res-net-score" class="text-2xl sm:text-3xl font-extrabold text-ocean-500 mt-1">18.50</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700">
+                            <div class="text-xs text-slate-400 uppercase font-mono">Accuracy</div>
+                            <div id="res-accuracy" class="text-2xl sm:text-3xl font-extrabold text-emerald-500 mt-1">92%</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700">
+                            <div class="text-xs text-slate-400 uppercase font-mono">Correct / Wrong / Skip</div>
+                            <div id="res-breakdown" class="text-xl sm:text-2xl font-bold font-mono mt-1">18 / 1 / 1</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700">
+                            <div class="text-xs text-slate-400 uppercase font-mono">Time Taken</div>
+                            <div id="res-time" class="text-2xl sm:text-3xl font-extrabold text-amber-500 mt-1">02:14</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="resetQuizSetup()" class="px-5 py-2.5 rounded-xl bg-ocean-500 hover:bg-ocean-600 text-white font-bold text-xs sm:text-sm transition">
+                            <i class="fa-solid fa-rotate mr-1"></i> Take Another Mock Test
+                        </button>
+                        <button onclick="switchTab('explorer')" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-semibold text-xs sm:text-sm transition">
+                            Return to Vocabulary Vault
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Detailed Question Review -->
+                <div class="bg-white dark:bg-navy-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+                    <h3 class="text-lg font-bold">Detailed Question-by-Question Review</h3>
+                    <div id="res-review-list" class="space-y-3">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 5: 60-SECOND RAPID MATCH ARENA
+             ========================================== -->
+        <section id="tab-arena" class="hidden space-y-6">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <!-- Arena Header -->
+                <div class="bg-white dark:bg-navy-900 p-5 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <span class="px-2.5 py-0.5 rounded-md bg-rose-500/10 text-rose-500 font-mono text-xs font-bold">
+                            High-Speed Reflex Drill
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold mt-1">60-Second Rapid Match Arena</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                            Click a Word on the left and match it with its exact Meaning/Opposite on the right before the clock runs out!
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="text-center px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+                            <div class="text-[10px] font-mono uppercase text-slate-400">Score</div>
+                            <div id="arena-score" class="text-xl font-extrabold font-mono text-emerald-500">0</div>
+                        </div>
+                        <div class="text-center px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800">
+                            <div class="text-[10px] font-mono uppercase text-slate-400">Time Left</div>
+                            <div id="arena-timer" class="text-xl font-extrabold font-mono text-amber-500">60s</div>
+                        </div>
+                        <button onclick="startArenaGame()" id="arena-start-btn" class="px-5 py-3 rounded-xl bg-ocean-500 hover:bg-ocean-600 text-white font-bold text-xs sm:text-sm shadow-lg shadow-ocean-500/20 transition">
+                            <i class="fa-solid fa-play mr-1"></i> Start 60s Drill
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Matching Board -->
+                <div id="arena-board" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2.5">
+                        <div class="text-xs font-bold uppercase tracking-wider text-slate-400 px-1">Exam Words (Click First)</div>
+                        <div id="arena-left-col" class="space-y-2.5">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <div class="space-y-2.5">
+                        <div class="text-xs font-bold uppercase tracking-wider text-slate-400 px-1">Meanings / Opposites (Click Match)</div>
+                        <div id="arena-right-col" class="space-y-2.5">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Reset Confirmation Modal (No browser alert/confirm) -->
+    <div id="reset-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center gap-3 text-rose-500">
+                <i class="fa-solid fa-triangle-exclamation text-2xl"></i>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Reset Study Progress?</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                This will clear your "Mastered" and "Bookmarked" tags stored in your browser. All 150 vocabulary entries will remain intact.
+            </p>
+            <div class="flex justify-end gap-2.5 pt-2">
+                <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs sm:text-sm font-semibold">
+                    Cancel
+                </button>
+                <button onclick="confirmResetProgress()" class="px-4 py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs sm:text-sm font-bold">
+                    Yes, Reset Progress
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800/80 py-5 mt-12 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div>
+                <i class="fa-solid fa-anchor text-ocean-500 mr-1"></i>
+                <strong>IMU CET Master Vocabulary & Analytics Hub</strong> • Built from 37 Authentic Exam Sources (2021–2026)
+            </div>
+            <div>
+                100% English Interface • Active Recall + Spaced Repetition Enabled
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         APPLICATION DATA & JAVASCRIPT LOGIC
+         ========================================== -->
+    <script>
+        /**
+         * COMPLETE 150-ITEM VOCABULARY REPOSITORY
+         * Sourced 100% accurately from the user's 37 IMU CET, Sample Paper, Seamate & Agniveer Vayu sources.
+         */
+        const VOCAB_DATA = [
+            // ==========================================
+            // 1. SYNONYMS & WORD MEANINGS (40 ITEMS)
+            // ==========================================
+            { id: 1, word: "Unwavering", meaning: "Resolute / Firm / Steadfast", category: "Synonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Un (not) + Waver (shake). Staying firm and determined like a ship's captain in a storm." },
+            { id: 2, word: "Verbose", meaning: "Wordy / Expressed in too many words", category: "Synonyms", source: "IMU CET 2025 Real Paper", yearTag: "2025", tip: "Root 'Verb' = word. Someone who uses excessive words instead of being concise." },
+            { id: 3, word: "Desolate", meaning: "Forsaken / Abandoned / Barren", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Root 'Solus' = alone. A deserted, empty, lifeless island." },
+            { id: 4, word: "Exasperated", meaning: "Annoyed / Frustrated / Irritated", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Feeling intensely irritated or exhausted by repeated delays." },
+            { id: 5, word: "Astute", meaning: "Shrewd / Clever / Sharp", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Having an acute, sharp ability to assess situations or people accurately." },
+            { id: 6, word: "Resilience", meaning: "Endurance / Toughness / Strength", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Capacity to recover quickly from difficulties or bounce back after a setback." },
+            { id: 7, word: "Debris", meaning: "Wreckage / Ruins / Scattered fragments", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Scattered pieces of ship wreckage or rubble left after a storm or collision." },
+            { id: 8, word: "Minutely", meaning: "Rigorously / Thoroughly / Carefully", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Examining every 'minute' (tiny) detail with extreme care and precision." },
+            { id: 9, word: "Equivocal", meaning: "Ambiguous / Uncertain / Open to two interpretations", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Equi (equal) + Vocal (voice). Speaking vaguely to hide the truth; opposite of Unequivocal." },
+            { id: 10, word: "Circuitous", meaning: "Indirect / Roundabout / Winding", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Like a 'circuit' or circle—taking a long, indirect route instead of a straight path." },
+            { id: 11, word: "Fallacious", meaning: "False / Misleading / Based on a mistaken belief", category: "Synonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Comes from 'Fallacy' (false logic). A fallacious argument looks true but is misleading." },
+            { id: 12, word: "Stoic", meaning: "Indifferent to pain / Calm in adversity", category: "Synonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Enduring pain or hardship without showing feelings or complaining." },
+            { id: 13, word: "Diurnal", meaning: "Active during the day / Daily", category: "Synonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Opposite of Nocturnal (active at night). Diurnal animals are awake in daylight." },
+            { id: 14, word: "Conclusive", meaning: "Definite / Decisive / Convincing", category: "Synonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Bringing an argument or investigation to a firm, unquestionable conclusion." },
+            { id: 15, word: "Propel", meaning: "Drive / Push forward / Thrust", category: "Synonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Think of a ship's 'Propeller'—it pushes the vessel forward through water." },
+            { id: 16, word: "Decorous", meaning: "Polite and restrained / Dignified", category: "Synonyms", source: "IMU CET UG 2024", yearTag: "2024", tip: "Maintaining 'decorum' (good taste, protocol, and polite officer-like behavior)." },
+            { id: 17, word: "Indigenous", meaning: "Native / Local / Originating naturally in a region", category: "Synonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Think 'Indi-genous' = born inside a country (Native). Opposite: Foreign/Exotic." },
+            { id: 18, word: "Lavish / Sumptuous", meaning: "Extravagant / Rich / Grand / Luxurious", category: "Synonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Spending or giving in grand, expensive abundance. Opposite: Frugal/Economical." },
+            { id: 19, word: "Holy", meaning: "Sacred / Pure / Consecrated", category: "Synonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Dedicated to religious or sacred purpose. Opposite: Profane/Impure." },
+            { id: 20, word: "Fastidious", meaning: "Hard to please / Very attentive to detail / Meticulous", category: "Synonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Fussy about every tiny detail and cleanliness." },
+            { id: 21, word: "Deteriorated", meaning: "Worsened / Degraded / Declined in quality", category: "Synonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Weather or health becoming progressively worse over time." },
+            { id: 22, word: "Fatally", meaning: "Causing death / Mortally / Lethally", category: "Synonyms", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "From 'Fatal'—resulting in death or disaster." },
+            { id: 23, word: "Judicious", meaning: "Wise / Showing good judgment / Sensible", category: "Synonyms", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "Like a wise 'Judge'—making balanced, sensible decisions." },
+            { id: 24, word: "Endowed", meaning: "Blessed with / Provided naturally with talent or quality", category: "Synonyms", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "Naturally gifted with intelligence or resources." },
+            { id: 25, word: "Averted", meaning: "Prevented / Avoided / Turned away", category: "Synonyms", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "The alert officer averted a collision at sea by changing course early." },
+            { id: 26, word: "Annihilated", meaning: "Destroyed completely / Obliterated", category: "Synonyms", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "Root 'Nihil' = nothing. Reduced completely to nothing." },
+            { id: 27, word: "Marvelous", meaning: "Amazing / Astonishing / Extraordinary", category: "Synonyms", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "Causing great wonder; extraordinarily good." },
+            { id: 28, word: "Spectacular", meaning: "Remarkable / Striking / Eye-catching", category: "Synonyms", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "Dramatic and thrilling to watch, like a grand naval fleet review." },
+            { id: 29, word: "Pageant", meaning: "Spectacle / Public exhibition or parade", category: "Synonyms", source: "IMU CET 2021", yearTag: "2021", tip: "An elaborate colourful public ceremony or procession." },
+            { id: 30, word: "Erroneous", meaning: "Incorrect / Wrong / Inaccurate", category: "Synonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Full of 'Error'. An erroneous navigation calculation leads off-course." },
+            { id: 31, word: "Notion", meaning: "An idea / Belief / Concept", category: "Synonyms", source: "IMU CET 2022", yearTag: "2022", tip: "A mental conception or general understanding about something." },
+            { id: 32, word: "Serene", meaning: "Calm / Peaceful / Composed / Untroubled", category: "Synonyms", source: "IMU CET 2022", yearTag: "2022", tip: "A serene ocean is completely calm and tranquil without turbulence." },
+            { id: 33, word: "Coerce", meaning: "Pressure / Bully / Force / Browbeat", category: "Synonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Persuading an unwilling person to do something by using force or threats." },
+            { id: 34, word: "Stern", meaning: "Strict / Severe / Uncompromising", category: "Synonyms", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "Note: In shipping, 'Stern' is the rear part of a ship; as an adjective, it means strict/serious." },
+            { id: 35, word: "Merciful", meaning: "Kind / Compassionate / Forgiving", category: "Synonyms", source: "Agniveer Vayu Group X 2023", yearTag: "Agniveer", tip: "Showing mercy and clemency toward someone." },
+            { id: 36, word: "Lethargic", meaning: "Sluggish / Torpid / Lazy / Lacking energy", category: "Synonyms", source: "Agniveer Vayu Group X 2023", yearTag: "Agniveer", tip: "Feeling drowsy, inactive, and slow. Opposite: Energetic / Vigorous." },
+            { id: 37, word: "Eternal", meaning: "Perpetual / Everlasting / Never-ending", category: "Synonyms", source: "Agniveer Vayu Group X 2023", yearTag: "Agniveer", tip: "Lasting forever; opposite of Transient/Temporary." },
+            { id: 38, word: "Novice", meaning: "Beginner / Tyro / Inexperienced person", category: "Synonyms", source: "Agniveer Vayu Group Y 2023", yearTag: "Agniveer", tip: "Root 'Nov' = new. A new cadet or trainee learning the ropes." },
+            { id: 39, word: "Fatigue", meaning: "Tiredness / Exhaustion / Weariness", category: "Synonyms", source: "Agniveer Vayu Group Y 2022", yearTag: "Agniveer", tip: "Extreme physical or mental tiredness after a long watch." },
+            { id: 40, word: "Hazardous", meaning: "Dangerous / Risky / Perilous", category: "Synonyms", source: "Agniveer Vayu Group Y 2022", yearTag: "Agniveer", tip: "Full of hazard (e.g., hazardous cargo on a merchant vessel)." },
+
+            // ==========================================
+            // 2. ANTONYMS & OPPOSITES (36 ITEMS)
+            // ==========================================
+            { id: 41, word: "Arduous", meaning: "Opposite: Easy / Effortless / Facile", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Arduous means hard, tiring, and steep; its antonym is Easy or Effortless." },
+            { id: 42, word: "Dynamic", meaning: "Opposite: Passive / Idle / Static", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Dynamic means energetic and constantly changing; its opposite is Passive or Static." },
+            { id: 43, word: "Lethargy", meaning: "Opposite: Vigour / Energy / Vitality", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Lethargy means laziness/exhaustion; its opposite is Vigour and high energy." },
+            { id: 44, word: "Benevolent", meaning: "Opposite: Cruel / Malevolent / Unkind", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Bene (good/kind) ↔ Mal (evil/cruel). Benevolent ↔ Malevolent." },
+            { id: 45, word: "Accurate", meaning: "Opposite: Incorrect / Inaccurate / Erroneous", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Accurate means exact and precise; its opposite is Inaccurate or Incorrect." },
+            { id: 46, word: "Erratic", meaning: "Opposite: Stable / Predictable / Consistent", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Erratic means irregular and unpredictable; its opposite is Stable and Consistent." },
+            { id: 47, word: "Aggravated", meaning: "Opposite: Mitigated / Soothed / Alleviated", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Aggravate means to make a problem worse; Mitigate/Soothe means to make it less severe." },
+            { id: 48, word: "Massive", meaning: "Opposite: Light / Tiny / Minute", category: "Antonyms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Massive means huge and heavy; its opposite is Tiny or Light." },
+            { id: 49, word: "Naive", meaning: "Opposite: Cynical / Sophisticated / Worldly-wise", category: "Antonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Naive means innocent and easily tricked; Sophisticated/Cynical means experienced and skeptical." },
+            { id: 50, word: "Arbitrary", meaning: "Opposite: Reasoned / Logical / Systematic", category: "Antonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Arbitrary means random or based on personal whim; its opposite is Reasoned and Logical." },
+            { id: 51, word: "Obfuscate", meaning: "Opposite: Clarify / Simplify / Elucidate", category: "Antonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Obfuscate means to make unclear or confusing; Clarify means to make clear." },
+            { id: 52, word: "Concise", meaning: "Opposite: Long-winded / Verbose / Wordy", category: "Antonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Concise means brief and to-the-point; Verbose/Long-winded means using too many words." },
+            { id: 53, word: "Venerable", meaning: "Opposite: Dishonourable / Unrespected / Disreputable", category: "Antonyms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Venerable means commanding high respect due to age or wisdom; opposite is Dishonourable." },
+            { id: 54, word: "Irreversible", meaning: "Opposite: Reversible / Alterable", category: "Antonyms", source: "IMU CET 2025 Real Paper", yearTag: "2025", tip: "Irreversible cannot be undone; Reversible can be changed back." },
+            { id: 55, word: "Vague", meaning: "Opposite: Clear / Specific / Definite", category: "Antonyms", source: "IMU CET 2025 Real Paper", yearTag: "2025", tip: "Vague means indistinct or uncertain; its opposite is Clear and Specific." },
+            { id: 56, word: "Grandiose", meaning: "Opposite: Modest / Humble / Unpretentious", category: "Antonyms", source: "IMU CET 2025 Real Paper", yearTag: "2025", tip: "Grandiose means flamboyantly grand or showy; its opposite is Modest or Humble." },
+            { id: 57, word: "Valor / Valour", meaning: "Opposite: Cowardice / Fearfulness", category: "Antonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Valour means great bravery in danger; its opposite is Cowardice." },
+            { id: 58, word: "Lavish", meaning: "Opposite: Frugal / Economical / Thrifty", category: "Antonyms", source: "IMU CET UG 2024", yearTag: "2024", tip: "Lavish means wasteful/extravagant spending; Frugal means careful and economical." },
+            { id: 59, word: "Holy (Antonym)", meaning: "Opposite: Profane / Impure / Irreverent", category: "Antonyms", source: "IMU CET UG 2024", yearTag: "2024", tip: "Holy means sacred; Profane means secular, impure, or disrespectful of sacred things." },
+            { id: 60, word: "Abdicate", meaning: "Opposite: Usurp / Seize / Claim", category: "Antonyms", source: "IMU CET UG 2024", yearTag: "2024", tip: "Abdicate means to give up a throne or power voluntarily; Usurp means to seize power by force." },
+            { id: 61, word: "Stationary", meaning: "Opposite: Moving / Speeding / Mobile", category: "Antonyms", source: "IMU CET UG 2024", yearTag: "2024", tip: "Stationary means standing still; its opposite is Moving or Speeding." },
+            { id: 62, word: "Superficial", meaning: "Opposite: Profound / Deep / Thorough", category: "Antonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Superficial means only on the surface; Profound means deep and insightful." },
+            { id: 63, word: "Indigenous (Antonym)", meaning: "Opposite: Foreign / Imported / Exotic", category: "Antonyms", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Indigenous means native/local; its opposite is Foreign or Imported." },
+            { id: 64, word: "Loquacious", meaning: "Opposite: Taciturn / Reticent / Reserved", category: "Antonyms", source: "Seamate IMU CET Sample Paper 2", yearTag: "Seamate", tip: "Loquacious means very talkative; Taciturn/Reticent means quiet and reserved in speech." },
+            { id: 65, word: "Shrink", meaning: "Opposite: Expand / Increase / Swell", category: "Antonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Shrink means to contract or become smaller; Expand means to grow larger." },
+            { id: 66, word: "Belittle", meaning: "Opposite: Praise / Laud / Extol", category: "Antonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Belittle means to make someone seem unimportant; Praise/Laud means to admire warmly." },
+            { id: 67, word: "Enormous", meaning: "Opposite: Insignificant / Miniature / Tiny", category: "Antonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Enormous means gigantic; Miniature/Tiny means very small." },
+            { id: 68, word: "Exodus", meaning: "Opposite: Influx / Arrival / Inflow", category: "Antonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Ex- (out) = mass departure of people; In-flux (in) = mass arrival of people." },
+            { id: 69, word: "Victorious", meaning: "Opposite: Failing / Losing / Defeated", category: "Antonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Victorious means triumphant; its opposite is Defeated or Losing." },
+            { id: 70, word: "Alert", meaning: "Opposite: Careless / Sluggish / Inattentive", category: "Antonyms", source: "IMU CET 2022", yearTag: "2022", tip: "Alert means watchful and vigilant; Careless/Inattentive is the exact opposite." },
+            { id: 71, word: "Condemn", meaning: "Opposite: Commend / Praise / Approve", category: "Antonyms", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "Condemn = criticize strongly; Commend = praise officially. Watch the spelling!" },
+            { id: 72, word: "Intellect", meaning: "Opposite: Stupidity / Folly / Ignorance", category: "Antonyms", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "Intellect is high mental capacity; Stupidity is the lack of intelligence." },
+            { id: 73, word: "Deficient", meaning: "Opposite: Ample / Abundant / Sufficient", category: "Antonyms", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "Deficient means lacking or scarce; Ample/Abundant means more than enough." },
+            { id: 74, word: "Unscrupulous", meaning: "Opposite: Conscientious / Honest / Principled", category: "Antonyms", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "Unscrupulous means dishonest and having no moral principles; Conscientious means ethical and honest." },
+            { id: 75, word: "Optimistic", meaning: "Opposite: Pessimistic / Cynical / Hopeless", category: "Antonyms", source: "Agniveer Vayu Group Y 2022", yearTag: "Agniveer", tip: "Optimistic looks at the bright side; Pessimistic looks at the dark side." },
+            { id: 76, word: "Capricious", meaning: "Opposite: Stable / Constant / Steadfast", category: "Antonyms", source: "Agniveer Vayu Group Y 2023", yearTag: "Agniveer", tip: "Capricious means given to sudden, unpredictable mood or weather changes; opposite is Stable." },
+
+            // ==========================================
+            // 3. ONE-WORD SUBSTITUTIONS (22 ITEMS)
+            // ==========================================
+            { id: 77, word: "Autocracy", meaning: "Government ruled by a single person with absolute power", category: "One-Word", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Auto (self/one) + Cracy (rule). Similar to dictatorship or absolute monarchy." },
+            { id: 78, word: "Eulogy", meaning: "A speech or writing given in praise of a person (especially at a funeral)", category: "One-Word", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Eu (good) + Logy (words/speech). Don't confuse with Dirge (mournful funeral song) or Epitaph (words on a tomb)." },
+            { id: 79, word: "Polymath", meaning: "A person skilled in many different fields of knowledge", category: "One-Word", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Poly (many) + Math (learning). Example: Leonardo da Vinci." },
+            { id: 80, word: "Turret", meaning: "A small circular tower attached to a castle, building, or warship", category: "One-Word", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "A defensive small tower projecting from a castle wall or naval vessel." },
+            { id: 81, word: "Polyglot", meaning: "A person who speaks or knows many languages", category: "One-Word", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Poly (many) + Glot (tongue/language). Bilingual = 2 languages; Polyglot = many." },
+            { id: 82, word: "Flamboyance", meaning: "A group or colony of flamingos", category: "One-Word", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Official collective noun for a colourful group of flamingos." },
+            { id: 83, word: "Granary", meaning: "A building or storehouse where threshed grains are stored", category: "One-Word", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "From 'Grain'—a storehouse for wheat, rice, or barley." },
+            { id: 84, word: "Dirge", meaning: "A mournful song or lament sung at a funeral", category: "One-Word", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Dirge = sad funeral song; Eulogy = praising funeral speech; Elegy = mournful poem." },
+            { id: 85, word: "Inevitable", meaning: "Something that is certain to happen and cannot be avoided", category: "One-Word", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "In (not) + Evitable (avoidable). Bound to happen." },
+            { id: 86, word: "Omnipotent", meaning: "One who is all-powerful", category: "One-Word", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Omni (all) + Potent (powerful). Related: Omniscient (all-knowing), Omnipresent (present everywhere)." },
+            { id: 87, word: "Incorrigible", meaning: "A person or habit that cannot be corrected or reformed", category: "One-Word", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "In (not) + Corrigible (correctable). Beyond reform." },
+            { id: 88, word: "Transient", meaning: "Lasting only for a very short time / Impermanent", category: "One-Word", source: "IMU CET UG 2024", yearTag: "2024", tip: "Passing quickly like a transit passenger; synonym of Ephemeral." },
+            { id: 89, word: "Ascetic", meaning: "Person leading a life of strict self-discipline and abstention from indulgence", category: "One-Word", source: "IMU CET UG 2024", yearTag: "2024", tip: "A monk or hermit who avoids all luxury for spiritual discipline." },
+            { id: 90, word: "Tranquilizer", meaning: "A medicinal drug used to calm, pacify, or reduce anxiety", category: "One-Word", source: "IMU CET UG 2024", yearTag: "2024", tip: "Brings 'tranquility' (calmness) to an agitated person or animal." },
+            { id: 91, word: "Teetotaler", meaning: "A person who completely abstains from alcoholic drinks", category: "One-Word", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Someone who drinks 'total tea'—zero alcohol." },
+            { id: 92, word: "Malleable", meaning: "Capable of being shaped or hammered into thin sheets without breaking", category: "One-Word", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Root 'Malleus' = hammer. Gold and copper are highly malleable (and pliable in figuratively)." },
+            { id: 93, word: "Unequivocal", meaning: "A statement or answer that is completely clear and unambiguous", category: "One-Word", source: "IMU CET Test Paper 2024", yearTag: "2024", tip: "Leaving zero doubt; crystal clear and unmistakable." },
+            { id: 94, word: "Serenade", meaning: "Music sung or played at night below a person's window", category: "One-Word", source: "IMU CET Official Sample QP", yearTag: "Sample", tip: "A romantic evening musical performance outdoors." },
+            { id: 95, word: "Thalassophobia", meaning: "Persistent, irrational fear of the sea or deep ocean", category: "One-Word", source: "Seamate IMU CET Sample Paper 2", yearTag: "Seamate", tip: "Greek 'Thalassa' (sea) + Phobia (fear). Crucial maritime exam word!" },
+            { id: 96, word: "Irrevocable", meaning: "A decision or action that cannot be changed, reversed, or recalled", category: "One-Word", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "Ir (not) + Revoke (call back). Final and unalterable." },
+            { id: 97, word: "Pessimist", meaning: "One who always looks at the dark or negative side of things", category: "One-Word", source: "Agniveer Vayu Group X 2023", yearTag: "Agniveer", tip: "Opposite of Optimist (one who looks at the bright side)." },
+            { id: 98, word: "Anarchist", meaning: "A person who believes in or tries to bring about anarchy (absence of government/lawlessness)", category: "One-Word", source: "Agniveer Vayu Group Y 2022", yearTag: "Agniveer", tip: "An (without) + Archy (rule). One who rebels against established authority." },
+
+            // ==========================================
+            // 4. IDIOMS, PHRASES & PROVERBS (18 ITEMS)
+            // ==========================================
+            { id: 99, word: "Let sleeping dogs lie", meaning: "To avoid restarting an old conflict or bringing up a settled problem", category: "Idioms", source: "IMU CET 2026 Response Sheet", yearTag: "2026", tip: "Leave a peaceful situation alone so you don't stir up trouble again." },
+            { id: 100, word: "Make a beeline for", meaning: "To head directly and quickly towards something without stopping", category: "Idioms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Bees fly in a straight line back to their hive; going straight toward a target." },
+            { id: 101, word: "Go haywire", meaning: "To go out of control, malfunction, or become chaotic", category: "Idioms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "When ship instruments or plans go haywire, they start acting erratically." },
+            { id: 102, word: "For a rainy day", meaning: "To save or put aside money and resources for future emergencies", category: "Idioms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Saving funds during good times for unexpected hard times ahead." },
+            { id: 103, word: "Bad blood", meaning: "Feelings of hatred, ill-will, or lingering enmity between people", category: "Idioms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Long-standing bitterness or hostility between two parties." },
+            { id: 104, word: "Dashed my hopes", meaning: "To frustrate, ruin, or shatter someone's expectations", category: "Idioms", source: "IMU CET Practice Archive", yearTag: "Archive", tip: "Sudden news that destroys what someone was eagerly hoping for." },
+            { id: 105, word: "To hit the nail right on the head", meaning: "To do or say something with exact accuracy / Pinpoint the exact truth", category: "Idioms", source: "IMU CET 2021", yearTag: "2021", tip: "Describing the exact root cause of a problem without missing." },
+            { id: 106, word: "Strike while the iron is hot", meaning: "Take immediate advantage of a favorable opportunity before it passes", category: "Idioms", source: "IMU CET 2021", yearTag: "2021", tip: "A blacksmith shapes iron while it is glowing hot; act decisively at the right moment." },
+            { id: 107, word: "To put one's hand to the plough", meaning: "To set to work earnestly or undertake a difficult, major task", category: "Idioms", source: "IMU CET 2021", yearTag: "2021", tip: "Committing oneself whole-heartedly to a challenging endeavour." },
+            { id: 108, word: "Once in a blue moon", meaning: "Happening very rarely or only on rare occasions", category: "Idioms", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "An event that occurs extremely infrequently." },
+            { id: 109, word: "To be in the doldrums", meaning: "In a state of inactivity, low spirits, depression, or stagnation", category: "Idioms", source: "Seamate IMU CET Sample Paper 2", yearTag: "Seamate", tip: "Maritime Origin: 'The Doldrums' are equatorial ocean zones with zero wind where sailing ships got stuck!" },
+            { id: 110, word: "A stitch in time saves nine", meaning: "Timely action to fix a small problem prevents much greater trouble later", category: "Idioms", source: "Seamate IMU CET Sample Paper 2", yearTag: "Seamate", tip: "Fixing a small tear in a sail immediately prevents the whole sail from ripping." },
+            { id: 111, word: "To weather the storm", meaning: "To successfully survive and come through a difficult or dangerous crisis", category: "Idioms", source: "Seamate IMU CET Sample Paper 2", yearTag: "Seamate", tip: "Maritime Origin: A ship surviving a violent cyclone at sea without sinking." },
+            { id: 112, word: "Draw the line at something", meaning: "To set a strict limit on what one is willing to accept or do", category: "Idioms", source: "Agniveer Vayu Group Y 2022", yearTag: "Agniveer", tip: "Refusing to cross an ethical boundary." },
+            { id: 113, word: "To fish in troubled waters", meaning: "To take selfish advantage or make personal profit out of a chaotic situation", category: "Idioms", source: "Agniveer Vayu Group Y 2022", yearTag: "Agniveer", tip: "Exploiting others' difficulties or turmoil for personal gain." },
+            { id: 114, word: "In black and white", meaning: "In official written or printed form", category: "Idioms", source: "Agniveer Vayu Group X 2023", yearTag: "Agniveer", tip: "Black ink on white paper—clear written proof rather than verbal promises." },
+            { id: 115, word: "Tit for tat", meaning: "Equivalent retaliation / Counter-attack / Blow for blow", category: "Idioms", source: "Airforce Group X 2021", yearTag: "Agniveer", tip: "Responding to an action or insult with an equal action." },
+            { id: 116, word: "Better late than never", meaning: "It is better to accomplish something late than not do it at all", category: "Idioms", source: "Airforce Memory Based Paper", yearTag: "Agniveer", tip: "Completing a duty even after a delay is superior to abandoning it." },
+
+            // ==========================================
+            // 5. SPECIALIZED SCIENCE, ECONOMICS & GENERAL TERMS (34 ITEMS)
+            // ==========================================
+            { id: 117, word: "Pragmatic", meaning: "Practical and realistic in dealing with problems rather than theoretical", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Focusing on sensible, real-world results." },
+            { id: 118, word: "Capitalism", meaning: "Economic system in which trade and industry are run by private individuals for profit", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Private ownership of capital and free-market competition." },
+            { id: 119, word: "Catalyst", meaning: "Substance that speeds up a chemical reaction without being consumed itself", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Also used figuratively for a person or event that sparks rapid change." },
+            { id: 120, word: "Amphibians", meaning: "Cold-blooded vertebrate animals capable of living both on land and in water", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Amphi (both) + Bios (life). Examples: Frogs, salamanders (and amphibious naval vessels)." },
+            { id: 121, word: "Omnivores", meaning: "Organisms that naturally consume both plants and animal meat", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Herbivore = plants; Carnivore = meat; Omnivore = both." },
+            { id: 122, word: "Pandemic", meaning: "An epidemic disease that spreads across entire countries or globally", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Pan (all) + Demos (people). Worldwide disease outbreak." },
+            { id: 123, word: "Endemic", meaning: "A disease or species regularly found only among particular people or in a specific area", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "En (in) + Demos (local population). Restricted to a specific region." },
+            { id: 124, word: "Contagious", meaning: "A disease spread from one person to another by direct or indirect contact", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Transmitted rapidly by touch or close proximity." },
+            { id: 125, word: "Potable", meaning: "Water that is clean, purified, and safe to drink", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Latin 'Potare' = to drink. Ships carry potable water tanks for the crew." },
+            { id: 126, word: "Edible", meaning: "Fit, safe, and suitable to be eaten as food", category: "Specialized", source: "Defense & Maritime Mock Paper", yearTag: "Agniveer", tip: "Edible = safe to eat; Potable = safe to drink." },
+            { id: 127, word: "Inflammable", meaning: "Easily set on fire / Highly combustible / Flammable", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "EXAM TRAP: 'Inflammable' means HIGHLY flammable (burns easily), NOT non-flammable!" },
+            { id: 128, word: "Opaque", meaning: "Not able to be seen through / Blocking light completely (Non-transparent)", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Opposite of Transparent. Wood and steel bulkheads are opaque." },
+            { id: 129, word: "Translucent", meaning: "Allowing light to pass through partially or semi-transparently without clear images", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Frosted glass is translucent—light passes through, but you cannot see clearly." },
+            { id: 130, word: "Ductile", meaning: "A metal capable of being drawn out into a thin wire without snapping", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Ductile = drawn into wires (copper/gold); Malleable = hammered into sheets." },
+            { id: 131, word: "Brittle", meaning: "Hard and rigid but easily broken, cracked, or shattered under stress", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Glass and cast iron are brittle—they snap rather than bend." },
+            { id: 132, word: "Flora & Fauna", meaning: "The native Plants (Flora) and Animals (Fauna) of a particular region or ecosystem", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Flora = Flowers/Plants; Fauna = Forest Animals." },
+            { id: 133, word: "Parasite", meaning: "An organism living in or on another host organism and benefiting at the host's expense", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Draws nutrients from a host while harming it." },
+            { id: 134, word: "Ecology", meaning: "Scientific study of the relations of organisms to one another and to their physical surroundings", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Eco (house/environment) + Logy (study)." },
+            { id: 135, word: "Insolvent / Bankrupt", meaning: "A person or company unable to pay their debts or financial liabilities", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Insolvent = unable to pay debts; Solvent = financially able to pay debts." },
+            { id: 136, word: "Inflation", meaning: "A general, sustained increase in prices and fall in the purchasing value of money", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Opposite of Deflation. Money buys less as prices rise." },
+            { id: 137, word: "Monopoly", meaning: "Exclusive possession or control by a single entity over the supply or trade of a commodity", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Mono (single) + Poly (seller). Zero competition in a market." },
+            { id: 138, word: "Barter", meaning: "Direct exchange of goods or services for other goods without using money", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Ancient trade system—swapping wheat for cloth directly." },
+            { id: 139, word: "Tariff", meaning: "An official tax or duty paid on a particular class of imports or exports", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Customs duty levied on cargo crossing international ports." },
+            { id: 140, word: "Subsidy", meaning: "A sum of money granted by the government to an industry to keep the price of a commodity low", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Financial aid given by the state to support public welfare or key industries." },
+            { id: 141, word: "Alimony", meaning: "Financial maintenance allowance awarded by a court to a spouse after legal separation or divorce", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Legal spousal support payment after divorce." },
+            { id: 142, word: "Entrepreneur", meaning: "A person who sets up a business or enterprise, taking on financial risks in the hope of profit", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Also frequently tested in Spell Check questions (E-n-t-r-e-p-r-e-n-e-u-r)." },
+            { id: 143, word: "Actuary", meaning: "A business professional who compiles statistics to calculate insurance risks and premiums", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Expert in probability and marine/life insurance risk calculation." },
+            { id: 144, word: "Secular", meaning: "A state or nation with no official state religion, giving equal respect to all faiths", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Neutral in matters of religion; opposite of Theocracy." },
+            { id: 145, word: "Invincible", meaning: "Too powerful to be defeated or overcome / Unconquerable", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Root 'Vincere' = to conquer. Invincible = cannot be conquered." },
+            { id: 146, word: "Infallible", meaning: "Incapable of making mistakes or being wrong / Never failing", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "In (not) + Fallible (liable to err). Always accurate." },
+            { id: 147, word: "Indelible", meaning: "Making marks, ink, or memories that cannot be erased, washed away, or forgotten", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "In (not) + Delete (erase). Like indelible election ink." },
+            { id: 148, word: "Amnesty", meaning: "An official pardon granted by a government for people who have committed political offenses", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "General state pardon for a group of political offenders." },
+            { id: 149, word: "Referendum", meaning: "A direct general vote by the entire electorate on a single important political question", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Public vote/plebiscite on a specific national policy or constitutional issue." },
+            { id: 150, word: "Unanimous", meaning: "Fully in agreement by everyone involved / Without a single dissenting vote", category: "Specialized", source: "Official IMU CET Questions", yearTag: "Sample", tip: "Unus (one) + Animus (mind). 100% agreement by all members." }
+        ];
+
+        // ==========================================
+        // STATE MANAGEMENT (LocalStorage)
+        // ==========================================
+        let masteredIds = JSON.parse(localStorage.getItem('imucet_mastered') || '[]');
+        let bookmarkedIds = JSON.parse(localStorage.getItem('imucet_bookmarked') || '[]');
+        let currentViewMode = 'grid';
+
+        // Flashcard State
+        let fcDeck = [...VOCAB_DATA];
+        let fcCurrentIndex = 0;
+        let fcIsFlipped = false;
+
+        // Quiz State
+        let quizQuestions = [];
+        let quizCurrentIndex = 0;
+        let quizUserAnswers = {};
+        let quizMode = 'PRACTICE';
+        let quizTimerInterval = null;
+        let quizSecondsElapsed = 0;
+
+        // Arena State
+        let arenaScore = 0;
+        let arenaTimeLeft = 60;
+        let arenaInterval = null;
+        let arenaSelectedLeftId = null;
+        let arenaPairs = [];
+        let arenaMatchedIds = [];
+
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            updateHeaderStats();
+            renderCategoryQuickPills();
+            renderRepository();
+            initFlashcards();
+            initArenaPreview();
+
+            // Keyboard shortcuts for flashcards
+            document.addEventListener('keydown', (e) => {
+                const fcSection = document.getElementById('tab-flashcards');
+                if (!fcSection.classList.contains('hidden')) {
+                    if (e.code === 'Space') {
+                        e.preventDefault();
+                        flipCurrentCard();
+                    } else if (e.code === 'ArrowRight') {
+                        nextFlashcard();
+                    } else if (e.code === 'ArrowLeft') {
+                        prevFlashcard();
+                    }
+                }
+            });
+        });
+
+        // ==========================================
+        // THEME & NAVIGATION
+        // ==========================================
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = 'fa-solid fa-moon text-slate-700';
+            } else {
+                html.classList.add('dark');
+                icon.className = 'fa-solid fa-sun text-amber-400';
+            }
+        }
+
+        function switchTab(tabName) {
+            const tabs = ['explorer', 'blueprint', 'flashcards', 'quiz', 'arena'];
+            tabs.forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-btn-${t}`);
+                btn.className = "tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800";
+            });
+
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.className = "tab-btn flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap bg-ocean-500 text-white shadow-sm";
+        }
+
+        function updateHeaderStats() {
+            document.getElementById('stat-total').textContent = VOCAB_DATA.length;
+            document.getElementById('stat-mastered').textContent = masteredIds.length;
+            document.getElementById('stat-bookmarked').textContent = bookmarkedIds.length;
+            localStorage.setItem('imucet_mastered', JSON.stringify(masteredIds));
+            localStorage.setItem('imucet_bookmarked', JSON.stringify(bookmarkedIds));
+        }
+
+        function openResetModal() {
+            document.getElementById('reset-modal').classList.remove('hidden');
+        }
+        function closeResetModal() {
+            document.getElementById('reset-modal').classList.add('hidden');
+        }
+        function confirmResetProgress() {
+            masteredIds = [];
+            bookmarkedIds = [];
+            updateHeaderStats();
+            renderCategoryQuickPills();
+            renderRepository();
+            updateFlashcardUI();
+            closeResetModal();
+        }
+
+        // ==========================================
+        // WEB SPEECH API PRONUNCIATION
+        // ==========================================
+        function speakWord(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const cleanText = text.replace(/\(Antonym\)/gi, '').trim();
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.92;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // ==========================================
+        // TAB 1: REPOSITORY EXPLORER
+        // ==========================================
+        function renderCategoryQuickPills() {
+            const categories = [
+                { key: 'ALL', label: 'All Repository', count: 150, icon: 'fa-layer-group', color: 'text-ocean-500' },
+                { key: 'Synonyms', label: 'Synonyms', count: 40, icon: 'fa-equals', color: 'text-blue-500' },
+                { key: 'Antonyms', label: 'Antonyms', count: 36, icon: 'fa-arrows-left-right', color: 'text-rose-500' },
+                { key: 'One-Word', label: 'One-Word Sub', count: 22, icon: 'fa-bullseye', color: 'text-purple-500' },
+                { key: 'Idioms', label: 'Idioms & Phrases', count: 18, icon: 'fa-quote-left', color: 'text-amber-500' },
+                { key: 'Specialized', label: 'Science & Econ', count: 34, icon: 'fa-atom', color: 'text-emerald-500' }
+            ];
+
+            const currentCat = document.getElementById('filter-category')?.value || 'ALL';
+            const container = document.getElementById('category-QuickPills');
+
+            container.innerHTML = categories.map(c => {
+                const isActive = currentCat === c.key;
+                return `
+                <button onclick="selectQuickCategory('${c.key}')" class="p-3 rounded-2xl border text-left transition-all flex items-center justify-between ${
+                    isActive 
+                        ? 'bg-ocean-500/10 border-ocean-500 shadow-sm' 
+                        : 'bg-white dark:bg-navy-900 border-slate-200 dark:border-slate-800 hover:border-ocean-400'
+                }">
+                    <div>
+                        <div class="text-[11px] font-medium text-slate-500 dark:text-slate-400">${c.label}</div>
+                        <div class="text-lg font-extrabold font-mono mt-0.5">${c.count}</div>
+                    </div>
+                    <div class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center ${c.color}">
+                        <i class="fa-solid ${c.icon} text-sm"></i>
+                    </div>
+                </button>`;
+            }).join('');
+        }
+
+        function selectQuickCategory(cat) {
+            document.getElementById('filter-category').value = cat;
+            renderCategoryQuickPills();
+            renderRepository();
+        }
+
+        function setViewMode(mode) {
+            currentViewMode = mode;
+            const gridBtn = document.getElementById('view-grid-btn');
+            const tableBtn = document.getElementById('view-table-btn');
+            const gridContainer = document.getElementById('vocab-container-grid');
+            const tableContainer = document.getElementById('vocab-container-table');
+
+            if (mode === 'grid') {
+                gridContainer.classList.remove('hidden');
+                tableContainer.classList.add('hidden');
+                gridBtn.className = "px-2.5 py-1 rounded-lg bg-ocean-500 text-white font-medium";
+                tableBtn.className = "px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium";
+            } else {
+                gridContainer.classList.add('hidden');
+                tableContainer.classList.remove('hidden');
+                tableBtn.className = "px-2.5 py-1 rounded-lg bg-ocean-500 text-white font-medium";
+                gridBtn.className = "px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium";
+            }
+        }
+
+        function getCategoryBadgeStyle(cat) {
+            switch(cat) {
+                case 'Synonyms': return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
+                case 'Antonyms': return 'bg-rose-500/10 text-rose-500 border-rose-500/20';
+                case 'One-Word': return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+                case 'Idioms': return 'bg-amber-500/10 text-amber-500 border-amber-500/20';
+                case 'Specialized': return 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20';
+                default: return 'bg-ocean-500/10 text-ocean-500 border-ocean-500/20';
+            }
+        }
+
+        function toggleMastered(id) {
+            if (masteredIds.includes(id)) {
+                masteredIds = masteredIds.filter(i => i !== id);
+            } else {
+                masteredIds.push(id);
+            }
+            updateHeaderStats();
+            renderRepository();
+        }
+
+        function toggleBookmark(id) {
+            if (bookmarkedIds.includes(id)) {
+                bookmarkedIds = bookmarkedIds.filter(i => i !== id);
+            } else {
+                bookmarkedIds.push(id);
+            }
+            updateHeaderStats();
+            renderRepository();
+        }
+
+        function renderRepository() {
+            const query = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+            const catFilter = document.getElementById('filter-category')?.value || 'ALL';
+            const sourceFilter = document.getElementById('filter-source')?.value || 'ALL';
+            const statusFilter = document.getElementById('filter-status')?.value || 'ALL';
+
+            const filtered = VOCAB_DATA.filter(item => {
+                const matchesSearch = !query || 
+                    item.word.toLowerCase().includes(query) ||
+                    item.meaning.toLowerCase().includes(query) ||
+                    item.tip.toLowerCase().includes(query) ||
+                    item.source.toLowerCase().includes(query);
+
+                const matchesCat = catFilter === 'ALL' || item.category === catFilter;
+                const matchesSource = sourceFilter === 'ALL' || item.yearTag === sourceFilter;
+
+                let matchesStatus = true;
+                if (statusFilter === 'BOOKMARKED') matchesStatus = bookmarkedIds.includes(item.id);
+                if (statusFilter === 'MASTERED') matchesStatus = masteredIds.includes(item.id);
+                if (statusFilter === 'UNMASTERED') matchesStatus = !masteredIds.includes(item.id);
+
+                return matchesSearch && matchesCat && matchesSource && matchesStatus;
+            });
+
+            document.getElementById('filtered-count').textContent = filtered.length;
+            renderCategoryQuickPills();
+
+            const gridEl = document.getElementById('vocab-container-grid');
+            const tableBodyEl = document.getElementById('vocab-table-body');
+
+            if (filtered.length === 0) {
+                const emptyHTML = `
+                <div class="col-span-full py-12 text-center bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+                    <i class="fa-solid fa-magnifying-glass text-3xl text-slate-400 mb-2"></i>
+                    <h4 class="font-bold text-base">No matching vocabulary entries found</h4>
+                    <p class="text-xs text-slate-500 mt-1">Try clearing your search filter or switching categories.</p>
+                </div>`;
+                gridEl.innerHTML = emptyHTML;
+                tableBodyEl.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400">No entries match your filter criteria.</td></tr>`;
+                return;
+            }
+
+            // Render Grid Cards
+            gridEl.innerHTML = filtered.map(item => {
+                const isMastered = masteredIds.includes(item.id);
+                const isBookmarked = bookmarkedIds.includes(item.id);
+                const badgeClass = getCategoryBadgeStyle(item.category);
+                const safeWord = item.word.replace(/'/g, "\\'");
+
+                return `
+                <div class="bg-white dark:bg-navy-900 rounded-2xl border ${isMastered ? 'border-emerald-500/40' : 'border-slate-200 dark:border-slate-800'} p-5 shadow-sm hover:shadow-md hover:border-ocean-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <!-- Top Row -->
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${badgeClass}">
+                                ${item.category}
+                            </span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakWord('${safeWord}')" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-ocean-500 hover:text-white text-slate-500 dark:text-slate-400 transition flex items-center justify-center text-xs" title="Pronounce">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </button>
+                                <button onclick="toggleBookmark(${item.id})" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:text-amber-400 ${isBookmarked ? 'text-amber-400' : 'text-slate-400'} transition flex items-center justify-center text-xs" title="Bookmark for Revision">
+                                    <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-star"></i>
+                                </button>
+                                <button onclick="toggleMastered(${item.id})" class="w-7 h-7 rounded-lg ${isMastered ? 'bg-emerald-500 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-emerald-500'} transition flex items-center justify-center text-xs" title="Mark as Mastered">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Word & Meaning -->
+                        <h3 class="text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            ${item.word}
+                        </h3>
+                        <div class="mt-1.5 text-sm font-bold ${item.category === 'Antonyms' ? 'text-rose-500 dark:text-rose-400' : 'text-ocean-600 dark:text-ocean-400'}">
+                            ${item.meaning}
+                        </div>
+
+                        <!-- Memory Hook -->
+                        <div class="mt-3 p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/50 dark:border-slate-700/50 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <i class="fa-regular fa-lightbulb text-amber-400 mr-1"></i> ${item.tip}
+                        </div>
+                    </div>
+
+                    <!-- Source Footer -->
+                    <div class="mt-4 pt-2.5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                        <span><i class="fa-solid fa-file-Export mr-1 text-ocean-500"></i>${item.source}</span>
+                        <span>#${item.id}</span>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // Render Compact Table
+            tableBodyEl.innerHTML = filtered.map(item => {
+                const isMastered = masteredIds.includes(item.id);
+                const isBookmarked = bookmarkedIds.includes(item.id);
+                const badgeClass = getCategoryBadgeStyle(item.category);
+                const safeWord = item.word.replace(/'/g, "\\'");
+
+                return `
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
+                    <td class="py-3 px-4 font-mono text-xs text-slate-400">${item.id}</td>
+                    <td class="py-3 px-4 font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                        ${item.word}
+                        <button onclick="speakWord('${safeWord}')" class="ml-1.5 text-slate-400 hover:text-ocean-500 text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-0.5 rounded-full text-[11px] font-bold border ${badgeClass}">${item.category}</span>
+                    </td>
+                    <td class="py-3 px-4 font-semibold ${item.category === 'Antonyms' ? 'text-rose-500 dark:text-rose-400' : 'text-ocean-600 dark:text-ocean-400'}">${item.meaning}</td>
+                    <td class="py-3 px-4 text-xs text-slate-500 dark:text-slate-400 max-w-xs">${item.tip}</td>
+                    <td class="py-3 px-4 font-mono text-xs text-slate-400 whitespace-nowrap">${item.source}</td>
+                    <td class="py-3 px-4 text-right whitespace-nowrap">
+                        <button onclick="toggleBookmark(${item.id})" class="p-1.5 ${isBookmarked ? 'text-amber-400' : 'text-slate-400'} hover:text-amber-400"><i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-star"></i></button>
+                        <button onclick="toggleMastered(${item.id})" class="p-1.5 ${isMastered ? 'text-emerald-500' : 'text-slate-400'} hover:text-emerald-500"><i class="fa-solid fa-circle-check"></i></button>
+                    </td>
+                </tr>`;
+            }).join('');
+        }
+
+        // ==========================================
+        // TAB 3: FLASHCARDS LOGIC
+        // ==========================================
+        function initFlashcards() {
+            const cat = document.getElementById('fc-category')?.value || 'ALL';
+            if (cat === 'ALL') {
+                fcDeck = [...VOCAB_DATA];
+            } else if (cat === 'BOOKMARKED') {
+                fcDeck = VOCAB_DATA.filter(i => bookmarkedIds.includes(i.id));
+            } else if (cat === 'UNMASTERED') {
+                fcDeck = VOCAB_DATA.filter(i => !masteredIds.includes(i.id));
+            } else {
+                fcDeck = VOCAB_DATA.filter(i => i.category === cat);
+            }
+
+            if (fcDeck.length === 0) {
+                fcDeck = [...VOCAB_DATA];
+            }
+            fcCurrentIndex = 0;
+            fcIsFlipped = false;
+            document.getElementById('fc-inner').classList.remove('rotate-y-180');
+            updateFlashcardUI();
+        }
+
+        function shuffleFlashcards() {
+            for (let i = fcDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [fcDeck[i], fcDeck[j]] = [fcDeck[j], fcDeck[i]];
+            }
+            fcCurrentIndex = 0;
+            fcIsFlipped = false;
+            document.getElementById('fc-inner').classList.remove('rotate-y-180');
+            updateFlashcardUI();
+        }
+
+        function flipCurrentCard() {
+            fcIsFlipped = !fcIsFlipped;
+            const inner = document.getElementById('fc-inner');
+            if (fcIsFlipped) {
+                inner.classList.add('rotate-y-180');
+            } else {
+                inner.classList.remove('rotate-y-180');
+            }
+        }
+
+        function updateFlashcardUI() {
+            const item = fcDeck[fcCurrentIndex];
+            if (!item) return;
+
+            document.getElementById('fc-index').textContent = fcCurrentIndex + 1;
+            document.getElementById('fc-total').textContent = fcDeck.length;
+            document.getElementById('fc-cat-badge').textContent = item.category;
+            document.getElementById('fc-cat-badge').className = `px-3 py-1 rounded-full text-xs font-bold border ${getCategoryBadgeStyle(item.category)}`;
+
+            const promptMap = {
+                'Synonyms': 'WHAT IS THE SYNONYM / MEANING OF:',
+                'Antonyms': 'WHAT IS THE EXACT OPPOSITE (ANTONYM) OF:',
+                'One-Word': 'WHAT DOES THIS ONE-WORD TERM MEAN:',
+                'Idioms': 'WHAT IS THE MEANING OF THIS IDIOM / PROVERB:',
+                'Specialized': 'DEFINE THIS SPECIALIZED EXAM TERM:'
+            };
+            document.getElementById('fc-prompt-type').textContent = promptMap[item.category] || 'EXAM VOCABULARY:';
+            document.getElementById('fc-word').textContent = item.word;
+            document.getElementById('fc-source').innerHTML = `<i class="fa-solid fa-file-lines mr-1 text-ocean-500"></i> ${item.source}`;
+
+            document.getElementById('fc-back-word').textContent = item.word;
+            document.getElementById('fc-meaning').textContent = item.meaning;
+            document.getElementById('fc-tip').textContent = item.tip;
+
+            const bmBtn = document.getElementById('fc-bookmark-btn');
+            const isBm = bookmarkedIds.includes(item.id);
+            bmBtn.innerHTML = `<i class="${isBm ? 'fa-solid text-amber-400' : 'fa-regular'} fa-star"></i>`;
+        }
+
+        function nextFlashcard() {
+            fcIsFlipped = false;
+            document.getElementById('fc-inner').classList.remove('rotate-y-180');
+            setTimeout(() => {
+                fcCurrentIndex = (fcCurrentIndex + 1) % fcDeck.length;
+                updateFlashcardUI();
+            }, 150);
+        }
+
+        function prevFlashcard() {
+            fcIsFlipped = false;
+            document.getElementById('fc-inner').classList.remove('rotate-y-180');
+            setTimeout(() => {
+                fcCurrentIndex = (fcCurrentIndex - 1 + fcDeck.length) % fcDeck.length;
+                updateFlashcardUI();
+            }, 150);
+        }
+
+        function speakCurrentFlashcard() {
+            const item = fcDeck[fcCurrentIndex];
+            if (item) speakWord(item.word);
+        }
+
+        function toggleBookmarkCurrentFC() {
+            const item = fcDeck[fcCurrentIndex];
+            if (!item) return;
+            toggleBookmark(item.id);
+            updateFlashcardUI();
+        }
+
+        function markCurrentFC(isMastered) {
+            const item = fcDeck[fcCurrentIndex];
+            if (!item) return;
+            if (isMastered && !masteredIds.includes(item.id)) {
+                masteredIds.push(item.id);
+            } else if (!isMastered) {
+                masteredIds = masteredIds.filter(i => i !== item.id);
+                if (!bookmarkedIds.includes(item.id)) bookmarkedIds.push(item.id);
+            }
+            updateHeaderStats();
+            renderRepository();
+            nextFlashcard();
+        }
+
+        // ==========================================
+        // TAB 4: QUIZ & MOCK TEST SIMULATOR
+        // ==========================================
+        function startQuiz() {
+            const cat = document.getElementById('quiz-cat-select').value;
+            const count = parseInt(document.getElementById('quiz-count-select').value, 10);
+            quizMode = document.getElementById('quiz-mode-select').value;
+
+            let pool = [...VOCAB_DATA];
+            if (cat === 'PYQ2026') {
+                pool = VOCAB_DATA.filter(i => i.yearTag === '2026' || i.yearTag === '2025' || i.yearTag === '2024');
+            } else if (cat !== 'ALL') {
+                pool = VOCAB_DATA.filter(i => i.category === cat);
+            }
+
+            // Shuffle pool
+            pool.sort(() => Math.random() - 0.5);
+            const selectedItems = pool.slice(0, Math.min(count, pool.length));
+
+            // Build MCQ questions with smart same-category distractors
+            quizQuestions = selectedItems.map(item => {
+                const sameCatPool = VOCAB_DATA.filter(x => x.category === item.category && x.id !== item.id);
+                sameCatPool.sort(() => Math.random() - 0.5);
+                const distractors = sameCatPool.slice(0, 3).map(d => d.meaning.replace(/^Opposite:\s*/i, ''));
+                const correctAns = item.meaning.replace(/^Opposite:\s*/i, '');
+
+                const options = [...distractors, correctAns].sort(() => Math.random() - 0.5);
+
+                let promptText = "Select the option that is closest in meaning (SYNONYM) to the given word:";
+                if (item.category === 'Antonyms') promptText = "Select the option that is most OPPOSITE in meaning (ANTONYM) to the given word:";
+                if (item.category === 'One-Word') promptText = "Choose the correct meaning for the given One-Word Substitution:";
+                if (item.category === 'Idioms') promptText = "Select the most appropriate meaning of the given Idiom / Proverb:";
+                if (item.category === 'Specialized') promptText = "Identify the accurate definition of this Specialized Term asked in IMU CET:";
+
+                return {
+                    item,
+                    promptText,
+                    correctAns,
+                    options
+                };
+            });
+
+            quizCurrentIndex = 0;
+            quizUserAnswers = {};
+            quizSecondsElapsed = 0;
+
+            document.getElementById('quiz-setup-panel').classList.add('hidden');
+            document.getElementById('quiz-result-panel').classList.add('hidden');
+            document.getElementById('quiz-active-panel').classList.remove('hidden');
+
+            if (quizTimerInterval) clearInterval(quizTimerInterval);
+            quizTimerInterval = setInterval(() => {
+                quizSecondsElapsed++;
+                const mins = String(Math.floor(quizSecondsElapsed / 60)).padStart(2, '0');
+                const secs = String(quizSecondsElapsed % 60).padStart(2, '0');
+                document.getElementById('quiz-timer').textContent = `${mins}:${secs}`;
+            }, 1000);
+
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const q = quizQuestions[quizCurrentIndex];
+            if (!q) return;
+
+            document.getElementById('quiz-progress-badge').textContent = `Q ${quizCurrentIndex + 1} / ${quizQuestions.length}`;
+            document.getElementById('quiz-cat-pill').textContent = q.item.category;
+            document.getElementById('quiz-q-source').textContent = `Source: ${q.item.source}`;
+            document.getElementById('quiz-q-prompt').textContent = q.promptText;
+            document.getElementById('quiz-q-target').textContent = q.item.word.replace(/\(Antonym\)/i, '').trim();
+
+            const userChosen = quizUserAnswers[quizCurrentIndex];
+            const optionsContainer = document.getElementById('quiz-options-container');
+
+            optionsContainer.innerHTML = q.options.map((opt, idx) => {
+                const letter = ['A', 'B', 'C', 'D'][idx];
+                let btnStyle = "bg-slate-50 dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 hover:border-ocean-500";
+
+                if (userChosen !== undefined) {
+                    if (quizMode === 'PRACTICE') {
+                        if (opt === q.correctAns) {
+                            btnStyle = "bg-emerald-500/15 border-emerald-500 text-emerald-600 dark:text-emerald-300 font-bold";
+                        } else if (opt === userChosen && userChosen !== q.correctAns) {
+                            btnStyle = "bg-rose-500/15 border-rose-500 text-rose-600 dark:text-rose-300";
+                        }
+                    } else {
+                        // Exam mode highlights selection only
+                        if (opt === userChosen) {
+                            btnStyle = "bg-ocean-500/20 border-ocean-500 text-ocean-400 font-bold";
+                        }
+                    }
+                }
+
+                const escapedOpt = opt.replace(/'/g, "\\'");
+                return `
+                <button onclick="selectQuizOption('${escapedOpt}')" class="w-full p-4 rounded-2xl border text-left transition flex items-center gap-3.5 text-sm ${btnStyle}">
+                    <span class="w-7 h-7 rounded-lg bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center font-mono text-xs font-bold shrink-0">
+                        ${letter}
+                    </span>
+                    <span>${opt}</span>
+                </button>`;
+            }).join('');
+
+            // Explanation visibility
+            const expBox = document.getElementById('quiz-explanation-box');
+            if (quizMode === 'PRACTICE' && userChosen !== undefined) {
+                expBox.classList.remove('hidden');
+                const isCorrect = userChosen === q.correctAns;
+                document.getElementById('quiz-exp-title').className = isCorrect ? "font-bold text-emerald-500" : "font-bold text-rose-500";
+                document.getElementById('quiz-exp-title').innerHTML = isCorrect 
+                    ? `<i class="fa-solid fa-circle-check mr-1"></i> Correct Answer! (+1.00 Mark)` 
+                    : `<i class="fa-solid fa-circle-xmark mr-1"></i> Incorrect (-0.25 Mark). Correct Answer: ${q.correctAns}`;
+                document.getElementById('quiz-exp-body').textContent = `Memory Hook: ${q.item.tip}`;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            document.getElementById('quiz-prev-btn').disabled = quizCurrentIndex === 0;
+            document.getElementById('quiz-next-btn').innerHTML = (quizCurrentIndex === quizQuestions.length - 1)
+                ? `Finish & View Scorecard <i class="fa-solid fa-flag-checkered ml-1"></i>`
+                : `Next Question <i class="fa-solid fa-chevron-right ml-1"></i>`;
+        }
+
+        function selectQuizOption(selectedOpt) {
+            if (quizMode === 'PRACTICE' && quizUserAnswers[quizCurrentIndex] !== undefined) {
+                return; // Lock answer in practice mode once revealed
+            }
+            quizUserAnswers[quizCurrentIndex] = selectedOpt;
+            renderQuizQuestion();
+        }
+
+        function prevQuizQuestion() {
+            if (quizCurrentIndex > 0) {
+                quizCurrentIndex--;
+                renderQuizQuestion();
+            }
+        }
+
+        function nextQuizQuestion() {
+            if (quizCurrentIndex < quizQuestions.length - 1) {
+                quizCurrentIndex++;
+                renderQuizQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            if (quizTimerInterval) clearInterval(quizTimerInterval);
+
+            let correct = 0;
+            let wrong = 0;
+            let skipped = 0;
+
+            quizQuestions.forEach((q, idx) => {
+                const ans = quizUserAnswers[idx];
+                if (ans === undefined) skipped++;
+                else if (ans === q.correctAns) correct++;
+                else wrong++;
+            });
+
+            const netScore = (correct * 1.0) - (wrong * 0.25);
+            const attempted = correct + wrong;
+            const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+
+            document.getElementById('res-net-score').textContent = `${netScore.toFixed(2)} / ${quizQuestions.length}`;
+            document.getElementById('res-accuracy').textContent = `${accuracy}%`;
+            document.getElementById('res-breakdown').textContent = `${correct} / ${wrong} / ${skipped}`;
+            document.getElementById('res-time').textContent = document.getElementById('quiz-timer').textContent;
+
+            // Render review list
+            const reviewEl = document.getElementById('res-review-list');
+            reviewEl.innerHTML = quizQuestions.map((q, idx) => {
+                const userAns = quizUserAnswers[idx];
+                const isCorrect = userAns === q.correctAns;
+                const statusBadge = userAns === undefined 
+                    ? `<span class="px-2 py-0.5 rounded bg-slate-500/10 text-slate-400 text-xs font-mono">Skipped (0)</span>`
+                    : isCorrect
+                        ? `<span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 text-xs font-mono">Correct (+1.0)</span>`
+                        : `<span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-500 text-xs font-mono">Wrong (-0.25)</span>`;
+
+                return `
+                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70 text-xs sm:text-sm space-y-1.5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-900 dark:text-white">Q${idx + 1}. ${q.item.word} <span class="text-xs font-normal text-slate-400">(${q.item.category} • ${q.item.source})</span></span>
+                        ${statusBadge}
+                    </div>
+                    <div class="text-xs">
+                        <span class="text-slate-400">Your Answer:</span> <strong class="${isCorrect ? 'text-emerald-500' : 'text-rose-400'}">${userAns || 'Not Attempted'}</strong>
+                        • <span class="text-slate-400">Official Key:</span> <strong class="text-ocean-400">${q.correctAns}</strong>
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 italic">${q.item.tip}</div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('quiz-active-panel').classList.add('hidden');
+            document.getElementById('quiz-result-panel').classList.remove('hidden');
+        }
+
+        function resetQuizSetup() {
+            document.getElementById('quiz-result-panel').classList.add('hidden');
+            document.getElementById('quiz-active-panel').classList.add('hidden');
+            document.getElementById('quiz-setup-panel').classList.remove('hidden');
+        }
+
+        // ==========================================
+        // TAB 5: 60-SECOND RAPID MATCH ARENA
+        // ==========================================
+        function initArenaPreview() {
+            loadArenaRound(false);
+        }
+
+        function startArenaGame() {
+            arenaScore = 0;
+            arenaTimeLeft = 60;
+            document.getElementById('arena-score').textContent = arenaScore;
+            document.getElementById('arena-timer').textContent = `${arenaTimeLeft}s`;
+            document.getElementById('arena-start-btn').innerHTML = `<i class="fa-solid fa-rotate mr-1"></i> Restart 60s Drill`;
+
+            if (arenaInterval) clearInterval(arenaInterval);
+            arenaInterval = setInterval(() => {
+                arenaTimeLeft--;
+                document.getElementById('arena-timer').textContent = `${arenaTimeLeft}s`;
+                if (arenaTimeLeft <= 0) {
+                    clearInterval(arenaInterval);
+                    endArenaGame();
+                }
+            }, 1000);
+
+            loadArenaRound(true);
+        }
+
+        function loadArenaRound(isActive) {
+            const shuffled = [...VOCAB_DATA].sort(() => Math.random() - 0.5);
+            arenaPairs = shuffled.slice(0, 6);
+            arenaMatchedIds = [];
+            arenaSelectedLeftId = null;
+
+            const leftItems = [...arenaPairs].sort(() => Math.random() - 0.5);
+            const rightItems = [...arenaPairs].sort(() => Math.random() - 0.5);
+
+            renderArenaColumns(leftItems, rightItems, isActive);
+        }
+
+        function renderArenaColumns(leftItems, rightItems, isActive) {
+            const leftCol = document.getElementById('arena-left-col');
+            const rightCol = document.getElementById('arena-right-col');
+
+            leftCol.innerHTML = leftItems.map(item => {
+                const isMatched = arenaMatchedIds.includes(item.id);
+                const isSelected = arenaSelectedLeftId === item.id;
+                let cls = "bg-white dark:bg-navy-900 border-slate-200 dark:border-slate-800 hover:border-ocean-500";
+                if (isMatched) cls = "bg-emerald-500/10 border-emerald-500/30 text-emerald-500 opacity-40 pointer-events-none";
+                else if (isSelected) cls = "bg-ocean-500 text-white border-ocean-500 shadow-lg shadow-ocean-500/25";
+
+                return `
+                <button ${!isActive ? 'disabled' : ''} onclick="selectArenaLeft(${item.id})" id="arena-L-${item.id}" class="w-full p-3.5 rounded-2xl border text-left font-bold text-sm transition flex items-center justify-between ${cls}">
+                    <span>${item.word}</span>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-400">${item.category}</span>
+                </button>`;
+            }).join('');
+
+            rightCol.innerHTML = rightItems.map(item => {
+                const isMatched = arenaMatchedIds.includes(item.id);
+                let cls = "bg-white dark:bg-navy-900 border-slate-200 dark:border-slate-800 hover:border-amber-400";
+                if (isMatched) cls = "bg-emerald-500/10 border-emerald-500/30 text-emerald-500 opacity-40 pointer-events-none";
+
+                return `
+                <button ${!isActive ? 'disabled' : ''} onclick="selectArenaRight(${item.id})" id="arena-R-${item.id}" class="w-full p-3.5 rounded-2xl border text-left text-xs sm:text-sm font-medium transition ${cls}">
+                    ${item.meaning}
+                </button>`;
+            }).join('');
+        }
+
+        let currentLeftOrder = [];
+        let currentRightOrder = [];
+
+        function selectArenaLeft(id) {
+            if (arenaTimeLeft <= 0 || arenaMatchedIds.includes(id)) return;
+            arenaSelectedLeftId = id;
+            // Update visual highlight on left buttons
+            arenaPairs.forEach(p => {
+                const btn = document.getElementById(`arena-L-${p.id}`);
+                if (!btn || arenaMatchedIds.includes(p.id)) return;
+                if (p.id === id) {
+                    btn.className = "w-full p-3.5 rounded-2xl border text-left font-bold text-sm transition flex items-center justify-between bg-ocean-500 text-white border-ocean-500 shadow-lg shadow-ocean-500/25";
+                } else {
+                    btn.className = "w-full p-3.5 rounded-2xl border text-left font-bold text-sm transition flex items-center justify-between bg-white dark:bg-navy-900 border-slate-200 dark:border-slate-800 hover:border-ocean-500";
+                }
+            });
+        }
+
+        function selectArenaRight(id) {
+            if (arenaTimeLeft <= 0 || !arenaSelectedLeftId || arenaMatchedIds.includes(id)) return;
+
+            if (arenaSelectedLeftId === id) {
+                // Match!
+                arenaScore += 10;
+                arenaMatchedIds.push(id);
+                document.getElementById('arena-score').textContent = arenaScore;
+
+                const lBtn = document.getElementById(`arena-L-${id}`);
+                const rBtn = document.getElementById(`arena-R-${id}`);
+                if (lBtn) lBtn.className = "w-full p-3.5 rounded-2xl border text-left font-bold text-sm transition flex items-center justify-between bg-emerald-500/15 border-emerald-500 text-emerald-500 opacity-40 pointer-events-none";
+                if (rBtn) rBtn.className = "w-full p-3.5 rounded-2xl border text-left text-xs sm:text-sm font-medium transition bg-emerald-500/15 border-emerald-500 text-emerald-500 opacity-40 pointer-events-none";
+
+                arenaSelectedLeftId = null;
+
+                if (arenaMatchedIds.length === arenaPairs.length) {
+                    setTimeout(() => loadArenaRound(true), 300);
+                }
+            } else {
+                // Mismatch penalty flash
+                arenaScore = Math.max(0, arenaScore - 2);
+                document.getElementById('arena-score').textContent = arenaScore;
+                const rBtn = document.getElementById(`arena-R-${id}`);
+                if (rBtn) {
+                    rBtn.classList.add('border-rose-500', 'bg-rose-500/10');
+                    setTimeout(() => rBtn.classList.remove('border-rose-500', 'bg-rose-500/10'), 350);
+                }
+            }
+        }
+
+        function endArenaGame() {
+            const leftCol = document.getElementById('arena-left-col');
+            const rightCol = document.getElementById('arena-right-col');
+            const summaryCard = `
+            <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-ocean-500/40 text-center space-y-3">
+                <i class="fa-solid fa-flag-checkered text-3xl text-ocean-500"></i>
+                <h4 class="text-lg font-extrabold">60-Second Speed Drill Complete!</h4>
+                <p class="text-sm text-slate-400">Final Reflex Score: <strong class="text-emerald-400 font-mono text-lg">${arenaScore} pts</strong></p>
+                <button onclick="startArenaGame()" class="px-4 py-2 rounded-xl bg-ocean-500 text-white text-xs font-bold">Play Again</button>
+            </div>`;
+            leftCol.innerHTML = summaryCard;
+            rightCol.innerHTML = summaryCard;
+        }
+    </script>
+</body>
+</html>

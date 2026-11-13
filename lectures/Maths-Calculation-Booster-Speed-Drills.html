@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculation Booster - Complete English Interactive Notes, Drills & Quizzes | Parmar SSC</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #edf2f9;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #dc2626;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-dark: #60a5fa;
+      --secondary: #f87171;
+      --accent: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --border: #334155;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 310px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand {
+      padding: 20px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+    }
+
+    .brand h1 { font-size: 1.18rem; font-weight: 800; letter-spacing: 0.4px; }
+    .brand p { font-size: 0.8rem; opacity: 0.92; margin-top: 4px; }
+
+    .stats-bar {
+      padding: 12px 18px;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    .nav-list { list-style: none; padding: 10px; flex: 1; }
+    .nav-item { margin-bottom: 4px; }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover { background: var(--surface-alt); }
+    .nav-btn.active { background: var(--primary); color: #fff; font-weight: 600; }
+
+    .nav-btn .badge {
+      margin-left: auto;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(100, 116, 139, 0.2);
+      white-space: nowrap;
+    }
+
+    .nav-btn.active .badge { background: rgba(255, 255, 255, 0.25); color: #fff; }
+
+    /* Main Content Area */
+    .main {
+      flex: 1;
+      margin-left: 310px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-box { flex: 1; max-width: 420px; }
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .top-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .content-container {
+      padding: 26px;
+      max-width: 1120px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-page { display: none; }
+    .section-page.active { display: block; animation: fadeIn 0.25s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-title { font-size: 1.65rem; font-weight: 800; margin-bottom: 6px; color: var(--primary-dark); }
+    .page-subtitle { color: var(--text-muted); margin-bottom: 22px; font-size: 0.94rem; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 14px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 8px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 10px; }
+
+    .rule-box {
+      background: var(--surface-alt);
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+    }
+
+    .formula-box {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 4px solid var(--accent);
+      padding: 16px 18px;
+      border-radius: 0 10px 10px 0;
+      margin: 12px 0;
+    }
+
+    /* Native Math Rendering Components */
+    .math-eq {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      background: var(--surface);
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin: 4px 0;
+      color: var(--secondary);
+    }
+
+    .math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 4px;
+      font-size: 0.9em;
+    }
+
+    .math-frac .num { border-bottom: 1.8px solid currentColor; padding: 0 5px 1px; line-height: 1.15; }
+    .math-frac .den { padding: 1px 5px 0; line-height: 1.15; }
+
+    .radicand {
+      border-top: 1.8px solid currentColor;
+      padding-top: 1px;
+      margin-left: -1px;
+    }
+
+    .math-pill {
+      display: inline-block;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-weight: 700;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: var(--primary);
+    }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin: 10px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 9px 12px; border: 1px solid var(--border); text-align: center; }
+    th { background: var(--surface-alt); font-weight: 700; }
+
+    /* Interactive Click-to-Reveal Drills */
+    .drill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .drill-item {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .drill-item:hover { border-color: var(--primary); }
+    .drill-q { font-weight: 700; font-size: 0.95rem; }
+
+    .drill-ans {
+      font-weight: 700;
+      color: var(--success);
+      background: rgba(16, 185, 129, 0.14);
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      user-select: none;
+    }
+
+    .drill-ans.hidden {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.76rem;
+    }
+
+    /* Interactive MCQ Quiz Cards */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-meta {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quiz-question { font-size: 0.98rem; font-weight: 600; margin-bottom: 12px; }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: 0.15s;
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .quiz-opt.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger);
+    }
+
+    .quiz-exp {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--success);
+      font-size: 0.88rem;
+      display: none;
+      white-space: pre-line;
+    }
+
+    .quiz-exp.visible { display: block; }
+
+    .tool-box {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--surface-alt);
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .tool-box input, .tool-box select {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .menu-toggle { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>PARMAR SSC | MATHS</h1>
+      <p>Topper's Batch • Calculation Booster (By Bhutesh Sir)</p>
+    </div>
+    <div class="stats-bar">
+      <span>Quiz Score: <strong id="score-val">0</strong> / <span id="total-val">23</span></span>
+      <button class="btn" style="padding:3px 8px;font-size:0.74rem;" onclick="resetAllQuizzes()">Reset</button>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-btn active" onclick="showTab('tab-base', this)">⚡ 1. Base, Powers & Surds <span class="badge">P. 1–2</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-sq1', this)">🔢 2. Squares 1–40 & Ending in 5 <span class="badge">P. 3–4</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-sq2', this)">📐 3. Base 100, 50 & 1000 Squares <span class="badge">P. 4–5</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-cubes', this)">🧊 4. Cubes 1–30 & Formula (a,b)³ <span class="badge">P. 5</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-sqrt', this)">√ 5. Square Roots & Quizzes <span class="badge">P. 6–8</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-cbrt', this)">∛ 6. Cube Roots & ×11, ×999 Tricks <span class="badge">P. 8–9</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-ops', this)">➕ 7. ×5/25/125, Sub. & Addition <span class="badge">P. 9–10</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-props', this)">🏆 8. Square Properties & Quizzes <span class="badge">P. 10–12</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-approx', this)">≈ 9. Non-Square/Cube Approx. <span class="badge">P. 12</span></button></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ Menu</button>
+      <div class="search-box">
+        <input type="text" id="global-search" placeholder="Search any number, square, cube, trick, or question..." oninput="filterCurrentTab(this.value)" />
+      </div>
+      <div class="top-actions">
+        <button class="btn" onclick="toggleAllDrills(true)">👁️ Reveal All HW Keys</button>
+        <button class="btn" onclick="toggleAllDrills(false)">🙈 Hide HW Keys</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+      </div>
+    </header>
+
+    <div class="content-container">
+
+      <!-- ================= TAB 1: BASE, POWERS & SURDS (P. 1-2) ================= -->
+      <section class="section-page active" id="tab-base">
+        <h2 class="page-title">1. Must-Remember Calculation Base, Powers & Surds</h2>
+        <p class="page-subtitle">Pages 1–2 • Foundation Checklist, Important Powers of 2, 3, 4, 5, 6 & Frequent Surd Values</p>
+
+        <div class="card">
+          <h3>📋 Must-Remember Calculation Base (5 Golden Rules)</h3>
+          <div class="rule-box">
+            <ol style="padding-left:20px;">
+              <li><strong>Tables up to 25:</strong> Must be on your fingertips (plus tables from <strong>26 to 30 up to 5 times</strong>, and <strong>31 to 40 up to 3 times</strong>).</li>
+              <li><strong>Squares up to 40:</strong> Instant recall of 1² to 40².</li>
+              <li><strong>Cubes up to 21 & of 25:</strong> Instant recall of 1³ to 21³ and 25³ = 15625.</li>
+              <li><strong>Important Powers:</strong>
+                <br>• Powers of <strong>2 up to 12</strong> (and Powers of <strong>4 up to 6</strong>)
+                <br>• Powers of <strong>3 up to 6</strong>
+                <br>• Powers of <strong>5 up to 6</strong>
+                <br>• Powers of <strong>6 up to 4</strong>
+              </li>
+              <li><strong>Regular Practice of 3-Digit Operations:</strong> Practice 10 random questions daily of 3-digit addition, subtraction, and multiplication at the exact exam level (<em>"Do them at the exact level asked in exams; there is no need to become Ramanujan!"</em>).</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>⚡ Important Powers Reference Table & Frequent Surds (Page 2)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Powers of 2 (1 to 12)</th>
+                  <th>Powers of 3 (1 to 6)</th>
+                  <th>Powers of 4 (1 to 6)</th>
+                  <th>Powers of 5 (1 to 6)</th>
+                  <th>Powers of 6 (1 to 4)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>2<sup>1</sup></strong> = 2 &nbsp;|&nbsp; <strong>2<sup>7</sup></strong> = 128</td><td><strong>3<sup>1</sup></strong> = 3</td><td><strong>4<sup>1</sup></strong> = 4</td><td><strong>5<sup>1</sup></strong> = 5</td><td><strong>6<sup>1</sup></strong> = 6</td></tr>
+                <tr><td><strong>2<sup>2</sup></strong> = 4 &nbsp;|&nbsp; <strong>2<sup>8</sup></strong> = 256</td><td><strong>3<sup>2</sup></strong> = 9</td><td><strong>4<sup>2</sup></strong> = 16</td><td><strong>5<sup>2</sup></strong> = 25</td><td><strong>6<sup>2</sup></strong> = 36</td></tr>
+                <tr><td><strong>2<sup>3</sup></strong> = 8 &nbsp;|&nbsp; <strong>2<sup>9</sup></strong> = 512</td><td><strong>3<sup>3</sup></strong> = 27</td><td><strong>4<sup>3</sup></strong> = 64</td><td><strong>5<sup>3</sup></strong> = 125</td><td><strong>6<sup>3</sup></strong> = 216</td></tr>
+                <tr><td><strong>2<sup>4</sup></strong> = 16 | <strong>2<sup>10</sup></strong> = 1024</td><td><strong>3<sup>4</sup></strong> = 81</td><td><strong>4<sup>4</sup></strong> = 256</td><td><strong>5<sup>4</sup></strong> = 625</td><td><strong>6<sup>4</sup></strong> = 1296</td></tr>
+                <tr><td><strong>2<sup>5</sup></strong> = 32 | <strong>2<sup>11</sup></strong> = 2048</td><td><strong>3<sup>5</sup></strong> = 243</td><td><strong>4<sup>5</sup></strong> = 1024</td><td><strong>5<sup>5</sup></strong> = 3125</td><td>—</td></tr>
+                <tr><td><strong>2<sup>6</sup></strong> = 64 | <strong>2<sup>12</sup></strong> = 4096</td><td><strong>3<sup>6</sup></strong> = 729</td><td><strong>4<sup>6</sup></strong> = 4096</td><td><strong>5<sup>6</sup></strong> = 15625</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box" style="margin-top:16px;">
+            <h4>Frequent Surds Multiplication Approximations:</h4>
+            <div class="grid-3" style="margin-top:8px;">
+              <div><span class="math-eq">√<span class="radicand">2</span> = 1.414 ≈ 1.40 = <span class="math-frac"><span class="num">7</span><span class="den">5</span></span></span></div>
+              <div><span class="math-eq">√<span class="radicand">3</span> = 1.732 ≈ 1.75 = <span class="math-frac"><span class="num">7</span><span class="den">4</span></span></span></div>
+              <div><span class="math-eq">√<span class="radicand">5</span> = 2.236 ≈ 2.25 = <span class="math-frac"><span class="num">9</span><span class="den">4</span></span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🎮 Interactive Daily 10-Question Mental Arithmetic Trainer (Page 2 Rule 5)</h3>
+          <p style="font-size:0.9rem;">Generate random 3-digit Addition, Subtraction, or Multiplication problems for daily speed practice:</p>
+          <div class="tool-box">
+            <select id="trainer-op">
+              <option value="add">3-Digit Addition (+)</option>
+              <option value="sub">3-Digit Subtraction (−)</option>
+              <option value="mul">2/3-Digit Multiplication (×)</option>
+            </select>
+            <button class="btn" onclick="generateTrainerSet()">🎲 Generate 10 Random Questions</button>
+          </div>
+          <div class="drill-grid" id="trainer-list"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: SQUARES 1-40 & ENDING IN 5 (P. 3-4) ================= -->
+      <section class="section-page" id="tab-sq1">
+        <h2 class="page-title">2. Squares (1 to 40), Numbers Ending in 5 & (AB)² Method</h2>
+        <p class="page-subtitle">Pages 3–4 • First 40 Squares, Special Same-Tens Multiplication & (AB)² = A² | 2AB | B²</p>
+
+        <div class="card">
+          <h3>🔢 Squares of the First 40 Numbers (Must Be on Fingertips — Page 3)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>1 to 10</th><th>11 to 20</th><th>21 to 30</th><th>31 to 40</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>1<sup>2</sup></strong> = 1</td><td><strong>11<sup>2</sup></strong> = 121</td><td><strong>21<sup>2</sup></strong> = 441</td><td><strong>31<sup>2</sup></strong> = 961</td></tr>
+                <tr><td><strong>2<sup>2</sup></strong> = 4</td><td><strong>12<sup>2</sup></strong> = 144</td><td><strong>22<sup>2</sup></strong> = 484</td><td><strong>32<sup>2</sup></strong> = 1024</td></tr>
+                <tr><td><strong>3<sup>2</sup></strong> = 9</td><td><strong>13<sup>2</sup></strong> = 169</td><td><strong>23<sup>2</sup></strong> = 529</td><td><strong>33<sup>2</sup></strong> = 1089</td></tr>
+                <tr><td><strong>4<sup>2</sup></strong> = 16</td><td><strong>14<sup>2</sup></strong> = 196</td><td><strong>24<sup>2</sup></strong> = 576</td><td><strong>34<sup>2</sup></strong> = 1156</td></tr>
+                <tr><td><strong>5<sup>2</sup></strong> = 25</td><td><strong>15<sup>2</sup></strong> = 225</td><td><strong>25<sup>2</sup></strong> = 625</td><td><strong>35<sup>2</sup></strong> = 1225</td></tr>
+                <tr><td><strong>6<sup>2</sup></strong> = 36</td><td><strong>16<sup>2</sup></strong> = 256</td><td><strong>26<sup>2</sup></strong> = 676</td><td><strong>36<sup>2</sup></strong> = 1296</td></tr>
+                <tr><td><strong>7<sup>2</sup></strong> = 49</td><td><strong>17<sup>2</sup></strong> = 289</td><td><strong>27<sup>2</sup></strong> = 729</td><td><strong>37<sup>2</sup></strong> = 1369</td></tr>
+                <tr><td><strong>8<sup>2</sup></strong> = 64</td><td><strong>18<sup>2</sup></strong> = 324</td><td><strong>28<sup>2</sup></strong> = 784</td><td><strong>38<sup>2</sup></strong> = 1444</td></tr>
+                <tr><td><strong>9<sup>2</sup></strong> = 81</td><td><strong>19<sup>2</sup></strong> = 361</td><td><strong>29<sup>2</sup></strong> = 841</td><td><strong>39<sup>2</sup></strong> = 1521</td></tr>
+                <tr><td><strong>10<sup>2</sup></strong> = 100</td><td><strong>20<sup>2</sup></strong> = 400</td><td><strong>30<sup>2</sup></strong> = 900</td><td><strong>40<sup>2</sup></strong> = 1600</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>✨ Trick 1: Square of Numbers Ending in 5 & Special Case Multiplication (Page 3–4)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Number Ending in 5: <span class="math-pill">(N5)² = [N × (N + 1)] | 25</span></h4>
+              <p>Multiply the prefix <span class="math-pill">N</span> by <span class="math-pill">(N + 1)</span> and append <strong>25</strong> at the end:</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>35<sup>2</sup></strong> = (3 × 4) | 25 = <strong>1225</strong></li>
+                <li><strong>45<sup>2</sup></strong> = (4 × 5) | 25 = <strong>2025</strong></li>
+                <li><strong>55<sup>2</sup></strong> = (5 × 6) | 25 = <strong>3025</strong></li>
+                <li><strong>95<sup>2</sup></strong> = (9 × 10) | 25 = <strong>9025</strong></li>
+                <li><strong>105<sup>2</sup></strong> = (10 × 11) | 25 = <strong>11025</strong></li>
+                <li><strong>115<sup>2</sup></strong> = (11 × 12) | 25 = <strong>13225</strong></li>
+                <li><strong>125<sup>2</sup></strong> = (12 × 13) | 25 = <strong>15625</strong></li>
+                <li><strong>205<sup>2</sup></strong> = (20 × 21) | 25 = <strong>42025</strong></li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>2. Special Case Multiplication (Unit Digits Sum to 10, Same Prefix)</h4>
+              <p>When multiplying <span class="math-pill">(Na) × (Nb)</span> where <span class="math-pill">a + b = 10</span>: compute <span class="math-pill">N × (N + 1)</span> followed by <span class="math-pill">(a × b)</span> in 2 digits:</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>43 × 47</strong> → (4 × 5) | (3 × 7) = <strong>2021</strong></li>
+                <li><strong>84 × 86</strong> → (8 × 9) | (4 × 6) = <strong>7224</strong></li>
+                <li><strong>104 × 106</strong> → (10 × 11) | (4 × 6) = <strong>11024</strong></li>
+                <li><strong>91 × 99</strong> → (9 × 10) | (1 × 9) = <strong>9009</strong></li>
+                <li><strong>112 × 118</strong> → (11 × 12) | (2 × 8) = <strong>13216</strong></li>
+                <li><strong>143 × 147</strong> → (14 × 15) | (3 × 7) = <strong>21021</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: Numbers Ending in 5 (Page 4) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-end5"></div>
+        </div>
+
+        <div class="card">
+          <h3>📐 Trick 2: General Square Formula <span class="math-eq">(AB)<sup>2</sup> = A<sup>2</sup> &nbsp;|&nbsp; 2AB &nbsp;|&nbsp; B<sup>2</sup></span> (Page 4)</h3>
+          <p><strong>Most Widely Used Universal Method:</strong> Split the number into two parts (A and B), keep 1 digit (if B is 1-digit) at each step from right to left, and carry forward:</p>
+          <div class="grid-3" style="margin-top:10px;">
+            <div class="rule-box"><strong>34<sup>2</sup></strong> = 1156 &nbsp;|&nbsp; <strong>73<sup>2</sup></strong> = 5329<br><strong>62<sup>2</sup></strong> = 3844 &nbsp;|&nbsp; <strong>81<sup>2</sup></strong> = 6561</div>
+            <div class="rule-box"><strong>37<sup>2</sup></strong> = 1369 &nbsp;|&nbsp; <strong>84<sup>2</sup></strong> = 7056<br><strong>103<sup>2</sup></strong> = 10609 | <strong>107<sup>2</sup></strong> = 11449</div>
+            <div class="rule-box"><strong>132<sup>2</sup></strong> = 17424 | <strong>213<sup>2</sup></strong> = 45369<br><strong>615<sup>2</sup></strong> = 378225</div>
+          </div>
+          <h4 style="margin-top:16px;">⚡ Homework Drills: (AB)² Method (Page 4) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-ab2"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: BASE 100, 50 & 1000 SQUARES (P. 4-5) ================= -->
+      <section class="section-page" id="tab-sq2">
+        <h2 class="page-title">3. Base Method for Squares (Base 100, Base 50, Multiples of 100 & Base 1000)</h2>
+        <p class="page-subtitle">Pages 4–5 • Fast Mental Squaring Near 50, 100, 200, 300, 500 & 1000</p>
+
+        <div class="card">
+          <h3>🎯 Base 100 Method: <span class="math-eq">(100 ± X)<sup>2</sup> = (100 ± 2X) &nbsp;|&nbsp; X<sup>2</sup> (2 Digits)</span> (Page 4)</h3>
+          <p>Let <span class="math-pill">X</span> be the difference from 100. Add/subtract <span class="math-pill">X</span> to the number itself (which equals <span class="math-pill">100 ± 2X</span>), and append <span class="math-pill">X²</span> in <strong>2 decimal places</strong> (carry over if X² has 3 digits):</p>
+          <div class="grid-3" style="margin-top:10px;">
+            <div class="rule-box">
+              • <strong>104<sup>2</sup></strong> = 10816<br>
+              • <strong>107<sup>2</sup></strong> = 11449<br>
+              • <strong>109<sup>2</sup></strong> = 11881<br>
+              • <strong>112<sup>2</sup></strong> = 12544<br>
+              • <strong>117<sup>2</sup></strong> = 13689<br>
+              • <strong>123<sup>2</sup></strong> = 15129
+            </div>
+            <div class="rule-box">
+              • <strong>98<sup>2</sup></strong> = 9604<br>
+              • <strong>96<sup>2</sup></strong> = 9216<br>
+              • <strong>93<sup>2</sup></strong> = 8649<br>
+              • <strong>89<sup>2</sup></strong> = 7921<br>
+              • <strong>87<sup>2</sup></strong> = 7569
+            </div>
+            <div class="rule-box">
+              • <strong>86<sup>2</sup></strong> = 7396<br>
+              • <strong>83<sup>2</sup></strong> = 6889<br>
+              • <strong>77<sup>2</sup></strong> = 5929<br>
+              • <strong>57<sup>2</sup></strong> = 3249<br>
+              • <strong>29<sup>2</sup></strong> = 841
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: Base 100 Squares (Page 4) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-base100"></div>
+        </div>
+
+        <div class="card">
+          <h3>🚀 Multiples of 100, Base 50 & Base 1000 Methods (Page 5)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Base 50 (Anchor = 25) & Multiples of 100 (200, 300)</h4>
+              <p>• <strong>Base 50:</strong> Since 50 = ½ × 100, add/subtract the difference <span class="math-pill">X</span> from <strong>25</strong>, and append <span class="math-pill">X² (2 places)</span>.<br>
+              • <strong>Base 200 / 300:</strong> Multiply <span class="math-pill">(200 ± 2X)</span> by <strong>2</strong> (or 3 for 300), and append <span class="math-pill">X² (2 places)</span>:</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>53<sup>2</sup></strong> = (25+3)|09 = <strong>2809</strong> &nbsp;|&nbsp; <strong>57<sup>2</sup></strong> = <strong>3249</strong></li>
+                <li><strong>62<sup>2</sup></strong> = <strong>3844</strong> &nbsp;|&nbsp; <strong>71<sup>2</sup></strong> = <strong>5041</strong></li>
+                <li><strong>48<sup>2</sup></strong> = (25−2)|04 = <strong>2304</strong> &nbsp;|&nbsp; <strong>46<sup>2</sup></strong> = <strong>2116</strong></li>
+                <li><strong>42<sup>2</sup></strong> = <strong>1764</strong> &nbsp;|&nbsp; <strong>38<sup>2</sup></strong> = <strong>1444</strong></li>
+                <li><strong>206<sup>2</sup></strong> = <strong>42436</strong> &nbsp;|&nbsp; <strong>211<sup>2</sup></strong> = <strong>44521</strong></li>
+                <li><strong>196<sup>2</sup></strong> = <strong>38416</strong> &nbsp;|&nbsp; <strong>307<sup>2</sup></strong> = <strong>94249</strong></li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>2. Base 1000 & Base 500 (Keep 3 Places for X²)</h4>
+              <p>For Base 1000 (and Base 500 = ½ × 1000 → Anchor <strong>250</strong>), the right-hand part <span class="math-pill">X²</span> occupies <strong>3 places</strong>:</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>1009<sup>2</sup></strong> = (1000 + 18) | 081 = <strong>1018081</strong></li>
+                <li><strong>993<sup>2</sup></strong> = (1000 − 14) | 049 = <strong>986049</strong></li>
+                <li><strong>503<sup>2</sup></strong> = (250 + 3) | 009 = <strong>253009</strong></li>
+                <li><strong>492<sup>2</sup></strong> = (250 − 8) | 064 = <strong>242064</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: Base 50 & Multiples of 100 (Page 5) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-base50"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: CUBES 1-30 & FORMULA (P. 5) ================= -->
+      <section class="section-page" id="tab-cubes">
+        <h2 class="page-title">4. Cubes (1 to 30), Memory Tricks & (a,b)³ Formula</h2>
+        <p class="page-subtitle">Page 5 • Must-Know Cubes, Special Memory Mnemonics & 4-Part Cube Expansion</p>
+
+        <div class="card">
+          <h3>🧊 Cubes of the First 30 Numbers (Page 5)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>1 to 10</th><th>11 to 20</th><th>21 to 30 (Reference)</th><th>Memory Tricks (By Bhutesh Sir)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>1<sup>3</sup></strong> = 1</td><td><strong>11<sup>3</sup></strong> = 1331</td><td><strong>21<sup>3</sup></strong> = 9261</td><td rowspan="2"><strong>16<sup>3</sup> = 4096:</strong><br>2<sup>12</sup> = (2<sup>4</sup>)<sup>3</sup> = (2<sup>6</sup>)<sup>2</sup> = 64<sup>2</sup> = 4096</td></tr>
+                <tr><td><strong>2<sup>3</sup></strong> = 8</td><td><strong>12<sup>3</sup></strong> = 1728</td><td><strong>22<sup>3</sup></strong> = 10648</td></tr>
+                <tr><td><strong>3<sup>3</sup></strong> = 27</td><td><strong>13<sup>3</sup></strong> = 2197</td><td><strong>23<sup>3</sup></strong> = 12167</td><td rowspan="2"><strong>17<sup>3</sup> = 4913:</strong><br>7<sup>2</sup> = <strong>49</strong>, and 4 + 9 = <strong>13</strong> → 4913</td></tr>
+                <tr><td><strong>4<sup>3</sup></strong> = 64</td><td><strong>14<sup>3</sup></strong> = 2744</td><td><strong>24<sup>3</sup></strong> = 13824</td></tr>
+                <tr><td><strong>5<sup>3</sup></strong> = 125</td><td><strong>15<sup>3</sup></strong> = 3375</td><td><strong>25<sup>3</sup></strong> = 15625</td><td rowspan="3"><strong>19<sup>3</sup> = 6859:</strong><br>68 − 9 = 59 (Digits 6, 8, 5, 9)</td></tr>
+                <tr><td><strong>6<sup>3</sup></strong> = 216</td><td><strong>16<sup>3</sup></strong> = 4096</td><td><strong>26<sup>3</sup></strong> = 17576</td></tr>
+                <tr><td><strong>7<sup>3</sup></strong> = 343</td><td><strong>17<sup>3</sup></strong> = 4913</td><td><strong>27<sup>3</sup></strong> = 19683</td></tr>
+                <tr><td><strong>8<sup>3</sup></strong> = 512</td><td><strong>18<sup>3</sup></strong> = 5832</td><td><strong>28<sup>3</sup></strong> = 21952</td><td rowspan="3"><strong>25<sup>3</sup> = 15625:</strong><br>5<sup>6</sup> = (5<sup>3</sup>)<sup>2</sup> = 125<sup>2</sup> = (5<sup>2</sup>)<sup>3</sup> = 15625</td></tr>
+                <tr><td><strong>9<sup>3</sup></strong> = 729</td><td><strong>19<sup>3</sup></strong> = 6859</td><td><strong>29<sup>3</sup></strong> = 24389</td></tr>
+                <tr><td><strong>10<sup>3</sup></strong> = 1000</td><td><strong>20<sup>3</sup></strong> = 8000</td><td><strong>30<sup>3</sup></strong> = 27000</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box" style="margin-top:16px;">
+            <h4>Cube Expansion Formula: <span class="math-eq">(AB)<sup>3</sup> = A<sup>3</sup> &nbsp;|&nbsp; 3A<sup>2</sup>B &nbsp;|&nbsp; 3AB<sup>2</sup> &nbsp;|&nbsp; B<sup>3</sup></span></h4>
+            <p style="margin-top:8px;"><strong>Worked Examples from Page 5:</strong></p>
+            <ul style="padding-left:18px;margin-top:4px;">
+              <li><strong>23<sup>3</sup> = 12167</strong> (Here A = 2, B = 3 → 8 | 36 | 54 | 27 → 12167)</li>
+              <li><strong>32<sup>3</sup> = 32768</strong> &nbsp;|&nbsp; <strong>41<sup>3</sup> = 68921</strong></li>
+              <li><strong>103<sup>3</sup> = 1092727</strong> (Here A = 1, B = 03; keep 2 digits per slot → 1 | 09 | 27 | 27)</li>
+              <li><strong>205<sup>3</sup> = 8615125</strong> (Here A = 2, B = 05; keep 2 digits per slot → 8 | 60 | 150 | 125 → 8615125)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: SQUARE ROOTS & QUIZZES (P. 6-8) ================= -->
+      <section class="section-page" id="tab-sqrt">
+        <h2 class="page-title">5. Square Root of Perfect Squares & Practice Questions (Q.1–Q.12)</h2>
+        <p class="page-subtitle">Pages 6–8 • Unit Digit Pairing, Distance from Multiples of 50, Long Division Method & 12 Exam Questions</p>
+
+        <div class="card">
+          <h3>√ Square Root of Perfect Squares: Unit Digit & Base-50 Method (Page 6)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Unit Digit Mapping Table</h4>
+              <table>
+                <thead>
+                  <tr><th>Unit Digit of N<sup>2</sup></th><th>Possible Unit Digit(s) of √N<sup>2</sup></th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>1</strong></td><td><strong>1 or 9</strong> (since 1²=1, 9²=81)</td></tr>
+                  <tr><td><strong>4</strong></td><td><strong>2 or 8</strong> (since 2²=4, 8²=64)</td></tr>
+                  <tr><td><strong>9</strong></td><td><strong>3 or 7</strong> (since 3²=9, 7²=49)</td></tr>
+                  <tr><td><strong>6</strong></td><td><strong>4 or 6</strong> (since 4²=16, 6²=36)</td></tr>
+                  <tr><td><strong>5</strong></td><td><strong>5</strong> (since 5²=25)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="rule-box">
+              <h4>2. Instant Square Root Examples & Long Division</h4>
+              <p><strong>2-Step Shortcut:</strong> (1) Check unit digit choices, (2) Estimate range using multiples of 50 (or 10):</p>
+              <div class="grid-2" style="margin-top:6px;font-size:0.9rem;">
+                <div>
+                  • √<span class="radicand">1444</span> = <strong>38</strong><br>
+                  • √<span class="radicand">1156</span> = <strong>34</strong><br>
+                  • √<span class="radicand">1849</span> = <strong>43</strong><br>
+                  • √<span class="radicand">5184</span> = <strong>72</strong><br>
+                  • √<span class="radicand">4624</span> = <strong>68</strong>
+                </div>
+                <div>
+                  • √<span class="radicand">4096</span> = <strong>64</strong><br>
+                  • √<span class="radicand">7396</span> = <strong>86</strong><br>
+                  • √<span class="radicand">3481</span> = <strong>59</strong><br>
+                  • √<span class="radicand">12996</span> = <strong>114</strong><br>
+                  • √<span class="radicand">19044</span> = <strong>138</strong>
+                </div>
+              </div>
+              <p style="margin-top:8px;font-size:0.86rem;"><strong>Long Division Example (√<span class="radicand">338724</span> = 582):</strong> Pair from right (33 | 87 | 24): 5×5 = 25 (rem 8, bring down 87 → 887); 108×8 = 864 (rem 23, bring down 24 → 2324); 1162×2 = 2324 → <strong>582</strong>.</p>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: Perfect Square Roots (Page 6) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-sqrt"></div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Interactive Practice Quiz: Square Root Questions (Pages 7–8, Q.1 – Q.12)</h3>
+          <div id="quiz-sqrt"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: CUBE ROOTS & MULTIPLICATION TRICKS (P. 8-9) ================= -->
+      <section class="section-page" id="tab-cbrt">
+        <h2 class="page-title">6. Cube Roots, Multiplication by 11 & Multiplication by 99/999/9999</h2>
+        <p class="page-subtitle">Pages 8–9 • Unique Unit Digit Mapping for Cube Roots, ×11 Neighbour Addition & ×999 Complement Trick</p>
+
+        <div class="card">
+          <h3>∛ Cube Root of Perfect Cubes (Page 8)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Unique Unit Digit Rule for Cubes:</h4>
+              <p>Every digit from 0 to 9 has a <strong>unique</strong> unit digit in its cube:</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>0, 1, 4, 5, 6, 9</strong> → Same unit digit (0→0, 1→1, 4→4, 5→5, 6→6, 9→9)</li>
+                <li><strong>2 ↔ 8</strong> (2³ = 8, 8³ = 512) &nbsp;and&nbsp; <strong>3 ↔ 7</strong> (3³ = 27, 7³ = 343)</li>
+                <li><strong>Method:</strong> Strike out the last 3 digits after matching the unit digit, then find the largest cube ≤ the remaining prefix!</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Classroom Worked Examples (Page 8):</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>∛<span class="radicand">32768</span></strong> → Ends in 8 (→2), 32 ≥ 3³(27) ⇒ <strong>32</strong></li>
+                <li><strong>∛<span class="radicand">97336</span></strong> → Ends in 6 (→6), 97 ≥ 4³(64) ⇒ <strong>46</strong></li>
+                <li><strong>∛<span class="radicand">157464</span></strong> → Ends in 4 (→4), 157 ≥ 5³(125) ⇒ <strong>54</strong></li>
+                <li><strong>∛<span class="radicand">300763</span></strong> → Ends in 3 (→7), 300 ≥ 6³(216) ⇒ <strong>67</strong></li>
+                <li><strong>∛<span class="radicand">753571</span></strong> = <strong>91</strong> &nbsp;|&nbsp; <strong>∛<span class="radicand">571787</span></strong> = <strong>83</strong> &nbsp;|&nbsp; <strong>∛<span class="radicand">1404928</span></strong> = <strong>112</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: Cube Roots (Page 8) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-cbrt"></div>
+        </div>
+
+        <div class="card">
+          <h3>✖️ Multiplication with 11 & Multiplication with 99 / 999 / 9999 (Pages 8–9)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Multiplication with 11 (Add Neighbour Digits Right-to-Left)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>34 × 11</strong> = 3 | (3+4) | 4 = <strong>374</strong></li>
+                <li><strong>53 × 11</strong> = <strong>583</strong> &nbsp;|&nbsp; <strong>72 × 11</strong> = <strong>792</strong></li>
+                <li><strong>85 × 11</strong> = <strong>935</strong> &nbsp;|&nbsp; <strong>96 × 11</strong> = <strong>1056</strong></li>
+                <li><strong>132 × 11</strong> = <strong>1452</strong> &nbsp;|&nbsp; <strong>253 × 11</strong> = <strong>2783</strong></li>
+                <li><strong>1342 × 11</strong> = <strong>14762</strong> &nbsp;|&nbsp; <strong>2453 × 11</strong> = <strong>26983</strong></li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>2. Multiplication with 99, 999, 9999 (Subtract 1, then Subtract from 9s)</h4>
+              <p>Formula: <span class="math-pill">N × 999 = (N − 1) | (999 − (N − 1))</span> (or subtract N from 9,9,10 from left to right):</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>32 × 99</strong> = (32−1) | (99−31) = <strong>3168</strong></li>
+                <li><strong>47 × 99</strong> = <strong>4653</strong></li>
+                <li><strong>154 × 999</strong> = <strong>153846</strong> &nbsp;|&nbsp; <strong>253 × 999</strong> = <strong>252747</strong></li>
+                <li><strong>5372 × 9999</strong> = <strong>53714628</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: ×11 and ×99/999/9999 (Page 8) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-mul11-9"></div>
+
+          <h4 style="margin-top:18px;">📝 Exam Question on ×999 Multiplication (Page 9, Q.1)</h4>
+          <div id="quiz-mul999"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 7: x5/25/125, SUBTRACTION & ADDITION (P. 9-10) ================= -->
+      <section class="section-page" id="tab-ops">
+        <h2 class="page-title">7. Fast Multiplication/Division (5, 25, 125), Mental Subtraction & Addition</h2>
+        <p class="page-subtitle">Pages 9–10 • Using 2ⁿ × 5ⁿ = 10ⁿ, Gap Subtraction & Left-to-Right Mental Addition</p>
+
+        <div class="card">
+          <h3>🔟 Multiplication & Division Using <span class="math-eq">2<sup>n</sup> × 5<sup>n</sup> = 10<sup>n</sup></span> (Page 9)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Core Identities:</h4>
+              <p>• <span class="math-pill">2 × 5 = 10</span> &nbsp;(Multiply by 5 = Halve & ×10; Divide by 5 = Double & ÷10)<br>
+              • <span class="math-pill">4 × 25 = 100</span> &nbsp;(Multiply by 25 = ÷4 & ×100; Divide by 25 = ×4 & ÷100)<br>
+              • <span class="math-pill">8 × 125 = 1000</span> &nbsp;(Multiply by 125 = ÷8 & ×1000; Divide by 125 = ×8 & ÷1000)<br>
+              • <strong>Split Even Factors for ×15, ×75, ×175:</strong> Factor out 2 or 4 from the even number to pair with 15, 75, or 175!</p>
+            </div>
+            <div class="rule-box">
+              <h4>Classroom Worked Examples (Page 9):</h4>
+              <div class="grid-2" style="font-size:0.9rem;">
+                <div>
+                  • <strong>84 × 5</strong> = 42 × 10 = <strong>420</strong><br>
+                  • <strong>128 × 25</strong> = 32 × 100 = <strong>3200</strong><br>
+                  • <strong>104 × 125</strong> = 13 × 1000 = <strong>13000</strong><br>
+                  • <strong>37 / 5</strong> = 74 / 10 = <strong>7.4</strong><br>
+                  • <strong>61 / 25</strong> = 244 / 100 = <strong>2.44</strong><br>
+                  • <strong>21 / 125</strong> = 168 / 1000 = <strong>0.168</strong>
+                </div>
+                <div>
+                  • <strong>46 × 15</strong> = 23 × 30 = <strong>690</strong><br>
+                  • <strong>75 × 168</strong> = 300 × 42 = <strong>12600</strong><br>
+                  • <strong>65 × 18</strong> = 130 × 9 = <strong>1170</strong><br>
+                  • <strong>175 × 24</strong> = 700 × 6 = <strong>4200</strong><br>
+                  • <strong>150 × 42</strong> = 300 × 21 = <strong>6300</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h4 style="margin-top:16px;">⚡ Homework Drills: ×5, ×25, ×125 & Division (Page 9) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-pow10"></div>
+        </div>
+
+        <div class="card">
+          <h3>➖ 4 Mental Subtraction Techniques & ➕ 3 Mental Addition Techniques (Pages 9–10)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Mental Subtraction (4 Techniques):</h4>
+              <ol style="padding-left:18px;font-size:0.9rem;">
+                <li><strong>From 100, 50, 90, 180:</strong> 100−61 = <strong>39</strong> | 100−32 = <strong>68</strong> | 100−37 = <strong>63</strong> | 50−15 = <strong>35</strong> | 50−24 = <strong>26</strong> | 90−53 = <strong>37</strong> | 90−27 = <strong>63</strong> | 180−53 = <strong>127</strong>.</li>
+                <li><strong>Subtracting Decimals (increase integer part by 1):</strong> 15 − 4.6 = (15−5) + 0.4 = <strong>10.4</strong> | 13 − 4.9 = <strong>8.1</strong> | 12 − 2.4 = <strong>9.6</strong> | 21 − 8.3 = <strong>12.7</strong>.</li>
+                <li><strong>Adding Gaps Around a Middle Round Number:</strong><br>
+                • 85 − 37 (via 40) = 45 + 3 = <strong>48</strong><br>
+                • 124 − 88 (via 90) = 34 + 2 = <strong>36</strong><br>
+                • 72 − 28 = <strong>44</strong> &nbsp;|&nbsp; 1250 − 980 = <strong>270</strong></li>
+                <li><strong>Applying Same Change to Both Numbers:</strong><br>
+                • 73 − 38 (+2 to both) = 75 − 40 = <strong>35</strong><br>
+                • 87 − 22 (−2 to both) = 85 − 20 = <strong>65</strong><br>
+                • 1560 − 970 (+30 to both) = 1590 − 1000 = <strong>590</strong></li>
+              </ol>
+            </div>
+            <div class="rule-box">
+              <h4>Mental Addition (3 Techniques):</h4>
+              <ol style="padding-left:18px;font-size:0.9rem;">
+                <li><strong>Two Digits Mentally (Left to Right):</strong><br>
+                • 67 + 85 = (60 + 80) + (7 + 5) = 140 + 12 = <strong>152</strong></li>
+                <li><strong>Making Numbers Round (Give & Take):</strong><br>
+                • 296 + 47 = (296 + 4) + (47 − 4) = 300 + 43 = <strong>343</strong><br>
+                • 398 + 73 = 400 + 71 = <strong>471</strong></li>
+                <li><strong>Multi-Number 3-Digit & 4-Digit Addition (Right-to-Left, Add Carry First):</strong><br>
+                • 497 + 365 + 459 + 328 = <strong>1649</strong><br>
+                • 654 + 159 + 564 + 782 + 134 = <strong>2293</strong></li>
+              </ol>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: Mental Subtraction & Addition (Page 10) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-sub-add"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 8: PERFECT SQUARE PROPERTIES & QUIZZES (P. 10-12) ================= -->
+      <section class="section-page" id="tab-props">
+        <h2 class="page-title">8. Properties of Perfect Squares & Exam Questions (Q.1–Q.9)</h2>
+        <p class="page-subtitle">Pages 10–12 • 5 Elimination Filters for Perfect Squares + 10 Exam Questions</p>
+
+        <div class="card">
+          <h3>🏆 5 Golden Properties of a Perfect Square Number (Page 10)</h3>
+          <div class="rule-box">
+            <ol style="padding-left:20px;">
+              <li><strong>Unit Digit Filter:</strong> The unit digit of a perfect square can <strong>NEVER be 2, 3, 7, or 8</strong> (it must be 0, 1, 4, 5, 6, or 9).</li>
+              <li><strong>Last 2 Digits Filter:</strong> The last two digits of ANY perfect square must match the last two digits of one of the <strong>squares from 1² to 25²</strong> (e.g., 00, 01, 04, 09, 16, 21, 24, 25, 29, 36, 41, 44, 49, 56, 61, 64, 69, 76, 81, 84, 89, 96).
+                <br>• <em>Special Corollary:</em> If a perfect square ends in <strong>5</strong>, its tens digit is always <strong>2</strong> (ends in 25). If it ends in <strong>6</strong>, its tens digit must be <strong>odd</strong>; otherwise, its tens digit is always <strong>even</strong>!</li>
+              <li><strong>Digital Sum (Root Sum) Filter:</strong> The digital sum of a perfect square is always <strong>1, 4, 7, or 9</strong>.</li>
+              <li><strong>Remainder on Dividing by 8:</strong> When divided by 8, a perfect square always leaves a remainder of <strong>0, 1, or 4</strong>.</li>
+              <li><strong>Even Number of Zeroes / Decimal Places:</strong> A rational perfect square must have an <strong>even number of trailing zeroes</strong> after the last non-zero digit, and an <strong>even number of digits after the decimal point</strong>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Interactive Practice Quiz: Properties of Perfect Squares (Pages 11–12, Q.1 – Q.9)</h3>
+          <div id="quiz-props"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 9: APPROXIMATE ROOTS (P. 12) ================= -->
+      <section class="section-page" id="tab-approx">
+        <h2 class="page-title">9. Approximate Square Root & Cube Root of Non-Perfect Numbers</h2>
+        <p class="page-subtitle">Page 12 • Linear Taylor Approximation Formulas, Small-Root Scaling & Live Calculator</p>
+
+        <div class="card">
+          <h3>≈ 1. Approximate Square Root of Non-Square Numbers (Page 12)</h3>
+          <div class="formula-box">
+            <div class="math-eq">
+              √<span class="radicand">a<sup>2</sup> ± x</span> &nbsp;≈&nbsp; a ±
+              <span class="math-frac">
+                <span class="num">x</span>
+                <span class="den">2a</span>
+              </span>
+            </div>
+            <p style="margin-top:8px;font-size:0.9rem;"><strong>Precautions to Avoid Error:</strong> (1) Always choose <span class="math-pill">a²</span> as the <strong>nearest perfect square</strong> to the given number. (2) For small numbers below 10, scale up by multiplying inside the root by 100 (e.g., write <span class="math-pill">√8 = √8.00 = √800 / 10</span>).</p>
+          </div>
+
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <h4>Worked Formula Examples (Page 12):</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>√<span class="radicand">39</span></strong> = √<span class="radicand">36 + 3</span> ≈ 6 + <span class="math-frac"><span class="num">3</span><span class="den">12</span></span> = <strong>6.25</strong></li>
+                <li><strong>√<span class="radicand">62</span></strong> = √<span class="radicand">64 − 2</span> ≈ 8 − <span class="math-frac"><span class="num">2</span><span class="den">16</span></span> = <strong>7.875</strong></li>
+                <li><strong>√<span class="radicand">124</span></strong> = √<span class="radicand">121 + 3</span> ≈ 11 + <span class="math-frac"><span class="num">3</span><span class="den">22</span></span> ≈ <strong>11.13</strong></li>
+                <li><strong>√<span class="radicand">230</span></strong> = √<span class="radicand">225 + 5</span> ≈ 15 + <span class="math-frac"><span class="num">5</span><span class="den">30</span></span> ≈ <strong>15.16</strong></li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Scaling Small Roots & Long Division (Page 12):</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>√<span class="radicand">8</span></strong> = √<span class="radicand">8.00</span> ≈ <strong>2.8</strong> (since 28² = 784)</li>
+                <li><strong>√<span class="radicand">11</span></strong> = √<span class="radicand">11.00</span> ≈ <strong>3.3</strong> (since 33² = 1089)</li>
+                <li><strong>√<span class="radicand">15</span></strong> = √<span class="radicand">15.00</span> ≈ <strong>3.8</strong> (since 38² = 1444)</li>
+                <li><strong>√<span class="radicand">582</span></strong> (Long Division / Formula: 24 + 6/48) = <strong>24.12</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Homework Drills: Approximate Square Roots (Page 12) — Click to Reveal Answer Key</h4>
+          <div class="drill-grid" id="drill-approx-sqrt"></div>
+        </div>
+
+        <div class="card">
+          <h3>≈ 2. Approximate Cube Root of Non-Cube Numbers (Page 12)</h3>
+          <div class="formula-box">
+            <div class="math-eq">
+              ∛<span class="radicand">a<sup>3</sup> ± x</span> &nbsp;≈&nbsp; a ±
+              <span class="math-frac">
+                <span class="num">x</span>
+                <span class="den">3a<sup>2</sup></span>
+              </span>
+            </div>
+          </div>
+          <div class="grid-3" style="margin-top:12px;">
+            <div class="rule-box">
+              <strong>∛<span class="radicand">67</span> = ∛<span class="radicand">64 + 3</span></strong><br>
+              ≈ 4 + <span class="math-frac"><span class="num">3</span><span class="den">3 × 16</span></span> = 4 + <span class="math-frac"><span class="num">1</span><span class="den">16</span></span> = <strong>4.0625</strong>
+            </div>
+            <div class="rule-box">
+              <strong>∛<span class="radicand">120</span> = ∛<span class="radicand">125 − 5</span></strong><br>
+              ≈ 5 − <span class="math-frac"><span class="num">5</span><span class="den">3 × 25</span></span> = 5 − <span class="math-frac"><span class="num">1</span><span class="den">15</span></span> = <strong>4.9333</strong>
+            </div>
+            <div class="rule-box">
+              <strong>∛<span class="radicand">524</span> = ∛<span class="radicand">512 + 12</span></strong><br>
+              ≈ 8 + <span class="math-frac"><span class="num">12</span><span class="den">3 × 64</span></span> = 8 + <span class="math-frac"><span class="num">1</span><span class="den">16</span></span> = <strong>8.0625</strong>
+            </div>
+          </div>
+
+          <div class="rule-box" style="margin-top:16px;">
+            <h4>🧮 Live Approximate Root Calculator (Shows Bhutesh Sir's Step-by-Step Formula)</h4>
+            <div class="tool-box">
+              <input type="number" id="approx-num" value="95" placeholder="Enter number..." oninput="calcApprox()" />
+              <select id="approx-type" onchange="calcApprox()">
+                <option value="sqrt">Approximate Square Root (√N)</option>
+                <option value="cbrt">Approximate Cube Root (∛N)</option>
+              </select>
+            </div>
+            <div id="approx-output" style="margin-top:12px;font-size:0.92rem;"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // ==================== ALL HOMEWORK DRILLS FROM PDF ====================
+
+    const drillsEnd5 = [
+      { q: "1. 75²", a: "5625 (7 × 8 | 25)" },
+      { q: "2. 65²", a: "4225 (6 × 7 | 25)" },
+      { q: "3. 145²", a: "21025 (14 × 15 | 25)" },
+      { q: "4. 155²", a: "24025 (15 × 16 | 25)" },
+      { q: "5. 305²", a: "93025 (30 × 31 | 25)" },
+      { q: "6. 135²", a: "18225 (13 × 14 | 25)" },
+      { q: "7. 185²", a: "34225 (18 × 19 | 25)" },
+      { q: "8. 85²", a: "7225 (8 × 9 | 25)" },
+      { q: "9. 1005²", a: "1010025 (100 × 101 | 25)" }
+    ];
+
+    const drillsAB2 = [
+      { q: "1. 39²", a: "1521" },
+      { q: "2. 74²", a: "5476" },
+      { q: "3. 96²", a: "9216" },
+      { q: "4. 108²", a: "11664" },
+      { q: "5. 112²", a: "12544" },
+      { q: "6. 181²", a: "32761" },
+      { q: "7. 311²", a: "96721" },
+      { q: "8. 66²", a: "4356" },
+      { q: "9. 167²", a: "27889" },
+      { q: "10. 203²", a: "41209" },
+      { q: "11. 501²", a: "251001" },
+      { q: "12. 59²", a: "3481" },
+      { q: "13. 57²", a: "3249" }
+    ];
+
+    const drillsBase100 = [
+      { q: "1. 103²", a: "10609" },
+      { q: "2. 106²", a: "11236" },
+      { q: "3. 94²", a: "8836" },
+      { q: "4. 97²", a: "9409" },
+      { q: "5. 88²", a: "7744" },
+      { q: "6. 78²", a: "6084" },
+      { q: "7. 119²", a: "14161" },
+      { q: "8. 111²", a: "12321" },
+      { q: "9. 86²", a: "7396" },
+      { q: "10. 84²", a: "7056" },
+      { q: "11. 123²", a: "15129" },
+      { q: "12. 116²", a: "13456" },
+      { q: "13. 91²", a: "8281" },
+      { q: "14. 113²", a: "12769" },
+      { q: "15. 83²", a: "6889" },
+      { q: "16. 99²", a: "9801" }
+    ];
+
+    const drillsBase50 = [
+      { q: "1. 47²", a: "2209 (25 − 3 | 09)" },
+      { q: "2. 54²", a: "2916 (25 + 4 | 16)" },
+      { q: "3. 43²", a: "1849 (25 − 7 | 49)" },
+      { q: "4. 39²", a: "1521 (25 − 11 + 1 | 21)" },
+      { q: "5. 63²", a: "3969 (25 + 13 + 1 | 69)" },
+      { q: "6. 209²", a: "43681 (2 × 218 | 81)" },
+      { q: "7. 311²", a: "96721 (3 × 322 + 1 | 21)" },
+      { q: "8. 293²", a: "85849 (3 × 286 | 49)" },
+      { q: "9. 212²", a: "44944 (2 × 224 + 1 | 44)" }
+    ];
+
+    const drillsSqrt = [
+      { q: "1. √3721", a: "61" },
+      { q: "2. √6724", a: "82" },
+      { q: "3. √6889", a: "83" },
+      { q: "4. √8836", a: "94" },
+      { q: "5. √9025", a: "95" },
+      { q: "6. √11236", a: "106" },
+      { q: "7. √13689", a: "117" },
+      { q: "8. √16384", a: "128" },
+      { q: "9. √19321", a: "139" },
+      { q: "10. √20736", a: "144" }
+    ];
+
+    const drillsCbrt = [
+      { q: "1. ∛19683", a: "27" },
+      { q: "2. ∛74088", a: "42" },
+      { q: "3. ∛175616", a: "56" },
+      { q: "4. ∛389017", a: "73" },
+      { q: "5. ∛614125", a: "85" },
+      { q: "6. ∛1124864", a: "104" },
+      { q: "7. ∛1771561", a: "121" }
+    ];
+
+    const drillsMul11And9 = [
+      { q: "1. 36 × 11", a: "396" },
+      { q: "2. 45 × 11", a: "495" },
+      { q: "3. 62 × 11", a: "682" },
+      { q: "4. 98 × 11", a: "1078" },
+      { q: "5. 145 × 11", a: "1595" },
+      { q: "6. 197 × 11", a: "2167" },
+      { q: "7. 386 × 11", a: "4246" },
+      { q: "8. 1763 × 11", a: "19393" },
+      { q: "9. 3793 × 11", a: "41723" },
+      { q: "10. 8782 × 11", a: "96602" },
+      { q: "11. 45 × 99", a: "4455" },
+      { q: "12. 97 × 99", a: "9603" },
+      { q: "13. 351 × 999", a: "350649" },
+      { q: "14. 1879 × 9999", a: "18788121" },
+      { q: "15. 8524 × 9999", a: "85231476" }
+    ];
+
+    const drillsPow10 = [
+      { q: "1. 146 × 5", a: "730" },
+      { q: "2. 236 × 25", a: "5900" },
+      { q: "3. 83 / 5", a: "16.6" },
+      { q: "4. 112 / 25", a: "4.48" },
+      { q: "5. 41 / 125", a: "0.328" },
+      { q: "6. 64 × 15", a: "960" },
+      { q: "7. 75 × 212", a: "15900" },
+      { q: "8. 328 × 5", a: "1640" },
+      { q: "9. 311 / 25", a: "12.44" },
+      { q: "10. 104 × 125", a: "13000" }
+    ];
+
+    const drillsSubAdd = [
+      { q: "1. 100 − 37", a: "63" },
+      { q: "2. 150 − 84", a: "66" },
+      { q: "3. 180 − 93", a: "87" },
+      { q: "4. 17 − 5.8", a: "11.2" },
+      { q: "5. 24 − 9.4", a: "14.6" },
+      { q: "6. 91 − 36", a: "55" },
+      { q: "7. 132 − 79", a: "53" },
+      { q: "8. 84 − 39", a: "45" },
+      { q: "9. 108 − 48", a: "60" },
+      { q: "10. 76 − 21", a: "55" },
+      { q: "11. 54 + 89", a: "143" },
+      { q: "12. 76 + 48", a: "124" },
+      { q: "13. 93 + 68", a: "161" },
+      { q: "14. 395 + 87", a: "482" },
+      { q: "15. 692 + 54", a: "746" },
+      { q: "16. 888 + 45", a: "933" },
+      { q: "17. 578 + 894", a: "1472" },
+      { q: "18. 8476 + 5938", a: "14414" },
+      { q: "19. 7945 + 6289", a: "14234" }
+    ];
+
+    const drillsApproxSqrt = [
+      { q: "1. √55", a: "7.42 (7 + 6/14)" },
+      { q: "2. √95", a: "9.75 (10 − 5/20)" },
+      { q: "3. √245", a: "15.65 (16 − 11/32)" },
+      { q: "4. √980", a: "31.30 (31 + 19/62)" },
+      { q: "5. √4250", a: "65.19 (65 + 25/130)" },
+      { q: "6. √7450", a: "86.31 (86 + 54/172)" },
+      { q: "7. √13450", a: "115.97 (116 − 6/232)" }
+    ];
+
+    // ==================== ALL 23 INTERACTIVE MCQ QUESTIONS FROM PDF ====================
+
+    const quizSqrtData = [
+      { id: 1, meta: "Page 7 • Square Root Q.1", q: "What is the value of √9801 − √1681?", opts: ["(a) 58", "(b) 68", "(c) 78", "(d) 88"], ans: 0, exp: "√9801 = 99 and √1681 = 41.\nTherefore, 99 − 41 = 58." },
+      { id: 2, meta: "Page 7 • Square Root Q.2", q: "Solve: (√6400 − √2401) × (1/4)", opts: ["(a) 7.75", "(b) 8.75", "(c) 9.75", "(d) 10.75"], ans: 0, exp: "√6400 = 80 and √2401 = 49.\n(80 − 49) × (1/4) = 31 / 4 = 7.75." },
+      { id: 3, meta: "Page 7 • Square Root Q.3", q: "Solve: (√5776 − √4761) × (1/2)", opts: ["(a) 3.5", "(b) 4.5", "(c) 6.5", "(d) 7.5"], ans: 0, exp: "√5776 = 76 and √4761 = 69.\n(76 − 69) × (1/2) = 7 / 2 = 3.5." },
+      { id: 4, meta: "Page 7 • Square Root Q.4", q: "What is the square root of 46656?", opts: ["(a) 216", "(b) 224", "(c) 212", "(d) 228"], ans: 0, exp: "By long division (or noting 46656 = 6⁶ = (6³)² = 216²): √46656 = 216." },
+      { id: 5, meta: "Page 7 • Square Root Q.5", q: "Solve: (√7921 − √2070.25) × (1/4)", opts: ["(a) 10.875", "(b) 11.25", "(c) 9.875", "(d) 10.375"], ans: 0, exp: "√7921 = 89 and √2070.25 = 45.5 (since 45×46 = 2070).\n(89 − 45.5) / 4 = 43.5 / 4 = 10.875." },
+      { id: 6, meta: "Page 7 • Square Root Word Problem Q.6", q: "A gardener organizes plants into rows to create a square formation but discovers that 15 plants are not included. If the total number of plants is 3984, then what is the number of plants in each row?", opts: ["(a) 43", "(b) 45", "(c) 63", "(d) 65"], ans: 2, exp: "Let the number of plants in each row be n.\nn² + 15 = 3984 ⇒ n² = 3969 ⇒ n = √3969 = 63." },
+      { id: 7, meta: "Page 7 • Digits in Square Root Q.7", q: "The number of digits in the square root of a perfect square containing 2n digits is:", opts: ["(a) n", "(b) n − 1", "(c) n + 1", "(d) 2n"], ans: 0, exp: "Each pair of digits in a perfect square produces 1 digit in its square root. Thus, a 2n-digit perfect square always has n digits in its square root." },
+      { id: 8, meta: "Page 7 • Natural Numbers Between Roots Q.8", q: "How many natural numbers are there between √261 and √45109?", opts: ["(a) 195", "(b) 196", "(c) 197", "(d) 194"], ans: 1, exp: "√261 ≈ 16.15 (since 16² = 256) and √45109 ≈ 212.38 (since 212² = 44944).\nNatural numbers between them are from 17 to 212.\nCount = 212 − 16 = 196." },
+      { id: 9, meta: "Page 7 • Perfect Squares in Range Q.9", q: "The number of perfect square numbers between 50 and 1000 is:", opts: ["(a) 21", "(b) 22", "(c) 23", "(d) 24"], ans: 3, exp: "Smallest perfect square > 50 is 8² = 64.\nLargest perfect square < 1000 is 31² = 961.\nTotal count = 31 − 8 + 1 = 24." },
+      { id: 10, meta: "Page 7 • Perfect Squares in Range Q.10", q: "How many perfect squares lie between 10,000 and 20,000 (inclusive)?", opts: ["(a) 32", "(b) 42", "(c) 52", "(d) 62"], ans: 1, exp: "√10000 = 100, and √20000 = 100√2 ≈ 141.4.\nSo the perfect squares are from 100² to 141².\nTotal count = 141 − 100 + 1 = 42." },
+      { id: 11, meta: "Page 7–8 • Least Number to Add Q.11", q: "To get a perfect square, what should be the minimum number to be added to 8212?", opts: ["(a) 123", "(b) 69", "(c) 112", "(d) 54"], ans: 1, exp: "90² = 8100 and 91² = 8281.\nThe next perfect square after 8212 is 8281.\nMinimum number to add = 8281 − 8212 = 69." },
+      { id: 12, meta: "Page 8 • Least Number to Add Q.12", q: "What is the smallest number that should be added to 1235 to make it a perfect square?", opts: ["(a) 61", "(b) 71", "(c) 81", "(d) 9"], ans: 0, exp: "35² = 1225 and 36² = 1296.\nNext perfect square after 1235 is 1296.\nSmallest number to add = 1296 − 1235 = 61." }
+    ];
+
+    const quizMul999Data = [
+      { id: 13, meta: "Page 9 • ×999 Digit Puzzle Q.1", q: "Consider the multiplication 999 × abc = def132 in decimal notation, where a, b, c, d, e and f are digits. What are the values of a, b, c, d, e and f, respectively?", opts: ["(a) 6, 6, 8, 6, 8, 7", "(b) 8, 6, 8, 6, 7, 8", "(c) 6, 8, 8, 7, 8, 6", "(d) 8, 6, 8, 8, 6, 7"], ans: 3, exp: "When a 3-digit number abc is multiplied by 999, the last 3 digits are (1000 − abc) = 132 ⇒ abc = 1000 − 132 = 868 (so a=8, b=6, c=8).\nThe first 3 digits are def = abc − 1 = 868 − 1 = 867 (so d=8, e=6, f=7).\nValues: 8, 6, 8, 8, 6, 7." }
+    ];
+
+    const quizPropsData = [
+      { id: 14, meta: "Page 11 • Square Properties Q.1", q: "Which of the following numbers can possibly be a perfect square?", opts: ["(a) 245982", "(b) 496838", "(c) 178343", "(d) 571536"], ans: 3, exp: "A perfect square can never end in 2, 3, 7, or 8. Options (a), (b), and (c) end in 2, 8, and 3 respectively. Only (d) 571536 (= 756²) is a valid perfect square." },
+      { id: 15, meta: "Page 11 • Smallest 6-Digit Square Q.2", q: "Which of the following is the smallest 6-digit number which is a perfect square?", opts: ["(a) 100489", "(b) 100588", "(c) 100688", "(d) 100788"], ans: 0, exp: "Smallest 6-digit number is 100000. By long division, 316² = 99856 and 317² = 100489 (Also note options b, c, d end in 8, which can never be a square!)." },
+      { id: 16, meta: "Page 11 • Rational Square Root Q.3", q: "The square root of which of the following is a rational number?", opts: ["(a) 2361.96", "(b) 2758.28", "(c) 72568.4", "(d) 62504.9"], ans: 0, exp: "(c) and (d) have only 1 decimal digit (odd). (b) ends in 8. Only (a) 2361.96 has 2 decimal digits and ends in 96 (48.6² = 2361.96)." },
+      { id: 17, meta: "Page 11 • Rational Square Root Q.4a", q: "The square root of which of the following is a rational number?", opts: ["(a) 5535.36", "(b) 72905.2", "(c) 3152.88", "(d) 67508.5"], ans: 0, exp: "(b) and (d) have 1 decimal place; (c) ends in 8. Only (a) 5535.36 (= 74.4²) has a rational square root." },
+      { id: 18, meta: "Page 11 • Rational Square Root Q.4b", q: "The square root of which of the following is a rational number?", opts: ["(a) 5823.82", "(b) 22504.9", "(c) 2460.14", "(d) 1489.96"], ans: 3, exp: "(a) ends in 2; (b) has 1 decimal digit; (c) ends in 14 (no square ends in 14). Only (d) 1489.96 (= 38.6²) is a perfect square." },
+      { id: 19, meta: "Page 11 • Rational Square Root Q.5", q: "The square root of which of the following is a rational number?", opts: ["(a) 1250.49", "(b) 6250.49", "(c) 1354.24", "(d) 5768.28"], ans: 2, exp: "(d) ends in 8. Check digital sum: 1+3+5+4+2+4 = 19 → 1+9 = 10 → 1 (and ends in 24 = 18² last 2 digits). Indeed, 36.8² = 1354.24." },
+      { id: 20, meta: "Page 11 • Toy Factory Word Problem Q.6", q: "A toy factory manufactured a batch of electronic toys. If packed in boxes of 115 each, 13 boxes would not be filled completely. If packed in boxes of 65 each, 22 such boxes would not be enough to pack all of them. In the end, the toys were packed in n boxes containing n toys each, without any remainder. The total number of toys was:", opts: ["(a) 1444", "(b) 1454", "(c) 1421", "(d) 1434"], ans: 0, exp: "Total toys = n² (a perfect square).\nGiven: 65 × 22 < n² < 115 × 13 ⇒ 1430 < n² < 1495.\nThe only perfect square between 1430 and 1495 is 38² = 1444." },
+      { id: 21, meta: "Page 11 • Army General Square Formation Q.7", q: "A General of Army wants to form a square from 36562 soldiers. After arrangement, he found some soldiers were left. How many soldiers were left?", opts: ["(a) 81", "(b) 36", "(c) 97", "(d) 65"], ans: 0, exp: "If remainder r is subtracted from 36562, the result (36562 − r) must be a perfect square.\nSince 190² = 36100 and 191² = 36481, remainder = 36562 − 36481 = 81 (Also verifiable instantly by Digital Sum!)." },
+      { id: 22, meta: "Page 11–12 • Consecutive Squares Q.8", q: "A number is increased by 120, and the result becomes a perfect square. The original number lies between two consecutive square numbers, 625 and 676. Find the original number.", opts: ["(a) 626", "(b) 656", "(c) 664", "(d) 672"], ans: 2, exp: "Check options by adding 120:\n(a) 626 + 120 = 746 (ends in 46, not a square)\n(b) 656 + 120 = 776 (ends in 76, but 776 is not a square)\n(c) 664 + 120 = 784 = 28² (Perfect square!)." },
+      { id: 23, meta: "Page 12 • Unit Digit Property Q.9", q: "How many two-digit numbers satisfy this property: The last digit (unit's digit) of the square of the two-digit number is 8?", opts: ["(a) 2", "(b) 5", "(c) 6", "(d) None of these (0)"], ans: 3, exp: "The unit digit of a perfect square can NEVER be 2, 3, 7, or 8. Therefore, 0 numbers satisfy this property → (d) None of these." }
+    ];
+
+    // ==================== INTERACTIVE TOOLS & ENGINE ====================
+
+    let score = 0;
+
+    function renderDrills(containerId, list) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = list.map(item => `
+        <div class="drill-item" onclick="toggleSingleDrill(this)">
+          <span class="drill-q">${item.q}</span>
+          <span class="drill-ans hidden" data-ans="= ${item.a}">Reveal Key</span>
+        </div>
+      `).join('');
+    }
+
+    window.toggleSingleDrill = function (el) {
+      const ans = el.querySelector('.drill-ans');
+      ans.classList.toggle('hidden');
+      ans.textContent = ans.classList.contains('hidden') ? 'Reveal Key' : ans.getAttribute('data-ans');
+    };
+
+    window.toggleAllDrills = function (reveal) {
+      document.querySelectorAll('.drill-ans').forEach(ans => {
+        if (reveal) {
+          ans.classList.remove('hidden');
+          ans.textContent = ans.getAttribute('data-ans');
+        } else {
+          ans.classList.add('hidden');
+          ans.textContent = 'Reveal Key';
+        }
+      });
+    };
+
+    window.generateTrainerSet = function () {
+      const op = document.getElementById('trainer-op').value;
+      const items = [];
+      for (let i = 1; i <= 10; i++) {
+        if (op === 'add') {
+          const a = Math.floor(100 + Math.random() * 899);
+          const b = Math.floor(100 + Math.random() * 899);
+          items.push({ q: `${i}. ${a} + ${b}`, a: `${a + b}` });
+        } else if (op === 'sub') {
+          const a = Math.floor(400 + Math.random() * 599);
+          const b = Math.floor(100 + Math.random() * 299);
+          items.push({ q: `${i}. ${a} − ${b}`, a: `${a - b}` });
+        } else {
+          const a = Math.floor(100 + Math.random() * 899);
+          const b = Math.floor(12 + Math.random() * 87);
+          items.push({ q: `${i}. ${a} × ${b}`, a: `${a * b}` });
+        }
+      }
+      renderDrills('trainer-list', items);
+    };
+
+    window.calcApprox = function () {
+      const val = parseFloat(document.getElementById('approx-num').value);
+      const type = document.getElementById('approx-type').value;
+      const out = document.getElementById('approx-output');
+      if (!val || val <= 0) {
+        out.innerHTML = '<em>Enter a positive number above.</em>';
+        return;
+      }
+      if (type === 'sqrt') {
+        const a = Math.round(Math.sqrt(val));
+        const a2 = a * a;
+        const x = val - a2;
+        const sign = x >= 0 ? '+' : '−';
+        const absX = Math.abs(x);
+        const approx = a + x / (2 * a);
+        const exact = Math.sqrt(val);
+        out.innerHTML = `
+          <div>Nearest Square: <strong>a² = ${a}² = ${a2}</strong> &nbsp;|&nbsp; Difference: <strong>x = ${x}</strong></div>
+          <div style="margin-top:6px;">Formula: <strong>√(${a2} ${sign} ${absX}) ≈ ${a} ${sign} (${absX} / ${2 * a}) = ${approx.toFixed(4)}</strong></div>
+          <div style="color:var(--success);margin-top:4px;">2-Decimal Answer: <strong>${approx.toFixed(2)}</strong> &nbsp;(Exact: ${exact.toFixed(4)})</div>
+        `;
+      } else {
+        const a = Math.round(Math.cbrt(val));
+        const a3 = a * a * a;
+        const x = val - a3;
+        const sign = x >= 0 ? '+' : '−';
+        const absX = Math.abs(x);
+        const denom = 3 * a * a;
+        const approx = a + x / denom;
+        const exact = Math.cbrt(val);
+        out.innerHTML = `
+          <div>Nearest Cube: <strong>a³ = ${a}³ = ${a3}</strong> &nbsp;|&nbsp; Difference: <strong>x = ${x}</strong></div>
+          <div style="margin-top:6px;">Formula: <strong>∛(${a3} ${sign} ${absX}) ≈ ${a} ${sign} (${absX} / (3 × ${a * a})) = ${a} ${sign} (${absX} / ${denom}) = ${approx.toFixed(4)}</strong></div>
+          <div style="color:var(--success);margin-top:4px;">Answer: <strong>${approx.toFixed(4)}</strong> &nbsp;(Exact: ${exact.toFixed(4)})</div>
+        `;
+      }
+    };
+
+    function renderQuiz(containerId, list) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = list.map(item => {
+        const uid = `qcard-${item.id}`;
+        const optsHtml = item.opts.map((opt, idx) => `
+          <button class="quiz-opt" onclick="checkAns('${uid}', ${idx}, ${item.ans}, this)">${opt}</button>
+        `).join('');
+        return `
+          <div class="quiz-card" id="${uid}">
+            <div class="quiz-meta"><span>${item.meta}</span><span>Interactive MCQ</span></div>
+            <div class="quiz-question">${item.q}</div>
+            <div class="quiz-options">${optsHtml}</div>
+            <div class="quiz-exp" id="${uid}-exp"><strong>Solution:</strong> ${item.exp}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.checkAns = function (cardId, selectedIdx, correctIdx, btnEl) {
+      const card = document.getElementById(cardId);
+      const btns = card.querySelectorAll('.quiz-opt');
+      const exp = document.getElementById(`${cardId}-exp`);
+
+      btns.forEach((b, i) => {
+        b.disabled = true;
+        if (i === correctIdx) b.classList.add('correct');
+      });
+
+      if (selectedIdx === correctIdx) {
+        score++;
+        document.getElementById('score-val').textContent = score;
+      } else {
+        btnEl.classList.add('wrong');
+      }
+      exp.classList.add('visible');
+    };
+
+    window.showTab = function (tabId, btnEl) {
+      document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('global-search').value = '';
+      filterCurrentTab('');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.toggleTheme = function () {
+      const root = document.documentElement;
+      if (root.getAttribute('data-theme') === 'dark') {
+        root.removeAttribute('data-theme');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+      }
+    };
+
+    window.filterCurrentTab = function (query) {
+      const q = query.toLowerCase().trim();
+      const activeSec = document.querySelector('.section-page.active');
+      if (!activeSec) return;
+      activeSec.querySelectorAll('.drill-item, .quiz-card, tr').forEach(el => {
+        if (!q) {
+          el.style.display = '';
+          return;
+        }
+        if (el.tagName === 'TR' && el.parentElement.tagName === 'THEAD') return;
+        const text = (el.textContent + ' ' + (el.querySelector('.drill-ans')?.getAttribute('data-ans') || '')).toLowerCase();
+        el.style.display = text.includes(q) ? '' : 'none';
+      });
+    };
+
+    window.resetAllQuizzes = function () {
+      score = 0;
+      document.getElementById('score-val').textContent = '0';
+      initAll();
+    };
+
+    function initAll() {
+      generateTrainerSet();
+      calcApprox();
+      renderDrills('drill-end5', drillsEnd5);
+      renderDrills('drill-ab2', drillsAB2);
+      renderDrills('drill-base100', drillsBase100);
+      renderDrills('drill-base50', drillsBase50);
+      renderDrills('drill-sqrt', drillsSqrt);
+      renderDrills('drill-cbrt', drillsCbrt);
+      renderDrills('drill-mul11-9', drillsMul11And9);
+      renderDrills('drill-pow10', drillsPow10);
+      renderDrills('drill-sub-add', drillsSubAdd);
+      renderDrills('drill-approx-sqrt', drillsApproxSqrt);
+
+      renderQuiz('quiz-sqrt', quizSqrtData);
+      renderQuiz('quiz-mul999', quizMul999Data);
+      renderQuiz('quiz-props', quizPropsData);
+    }
+
+    document.addEventListener('DOMContentLoaded', initAll);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Written PYQs — Physics Complete 80 Questions Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #060b16;
+      --bg-card: #0f172a;
+      --bg-card-hover: #1e293b;
+      --bg-glass: rgba(15, 23, 42, 0.88);
+      --border: #263554;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-sky: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      background-image:
+        radial-gradient(circle at 12% 12%, rgba(56, 189, 248, 0.08), transparent 32%),
+        radial-gradient(circle at 88% 85%, rgba(99, 102, 241, 0.08), transparent 32%);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Clean Native HTML Math & Physics Formula Styling */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #e0f2fe;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      padding: 1px 7px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.03em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 3px;
+      font-size: 0.88em;
+      line-height: 1.1;
+    }
+
+    .frac-num {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 4px 1px;
+    }
+
+    .frac-den {
+      padding: 1px 4px 0;
+    }
+
+    .sqrt {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .sqrt-rad {
+      font-size: 1.12em;
+      margin-right: 1px;
+    }
+
+    .sqrt-body {
+      border-top: 1.5px solid currentColor;
+      padding: 1px 3px 0;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 20px;
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-sky), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+    }
+
+    .brand-text h1 {
+      font-size: 1.14rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .stat-pill .val {
+      color: var(--accent-sky);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .timer-pill {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fcd34d;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Navigation & Filters */
+    .nav-container {
+      max-width: 1320px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(99, 102, 241, 0.22));
+      color: #fff;
+      border-color: var(--accent-sky);
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-sky);
+      color: #060b16;
+      border-color: var(--accent-sky);
+      font-weight: 700;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-sky);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1320px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-num {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-sky);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .badge-part {
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .badge-topic {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: var(--accent-amber);
+      color: #fbbf24;
+    }
+
+    .q-title {
+      font-size: 1.14rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.72;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.15s;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: var(--accent-sky);
+    }
+
+    .opt-key {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: var(--accent-emerald);
+      color: #ecfdf5;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #052e16;
+    }
+
+    .opt-btn.wrong {
+      background: rgba(244, 63, 94, 0.16);
+      border-color: var(--accent-rose);
+      color: #fff1f2;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    .exp-box {
+      margin-top: 20px;
+      background: rgba(15, 23, 42, 0.95);
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: none;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #34d399;
+      margin-bottom: 6px;
+      font-size: 0.92rem;
+    }
+
+    .exp-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.7;
+    }
+
+    .quiz-footer {
+      margin-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--accent-sky);
+      color: #060b16;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .nav-btn.secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Palette Sidebar */
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      position: sticky;
+      top: 84px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      max-height: 410px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 10px;
+    }
+
+    .p-num {
+      height: 34px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-sky);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
+      color: #fff;
+    }
+
+    .p-num.correct {
+      background: rgba(16, 185, 129, 0.24);
+      border-color: var(--accent-emerald);
+      color: #6ee7b7;
+    }
+
+    .p-num.wrong {
+      background: rgba(244, 63, 94, 0.24);
+      border-color: var(--accent-rose);
+      color: #fda4af;
+    }
+
+    /* Flashcards */
+    .flashcard-wrap {
+      max-width: 740px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 330px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #0f172a, #092226);
+    }
+
+    /* Formula Sheet */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 18px;
+    }
+
+    .formula-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .formula-card h3 {
+      font-size: 1rem;
+      color: var(--accent-sky);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .formula-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* Study Bank */
+    .search-bar {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.94rem;
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .bank-ans {
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">⚛</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern Written PYQs — Physics Master Hub</h1>
+        <p>Complete 80 Questions (Part 1: Q1–40 & Part 2: Q41–80) • Rafi Sir Solutions (100% English)</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="timer-pill" onclick="toggleTimer()" id="timer-display" title="Click to Pause/Resume Timer">⏱️ 00:00</div>
+      <div class="stat-pill">Attempted:<span class="val" id="stat-attempted">0/80</span></div>
+      <div class="stat-pill">Correct:<span class="val" id="stat-correct" style="color:#10b981;">0</span></div>
+      <div class="stat-pill">Accuracy:<span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved:<span class="val" id="stat-saved" style="color:#f59e0b;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Interactive Quiz (80 PYQs)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('formulas', this)">📐 Physics Formula Cheat Sheet</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 80)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setFilter('ALL', this)">All 80 Questions</button>
+      <button class="sec-pill" onclick="setFilter('PART1', this)">Part 1 (Q1–Q40)</button>
+      <button class="sec-pill" onclick="setFilter('PART2', this)">Part 2 (Q41–Q80)</button>
+      <button class="sec-pill" onclick="setFilter('MECHANICS', this)">⚙️ Mechanics & Fluids</button>
+      <button class="sec-pill" onclick="setFilter('WAVES_OPTICS', this)">🌊 Waves & Optics</button>
+      <button class="sec-pill" onclick="setFilter('ELECTRO_MAG', this)">⚡ Electricity & Magnetism</button>
+      <button class="sec-pill" onclick="setFilter('THERMO_MODERN', this)">🔥 Thermal & Modern Physics</button>
+      <button class="sec-pill" onclick="setFilter('SAVED', this)">★ Saved</button>
+      <button class="sec-pill" onclick="setFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="ctrl-btn" onclick="revealCurrent()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 80</span>
+            <span class="badge badge-part" id="q-part-badge">Part 1</span>
+            <span class="badge badge-topic" id="q-topic-badge">Topic</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Step-by-Step Solution & Physics Concept</div>
+          <div class="exp-text" id="q-exp-text"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQ(-1)">← Previous</button>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Keyboard: <b>1–4</b> Select Option • <b>← / →</b> Navigate</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQ(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.9rem;">
+          <span>Question Navigator</span>
+          <span id="palette-count" style="color:var(--text-secondary); font-size:0.78rem;">80 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face">
+          <div>
+            <div class="q-badges" style="margin-bottom:14px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 80</span>
+              <span class="badge badge-topic" id="fc-topic">Topic</span>
+            </div>
+            <div id="fc-q" style="font-size:1.18rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="text-align:center; color:var(--accent-sky); font-size:0.84rem;">🔄 Click Card or Press Spacebar to Flip</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <span class="badge badge-num" style="background:rgba(16,185,129,0.2); color:#6ee7b7; margin-bottom:10px; display:inline-block;">Correct Answer</span>
+            <div id="fc-ans" style="font-size:1.3rem; font-weight:800; color:#34d399; margin-bottom:14px;"></div>
+            <div id="fc-exp" style="font-size:0.95rem; color:#e2e8f0; line-height:1.65;"></div>
+          </div>
+          <p style="text-align:center; color:var(--text-secondary); font-size:0.8rem;">Click to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button class="nav-btn secondary" onclick="moveFC(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFC(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FORMULA CHEAT SHEET VIEW -->
+  <section id="view-formulas" class="view-section">
+    <div class="formula-grid">
+      <div class="formula-card">
+        <h3>⚙️ Mechanics, Circular Motion & Gravitation</h3>
+        <ul class="formula-list">
+          <li>• <b>Free Fall Distance:</b> <span class="m-expr">s = ut + <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>gt<sup>2</sup></span></li>
+          <li>• <b>Track Super-Elevation:</b> <span class="m-expr">h = <span class="frac"><span class="frac-num">v<sup>2</sup> · G</span><span class="frac-den">r · g</span></span></span></li>
+          <li>• <b>Critical Orbital Velocity:</b> <span class="m-expr">v<sub>c</sub> = <span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body"><span class="frac"><span class="frac-num">GM</span><span class="frac-den">r</span></span></span></span></span> & Escape Velocity <span class="m-expr">v<sub>e</sub> = 11.2 km/s</span></li>
+          <li>• <b>Centripetal Acceleration:</b> <span class="m-expr">a<sub>c</sub> = <span class="frac"><span class="frac-num">v<sup>2</sup></span><span class="frac-den">r</span></span> = ω<sup>2</sup>r</span></li>
+          <li>• <b>Hydrostatic Pressure:</b> <span class="m-expr">P = ρgh</span> (Independent of container shape)</li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>🌊 Waves, Sound & Optics</h3>
+        <ul class="formula-list">
+          <li>• <b>Wave Velocity:</b> <span class="m-expr">v = f × λ</span> (Frequency <span class="m-expr">f</span> remains unchanged during refraction)</li>
+          <li>• <b>Lens Formula & Magnification:</b> <span class="m-expr"><span class="frac"><span class="frac-num">1</span><span class="frac-den">v</span></span> − <span class="frac"><span class="frac-num">1</span><span class="frac-den">u</span></span> = <span class="frac"><span class="frac-num">1</span><span class="frac-den">f</span></span></span> and <span class="m-expr">m = <span class="frac"><span class="frac-num">v</span><span class="frac-den">u</span></span></span></li>
+          <li>• <b>Doppler Approaching Source:</b> <span class="m-expr">f' = f × (<span class="frac"><span class="frac-num">v<sub>sound</sub></span><span class="frac-den">v<sub>sound</sub> − v<sub>source</sub></span></span>)</span></li>
+          <li>• <b>Glancing Angle Reflection:</b> If ray makes angle <span class="m-expr">θ</span> with mirror surface, <span class="m-expr">i = r = 90° − θ</span></li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>⚡ Electricity & Magnetism</h3>
+        <ul class="formula-list">
+          <li>• <b>Coulomb's Law:</b> <span class="m-expr">F = <span class="frac"><span class="frac-num">k q<sub>1</sub> q<sub>2</sub></span><span class="frac-den">r<sup>2</sup></span></span></span> & Electric Field <span class="m-expr">E = <span class="frac"><span class="frac-num">F</span><span class="frac-den">q</span></span></span></li>
+          <li>• <b>Magnetic Dipole Period:</b> <span class="m-expr">T = 2π <span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body"><span class="frac"><span class="frac-num">I</span><span class="frac-den">MB</span></span></span></span></span> (Independent of <span class="m-expr">g</span>)</li>
+          <li>• <b>Solenoid Self-Inductance:</b> <span class="m-expr">L = <span class="frac"><span class="frac-num">μ<sub>0</sub> N<sup>2</sup> A</span><span class="frac-den">l</span></span> ∝ N<sup>2</sup></span></li>
+          <li>• <b>Electrical Work & Ohm's Law:</b> <span class="m-expr">W = qV</span> and <span class="m-expr">I = <span class="frac"><span class="frac-num">V</span><span class="frac-den">R</span></span></span></li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>🔥 Thermal & Modern Physics</h3>
+        <ul class="formula-list">
+          <li>• <b>Calorimetry Heat Transfer:</b> <span class="m-expr">Q = m · c · ΔT</span></li>
+          <li>• <b>Thermodynamic Efficiency:</b> <span class="m-expr">η = <span class="frac"><span class="frac-num">Work Output (W)</span><span class="frac-den">Heat Input (Q<sub>in</sub>)</span></span> × 100%</span></li>
+          <li>• <b>Radioactive Half-Life Decay:</b> <span class="m-expr">N = N<sub>0</sub> (<span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>)<sup>n</sup></span> where <span class="m-expr">n = <span class="frac"><span class="frac-num">t</span><span class="frac-den">T<sub>1/2</sub></span></span></span></li>
+          <li>• <b>Alpha Decay Rule:</b> Emitting <span class="m-expr"><sub>2</sub>He<sup>4</sup></span> decreases Mass Number by <b>4</b> and Atomic Number by <b>2</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1;" placeholder="🔍 Search any Physics question, formula, or keyword (e.g., Doppler, Pulley, Lens, Pendulum, Alpha)..." oninput="renderBank()" />
+      <button class="ctrl-btn" onclick="toggleBlur(this)">🙈 Hide Answers (Self-Test)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+const frac = (n, d) => `<span class="frac"><span class="frac-num">${n}</span><span class="frac-den">${d}</span></span>`;
+const sqrt = (x) => `<span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">${x}</span></span>`;
+const m = (c) => `<span class="m-expr">${c}</span>`;
+
+const QUESTIONS = [
+  // ================= PART 1: QUESTIONS 1 TO 40 =================
+  {
+    id: 1, part: "PART1", cat: "WAVES_OPTICS", topic: "Wave Speed",
+    q: `A girl watching water waves sees 4 wave crests pass by in 2 seconds. If each wave has a wavelength of ${m("0.5 m")}, what is the speed of the waves?`,
+    opts: [m("0.5 m/s"), m("1.0 m/s"), m("2.0 m/s"), m("4.0 m/s")], ans: 1,
+    exp: `1. Frequency ${m(`f = ${frac("4 waves", "2 s")} = 2 Hz`)}.<br>2. Wave Speed ${m("v = f × λ = 2 × 0.5 = 1.0 m/s")}.`
+  },
+  {
+    id: 2, part: "PART1", cat: "WAVES_OPTICS", topic: "Wavelength",
+    q: `In a wave diagram, one half-cycle covers a horizontal distance of ${m("1 m")}. What is the total wavelength (${m("λ")}) of the wave?`,
+    opts: [m("0.5 m"), m("1 m"), m("1.5 m"), m("2 m")], ans: 3,
+    exp: `One full wave cycle consists of two half-cycles. Therefore, wavelength ${m("λ = 1 m + 1 m = 2 m")}.`
+  },
+  {
+    id: 3, part: "PART1", cat: "MECHANICS", topic: "Mass & Weight",
+    q: `When an object is taken to a very high altitude in the sky, what happens to its mass and weight?`,
+    opts: [
+      "Mass increases, Weight remains same",
+      "Mass decreases, Weight increases",
+      "Mass remains same, Weight decreases",
+      "Both Mass and Weight remain same"
+    ], ans: 2,
+    exp: `Mass is an intrinsic property of matter and remains constant everywhere. As altitude ${m("h")} increases, gravitational acceleration ${m(`g' = g ${frac("R<sup>2</sup>", "(R+h)<sup>2</sup>")}`)} decreases, so Weight (${m("W = mg'")}) decreases.`
+  },
+  {
+    id: 4, part: "PART1", cat: "MECHANICS", topic: "Free Fall Kinematics",
+    q: `A ball is dropped from rest from a tall building and falls freely for ${m("3 seconds")}. What distance does it fall? (${m("g = 10 m/s<sup>2</sup>")})`,
+    opts: [m("15 m"), m("30 m"), m("45 m"), m("90 m")], ans: 2,
+    exp: `Given ${m("u = 0")}, ${m("t = 3 s")}, ${m("g = 10 m/s<sup>2</sup>")}. Distance ${m(`s = ut + ${frac("1", "2")}gt<sup>2</sup> = 0 + ${frac("1", "2")}(10)(3)<sup>2</sup> = 5 × 9 = 45 m`)}.`
+  },
+  {
+    id: 5, part: "PART1", cat: "MECHANICS", topic: "Pulley Systems",
+    q: `In a pulley system supporting a heavy weight with 3 rope segments, how much length of cord must be pulled at end A to lift the weight by ${m("10 feet")}?`,
+    opts: [m("10 feet"), m("20 feet"), m("30 feet"), m("40 feet")], ans: 2,
+    exp: `With 3 supporting rope segments (Mechanical Advantage = 3), the length of rope pulled is ${m("3 × Lift Height = 3 × 10 = 30 feet")}.`
+  },
+  {
+    id: 6, part: "PART1", cat: "ELECTRO_MAG", topic: "Magnetism",
+    q: `The time period of a magnetic dipole oscillating in a uniform magnetic field (${m(`T = 2π${sqrt("I / MB")}`)}) does NOT depend on:`,
+    opts: [
+      `Mass / Moment of Inertia (${m("I")})`,
+      `Magnetic Moment (${m("M")})`,
+      `Acceleration due to gravity (${m("g")})`,
+      `Magnetic Induction (${m("B")})`
+    ], ans: 2,
+    exp: `The formula ${m(`T = 2π${sqrt(frac("I", "MB"))}`)} does not contain ${m("g")}, so the time period is completely independent of acceleration due to gravity.`
+  },
+  {
+    id: 7, part: "PART1", cat: "MECHANICS", topic: "Circular Track Banking",
+    q: `A train moves at a constant speed of ${m("72 km/h")} (${m("20 m/s")}) along a circular track of radius ${m("500 m")}. For a gauge width of ${m("1 m")}, how much must the outer rail be elevated vertically above the inner rail? (${m("g = 10 m/s<sup>2</sup>")})`,
+    opts: [m("4 cm"), m("8 cm"), m("12 cm"), m("16 cm")], ans: 1,
+    exp: `Elevation ${m(`h = ${frac("v<sup>2</sup> · G", "r · g")} = ${frac("(20)<sup>2</sup> × 1", "500 × 10")} = ${frac("400", "5000")} = 0.08 m = 8 cm`)}.`
+  },
+  {
+    id: 8, part: "PART1", cat: "MECHANICS", topic: "Uniform Circular Motion",
+    q: `A particle performs Uniform Circular Motion (UCM). After completing ${m("1/4th")} of its periodic time, its linear displacement is ${m("1.414 m")} (${m(`${sqrt("2")} m`)}). What is the radius of the circular path?`,
+    opts: [m("0.5 m"), m("1 m"), m("1.414 m"), m("2 m")], ans: 1,
+    exp: `In a quarter revolution, the displacement forms the hypotenuse of a right triangle with legs ${m("r")} and ${m("r")}: ${m(`Displacement = ${sqrt("r<sup>2</sup> + r<sup>2</sup>")} = r${sqrt("2")} = 1.414 m ⇒ r = 1 m`)}.`
+  },
+  {
+    id: 9, part: "PART1", cat: "MECHANICS", topic: "Inclined Plane & Power",
+    q: `A body of mass ${m("100 kg")} is just about to slide down an inclined plane at ${m("30°")}. To drag it UP the plane at a speed of ${m("7 m/s")}, what power must be supplied? (${m("g = 9.8 m/s<sup>2</sup>")})`,
+    opts: [m("3.43 kW"), m("6.86 kW"), m("9.8 kW"), m("12.5 kW")], ans: 1,
+    exp: `1. Friction force ${m("f<sub>k</sub> = mg sin 30°")}.<br>2. Total upward pulling force ${m("F = mg sin 30° + f<sub>k</sub> = 2 mg sin 30° = mg = 100 × 9.8 = 980 N")}.<br>3. Power ${m("P = F × v = 980 × 7 = 6860 W = 6.86 kW")}.`
+  },
+  {
+    id: 10, part: "PART1", cat: "MECHANICS", topic: "Satellite Motion",
+    q: `The critical orbital velocity of a satellite at distance ${m("r")} from the planet's center of mass ${m("M")} is proportional to:`,
+    opts: [m(`${sqrt("M")} / ${sqrt("r")}`), m("M / r<sup>2</sup>"), m(`${sqrt("r")} / M`), m("M · r")], ans: 0,
+    exp: `Critical orbital velocity is given by ${m(`v<sub>c</sub> = ${sqrt(frac("GM", "r"))}`)}, so it is directly proportional to ${m(sqrt("M"))} and inversely proportional to ${m(sqrt("r"))}.`
+  },
+  {
+    id: 11, part: "PART1", cat: "WAVES_OPTICS", topic: "Optical Instruments",
+    q: `Which optical instrument is useful for a short person in a crowd to see over tall people without changing their position?`,
+    opts: ["Microscope", "Telescope", "Periscope", "Kaleidoscopic mirror"], ans: 2,
+    exp: `A <b>Periscope</b> uses two parallel plane mirrors (or prisms) at ${m("45°")} to allow viewing over obstacles.`
+  },
+  {
+    id: 12, part: "PART1", cat: "WAVES_OPTICS", topic: "Refraction of Light",
+    q: `During the refraction of a light wave from one medium into another, which physical property does NOT change?`,
+    opts: [`Velocity (${m("v")})`, `Wavelength (${m("λ")})`, `Frequency (${m("f")})`, "Amplitude"], ans: 2,
+    exp: `When light travels from one medium to another, its speed and wavelength change, but its <b>Frequency (${m("f")})</b> depends only on the source and remains constant.`
+  },
+  {
+    id: 13, part: "PART1", cat: "MECHANICS", topic: "Kinematics Graphs",
+    q: `On a velocity-time (${m("v-t")}) graph, which interval represents an increase in the speed of the object?`,
+    opts: [
+      "AB (Constant velocity)",
+      "BC (Velocity decreasing to zero)",
+      "CD (Zero velocity)",
+      "DE (Increasing magnitude of velocity in the negative direction)"
+    ], ans: 3,
+    exp: `Speed is the magnitude of velocity (a scalar). In interval <b>DE</b>, the magnitude of velocity increases in the negative direction, meaning speed increases.`
+  },
+  {
+    id: 14, part: "PART1", cat: "WAVES_OPTICS", topic: "Convex Lens",
+    q: `A candle is placed at ${m("30 cm")} from a convex lens of focal length ${m("20 cm")}. What is the size of the image relative to the object?`,
+    opts: ["Same size", `Double the size (${m("2×")})`, `Half the size (${m("0.5×")})`, `Triple the size (${m("3×")})`], ans: 1,
+    exp: `1. ${m("u = −30 cm")}, ${m("f = +20 cm")}.<br>2. ${m(`${frac("1", "v")} = ${frac("1", "f")} + ${frac("1", "u")} = ${frac("1", "20")} − ${frac("1", "30")} = ${frac("1", "60")} ⇒ v = +60 cm`)}.<br>3. Magnification ${m(`|m| = |${frac("v", "u")}\vert{} = \vert{}${frac("60", "−30")}| = 2`)} (Double the size).`
+  },
+  {
+    id: 15, part: "PART1", cat: "ELECTRO_MAG", topic: "Electrostatics",
+    q: `Charge A attracts B, B repels C, and C repels D. If D is positively charged, what are the signs of charges A and B?`,
+    opts: [
+      "A is Negative, B is Positive",
+      "A is Positive, B is Positive",
+      "Both A and B are Negative",
+      "A is Positive, B is Negative"
+    ], ans: 0,
+    exp: `Given ${m("D = (+)")}. Since C repels D, ${m("C = (+)")}. Since B repels C, ${m("B = (+)")}. Since A attracts B, ${m("A = (−)")}.`
+  },
+  {
+    id: 16, part: "PART1", cat: "MECHANICS", topic: "Equations of Motion",
+    q: `A car moving initially at ${m("32 m/s")} decelerates uniformly at a rate of ${m("−2 m/s<sup>2</sup>")} over a distance of ${m("60 m")}. What is its final speed?`,
+    opts: [m("20 m/s"), m("24 m/s"), m("28 m/s"), m("30 m/s")], ans: 2,
+    exp: `Using ${m("v<sup>2</sup> = u<sup>2</sup> + 2as")}: ${m(`v<sup>2</sup> = (32)<sup>2</sup> + 2(−2)(60) = 1024 − 240 = 784 ⇒ v = ${sqrt("784")} = 28 m/s`)}.`
+  },
+  {
+    id: 17, part: "PART1", cat: "THERMO_MODERN", topic: "Thermodynamics",
+    q: `A system has ${m("60 J")} of heat added to it, resulting in ${m("15 J")} of useful work being done and ${m("45 J")} of remaining heat rejected. What is the efficiency of the process?`,
+    opts: [m("15%"), m("25%"), m("50%"), m("75%")], ans: 1,
+    exp: `Efficiency ${m(`η = ${frac("Work Done", "Heat Input")} × 100\% = ${frac("15", "60")} × 100% = 25%`)}.`
+  },
+  {
+    id: 18, part: "PART1", cat: "ELECTRO_MAG", topic: "Electric Circuits",
+    q: `In a multi-loop circuit diagram, what is the minimum number of switches that must be closed to illuminate at least one light bulb?`,
+    opts: ["1 switch", "2 switches", "3 switches", "4 switches"], ans: 1,
+    exp: `To complete a single closed conducting loop from the battery through one bulb, at least <b>2 switches</b> (main branch switch + bulb branch switch) must be closed.`
+  },
+  {
+    id: 19, part: "PART1", cat: "ELECTRO_MAG", topic: "Coulomb's Law",
+    q: `Two charges ${m("q<sub>1</sub>")} and ${m("q<sub>2</sub>")} are separated by distance ${m("r")}. If charge ${m("q<sub>1</sub>")} is doubled and the distance between them is also doubled, the new electrostatic force becomes:`,
+    opts: [
+      "Equal to initial force",
+      "Double the initial force",
+      `Half of the initial force (${m("F/2")})`,
+      "One-fourth of initial force"
+    ], ans: 2,
+    exp: `${m(`F' = ${frac("k(2q<sub>1</sub>)q<sub>2</sub>", "(2r)<sup>2</sup>")} = ${frac("2", "4")} F = ${frac("F", "2")}`)}.`
+  },
+  {
+    id: 20, part: "PART1", cat: "ELECTRO_MAG", topic: "Electrical Instruments",
+    q: `A Voltmeter is used to measure potential difference across a component. How is it connected, and what is its internal resistance?`,
+    opts: [
+      "Connected in Series, Low Resistance",
+      "Connected in Parallel, High Resistance",
+      "Connected in Series, High Resistance",
+      "Connected in Parallel, Zero Resistance"
+    ], ans: 1,
+    exp: `A voltmeter is always connected in <b>Parallel</b> across a component and is designed with very <b>High Resistance</b> so it draws negligible current.`
+  },
+  {
+    id: 21, part: "PART1", cat: "MECHANICS", topic: "Work & Energy",
+    q: `A car is driven from a plain to a hill top and brought to rest. At the hill top, the car has:`,
+    opts: ["Lost Potential Energy", "Gained Potential Energy", "Gained Kinetic Energy", "Zero total energy"], ans: 1,
+    exp: `By gaining elevation ${m("h")}, the car has <b>gained Gravitational Potential Energy (${m("mgh")})</b> while its kinetic energy becomes zero at rest.`
+  },
+  {
+    id: 22, part: "PART1", cat: "THERMO_MODERN", topic: "Metallurgy & Marine Gear",
+    q: `Heat treatment process is applied to wrought iron components primarily for:`,
+    opts: [
+      "Relieving internal stresses in loose gear",
+      "Increasing weight",
+      "Changing chemical composition",
+      "Lowering melting point"
+    ], ans: 0,
+    exp: `Annealing/heat treatment of wrought iron cargo and loose gear is performed to <b>relieve internal stresses</b> and prevent brittle failure.`
+  },
+  {
+    id: 23, part: "PART1", cat: "MECHANICS", topic: "Shipboard Safety",
+    q: `What is the recommended primary procedure before using any loose gear on board a ship?`,
+    opts: ["Chemical washing", "Thorough visual inspection", "Ultrasonic test only", "Painting"], ans: 1,
+    exp: `Before using any lifting or loose gear on board, a <b>thorough visual inspection</b> for wear, cracks, or deformation is mandatory.`
+  },
+  {
+    id: 24, part: "PART1", cat: "ELECTRO_MAG", topic: "Charge Transfer",
+    q: `When an electrostatic charge is transferred from one object to another, which subatomic particle actually moves?`,
+    opts: ["Protons", "Neutrons", "Electrons", "Positrons"], ans: 2,
+    exp: `Only outer-shell <b>Electrons</b> move during electrostatic charging; protons remain tightly bound inside the atomic nucleus.`
+  },
+  {
+    id: 25, part: "PART1", cat: "THERMO_MODERN", topic: "Heat Transfer",
+    q: `The heat felt when standing near the side of an open fire is primarily transferred through:`,
+    opts: ["Conduction", "Convection", "Radiation", "Evaporation"], ans: 2,
+    exp: `Thermal energy reaching a person standing beside an open fire travels via electromagnetic waves, which is <b>Radiation</b>.`
+  },
+  {
+    id: 26, part: "PART1", cat: "WAVES_OPTICS", topic: "Refraction of Light",
+    q: `A light ray enters from Medium 1 into Medium 2 and bends away from the normal. This indicates that Medium 1 relative to Medium 2 is:`,
+    opts: ["Optically Rarer", "Optically Denser", "Of the same optical density", "Vacuum"], ans: 1,
+    exp: `A light ray bends away from the normal when traveling from an <b>Optically Denser</b> medium (Medium 1) into an optically rarer medium (Medium 2).`
+  },
+  {
+    id: 27, part: "PART1", cat: "MECHANICS", topic: "Vertical Motion",
+    q: `A ball is thrown vertically upward with an initial velocity of ${m("5 m/s")} from a tall building. What is its velocity after ${m("8 seconds")}? (${m("g = 10 m/s<sup>2</sup>")})`,
+    opts: [
+      `${m("−75 m/s")} (${m("75 m/s")} downwards)`,
+      `${m("+75 m/s")}`,
+      `${m("−85 m/s")}`,
+      `${m("0 m/s")}`
+    ], ans: 0,
+    exp: `Using ${m("v = u − gt = 5 − (10 × 8) = 5 − 80 = −75 m/s")} (the negative sign denotes downward motion).`
+  },
+  {
+    id: 28, part: "PART1", cat: "ELECTRO_MAG", topic: "Resistor Networks",
+    q: `Three resistors of ${m("2 Ω")}, ${m("3 Ω")}, and ${m("12 Ω")} are connected in parallel. Their total equivalent resistance is:`,
+    opts: [m("1 Ω"), m("12/11 Ω (1.09 Ω)"), m("11/12 Ω"), m("17 Ω")], ans: 1,
+    exp: `${m(`${frac("1", "R<sub>eq</sub>")} = ${frac("1", "2")} + ${frac("1", "3")} + ${frac("1", "12")} = ${frac("6 + 4 + 1", "12")} = ${frac("11", "12")} ⇒ R<sub>eq</sub> = ${frac("12", "11")} Ω`)}.`
+  },
+  {
+    id: 29, part: "PART1", cat: "MECHANICS", topic: "Simple Pendulum",
+    q: `A simple pendulum swings back and forth between extreme points A and C, with B being the lowest midpoint. At point B, the pendulum has:`,
+    opts: [
+      "Maximum Potential Energy",
+      "Minimum Kinetic Energy",
+      "Maximum Kinetic Energy",
+      "Zero total energy"
+    ], ans: 2,
+    exp: `At the lowest mean position B, potential energy is minimum and speed is maximum, giving <b>Maximum Kinetic Energy</b>.`
+  },
+  {
+    id: 30, part: "PART1", cat: "THERMO_MODERN", topic: "Thermal Expansion",
+    q: `A bimetallic strip made of iron and copper is heated and then cooled. It bends primarily because:`,
+    opts: [
+      "Iron expands more than copper",
+      "Copper expands more than iron",
+      "Iron melts faster",
+      "Both expand equally"
+    ], ans: 1,
+    exp: `<b>Copper has a higher coefficient of linear thermal expansion (${m("α")}) than iron</b>, causing unequal expansion/contraction and bending.`
+  },
+  {
+    id: 31, part: "PART1", cat: "THERMO_MODERN", topic: "Phase Change",
+    q: `Evaporation of a liquid occurs at:`,
+    opts: [
+      "Boiling point only",
+      "Any temperature below its boiling point",
+      "Freezing point only",
+      "100°C only"
+    ], ans: 1,
+    exp: `Evaporation is a surface phenomenon that occurs at <b>any temperature below the boiling point</b>.`
+  },
+  {
+    id: 32, part: "PART1", cat: "MECHANICS", topic: "Projectile Motion",
+    q: `Three identical marbles — Red (dropped freely), Blue (thrown horizontally at ${m("5 m/s")}), and Green (thrown horizontally at ${m("10 m/s")}) — are released at the same time from the same height. Which marble hits the ground first?`,
+    opts: ["Red", "Blue", "Green", "All three hit the ground simultaneously"], ans: 3,
+    exp: `All three marbles have zero initial vertical velocity (${m("u<sub>y</sub> = 0")}). Since time of fall ${m(`t = ${sqrt("2h / g")}`)} depends only on vertical height, <b>all three hit the ground simultaneously</b>.`
+  },
+  {
+    id: 33, part: "PART1", cat: "ELECTRO_MAG", topic: "Ohm's Law",
+    q: `When a ${m("4 Ω")} resistor is connected across a ${m("12 V")} battery, the charge passing through the resistor per second (current) is:`,
+    opts: [m("1 A"), m("3 A (or 3 C/s)"), m("4 A"), m("12 A")], ans: 1,
+    exp: `Current ${m(`I = ${frac("V", "R")} = ${frac("12", "4")} = 3 A`)} (which equals 3 Coulombs per second).`
+  },
+  {
+    id: 34, part: "PART1", cat: "MECHANICS", topic: "Work-Energy Theorem",
+    q: `An object has a kinetic energy of ${m("10 J")}. A constant resistive force of ${m("5 N")} acts on it to bring it to rest. What distance does it travel before stopping?`,
+    opts: [m("2 m"), m("5 m"), m("10 m"), m("50 m")], ans: 0,
+    exp: `By Work-Energy Theorem: ${m("ΔKE = F × s ⇒ 10 = 5 × s ⇒ s = 2 m")}.`
+  },
+  {
+    id: 35, part: "PART1", cat: "MECHANICS", topic: "Vector Addition",
+    q: `Two perpendicular forces of ${m("10 N")} each act simultaneously towards the Right and Upwards on a block. The resultant force vector points in direction:`,
+    opts: ["P (Right)", "Q (Up-Right Diagonal)", "R (Up)", "S (Left)"], ans: 1,
+    exp: `By the parallelogram law of vector addition, two equal perpendicular forces produce a resultant at ${m("45°")} along the <b>Up-Right Diagonal (Q)</b>.`
+  },
+  {
+    id: 36, part: "PART1", cat: "MECHANICS", topic: "Linear Momentum",
+    q: `A golfer hits a stationary golf ball of mass ${m("0.05 kg")} with a force of ${m("10 N")}. What is the momentum of the ball JUST BEFORE it is hit?`,
+    opts: [m("0.5 kg·m/s"), m("0.05 kg·m/s"), m("0 kg·m/s"), m("10 kg·m/s")], ans: 2,
+    exp: `Just before impact, the ball is stationary (${m("v = 0")}), so its momentum ${m("p = m × v = 0 kg·m/s")}.`
+  },
+  {
+    id: 37, part: "PART1", cat: "ELECTRO_MAG", topic: "Electric Field",
+    q: `A force of ${m("40 N")} acts on a test charge of ${m("0.25 C")} placed in an electric field. The intensity of the electric field (${m("E")}) is:`,
+    opts: [m("10 N/C"), m("80 N/C"), m("160 N/C"), m("320 N/C")], ans: 2,
+    exp: `Electric field intensity ${m(`E = ${frac("F", "q")} = ${frac("40", "0.25")} = 160 N/C`)}.`
+  },
+  {
+    id: 38, part: "PART1", cat: "MECHANICS", topic: "Buoyancy & Flotation",
+    q: `A hollow steel box weighing ${m("1 metric ton")} (${m("1000 kg")}) floats in water of density ${m("1000 kg/m<sup>3</sup>")}. What is the minimum submerged volume of the box?`,
+    opts: [m("0.5 m<sup>3</sup>"), m("1 m<sup>3</sup>"), m("2 m<sup>3</sup>"), m("10 m<sup>3</sup>")], ans: 1,
+    exp: `By Archimedes' Principle, Displaced Volume ${m(`= ${frac("Mass", "Water Density")} = ${frac("1000 kg", "1000 kg/m<sup>3</sup>")} = 1 m<sup>3</sup>`)}.`
+  },
+  {
+    id: 39, part: "PART1", cat: "MECHANICS", topic: "Rotational Equilibrium",
+    q: `On a pivoted beam, Object A is placed ${m("4 units")} from the fulcrum and balances Object B placed ${m("3 units")} from the fulcrum. What is the weight of Object A in terms of Object B?`,
+    opts: [
+      m("0.75 × Weight<sub>B</sub>"),
+      m("1.33 × Weight<sub>B</sub>"),
+      m("0.50 × Weight<sub>B</sub>"),
+      m("1.00 × Weight<sub>B</sub>")
+    ], ans: 0,
+    exp: `By principle of moments: ${m(`W<sub>A</sub> × 4 = W<sub>B</sub> × 3 ⇒ W<sub>A</sub> = ${frac("3", "4")} W<sub>B</sub> = 0.75 × Weight<sub>B</sub>`)}.`
+  },
+  {
+    id: 40, part: "PART1", cat: "THERMO_MODERN", topic: "Calorimetry",
+    q: `What amount of heat is necessary to raise the temperature of ${m("2 kg")} (${m("2000 g")}) of iron from ${m("40°C")} to ${m("80°C")}? (Specific heat ${m("c = 0.1 cal/g°C")})`,
+    opts: [m("8,000 cal"), m("4,000 cal"), m("16,000 cal"), m("80,000 cal")], ans: 0,
+    exp: `Heat ${m("Q = m · c · ΔT = 2000 g × 0.1 × (80 − 40) = 2000 × 0.1 × 40 = 8,000 cal")}.`
+  },
+
+  // ================= PART 2: QUESTIONS 41 TO 80 =================
+  {
+    id: 41, part: "PART2", cat: "MECHANICS", topic: "Universal Gravitation",
+    q: `The distance between two bodies in the universe is reduced to half. How does the gravitational force between them change?`,
+    opts: [
+      "Four times the initial force",
+      "Double the initial force",
+      "Half of the initial force",
+      "One-fourth of initial force"
+    ], ans: 0,
+    exp: `From ${m(`F = ${frac("Gm<sub>1</sub>m<sub>2</sub>", "r<sup>2</sup>")}`)}, when ${m("r' = r/2")}, the new force is ${m(`F' = ${frac("Gm<sub>1</sub>m<sub>2</sub>", "(r/2)<sup>2</sup>")} = 4F`)} (Four times).`
+  },
+  {
+    id: 42, part: "PART2", cat: "MECHANICS", topic: "Circular Motion Speed",
+    q: `A ${m("30 kg")} child sits on the edge of a circular carnival ride at a radius of ${m("2 m")}. The ride makes 2 revolutions in ${m("4 seconds")}. What is the linear speed of the child?`,
+    opts: [m("3.14 m/s"), m("6.28 m/s"), m("12.56 m/s"), m("1.57 m/s")], ans: 1,
+    exp: `Frequency ${m(`f = ${frac("2", "4")} = 0.5 rev/s`)}. Linear speed ${m("v = 2πfr = 2 × 3.14 × 0.5 × 2 = 6.28 m/s")}.`
+  },
+  {
+    id: 43, part: "PART2", cat: "MECHANICS", topic: "Fluid Pressure",
+    q: `Three containers of different shapes (cubical, cuboidal, and cylindrical) are filled with mercury to the same height. The pressure exerted at the base is:`,
+    opts: [
+      "Maximum in cubical container",
+      "Maximum in cylindrical container",
+      "Maximum in cuboidal container",
+      "Same in all containers"
+    ], ans: 3,
+    exp: `Hydrostatic pressure ${m("P = ρgh")} depends only on fluid density and vertical height, not on container shape or base area.`
+  },
+  {
+    id: 44, part: "PART2", cat: "MECHANICS", topic: "Elastic Collisions",
+    q: `Which of the following physical quantities are conserved in a completely elastic collision?`,
+    opts: [
+      "Momentum only",
+      "Both Momentum and Kinetic Energy",
+      "Kinetic Energy only",
+      "Potential Energy only"
+    ], ans: 1,
+    exp: `In a completely elastic collision, <b>both Linear Momentum and Kinetic Energy</b> are conserved.`
+  },
+  {
+    id: 45, part: "PART2", cat: "MECHANICS", topic: "Circular Kinematics",
+    q: `A ball tied to a string rotates in a circular path at constant angular velocity. If the length of the string is reduced to half, the linear speed of rotation becomes:`,
+    opts: ["Reduced to half", "Doubled", "Quadrupled", "Unchanged"], ans: 0,
+    exp: `From ${m("v = ωr")}, halving the radius ${m("r")} reduces the linear speed ${m("v")} to <b>half</b>.`
+  },
+  {
+    id: 46, part: "PART2", cat: "WAVES_OPTICS", topic: "Electromagnetic Waves",
+    q: `Violet light has a frequency of ${m("7.5 × 10<sup>14</sup> Hz")}. What is its wavelength in air? (${m("c = 3 × 10<sup>8</sup> m/s")})`,
+    opts: [
+      m("2.5 × 10<sup>−7</sup> m"),
+      m("3.0 × 10<sup>−7</sup> m"),
+      m("4.0 × 10<sup>−7</sup> m"),
+      m("5.5 × 10<sup>−7</sup> m")
+    ], ans: 2,
+    exp: `Wavelength ${m(`λ = ${frac("c", "f")} = ${frac("3 × 10<sup>8</sup>", "7.5 × 10<sup>14</sup>")} = 4.0 × 10<sup>−7</sup> m`)}.`
+  },
+  {
+    id: 47, part: "PART2", cat: "WAVES_OPTICS", topic: "Reflection of Light",
+    q: `A light ray strikes a plane mirror making an angle of ${m("35°")} with the mirror surface. What is the angle of reflection?`,
+    opts: [m("35°"), m("45°"), m("55°"), m("70°")], ans: 2,
+    exp: `The angle of incidence is measured from the normal: ${m("i = 90° − 35° = 55°")}. By the law of reflection, angle of reflection ${m("r = i = 55°")}.`
+  },
+  {
+    id: 48, part: "PART2", cat: "MECHANICS", topic: "Newton's First Law",
+    q: `What amount of net force is needed to keep an object moving with a constant velocity on a frictionless surface?`,
+    opts: ["Zero force", "Equal to object's weight", "Proportional to velocity", "Infinite force"], ans: 0,
+    exp: `Constant velocity implies zero acceleration (${m("a = 0")}). By Newton's first/second law, net force ${m("F = ma = 0")}.`
+  },
+  {
+    id: 49, part: "PART2", cat: "WAVES_OPTICS", topic: "Rectilinear Propagation",
+    q: `In the shadow of an opaque object, the central completely dark portion is called:`,
+    opts: ["Penumbra", "Umbra", "Antumbra", "Eclipse"], ans: 1,
+    exp: `The central region of complete shadow where all light from the source is blocked is called the <b>Umbra</b>.`
+  },
+  {
+    id: 50, part: "PART2", cat: "THERMO_MODERN", topic: "Radioactive Half-Life",
+    q: `A radioactive gas has a half-life of ${m("2 minutes")}. After ${m("8 minutes")}, what fraction of its initial activity remains?`,
+    opts: [m("1/4"), m("1/8"), m("1/16"), m("1/32")], ans: 2,
+    exp: `Number of half-lives ${m(`n = ${frac("8", "2")} = 4`)}. Remaining fraction ${m(`= (${frac("1", "2")})<sup>4</sup> = ${frac("1", "16")}`)}.`
+  },
+  {
+    id: 51, part: "PART2", cat: "MECHANICS", topic: "Acceleration",
+    q: `A motorcycle starts from rest and attains a speed of ${m("20 m/s")} after ${m("5 seconds")}. What is its average acceleration?`,
+    opts: [m("4 m/s<sup>2</sup>"), m("5 m/s<sup>2</sup>"), m("10 m/s<sup>2</sup>"), m("20 m/s<sup>2</sup>")], ans: 0,
+    exp: `Acceleration ${m(`a = ${frac("v − u", "t")} = ${frac("20 − 0", "5")} = 4 m/s<sup>2</sup>`)}.`
+  },
+  {
+    id: 52, part: "PART2", cat: "MECHANICS", topic: "Fluid Properties",
+    q: `The formation of spherical beads of raindrops on the shiny surface of a waxed car occurs due to:`,
+    opts: ["Viscosity", "Surface Tension", "Capillarity", "Refraction"], ans: 1,
+    exp: `<b>Surface Tension</b> minimizes the surface area of water droplets, pulling them into spherical beads.`
+  },
+  {
+    id: 53, part: "PART2", cat: "MECHANICS", topic: "Gravitational Work",
+    q: `How much work is done when a mass of ${m("3 kg")} is lifted vertically through a height of ${m("6 m")}? (${m("g = 10 m/s<sup>2</sup>")})`,
+    opts: [m("18 J"), m("90 J"), m("180 J"), m("360 J")], ans: 2,
+    exp: `Work done ${m("W = mgh = 3 × 10 × 6 = 180 J")}.`
+  },
+  {
+    id: 54, part: "PART2", cat: "ELECTRO_MAG", topic: "Alternating Current",
+    q: `In a household ${m("220 V")} AC power supply, the value ${m("220 V")} represents:`,
+    opts: [
+      `Peak Voltage (${m("V<sub>0</sub>")})`,
+      `RMS / Effective Voltage (${m("V<sub>rms</sub>")})`,
+      "Average Voltage",
+      "Instantaneous Voltage"
+    ], ans: 1,
+    exp: `Standard household AC voltage ratings always specify the <b>RMS (Root Mean Square) / Effective Voltage</b>.`
+  },
+  {
+    id: 55, part: "PART2", cat: "ELECTRO_MAG", topic: "Electromagnetic Induction",
+    q: `An electric generator converts mechanical energy into electrical energy based on:`,
+    opts: [
+      "Joule Heating Effect",
+      "Electromagnetic Induction",
+      "Seebeck Effect",
+      "Chemical Reaction"
+    ], ans: 1,
+    exp: `Electric generators operate on Faraday's principle of <b>Electromagnetic Induction</b>.`
+  },
+  {
+    id: 56, part: "PART2", cat: "WAVES_OPTICS", topic: "Acoustics & Pitch",
+    q: `If a musical note played on a piano has the same pitch as a note played on a guitar, both sound waves have the same:`,
+    opts: ["Amplitude", "Waveform / Timbre", "Intensity", "Frequency"], ans: 3,
+    exp: `The pitch of a musical sound is determined directly by its <b>Frequency</b>.`
+  },
+  {
+    id: 57, part: "PART2", cat: "THERMO_MODERN", topic: "Specific Heat Capacity",
+    q: `Equal weights of four substances B, D, A, and C are given equal amounts of heat. The final temperatures reached are in the order ${m("C > A > D > B")}. Which substance has the highest specific heat capacity?`,
+    opts: ["Substance B", "Substance D", "Substance A", "Substance C"], ans: 0,
+    exp: `From ${m(`c = ${frac("Q", "m · ΔT")}`)}, the substance with the smallest temperature rise (${m("ΔT")}) has the highest specific heat capacity, which is <b>Substance B</b>.`
+  },
+  {
+    id: 58, part: "PART2", cat: "ELECTRO_MAG", topic: "Electric Motors",
+    q: `An electric motor is a device that converts:`,
+    opts: [
+      "Mechanical energy to Electrical energy",
+      "Electrical energy to Mechanical energy",
+      "Chemical energy to Electrical energy",
+      "Heat energy to Mechanical energy"
+    ], ans: 1,
+    exp: `An electric motor converts <b>Electrical energy into Mechanical energy</b>.`
+  },
+  {
+    id: 59, part: "PART2", cat: "MECHANICS", topic: "Simple Machines",
+    q: `Find the efficiency of a machine which raises a load of ${m("200 N")} through ${m("2 m")} when an effort of ${m("100 N")} moves through ${m("8 m")}:`,
+    opts: [m("25%"), m("50%"), m("75%"), m("100%")], ans: 1,
+    exp: `Output Work ${m("= 200 × 2 = 400 J")}. Input Work ${m("= 100 × 8 = 800 J")}. Efficiency ${m(`= ${frac("400", "800")} × 100% = 50%`)}.`
+  },
+  {
+    id: 60, part: "PART2", cat: "WAVES_OPTICS", topic: "Sound Waves",
+    q: `A tuning fork produces ${m("256 vibrations/second")} in air. If the velocity of sound in air is ${m("330 m/s")}, the wavelength is:`,
+    opts: [m("0.78 m"), m("1.00 m"), m("2.56 m"), m("1.29 m")], ans: 3,
+    exp: `Wavelength ${m(`λ = ${frac("v", "f")} = ${frac("330", "256")} ≈ 1.29 m`)}.`
+  },
+  {
+    id: 61, part: "PART2", cat: "ELECTRO_MAG", topic: "Magnetic Materials",
+    q: `Magnetic flux density inside a material placed in an external magnetic field is minimum for:`,
+    opts: [
+      "Ferromagnetic substances",
+      "Paramagnetic substances",
+      "Diamagnetic substances",
+      "Ferrimagnetic substances"
+    ], ans: 2,
+    exp: `<b>Diamagnetic substances</b> weakly repel magnetic field lines, resulting in the lowest internal magnetic flux density.`
+  },
+  {
+    id: 62, part: "PART2", cat: "ELECTRO_MAG", topic: "Electrostatics",
+    q: `Electric field lines and equipotential surfaces are always:`,
+    opts: [
+      "Parallel to each other",
+      `Perpendicular to each other (${m("90°")})`,
+      `Inclined at ${m("45°")}`,
+      "Tangential"
+    ], ans: 1,
+    exp: `Electric field lines are always <b>perpendicular (${m("90°")})</b> to equipotential surfaces so no work is done moving a charge along an equipotential surface.`
+  },
+  {
+    id: 63, part: "PART2", cat: "THERMO_MODERN", topic: "Atomic Physics",
+    q: `The famous alpha particle scattering experiment that led to the discovery of the atomic nucleus was performed by:`,
+    opts: ["J.J. Thomson", "James Chadwick", "Ernest Rutherford", "Niels Bohr"], ans: 2,
+    exp: `<b>Ernest Rutherford</b> conducted the gold-foil alpha scattering experiment establishing the nuclear model of the atom.`
+  },
+  {
+    id: 64, part: "PART2", cat: "MECHANICS", topic: "Uniform Circular Motion",
+    q: `Which statement is TRUE for an ant moving along a circular track at a constant speed (Uniform Circular Motion)?`,
+    opts: [
+      "Velocity is constant, Acceleration is variable",
+      "Velocity is variable, Centripetal acceleration magnitude is constant",
+      "Both velocity and acceleration are constant",
+      "Both velocity and acceleration are zero"
+    ], ans: 1,
+    exp: `Direction changes continuously so <b>velocity is variable</b>, while the magnitude of centripetal acceleration (${m("v<sup>2</sup>/r")}) remains constant.`
+  },
+  {
+    id: 65, part: "PART2", cat: "ELECTRO_MAG", topic: "Inductance",
+    q: `When the number of turns in a solenoid coil is doubled without changing its length or cross-sectional area, its self-inductance becomes:`,
+    opts: [`Doubled (${m("2×")})`, `Halved (${m("0.5×")})`, `Quadrupled (${m("4×")})`, "Unchanged"], ans: 2,
+    exp: `Self-inductance ${m(`L = ${frac("μ<sub>0</sub>N<sup>2</sup>A", "l")} ∝ N<sup>2</sup>`)}. Doubling ${m("N")} makes ${m("L' = (2)<sup>2</sup>L = 4L")} (Quadrupled).`
+  },
+  {
+    id: 66, part: "PART2", cat: "MECHANICS", topic: "Angular Momentum",
+    q: `A monkey sits on a rotating table. If no external torque acts on the system, the total angular momentum of the system:`,
+    opts: ["Increases", "Remains unchanged / conserved", "Decreases to zero", "Fluctuates continuously"], ans: 1,
+    exp: `By conservation of angular momentum, when net external torque is zero (${m("τ<sub>ext</sub> = 0")}), total angular momentum <b>remains conserved</b>.`
+  },
+  {
+    id: 67, part: "PART2", cat: "WAVES_OPTICS", topic: "Human Eye Optics",
+    q: `For a normal human eye, what happens to the distance between the eye lens and the image formed on the retina when the object distance increases?`,
+    opts: ["Distance increases", "Distance decreases", "Remains the same", "Doubles"], ans: 2,
+    exp: `Through accommodation, ciliary muscles adjust the focal length of the eye lens while the lens-to-retina image distance <b>remains the same</b>.`
+  },
+  {
+    id: 68, part: "PART2", cat: "THERMO_MODERN", topic: "Nuclear Decay",
+    q: `An unstable nucleus of mass number ${m("X")} and atomic number ${m("Y")} emits an alpha particle (${m("<sub>2</sub>He<sup>4</sup>")}). The mass number of the daughter nucleus becomes:`,
+    opts: [m("X − 2"), m("X − 4"), m("X + 2"), m("X + 4")], ans: 1,
+    exp: `An alpha particle consists of 2 protons and 2 neutrons (mass number 4), so the daughter nucleus mass number becomes ${m("X − 4")}.`
+  },
+  {
+    id: 69, part: "PART2", cat: "WAVES_OPTICS", topic: "Doppler Effect",
+    q: `A car produces a sound wave of frequency ${m("9500 Hz")}. A stationary person can hear frequencies up to ${m("10000 Hz")}. If the speed of sound is ${m("300 m/s")}, the maximum speed ${m("v")} of the car approaching the person is:`,
+    opts: [m("10 m/s"), m("15 m/s"), m("20 m/s"), m("25 m/s")], ans: 1,
+    exp: `Using ${m(`f' = f(${frac("v<sub>s</sub>", "v<sub>s</sub> − v")}) ⇒ 10000 = 9500(${frac("300", "300 − v")}) ⇒ 300 − v = 285 ⇒ v = 15 m/s`)}.`
+  },
+  {
+    id: 70, part: "PART2", cat: "MECHANICS", topic: "Average Velocity",
+    q: `A ball dropped from a height of ${m("20 m")} above the ground rebounds back to the exact same height. What is its net average velocity for the entire trip?`,
+    opts: [m("0 m/s"), m("10 m/s"), m("20 m/s"), m("40 m/s")], ans: 0,
+    exp: `Since the ball returns to its starting point, net displacement is zero, making average velocity ${m(`= ${frac("Displacement", "Time")} = 0 m/s`)}.`
+  },
+  {
+    id: 71, part: "PART2", cat: "MECHANICS", topic: "Projectile Motion",
+    q: `A person throws a ball into the air at an angle ${m("θ")} with initial speed ${m("u")}. Which parameter determines the duration of time the ball remains in the air (${m(`T = ${frac("2u sin θ", "g")}`)})?`,
+    opts: [
+      `Horizontal component of velocity (${m("u cos θ")})`,
+      `Vertical component of velocity (${m("u sin θ")})`,
+      "Mass of the ball",
+      "Total mechanical energy"
+    ], ans: 1,
+    exp: `Time of flight ${m(`T = ${frac("2u<sub>y</sub>", "g")}`)} depends solely on the <b>Vertical component of velocity (${m("u sin θ")})</b> and gravity.`
+  },
+  {
+    id: 72, part: "PART2", cat: "ELECTRO_MAG", topic: "Electrical Work",
+    q: `In a circuit, ${m("15 C")} of charge passes through a battery maintaining a potential difference of ${m("10 V")}. The work done by the battery is:`,
+    opts: [m("1.5 J"), m("25 J"), m("150 J"), m("1500 J")], ans: 2,
+    exp: `Work done ${m("W = q × V = 15 C × 10 V = 150 J")}.`
+  },
+  {
+    id: 73, part: "PART2", cat: "MECHANICS", topic: "Hydrostatic Paradox",
+    q: `In two vessels A and B of different shapes filled with the same liquid to the same vertical height ${m("h")}, the pressure at the bottom is:`,
+    opts: [
+      "Higher in vessel A",
+      "Higher in vessel B",
+      "Same in both vessels",
+      "Zero in both vessels"
+    ], ans: 2,
+    exp: `Liquid pressure ${m("P = ρgh")} depends only on depth ${m("h")} and density ${m("ρ")}, so it is the <b>same in both vessels</b>.`
+  },
+  {
+    id: 74, part: "PART2", cat: "MECHANICS", topic: "Potential Energy",
+    q: `Which formula represents the gravitational potential energy of a mass ${m("m")} at height ${m("h")} near Earth's surface?`,
+    opts: [m("mgh"), m(`${frac("1", "2")}mv<sup>2</sup>`), m("mv"), m("2mgh")], ans: 0,
+    exp: `Gravitational potential energy near Earth's surface is given by ${m("PE = mgh")}.`
+  },
+  {
+    id: 75, part: "PART2", cat: "MECHANICS", topic: "Friction & Work",
+    q: `An object of mass ${m("m")} is pushed on a rough horizontal plane with coefficient of kinetic friction ${m("μ<sub>k</sub>")}. The magnitude of work done against friction over displacement ${m("s")} is:`,
+    opts: [m("μ<sub>k</sub>mgs"), m(`${frac("1", "2")}μ<sub>k</sub>mgs`), m("mgs"), m("μ<sub>k</sub>ms")], ans: 0,
+    exp: `Kinetic friction force is ${m("f<sub>k</sub> = μ<sub>k</sub>N = μ<sub>k</sub>mg")}. Over displacement ${m("s")}, work done is ${m("W = μ<sub>k</sub>mgs")}.`
+  },
+  {
+    id: 76, part: "PART2", cat: "MECHANICS", topic: "Centripetal Force",
+    q: `The centripetal acceleration of a particle moving in a circle of radius ${m("r")} with constant speed ${m("v")} is:`,
+    opts: [m("v / r"), m("v<sup>2</sup> / r"), m("v r<sup>2</sup>"), m("v<sup>2</sup> r")], ans: 1,
+    exp: `Centripetal acceleration is directed toward the center and equals ${m(`a<sub>c</sub> = ${frac("v<sup>2</sup>", "r")}`)}.`
+  },
+  {
+    id: 77, part: "PART2", cat: "MECHANICS", topic: "Fluid Dynamics",
+    q: `Dynamic lift on an airplane wing and the atomization of perfume in a spray bottle are based on:`,
+    opts: ["Pascal's Law", "Archimedes' Principle", "Bernoulli's Principle", "Torricelli's Law"], ans: 2,
+    exp: `High-speed air creates a region of lower pressure according to <b>Bernoulli's Principle</b>.`
+  },
+  {
+    id: 78, part: "PART2", cat: "MECHANICS", topic: "Escape Velocity",
+    q: `The minimum escape velocity required for a projectile launched from Earth's surface to leave Earth's gravitational field is approximately:`,
+    opts: [m("8.0 km/s"), m("9.8 km/s"), m("11.2 km/s"), m("42.0 km/s")], ans: 2,
+    exp: `Earth's escape velocity is ${m(`v<sub>e</sub> = ${sqrt("2gR")} ≈ 11.2 km/s`)}.`
+  },
+  {
+    id: 79, part: "PART2", cat: "MECHANICS", topic: "Simple Harmonic Motion",
+    q: `In Simple Harmonic Motion (SHM), the magnitude of acceleration is maximum at:`,
+    opts: [
+      `Mean position (${m("x = 0")})`,
+      `Extreme positions (${m("x = ±A")})`,
+      "Midpoint between mean and extreme",
+      "Acceleration is constant everywhere"
+    ], ans: 1,
+    exp: `Since ${m("|a| = ω<sup>2</sup>|x|")}, acceleration is maximum where displacement is maximum, i.e., at the <b>Extreme positions (${m("x = ±A")})</b>.`
+  },
+  {
+    id: 80, part: "PART2", cat: "MECHANICS", topic: "Elasticity",
+    q: `According to Hooke's Law, within the elastic limit, Stress is directly proportional to:`,
+    opts: ["Strain", "Volume", "Temperature", "Pressure"], ans: 0,
+    exp: `Hooke's Law states that within the elastic limit, <b>Stress is directly proportional to Strain</b>.`
+  }
+];
+
+let filtered = [...QUESTIONS];
+let curIdx = 0;
+let fcIdx = 0;
+let userAns = {};
+let savedIds = new Set();
+
+// Live Timer
+let seconds = 0;
+let timerActive = true;
+setInterval(() => {
+  if (!timerActive) return;
+  seconds++;
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `⏱️ ${mins}:${secs}`;
+}, 1000);
+
+function toggleTimer() {
+  timerActive = !timerActive;
+  document.getElementById('timer-display').style.opacity = timerActive ? '1' : '0.5';
+}
+
+function renderQuiz() {
+  if (filtered.length === 0) {
+    document.getElementById('q-text').innerHTML = "No questions match this filter. Click 'All 80 Questions' above to view all items.";
+    document.getElementById('q-options').innerHTML = "";
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const q = filtered[curIdx];
+  document.getElementById('q-num-badge').textContent = `Q${q.id} / 80`;
+  document.getElementById('q-part-badge').textContent = q.part === 'PART1' ? 'Part 1 (Q1–40)' : 'Part 2 (Q41–80)';
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-text').innerHTML = q.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (savedIds.has(q.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save';
+  }
+
+  const optBox = document.getElementById('q-options');
+  optBox.innerHTML = '';
+  const chosen = userAns[q.id];
+  const keys = ['A', 'B', 'C', 'D'];
+
+  q.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (chosen !== undefined) {
+      btn.disabled = true;
+      if (idx === q.ans) btn.classList.add('correct');
+      else if (idx === chosen) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[idx]}</span><span>${optText}</span>`;
+    btn.onclick = () => chooseAnswer(q.id, idx);
+    optBox.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  if (chosen !== undefined) {
+    document.getElementById('q-exp-text').innerHTML = q.exp;
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = curIdx === 0;
+  document.getElementById('next-btn').disabled = curIdx === filtered.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function chooseAnswer(id, idx) {
+  userAns[id] = idx;
+  renderQuiz();
+}
+
+function revealCurrent() {
+  if (!filtered.length) return;
+  const q = filtered[curIdx];
+  userAns[q.id] = q.ans;
+  renderQuiz();
+}
+
+function moveQ(delta) {
+  const next = curIdx + delta;
+  if (next >= 0 && next < filtered.length) {
+    curIdx = next;
+    renderQuiz();
+  }
+}
+
+function toggleBookmark() {
+  if (!filtered.length) return;
+  const id = filtered[curIdx].id;
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderQuiz();
+}
+
+function setFilter(type, btn) {
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (type === 'ALL') filtered = [...QUESTIONS];
+  else if (type === 'PART1') filtered = QUESTIONS.filter(q => q.part === 'PART1');
+  else if (type === 'PART2') filtered = QUESTIONS.filter(q => q.part === 'PART2');
+  else if (type === 'MECHANICS') filtered = QUESTIONS.filter(q => q.cat === 'MECHANICS');
+  else if (type === 'WAVES_OPTICS') filtered = QUESTIONS.filter(q => q.cat === 'WAVES_OPTICS');
+  else if (type === 'ELECTRO_MAG') filtered = QUESTIONS.filter(q => q.cat === 'ELECTRO_MAG');
+  else if (type === 'THERMO_MODERN') filtered = QUESTIONS.filter(q => q.cat === 'THERMO_MODERN');
+  else if (type === 'SAVED') filtered = QUESTIONS.filter(q => savedIds.has(q.id));
+  else if (type === 'WRONG') filtered = QUESTIONS.filter(q => userAns[q.id] !== undefined && userAns[q.id] !== q.ans);
+
+  curIdx = 0;
+  renderQuiz();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filtered.length} Qs`;
+  grid.innerHTML = '';
+
+  filtered.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.className = 'p-num';
+    if (idx === curIdx) b.classList.add('current');
+    if (userAns[q.id] !== undefined) {
+      b.classList.add(userAns[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    b.textContent = q.id;
+    b.onclick = () => {
+      curIdx = idx;
+      renderQuiz();
+    };
+    grid.appendChild(b);
+  });
+}
+
+function updateStats() {
+  const keys = Object.keys(userAns);
+  const attempted = keys.length;
+  let correct = 0;
+  keys.forEach(k => {
+    const q = QUESTIONS.find(item => item.id === Number(k));
+    if (q && userAns[k] === q.ans) correct++;
+  });
+  const acc = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${attempted}/80`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = savedIds.size;
+}
+
+function resetQuiz() {
+  userAns = {};
+  seconds = 0;
+  renderQuiz();
+}
+
+// Flashcards
+function renderFC() {
+  const card = document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  const q = QUESTIONS[fcIdx];
+  document.getElementById('fc-num').textContent = `Card ${q.id} / 80`;
+  document.getElementById('fc-topic').textContent = `${q.part} • ${q.topic}`;
+  document.getElementById('fc-q').innerHTML = q.q;
+  document.getElementById('fc-ans').innerHTML = `(${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}`;
+  document.getElementById('fc-exp').innerHTML = q.exp;
+}
+
+function moveFC(delta) {
+  fcIdx = (fcIdx + delta + QUESTIONS.length) % QUESTIONS.length;
+  renderFC();
+}
+
+// Study Bank
+function renderBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const listEl = document.getElementById('bank-list');
+  const matches = QUESTIONS.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.exp.toLowerCase().includes(query) ||
+    String(q.id) === query
+  );
+
+  listEl.innerHTML = matches.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:8px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-part">${q.part}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#34d399; font-weight:700; margin-bottom:4px;">✔ Correct Answer: (${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</div>
+        <div style="font-size:0.92rem; color:#cbd5e1;">${q.exp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlur(btn) {
+  const el = document.getElementById('bank-list');
+  el.classList.toggle('hide-answers');
+  btn.textContent = el.classList.contains('hide-answers') ? '👁️ Show All Answers' : '🙈 Hide Answers (Self-Test)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${view}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = view === 'quiz' ? 'flex' : 'none';
+
+  if (view === 'flashcards') renderFC();
+  if (view === 'bank') renderBank();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const q = filtered[curIdx];
+      if (q && userAns[q.id] === undefined) chooseAnswer(q.id, parseInt(e.key) - 1);
+    } else if (e.key === 'ArrowRight') moveQ(1);
+    else if (e.key === 'ArrowLeft') moveQ(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('fc-card').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFC(1);
+    else if (e.key === 'ArrowLeft') moveFC(-1);
+  }
+});
+
+// Initialize Quiz
+renderQuiz();
+</script>
+</body>
+</html>

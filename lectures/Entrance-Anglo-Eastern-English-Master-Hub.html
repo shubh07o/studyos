@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Written PYQs — English Master Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.9);
+      --border: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-blue: #0284c7;
+      --accent-indigo: #4f46e5;
+      --accent-amber: #d97706;
+      --accent-emerald: #059669;
+      --accent-rose: #e11d48;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Clean Formula & Math Styling */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      padding: 1px 6px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.02em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.14rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .stat-pill .val {
+      color: var(--accent-blue);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .timer-pill {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Navigation & Filters */
+    .nav-container {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .mode-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(79, 70, 229, 0.1));
+      color: var(--accent-indigo);
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .ctrl-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-blue);
+      background: #f8fafc;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-num {
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    .badge-topic {
+      background: rgba(217, 119, 6, 0.1);
+      color: var(--accent-amber);
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: var(--accent-amber);
+      color: #b45309;
+    }
+
+    .q-title {
+      font-size: 1.16rem;
+      font-weight: 600;
+      margin-bottom: 22px;
+      line-height: 1.75;
+      color: #0f172a;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .opt-btn {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.15s ease;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: #f0f9ff;
+      border-color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    .opt-key {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      color: #334155;
+    }
+
+    .opt-btn.correct {
+      background: #ecfdf5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #fff;
+    }
+
+    .opt-btn.wrong {
+      background: #fff1f2;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    .exp-box {
+      margin-top: 22px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: none;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #047857;
+      margin-bottom: 8px;
+      font-size: 0.94rem;
+    }
+
+    .exp-text {
+      font-size: 0.95rem;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    .quiz-footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--accent-blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+    }
+
+    .nav-btn.secondary {
+      background: #f1f5f9;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Palette Sidebar */
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: sticky;
+      top: 90px;
+      box-shadow: var(--shadow);
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 12px;
+    }
+
+    .p-num {
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.25);
+      color: var(--accent-blue);
+      background: #e0f2fe;
+    }
+
+    .p-num.correct {
+      background: #d1fae5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .p-num.wrong {
+      background: #ffe4e6;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    /* Flashcards */
+    .flashcard-wrap {
+      max-width: 760px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 350px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #ffffff, #f0fdf4);
+    }
+
+    /* Study Bank */
+    .search-bar {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+
+    .bank-ans {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: #f0fdf4;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">abc</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern Written PYQs — English Hub</h1>
+        <p>Complete 25 English Questions • Budding Mariners Academy • Light Mode</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="timer-pill" onclick="toggleTimer()" id="timer-display" title="Click to Pause/Resume">⏱️ 00:00</div>
+      <div class="stat-pill">Attempted:<span class="val" id="stat-attempted">0/25</span></div>
+      <div class="stat-pill">Correct:<span class="val" id="stat-correct" style="color:#059669;">0</span></div>
+      <div class="stat-pill">Accuracy:<span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved:<span class="val" id="stat-saved" style="color:#d97706;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Interactive Quiz (25 Qs)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 25)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setFilter('ALL', this)">All 25 Questions</button>
+      <button class="sec-pill" onclick="setFilter('SAVED', this)">★ Saved</button>
+      <button class="sec-pill" onclick="setFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="ctrl-btn" onclick="revealCurrent()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 25</span>
+            <span class="badge badge-topic" id="q-topic-badge">English PYQ</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Solution & Detailed Explanation</div>
+          <div class="exp-text" id="q-exp-text"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQ(-1)">← Previous</button>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Keyboard: <b>1–4</b> Select Option • <b>← / →</b> Navigate</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQ(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.9rem;">
+          <span>Question Navigator</span>
+          <span id="palette-count" style="color:var(--text-secondary); font-size:0.78rem;">25 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face">
+          <div>
+            <div class="q-badges" style="margin-bottom:14px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 25</span>
+              <span class="badge badge-topic" id="fc-topic">English</span>
+            </div>
+            <div id="fc-q" style="font-size:1.18rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="text-align:center; color:var(--accent-blue); font-size:0.84rem;">🔄 Click Card or Press Spacebar to Flip</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <span class="badge badge-num" style="background:#d1fae5; color:#065f46; margin-bottom:10px; display:inline-block;">Correct Answer</span>
+            <div id="fc-ans" style="font-size:1.3rem; font-weight:800; color:#047857; margin-bottom:14px;"></div>
+            <div id="fc-exp" style="font-size:0.95rem; color:#1e293b; line-height:1.65;"></div>
+          </div>
+          <p style="text-align:center; color:var(--text-secondary); font-size:0.8rem;">Click to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button class="nav-btn secondary" onclick="moveFC(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFC(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1;" placeholder="🔍 Search any English question, vocabulary, or keyword..." oninput="renderBank()" />
+      <button class="ctrl-btn" onclick="toggleBlur(this)">🙈 Hide Answers (Self-Test)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+const RAW_QUESTIONS = [
+  {
+    id: 1, topic: "Legal & Property Terminology",
+    q: "A willful damage caused to an object or property is called:",
+    opts: ["Incident", "Harm", "Accident", "Sabotage"], ans: 3,
+    exp: "Willful (deliberate or intentional) damage done to property, equipment, or an object is defined as <b>sabotage</b>."
+  },
+  {
+    id: 2, topic: "Biological Stage Analogy",
+    q: "Tadpole is to Frog as Larva is to ____:",
+    opts: ["Spider", "Insect", "Worm", "Frog"], ans: 1,
+    exp: "A tadpole is the immature stage of a frog, just as a larva is the immature stage of an <b>insect</b>."
+  },
+  {
+    id: 3, topic: "Culinary Analogy",
+    q: "Pork is to Pig as Veal is to ____:",
+    opts: ["Chicken", "Lamb", "Calf", "Cow"], ans: 2,
+    exp: "Pork is the meat of a pig, whereas veal is the meat obtained from a <b>calf</b> (young cow)."
+  },
+  {
+    id: 4, topic: "Degree of Comparison",
+    q: "Better is to Worst as Slower is to ____:",
+    opts: ["Fast", "Faster", "Quickest", "Quick"], ans: 2,
+    exp: "The analogy pairs a comparative degree (better) with a superlative degree of the opposite (worst). Slower pairs with <b>quickest</b> (superlative opposite)."
+  },
+  {
+    id: 5, topic: "Physical State Transformation",
+    q: "Ice is to Water as Rock is to ____:",
+    opts: ["Lava", "Mountain", "Stone", "Solid"], ans: 0,
+    exp: "When ice melts, it transforms into liquid water; similarly, when rock melts due to heat, it becomes liquid <b>lava</b>."
+  },
+  {
+    id: 6, topic: "Punctuation Identification",
+    q: "Select the sentence with correct punctuation:",
+    opts: [
+      "People all over the world enjoy chocolate bars, chocolate sprinkles, and even chocolate soda.",
+      "People all over the world enjoy chocolate bars chocolate sprinkles and even chocolate soda.",
+      "People all over the world enjoy chocolate bars chocolate, sprinkles and even chocolate soda.",
+      "People all over the world enjoy chocolate, bars, chocolate sprinkles and even chocolate soda."
+    ], ans: 0,
+    exp: "Items in a series ('chocolate bars', 'chocolate sprinkles', and 'chocolate soda') must be separated by commas."
+  },
+  {
+    id: 7, topic: "Contextual Word Meaning",
+    q: "<i>'The soldiers were instructed to restrain and handle the situation peacefully.'</i> What does 'restrain' mean in this context?",
+    opts: ["Control", "Prevent", "Enforce", "Exercise (Self-control)"], ans: 3,
+    exp: "In this context, to restrain means to <b>exercise self-control</b> and caution rather than taking forceful action."
+  },
+  {
+    id: 8, topic: "Cause and Effect Reasoning",
+    q: "Read the two statements:<br>1. The teacher made a mistake by solving the question on the board, but none of the students could point that out.<br>2. Students had no idea how the question was to be solved.",
+    opts: [
+      "Statement 1 is the cause and Statement 2 is its effect.",
+      "Statement 2 is the cause and Statement 1 is its effect.",
+      "Both statements are independent causes.",
+      "Both statements are independent effects."
+    ], ans: 1,
+    exp: "Because the students did not know how to solve the problem (Statement 2 = cause), they were unable to detect the teacher's error (Statement 1 = effect)."
+  },
+  {
+    id: 9, topic: "Spelling Test",
+    q: "Select the word with the correct spelling:",
+    opts: ["Translucent", "Translusent", "Translucence", "Translucint"], ans: 0,
+    exp: "The correct spelling is <b>T-R-A-N-S-L-U-C-E-N-T</b>."
+  },
+  {
+    id: 10, topic: "One-Word Substitution",
+    q: "A story in which ideas or moral principles are symbolized as characters or people is called an:",
+    opts: ["Fable", "Legend", "Parable", "Allegory"], ans: 3,
+    exp: "An <b>allegory</b> is a narrative in which character types or events symbolize abstract ideas or principles."
+  },
+  {
+    id: 11, topic: "Intensity Analogy",
+    q: "Laughter is to Smile as Hot is to ____:",
+    opts: ["Warm", "Cold", "Temperature", "Summer"], ans: 0,
+    exp: "Laughter is an intense form of a smile; similarly, hot is an intense form of <b>warm</b>."
+  },
+  {
+    id: 12, topic: "Technical Vocabulary",
+    q: "The word 'Updraft' in a meteorological context means:",
+    opts: ["Horizontal wind flow", "Vertical flow upward", "Downward air current", "Circular wind movement"], ans: 1,
+    exp: "An updraft refers specifically to a rising, <b>vertical flow upward</b> of air."
+  },
+  {
+    id: 13, topic: "Workplace Analogy",
+    q: "Court is to Judge as Classroom is to ____:",
+    opts: ["Student", "Teacher", "Lawyer", "Principal"], ans: 1,
+    exp: "A judge presides over a court, just as a <b>teacher</b> presides over a classroom."
+  },
+  {
+    id: 14, topic: "Cause and Effect Analogy",
+    q: "Obstruction is to Delay as Blow is to ____:",
+    opts: ["Pain", "Fight", "Injury", "Fear"], ans: 0,
+    exp: "An obstruction causes delay; similarly, a physical blow causes <b>pain</b>."
+  },
+  {
+    id: 15, topic: "Maritime Operational Phrase",
+    q: "The phrase 'Fire Watch' onboard a vessel means:",
+    opts: ["Watching the flames burn", "Watching for any sign of fire", "Watching the smoke emissions", "Extinguishing an active fire"], ans: 1,
+    exp: "A fire watch is a mandatory safety precaution involving continuous monitoring for <b>any sign of fire</b>."
+  },
+  {
+    id: 16, topic: "Spelling Test",
+    q: "Select the word with the correct spelling:",
+    opts: ["Acheivement", "Achievment", "Achievement", "Achivement"], ans: 2,
+    exp: "The correct spelling is <b>Achievement</b> (A-C-H-I-E-V-E-M-E-N-T)."
+  },
+  {
+    id: 17, topic: "One-Word Substitution",
+    q: "Quick to detect or respond to slight changes, signals, or influences is defined as:",
+    opts: ["Reaction", "Adaptation", "Performance", "Sensitive"], ans: 3,
+    exp: "Being <b>sensitive</b> means having the capacity to quickly perceive, detect, or react to subtle stimuli."
+  },
+  {
+    id: 18, topic: "Psychometric Assessment",
+    q: "<i>'When something upsets me, I usually get over it quite soon.'</i>",
+    opts: ["True / Accurate", "False / Inaccurate"], ans: 0,
+    exp: "Indicating emotional resilience and quick recovery demonstrates the emotional stability required onboard ships (<b>True / Accurate</b>)."
+  },
+  {
+    id: 19, topic: "Conflict Handling",
+    q: "When people do something that bothers me, I usually:",
+    opts: ["Let it go", "Mention it to them", "Ignore them completely", "Get angry"], ans: 1,
+    exp: "Constructively communicating issues directly ("<b>mention it to them</b>") reflects good interpersonal communication skills."
+  },
+  {
+    id: 20, topic: "Sentence Rearrangement",
+    q: "Rearrange the given parts to form a coherent sentence:<br>P: The American system<br>Q: working openly and free of part prejudice<br>R: has its bureaucracy and judiciary<br>S: with all its faults",
+    opts: ["P-S-R-Q", "Q-S-P-R", "S-P-Q-R", "P-Q-R-S"], ans: 0,
+    exp: "Correct syntax: The American system [P], with all its faults [S], has its bureaucracy and judiciary [R] working openly and free of part prejudice [Q] (<b>P-S-R-Q</b>)."
+  },
+  {
+    id: 21, topic: "One-Word Substitution",
+    q: "A statement or passage that cannot be understood or interpreted is called:",
+    opts: ["Infallible", "Illegible", "Incomprehensible", "Inexplicable"], ans: 2,
+    exp: "<b>Incomprehensible</b> means impossible to comprehend or understand."
+  },
+  {
+    id: 22, topic: "Sentence Completion",
+    q: "<i>'These tasks are intellectually _____ and represent various levels of complexity.'</i>",
+    opts: ["Modern", "Revealing", "Superior", "Demanding"], ans: 3,
+    exp: "<b>Demanding</b> collocates naturally with intellectually challenging mental tasks."
+  },
+  {
+    id: 23, topic: "Prepositional Idiom",
+    q: "<i>'Try to be diplomatic when you refuse any invitation _____ not to cause bad feelings.'</i>",
+    opts: ["so far", "so as", "as far", "in order"], ans: 1,
+    exp: "The idiomatic phrase '<b>so as</b> not to [verb]' is the correct structure used to express purpose."
+  },
+  {
+    id: 24, topic: "Functional Relationship",
+    q: "Medicine is to Illness as Law is to ____:",
+    opts: ["Discipline", "Anarchy", "Etiquette", "Treason"], ans: 1,
+    exp: "Medicine is designed to prevent or cure illness; similarly, law is designed to prevent or cure <b>anarchy</b>."
+  },
+  {
+    id: 25, topic: "Contextual Synonym",
+    q: "Select a synonym for the word 'Evaluation':",
+    opts: ["Training", "Treatment", "Assessment", "Recommendation"], ans: 2,
+    exp: "<b>Assessment</b> is an exact synonym for evaluation."
+  }
+];
+
+const QUESTIONS = RAW_QUESTIONS.map((item, idx) => {
+  const indexed = item.opts.map((t, c) => ({ t, isCorr: c === item.ans }));
+  const shift = (idx * 2 + 1) % 4;
+  const rotated = [...indexed.slice(shift), ...indexed.slice(0, shift)];
+  return {
+    ...item,
+    opts: rotated.map(o => o.t),
+    ans: rotated.findIndex(o => o.isCorr)
+  };
+});
+
+let filtered = [...QUESTIONS];
+let curIdx = 0;
+let fcIdx = 0;
+let userAns = {};
+let savedIds = new Set();
+
+let seconds = 0;
+let timerActive = true;
+setInterval(() => {
+  if (!timerActive) return;
+  seconds++;
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `⏱️ ${mins}:${secs}`;
+}, 1000);
+
+function toggleTimer() {
+  timerActive = !timerActive;
+  document.getElementById('timer-display').style.opacity = timerActive ? '1' : '0.5';
+}
+
+function renderQuiz() {
+  if (filtered.length === 0) {
+    document.getElementById('q-text').innerHTML = "No questions match this filter.";
+    document.getElementById('q-options').innerHTML = "";
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const q = filtered[curIdx];
+  document.getElementById('q-num-badge').textContent = `Q${q.id} / 25`;
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-text').innerHTML = q.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (savedIds.has(q.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save';
+  }
+
+  const optBox = document.getElementById('q-options');
+  optBox.innerHTML = '';
+  const chosen = userAns[q.id];
+  const keys = ['A', 'B', 'C', 'D'];
+
+  q.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (chosen !== undefined) {
+      btn.disabled = true;
+      if (idx === q.ans) btn.classList.add('correct');
+      else if (idx === chosen) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[idx]}</span><span>${optText}</span>`;
+    btn.onclick = () => chooseAnswer(q.id, idx);
+    optBox.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  if (chosen !== undefined) {
+    document.getElementById('q-exp-text').innerHTML = q.exp;
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = curIdx === 0;
+  document.getElementById('next-btn').disabled = curIdx === filtered.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function chooseAnswer(id, idx) {
+  userAns[id] = idx;
+  renderQuiz();
+}
+
+function revealCurrent() {
+  if (!filtered.length) return;
+  const q = filtered[curIdx];
+  userAns[q.id] = q.ans;
+  renderQuiz();
+}
+
+function moveQ(delta) {
+  const next = curIdx + delta;
+  if (next >= 0 && next < filtered.length) {
+    curIdx = next;
+    renderQuiz();
+  }
+}
+
+function toggleBookmark() {
+  if (!filtered.length) return;
+  const id = filtered[curIdx].id;
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderQuiz();
+}
+
+function setFilter(type, btn) {
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (type === 'ALL') filtered = [...QUESTIONS];
+  else if (type === 'SAVED') filtered = QUESTIONS.filter(q => savedIds.has(q.id));
+  else if (type === 'WRONG') filtered = QUESTIONS.filter(q => userAns[q.id] !== undefined && userAns[q.id] !== q.ans);
+
+  curIdx = 0;
+  renderQuiz();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filtered.length} Qs`;
+  grid.innerHTML = '';
+
+  filtered.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.className = 'p-num';
+    if (idx === curIdx) b.classList.add('current');
+    if (userAns[q.id] !== undefined) {
+      b.classList.add(userAns[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    b.textContent = q.id;
+    b.onclick = () => {
+      curIdx = idx;
+      renderQuiz();
+    };
+    grid.appendChild(b);
+  });
+}
+
+function updateStats() {
+  const keys = Object.keys(userAns);
+  const attempted = keys.length;
+  let correct = 0;
+  keys.forEach(k => {
+    const q = QUESTIONS.find(item => item.id === Number(k));
+    if (q && userAns[k] === q.ans) correct++;
+  });
+  const acc = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${attempted}/25`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = savedIds.size;
+}
+
+function resetQuiz() {
+  userAns = {};
+  seconds = 0;
+  renderQuiz();
+}
+
+function renderFC() {
+  const card = document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  const q = QUESTIONS[fcIdx];
+  document.getElementById('fc-num').textContent = `Card ${q.id} / 25`;
+  document.getElementById('fc-topic').textContent = q.topic;
+  document.getElementById('fc-q').innerHTML = q.q;
+  document.getElementById('fc-ans').innerHTML = `(${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}`;
+  document.getElementById('fc-exp').innerHTML = q.exp;
+}
+
+function moveFC(delta) {
+  fcIdx = (fcIdx + delta + QUESTIONS.length) % QUESTIONS.length;
+  renderFC();
+}
+
+function renderBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const listEl = document.getElementById('bank-list');
+  const matches = QUESTIONS.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.exp.toLowerCase().includes(query) ||
+    String(q.id) === query
+  );
+
+  listEl.innerHTML = matches.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:8px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#047857; font-weight:700; margin-bottom:4px;">✔ Correct Answer: (${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</div>
+        <div style="font-size:0.92rem; color:#334155;">${q.exp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlur(btn) {
+  const el = document.getElementById('bank-list');
+  el.classList.toggle('hide-answers');
+  btn.textContent = el.classList.contains('hide-answers') ? '👁️ Show All Answers' : '🙈 Hide Answers (Self-Test)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${view}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = view === 'quiz' ? 'flex' : 'none';
+
+  if (view === 'flashcards') renderFC();
+  if (view === 'bank') renderBank();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const q = filtered[curIdx];
+      if (q && userAns[q.id] === undefined) chooseAnswer(q.id, parseInt(e.key) - 1);
+    } else if (e.key === 'ArrowRight') moveQ(1);
+    else if (e.key === 'ArrowLeft') moveQ(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('fc-card').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFC(1);
+    else if (e.key === 'ArrowLeft') moveFC(-1);
+  }
+});
+
+renderQuiz();
+</script>
+</body>
+</html>

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Written PYQs — Chemistry Hub (Rohit Jha Sir)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.9);
+      --border: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-blue: #0284c7;
+      --accent-indigo: #4f46e5;
+      --accent-amber: #d97706;
+      --accent-emerald: #059669;
+      --accent-rose: #e11d48;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      padding: 1px 6px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.02em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    sub, sup {
+      font-size: 0.75em;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup { top: -0.5em; }
+    sub { bottom: -0.25em; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.14rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .stat-pill .val {
+      color: var(--accent-blue);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .timer-pill {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .nav-container {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(79, 70, 229, 0.1));
+      color: var(--accent-indigo);
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .ctrl-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-num {
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    .badge-topic {
+      background: rgba(217, 119, 6, 0.1);
+      color: var(--accent-amber);
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: var(--accent-amber);
+      color: #b45309;
+    }
+
+    .q-title {
+      font-size: 1.16rem;
+      font-weight: 600;
+      margin-bottom: 22px;
+      line-height: 1.75;
+      color: #0f172a;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .opt-btn {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.15s ease;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: #f0f9ff;
+      border-color: var(--accent-blue);
+    }
+
+    .opt-key {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      color: #334155;
+    }
+
+    .opt-btn.correct {
+      background: #ecfdf5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #fff;
+    }
+
+    .opt-btn.wrong {
+      background: #fff1f2;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    .exp-box {
+      margin-top: 22px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: none;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #047857;
+      margin-bottom: 8px;
+      font-size: 0.94rem;
+    }
+
+    .exp-text {
+      font-size: 0.95rem;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    .quiz-footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--accent-blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .nav-btn.secondary {
+      background: #f1f5f9;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: sticky;
+      top: 90px;
+      box-shadow: var(--shadow);
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 12px;
+    }
+
+    .p-num {
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.25);
+      color: var(--accent-blue);
+      background: #e0f2fe;
+    }
+
+    .p-num.correct {
+      background: #d1fae5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .p-num.wrong {
+      background: #ffe4e6;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    .flashcard-wrap {
+      max-width: 760px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 350px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #ffffff, #f0fdf4);
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+
+    .bank-ans {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: #f0fdf4;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">🧪</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern Written PYQs — Chemistry Hub</h1>
+        <p>Complete 22 Chemistry Questions • Rohit Jha Sir (Budding Mariners Academy)</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="timer-pill" onclick="toggleTimer()" id="timer-display" title="Click to Pause/Resume">⏱️ 00:00</div>
+      <div class="stat-pill">Attempted:<span class="val" id="stat-attempted">0/22</span></div>
+      <div class="stat-pill">Correct:<span class="val" id="stat-correct" style="color:#059669;">0</span></div>
+      <div class="stat-pill">Accuracy:<span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved:<span class="val" id="stat-saved" style="color:#d97706;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Interactive Quiz (22 Qs)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 22)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setFilter('ALL', this)">All 22 Questions</button>
+      <button class="sec-pill" onclick="setFilter('SAVED', this)">★ Saved</button>
+      <button class="sec-pill" onclick="setFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="ctrl-btn" onclick="revealCurrent()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 22</span>
+            <span class="badge badge-topic" id="q-topic-badge">Chemistry PYQ</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Solution & Detailed Explanation (Rohit Jha Sir)</div>
+          <div class="exp-text" id="q-exp-text"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQ(-1)">← Previous</button>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Keyboard: <b>1–4</b> Select Option • <b>← / →</b> Navigate</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQ(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.9rem;">
+          <span>Question Navigator</span>
+          <span id="palette-count" style="color:var(--text-secondary); font-size:0.78rem;">22 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face">
+          <div>
+            <div class="q-badges" style="margin-bottom:14px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 22</span>
+              <span class="badge badge-topic" id="fc-topic">Chemistry</span>
+            </div>
+            <div id="fc-q" style="font-size:1.18rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="text-align:center; color:var(--accent-blue); font-size:0.84rem;">🔄 Click Card or Press Spacebar to Flip</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <span class="badge badge-num" style="background:#d1fae5; color:#065f46; margin-bottom:10px; display:inline-block;">Correct Answer</span>
+            <div id="fc-ans" style="font-size:1.3rem; font-weight:800; color:#047857; margin-bottom:14px;"></div>
+            <div id="fc-exp" style="font-size:0.95rem; color:#1e293b; line-height:1.65;"></div>
+          </div>
+          <p style="text-align:center; color:var(--text-secondary); font-size:0.8rem;">Click to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button class="nav-btn secondary" onclick="moveFC(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFC(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1;" placeholder="🔍 Search any Chemistry question, formula, or keyword..." oninput="renderBank()" />
+      <button class="ctrl-btn" onclick="toggleBlur(this)">🙈 Hide Answers (Self-Test)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+const RAW_QUESTIONS = [
+  {
+    id: 1, topic: "Alloys & Metallurgy",
+    q: "Stainless steel is an alloy of Iron with:",
+    opts: ["Nickel alone", "Chromium and Nickel", "Manganese and Zinc", "Chromium alone"], ans: 1,
+    exp: "Stainless steel is an alloy of Iron combined with <b>Chromium and Nickel</b> to provide high corrosion resistance and strength."
+  },
+  {
+    id: 2, topic: "Physical Chemistry",
+    q: "Thermochromic liquids are those which change color with changes in:",
+    opts: ["Viscosity", "Volume", "Temperature", "Pressure"], ans: 2,
+    exp: "The prefix 'Thermo' refers to <b>Temperature</b>. Thermochromic substances change their color as the temperature fluctuates."
+  },
+  {
+    id: 3, topic: "Chemical Formulas",
+    q: "What is the correct chemical formula for Calcium Hydrogen Sulfate?",
+    opts: ["CaHSO<sub>4</sub>", "Ca(HSO<sub>4</sub>)<sub>2</sub>", "Ca<sub>2</sub>HSO<sub>4</sub>", "Ca(HSO<sub>3</sub>)<sub>2</sub>"], ans: 1,
+    exp: "Calcium ion has a valency of +2 (Ca<sup>2+</sup>) and hydrogen sulfate has −1 (HSO<sub>4</sub><sup>−</sup>). By cross-multiplication, the formula is <b>Ca(HSO<sub>4</sub>)<sub>2</sub></b>."
+  },
+  {
+    id: 4, topic: "Atomic Structure",
+    q: "How many total atoms are present in the compound with the chemical formula KAl(SO<sub>4</sub>)<sub>2</sub>?",
+    opts: ["10", "11", "12", "14"], ans: 2,
+    exp: "Potassium (K) = 1, Aluminium (Al) = 1, and the SO<sub>4</sub> group contains (1 Sulfur + 4 Oxygen = 5 atoms) × 2 = 10 atoms. Total = 1 + 1 + 10 = <b>12 atoms</b>."
+  },
+  {
+    id: 5, topic: "Material Science",
+    q: "Which of the following is NOT a magnetic substance?",
+    opts: ["Iron", "Cobalt", "Brass", "Nickel"], ans: 2,
+    exp: "Iron, Cobalt, and Nickel are ferromagnetic metals. <b>Brass</b> is an alloy of copper and zinc and is non-magnetic."
+  },
+  {
+    id: 6, topic: "Fluid Mechanics & Pressure",
+    q: "Three containers of the same size and shape are filled with Mercury, Water, and Petrol to the same height. The pressure exerted at the base is maximum in the container filled with:",
+    opts: ["Mercury", "Water", "Petrol", "Same in all"], ans: 0,
+    exp: "Hydrostatic pressure is given by P = ρgh. Since height and g are identical, pressure depends directly on density (ρ). <b>Mercury</b> has the highest density among the choices."
+  },
+  {
+    id: 7, topic: "Redox & Reactivity",
+    q: "Which amongst the following is the poorest reducing agent?",
+    opts: ["Nascent Hydrogen", "Atomic Hydrogen", "Dihydrogen (H<sub>2</sub>)", "All are same"], ans: 2,
+    exp: "Nascent and atomic hydrogen are extremely reactive, whereas molecular <b>Dihydrogen (H<sub>2</sub>)</b> is more stable and acts as the poorest reducing agent."
+  },
+  {
+    id: 8, topic: "Atomic Structure",
+    q: "When charge is transferred from one object to another, which particles are actually transferred?",
+    opts: ["Protons", "Electrons", "Neutrons", "Positrons"], ans: 1,
+    exp: "Electrical charge transfer in chemical and physical processes is mediated entirely by the exchange of <b>Electrons</b>."
+  },
+  {
+    id: 9, topic: "Thermodynamics",
+    q: "The temperature of absolute zero is equal to:",
+    opts: ["0°C", "−273°C", "273°C", "−100°C"], ans: 1,
+    exp: "Absolute zero corresponds to 0 K or approximately <b>−273°C</b> (−273.15°C)."
+  },
+  {
+    id: 10, topic: "Acids, Bases & Salts",
+    q: "The reaction of an acid such as HCl and a base such as NaOH forms:",
+    opts: ["Acid + Water", "Base + Gas", "Salt + Water", "Hydrogen gas only"], ans: 2,
+    exp: "Neutralization between an acid and a base yields <b>Salt + Water</b> (e.g., HCl + NaOH → NaCl + H<sub>2</sub>O)."
+  },
+  {
+    id: 11, topic: "Chemical Bonding",
+    q: "All of the following have covalent bonds EXCEPT:",
+    opts: ["CCl<sub>4</sub>", "HCl", "NaCl", "NH<sub>3</sub>"], ans: 2,
+    exp: "<b>NaCl</b> (Sodium Chloride) is a classic ionic compound formed by the complete transfer of valence electrons."
+  },
+  {
+    id: 12, topic: "Oxidation States",
+    q: "The oxidation number of Sulfur in H<sub>2</sub>SO<sub>4</sub> is:",
+    opts: ["+4", "+2", "+6", "−2"], ans: 2,
+    exp: "Let sulfur be x: 2(+1) + x + 4(−2) = 0 ⇒ 2 + x − 8 = 0 ⇒ <b>x = +6</b>."
+  },
+  {
+    id: 13, topic: "Water Hardness",
+    q: "Temporary hardness of water is due to the presence of:",
+    opts: ["Calcium and Magnesium Chlorides", "Calcium and Magnesium Bicarbonates", "Sodium Sulfates", "Magnesium Sulfates"], ans: 1,
+    exp: "Temporary hardness is caused by dissolved <b>Calcium and Magnesium Bicarbonates</b>, which can be removed by boiling."
+  },
+  {
+    id: 14, topic: "Inorganic Chemistry",
+    q: "The difference between Ammonia (NH<sub>3</sub>) and Ammonium (NH<sub>4</sub><sup>+</sup>) is due to:",
+    opts: ["An additional electron", "An additional proton / H<sup>+</sup> ion", "A neutron", "A hydroxyl ion"], ans: 1,
+    exp: "Ammonia accepts an extra proton (H<sup>+</sup> ion) to form the ammonium ion (NH<sub>4</sub><sup>+</sup>)."
+  },
+  {
+    id: 15, topic: "Inorganic Chemistry",
+    q: "In general, when a metal oxide reacts with water, it forms a solution that is:",
+    opts: ["Acidic", "Basic", "Neutral", "Amphoteric"], ans: 1,
+    exp: "Metal oxides are basic in nature and react with water to form metal hydroxides (alkalies)."
+  },
+  {
+    id: 16, topic: "Oxide Formation",
+    q: "When oxygen combines with an element to form a binary compound, the resulting compound is called an:",
+    opts: ["Acid", "Oxide", "Oxalate", "Hydride"], ans: 1,
+    exp: "Binary compounds formed by oxygen combined with another element are termed <b>Oxides</b>."
+  },
+  {
+    id: 17, topic: "Organic Chemistry",
+    q: "In which of the following hydrocarbon series is a Pi (π) bond present in the bonding structure?",
+    opts: ["Alkanes only", "Alkenes and Alkynes", "Alkanes and Alkenes", "Cycloalkanes only"], ans: 1,
+    exp: "Alkanes have only sigma bonds. <b>Alkenes</b> (double bonds) and <b>Alkynes</b> (triple bonds) contain Pi (π) bonds."
+  },
+  {
+    id: 18, topic: "Separation Techniques",
+    q: "The process of separating components of a mixture by making use of the difference in their boiling points is:",
+    opts: ["Filtration", "Fractional Distillation", "Displacement", "Crystallization"], ans: 1,
+    exp: "Separating miscible liquids based on boiling point differences is known as <b>Fractional Distillation</b>."
+  },
+  {
+    id: 19, topic: "Redox Reactions",
+    q: "Hydrogen acts as an oxidizing agent in its reaction with:",
+    opts: ["Highly reactive metals (e.g., Sodium)", "Non-metals like Oxygen", "Chlorine", "Nitrogen"], ans: 0,
+    exp: "When hydrogen reacts with highly reactive alkali metals like sodium to form metal hydrides (NaH), hydrogen's oxidation state decreases from 0 to −1, acting as an oxidizing agent."
+  },
+  {
+    id: 20, topic: "Metallurgy & Ores",
+    q: "An important commercial ore of Iron is:",
+    opts: ["Bauxite", "Hematite", "Malachite", "Galena"], ans: 1,
+    exp: "The principal and most important ore of iron is <b>Hematite</b> (Fe<sub>2</sub>O<sub>3</sub>)."
+  },
+  {
+    id: 21, topic: "Periodic Table & Symbols",
+    q: "The chemical symbol of Gold is:",
+    opts: ["Ag", "Fe", "Au", "Pb"], ans: 2,
+    exp: "Gold's chemical symbol is <b>Au</b>, derived from its Latin name <i>Aurum</i>."
+  },
+  {
+    id: 22, topic: "Periodic Table",
+    q: "Which element has the atomic number 6?",
+    opts: ["Carbon", "Nitrogen", "Oxygen", "Helium"], ans: 0,
+    exp: "Element with atomic number 6 is <b>Carbon (C)</b>."
+  }
+];
+
+const QUESTIONS = RAW_QUESTIONS.map((item, idx) => {
+  const indexed = item.opts.map((t, c) => ({ t, isCorr: c === item.ans }));
+  const shift = (idx * 2 + 1) % 4;
+  const rotated = [...indexed.slice(shift), ...indexed.slice(0, shift)];
+  return {
+    ...item,
+    opts: rotated.map(o => o.t),
+    ans: rotated.findIndex(o => o.isCorr)
+  };
+});
+
+let filtered = [...QUESTIONS];
+let curIdx = 0;
+let fcIdx = 0;
+let userAns = {};
+let savedIds = new Set();
+
+let seconds = 0;
+let timerActive = true;
+setInterval(() => {
+  if (!timerActive) return;
+  seconds++;
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `⏱️ ${mins}:${secs}`;
+}, 1000);
+
+function toggleTimer() {
+  timerActive = !timerActive;
+  document.getElementById('timer-display').style.opacity = timerActive ? '1' : '0.5';
+}
+
+function renderQuiz() {
+  if (filtered.length === 0) {
+    document.getElementById('q-text').innerHTML = "No questions match this filter.";
+    document.getElementById('q-options').innerHTML = "";
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const q = filtered[curIdx];
+  document.getElementById('q-num-badge').textContent = `Q${q.id} / 22`;
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-text').innerHTML = q.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (savedIds.has(q.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save';
+  }
+
+  const optBox = document.getElementById('q-options');
+  optBox.innerHTML = '';
+  const chosen = userAns[q.id];
+  const keys = ['A', 'B', 'C', 'D'];
+
+  q.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (chosen !== undefined) {
+      btn.disabled = true;
+      if (idx === q.ans) btn.classList.add('correct');
+      else if (idx === chosen) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[idx]}</span><span>${optText}</span>`;
+    btn.onclick = () => chooseAnswer(q.id, idx);
+    optBox.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  if (chosen !== undefined) {
+    document.getElementById('q-exp-text').innerHTML = q.exp;
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = curIdx === 0;
+  document.getElementById('next-btn').disabled = curIdx === filtered.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function chooseAnswer(id, idx) {
+  userAns[id] = idx;
+  renderQuiz();
+}
+
+function revealCurrent() {
+  if (!filtered.length) return;
+  const q = filtered[curIdx];
+  userAns[q.id] = q.ans;
+  renderQuiz();
+}
+
+function moveQ(delta) {
+  const next = curIdx + delta;
+  if (next >= 0 && next < filtered.length) {
+    curIdx = next;
+    renderQuiz();
+  }
+}
+
+function toggleBookmark() {
+  if (!filtered.length) return;
+  const id = filtered[curIdx].id;
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderQuiz();
+}
+
+function setFilter(type, btn) {
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (type === 'ALL') filtered = [...QUESTIONS];
+  else if (type === 'SAVED') filtered = QUESTIONS.filter(q => savedIds.has(q.id));
+  else if (type === 'WRONG') filtered = QUESTIONS.filter(q => userAns[q.id] !== undefined && userAns[q.id] !== q.ans);
+
+  curIdx = 0;
+  renderQuiz();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filtered.length} Qs`;
+  grid.innerHTML = '';
+
+  filtered.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.className = 'p-num';
+    if (idx === curIdx) b.classList.add('current');
+    if (userAns[q.id] !== undefined) {
+      b.classList.add(userAns[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    b.textContent = q.id;
+    b.onclick = () => {
+      curIdx = idx;
+      renderQuiz();
+    };
+    grid.appendChild(b);
+  });
+}
+
+function updateStats() {
+  const keys = Object.keys(userAns);
+  const attempted = keys.length;
+  let correct = 0;
+  keys.forEach(k => {
+    const q = QUESTIONS.find(item => item.id === Number(k));
+    if (q && userAns[k] === q.ans) correct++;
+  });
+  const acc = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${attempted}/22`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = savedIds.size;
+}
+
+function resetQuiz() {
+  userAns = {};
+  seconds = 0;
+  renderQuiz();
+}
+
+function renderFC() {
+  const card = document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  const q = QUESTIONS[fcIdx];
+  document.getElementById('fc-num').textContent = `Card ${q.id} / 22`;
+  document.getElementById('fc-topic').textContent = q.topic;
+  document.getElementById('fc-q').innerHTML = q.q;
+  document.getElementById('fc-ans').innerHTML = `(${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}`;
+  document.getElementById('fc-exp').innerHTML = q.exp;
+}
+
+function moveFC(delta) {
+  fcIdx = (fcIdx + delta + QUESTIONS.length) % QUESTIONS.length;
+  renderFC();
+}
+
+function renderBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const listEl = document.getElementById('bank-list');
+  const matches = QUESTIONS.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.exp.toLowerCase().includes(query) ||
+    String(q.id) === query
+  );
+
+  listEl.innerHTML = matches.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:8px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#047857; font-weight:700; margin-bottom:4px;">✔ Correct Answer: (${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</div>
+        <div style="font-size:0.92rem; color:#334155;">${q.exp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlur(btn) {
+  const el = document.getElementById('bank-list');
+  el.classList.toggle('hide-answers');
+  btn.textContent = el.classList.contains('hide-answers') ? '👁️ Show All Answers' : '🙈 Hide Answers (Self-Test)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${view}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = view === 'quiz' ? 'flex' : 'none';
+
+  if (view === 'flashcards') renderFC();
+  if (view === 'bank') renderBank();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const q = filtered[curIdx];
+      if (q && userAns[q.id] === undefined) chooseAnswer(q.id, parseInt(e.key) - 1);
+    } else if (e.key === 'ArrowRight') moveQ(1);
+    else if (e.key === 'ArrowLeft') moveQ(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('fc-card').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFC(1);
+    else if (e.key === 'ArrowLeft') moveFC(-1);
+  }
+});
+
+renderQuiz();
+</script>
+</body>
+</html>

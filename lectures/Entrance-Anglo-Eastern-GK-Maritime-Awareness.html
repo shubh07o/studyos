@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Written PYQs — General Knowledge & Maritime Awareness Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.9);
+      --border: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-blue: #0284c7;
+      --accent-indigo: #4f46e5;
+      --accent-amber: #d97706;
+      --accent-emerald: #059669;
+      --accent-rose: #e11d48;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Clean Chemical Formula & Math Styling */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      padding: 1px 6px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.02em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    sub, sup {
+      font-size: 0.75em;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup { top: -0.5em; }
+    sub { bottom: -0.25em; }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.14rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .stat-pill .val {
+      color: var(--accent-blue);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .timer-pill {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Navigation & Filters */
+    .nav-container {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .mode-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(79, 70, 229, 0.1));
+      color: var(--accent-indigo);
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .ctrl-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-blue);
+      background: #f8fafc;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-num {
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    .badge-topic {
+      background: rgba(217, 119, 6, 0.1);
+      color: var(--accent-amber);
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: var(--accent-amber);
+      color: #b45309;
+    }
+
+    .q-title {
+      font-size: 1.16rem;
+      font-weight: 600;
+      margin-bottom: 22px;
+      line-height: 1.75;
+      color: #0f172a;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .opt-btn {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.15s ease;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: #f0f9ff;
+      border-color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    .opt-key {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      color: #334155;
+    }
+
+    .opt-btn.correct {
+      background: #ecfdf5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #fff;
+    }
+
+    .opt-btn.wrong {
+      background: #fff1f2;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    .exp-box {
+      margin-top: 22px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: none;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #047857;
+      margin-bottom: 8px;
+      font-size: 0.94rem;
+    }
+
+    .exp-text {
+      font-size: 0.95rem;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    .quiz-footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--accent-blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+    }
+
+    .nav-btn.secondary {
+      background: #f1f5f9;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Palette Sidebar */
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: sticky;
+      top: 90px;
+      box-shadow: var(--shadow);
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 12px;
+    }
+
+    .p-num {
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.25);
+      color: var(--accent-blue);
+      background: #e0f2fe;
+    }
+
+    .p-num.correct {
+      background: #d1fae5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .p-num.wrong {
+      background: #ffe4e6;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    /* Flashcards */
+    .flashcard-wrap {
+      max-width: 760px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 350px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #ffffff, #f0fdf4);
+    }
+
+    /* Study Bank */
+    .search-bar {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+
+    .bank-ans {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: #f0fdf4;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">⚓</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern PYQs — GK & Maritime Hub</h1>
+        <p>Complete 40 GK & Maritime Questions • Budding Mariners Academy • Light Mode</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="timer-pill" onclick="toggleTimer()" id="timer-display" title="Click to Pause/Resume">⏱️ 00:00</div>
+      <div class="stat-pill">Attempted:<span class="val" id="stat-attempted">0/40</span></div>
+      <div class="stat-pill">Correct:<span class="val" id="stat-correct" style="color:#059669;">0</span></div>
+      <div class="stat-pill">Accuracy:<span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved:<span class="val" id="stat-saved" style="color:#d97706;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Interactive Quiz (40 Qs)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 40)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setFilter('ALL', this)">All 40 Questions</button>
+      <button class="sec-pill" onclick="setFilter('SAVED', this)">★ Saved</button>
+      <button class="sec-pill" onclick="setFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="ctrl-btn" onclick="revealCurrent()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 40</span>
+            <span class="badge badge-topic" id="q-topic-badge">GK & Maritime</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Solution & Detailed Explanation</div>
+          <div class="exp-text" id="q-exp-text"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQ(-1)">← Previous</button>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Keyboard: <b>1–4</b> Select Option • <b>← / →</b> Navigate</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQ(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.9rem;">
+          <span>Question Navigator</span>
+          <span id="palette-count" style="color:var(--text-secondary); font-size:0.78rem;">40 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face">
+          <div>
+            <div class="q-badges" style="margin-bottom:14px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 40</span>
+              <span class="badge badge-topic" id="fc-topic">GK & Maritime</span>
+            </div>
+            <div id="fc-q" style="font-size:1.18rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="text-align:center; color:var(--accent-blue); font-size:0.84rem;">🔄 Click Card or Press Spacebar to Flip</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <span class="badge badge-num" style="background:#d1fae5; color:#065f46; margin-bottom:10px; display:inline-block;">Correct Answer</span>
+            <div id="fc-ans" style="font-size:1.3rem; font-weight:800; color:#047857; margin-bottom:14px;"></div>
+            <div id="fc-exp" style="font-size:0.95rem; color:#1e293b; line-height:1.65;"></div>
+          </div>
+          <p style="text-align:center; color:var(--text-secondary); font-size:0.8rem;">Click to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button class="nav-btn secondary" onclick="moveFC(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFC(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1;" placeholder="🔍 Search any GK or Maritime question, keyword, or number..." oninput="renderBank()" />
+      <button class="ctrl-btn" onclick="toggleBlur(this)">🙈 Hide Answers (Self-Test)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+const RAW_QUESTIONS = [
+  {
+    id: 1, topic: "World Currencies",
+    q: "Yen is the national currency of:",
+    opts: ["China", "Japan", "United Kingdom", "South Korea"], ans: 1,
+    exp: "Yen is the official currency of Japan (China = Yuan/Renminbi, UK = Pound Sterling, South Korea = Won)."
+  },
+  {
+    id: 2, topic: "Maritime Waterways",
+    q: "The Suez Canal connects the Red Sea with the:",
+    opts: ["Black Sea", "Yellow Sea", "Mediterranean Sea", "Baltic Sea"], ans: 2,
+    exp: "The Suez Canal connects the Mediterranean Sea to the Red Sea, enabling direct shipping between Europe and Asia."
+  },
+  {
+    id: 3, topic: "Time Zones & Flight",
+    q: "An aeroplane departs from Country A on 21st August at 06:00 hours local time. After a 3-hour flight, it lands in Country B where the local time is also 06:00 hours on 21st August. In which direction did the plane fly?",
+    opts: ["Eastward", "Westward", "Northward", "Southward"], ans: 1,
+    exp: "Local time moves backward as you travel West. Flying Westward for 3 hours offsets the 3-hour flight duration, keeping the local time identical upon landing."
+  },
+  {
+    id: 4, topic: "Logical Order",
+    q: "Which of the following responses represents a meaningful logical order: <b>1. Leaves, 2. Branch, 3. Flower, 4. Tree, 5. Fruit</b>?",
+    opts: ["4, 2, 3, 1, 5", "4, 2, 1, 3, 5", "4, 3, 1, 2, 5", "4, 1, 2, 3, 5"], ans: 0,
+    exp: "Biological sequence: Tree (4) → Branch (2) → Flower (3) → Leaves (1) → Fruit (5)."
+  },
+  {
+    id: 5, topic: "Maritime Organization",
+    q: "Which United Nations agency deals with matters related to the safety and security of global shipping?",
+    opts: ["UNESCO", "IMO (International Maritime Organization)", "WHO", "ILO"], ans: 1,
+    exp: "The <b>IMO</b> is the specialized UN agency responsible for regulating maritime safety, security, and marine environmental protection."
+  },
+  {
+    id: 6, topic: "Manufacturing Order",
+    q: "Arrange the following in a logical manufacturing order: <b>1. Plant, 2. Fiber, 3. Cloth, 4. Shirt, 5. Rags</b>.",
+    opts: ["1, 2, 3, 4, 5", "2, 1, 3, 4, 5", "1, 3, 2, 4, 5", "5, 4, 3, 2, 1"], ans: 0,
+    exp: "Fiber (2) from Plant (1) → Cloth (3) → Shirt (4) → Rags (5)."
+  },
+  {
+    id: 7, topic: "Voyage Planning",
+    q: "A ship has a fuel storage tank capacity for 30 days. It needs to undertake a 50-day voyage and can refuel once during the passage. Which option ensures the voyage is completed leaving 5 days of extra fuel?",
+    opts: ["Refuel after 10 days", "Refuel after 15 days", "Refuel after 25 days", "Refuel after 35 days"], ans: 2,
+    exp: "Total fuel required = 50 + 5 = 55 days. Refueling after 25 days gives 25 + 30 = <b>55 days</b> of total fuel."
+  },
+  {
+    id: 8, topic: "Chronological Order",
+    q: "Arrange the following recording media in chronological order of invention: <b>1. Stones, 2. Paper, 3. Floppy Disk, 4. Compact Disc (CD), 5. Pen Drive</b>.",
+    opts: ["1, 2, 3, 4, 5", "2, 1, 3, 4, 5", "1, 3, 2, 4, 5", "3, 2, 1, 4, 5"], ans: 0,
+    exp: "Stones → Paper → Floppy Disk → CD → Pen Drive."
+  },
+  {
+    id: 9, topic: "Onboard Safety",
+    q: "Till when shall fire precautions be continued in existence during onboard operations?",
+    opts: ["Only when work starts", "Only while work is ongoing", "Until the work is completed", "Unless there is no further risk of fire"], ans: 3,
+    exp: "Regulations require fire watch and precautions to remain active <b>until there is no further risk of fire</b>."
+  },
+  {
+    id: 10, topic: "GPS Systems",
+    q: "Which country developed and owns the Global Positioning System (GPS)?",
+    opts: ["Russia", "USA", "China", "India"], ans: 1,
+    exp: "GPS was developed and is operated by the <b>USA</b>."
+  },
+  {
+    id: 11, topic: "Classification",
+    q: "Select the odd one out:",
+    opts: ["Dusk", "Dawn", "Twilight", "Noon"], ans: 3,
+    exp: "Dusk, Dawn, and Twilight refer to low-light periods during sunrise or sunset, whereas <b>Noon</b> represents peak sunlight."
+  },
+  {
+    id: 12, topic: "Ocean Geography",
+    q: "The shortest sea route from South Africa to Brazil passes through which ocean?",
+    opts: ["North Atlantic Ocean", "South Atlantic Ocean", "Indian Ocean", "Pacific Ocean"], ans: 1,
+    exp: "South Africa and Brazil border the <b>South Atlantic Ocean</b>."
+  },
+  {
+    id: 13, topic: "Operating Systems",
+    q: "Which of the following is NOT a computer operating system?",
+    opts: ["Windows XP", "Microsoft Office", "Linux", "macOS"], ans: 1,
+    exp: "<b>Microsoft Office</b> is an application software suite, whereas Windows XP, Linux, and macOS are Operating Systems."
+  },
+  {
+    id: 14, topic: "Classification",
+    q: "Select the odd one out:",
+    opts: ["Cheese", "Butter", "Milk", "Oil"], ans: 3,
+    exp: "Cheese, Butter, and Milk are dairy products, whereas <b>Oil</b> is plant or mineral based."
+  },
+  {
+    id: 15, topic: "Geography",
+    q: "Which of the following is NOT an Indonesian island?",
+    opts: ["Sumatra", "Bali", "Java", "Brunei"], ans: 3,
+    exp: "<b>Brunei</b> is an independent sovereign country located on the island of Borneo, not an Indonesian island."
+  },
+  {
+    id: 16, topic: "North American Lakes",
+    q: "The group of Great Lakes in North America consists of how many lakes?",
+    opts: ["3", "4", "5", "6"], ans: 2,
+    exp: "The <b>5</b> Great Lakes are Superior, Michigan, Huron, Erie, and Ontario."
+  },
+  {
+    id: 17, topic: "South American Rivers",
+    q: "The Amazon River flows primarily through which South American country?",
+    opts: ["India", "Canada", "Brazil", "Egypt"], ans: 2,
+    exp: "The vast majority of the Amazon River basin is situated in <b>Brazil</b>."
+  },
+  {
+    id: 18, topic: "Inland Bodies of Water",
+    q: "Which of the following is the world's largest landlocked inland body of water?",
+    opts: ["Red Sea", "Caspian Sea", "Black Sea", "Mediterranean Sea"], ans: 1,
+    exp: "The <b>Caspian Sea</b> is Earth's largest enclosed inland body of water."
+  },
+  {
+    id: 19, topic: "Onboard Hierarchy",
+    q: "Who serves as the designated Safety Officer on board a merchant vessel?",
+    opts: ["Captain", "Chief Officer", "Second Officer", "Chief Engineer"], ans: 1,
+    exp: "Onboard merchant ships, the <b>Chief Officer</b> (Chief Mate) is designated as the ship's Safety Officer."
+  },
+  {
+    id: 20, topic: "Ocean Routes",
+    q: "The shortest sea route from the Western coast of Canada to Singapore passes through which ocean?",
+    opts: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"], ans: 2,
+    exp: "Sailing from Canada across to Singapore crosses the <b>Pacific Ocean</b> directly."
+  },
+  {
+    id: 21, topic: "Environmental Science",
+    q: "Which of the following is NOT a greenhouse gas?",
+    opts: ["Carbon Dioxide", "Methane", "Nitrogen", "Nitrous Oxide"], ans: 2,
+    exp: "<b>Nitrogen</b> (N<sub>2</sub>) makes up 78% of Earth's atmosphere but is not a greenhouse gas."
+  },
+  {
+    id: 22, topic: "European Capitals",
+    q: "Which city is the capital of France?",
+    opts: ["Berlin", "Madrid", "Paris", "Rome"], ans: 2,
+    exp: "<b>Paris</b> is the capital of France."
+  },
+  {
+    id: 23, topic: "Cell Biology",
+    q: "Which organelle is known as the 'Powerhouse of the Cell'?",
+    opts: ["Ribosome", "Mitochondria", "Nucleus", "Lysosome"], ans: 1,
+    exp: "<b>Mitochondria</b> generate most of the chemical energy (ATP) needed to power cellular reactions."
+  },
+  {
+    id: 24, topic: "Atmospheric Composition",
+    q: "Which gas is the most abundant in Earth's atmosphere?",
+    opts: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Argon"], ans: 1,
+    exp: "<b>Nitrogen</b> constitutes approximately 78% of Earth's atmosphere by volume."
+  },
+  {
+    id: 25, topic: "Vitamins",
+    q: "Which vitamin is commonly known as the 'Sunshine Vitamin'?",
+    opts: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"], ans: 3,
+    exp: "<b>Vitamin D</b> is synthesized by human skin when exposed to sunlight."
+  },
+  {
+    id: 26, topic: "World History",
+    q: "In which year did World War II officially end?",
+    opts: ["1918", "1939", "1945", "1950"], ans: 2,
+    exp: "World War II officially ended in <b>1945</b>."
+  },
+  {
+    id: 27, topic: "Industrial Disasters",
+    q: "Which toxic gas caused the 1984 Bhopal Gas Tragedy?",
+    opts: ["Mustard Gas", "Methyl Isocyanate (MIC)", "Phosgene", "Chlorine"], ans: 1,
+    exp: "The leak of <b>Methyl Isocyanate (MIC)</b> gas caused the Bhopal tragedy in December 1984."
+  },
+  {
+    id: 28, topic: "Astronomy",
+    q: "Which planet in our solar system is known as the 'Red Planet'?",
+    opts: ["Venus", "Mars", "Jupiter", "Saturn"], ans: 1,
+    exp: "<b>Mars</b> is called the Red Planet due to iron oxide on its surface."
+  },
+  {
+    id: 29, topic: "Navigation Terminology",
+    q: "What are the imaginary horizontal lines running parallel to the Equator called?",
+    opts: ["Meridians of Longitude", "Parallels of Latitude", "Rhumb Lines", "Great Circles"], ans: 1,
+    exp: "Lines running parallel to the Equator are called <b>Parallels of Latitude</b>."
+  },
+  {
+    id: 30, topic: "Major Canals",
+    q: "Which canal connects the Atlantic Ocean to the Pacific Ocean across Central America?",
+    opts: ["Suez Canal", "Panama Canal", "Kiel Canal", "Erie Canal"], ans: 1,
+    exp: "The <b>Panama Canal</b> connects the Atlantic Ocean to the Pacific Ocean."
+  },
+  {
+    id: 31, topic: "Maritime Law",
+    q: "What does the acronym SOLAS stand for in international maritime law?",
+    opts: ["Safety of Life at Sea", "Safety of Vessels at Sea", "Standardization of Lifeboats and Ships", "System of Loading and Sailing"], ans: 0,
+    exp: "SOLAS stands for <b>Safety of Life at Sea</b>."
+  },
+  {
+    id: 32, topic: "Nautical Distance",
+    q: "One Nautical Mile (NM) is equal to approximately how many kilometers?",
+    opts: ["1.0 km", "1.609 km", "1.852 km", "2.0 km"], ans: 2,
+    exp: "1 Nautical Mile = <b>1.852 kilometers</b>."
+  },
+  {
+    id: 33, topic: "Vessel Speed Unit",
+    q: "A vessel travelling at a speed of 1 Knot is moving at a rate of:",
+    opts: ["1 Kilometer per hour", "1 Nautical Mile per hour", "1 Statute Mile per hour", "1 Meter per second"], ans: 1,
+    exp: "A Knot is defined as <b>1 Nautical Mile per hour</b>."
+  },
+  {
+    id: 34, topic: "Maritime Pollution",
+    q: "Which international convention regulates the prevention of pollution from ships?",
+    opts: ["STCW", "MARPOL", "MLC", "COLREGs"], ans: 1,
+    exp: "<b>MARPOL</b> regulates pollution prevention from ships."
+  },
+  {
+    id: 35, topic: "Collision Regulations",
+    q: "What is the primary purpose of COLREGs?",
+    opts: ["Calculate freight tariffs", "Prevent collisions at sea", "Regulate crew salaries", "Standardize container dimensions"], ans: 1,
+    exp: "COLREGs stand for International Regulations for <b>Preventing Collisions at Sea</b>."
+  },
+  {
+    id: 36, topic: "Strategic Choke Points",
+    q: "Which narrow strait connects the Persian Gulf to the Gulf of Oman and serves as a major oil shipping choke point?",
+    opts: ["Strait of Malacca", "Strait of Hormuz", "Strait of Gibraltar", "Bosporus Strait"], ans: 1,
+    exp: "The <b>Strait of Hormuz</b> is a vital petroleum shipping choke point."
+  },
+  {
+    id: 37, topic: "Strategic Choke Points",
+    q: "Which busy shipping channel connects the Indian Ocean to the South China Sea (Pacific Ocean)?",
+    opts: ["Strait of Hormuz", "Strait of Malacca", "Bab-el-Mandeb", "Dover Strait"], ans: 1,
+    exp: "The <b>Strait of Malacca</b> links the Indian and Pacific Oceans."
+  },
+  {
+    id: 38, topic: "Nautical Hull Terminology",
+    q: "In nautical terminology, the front part of a ship is called the ____, and the rear part is called the ____.",
+    opts: ["Stern, Bow", "Bow, Stern", "Port, Starboard", "Keel, Mast"], ans: 1,
+    exp: "The forward end is the <b>Bow</b>, and the aft end is the <b>Stern</b>."
+  },
+  {
+    id: 39, topic: "Nautical Side Terminology",
+    q: "When facing forward toward the bow of a ship, the Left side is ____ and the Right side is ____.",
+    opts: ["Starboard, Port", "Port, Starboard", "Bow, Stern", "Aft, Forward"], ans: 1,
+    exp: "Facing forward, the left side is <b>Port</b> and the right side is <b>Starboard</b>."
+  },
+  {
+    id: 40, topic: "Maritime Labor",
+    q: "What does the MLC 2006 convention protect for seafarers?",
+    opts: ["Maritime Labor Rights & Working Conditions", "Container Cargo Insurance", "Ship Engine Efficiency", "Port Customs Tariffs"], ans: 0,
+    exp: "The Maritime Labour Convention (MLC) 2006 sets global standards for seafarers' <b>Labor Rights & Working Conditions</b>."
+  }
+];
+
+const QUESTIONS = RAW_QUESTIONS.map((item, idx) => {
+  const indexed = item.opts.map((t, c) => ({ t, isCorr: c === item.ans }));
+  const shift = (idx * 2 + 1) % 4;
+  const rotated = [...indexed.slice(shift), ...indexed.slice(0, shift)];
+  return {
+    ...item,
+    opts: rotated.map(o => o.t),
+    ans: rotated.findIndex(o => o.isCorr)
+  };
+});
+
+let filtered = [...QUESTIONS];
+let curIdx = 0;
+let fcIdx = 0;
+let userAns = {};
+let savedIds = new Set();
+
+let seconds = 0;
+let timerActive = true;
+setInterval(() => {
+  if (!timerActive) return;
+  seconds++;
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `⏱️ ${mins}:${secs}`;
+}, 1000);
+
+function toggleTimer() {
+  timerActive = !timerActive;
+  document.getElementById('timer-display').style.opacity = timerActive ? '1' : '0.5';
+}
+
+function renderQuiz() {
+  if (filtered.length === 0) {
+    document.getElementById('q-text').innerHTML = "No questions match this filter.";
+    document.getElementById('q-options').innerHTML = "";
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const q = filtered[curIdx];
+  document.getElementById('q-num-badge').textContent = `Q${q.id} / 40`;
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-text').innerHTML = q.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (savedIds.has(q.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save';
+  }
+
+  const optBox = document.getElementById('q-options');
+  optBox.innerHTML = '';
+  const chosen = userAns[q.id];
+  const keys = ['A', 'B', 'C', 'D'];
+
+  q.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (chosen !== undefined) {
+      btn.disabled = true;
+      if (idx === q.ans) btn.classList.add('correct');
+      else if (idx === chosen) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[idx]}</span><span>${optText}</span>`;
+    btn.onclick = () => chooseAnswer(q.id, idx);
+    optBox.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  if (chosen !== undefined) {
+    document.getElementById('q-exp-text').innerHTML = q.exp;
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = curIdx === 0;
+  document.getElementById('next-btn').disabled = curIdx === filtered.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function chooseAnswer(id, idx) {
+  userAns[id] = idx;
+  renderQuiz();
+}
+
+function revealCurrent() {
+  if (!filtered.length) return;
+  const q = filtered[curIdx];
+  userAns[q.id] = q.ans;
+  renderQuiz();
+}
+
+function moveQ(delta) {
+  const next = curIdx + delta;
+  if (next >= 0 && next < filtered.length) {
+    curIdx = next;
+    renderQuiz();
+  }
+}
+
+function toggleBookmark() {
+  if (!filtered.length) return;
+  const id = filtered[curIdx].id;
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderQuiz();
+}
+
+function setFilter(type, btn) {
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (type === 'ALL') filtered = [...QUESTIONS];
+  else if (type === 'SAVED') filtered = QUESTIONS.filter(q => savedIds.has(q.id));
+  else if (type === 'WRONG') filtered = QUESTIONS.filter(q => userAns[q.id] !== undefined && userAns[q.id] !== q.ans);
+
+  curIdx = 0;
+  renderQuiz();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filtered.length} Qs`;
+  grid.innerHTML = '';
+
+  filtered.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.className = 'p-num';
+    if (idx === curIdx) b.classList.add('current');
+    if (userAns[q.id] !== undefined) {
+      b.classList.add(userAns[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    b.textContent = q.id;
+    b.onclick = () => {
+      curIdx = idx;
+      renderQuiz();
+    };
+    grid.appendChild(b);
+  });
+}
+
+function updateStats() {
+  const keys = Object.keys(userAns);
+  const attempted = keys.length;
+  let correct = 0;
+  keys.forEach(k => {
+    const q = QUESTIONS.find(item => item.id === Number(k));
+    if (q && userAns[k] === q.ans) correct++;
+  });
+  const acc = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${attempted}/40`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = savedIds.size;
+}
+
+function resetQuiz() {
+  userAns = {};
+  seconds = 0;
+  renderQuiz();
+}
+
+function renderFC() {
+  const card = document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  const q = QUESTIONS[fcIdx];
+  document.getElementById('fc-num').textContent = `Card ${q.id} / 40`;
+  document.getElementById('fc-topic').textContent = q.topic;
+  document.getElementById('fc-q').innerHTML = q.q;
+  document.getElementById('fc-ans').innerHTML = `(${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}`;
+  document.getElementById('fc-exp').innerHTML = q.exp;
+}
+
+function moveFC(delta) {
+  fcIdx = (fcIdx + delta + QUESTIONS.length) % QUESTIONS.length;
+  renderFC();
+}
+
+function renderBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const listEl = document.getElementById('bank-list');
+  const matches = QUESTIONS.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.exp.toLowerCase().includes(query) ||
+    String(q.id) === query
+  );
+
+  listEl.innerHTML = matches.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:8px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#047857; font-weight:700; margin-bottom:4px;">✔ Correct Answer: (${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</div>
+        <div style="font-size:0.92rem; color:#334155;">${q.exp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlur(btn) {
+  const el = document.getElementById('bank-list');
+  el.classList.toggle('hide-answers');
+  btn.textContent = el.classList.contains('hide-answers') ? '👁️ Show All Answers' : '🙈 Hide Answers (Self-Test)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${view}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = view === 'quiz' ? 'flex' : 'none';
+
+  if (view === 'flashcards') renderFC();
+  if (view === 'bank') renderBank();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const q = filtered[curIdx];
+      if (q && userAns[q.id] === undefined) chooseAnswer(q.id, parseInt(e.key) - 1);
+    } else if (e.key === 'ArrowRight') moveQ(1);
+    else if (e.key === 'ArrowLeft') moveQ(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('fc-card').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFC(1);
+    else if (e.key === 'ArrowLeft') moveFC(-1);
+  }
+});
+
+renderQuiz();
+</script>
+</body>
+</html>

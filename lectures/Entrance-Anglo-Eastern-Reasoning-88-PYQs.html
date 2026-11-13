@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Exam — General Aptitude & Reasoning (88 PYQs Mock)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #060b16;
+      --bg-card: #0f172a;
+      --bg-card-hover: #1e293b;
+      --bg-glass: rgba(15, 23, 42, 0.88);
+      --border: #263554;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-cyan: #06b6d4;
+      --accent-blue: #3b82f6;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(6, 182, 212, 0.08), transparent 30%),
+        radial-gradient(circle at 90% 85%, rgba(59, 130, 246, 0.08), transparent 30%);
+      color: var(--text-primary);
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Clean Math & Formula Badges */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #cffafe;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.28);
+      padding: 1px 7px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.02em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 3px;
+      font-size: 0.88em;
+      line-height: 1.1;
+    }
+
+    .frac-num {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 4px 1px;
+    }
+
+    .frac-den {
+      padding: 1px 4px 0;
+    }
+
+    .matrix-box {
+      display: inline-grid;
+      grid-template-columns: repeat(3, 44px);
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1.5px solid var(--accent-cyan);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      text-align: center;
+      font-weight: 700;
+      font-family: monospace;
+      font-size: 1.05rem;
+    }
+
+    .matrix-box span {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: 4px;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+    }
+
+    .header-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .brand-text h1 {
+      font-size: 1.12rem;
+      font-weight: 800;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .stat-pill .val {
+      color: var(--accent-cyan);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .timer-pill {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fcd34d;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Navigation & Filters */
+    .nav-container {
+      max-width: 1300px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.22), rgba(59, 130, 246, 0.22));
+      color: #fff;
+      border-color: var(--accent-cyan);
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-cyan);
+      color: #060b16;
+      border-color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-cyan);
+    }
+
+    /* Main Views */
+    main {
+      max-width: 1300px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-num {
+      background: rgba(6, 182, 212, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    .badge-part {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-topic {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(245, 158, 11, 0.2);
+      border-color: var(--accent-amber);
+      color: #fbbf24;
+    }
+
+    .q-title {
+      font-size: 1.14rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.15s;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: rgba(6, 182, 212, 0.08);
+      border-color: var(--accent-cyan);
+    }
+
+    .opt-key {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.16);
+      border-color: var(--accent-emerald);
+      color: #ecfdf5;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #052e16;
+    }
+
+    .opt-btn.wrong {
+      background: rgba(244, 63, 94, 0.16);
+      border-color: var(--accent-rose);
+      color: #fff1f2;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    .exp-box {
+      margin-top: 20px;
+      background: rgba(15, 23, 42, 0.95);
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: none;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #34d399;
+      margin-bottom: 6px;
+      font-size: 0.92rem;
+    }
+
+    .exp-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.7;
+    }
+
+    .quiz-footer {
+      margin-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--accent-cyan);
+      color: #060b16;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .nav-btn.secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Palette Sidebar */
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      position: sticky;
+      top: 84px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      max-height: 410px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 10px;
+    }
+
+    .p-num {
+      height: 34px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.35);
+      color: #fff;
+    }
+
+    .p-num.correct {
+      background: rgba(16, 185, 129, 0.24);
+      border-color: var(--accent-emerald);
+      color: #6ee7b7;
+    }
+
+    .p-num.wrong {
+      background: rgba(244, 63, 94, 0.24);
+      border-color: var(--accent-rose);
+      color: #fda4af;
+    }
+
+    /* Flashcards */
+    .flashcard-wrap {
+      max-width: 740px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 330px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #0f172a, #092226);
+    }
+
+    /* Study Bank */
+    .search-bar {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.94rem;
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .bank-ans {
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">🧭</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern Sponsorship — General Aptitude & Reasoning</h1>
+        <p>Complete 88 PYQs Mock Portal (Part 1: Q1–44 Hinglish • Part 2: Q45–88 Hindi)</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="timer-pill" onclick="toggleTimer()" id="timer-display" title="Click to Pause/Resume Timer">⏱️ 00:00</div>
+      <div class="stat-pill">Attempted:<span class="val" id="stat-attempted">0/88</span></div>
+      <div class="stat-pill">Correct:<span class="val" id="stat-correct" style="color:#10b981;">0</span></div>
+      <div class="stat-pill">Accuracy:<span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved:<span class="val" id="stat-saved" style="color:#f59e0b;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Live Mock / Practice Quiz (88)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 88)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setFilter('ALL', this)">All 88 Questions</button>
+      <button class="sec-pill" onclick="setFilter('PART1', this)">Part 1: Q1–Q44 (Hinglish)</button>
+      <button class="sec-pill" onclick="setFilter('PART2', this)">Part 2: Q45–Q88 (Hindi)</button>
+      <button class="sec-pill" onclick="setFilter('REASONING', this)">🧠 Logical Reasoning</button>
+      <button class="sec-pill" onclick="setFilter('QUANT', this)">📐 Quantitative Aptitude</button>
+      <button class="sec-pill" onclick="setFilter('SAVED', this)">★ Saved</button>
+      <button class="sec-pill" onclick="setFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="ctrl-btn" onclick="revealCurrent()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetMock()">🔄 Reset Mock</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 88</span>
+            <span class="badge badge-part" id="q-part-badge">Part 1</span>
+            <span class="badge badge-topic" id="q-topic-badge">Topic</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Step-by-Step Solution & Trick</div>
+          <div class="exp-text" id="q-exp-text"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQ(-1)">← Previous</button>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Keys: <b>1–4</b> Select Option • <b>← / →</b> Next/Prev</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQ(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.9rem;">
+          <span>Question Palette</span>
+          <span id="palette-count" style="color:var(--text-secondary); font-size:0.78rem;">88 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face">
+          <div>
+            <div class="q-badges" style="margin-bottom:14px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 88</span>
+              <span class="badge badge-topic" id="fc-topic">Topic</span>
+            </div>
+            <div id="fc-q" style="font-size:1.18rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="text-align:center; color:var(--accent-cyan); font-size:0.84rem;">🔄 Click Card or Press Spacebar to Flip</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <span class="badge badge-num" style="background:rgba(16,185,129,0.2); color:#6ee7b7; margin-bottom:10px; display:inline-block;">Correct Answer</span>
+            <div id="fc-ans" style="font-size:1.3rem; font-weight:800; color:#34d399; margin-bottom:14px;"></div>
+            <div id="fc-exp" style="font-size:0.95rem; color:#e2e8f0; line-height:1.65;"></div>
+          </div>
+          <p style="text-align:center; color:var(--text-secondary); font-size:0.8rem;">Click to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button class="nav-btn secondary" onclick="moveFC(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFC(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1;" placeholder="🔍 Search any question, number, or topic (e.g., Boat, Clock, Series, Dice, CI, Train)..." oninput="renderBank()" />
+      <button class="ctrl-btn" onclick="toggleBlur(this)">🙈 Hide Answers (Self-Test)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+const frac = (n, d) => `<span class="frac"><span class="frac-num">${n}</span><span class="frac-den">${d}</span></span>`;
+const m = (c) => `<span class="m-expr">${c}</span>`;
+
+const RAW_QUESTIONS = [
+  // ================= PART 1: Q1 TO Q44 (HINGLISH) =================
+  {
+    id: 1, part: "PART1", cat: "REASONING", topic: "Coding-Decoding",
+    q: `Agar ek nishchit code mein <b>BRIGHT</b> ko <b>CSJHIU</b> likha jata hai, toh <b>STMANB</b> ka code kya hoga?`,
+    opts: ["STNBSU", "TUMBOC", "SUNBTC", "TSMNBO"], ans: 0,
+    exp: `Har letter mein ${m("+1")} add ho raha hai: B→C, R→S, I→J, G→H, H→I, T→U. Usi pattern ke sath <b>STNBSU</b> banta hai.`
+  },
+  {
+    id: 2, part: "PART1", cat: "REASONING", topic: "Logical Sequence",
+    q: `Niche diye gaye shabdon ko sahi prakritik kram (Logical Sequence) mein vyavasthit karein:<br><b>1. Seed (Beej), 2. Tree (Ped), 3. Fruit (Phal), 4. Flower (Phool)</b>`,
+    opts: ["1, 2, 3, 4", "1, 2, 4, 3", "2, 1, 4, 3", "4, 3, 2, 1"], ans: 1,
+    exp: `Prakritik kram: <b>1. Seed (Beej) → 2. Tree (Ped) → 4. Flower (Phool) → 3. Fruit (Phal)</b>.`
+  },
+  {
+    id: 3, part: "PART1", cat: "REASONING", topic: "Analogy",
+    q: `<b>Bird : Nest :: Bee : ?</b>`,
+    opts: ["Hole", "Cave", "Hive", "Shed"], ans: 2,
+    exp: `Jis tarah Pakshi ka nivas sthan Nest (Ghosla) hai, waise hi Madhumakhi ka nivas sthan <b>Hive (Chatta)</b> hota hai.`
+  },
+  {
+    id: 4, part: "PART1", cat: "QUANT", topic: "Fraction Percentage",
+    q: `Kisi fraction ke Numerator mein ${m("25%")} ki kami aur Denominator mein ${m("250%")} ki vriddhi ki jati hai. Naya fraction ${m(frac("6", "5"))} prapt hota hai. Mool fraction kya tha?`,
+    opts: [m(frac("14", "5")), m(frac("28", "5")), m(frac("12", "25")), m(frac("7", "5"))], ans: 1,
+    exp: `${m(`${frac("N × 75%", "D × 350%")} = ${frac("6", "5")} ⇒ ${frac("N × 15", "D × 70")} = ${frac("6", "5")} ⇒ ${frac("N", "D")} = ${frac("6 × 70", "5 × 15")} = ${frac("28", "5")}`)}.`
+  },
+  {
+    id: 5, part: "PART1", cat: "QUANT", topic: "Flight Delay Speed",
+    q: `Ek plane apne scheduled time se ${m("30 min (0.5 h)")} late ho jata hai. ${m("1500 km")} ki doori tay karne ke liye use apni speed ${m("100 km/h")} badhani padti hai. Plane ki usual (original) speed kya thi?`,
+    opts: [m("400 km/h"), m("500 km/h"), m("600 km/h"), m("750 km/h")], ans: 1,
+    exp: `Table trick: ${m("3.0 h × 500 km/h = 1500 km")} (usual) aur ${m("2.5 h × 600 km/h = 1500 km")} (increased). Original speed = ${m("500 km/h")}.`
+  },
+  {
+    id: 6, part: "PART1", cat: "QUANT", topic: "Weather Flight Duration",
+    q: `${m("600 km")} ki flight mein kharab mausam ke kaaran aircraft ki speed ${m("200 km/h")} kam ho jati hai aur time ${m("30 min")} badh jata hai. Original flight duration kitna tha?`,
+    opts: [m("1 hour"), m("1.5 hours"), m("2 hours"), m("45 minutes")], ans: 0,
+    exp: `Table trick: ${m("1.0 h × 600 km/h = 600 km")} aur ${m("1.5 h × 400 km/h = 600 km")}. Original duration = ${m("1 hour")}.`
+  },
+  {
+    id: 7, part: "PART1", cat: "QUANT", topic: "Train Speed",
+    q: `Ek train ${m("300 km")} ki doori tay karti hai. Agar speed ${m("5 km/h")} badha di jaye toh ${m("2 hours")} kam lagte hain. Original speed kya hai?`,
+    opts: [m("20 km/h"), m("25 km/h"), m("30 km/h"), m("15 km/h")], ans: 1,
+    exp: `${m("12 h × 25 km/h = 300 km")} aur ${m("10 h × 30 km/h = 300 km")}. Original speed = ${m("25 km/h")}.`
+  },
+  {
+    id: 8, part: "PART1", cat: "QUANT", topic: "Problems on Ages",
+    q: `${m("6 years")} ago Kunal aur Sagar ki age ka ratio ${m("6 : 5")} tha. ${m("4 years")} baad unka ratio ${m("11 : 10")} hoga. Sagar ki present age kya hai?`,
+    opts: [m("10 years"), m("14 years"), m("16 years"), m("20 years")], ans: 2,
+    exp: `Total gap = ${m("10 years")}. Ratio jump = ${m("5 units = 10 years ⇒ 1 unit = 2 years")}. 6 yrs ago Sagar = ${m("5 × 2 = 10 yrs")}. Present age = ${m("10 + 6 = 16 years")}.`
+  },
+  {
+    id: 9, part: "PART1", cat: "QUANT", topic: "Time & Work",
+    q: `Pintu kisi kaam ko Nishu se ${m("6 days")} zyada mein karta hai. Dono milkar ${m("4 days")} mein pura karte hain. Nishu aur Pintu akele kitne din lenge?`,
+    opts: ["4 days & 10 days", "6 days & 12 days", "8 days & 14 days", "5 days & 11 days"], ans: 1,
+    exp: `${m(`${frac("x(x+6)", "2x+6")} = 4 ⇒ x<sup>2</sup> − 2x − 24 = 0 ⇒ x = 6 days`)} (Nishu) aur Pintu = ${m("12 days")}.`
+  },
+  {
+    id: 10, part: "PART1", cat: "QUANT", topic: "Food Provision (MDH)",
+    q: `Fort mein ${m("150 men")} ke liye ${m("45 days")} ka khana tha. ${m("10 days")} baad ${m("25 men")} chale gaye. Bacha hua khana kitne din chalega?`,
+    opts: [m("35 days"), m("40 days"), m("42 days"), m("50 days")], ans: 2,
+    exp: `Remaining days = 35, remaining men = 125. ${m("150 × 35 = 125 × D<sub>2</sub> ⇒ D<sub>2</sub> = 42 days")}.`
+  },
+  {
+    id: 11, part: "PART1", cat: "QUANT", topic: "Boat & Stream",
+    q: `Motorboat ki speed calm water mein ${m("24 km/h")} hai. Upstream ${m("32 km")} jane mein Downstream se ${m("1 hour")} zyada lagta hai. Stream ki speed nikalein:`,
+    opts: [m("6 km/h"), m("8 km/h"), m("10 km/h"), m("12 km/h")], ans: 1,
+    exp: `${m(`${frac("32", "24 − C")} − ${frac("32", "24 + C")} = 1`)}. ${m("C = 8 km/h")} rakhne par: ${m(`${frac("32", "16")} − ${frac("32", "32")} = 2 − 1 = 1 hour`)}.`
+  },
+  {
+    id: 12, part: "PART1", cat: "QUANT", topic: "Boat & Stream",
+    q: `Boat ${m("10 hours")} mein ${m("30 km")} Upstream + ${m("44 km")} Downstream jati hai. ${m("13 hours")} mein ${m("40 km")} Upstream + ${m("55 km")} Downstream jati hai. Boat aur Stream ki speed nikalein:`,
+    opts: ["Boat = 8 km/h, Stream = 3 km/h", "Boat = 10 km/h, Stream = 2 km/h", "Boat = 6 km/h, Stream = 4 km/h", "Boat = 9 km/h, Stream = 3 km/h"], ans: 0,
+    exp: `Equations solve karne par ${m("D = 11 km/h, U = 5 km/h")}. Boat = ${m(`${frac("11+5", "2")} = 8 km/h`)}, Stream = ${m(`${frac("11−5", "2")} = 3 km/h`)}.`
+  },
+  {
+    id: 13, part: "PART1", cat: "QUANT", topic: "Ratio & Proportion",
+    q: `3 numbers ka sum ${m("98")} hai. 1st : 2nd = ${m("2 : 3")}, 2nd : 3rd = ${m("5 : 8")}. 2nd number kya hai?`,
+    opts: ["20", "30", "48", "15"], ans: 1,
+    exp: `Combined ratio = ${m("10 : 15 : 24")}. Sum = ${m("49 units = 98 ⇒ 1 unit = 2")}. 2nd number = ${m("15 × 2 = 30")}.`
+  },
+  {
+    id: 14, part: "PART1", cat: "QUANT", topic: "Mixtures & Alligation",
+    q: `Do vessels A aur B mein Milk : Water ka ratio ${m("5 : 2")} aur ${m("8 : 5")} hai. Inhe kis ratio mein milayein ki new ratio ${m("9 : 4")} ho jaye?`,
+    opts: [m("7 : 2"), m("2 : 7"), m("5 : 3"), m("3 : 5")], ans: 0,
+    exp: `Milk fractions: ${m(frac("5", "7"))}, ${m(frac("8", "13"))}, ${m(frac("9", "13"))}. Multiply by 91: values ${m("65, 56, 63")}. Ratio = ${m("(63−56) : (65−63) = 7 : 2")}.`
+  },
+  {
+    id: 15, part: "PART1", cat: "QUANT", topic: "Ratio Salary",
+    q: `Ravi aur Sumit ki salary ka ratio ${m("2 : 3")} hai. Dono mein ₹4,000 add karne par ratio ${m("40 : 57")} ho jata hai. Sumit ki present (increased) salary kya hai?`,
+    opts: ["₹34,000", "₹38,000", "₹40,000", "₹50,000"], ans: 1,
+    exp: `${m(`${frac("2x+4000", "3x+4000")} = ${frac("40", "57")}`)} solve karne par ${m("3x = ₹34,000")}. Increased salary = ${m("₹34,000 + ₹4,000 = ₹38,000")}.`
+  },
+  {
+    id: 16, part: "PART1", cat: "QUANT", topic: "Permutations",
+    q: `'INDEPENDENCE' word ke letters ko kitne ways se arrange kiya ja sakta hai taaki saare Vowels hamesha ek sath rahein?`,
+    opts: ["12,600", "16,800", "24,000", "18,400"], ans: 1,
+    exp: `Vowels (E,E,E,E,I) = 1 unit → Total units = 8. Repeats: N(3), D(2), E(4). Ways = ${m(`${frac("8! × 5!", "3! × 2! × 4!")} = 16,800`)}.`
+  },
+  {
+    id: 17, part: "PART1", cat: "QUANT", topic: "Mixture Ratio",
+    q: `${m("126 kg")} Milk & Water mixture mein ratio ${m("5 : 2")} hai. Kitna water add karein ki ratio ${m("3 : 27 (1 : 9)")} ho jaye?`,
+    opts: [m("500 kg"), m("650 kg"), m("774 kg"), m("810 kg")], ans: 2,
+    exp: `Initial: Milk = 90 kg, Water = 36 kg. New water for 1:9 ratio = ${m("90 × 9 = 810 kg")}. Water added = ${m("810 − 36 = 774 kg")}.`
+  },
+  {
+    id: 18, part: "PART1", cat: "REASONING", topic: "Number Series",
+    q: `Series complete karein: <b>4, 9, 20, 43, 90, ?</b>`,
+    opts: ["180", "185", "181", "190"], ans: 1,
+    exp: `Pattern: ${m("×2+1, ×2+2, ×2+3, ×2+4, ×2+5")}. Next = ${m("90 × 2 + 5 = 185")}.`
+  },
+  {
+    id: 19, part: "PART1", cat: "REASONING", topic: "Number Series",
+    q: `Find the next term: <b>2, 10, 30, 68, 130, ?</b>`,
+    opts: ["222", "216", "240", "210"], ans: 0,
+    exp: `Pattern: ${m("n<sup>3</sup> + n")}. For ${m("n = 6")}: ${m("6<sup>3</sup> + 6 = 216 + 6 = 222")}.`
+  },
+  {
+    id: 20, part: "PART1", cat: "REASONING", topic: "Direction Sense",
+    q: `Ek vyakti North ki taraf ${m("10 m")} chalta hai, fir Right mud kar ${m("15 m")} chalta hai, fir Right mud kar ${m("10 m")} chalta hai. Vah apne starting point se kitni door aur kis direction mein hai?`,
+    opts: ["15 m East", "15 m West", "10 m South", "25 m East"], ans: 0,
+    exp: `North 10 m aur South 10 m cancel ho jate hain; bacha <b>15 m East</b>.`
+  },
+  {
+    id: 21, part: "PART1", cat: "REASONING", topic: "Blood Relations",
+    q: `Ek photo ki taraf ishara karte hue Rahul ne kaha, "Yeh mere pita ki patni ke iklote bete ki beti hai." Photo wali ladki ka Rahul se kya rishta hai?`,
+    opts: ["Sister (Behen)", "Daughter (Beti)", "Niece (Bhatiji)", "Wife (Patni)"], ans: 1,
+    exp: `Rahul ke pita ki patni = Rahul ki maa. Unka iklota beta = Rahul khud. Rahul ki beti = <b>Daughter (Beti)</b>.`
+  },
+  {
+    id: 22, part: "PART1", cat: "REASONING", topic: "Syllogism",
+    q: `<b>Statements:</b> (1) All Ships are Boats. (2) All Boats are Vessels.<br><b>Conclusion I:</b> All Ships are Vessels.<br><b>Conclusion II:</b> Some Vessels are Boats.`,
+    opts: ["Only Conclusion I follows", "Only Conclusion II follows", "Both Conclusion I and II follow", "Neither follows"], ans: 2,
+    exp: `All Ships ⊂ Boats ⊂ Vessels, isliye <b>Both Conclusion I and II follow</b>.`
+  },
+  {
+    id: 23, part: "PART1", cat: "QUANT", topic: "Work Efficiency",
+    q: `A, B se ${m("50%")} zyada efficient hai. Agar B kisi kaam ko ${m("15 days")} mein karta hai, toh A akele kitne din mein karega?`,
+    opts: [m("8 days"), m("10 days"), m("12 days"), m("7.5 days")], ans: 1,
+    exp: `Efficiency ratio A : B = ${m("3 : 2")}. Total work = ${m("2 × 15 = 30 units")}. Time by A = ${m("30 / 3 = 10 days")}.`
+  },
+  {
+    id: 24, part: "PART1", cat: "QUANT", topic: "Simple Interest",
+    q: `Kis annual SI rate par koi rashi ${m("8 years")} mein apne aap ki double (${m("2×")}) ho jayegi?`,
+    opts: [m("10%"), m("12.5%"), m("15%"), m("8%")], ans: 1,
+    exp: `${m(`R = ${frac("100", "8")} = 12.5%`)}.`
+  },
+  {
+    id: 25, part: "PART1", cat: "QUANT", topic: "Profit, Loss & Discount",
+    q: `Ek dukandar kisi vastu par ${m("20%")} discount dene ke baad bhi ${m("12%")} profit kamata hai. Agar Cost Price ₹800 hai, toh Marked Price kya hai?`,
+    opts: ["₹1,000", "₹1,120", "₹1,200", "₹1,080"], ans: 1,
+    exp: `Formula: ${m(`${frac("MP", "CP")} = ${frac("100 + P%", "100 − D%")} ⇒ ${frac("MP", "800")} = ${frac("112", "80")} ⇒ MP = ₹1,120`)}.`
+  },
+  {
+    id: 26, part: "PART1", cat: "REASONING", topic: "Clocks",
+    q: `${m("3:30")} baje ghadi ki ghante (hour) aur minute ki suiyon ke beech kitna angle hoga?`,
+    opts: [m("75°"), m("85°"), m("90°"), m("105°")], ans: 0,
+    exp: `Angle formula: ${m("θ = |30H − 5.5M| = |30(3) − 5.5(30)| = |90 − 165| = 75°")}.`
+  },
+  {
+    id: 27, part: "PART1", cat: "REASONING", topic: "Calendar",
+    q: `Agar aaj Wednesday (Budhwar) hai, toh aaj se ${m("45 days")} baad kaun sa din hoga?`,
+    opts: ["Friday", "Saturday", "Sunday", "Monday"], ans: 1,
+    exp: `${m("45 ÷ 7 = 6 weeks + 3 odd days")}. Wednesday + 3 days = <b>Saturday</b>.`
+  },
+  {
+    id: 28, part: "PART1", cat: "REASONING", topic: "Sentence Coding",
+    q: `Agar '123' = "bright little boy", '145' = "tall big boy" aur '637' = "beautiful little flower" hai, toh <b>"bright"</b> ke liye kaun sa digit hai?`,
+    opts: ["1", "2", "3", "4"], ans: 1,
+    exp: `'boy' = 1, 'little' = 3. Bacha 'bright' = <b>2</b>.`
+  },
+  {
+    id: 29, part: "PART1", cat: "REASONING", topic: "Cubes & Dice",
+    q: `Ek paase par 1 se 6 tak ank hain. 1 ke adjacent 2, 3, 4, 5 hain. 1 ke opposite kaun sa ank hoga?`,
+    opts: ["2", "3", "6", "5"], ans: 2,
+    exp: `Jo ank baaki 4 anko ke adjacent hai, bacha hua 6th ank (<b>6</b>) hi uska opposite face hoga.`
+  },
+  {
+    id: 30, part: "PART1", cat: "QUANT", topic: "Average Speed",
+    q: `Ek gaadi ${m("60 km/h")} ki speed se shehar A se B jati hai aur ${m("40 km/h")} ki speed se wapas aati hai. Poori yatra ki average speed kya hai?`,
+    opts: [m("50 km/h"), m("48 km/h"), m("45 km/h"), m("52 km/h")], ans: 1,
+    exp: `Average Speed = ${m(`${frac("2xy", "x+y")} = ${frac("2 × 60 × 40", "100")} = 48 km/h`)}.`
+  },
+  {
+    id: 31, part: "PART1", cat: "QUANT", topic: "Circular Permutation",
+    q: `5 logon ko ek gol mej (circular table) ke charo taraf kitne tarikon se bithaya ja sakta hai?`,
+    opts: ["120", "24", "60", "720"], ans: 1,
+    exp: `Circular permutation = ${m("(n − 1)! = (5 − 1)! = 4! = 24")}.`
+  },
+  {
+    id: 32, part: "PART1", cat: "QUANT", topic: "Probability",
+    q: `52 patton ki taash ki gaddi mein se ek patta nikala jata hai. Uske King (Badshah) ya Queen (Begam) hone ki probability kya hai?`,
+    opts: [m(frac("1", "13")), m(frac("2", "13")), m(frac("1", "26")), m(frac("4", "13"))], ans: 1,
+    exp: `Total Kings (4) + Queens (4) = 8. Probability = ${m(`${frac("8", "52")} = ${frac("2", "13")}`)}.`
+  },
+  {
+    id: 33, part: "PART1", cat: "QUANT", topic: "Pipe & Cistern",
+    q: `Pipe A tank ko ${m("10 hours")} mein bharta hai aur Pipe B ${m("15 hours")} mein. Dono ek sath kholne par tank kitne samay mein bharega?`,
+    opts: [m("5 hours"), m("6 hours"), m("8 hours"), m("7.5 hours")], ans: 1,
+    exp: `Time = ${m(`${frac("A × B", "A + B")} = ${frac("10 × 15", "25")} = 6 hours`)}.`
+  },
+  {
+    id: 34, part: "PART1", cat: "REASONING", topic: "Odd One Out",
+    q: `Niche diye gaye vikalpon mein se visham (Odd) shabd chuniye:`,
+    opts: ["Copper (Tamba)", "Zinc (Jasta)", "Brass (Pital)", "Aluminium"], ans: 2,
+    exp: `Copper, Zinc, aur Aluminium pure metals hain, jabki <b>Brass (Pital)</b> ek alloy (mishradhatu) hai.`
+  },
+  {
+    id: 35, part: "PART1", cat: "REASONING", topic: "Venn Diagram",
+    q: `Kaun sa diagram <b>"Engineers, Human Beings, Rats"</b> ke rishte ko sahi darshata hai?`,
+    opts: [
+      "Engineers ka poora circle Human Beings ke andar, aur Rats ka circle alag",
+      "Teeno circles ek doosre ko intersect karte hue",
+      "Rats ka circle Human Beings ke andar",
+      "Teeno circles bilkul alag"
+    ], ans: 0,
+    exp: `Sabhi Engineers Human Beings hain, jabki Rats bilkul alag prajati hai.`
+  },
+  {
+    id: 36, part: "PART1", cat: "REASONING", topic: "Letter Series",
+    q: `Complete the series: <b>AZ, CX, EV, GT, ?</b>`,
+    opts: ["IR", "HS", "JQ", "KP"], ans: 0,
+    exp: `First letter: A(+2)C(+2)E(+2)G(+2)<b>I</b>. Opposite pair of I is <b>R</b> → <b>IR</b>.`
+  },
+  {
+    id: 37, part: "PART1", cat: "QUANT", topic: "Compound Interest",
+    q: `₹8,000 par ${m("5%")} annual CI rate se ${m("2 years")} ka Compound Interest kya hoga?`,
+    opts: ["₹800", "₹820", "₹840", "₹900"], ans: 1,
+    exp: `${m("A = 8000 × (1.05)<sup>2</sup> = ₹8,820 ⇒ CI = ₹820")}.`
+  },
+  {
+    id: 38, part: "PART1", cat: "REASONING", topic: "Matrix Reasoning",
+    q: `Find the missing number in matrix:<br><div class="matrix-box"><span>3</span><span>4</span><span>5</span><span>2</span><span>3</span><span>4</span><span>13</span><span>25</span><span>?</span></div>`,
+    opts: ["35", "41", "50", "45"], ans: 1,
+    exp: `Row 3 = ${m("(Row 1)<sup>2</sup> + (Row 2)<sup>2</sup>")}. Col 3: ${m("5<sup>2</sup> + 4<sup>2</sup> = 25 + 16 = 41")}.`
+  },
+  {
+    id: 39, part: "PART1", cat: "QUANT", topic: "Alligation Price",
+    q: `₹60/kg aur ₹80/kg waali chaye ko kis ratio mein milayein taaki mixture ka daam ₹65/kg ho jaye?`,
+    opts: [m("3 : 1"), m("1 : 3"), m("2 : 3"), m("4 : 1")], ans: 0,
+    exp: `Alligation: ${m("(80 − 65) : (65 − 60) = 15 : 5 = 3 : 1")}.`
+  },
+  {
+    id: 40, part: "PART1", cat: "REASONING", topic: "Statement & Assumption",
+    q: `<b>Statement:</b> "Cruise ship par safety regulations strict hain."<br><b>Assumption I:</b> Ship par yatriyon ki suraksha sabse mahatvapurna hai.<br><b>Assumption II:</b> Strict rules se haadse kam hote hain.`,
+    opts: ["Only Assumption I is implicit", "Only Assumption II is implicit", "Both Assumption I and II are implicit", "Neither is implicit"], ans: 2,
+    exp: `Dono assumptions statement ke peeche ke mukhya uddeshya ko darshate hain.`
+  },
+  {
+    id: 41, part: "PART1", cat: "REASONING", topic: "Number Analogy",
+    q: `<b>7 : 56 :: 9 : ?</b>`,
+    opts: ["72", "90", "81", "99"], ans: 1,
+    exp: `Logic: ${m("n × (n + 1)")}. ${m("7 × 8 = 56")} aur ${m("9 × 10 = 90")}.`
+  },
+  {
+    id: 42, part: "PART1", cat: "QUANT", topic: "Partnership",
+    q: `A, B aur C ne ${m("1 : 2 : 4")} ke ratio mein capital lagaya. 1 year baad total profit ₹21,000 hua. B ka hissa kitna hai?`,
+    opts: ["₹3,000", "₹6,000", "₹12,000", "₹9,000"], ans: 1,
+    exp: `Total units = ${m("1 + 2 + 4 = 7 units = ₹21,000 ⇒ 1 unit = ₹3,000")}. B's share = ${m("2 × 3000 = ₹6,000")}.`
+  },
+  {
+    id: 43, part: "PART1", cat: "QUANT", topic: "Algebraic Operation",
+    q: `Agar ${m("a ★ b = a<sup>2</sup> + b<sup>2</sup> − ab")} hai, toh ${m("5 ★ 3")} ka maan kya hoga?`,
+    opts: ["19", "34", "15", "23"], ans: 0,
+    exp: `${m("5 ★ 3 = 5<sup>2</sup> + 3<sup>2</sup> − (5 × 3) = 25 + 9 − 15 = 19")}.`
+  },
+  {
+    id: 44, part: "PART1", cat: "QUANT", topic: "Speed & Distance",
+    q: `Ek train ${m("90 km/h")} ki speed se chal rahi hai. ${m("20 seconds")} mein kitni doori (meters mein) tay karegi?`,
+    opts: [m("400 m"), m("500 m"), m("600 m"), m("450 m")], ans: 1,
+    exp: `Speed = ${m(`90 × ${frac("5", "18")} = 25 m/s`)}. Distance = ${m("25 × 20 = 500 m")}.`
+  },
+
+  // ================= PART 2: Q45 TO Q88 (HINDI) =================
+  {
+    id: 45, part: "PART2", cat: "QUANT", topic: "Flight Delay Practice",
+    q: `एक प्लेन अपनी निर्धारित उड़ान से ${m("30 मिनट")} देर से निकलता है। ${m("1500 km")} की दूरी तय करने के लिए चाल में ${m("100 km/h")} की वृद्धि की जाती है। यदि नई चाल ${m("600 km/h")} है, तो मूल चाल (Original Speed) क्या थी?`,
+    opts: [m("450 km/h"), m("500 km/h"), m("550 km/h"), m("600 km/h")], ans: 1,
+    exp: `मूल चाल = नई चाल − बढ़ी हुई चाल = ${m("600 − 100 = 500 km/h")}।`
+  },
+  {
+    id: 46, part: "PART2", cat: "QUANT", topic: "Garrison Problem",
+    q: `150 सैनिकों के लिए 35 दिनों का भोजन शेष था। 25 सैनिकों के जाने के बाद बचा हुआ भोजन 125 सैनिकों द्वारा खाया जाता है। यह भोजन कितने दिन चलेगा?`,
+    opts: ["38 दिन", "40 दिन", "42 दिन", "45 दिन"], ans: 2,
+    exp: `${m("M<sub>1</sub>D<sub>1</sub> = M<sub>2</sub>D<sub>2</sub> ⇒ 150 × 35 = 125 × D<sub>2</sub> ⇒ D<sub>2</sub> = 42 दिन")}।`
+  },
+  {
+    id: 47, part: "PART2", cat: "QUANT", topic: "Boat & Stream",
+    q: `शांत जल में बोट की चाल ${m("24 km/h")} है तथा धारा (Stream) की चाल ${m("8 km/h")} है। धारा के प्रतिकूल (Upstream) बोट की चाल क्या होगी?`,
+    opts: [m("32 km/h"), m("16 km/h"), m("20 km/h"), m("24 km/h")], ans: 1,
+    exp: `Upstream Speed ${m("(U) = B − C = 24 − 8 = 16 km/h")}।`
+  },
+  {
+    id: 48, part: "PART2", cat: "QUANT", topic: "Alligation Mixture",
+    q: `बर्तन A में दूध का भाग ${m("5/7")} तथा B में ${m("8/13")} है। यदि नए मिश्रण में दूध का भाग ${m("9/13")} बनाना हो, तो बर्तनों को किस अनुपात में मिलाना चाहिए?`,
+    opts: [m("7 : 2"), m("2 : 7"), m("3 : 5"), m("5 : 3")], ans: 0,
+    exp: `LCM 91 से गुणा करने पर मान: 65, 56, 63। अनुपात = ${m("(63 − 56) : (65 − 63) = 7 : 2")}।`
+  },
+  {
+    id: 49, part: "PART2", cat: "QUANT", topic: "Permutation Concept",
+    q: `'INDEPENDENCE' शब्द में कुल 5 स्वर (Vowels) हैं। यदि इन्हें 1 इकाई माना जाए, तो शेष 7 व्यंजनों के साथ कुल कितनी इकाइयाँ बनती हैं?`,
+    opts: ["6", "7", "8", "9"], ans: 2,
+    exp: `7 व्यंजन + 1 (सभी स्वरों का समूह) = <b>8 इकाइयाँ</b>।`
+  },
+  {
+    id: 50, part: "PART2", cat: "QUANT", topic: "Ratio Income",
+    q: `A और B की वर्तमान आय का अनुपात ${m("2 : 3")} है। यदि दोनों की आय में ₹4,000 की वृद्धि की जाए, तो नया अनुपात ${m("40 : 57")} हो जाता है। A की प्रारंभिक आय क्या है?`,
+    opts: ["₹22,666.67", "₹34,000", "₹18,000", "₹25,000"], ans: 0,
+    exp: `${m(`${frac("2x + 4000", "3x + 4000")} = ${frac("40", "57")} ⇒ x = ${frac("34000", "3")}`)}। A की प्रारंभिक आय ${m("2x = ₹22,666.67")}।`
+  },
+  {
+    id: 51, part: "PART2", cat: "REASONING", topic: "Number Series",
+    q: `शृंखला को पूरा करें: <b>4, 9, 20, 43, 90, ?</b>`,
+    opts: ["180", "185", "189", "192"], ans: 1,
+    exp: `${m("4×2+1=9, 9×2+2=20, 20×2+3=43, 43×2+4=90, 90×2+5 = 185")}।`
+  },
+  {
+    id: 52, part: "PART2", cat: "REASONING", topic: "Number Series",
+    q: `शृंखला में अगला पद ज्ञात करें: <b>2, 10, 30, 68, 130, ?</b>`,
+    opts: ["216", "220", "222", "225"], ans: 2,
+    exp: `पैटर्न ${m("n<sup>3</sup> + n")}: ${m("6<sup>3</sup> + 6 = 216 + 6 = 222")}।`
+  },
+  {
+    id: 53, part: "PART2", cat: "REASONING", topic: "Direction Sense",
+    q: `एक व्यक्ति उत्तर की ओर ${m("10 m")} चलता है, फिर पूर्व (Right) की ओर ${m("15 m")} और अंत में दक्षिण (Right) की ओर ${m("10 m")} चलता है। प्रारंभिक बिंदु से उसकी दूरी और दिशा क्या है?`,
+    opts: ["15 m पूर्व", "15 m पश्चिम", "10 m उत्तर", "25 m पूर्व"], ans: 0,
+    exp: `उत्तर व दक्षिण के 10 m निरस्त हो जाते हैं; केवल <b>15 m पूर्व</b> शेष बचता है।`
+  },
+  {
+    id: 54, part: "PART2", cat: "REASONING", topic: "Blood Relations",
+    q: `राहुल ने कहा, "वह मेरे पिता की पत्नी के इकलौते बेटे की बेटी है।" राहुल का उस लड़की से क्या संबंध है?`,
+    opts: ["भाई", "पिता", "चाचा", "दादा"], ans: 1,
+    exp: `पिता की पत्नी = माँ; माँ का इकलौता बेटा = स्वयं राहुल; अतः राहुल उस लड़की का <b>पिता</b> है।`
+  },
+  {
+    id: 55, part: "PART2", cat: "REASONING", topic: "Syllogism",
+    q: `<b>कथन:</b> (1) सभी जहाज बोट हैं। (2) सभी बोट वेसल हैं।<br><b>निष्कर्ष I:</b> सभी जहाज वेसल हैं।<br><b>निष्कर्ष II:</b> कुछ वेसल बोट हैं।`,
+    opts: ["केवल निष्कर्ष I सही है", "केवल निष्कर्ष II सही है", "दोनों निष्कर्ष I और II सही हैं", "कोई निष्कर्ष सही नहीं है"], ans: 2,
+    exp: `दोनों निष्कर्ष I और II पूर्णतः तार्किक रूप से सही हैं।`
+  },
+  {
+    id: 56, part: "PART2", cat: "QUANT", topic: "Work Efficiency",
+    q: `A, B से ${m("50%")} अधिक कार्यकुशल है। यदि B किसी काम को 15 दिनों में करता है, तो A उस काम को कितने दिनों में पूरा करेगा?`,
+    opts: ["10 दिन", "12 दिन", "8 दिन", "7.5 दिन"], ans: 0,
+    exp: `क्षमता अनुपात ${m("A : B = 3 : 2")}। कुल कार्य = ${m("2 × 15 = 30")}। A का समय = ${m("30 / 3 = 10 दिन")}।`
+  },
+  {
+    id: 57, part: "PART2", cat: "QUANT", topic: "Simple Interest",
+    q: `कितने प्रतिशत साधारण ब्याज की दर से कोई राशि 8 वर्षों में स्वयं की दुगुनी (${m("2×")}) हो जाएगी?`,
+    opts: [m("10%"), m("12.5%"), m("15%"), m("8%")], ans: 1,
+    exp: `${m(`R = ${frac("(2 − 1) × 100", "8")} = 12.5%`)}।`
+  },
+  {
+    id: 58, part: "PART2", cat: "QUANT", topic: "Profit & Loss (MP)",
+    q: `किसी वस्तु का क्रय मूल्य (CP) ₹800 है। ${m("20%")} की छूट देने के बाद भी ${m("12%")} का लाभ होता है। अंकित मूल्य (Marked Price) ज्ञात कीजिए।`,
+    opts: ["₹1,000", "₹1,120", "₹1,200", "₹1,050"], ans: 1,
+    exp: `${m(`${frac("MP", "800")} = ${frac("112", "80")} ⇒ MP = ₹1,120`)}।`
+  },
+  {
+    id: 59, part: "PART2", cat: "REASONING", topic: "Clocks",
+    q: `घड़ी में ${m("3:30")} बजे घंटे और मिनट की सुइयों के बीच कितने डिग्री का कोण बनेगा?`,
+    opts: [m("75°"), m("85°"), m("90°"), m("105°")], ans: 0,
+    exp: `${m("θ = |30(3) − 5.5(30)| = |90 − 165| = 75°")}।`
+  },
+  {
+    id: 60, part: "PART2", cat: "REASONING", topic: "Calendar",
+    q: `यदि आज बुधवार है, तो आज से 45 दिनों के बाद कौन सा दिन होगा?`,
+    opts: ["शुक्रवार", "शनिवार", "रविवार", "सोमवार"], ans: 1,
+    exp: `${m("45 ÷ 7 = 6 सप्ताह + 3 विषम दिन")}। बुधवार + 3 दिन = <b>शनिवार</b>।`
+  },
+  {
+    id: 61, part: "PART2", cat: "REASONING", topic: "Sentence Coding",
+    q: `'123' = "bright little boy", '145' = "tall big boy", '637' = "beautiful little flower"। <b>"bright"</b> के लिए कौन सा अंक है?`,
+    opts: ["1", "2", "3", "4"], ans: 1,
+    exp: `'boy' = 1, 'little' = 3, अतः 'bright' = <b>2</b>।`
+  },
+  {
+    id: 62, part: "PART2", cat: "REASONING", topic: "Cubes & Dice",
+    q: `पासे में अंक 1 के आसन्न (Adjacent) अंक 2, 3, 4, 5 हैं। अंक 1 के विपरीत (Opposite) फलक पर कौन सा अंक होगा?`,
+    opts: ["2", "3", "6", "5"], ans: 2,
+    exp: `शेष बचा छठा अंक (<b>6</b>) ही अंक 1 के विपरीत होगा।`
+  },
+  {
+    id: 63, part: "PART2", cat: "QUANT", topic: "Average Speed",
+    q: `एक कार ${m("60 km/h")} से जाती है और ${m("40 km/h")} से वापस आती है। पूरी यात्रा की औसत चाल क्या है?`,
+    opts: [m("50 km/h"), m("48 km/h"), m("45 km/h"), m("52 km/h")], ans: 1,
+    exp: `${m(`S<sub>avg</sub> = ${frac("2 × 60 × 40", "60 + 40")} = 48 km/h`)}।`
+  },
+  {
+    id: 64, part: "PART2", cat: "QUANT", topic: "Circular Permutation",
+    q: `5 व्यक्तियों को एक गोल मेज के चारों ओर कितने तरीकों से बैठाया जा सकता है?`,
+    opts: ["120", "24", "60", "720"], ans: 1,
+    exp: `वृत्तीय क्रमचय = ${m("(5 − 1)! = 4! = 24")}।`
+  },
+  {
+    id: 65, part: "PART2", cat: "QUANT", topic: "Probability",
+    q: `52 पत्तों की ताश की गड्डी में से 1 पत्ता निकालने पर उसके बादशाह (King) या बेगम (Queen) होने की प्रायिकता क्या है?`,
+    opts: [m("1/13"), m("2/13"), m("1/26"), m("4/13")], ans: 1,
+    exp: `अनुकूल पत्ते = 4 + 4 = 8। प्रायिकता = ${m(`${frac("8", "52")} = ${frac("2", "13")}`)}।`
+  },
+  {
+    id: 66, part: "PART2", cat: "QUANT", topic: "Pipes & Cisterns",
+    q: `पाइप A किसी टैंक को 10 घंटे में तथा B 15 घंटे में भर सकता है। दोनों एक साथ टैंक को कितने घंटे में भरेंगे?`,
+    opts: ["5 घंटे", "6 घंटे", "8 घंटे", "7.5 घंटे"], ans: 1,
+    exp: `समय = ${m(`${frac("10 × 15", "10 + 15")} = 6 घंटे`)}।`
+  },
+  {
+    id: 67, part: "PART2", cat: "REASONING", topic: "Odd One Out",
+    q: `निम्नलिखित विकल्पों में से विषम शब्द चुनिए:`,
+    opts: ["कॉपर", "जिंक", "ब्रास (पीतल)", "एल्युमीनियम"], ans: 2,
+    exp: `<b>ब्रास (पीतल)</b> एक मिश्रधातु (Alloy) है, जबकि अन्य सभी शुद्ध धातुएँ हैं।`
+  },
+  {
+    id: 68, part: "PART2", cat: "REASONING", topic: "Venn Diagram",
+    q: `"इंजीनियर, मनुष्य, चूहे" के सही संबंध को कौन सा वेन आरेख प्रदर्शित करता है?`,
+    opts: ["सभी इंजीनियर मनुष्य के अंदर, चूहे अलग", "तीनों आपस में ओवरलैप", "चूहे मनुष्य के अंदर", "तीनों अलग-अलग"], ans: 0,
+    exp: `सभी इंजीनियर मनुष्य हैं, और चूहे अलग वर्ग हैं।`
+  },
+  {
+    id: 69, part: "PART2", cat: "REASONING", topic: "Letter Series",
+    q: `शृंखला पूरी करें: <b>AZ, CX, EV, GT, ?</b>`,
+    opts: ["IR", "HS", "JQ", "KP"], ans: 0,
+    exp: `प्रथम अक्षर +2 से बढ़ रहा है (G+2 = I) और विपरीत युग्म <b>IR</b> है।`
+  },
+  {
+    id: 70, part: "PART2", cat: "QUANT", topic: "Compound Interest",
+    q: `₹8,000 पर ${m("5%")} वार्षिक चक्रवृद्धि ब्याज की दर से 2 वर्ष का ब्याज क्या होगा?`,
+    opts: ["₹800", "₹820", "₹840", "₹900"], ans: 1,
+    exp: `${m("A = 8000 × (1.05)<sup>2</sup> = ₹8,820 ⇒ CI = ₹820")}।`
+  },
+  {
+    id: 71, part: "PART2", cat: "REASONING", topic: "Matrix Reasoning",
+    q: `आव्यूह (Matrix) में लुप्त संख्या ज्ञात करें:<br>Col 1: (3, 2, 13); Col 2: (4, 3, 25); Col 3: (5, 4, ?)`,
+    opts: ["35", "41", "50", "45"], ans: 1,
+    exp: `${m("5<sup>2</sup> + 4<sup>2</sup> = 25 + 16 = 41")}।`
+  },
+  {
+    id: 72, part: "PART2", cat: "QUANT", topic: "Mixture Alligation",
+    q: `₹60/kg और ₹80/kg वाली चाय को किस अनुपात में मिलाया जाए कि औसत मूल्य ₹65/kg हो जाए?`,
+    opts: [m("3 : 1"), m("1 : 3"), m("2 : 3"), m("4 : 1")], ans: 0,
+    exp: `${m("(80 − 65) : (65 − 60) = 15 : 5 = 3 : 1")}।`
+  },
+  {
+    id: 73, part: "PART2", cat: "REASONING", topic: "Statement & Assumptions",
+    q: `<b>कथन:</b> "क्रूज शिप पर सुरक्षा नियम बहुत सख्त हैं।"<br><b>धारणा I:</b> यात्रियों की सुरक्षा सर्वोपरि है।<br><b>धारणा II:</b> सख्त नियमों से दुर्घटनाएँ कम होती हैं।`,
+    opts: ["केवल धारणा I अंतर्निहित है", "केवल धारणा II अंतर्निहित है", "दोनों धारणाएँ I और II अंतर्निहित हैं", "कोई भी अंतर्निहित नहीं है"], ans: 2,
+    exp: `दोनों धारणाएँ I और II कथन में अंतर्निहित हैं।`
+  },
+  {
+    id: 74, part: "PART2", cat: "REASONING", topic: "Number Analogy",
+    q: `<b>7 : 56 :: 9 : ?</b>`,
+    opts: ["72", "90", "81", "99"], ans: 1,
+    exp: `${m("7 × 8 = 56")} तथा ${m("9 × 10 = 90")}।`
+  },
+  {
+    id: 75, part: "PART2", cat: "QUANT", topic: "Partnership",
+    q: `A, B और C ने ${m("1 : 2 : 4")} के अनुपात में पूँजी लगाई। ₹21,000 के लाभ में B का हिस्सा कितना होगा?`,
+    opts: ["₹3,000", "₹6,000", "₹12,000", "₹9,000"], ans: 1,
+    exp: `कुल भाग = 7 यूनिट = ₹21,000 ⇒ 1 यूनिट = ₹3,000। B का भाग = ${m("2 × 3000 = ₹6,000")}।`
+  },
+  {
+    id: 76, part: "PART2", cat: "QUANT", topic: "Symbolic Operation",
+    q: `यदि ${m("a ★ b = a<sup>2</sup> + b<sup>2</sup> − ab")} हो, तो ${m("5 ★ 3")} का मान क्या होगा?`,
+    opts: ["19", "34", "15", "23"], ans: 0,
+    exp: `${m("25 + 9 − 15 = 19")}।`
+  },
+  {
+    id: 77, part: "PART2", cat: "QUANT", topic: "Speed & Distance",
+    q: `${m("90 km/h")} की चाल से चल रही ट्रेन ${m("20 सेकंड")} में कितनी दूरी (मीटर में) तय करेगी?`,
+    opts: [m("400 m"), m("500 m"), m("600 m"), m("450 m")], ans: 1,
+    exp: `चाल = ${m(`90 × ${frac("5", "18")} = 25 m/s`)}। दूरी = ${m("25 × 20 = 500 m")}।`
+  },
+  {
+    id: 78, part: "PART2", cat: "QUANT", topic: "Alternate Days Work",
+    q: `A किसी काम को 10 दिन तथा B 15 दिन में कर सकता है। यदि वे बारी-बारी (Alternate Days) से काम करें और A शुरुआत करे, तो काम कितने दिन में पूरा होगा?`,
+    opts: ["12 दिन", "10 दिन", "11 दिन", "14 दिन"], ans: 0,
+    exp: `कुल कार्य = 30 units। 2 दिनों का कार्य = ${m("3 + 2 = 5 units")}। 30 units के लिए समय = ${m("6 × 2 = 12 दिन")}।`
+  },
+  {
+    id: 79, part: "PART2", cat: "QUANT", topic: "Passing Marks Percentage",
+    q: `किसी छात्र को पास होने के लिए ${m("40%")} अंक चाहिए। वह 175 अंक लाता है और 25 अंकों से फेल हो जाता है। परीक्षा के अधिकतम अंक (Maximum Marks) क्या हैं?`,
+    opts: ["400", "500", "600", "450"], ans: 1,
+    exp: `${m("40% = 175 + 25 = 200 ⇒ 1% = 5 ⇒ 100% = 500")}।`
+  },
+  {
+    id: 80, part: "PART2", cat: "QUANT", topic: "Dishonest Dealer",
+    q: `एक बेईमान व्यापारी लागत मूल्य (CP) पर सामान बेचने का दावा करता है, लेकिन ${m("1 kg")} की जगह ${m("800 g")} के वजन का उपयोग करता है। उसका लाभ प्रतिशत क्या है?`,
+    opts: [m("20%"), m("25%"), m("30%"), m("15%")], ans: 1,
+    exp: `Profit % = ${m(`${frac("200", "800")} × 100% = 25%`)}।`
+  },
+  {
+    id: 81, part: "PART2", cat: "QUANT", topic: "3-Year CI vs SI",
+    q: `₹10,000 पर ${m("10%")} वार्षिक दर से 3 वर्षों के CI और SI का अंतर क्या होगा?`,
+    opts: ["₹310", "₹300", "₹320", "₹350"], ans: 0,
+    exp: `सूत्र: ${m(`Diff = P(${frac("R", "100")})<sup>2</sup>(3 + ${frac("R", "100")}) = 10000 × ${frac("1", "100")} × 3.1 = ₹310`)}।`
+  },
+  {
+    id: 82, part: "PART2", cat: "QUANT", topic: "Coins Ratio Problem",
+    q: `एक थैले में ₹1, 50 पैसे और 25 पैसे के सिक्के ${m("1 : 2 : 4")} के अनुपात में हैं। यदि कुल मान ₹210 है, तो 50 पैसे के सिक्कों की संख्या क्या होगी?`,
+    opts: ["140", "70", "210", "280"], ans: 0,
+    exp: `कुल मूल्य = ${m("1x + 2x(0.5) + 4x(0.25) = 3x = 210 ⇒ x = 70")}। 50 पैसे के सिक्के = ${m("2x = 140")}।`
+  },
+  {
+    id: 83, part: "PART2", cat: "QUANT", topic: "Ages Ratio",
+    q: `पिता और पुत्र की वर्तमान आयु का अनुपात ${m("7 : 2")} है। 5 वर्ष बाद उनकी आयु का अनुपात ${m("8 : 3")} हो जाएगा। पिता की वर्तमान आयु क्या है?`,
+    opts: ["35 वर्ष", "40 वर्ष", "42 वर्ष", "28 वर्ष"], ans: 0,
+    exp: `अनुपात में वृद्धि = 1 यूनिट = 5 वर्ष। पिता की वर्तमान आयु = ${m("7 × 5 = 35 वर्ष")}।`
+  },
+  {
+    id: 84, part: "PART2", cat: "QUANT", topic: "Tank Leakage",
+    q: `एक नल किसी टंकी को 8 घंटे में भर सकता है, लेकिन नीचे लीक होने के कारण इसे भरने में 10 घंटे लगते हैं। केवल लीक पूरी भरी टंकी को कितने समय में खाली कर देगा?`,
+    opts: ["40 घंटे", "30 घंटे", "20 घंटे", "50 घंटे"], ans: 0,
+    exp: `Leak Time = ${m(`${frac("8 × 10", "10 − 8")} = ${frac("80", "2")} = 40 घंटे`)}।`
+  },
+  {
+    id: 85, part: "PART2", cat: "QUANT", topic: "Dice Prime Sum",
+    q: `दो पासे एक साथ फेंके जाते हैं। ऊपर आए अंकों का योग अभाज्य संख्या (Prime Number) होने की प्रायिकता क्या है?`,
+    opts: [m("15/36 (5/12)"), m("12/36"), m("18/36"), m("7/36")], ans: 0,
+    exp: `अभाज्य योग (2, 3, 5, 7, 11) के कुल केस = ${m("1 + 2 + 4 + 6 + 2 = 15")}। प्रायिकता = ${m("15/36 = 5/12")}।`
+  },
+  {
+    id: 86, part: "PART2", cat: "REASONING", topic: "Coding Offset",
+    q: `यदि 'BOAT' को 'CNZU' लिखा जाता है, तो 'SHIP' का कोड क्या होगा?`,
+    opts: ["TJJQ", "THJO", "TIJQ", "TJIO"], ans: 0,
+    exp: `पैटर्न के अनुसार S→T, H→J, I→J, P→Q अर्थात् <b>TJJQ</b>।`
+  },
+  {
+    id: 87, part: "PART2", cat: "REASONING", topic: "Linear Ranking",
+    q: `एक पंक्ति में रोहन का स्थान बाएँ से 15वाँ और दाएँ से 20वाँ है। पंक्ति में कुल कितने व्यक्ति हैं?`,
+    opts: ["35", "34", "36", "33"], ans: 1,
+    exp: `Total = ${m("Left + Right − 1 = 15 + 20 − 1 = 34")}।`
+  },
+  {
+    id: 88, part: "PART2", cat: "QUANT", topic: "Train & Tunnel",
+    q: `${m("200 m")} लंबी ट्रेन ${m("72 km/h")} की गति से ${m("300 m")} लंबी सुरंग (Tunnel) को कितने समय में पार करेगी?`,
+    opts: ["25 सेकंड", "20 सेकंड", "30 सेकंड", "15 सेकंड"], ans: 0,
+    exp: `कुल दूरी = ${m("200 + 300 = 500 m")}। चाल = ${m(`72 × ${frac("5", "18")} = 20 m/s`)}। समय = ${m(`${frac("500", "20")} = 25 सेकंड`)}।`
+  }
+];
+
+let filtered = [...RAW_QUESTIONS];
+let curIdx = 0;
+let fcIdx = 0;
+let userAns = {};
+let savedIds = new Set();
+
+// Timer
+let seconds = 0;
+let timerActive = true;
+setInterval(() => {
+  if (!timerActive) return;
+  seconds++;
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `⏱️ ${mins}:${secs}`;
+}, 1000);
+
+function toggleTimer() {
+  timerActive = !timerActive;
+  document.getElementById('timer-display').style.opacity = timerActive ? '1' : '0.5';
+}
+
+function renderQuiz() {
+  if (filtered.length === 0) {
+    document.getElementById('q-text').innerHTML = "इस फ़िल्टर में कोई प्रश्न नहीं मिला। कृपया 'All 88 Questions' पर क्लिक करें।";
+    document.getElementById('q-options').innerHTML = "";
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const q = filtered[curIdx];
+  document.getElementById('q-num-badge').textContent = `Q${q.id} / 88`;
+  document.getElementById('q-part-badge').textContent = q.part === 'PART1' ? 'Part 1 (Hinglish)' : 'Part 2 (Hindi)';
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-text').innerHTML = q.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (savedIds.has(q.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save';
+  }
+
+  const optBox = document.getElementById('q-options');
+  optBox.innerHTML = '';
+  const chosen = userAns[q.id];
+  const keys = ['A', 'B', 'C', 'D'];
+
+  q.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (chosen !== undefined) {
+      btn.disabled = true;
+      if (idx === q.ans) btn.classList.add('correct');
+      else if (idx === chosen) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[idx]}</span><span>${optText}</span>`;
+    btn.onclick = () => chooseAnswer(q.id, idx);
+    optBox.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  if (chosen !== undefined) {
+    document.getElementById('q-exp-text').innerHTML = q.exp;
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = curIdx === 0;
+  document.getElementById('next-btn').disabled = curIdx === filtered.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function chooseAnswer(id, idx) {
+  userAns[id] = idx;
+  renderQuiz();
+}
+
+function revealCurrent() {
+  if (!filtered.length) return;
+  const q = filtered[curIdx];
+  userAns[q.id] = q.ans;
+  renderQuiz();
+}
+
+function moveQ(delta) {
+  const next = curIdx + delta;
+  if (next >= 0 && next < filtered.length) {
+    curIdx = next;
+    renderQuiz();
+  }
+}
+
+function toggleBookmark() {
+  if (!filtered.length) return;
+  const id = filtered[curIdx].id;
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderQuiz();
+}
+
+function setFilter(type, btn) {
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (type === 'ALL') filtered = [...RAW_QUESTIONS];
+  else if (type === 'PART1') filtered = RAW_QUESTIONS.filter(q => q.part === 'PART1');
+  else if (type === 'PART2') filtered = RAW_QUESTIONS.filter(q => q.part === 'PART2');
+  else if (type === 'REASONING') filtered = RAW_QUESTIONS.filter(q => q.cat === 'REASONING');
+  else if (type === 'QUANT') filtered = RAW_QUESTIONS.filter(q => q.cat === 'QUANT');
+  else if (type === 'SAVED') filtered = RAW_QUESTIONS.filter(q => savedIds.has(q.id));
+  else if (type === 'WRONG') filtered = RAW_QUESTIONS.filter(q => userAns[q.id] !== undefined && userAns[q.id] !== q.ans);
+
+  curIdx = 0;
+  renderQuiz();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filtered.length} Qs`;
+  grid.innerHTML = '';
+
+  filtered.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.className = 'p-num';
+    if (idx === curIdx) b.classList.add('current');
+    if (userAns[q.id] !== undefined) {
+      b.classList.add(userAns[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    b.textContent = q.id;
+    b.onclick = () => {
+      curIdx = idx;
+      renderQuiz();
+    };
+    grid.appendChild(b);
+  });
+}
+
+function updateStats() {
+  const keys = Object.keys(userAns);
+  const attempted = keys.length;
+  let correct = 0;
+  keys.forEach(k => {
+    const q = RAW_QUESTIONS.find(item => item.id === Number(k));
+    if (q && userAns[k] === q.ans) correct++;
+  });
+  const acc = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${attempted}/88`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = savedIds.size;
+}
+
+function resetMock() {
+  userAns = {};
+  seconds = 0;
+  renderQuiz();
+}
+
+// Flashcards
+function renderFC() {
+  const card = document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  const q = RAW_QUESTIONS[fcIdx];
+  document.getElementById('fc-num').textContent = `Card ${q.id} / 88`;
+  document.getElementById('fc-topic').textContent = `${q.part} • ${q.topic}`;
+  document.getElementById('fc-q').innerHTML = q.q;
+  document.getElementById('fc-ans').innerHTML = `(${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}`;
+  document.getElementById('fc-exp').innerHTML = q.exp;
+}
+
+function moveFC(delta) {
+  fcIdx = (fcIdx + delta + RAW_QUESTIONS.length) % RAW_QUESTIONS.length;
+  renderFC();
+}
+
+// Study Bank
+function renderBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const listEl = document.getElementById('bank-list');
+  const matches = RAW_QUESTIONS.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.exp.toLowerCase().includes(query) ||
+    String(q.id) === query
+  );
+
+  listEl.innerHTML = matches.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:8px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-part">${q.part}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#34d399; font-weight:700; margin-bottom:4px;">✔ Correct Answer: (${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</div>
+        <div style="font-size:0.92rem; color:#cbd5e1;">${q.exp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlur(btn) {
+  const el = document.getElementById('bank-list');
+  el.classList.toggle('hide-answers');
+  btn.textContent = el.classList.contains('hide-answers') ? '👁️ Show All Answers' : '🙈 Hide Answers (Self-Test)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${view}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = view === 'quiz' ? 'flex' : 'none';
+
+  if (view === 'flashcards') renderFC();
+  if (view === 'bank') renderBank();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const q = filtered[curIdx];
+      if (q && userAns[q.id] === undefined) chooseAnswer(q.id, parseInt(e.key) - 1);
+    } else if (e.key === 'ArrowRight') moveQ(1);
+    else if (e.key === 'ArrowLeft') moveQ(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('fc-card').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFC(1);
+    else if (e.key === 'ArrowLeft') moveFC(-1);
+  }
+});
+
+// Start Mock
+renderQuiz();
+</script>
+</body>
+</html>

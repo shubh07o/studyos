@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Differential Equations — 50 Questions Practice Quiz</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    .math-text {
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: -0.01em;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(100, 116, 139, 0.6);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col selection:bg-indigo-100 selection:text-indigo-900">
+
+  <!-- Top Header -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-sm">
+          dy/dx
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Differential Equations Practice Quiz</h1>
+          <p class="text-xs text-slate-500" id="headerSubtitle">All 50 Questions • 7 Topics • Instant Explanations</p>
+        </div>
+      </div>
+
+      <!-- Mode & Controls Bar -->
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <!-- Mode Switcher -->
+        <div class="inline-flex rounded-lg bg-slate-100 p-1 border border-slate-200" role="group">
+          <button type="button" id="modePracticeBtn" class="px-3 py-1.5 text-xs font-semibold rounded-md transition-all bg-white text-indigo-600 shadow-sm">
+            Practice Mode
+          </button>
+          <button type="button" id="modeExamBtn" class="px-3 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900">
+            Mock Test Mode
+          </button>
+        </div>
+
+        <!-- Timer Pill -->
+        <div class="flex items-center gap-1.5 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span id="timerDisplay" class="font-mono font-semibold">00:00</span>
+          <button type="button" id="toggleTimerBtn" title="Pause / Resume Timer" class="ml-1 text-slate-400 hover:text-indigo-600 transition-colors">
+            <svg id="timerPauseIcon" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- View Switcher: Quiz vs Results -->
+        <button type="button" id="viewAnalyticsBtn" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 transition-colors flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          <span id="viewAnalyticsBtnText">Scorecard & Review</span>
+        </button>
+
+        <!-- Reset Button -->
+        <button type="button" id="openResetModalBtn" class="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg border border-transparent hover:border-rose-200 transition-colors" title="Reset Quiz">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter & Progress Sub-bar -->
+    <div id="filterBar" class="bg-slate-50/80 border-t border-slate-200/80 px-4 sm:px-6 py-2.5">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="flex items-center gap-1.5">
+            <label for="topicFilter" class="text-xs font-medium text-slate-600">Topic:</label>
+            <select id="topicFilter" class="text-xs bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="ALL">All Topics (50)</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <label for="difficultyFilter" class="text-xs font-medium text-slate-600">Difficulty:</label>
+            <select id="difficultyFilter" class="text-xs bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="ALL">All Levels</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+
+          <button type="button" id="bookmarkFilterBtn" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-amber-50 hover:border-amber-300 hover:text-amber-800 font-medium transition-colors flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
+            </svg>
+            <span>Bookmarked (<span id="bookmarkCountBadge">0</span>)</span>
+          </button>
+
+          <button type="button" id="shuffleBtn" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 font-medium transition-colors flex items-center gap-1" title="Shuffle current question order">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+            <span>Shuffle</span>
+          </button>
+        </div>
+
+        <!-- Live Stats Summary -->
+        <div class="flex items-center gap-4 text-xs font-medium">
+          <div class="flex items-center gap-1.5">
+            <span class="text-slate-500">Attempted:</span>
+            <span id="statAttempted" class="font-bold text-slate-800">0 / 50</span>
+          </div>
+          <div id="liveScoreContainer" class="flex items-center gap-3">
+            <div class="flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span class="text-slate-500">Correct:</span>
+              <span id="statCorrect" class="font-bold text-emerald-600">0</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+              <span class="text-slate-500">Wrong:</span>
+              <span id="statWrong" class="font-bold text-rose-600">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thin Progress Bar -->
+      <div class="max-w-7xl mx-auto mt-2">
+        <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+          <div id="topProgressBar" class="h-full bg-indigo-600 transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+    <!-- QUIZ VIEW -->
+    <div id="quizView" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- Left/Main Column: Question Card (8 cols on lg) -->
+      <div class="lg:col-span-8 space-y-4">
+        <!-- Empty Filter State -->
+        <div id="emptyFilterState" class="hidden bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <h3 class="text-base font-bold text-slate-900">No questions match this filter</h3>
+          <p class="text-xs text-slate-500 mt-1 mb-4">Try clearing the bookmark filter or selecting a different topic/difficulty level.</p>
+          <button type="button" id="resetFiltersBtn" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-700 transition-colors">
+            Show All 50 Questions
+          </button>
+        </div>
+
+        <!-- Question Card -->
+        <div id="questionCard" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all">
+          <!-- Question Meta Header -->
+          <div class="px-5 sm:px-6 py-4 bg-slate-50/70 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span id="qNumberBadge" class="px-2.5 py-1 rounded-lg bg-indigo-600 text-white text-xs font-bold tracking-wide">
+                Q1 of 50
+              </span>
+              <span id="qIdBadge" class="text-xs font-mono text-slate-400">
+                #1
+              </span>
+              <span id="qTopicBadge" class="px-2.5 py-1 rounded-lg bg-slate-200/80 text-slate-700 text-xs font-semibold">
+                Order and Degree
+              </span>
+              <span id="qDifficultyBadge" class="px-2.5 py-1 rounded-lg text-xs font-semibold capitalize">
+                Easy
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button type="button" id="bookmarkToggleBtn" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition-colors" title="Bookmark question (Shortcut: B)">
+                <svg id="bookmarkIcon" class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                </svg>
+                <span id="bookmarkBtnText">Bookmark</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question Body -->
+          <div class="p-5 sm:p-6">
+            <div id="questionText" class="text-base sm:text-lg font-semibold text-slate-900 leading-relaxed mb-6 math-text">
+              Loading question...
+            </div>
+
+            <!-- Options List -->
+            <div id="optionsContainer" class="space-y-3" role="radiogroup" aria-label="Answer Options">
+              <!-- Populated via JS -->
+            </div>
+
+            <!-- Action Row (Clear choice in Exam Mode) -->
+            <div id="examActionRow" class="hidden mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <button type="button" id="clearSelectionBtn" class="text-xs font-medium text-slate-500 hover:text-rose-600 transition-colors">
+                Clear Selected Response
+              </button>
+              <span class="text-xs text-slate-400">Answers are evaluated upon submitting the Mock Test</span>
+            </div>
+
+            <!-- Explanation Box (Shown in Practice Mode after selecting an option, or after Exam submission) -->
+            <div id="explanationBox" class="hidden mt-6 rounded-xl border p-4 sm:p-5 transition-all">
+              <div class="flex items-start gap-3">
+                <div id="explanationStatusIcon" class="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm">
+                  ✓
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <h4 id="explanationTitle" class="text-sm font-bold">Correct Answer!</h4>
+                    <span id="correctOptionBadge" class="text-xs font-semibold px-2 py-0.5 rounded bg-white/80 border">
+                      Correct Option: D
+                    </span>
+                  </div>
+                  <p id="explanationText" class="text-xs sm:text-sm text-slate-700 leading-relaxed mt-1.5 math-text"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer Navigation Bar -->
+          <div class="px-5 sm:px-6 py-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+            <button type="button" id="prevQuestionBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 text-xs sm:text-sm font-semibold hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              <span>Previous</span>
+            </button>
+
+            <div class="hidden sm:flex items-center gap-1.5 text-[11px] text-slate-400">
+              <kbd class="px-1.5 py-0.5 bg-white border border-slate-200 rounded text-slate-500 font-mono">A-D</kbd>
+              <span>Select</span>
+              <span class="mx-1">•</span>
+              <kbd class="px-1.5 py-0.5 bg-white border border-slate-200 rounded text-slate-500 font-mono">←/→</kbd>
+              <span>Navigate</span>
+              <span class="mx-1">•</span>
+              <kbd class="px-1.5 py-0.5 bg-white border border-slate-200 rounded text-slate-500 font-mono">B</kbd>
+              <span>Bookmark</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button type="button" id="submitExamBtn" class="hidden px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-semibold hover:bg-emerald-700 shadow-sm transition-colors">
+                Submit Mock Test
+              </button>
+              <button type="button" id="nextQuestionBtn" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs sm:text-sm font-semibold hover:bg-indigo-700 disabled:opacity-40 disabled:pointer-events-none shadow-sm transition-colors">
+                <span>Next</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Question Palette & Topic Progress (4 cols on lg) -->
+      <div class="lg:col-span-4 space-y-4">
+        <!-- Question Navigator Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-slate-900">Question Palette</h3>
+            <span id="paletteCountLabel" class="text-xs text-slate-500 font-medium">50 Questions</span>
+          </div>
+
+          <!-- Legend -->
+          <div id="paletteLegend" class="flex flex-wrap gap-x-3 gap-y-1.5 text-[11px] text-slate-600 mb-4 pb-3 border-b border-slate-100">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span>
+              <span id="legendGreenText">Correct</span>
+            </div>
+            <div class="flex items-center gap-1.5" id="legendWrongItem">
+              <span class="w-3 h-3 rounded bg-rose-500 inline-block"></span>
+              <span>Incorrect</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded bg-amber-400 inline-block"></span>
+              <span>Bookmarked</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded bg-slate-100 border border-slate-300 inline-block"></span>
+              <span>Unvisited</span>
+            </div>
+          </div>
+
+          <!-- Grid of 50 buttons -->
+          <div id="paletteGrid" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-2 max-h-80 overflow-y-auto custom-scrollbar pr-1">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Finish / Review CTA -->
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <button type="button" id="finishAndReviewBtn" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-2">
+              <span>Finish & View Full Scorecard</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Topic-wise Mini Progress Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+          <h3 class="text-sm font-bold text-slate-900 mb-3">Topic Breakdown</h3>
+          <div id="sidebarTopicBreakdown" class="space-y-2.5 text-xs">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS & ANALYTICS VIEW -->
+    <div id="resultsView" class="hidden space-y-6">
+      <!-- Top Banner Scorecard -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200">
+          <div>
+            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 mb-2">
+              Performance Report
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Differential Equations — Quiz Summary</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1" id="resultsSubtext">Complete breakdown across all 50 questions and 7 topics.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button type="button" id="backToQuizBtn" class="px-4 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 text-xs sm:text-sm font-semibold hover:bg-slate-50 transition-colors">
+              ← Return to Quiz
+            </button>
+            <button type="button" id="retryWrongBtn" class="hidden px-4 py-2 rounded-xl bg-amber-500 text-white text-xs sm:text-sm font-semibold hover:bg-amber-600 transition-colors">
+              Practice Incorrect Only
+            </button>
+            <button type="button" id="restartFullQuizBtn" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs sm:text-sm font-semibold hover:bg-indigo-700 transition-colors">
+              Start Fresh Attempt
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Stat Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6">
+          <div class="p-4 rounded-xl bg-indigo-50/70 border border-indigo-100">
+            <div class="text-xs font-medium text-indigo-600">Total Score</div>
+            <div id="resScore" class="text-2xl font-bold text-indigo-950 mt-1">0 / 50</div>
+            <div id="resAccuracy" class="text-xs text-indigo-700 mt-0.5">0% Accuracy</div>
+          </div>
+          <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-100">
+            <div class="text-xs font-medium text-emerald-700">Correct</div>
+            <div id="resCorrect" class="text-2xl font-bold text-emerald-900 mt-1">0</div>
+            <div class="text-xs text-emerald-600 mt-0.5">+1 mark each</div>
+          </div>
+          <div class="p-4 rounded-xl bg-rose-50/70 border border-rose-100">
+            <div class="text-xs font-medium text-rose-700">Incorrect</div>
+            <div id="resWrong" class="text-2xl font-bold text-rose-900 mt-1">0</div>
+            <div class="text-xs text-rose-600 mt-0.5">Review solutions below</div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-100/80 border border-slate-200">
+            <div class="text-xs font-medium text-slate-600">Unattempted</div>
+            <div id="resSkipped" class="text-2xl font-bold text-slate-800 mt-1">50</div>
+            <div class="text-xs text-slate-500 mt-0.5">Remaining</div>
+          </div>
+          <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-100 col-span-2 sm:col-span-1">
+            <div class="text-xs font-medium text-amber-700">Time Spent</div>
+            <div id="resTime" class="text-2xl font-bold text-amber-950 font-mono mt-1">00:00</div>
+            <div id="resAvgTime" class="text-xs text-amber-700 mt-0.5">0s per question</div>
+          </div>
+        </div>
+
+        <!-- Topic & Difficulty Performance Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-200">
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 mb-3">Accuracy by Topic</h3>
+            <div id="resultsTopicTable" class="space-y-2.5"></div>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 mb-3">Accuracy by Difficulty</h3>
+            <div id="resultsDifficultyTable" class="space-y-2.5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Solutions & Answer Key Filterable List -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-200">
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Complete Answer Key & Explanations</h3>
+            <p class="text-xs text-slate-500">Click any question to jump directly to it in the quiz view, or review the step-by-step explanation here.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <select id="reviewStatusFilter" class="text-xs bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="ALL">All Questions (50)</option>
+              <option value="CORRECT">Correct Only</option>
+              <option value="WRONG">Incorrect Only</option>
+              <option value="UNATTEMPTED">Unattempted Only</option>
+              <option value="BOOKMARKED">Bookmarked Only</option>
+            </select>
+            <input type="text" id="reviewSearchInput" placeholder="Search question or formula..." class="text-xs bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-48 sm:w-60" />
+          </div>
+        </div>
+
+        <div id="reviewListContainer" class="space-y-4">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Reset Confirmation Modal -->
+  <div id="resetModal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200">
+      <div class="w-11 h-11 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mb-4">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      <h3 class="text-base font-bold text-slate-900">Reset Quiz Progress?</h3>
+      <p class="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+        This will clear your selected answers, reset the timer to 00:00, and start a fresh session for all 50 Differential Equations questions.
+      </p>
+      <div class="mt-6 flex items-center justify-end gap-2.5">
+        <button type="button" id="cancelResetBtn" class="px-4 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 text-xs font-semibold hover:bg-slate-50 transition-colors">
+          Cancel
+        </button>
+        <button type="button" id="confirmResetBtn" class="px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition-colors">
+          Yes, Reset Everything
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const QUESTIONS_DATA = [
+  {
+    "id": 1,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "easy",
+    "question": "Order and degree (respectively) of the differential equation (y''')^2 + (y'')^3 + y' = 0 are:",
+    "option_a": "3, 3",
+    "option_b": "2, 2",
+    "option_c": "2, 3",
+    "option_d": "3, 2",
+    "correct_option": "D",
+    "explanation": "Highest-order derivative is y''' (order 3). Its power is 2, so degree is 2. Lower derivatives are ignored."
+  },
+  {
+    "id": 2,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "easy",
+    "question": "The degree of the differential equation y'' = sqrt(1 + y') is:",
+    "option_a": "Not defined",
+    "option_b": "1",
+    "option_c": "1/2",
+    "option_d": "2",
+    "correct_option": "D",
+    "explanation": "Square both sides: (y'')^2 = 1 + y'. The power of y'' is 2."
+  },
+  {
+    "id": 3,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "medium",
+    "question": "The order and degree (respectively) of the differential equation (y'')^(3/2) = y' are:",
+    "option_a": "2, 3/2",
+    "option_b": "2, 2",
+    "option_c": "3, 2",
+    "option_d": "2, 3",
+    "correct_option": "D",
+    "explanation": "Square both sides: (y'')^3 = (y')^2. Order 2, degree 3."
+  },
+  {
+    "id": 4,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "easy",
+    "question": "The degree of the differential equation sin(y'') + y = x is:",
+    "option_a": "1",
+    "option_b": "0",
+    "option_c": "2",
+    "option_d": "Not defined",
+    "correct_option": "D",
+    "explanation": "The derivative y'' is inside sin, so the equation cannot be written as a polynomial in derivatives. Degree is not defined."
+  },
+  {
+    "id": 5,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "medium",
+    "question": "The degree of the differential equation y'' + e^y = 0 is:",
+    "option_a": "2",
+    "option_b": "Not defined",
+    "option_c": "1",
+    "option_d": "0",
+    "correct_option": "C",
+    "explanation": "e^y contains y, not a derivative. The highest derivative y'' has power 1, so the degree is 1."
+  },
+  {
+    "id": 6,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "medium",
+    "question": "The order and degree (respectively) of the differential equation y = x y' + sqrt(1 + (y')^2) are:",
+    "option_a": "1, 1",
+    "option_b": "2, 2",
+    "option_c": "1, 2",
+    "option_d": "2, 1",
+    "correct_option": "C",
+    "explanation": "Isolate the root: y - x y' = sqrt(1 + (y')^2). Square: (y - x y')^2 = 1 + (y')^2. The highest power of y' is 2."
+  },
+  {
+    "id": 7,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "hard",
+    "question": "The sum of the order and degree of the differential equation (1 + (y')^2)^(3/4) = y'' is:",
+    "option_a": "4",
+    "option_b": "6",
+    "option_c": "7",
+    "option_d": "5",
+    "correct_option": "B",
+    "explanation": "Raise both sides to the power 4: (1 + (y')^2)^3 = (y'')^4. Order 2, degree 4, sum 6."
+  },
+  {
+    "id": 8,
+    "chapter": "Differential Equations",
+    "topic": "Order and Degree",
+    "difficulty": "hard",
+    "question": "The order of the differential equation whose general solution is y = A e^(2x + B) (A, B arbitrary constants) is:",
+    "option_a": "1",
+    "option_b": "0",
+    "option_c": "3",
+    "option_d": "2",
+    "correct_option": "A",
+    "explanation": "A e^(2x+B) = (A e^B) e^(2x), so there is only one independent constant. Order is 1."
+  },
+  {
+    "id": 9,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "easy",
+    "question": "The differential equation of the family of curves y = C x is:",
+    "option_a": "x y' + y = 0",
+    "option_b": "x y' = y",
+    "option_c": "y y' = x",
+    "option_d": "y' = x y",
+    "correct_option": "B",
+    "explanation": "y' = C, so y = x y'."
+  },
+  {
+    "id": 10,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "easy",
+    "question": "The differential equation of the family y = A x^2 (A arbitrary constant) is:",
+    "option_a": "x y' = 2y",
+    "option_b": "y' = 2y",
+    "option_c": "x y' + 2y = 0",
+    "option_d": "x y' = y",
+    "correct_option": "A",
+    "explanation": "y' = 2Ax = 2y/x, so x y' = 2y."
+  },
+  {
+    "id": 11,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "medium",
+    "question": "The differential equation of the family y = A e^x + B e^(-x) is:",
+    "option_a": "y'' - y' = 0",
+    "option_b": "y'' - y = 0",
+    "option_c": "y' = y",
+    "option_d": "y'' + y = 0",
+    "correct_option": "B",
+    "explanation": "y'' = A e^x + B e^(-x) = y, so y'' - y = 0."
+  },
+  {
+    "id": 12,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "medium",
+    "question": "The differential equation of the family y = A cos 2x + B sin 2x is:",
+    "option_a": "y'' = 4y'",
+    "option_b": "y'' - 4y = 0",
+    "option_c": "y'' + 2y = 0",
+    "option_d": "y'' + 4y = 0",
+    "correct_option": "D",
+    "explanation": "y'' = -4A cos 2x - 4B sin 2x = -4y, so y'' + 4y = 0."
+  },
+  {
+    "id": 13,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "easy",
+    "question": "The differential equation representing all circles x^2 + y^2 = r^2 (r arbitrary) is:",
+    "option_a": "x y' + y = 0",
+    "option_b": "x - y y' = 0",
+    "option_c": "x + y y' = 0",
+    "option_d": "y' = x y",
+    "correct_option": "C",
+    "explanation": "Differentiate: 2x + 2y y' = 0, so x + y y' = 0."
+  },
+  {
+    "id": 14,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "medium",
+    "question": "The differential equation of the family of parabolas y^2 = 4ax (a arbitrary) is:",
+    "option_a": "2x y' = y",
+    "option_b": "x y' = 2y",
+    "option_c": "y' = 4y",
+    "option_d": "y y' = 2x",
+    "correct_option": "A",
+    "explanation": "Differentiate: 2y y' = 4a. Put 4a back: y^2 = 2y y' x, so y = 2x y'."
+  },
+  {
+    "id": 15,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "medium",
+    "question": "The order and degree (respectively) of the differential equation of the family y = A x + A^2 (A arbitrary) are:",
+    "option_a": "1, 1",
+    "option_b": "2, 2",
+    "option_c": "2, 1",
+    "option_d": "1, 2",
+    "correct_option": "D",
+    "explanation": "y' = A. Substitute: y = x y' + (y')^2. Order 1, degree 2."
+  },
+  {
+    "id": 16,
+    "chapter": "Differential Equations",
+    "topic": "Forming Differential Equations",
+    "difficulty": "hard",
+    "question": "The differential equation of all parabolas whose axis is the x-axis is:",
+    "option_a": "y y'' + (y')^2 = 0",
+    "option_b": "y y'' - (y')^2 = 0",
+    "option_c": "y'' + y = 0",
+    "option_d": "y' y'' = 0",
+    "correct_option": "A",
+    "explanation": "y^2 = 4a(x - h) has 2 constants. Differentiate twice: 2y y' = 4a, then (y')^2 + y y'' = 0."
+  },
+  {
+    "id": 17,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "easy",
+    "question": "The general solution of dy/dx = x/y is:",
+    "option_a": "y^2 = x^2 + C",
+    "option_b": "y^2 = 2x + C",
+    "option_c": "y = ln x + C",
+    "option_d": "y = x^2/2 + C",
+    "correct_option": "A",
+    "explanation": "y dy = x dx. Integrate: y^2/2 = x^2/2 + C, so y^2 = x^2 + C."
+  },
+  {
+    "id": 18,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "medium",
+    "question": "The general solution of dy/dx = e^(x - y) is:",
+    "option_a": "y = e^x + C",
+    "option_b": "e^y = e^(-x) + C",
+    "option_c": "e^y = e^x + C",
+    "option_d": "e^(-y) = e^(-x) + C",
+    "correct_option": "C",
+    "explanation": "e^(x-y) = e^x e^(-y). Separate: e^y dy = e^x dx. Integrate: e^y = e^x + C."
+  },
+  {
+    "id": 19,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "medium",
+    "question": "The solution of dy/dx = (1 + y^2)/(1 + x^2) is:",
+    "option_a": "y = tan^-1(x) + C",
+    "option_b": "y = tan(x) + C",
+    "option_c": "tan^-1(y) - tan^-1(x) = C",
+    "option_d": "tan^-1(y) + tan^-1(x) = C",
+    "correct_option": "C",
+    "explanation": "dy/(1+y^2) = dx/(1+x^2). Integrate: tan^-1 y = tan^-1 x + C."
+  },
+  {
+    "id": 20,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "medium",
+    "question": "The solution of (1 + x^2) dy/dx + 1 + y^2 = 0 is:",
+    "option_a": "tan^-1(x) + tan^-1(y) = C",
+    "option_b": "tan^-1(x y) = C",
+    "option_c": "x + y = C",
+    "option_d": "tan^-1(x) - tan^-1(y) = C",
+    "correct_option": "A",
+    "explanation": "dy/(1+y^2) = -dx/(1+x^2). Integrate: tan^-1 y = -tan^-1 x + C."
+  },
+  {
+    "id": 21,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "easy",
+    "question": "The solution of dy/dx = 3y with y(0) = 2 is:",
+    "option_a": "y = 2 e^(3x)",
+    "option_b": "y = 3 e^(2x)",
+    "option_c": "y = e^(3x) + 1",
+    "option_d": "y = 2 + 3x",
+    "correct_option": "A",
+    "explanation": "dy/y = 3 dx gives y = A e^(3x). y(0) = 2 gives A = 2."
+  },
+  {
+    "id": 22,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "easy",
+    "question": "The solution of x dy - y dx = 0 is:",
+    "option_a": "y = C x",
+    "option_b": "x^2 + y^2 = C",
+    "option_c": "x y = C",
+    "option_d": "y = C + x",
+    "correct_option": "A",
+    "explanation": "dy/y = dx/x gives ln|y| = ln|x| + ln C, so y = C x."
+  },
+  {
+    "id": 23,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "medium",
+    "question": "The general solution of dy/dx + y = 2 is:",
+    "option_a": "y = 2 + C e^(-x)",
+    "option_b": "y = 2 + C e^(x)",
+    "option_c": "y = 2x + C",
+    "option_d": "y = 2 - x + C",
+    "correct_option": "A",
+    "explanation": "dy/(2 - y) = dx gives -ln|2 - y| = x + C, so 2 - y = K e^(-x), i.e. y = 2 + C e^(-x)."
+  },
+  {
+    "id": 24,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "medium",
+    "question": "The curve passing through (1, 3) which satisfies dy/dx = 2x - 1/x^2 is:",
+    "option_a": "y = x^2 + 1/x + 3",
+    "option_b": "y = x^2 - 1/x + 1",
+    "option_c": "y = x^2 + 1/x + 1",
+    "option_d": "y = x^2 - 1/x + 3",
+    "correct_option": "C",
+    "explanation": "Integrate: y = x^2 + 1/x + C. Put (1, 3): 3 = 1 + 1 + C, so C = 1."
+  },
+  {
+    "id": 25,
+    "chapter": "Differential Equations",
+    "topic": "Variable Separable",
+    "difficulty": "medium",
+    "question": "The solution of dy/dx = 2y/x passing through the point (1, 4) is:",
+    "option_a": "y = x^4",
+    "option_b": "y = 2 x^2",
+    "option_c": "y = 4 x",
+    "option_d": "y = 4 x^2",
+    "correct_option": "D",
+    "explanation": "dy/y = 2 dx/x gives y = C x^2. Put (1, 4): C = 4."
+  },
+  {
+    "id": 26,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "easy",
+    "question": "The integrating factor of dy/dx + y tan x = sec x is:",
+    "option_a": "e^(sec x)",
+    "option_b": "tan x",
+    "option_c": "cos x",
+    "option_d": "sec x",
+    "correct_option": "D",
+    "explanation": "P = tan x. IF = e^(integral of tan x) = e^(ln sec x) = sec x."
+  },
+  {
+    "id": 27,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "medium",
+    "question": "The integrating factor of (x log x) dy/dx + y = 2 log x is:",
+    "option_a": "e^x",
+    "option_b": "log(log x)",
+    "option_c": "x",
+    "option_d": "log x",
+    "correct_option": "D",
+    "explanation": "Divide by x log x: P = 1/(x log x). The integral of P is ln(log x), so IF = log x."
+  },
+  {
+    "id": 28,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "medium",
+    "question": "The integrating factor of x dy/dx + 3y = x^4 is:",
+    "option_a": "x^4",
+    "option_b": "3 ln x",
+    "option_c": "x^3",
+    "option_d": "e^(3x)",
+    "correct_option": "C",
+    "explanation": "Divide by x: P = 3/x. The integral of P is 3 ln x = ln x^3, so IF = x^3."
+  },
+  {
+    "id": 29,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "medium",
+    "question": "If the integrating factor of dy/dx + P y = Q is sin x, then P is:",
+    "option_a": "cos x",
+    "option_b": "cot x",
+    "option_c": "tan x",
+    "option_d": "-cot x",
+    "correct_option": "B",
+    "explanation": "IF = e^(integral of P), so the integral of P = ln(IF) and P = (IF)'/IF = cos x / sin x = cot x."
+  },
+  {
+    "id": 30,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "hard",
+    "question": "The integrating factor of (1 + x^2) dy/dx + x y = 1 is:",
+    "option_a": "sqrt(1 + x^2)",
+    "option_b": "1/sqrt(1 + x^2)",
+    "option_c": "1 + x^2",
+    "option_d": "ln(1 + x^2)",
+    "correct_option": "A",
+    "explanation": "Divide by (1 + x^2): P = x/(1 + x^2). The integral of P is (1/2) ln(1 + x^2), so IF = sqrt(1 + x^2)."
+  },
+  {
+    "id": 31,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "medium",
+    "question": "The general solution of dy/dx + y tan x = sec x is:",
+    "option_a": "y = sin x + C cos x",
+    "option_b": "y = tan x + C",
+    "option_c": "y sec x = sec x tan x + C",
+    "option_d": "y = cos x + C sin x",
+    "correct_option": "A",
+    "explanation": "IF = sec x. y sec x = integral of sec^2 x = tan x + C. Multiply by cos x: y = sin x + C cos x."
+  },
+  {
+    "id": 32,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "medium",
+    "question": "The general solution of x dy/dx + 2y = x^2 is:",
+    "option_a": "y = x^3/4 + C/x^2",
+    "option_b": "y = x^2/2 + C/x^2",
+    "option_c": "y = x^2/4 + C x^2",
+    "option_d": "y = x^2/4 + C/x^2",
+    "correct_option": "D",
+    "explanation": "Divide by x: P = 2/x, Q = x. IF = x^2. y x^2 = integral of x^3 = x^4/4 + C."
+  },
+  {
+    "id": 33,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "medium",
+    "question": "The general solution of dy/dx + y = e^(-x) is:",
+    "option_a": "y = (x + C) e^(x)",
+    "option_b": "y = x e^(-x) + C",
+    "option_c": "y = (x + C) e^(-x)",
+    "option_d": "y = e^(-x) + C x",
+    "correct_option": "C",
+    "explanation": "IF = e^x. y e^x = integral of 1 dx = x + C."
+  },
+  {
+    "id": 34,
+    "chapter": "Differential Equations",
+    "topic": "Linear DE and Integrating Factor",
+    "difficulty": "medium",
+    "question": "The general solution of dy/dx - y = e^x is:",
+    "option_a": "y = x e^x + C e^(-x)",
+    "option_b": "y = e^x + C",
+    "option_c": "y = (x + C) e^(-x)",
+    "option_d": "y = (x + C) e^x",
+    "correct_option": "D",
+    "explanation": "P = -1, IF = e^(-x). y e^(-x) = integral of 1 dx = x + C."
+  },
+  {
+    "id": 35,
+    "chapter": "Differential Equations",
+    "topic": "Homogeneous DE",
+    "difficulty": "easy",
+    "question": "Which of the following differential equations is homogeneous?",
+    "option_a": "dy/dx = (x^2 + y)/x",
+    "option_b": "dy/dx = x y/(x + 1)",
+    "option_c": "dy/dx = (x^2 + y^2)/(x y)",
+    "option_d": "dy/dx = (x + y + 1)/x",
+    "correct_option": "C",
+    "explanation": "Every term must have the same total degree. Only the first has degree 2 in both numerator and denominator. A constant counts as degree 0."
+  },
+  {
+    "id": 36,
+    "chapter": "Differential Equations",
+    "topic": "Homogeneous DE",
+    "difficulty": "easy",
+    "question": "On putting y = v x, dy/dx becomes:",
+    "option_a": "dv/dx",
+    "option_b": "x dv/dx",
+    "option_c": "v dv/dx",
+    "option_d": "v + x dv/dx",
+    "correct_option": "D",
+    "explanation": "y = v x with v a function of x. By the product rule, dy/dx = v + x dv/dx."
+  },
+  {
+    "id": 37,
+    "chapter": "Differential Equations",
+    "topic": "Homogeneous DE",
+    "difficulty": "medium",
+    "question": "The general solution of dy/dx = (x + y)/x is:",
+    "option_a": "y = x ln|x| + C",
+    "option_b": "y = x (ln|x| + C)",
+    "option_c": "y = x^2 (ln|x| + C)",
+    "option_d": "y = ln|x| + C",
+    "correct_option": "B",
+    "explanation": "Put y = v x: v + x dv/dx = 1 + v, so dv = dx/x, v = ln|x| + C, y = x (ln|x| + C)."
+  },
+  {
+    "id": 38,
+    "chapter": "Differential Equations",
+    "topic": "Homogeneous DE",
+    "difficulty": "hard",
+    "question": "The solution of dy/dx = y/x + tan(y/x) is:",
+    "option_a": "sin(y/x) = C y",
+    "option_b": "tan(y/x) = C x",
+    "option_c": "cos(y/x) = C x",
+    "option_d": "sin(y/x) = C x",
+    "correct_option": "D",
+    "explanation": "Put y = v x: x dv/dx = tan v. cot v dv = dx/x, so ln|sin v| = ln|x| + ln C, i.e. sin(y/x) = C x."
+  },
+  {
+    "id": 39,
+    "chapter": "Differential Equations",
+    "topic": "Homogeneous DE",
+    "difficulty": "hard",
+    "question": "The solution of dy/dx = y/x + 2 tan(y/x) is:",
+    "option_a": "sin(y/x) = C x",
+    "option_b": "sin(y/x) = C x^2",
+    "option_c": "cos(y/x) = C x^2",
+    "option_d": "sin(y/x) = C/x^2",
+    "correct_option": "B",
+    "explanation": "x dv/dx = 2 tan v. cot v dv = 2 dx/x, so ln|sin v| = 2 ln|x| + ln C, i.e. sin v = C x^2."
+  },
+  {
+    "id": 40,
+    "chapter": "Differential Equations",
+    "topic": "Homogeneous DE",
+    "difficulty": "medium",
+    "question": "The general solution of dy/dx = (2y - x)/x is:",
+    "option_a": "y - x = C x^2",
+    "option_b": "y + x = C x^2",
+    "option_c": "y - x = C x",
+    "option_d": "y - x = C",
+    "correct_option": "A",
+    "explanation": "Put y = v x: v + x dv/dx = 2v - 1, so dv/(v - 1) = dx/x, v - 1 = C x, y - x = C x^2."
+  },
+  {
+    "id": 41,
+    "chapter": "Differential Equations",
+    "topic": "Homogeneous DE",
+    "difficulty": "hard",
+    "question": "The general solution of dy/dx = y/x + y^2/x^2 is:",
+    "option_a": "-y/x = ln|x| + C",
+    "option_b": "y/x = ln|x| + C",
+    "option_c": "x/y = ln|x| + C",
+    "option_d": "-x/y = ln|x| + C",
+    "correct_option": "D",
+    "explanation": "Put y = v x: v + x dv/dx = v + v^2, so dv/v^2 = dx/x, -1/v = ln|x| + C, i.e. -x/y = ln|x| + C."
+  },
+  {
+    "id": 42,
+    "chapter": "Differential Equations",
+    "topic": "Perfect Differentials",
+    "difficulty": "easy",
+    "question": "The general solution of x dy + y dx = 0 is:",
+    "option_a": "x + y = C",
+    "option_b": "x y = C",
+    "option_c": "y = C x",
+    "option_d": "x^2 + y^2 = C",
+    "correct_option": "B",
+    "explanation": "x dy + y dx = d(xy) = 0, so x y = C."
+  },
+  {
+    "id": 43,
+    "chapter": "Differential Equations",
+    "topic": "Perfect Differentials",
+    "difficulty": "medium",
+    "question": "The general solution of x dy - y dx = x^2 dx is:",
+    "option_a": "y = x^2 + C",
+    "option_b": "y/x = x + C",
+    "option_c": "x/y = x + C",
+    "option_d": "y = x + C",
+    "correct_option": "B",
+    "explanation": "Divide by x^2: d(y/x) = dx. Integrate: y/x = x + C."
+  },
+  {
+    "id": 44,
+    "chapter": "Differential Equations",
+    "topic": "Perfect Differentials",
+    "difficulty": "easy",
+    "question": "The general solution of x dx + y dy = 0 is:",
+    "option_a": "x^2 - y^2 = C",
+    "option_b": "x + y = C",
+    "option_c": "x y = C",
+    "option_d": "x^2 + y^2 = C",
+    "correct_option": "D",
+    "explanation": "x dx + y dy = d((x^2 + y^2)/2) = 0, so x^2 + y^2 = C."
+  },
+  {
+    "id": 45,
+    "chapter": "Differential Equations",
+    "topic": "Perfect Differentials",
+    "difficulty": "medium",
+    "question": "The general solution of x^3 dy + y^3 dx = 0 is:",
+    "option_a": "x^2 + y^2 = C",
+    "option_b": "1/x^2 + 1/y^2 = C",
+    "option_c": "1/x + 1/y = C",
+    "option_d": "1/x^3 + 1/y^3 = C",
+    "correct_option": "B",
+    "explanation": "Divide by x^3 y^3: dy/y^3 + dx/x^3 = 0. Integrate: -1/(2y^2) - 1/(2x^2) = C', so 1/x^2 + 1/y^2 = C."
+  },
+  {
+    "id": 46,
+    "chapter": "Differential Equations",
+    "topic": "Basics and Applications",
+    "difficulty": "easy",
+    "question": "Which of the following is a solution of y'' + y = 0?",
+    "option_a": "y = sin x",
+    "option_b": "y = e^x",
+    "option_c": "y = x^2",
+    "option_d": "y = sin 2x",
+    "correct_option": "A",
+    "explanation": "If y = sin x then y'' = -sin x, so y'' + y = 0. For sin 2x, y'' = -4 sin 2x, which fails."
+  },
+  {
+    "id": 47,
+    "chapter": "Differential Equations",
+    "topic": "Basics and Applications",
+    "difficulty": "easy",
+    "question": "The particular solution of dy/dx = e^x with y(0) = 2 is:",
+    "option_a": "y = e^x",
+    "option_b": "y = e^x + 1",
+    "option_c": "y = 2 e^x",
+    "option_d": "y = e^x + 2",
+    "correct_option": "B",
+    "explanation": "y = e^x + C. y(0) = 2 gives 1 + C = 2, so C = 1."
+  },
+  {
+    "id": 48,
+    "chapter": "Differential Equations",
+    "topic": "Basics and Applications",
+    "difficulty": "medium",
+    "question": "The number of arbitrary constants in a particular solution of a differential equation of order n is:",
+    "option_a": "0",
+    "option_b": "n - 1",
+    "option_c": "n",
+    "option_d": "1",
+    "correct_option": "A",
+    "explanation": "A particular solution has all its constants fixed using conditions, so it has none."
+  },
+  {
+    "id": 49,
+    "chapter": "Differential Equations",
+    "topic": "Basics and Applications",
+    "difficulty": "medium",
+    "question": "The rate of growth of a population is proportional to the population present. If it doubles in 10 years, after 20 years it becomes how many times the original?",
+    "option_a": "2",
+    "option_b": "3",
+    "option_c": "4",
+    "option_d": "6",
+    "correct_option": "C",
+    "explanation": "N = N0 e^(kt). Doubling in 10 years means e^(10k) = 2. At 20 years, e^(20k) = 4."
+  },
+  {
+    "id": 50,
+    "chapter": "Differential Equations",
+    "topic": "Basics and Applications",
+    "difficulty": "hard",
+    "question": "The order of the differential equation representing all circles of radius 5 with an arbitrary centre is:",
+    "option_a": "4",
+    "option_b": "1",
+    "option_c": "2",
+    "option_d": "3",
+    "correct_option": "C",
+    "explanation": "(x - a)^2 + (y - b)^2 = 25 has two arbitrary constants a and b, so the order is 2."
+  }
+];
+
+    // Format mathematical expressions cleanly into readable HTML while preserving exact meaning
+    function formatMathText(raw) {
+      if (!raw) return '';
+      let text = raw
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      // Format prime derivatives nicely
+      text = text.replace(/y'''/g, 'y\u2032\u2032\u2032')
+                 .replace(/y''/g, 'y\u2032\u2032')
+                 .replace(/y'/g, 'y\u2032')
+                 .replace(/\(IF\)'/g, '(IF)\u2032')
+                 .replace(/C'/g, 'C\u2032');
+
+      // Format sqrt(...) -> radical sign
+      text = text.replace(/sqrt\(/g, '\u221A(');
+
+      // Format inverse trig and exponents cleanly
+      text = text.replace(/tan\^-1/g, 'tan\u207B\u00B9');
+      text = text.replace(/\^\(([^)]+)\)/g, '<sup>($1)</sup>');
+      text = text.replace(/\^(-?[0-9a-zA-Z]+)/g, '<sup>$1</sup>');
+      text = text.replace(/N0/g, 'N<sub>0</sub>');
+
+      return text;
+    }
+
+    // Application State
+    const state = {
+      mode: 'practice', // 'practice' | 'exam'
+      examSubmitted: false,
+      currentView: 'quiz', // 'quiz' | 'results'
+      topicFilter: 'ALL',
+      difficultyFilter: 'ALL',
+      onlyBookmarked: false,
+      onlyIncorrectFilter: false,
+      filteredIds: QUESTIONS_DATA.map(q => q.id),
+      currentIndex: 0, // index inside filteredIds
+      answers: {}, // { [questionId]: 'A' | 'B' | 'C' | 'D' }
+      bookmarks: {}, // { [questionId]: true }
+      elapsedSeconds: 0,
+      timerRunning: true,
+      timerInterval: null
+    };
+
+    // Load saved progress from localStorage safely
+    function loadSavedState() {
+      try {
+        const saved = localStorage.getItem('de_quiz_state_v1');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && typeof parsed === 'object') {
+            state.answers = parsed.answers || {};
+            state.bookmarks = parsed.bookmarks || {};
+            state.elapsedSeconds = Number(parsed.elapsedSeconds) || 0;
+            state.mode = parsed.mode === 'exam' ? 'exam' : 'practice';
+            state.examSubmitted = Boolean(parsed.examSubmitted);
+          }
+        }
+      } catch (e) {
+        // Ignore storage errors in sandboxed iframes
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('de_quiz_state_v1', JSON.stringify({
+          answers: state.answers,
+          bookmarks: state.bookmarks,
+          elapsedSeconds: state.elapsedSeconds,
+          mode: state.mode,
+          examSubmitted: state.examSubmitted
+        }));
+      } catch (e) {
+        // Ignore storage errors
+      }
+    }
+
+    // Populate Topic Filter dropdown with counts
+    function initTopicDropdown() {
+      const select = document.getElementById('topicFilter');
+      const topicCounts = {};
+      QUESTIONS_DATA.forEach(q => {
+        topicCounts[q.topic] = (topicCounts[q.topic] || 0) + 1;
+      });
+      Object.keys(topicCounts).forEach(topic => {
+        const opt = document.createElement('option');
+        opt.value = topic;
+        opt.textContent = `${topic} (${topicCounts[topic]})`;
+        select.appendChild(opt);
+      });
+    }
+
+    // Timer Functions
+    function formatTime(sec) {
+      const mins = Math.floor(sec / 60);
+      const rem = sec % 60;
+      return `${String(mins).padStart(2, '0')}:${String(rem).padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+      if (state.timerInterval) clearInterval(state.timerInterval);
+      state.timerInterval = setInterval(() => {
+        if (state.timerRunning && state.currentView === 'quiz' && !(state.mode === 'exam' && state.examSubmitted)) {
+          state.elapsedSeconds++;
+          document.getElementById('timerDisplay').textContent = formatTime(state.elapsedSeconds);
+          if (state.elapsedSeconds % 5 === 0) saveState();
+        }
+      }, 1000);
+    }
+
+    // Recompute filtered question IDs
+    function applyFilters(preserveQuestionId = null) {
+      let list = QUESTIONS_DATA.filter(q => {
+        if (state.topicFilter !== 'ALL' && q.topic !== state.topicFilter) return false;
+        if (state.difficultyFilter !== 'ALL' && q.difficulty !== state.difficultyFilter) return false;
+        if (state.onlyBookmarked && !state.bookmarks[q.id]) return false;
+        if (state.onlyIncorrectFilter) {
+          const ans = state.answers[q.id];
+          if (!ans || ans === q.correct_option) return false;
+        }
+        return true;
+      });
+
+      state.filteredIds = list.map(q => q.id);
+
+      if (preserveQuestionId !== null) {
+        const idx = state.filteredIds.indexOf(preserveQuestionId);
+        state.currentIndex = idx >= 0 ? idx : 0;
+      } else {
+        state.currentIndex = 0;
+      }
+
+      renderAll();
+    }
+
+    function getQuestionById(id) {
+      return QUESTIONS_DATA.find(q => q.id === id);
+    }
+
+    function getDifficultyBadgeClasses(diff) {
+      if (diff === 'easy') return 'bg-emerald-100 text-emerald-800 border border-emerald-200';
+      if (diff === 'medium') return 'bg-amber-100 text-amber-800 border border-amber-200';
+      return 'bg-rose-100 text-rose-800 border border-rose-200';
+    }
+
+    // Render Header & Live Stats
+    function renderHeaderAndStats() {
+      const practiceBtn = document.getElementById('modePracticeBtn');
+      const examBtn = document.getElementById('modeExamBtn');
+      const submitExamBtn = document.getElementById('submitExamBtn');
+      const examActionRow = document.getElementById('examActionRow');
+      const liveScoreContainer = document.getElementById('liveScoreContainer');
+      const legendGreenText = document.getElementById('legendGreenText');
+      const legendWrongItem = document.getElementById('legendWrongItem');
+
+      if (state.mode === 'practice') {
+        practiceBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md transition-all bg-white text-indigo-600 shadow-sm';
+        examBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900';
+        submitExamBtn.classList.add('hidden');
+        examActionRow.classList.add('hidden');
+        liveScoreContainer.classList.remove('hidden');
+        legendGreenText.textContent = 'Correct';
+        legendWrongItem.classList.remove('hidden');
+      } else {
+        examBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md transition-all bg-white text-indigo-600 shadow-sm';
+        practiceBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900';
+        if (!state.examSubmitted) {
+          submitExamBtn.classList.remove('hidden');
+          examActionRow.classList.remove('hidden');
+          liveScoreContainer.classList.add('hidden');
+          legendGreenText.textContent = 'Answered';
+          legendWrongItem.classList.add('hidden');
+        } else {
+          submitExamBtn.classList.add('hidden');
+          examActionRow.classList.add('hidden');
+          liveScoreContainer.classList.remove('hidden');
+          legendGreenText.textContent = 'Correct';
+          legendWrongItem.classList.remove('hidden');
+        }
+      }
+
+      // Counts
+      let attempted = 0;
+      let correct = 0;
+      let wrong = 0;
+      QUESTIONS_DATA.forEach(q => {
+        const userAns = state.answers[q.id];
+        if (userAns) {
+          attempted++;
+          if (userAns === q.correct_option) correct++;
+          else wrong++;
+        }
+      });
+
+      document.getElementById('statAttempted').textContent = `${attempted} / ${QUESTIONS_DATA.length}`;
+      document.getElementById('statCorrect').textContent = String(correct);
+      document.getElementById('statWrong').textContent = String(wrong);
+
+      const pct = Math.round((attempted / QUESTIONS_DATA.length) * 100);
+      document.getElementById('topProgressBar').style.width = `${pct}%`;
+
+      const bookmarkCount = Object.keys(state.bookmarks).filter(k => state.bookmarks[k]).length;
+      document.getElementById('bookmarkCountBadge').textContent = String(bookmarkCount);
+
+      const bmBtn = document.getElementById('bookmarkFilterBtn');
+      if (state.onlyBookmarked) {
+        bmBtn.className = 'text-xs px-2.5 py-1.5 rounded-lg border border-amber-400 bg-amber-100 text-amber-900 font-semibold transition-colors flex items-center gap-1';
+      } else {
+        bmBtn.className = 'text-xs px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-amber-50 hover:border-amber-300 hover:text-amber-800 font-medium transition-colors flex items-center gap-1';
+      }
+
+      document.getElementById('timerDisplay').textContent = formatTime(state.elapsedSeconds);
+    }
+
+    // Render Active Question Card
+    function renderQuestionCard() {
+      const emptyState = document.getElementById('emptyFilterState');
+      const card = document.getElementById('questionCard');
+
+      if (state.filteredIds.length === 0) {
+        emptyState.classList.remove('hidden');
+        card.classList.add('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      card.classList.remove('hidden');
+
+      const qId = state.filteredIds[state.currentIndex];
+      const q = getQuestionById(qId);
+      const userAns = state.answers[q.id];
+      const isBookmarked = Boolean(state.bookmarks[q.id]);
+      const showFeedback = (state.mode === 'practice' && Boolean(userAns)) || (state.mode === 'exam' && state.examSubmitted);
+
+      document.getElementById('qNumberBadge').textContent = `Q${state.currentIndex + 1} of ${state.filteredIds.length}`;
+      document.getElementById('qIdBadge').textContent = `#${q.id}`;
+      document.getElementById('qTopicBadge').textContent = q.topic;
+
+      const diffBadge = document.getElementById('qDifficultyBadge');
+      diffBadge.textContent = q.difficulty;
+      diffBadge.className = `px-2.5 py-1 rounded-lg text-xs font-semibold capitalize ${getDifficultyBadgeClasses(q.difficulty)}`;
+
+      // Bookmark button state
+      const bmToggleBtn = document.getElementById('bookmarkToggleBtn');
+      const bmIcon = document.getElementById('bookmarkIcon');
+      const bmText = document.getElementById('bookmarkBtnText');
+      if (isBookmarked) {
+        bmToggleBtn.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold border border-amber-300 bg-amber-50 text-amber-800 transition-colors';
+        bmIcon.setAttribute('fill', 'currentColor');
+        bmIcon.classList.replace('text-slate-400', 'text-amber-500');
+        bmText.textContent = 'Bookmarked';
+      } else {
+        bmToggleBtn.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition-colors';
+        bmIcon.setAttribute('fill', 'none');
+        bmIcon.classList.replace('text-amber-500', 'text-slate-400');
+        bmText.textContent = 'Bookmark';
+      }
+
+      // Question text
+      document.getElementById('questionText').innerHTML = formatMathText(q.question);
+
+      // Options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+      const optionKeys = [
+        { key: 'A', text: q.option_a },
+        { key: 'B', text: q.option_b },
+        { key: 'C', text: q.option_c },
+        { key: 'D', text: q.option_d }
+      ];
+
+      optionKeys.forEach(opt => {
+        const isSelected = userAns === opt.key;
+        const isCorrectOption = q.correct_option === opt.key;
+
+        let wrapperClasses = 'w-full text-left p-3.5 sm:p-4 rounded-xl border-2 transition-all flex items-center justify-between gap-3 group ';
+        let badgeClasses = 'w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 transition-colors ';
+        let statusTag = '';
+
+        if (showFeedback) {
+          if (isCorrectOption) {
+            wrapperClasses += 'border-emerald-500 bg-emerald-50/70 text-emerald-950';
+            badgeClasses += 'bg-emerald-600 text-white';
+            statusTag = `<span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-md shrink-0">✓ Correct</span>`;
+          } else if (isSelected && !isCorrectOption) {
+            wrapperClasses += 'border-rose-500 bg-rose-50/70 text-rose-950';
+            badgeClasses += 'bg-rose-600 text-white';
+            statusTag = `<span class="text-xs font-bold text-rose-700 bg-rose-100 px-2.5 py-1 rounded-md shrink-0">✗ Your Choice</span>`;
+          } else {
+            wrapperClasses += 'border-slate-200 bg-white text-slate-600 opacity-75';
+            badgeClasses += 'bg-slate-100 text-slate-600';
+          }
+        } else {
+          if (isSelected) {
+            wrapperClasses += 'border-indigo-600 bg-indigo-50/60 text-indigo-950 shadow-xs';
+            badgeClasses += 'bg-indigo-600 text-white';
+            statusTag = `<span class="text-xs font-semibold text-indigo-700 bg-indigo-100 px-2.5 py-1 rounded-md shrink-0">Selected</span>`;
+          } else {
+            wrapperClasses += 'border-slate-200 hover:border-indigo-300 hover:bg-slate-50 bg-white text-slate-800';
+            badgeClasses += 'bg-slate-100 text-slate-700 group-hover:bg-indigo-100 group-hover:text-indigo-700';
+          }
+        }
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = wrapperClasses;
+        btn.innerHTML = `
+          <div class="flex items-center gap-3.5 min-w-0">
+            <span class="${badgeClasses}">${opt.key}</span>
+            <span class="text-sm sm:text-base font-medium math-text break-words">${formatMathText(opt.text)}</span>
+          </div>
+          ${statusTag}
+        `;
+
+        btn.addEventListener('click', () => handleSelectOption(q.id, opt.key));
+        optionsContainer.appendChild(btn);
+      });
+
+      // Explanation Box
+      const expBox = document.getElementById('explanationBox');
+      if (showFeedback) {
+        expBox.classList.remove('hidden');
+        const isUserCorrect = userAns === q.correct_option;
+        const iconEl = document.getElementById('explanationStatusIcon');
+        const titleEl = document.getElementById('explanationTitle');
+        const badgeEl = document.getElementById('correctOptionBadge');
+        const textEl = document.getElementById('explanationText');
+
+        if (isUserCorrect) {
+          expBox.className = 'mt-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-4 sm:p-5 transition-all';
+          iconEl.className = 'w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm';
+          iconEl.textContent = '✓';
+          titleEl.className = 'text-sm font-bold text-emerald-900';
+          titleEl.textContent = 'Spot On! Correct Answer';
+          badgeEl.className = 'text-xs font-semibold px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800 border border-emerald-200';
+        } else if (userAns) {
+          expBox.className = 'mt-6 rounded-xl border border-rose-200 bg-rose-50/60 p-4 sm:p-5 transition-all';
+          iconEl.className = 'w-7 h-7 rounded-lg bg-rose-600 text-white flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm';
+          iconEl.textContent = '✗';
+          titleEl.className = 'text-sm font-bold text-rose-900';
+          titleEl.textContent = `Not quite — You selected Option ${userAns}`;
+          badgeEl.className = 'text-xs font-semibold px-2.5 py-0.5 rounded-md bg-rose-100 text-rose-800 border border-rose-200';
+        } else {
+          expBox.className = 'mt-6 rounded-xl border border-slate-200 bg-slate-100/70 p-4 sm:p-5 transition-all';
+          iconEl.className = 'w-7 h-7 rounded-lg bg-slate-600 text-white flex items-center justify-center shrink-0 mt-0.5 font-bold text-sm';
+          iconEl.textContent = 'i';
+          titleEl.className = 'text-sm font-bold text-slate-900';
+          titleEl.textContent = 'Unattempted Question — Solution';
+          badgeEl.className = 'text-xs font-semibold px-2.5 py-0.5 rounded-md bg-white text-slate-800 border border-slate-300';
+        }
+
+        badgeEl.textContent = `Correct Option: ${q.correct_option}`;
+        textEl.innerHTML = `<span class="font-semibold text-slate-900">Explanation:</span> ${formatMathText(q.explanation)}`;
+      } else {
+        expBox.classList.add('hidden');
+      }
+
+      // Prev / Next buttons
+      document.getElementById('prevQuestionBtn').disabled = state.currentIndex <= 0;
+      document.getElementById('nextQuestionBtn').disabled = state.currentIndex >= state.filteredIds.length - 1;
+    }
+
+    // Render Right-Side Question Palette & Topic Progress
+    function renderPaletteAndSidebar() {
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = '';
+      document.getElementById('paletteCountLabel').textContent = `${state.filteredIds.length} Questions`;
+
+      const activeId = state.filteredIds[state.currentIndex];
+
+      state.filteredIds.forEach((id, idx) => {
+        const q = getQuestionById(id);
+        const userAns = state.answers[id];
+        const isBookmarked = Boolean(state.bookmarks[id]);
+        const isCurrent = id === activeId;
+
+        let btnClass = 'relative h-9 rounded-lg text-xs font-bold transition-all flex items-center justify-center ';
+
+        if (state.mode === 'practice' || state.examSubmitted) {
+          if (userAns === q.correct_option) {
+            btnClass += 'bg-emerald-500 text-white hover:bg-emerald-600 ';
+          } else if (userAns && userAns !== q.correct_option) {
+            btnClass += 'bg-rose-500 text-white hover:bg-rose-600 ';
+          } else {
+            btnClass += 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 ';
+          }
+        } else {
+          // Exam mode before submission
+          if (userAns) {
+            btnClass += 'bg-indigo-600 text-white hover:bg-indigo-700 ';
+          } else {
+            btnClass += 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 ';
+          }
+        }
+
+        if (isCurrent) {
+          btnClass += 'ring-2 ring-offset-2 ring-indigo-600 ';
+        }
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = btnClass;
+        btn.textContent = String(id);
+        btn.title = `Question #${id}: ${q.topic}`;
+
+        if (isBookmarked) {
+          const dot = document.createElement('span');
+          dot.className = 'absolute -top-1 -right-1 w-3 h-3 rounded-full bg-amber-400 border-2 border-white';
+          btn.appendChild(dot);
+        }
+
+        btn.addEventListener('click', () => {
+          state.currentIndex = idx;
+          renderAll();
+        });
+
+        grid.appendChild(btn);
+      });
+
+      // Sidebar Topic Progress
+      const topicContainer = document.getElementById('sidebarTopicBreakdown');
+      topicContainer.innerHTML = '';
+
+      const topicsMap = {};
+      QUESTIONS_DATA.forEach(q => {
+        if (!topicsMap[q.topic]) {
+          topicsMap[q.topic] = { total: 0, attempted: 0, correct: 0 };
+        }
+        topicsMap[q.topic].total++;
+        const ans = state.answers[q.id];
+        if (ans) {
+          topicsMap[q.topic].attempted++;
+          if (ans === q.correct_option) topicsMap[q.topic].correct++;
+        }
+      });
+
+      Object.keys(topicsMap).forEach(topic => {
+        const info = topicsMap[topic];
+        const pct = Math.round((info.attempted / info.total) * 100);
+        const item = document.createElement('div');
+        item.className = 'space-y-1';
+        item.innerHTML = `
+          <div class="flex items-center justify-between text-slate-700">
+            <button type="button" class="text-left font-medium hover:text-indigo-600 transition-colors truncate pr-2" data-topic="${topic}">
+              ${topic}
+            </button>
+            <span class="text-[11px] font-semibold text-slate-500 shrink-0">
+              ${state.mode === 'practice' || state.examSubmitted ? `${info.correct}/${info.total} correct` : `${info.attempted}/${info.total} done`}
+            </span>
+          </div>
+          <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+            <div class="h-full bg-indigo-500 rounded-full transition-all" style="width: ${pct}%"></div>
+          </div>
+        `;
+        item.querySelector('button').addEventListener('click', () => {
+          state.topicFilter = topic;
+          document.getElementById('topicFilter').value = topic;
+          applyFilters();
+        });
+        topicContainer.appendChild(item);
+      });
+    }
+
+    // Render Results & Scorecard View
+    function renderResultsView() {
+      let attempted = 0;
+      let correct = 0;
+      let wrong = 0;
+
+      const topicStats = {};
+      const diffStats = {
+        easy: { total: 0, correct: 0, attempted: 0 },
+        medium: { total: 0, correct: 0, attempted: 0 },
+        hard: { total: 0, correct: 0, attempted: 0 }
+      };
+
+      QUESTIONS_DATA.forEach(q => {
+        if (!topicStats[q.topic]) {
+          topicStats[q.topic] = { total: 0, correct: 0, attempted: 0 };
+        }
+        topicStats[q.topic].total++;
+        diffStats[q.difficulty].total++;
+
+        const ans = state.answers[q.id];
+        if (ans) {
+          attempted++;
+          topicStats[q.topic].attempted++;
+          diffStats[q.difficulty].attempted++;
+          if (ans === q.correct_option) {
+            correct++;
+            topicStats[q.topic].correct++;
+            diffStats[q.difficulty].correct++;
+          } else {
+            wrong++;
+          }
+        }
+      });
+
+      const skipped = QUESTIONS_DATA.length - attempted;
+      const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      const overallPct = Math.round((correct / QUESTIONS_DATA.length) * 100);
+
+      document.getElementById('resScore').textContent = `${correct} / ${QUESTIONS_DATA.length}`;
+      document.getElementById('resAccuracy').textContent = `${overallPct}% Total • ${accuracy}% Accuracy on Attempted`;
+      document.getElementById('resCorrect').textContent = String(correct);
+      document.getElementById('resWrong').textContent = String(wrong);
+      document.getElementById('resSkipped').textContent = String(skipped);
+      document.getElementById('resTime').textContent = formatTime(state.elapsedSeconds);
+
+      const avgSec = attempted > 0 ? Math.round(state.elapsedSeconds / attempted) : 0;
+      document.getElementById('resAvgTime').textContent = `${avgSec}s avg per answered Q`;
+
+      const retryWrongBtn = document.getElementById('retryWrongBtn');
+      if (wrong > 0) {
+        retryWrongBtn.classList.remove('hidden');
+        retryWrongBtn.textContent = `Practice Incorrect Only (${wrong})`;
+      } else {
+        retryWrongBtn.classList.add('hidden');
+      }
+
+      // Topic Breakdown Table
+      const topicTable = document.getElementById('resultsTopicTable');
+      topicTable.innerHTML = '';
+      Object.keys(topicStats).forEach(t => {
+        const s = topicStats[t];
+        const pct = Math.round((s.correct / s.total) * 100);
+        const row = document.createElement('div');
+        row.className = 'p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-4';
+        row.innerHTML = `
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-800 mb-1">
+              <span class="truncate">${t}</span>
+              <span>${s.correct} / ${s.total} (${pct}%)</span>
+            </div>
+            <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+              <div class="h-full bg-indigo-600 rounded-full" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+        topicTable.appendChild(row);
+      });
+
+      // Difficulty Breakdown Table
+      const diffTable = document.getElementById('resultsDifficultyTable');
+      diffTable.innerHTML = '';
+      ['easy', 'medium', 'hard'].forEach(d => {
+        const s = diffStats[d];
+        const pct = Math.round((s.correct / s.total) * 100);
+        const barColor = d === 'easy' ? 'bg-emerald-500' : d === 'medium' ? 'bg-amber-500' : 'bg-rose-500';
+        const row = document.createElement('div');
+        row.className = 'p-3 rounded-xl bg-slate-50 border border-slate-200/80';
+        row.innerHTML = `
+          <div class="flex items-center justify-between text-xs font-semibold text-slate-800 mb-1">
+            <span class="capitalize">${d} Level (${s.total} Qs)</span>
+            <span>${s.correct} Correct • ${s.attempted} Attempted (${pct}%)</span>
+          </div>
+          <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+            <div class="h-full ${barColor} rounded-full" style="width: ${pct}%"></div>
+          </div>
+        `;
+        diffTable.appendChild(row);
+      });
+
+      renderReviewList();
+    }
+
+    function renderReviewList() {
+      const container = document.getElementById('reviewListContainer');
+      const statusFilter = document.getElementById('reviewStatusFilter').value;
+      const searchQuery = document.getElementById('reviewSearchInput').value.trim().toLowerCase();
+
+      container.innerHTML = '';
+
+      const filtered = QUESTIONS_DATA.filter(q => {
+        const ans = state.answers[q.id];
+        if (statusFilter === 'CORRECT' && ans !== q.correct_option) return false;
+        if (statusFilter === 'WRONG' && (!ans || ans === q.correct_option)) return false;
+        if (statusFilter === 'UNATTEMPTED' && ans) return false;
+        if (statusFilter === 'BOOKMARKED' && !state.bookmarks[q.id]) return false;
+
+        if (searchQuery) {
+          const hay = `${q.id} ${q.topic} ${q.question} ${q.explanation}`.toLowerCase();
+          if (!hay.includes(searchQuery)) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="text-center py-8 text-xs sm:text-sm text-slate-500">No questions match the selected review filter.</div>`;
+        return;
+      }
+
+      filtered.forEach(q => {
+        const ans = state.answers[q.id];
+        const isCorrect = ans === q.correct_option;
+        let statusBadge = '';
+
+        if (!ans) {
+          statusBadge = `<span class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-slate-100 text-slate-600">Unattempted</span>`;
+        } else if (isCorrect) {
+          statusBadge = `<span class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800">✓ Correct (${ans})</span>`;
+        } else {
+          statusBadge = `<span class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-rose-100 text-rose-800">✗ Your Choice: ${ans}</span>`;
+        }
+
+        const optionMap = { A: q.option_a, B: q.option_b, C: q.option_c, D: q.option_d };
+
+        const item = document.createElement('div');
+        item.className = 'p-4 sm:p-5 rounded-xl border border-slate-200 bg-slate-50/40 hover:bg-slate-50 transition-colors space-y-3';
+        item.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-slate-900 text-white text-xs font-bold">#${q.id}</span>
+              <span class="text-xs font-semibold text-slate-600">${q.topic}</span>
+              <span class="px-2 py-0.5 rounded text-[11px] font-semibold capitalize ${getDifficultyBadgeClasses(q.difficulty)}">${q.difficulty}</span>
+              ${statusBadge}
+            </div>
+            <button type="button" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800" data-jump-id="${q.id}">
+              Open in Quiz →
+            </button>
+          </div>
+          <div class="text-sm sm:text-base font-semibold text-slate-900 math-text">${formatMathText(q.question)}</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            ${['A', 'B', 'C', 'D'].map(k => {
+              const isRight = q.correct_option === k;
+              const isUser = ans === k;
+              let cls = 'p-2.5 rounded-lg border flex items-center justify-between gap-2 ';
+              if (isRight) cls += 'border-emerald-400 bg-emerald-50 text-emerald-950 font-semibold';
+              else if (isUser && !isRight) cls += 'border-rose-400 bg-rose-50 text-rose-950 font-semibold';
+              else cls += 'border-slate-200 bg-white text-slate-700';
+              return `<div class="${cls}">
+                <span class="math-text"><strong class="mr-1.5">${k}.</strong>${formatMathText(optionMap[k])}</span>
+                ${isRight ? '<span class="text-emerald-700 font-bold">✓</span>' : isUser ? '<span class="text-rose-600 font-bold">✗</span>' : ''}
+              </div>`;
+            }).join('')}
+          </div>
+          <div class="text-xs sm:text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200/80">
+            <strong class="text-slate-900">Solution (${q.correct_option}):</strong> <span class="math-text">${formatMathText(q.explanation)}</span>
+          </div>
+        `;
+
+        item.querySelector('[data-jump-id]').addEventListener('click', () => {
+          state.topicFilter = 'ALL';
+          state.difficultyFilter = 'ALL';
+          state.onlyBookmarked = false;
+          state.onlyIncorrectFilter = false;
+          document.getElementById('topicFilter').value = 'ALL';
+          document.getElementById('difficultyFilter').value = 'ALL';
+          state.currentView = 'quiz';
+          applyFilters(q.id);
+        });
+
+        container.appendChild(item);
+      });
+    }
+
+    // Master Render
+    function renderAll() {
+      renderHeaderAndStats();
+
+      const quizView = document.getElementById('quizView');
+      const resultsView = document.getElementById('resultsView');
+      const filterBar = document.getElementById('filterBar');
+      const viewBtnText = document.getElementById('viewAnalyticsBtnText');
+
+      if (state.currentView === 'quiz') {
+        quizView.classList.remove('hidden');
+        resultsView.classList.add('hidden');
+        filterBar.classList.remove('hidden');
+        viewBtnText.textContent = 'Scorecard & Review';
+        renderQuestionCard();
+        renderPaletteAndSidebar();
+      } else {
+        quizView.classList.add('hidden');
+        resultsView.classList.remove('hidden');
+        filterBar.classList.add('hidden');
+        viewBtnText.textContent = 'Back to Quiz';
+        renderResultsView();
+      }
+    }
+
+    // Event Handlers
+    function handleSelectOption(questionId, optionKey) {
+      if (state.mode === 'exam' && state.examSubmitted) return;
+      state.answers[questionId] = optionKey;
+      saveState();
+      renderAll();
+    }
+
+    function wireEvents() {
+      // Mode Switchers
+      document.getElementById('modePracticeBtn').addEventListener('click', () => {
+        state.mode = 'practice';
+        saveState();
+        renderAll();
+      });
+
+      document.getElementById('modeExamBtn').addEventListener('click', () => {
+        state.mode = 'exam';
+        state.examSubmitted = false;
+        saveState();
+        renderAll();
+      });
+
+      // Timer Pause/Resume
+      document.getElementById('toggleTimerBtn').addEventListener('click', () => {
+        state.timerRunning = !state.timerRunning;
+        const timerDisplay = document.getElementById('timerDisplay');
+        timerDisplay.classList.toggle('opacity-50', !state.timerRunning);
+      });
+
+      // Toggle Quiz / Analytics View
+      document.getElementById('viewAnalyticsBtn').addEventListener('click', () => {
+        state.currentView = state.currentView === 'quiz' ? 'results' : 'quiz';
+        renderAll();
+      });
+
+      document.getElementById('finishAndReviewBtn').addEventListener('click', () => {
+        if (state.mode === 'exam') state.examSubmitted = true;
+        state.currentView = 'results';
+        saveState();
+        renderAll();
+      });
+
+      document.getElementById('submitExamBtn').addEventListener('click', () => {
+        state.examSubmitted = true;
+        state.currentView = 'results';
+        saveState();
+        renderAll();
+      });
+
+      document.getElementById('backToQuizBtn').addEventListener('click', () => {
+        state.currentView = 'quiz';
+        renderAll();
+      });
+
+      // Practice Incorrect Only
+      document.getElementById('retryWrongBtn').addEventListener('click', () => {
+        const wrongIds = QUESTIONS_DATA.filter(q => state.answers[q.id] && state.answers[q.id] !== q.correct_option).map(q => q.id);
+        wrongIds.forEach(id => {
+          delete state.answers[id];
+        });
+        state.mode = 'practice';
+        state.examSubmitted = false;
+        state.topicFilter = 'ALL';
+        state.difficultyFilter = 'ALL';
+        state.onlyBookmarked = false;
+        state.filteredIds = wrongIds;
+        state.currentIndex = 0;
+        state.currentView = 'quiz';
+        saveState();
+        renderAll();
+      });
+
+      // Clear Selection in Exam Mode
+      document.getElementById('clearSelectionBtn').addEventListener('click', () => {
+        const qId = state.filteredIds[state.currentIndex];
+        if (qId) {
+          delete state.answers[qId];
+          saveState();
+          renderAll();
+        }
+      });
+
+      // Filters
+      document.getElementById('topicFilter').addEventListener('change', (e) => {
+        state.topicFilter = e.target.value;
+        state.onlyIncorrectFilter = false;
+        applyFilters();
+      });
+
+      document.getElementById('difficultyFilter').addEventListener('change', (e) => {
+        state.difficultyFilter = e.target.value;
+        state.onlyIncorrectFilter = false;
+        applyFilters();
+      });
+
+      document.getElementById('bookmarkFilterBtn').addEventListener('click', () => {
+        state.onlyBookmarked = !state.onlyBookmarked;
+        state.onlyIncorrectFilter = false;
+        applyFilters();
+      });
+
+      document.getElementById('resetFiltersBtn').addEventListener('click', () => {
+        state.topicFilter = 'ALL';
+        state.difficultyFilter = 'ALL';
+        state.onlyBookmarked = false;
+        state.onlyIncorrectFilter = false;
+        document.getElementById('topicFilter').value = 'ALL';
+        document.getElementById('difficultyFilter').value = 'ALL';
+        applyFilters();
+      });
+
+      // Shuffle button
+      document.getElementById('shuffleBtn').addEventListener('click', () => {
+        for (let i = state.filteredIds.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = state.filteredIds[i];
+          state.filteredIds[i] = state.filteredIds[j];
+          state.filteredIds[j] = temp;
+        }
+        state.currentIndex = 0;
+        renderAll();
+      });
+
+      // Bookmark current question
+      document.getElementById('bookmarkToggleBtn').addEventListener('click', () => {
+        const qId = state.filteredIds[state.currentIndex];
+        if (!qId) return;
+        state.bookmarks[qId] = !state.bookmarks[qId];
+        if (!state.bookmarks[qId]) delete state.bookmarks[qId];
+        saveState();
+        renderAll();
+      });
+
+      // Prev / Next Navigation
+      document.getElementById('prevQuestionBtn').addEventListener('click', () => {
+        if (state.currentIndex > 0) {
+          state.currentIndex--;
+          renderAll();
+        }
+      });
+
+      document.getElementById('nextQuestionBtn').addEventListener('click', () => {
+        if (state.currentIndex < state.filteredIds.length - 1) {
+          state.currentIndex++;
+          renderAll();
+        }
+      });
+
+      // Review Filters
+      document.getElementById('reviewStatusFilter').addEventListener('change', renderReviewList);
+      document.getElementById('reviewSearchInput').addEventListener('input', renderReviewList);
+
+      // Reset Modal Controls
+      const resetModal = document.getElementById('resetModal');
+      const openReset = () => resetModal.classList.remove('hidden');
+      const closeReset = () => resetModal.classList.add('hidden');
+
+      document.getElementById('openResetModalBtn').addEventListener('click', openReset);
+      document.getElementById('restartFullQuizBtn').addEventListener('click', openReset);
+      document.getElementById('cancelResetBtn').addEventListener('click', closeReset);
+
+      document.getElementById('confirmResetBtn').addEventListener('click', () => {
+        state.answers = {};
+        state.elapsedSeconds = 0;
+        state.examSubmitted = false;
+        state.topicFilter = 'ALL';
+        state.difficultyFilter = 'ALL';
+        state.onlyBookmarked = false;
+        state.onlyIncorrectFilter = false;
+        document.getElementById('topicFilter').value = 'ALL';
+        document.getElementById('difficultyFilter').value = 'ALL';
+        state.currentView = 'quiz';
+        saveState();
+        closeReset();
+        applyFilters();
+      });
+
+      // Keyboard Shortcuts
+      window.addEventListener('keydown', (e) => {
+        if (state.currentView !== 'quiz' || state.filteredIds.length === 0) return;
+        if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+        const key = e.key.toUpperCase();
+        const qId = state.filteredIds[state.currentIndex];
+
+        if (['A', 'B', 'C', 'D'].includes(key)) {
+          e.preventDefault();
+          handleSelectOption(qId, key);
+        } else if (['1', '2', '3', '4'].includes(key)) {
+          e.preventDefault();
+          const map = { '1': 'A', '2': 'B', '3': 'C', '4': 'D' };
+          handleSelectOption(qId, map[key]);
+        } else if (e.key === 'ArrowRight') {
+          if (state.currentIndex < state.filteredIds.length - 1) {
+            e.preventDefault();
+            state.currentIndex++;
+            renderAll();
+          }
+        } else if (e.key === 'ArrowLeft') {
+          if (state.currentIndex > 0) {
+            e.preventDefault();
+            state.currentIndex--;
+            renderAll();
+          }
+        } else if (key === 'B') {
+          e.preventDefault();
+          state.bookmarks[qId] = !state.bookmarks[qId];
+          if (!state.bookmarks[qId]) delete state.bookmarks[qId];
+          saveState();
+          renderAll();
+        }
+      });
+    }
+
+    // Initialize Application
+    initTopicDropdown();
+    loadSavedState();
+    wireEvents();
+    startTimer();
+    applyFilters();
+  </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anglo-Eastern Deck Entrance Test - Syllabus & Tracker</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        maritime: {
+                            50: '#f0f5ff',
+                            100: '#e0eaff',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-full flex flex-col antialiased">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center space-x-3">
+            <div class="w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                <i class="fa-solid fa-anchor"></i>
+            </div>
+            <div>
+                <h1 class="font-extrabold text-lg text-slate-900 tracking-tight flex items-center gap-2">
+                    ANGLO-EASTERN <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 font-semibold">DECK CADET SYLLABUS</span>
+                </h1>
+                <p class="text-xs text-slate-500">Online Entrance Test & Interview &bull; Total Marks: 100 &bull; Duration: 120 Mins</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 w-full sm:w-auto">
+            <!-- Search bar -->
+            <div class="relative w-full sm:w-72">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                    <i class="fa-solid fa-search"></i>
+                </span>
+                <input type="text" id="syllabus-search" oninput="filterSyllabus()" placeholder="Search topics (e.g. Algebra, Newton)..." class="w-full bg-slate-100 border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-700 focus:outline-none focus:border-blue-600 focus:bg-white transition">
+            </div>
+            <button onclick="resetProgress()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold border border-slate-200 transition">
+                Reset Progress
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-6xl mx-auto w-full p-6 space-y-6">
+
+        <!-- Progress Overview Banner -->
+        <div class="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div class="space-y-1">
+                <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-500/30 text-blue-200 border border-blue-400/30">Preparation Tracker</span>
+                <h2 class="text-2xl font-extrabold tracking-tight">Master the Complete Syllabus</h2>
+                <p class="text-xs text-blue-200 max-w-xl">Check off topics as you study. Your progress is saved automatically so you can track your readiness for the Anglo-Eastern Deck Cadet entrance examination.</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-4 text-center min-w-[140px]">
+                <span id="overall-progress-text" class="text-3xl font-extrabold text-amber-300">0%</span>
+                <span class="text-[10px] text-blue-200 uppercase tracking-wider block mt-1">Syllabus Completed</span>
+            </div>
+        </div>
+
+        <!-- Syllabus Cards Container -->
+        <div id="syllabus-container" class="space-y-6">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 px-6 text-center text-xs text-slate-400">
+        Anglo-Eastern Deck Entrance Test & Interview Syllabus &bull; Light Mode Professional Edition
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        /* ==================== SYLLABUS DATA (FROM OFFICIAL PDF) ==================== */
+        const syllabusData = [
+            {
+                subject: "1. English",
+                icon: "fa-book-open",
+                color: "text-blue-600",
+                bg: "bg-blue-50",
+                border: "border-blue-200",
+                topics: [
+                    "Sentence Completion (Fill in blanks, context clues)",
+                    "Grammar (Tenses, active/passive voice, direct/indirect speech)",
+                    "Vocabulary (Synonyms, antonyms, idioms, phrasal verbs)",
+                    "Essay Writing (300 words structured essay at the time of the interview)"
+                ]
+            },
+            {
+                subject: "2. Mathematics",
+                icon: "fa-calculator",
+                color: "text-indigo-600",
+                bg: "bg-indigo-50",
+                border: "border-indigo-200",
+                topics: [
+                    "Number & Operations (Operations, ratio & proportion, averages, percentage)",
+                    "Elementary Number Theory (Fractions, decimals, squares & square roots, cubes & cube roots, exponents & powers, H.C.F. & L.C.M.)",
+                    "Arithmetic Progressions (nth term, sum of first n terms of A.P. and applications)",
+                    "Algebra & Functions (Expressions up to cubic level, equations up to quadratic level, linear, polynomial, rational)",
+                    "Linear Equations in Two Variables (ax + by + c = 0 and problem applications)",
+                    "Plane Geometry & Mensuration (Lines, angles, triangles, squares, rectangles, parallelograms, trapeziums, rhombuses, quadrilaterals, circles)",
+                    "Coordinate Geometry (Lines and circles)",
+                    "Three-dimensional Solids (Surface area and volume of cubes, cylinders, cones, spheres, and combinations)",
+                    "Trigonometry (Trigonometric ratios of an acute angle in right-angled triangles)",
+                    "Heights and Distances (Angle of elevation, angle of depression, and related problems)",
+                    "Permutations & Combinations (Fundamental principle of counting, factorial n, nPr, nCr and applications)",
+                    "Probability (Events, occurrence of events, probability of an event, Bayes' theorem)"
+                ]
+            },
+            {
+                subject: "3. General Knowledge",
+                icon: "fa-globe-americas",
+                color: "text-emerald-600",
+                bg: "bg-emerald-50",
+                border: "border-emerald-200",
+                topics: [
+                    "Geography (World capitals, major oceans, ports, waterways)",
+                    "Produce and exports of countries, maritime routes"
+                ]
+            },
+            {
+                subject: "4. Aptitude",
+                icon: "fa-brain",
+                color: "text-purple-600",
+                bg: "bg-purple-50",
+                border: "border-purple-200",
+                topics: [
+                    "Qualitative reasoning",
+                    "Quantitative reasoning",
+                    "Abstract reasoning",
+                    "Spatial reasoning",
+                    "Logical reasoning"
+                ]
+            },
+            {
+                subject: "5. Physics",
+                icon: "fa-atom",
+                color: "text-amber-600",
+                bg: "bg-amber-50",
+                border: "border-amber-200",
+                topics: [
+                    "Mechanics - Kinematics (Velocity, acceleration, motion in one dimension)",
+                    "Mechanics - Dynamics (Force, Newton's laws, statics, friction)",
+                    "Energy & Momentum (Potential & kinetic energy, work, power, impulse, conservation laws)",
+                    "Circular Motion & SHM (Uniform circular motion, centripetal force, simple pendulum)",
+                    "Gravitation (Universal law, Kepler's laws, earth's gravity, acceleration due to gravity, mass vs weight)",
+                    "Electricity & Magnetism (Coulomb's law, induced charge, electric fields & potentials)",
+                    "Capacitance (Parallel-plate capacitors, time-varying charging/discharging)",
+                    "Circuit Elements & DC Circuits (Resistors, light bulbs, series/parallel networks, Ohm's law, Joule's law)",
+                    "Magnetism & Induction (Permanent magnets, fields from currents, particles in magnetic fields, Faraday's law, Lenz's law)",
+                    "Waves & Optics (Wave speed, frequency, wavelength, superposition, standing waves, diffraction, Doppler effect, Young's double slit)",
+                    "Reflection & Refraction (Snell's law, changes in wavelength & speed, ray optics with pinholes, mirrors, lenses)",
+                    "Thermal Properties & Thermodynamics (Temperature, heat transfer, specific/latent heat, thermal expansion, 1st & 2nd laws of thermodynamics, entropy, heat engine efficiency)",
+                    "Floatation (Thrust, pressure, Archimedes' principle, buoyancy)",
+                    "Mechanical Properties of Solids & Fluids (Stress-strain, Hooke's law, Young's modulus, Poisson's ratio, Pascal's law, viscosity, Stokes' law, Bernoulli's theorem)"
+                ]
+            },
+            {
+                subject: "6. Chemistry",
+                icon: "fa-flask",
+                color: "text-rose-600",
+                bg: "bg-rose-50",
+                border: "border-rose-200",
+                topics: [
+                    "Structure of Atom (Atomic number, isotopes, isobars)",
+                    "Quantum Concepts (De Broglie's equation, Heisenberg uncertainty principle)",
+                    "States of Matter (Gases, kinetic molecular theory, Charles law, Boyle's law, molar volumes & density)",
+                    "Liquids and Solids properties",
+                    "Materials (Metals and non-metals)",
+                    "Reaction Types & Chemistry of Acids, Bases, Salts (Conjugate acid-base pairs)",
+                    "Periodic Table (Modern periodic table, periodic trends in atomic radii, valency, etc.)"
+                ]
+            }
+        ];
+
+        /* ==================== STATE MANAGEMENT ==================== */
+        let completedTopics = JSON.parse(localStorage.getItem('anglo_light_completed')) || {};
+
+        window.onload = function() {
+            renderSyllabus();
+        };
+
+        /* ==================== RENDERING & FILTERING ==================== */
+        function renderSyllabus(filterQuery = '') {
+            const container = document.getElementById('syllabus-container');
+            container.innerHTML = '';
+
+            let totalTopicsCount = 0;
+            let completedCount = 0;
+            let hasResults = false;
+
+            syllabusData.forEach((sec, sIdx) => {
+                let matchedTopicsHTML = '';
+                let secCompletedCount = 0;
+                let secTotalTopics = sec.topics.length;
+
+                sec.topics.forEach((topic, tIdx) => {
+                    totalTopicsCount++;
+                    const key = `${sIdx}-${tIdx}`;
+                    const isChecked = completedTopics[key] ? true : false;
+                    if(isChecked) completedCount++;
+                    if(isChecked) secCompletedCount++;
+
+                    // Filter matching
+                    const matchesFilter = topic.toLowerCase().includes(filterQuery.toLowerCase()) || sec.subject.toLowerCase().includes(filterQuery.toLowerCase());
+                    if(matchesFilter) {
+                        hasResults = true;
+                        matchedTopicsHTML += `
+                            <label class="flex items-start gap-3.5 p-3.5 rounded-xl bg-white border border-slate-200 hover:border-slate-300 shadow-sm cursor-pointer transition">
+                                <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTopic(${sIdx}, ${tIdx})" class="mt-1 w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-xs sm:text-sm ${isChecked ? 'line-through text-slate-400' : 'text-slate-700 font-medium'} transition">${topic}</span>
+                            </label>
+                        `;
+                    }
+                });
+
+                if(matchedTopicsHTML !== '') {
+                    const secPct = Math.round((secCompletedCount / secTotalTopics) * 100);
+                    container.innerHTML += `
+                        <div class="bg-white border ${sec.border} rounded-2xl p-6 shadow-sm space-y-4">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl ${sec.bg} ${sec.color} flex items-center justify-center text-lg shadow-sm">
+                                        <i class="fa-solid ${sec.icon}"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900 text-base sm:text-lg">${sec.subject}</h3>
+                                        <p class="text-xs text-slate-500">${secCompletedCount} of ${secTotalTopics} topics completed</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-24 bg-slate-100 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-blue-600 h-full transition-all duration-300" style="width: ${secPct}%"></div>
+                                    </div>
+                                    <span class="text-xs font-bold text-slate-700">${secPct}%</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                ${matchedTopicsHTML}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if(!hasResults) {
+                container.innerHTML = `
+                    <div class="bg-white border border-slate-200 rounded-2xl p-12 text-center space-y-3">
+                        <div class="text-4xl text-slate-300"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h3 class="font-bold text-slate-700 text-base">No matching topics found</h3>
+                        <p class="text-xs text-slate-400">Try searching for keywords like "Algebra", "Physics", "Thermodynamics", or "English".</p>
+                    </div>
+                `;
+            }
+
+            // Overall Progress update
+            const overallPct = totalTopicsCount > 0 ? Math.round((completedCount / totalTopicsCount) * 100) : 0;
+            document.getElementById('overall-progress-text').innerText = `${overallPct}%`;
+            localStorage.setItem('anglo_light_completed', JSON.stringify(completedTopics));
+        }
+
+        function toggleTopic(sIdx, tIdx) {
+            const key = `${sIdx}-${tIdx}`;
+            completedTopics[key] = !completedTopics[key];
+            const currentQuery = document.getElementById('syllabus-search').value;
+            renderSyllabus(currentQuery);
+        }
+
+        function filterSyllabus() {
+            const query = document.getElementById('syllabus-search').value;
+            renderSyllabus(query);
+        }
+
+        function resetProgress() {
+            if(confirm("Are you sure you want to reset your checklist progress?")) {
+                completedTopics = {};
+                document.getElementById('syllabus-search').value = '';
+                renderSyllabus();
+            }
+        }
+    </script>
+</body>
+</html>

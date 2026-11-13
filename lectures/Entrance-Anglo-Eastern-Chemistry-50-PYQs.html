@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anglo-Eastern Sponsorship Exam — 50 Chemistry PYQs Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Devanagari', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#0f172a',
+                            900: '#090e1a',
+                            950: '#050811'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styling for mathematical fractions, chemical formulas & 3D flashcards */
+        body {
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+        }
+        .math-frac {
+            display: inline-flex;
+            flex-direction: column;
+            vertical-align: middle;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.92em;
+            margin: 0 0.2em;
+            line-height: 1.1;
+        }
+        .math-frac > .num {
+            border-bottom: 1.5px solid currentColor;
+            padding: 0 0.25em 1px;
+        }
+        .math-frac > .den {
+            padding: 1px 0.25em 0;
+        }
+        .chem-eq {
+            font-family: 'JetBrains Mono', 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        sub, sup {
+            font-size: 0.75em;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+        sup { top: -0.5em; }
+        sub { bottom: -0.25em; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(100, 116, 139, 0.4);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 116, 139, 0.7);
+        }
+
+        /* 3D Flip Card Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-pop {
+            animation: pulse-subtle 0.25s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-navy-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-30 backdrop-blur-md bg-white/90 dark:bg-navy-900/90 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- Brand Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-cyan-500/20">
+                    <i class="fa-solid fa-anchor text-lg"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">Anglo-Eastern Sponsorship</span>
+                        <span class="hidden sm:inline-block text-xs font-semibold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
+                            <i class="fa-solid fa-bolt mr-1"></i>Full Marathon
+                        </span>
+                    </div>
+                    <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 dark:text-white">
+                        Complete 50 Chemistry PYQs Hub
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Mode Switcher Tabs -->
+            <div class="flex items-center bg-slate-100 dark:bg-slate-800/90 p-1 rounded-xl border border-slate-200 dark:border-slate-700/70">
+                <button id="tab-quiz" onclick="switchAppMode('quiz')" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-cyan-600 text-cyan-600 dark:text-white shadow-sm">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Practice Quiz</span>
+                </button>
+                <button id="tab-flashcards" onclick="switchAppMode('flashcards')" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+                    <i class="fa-solid fa-clone"></i>
+                    <span>3D Flashcards</span>
+                </button>
+                <button id="tab-notes" onclick="switchAppMode('notes')" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Study Bank (All 50)</span>
+                </button>
+            </div>
+
+            <!-- Right Utilities: Timer, Score, Theme -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-mono font-semibold">
+                    <i class="fa-regular fa-clock text-cyan-500"></i>
+                    <span id="timer-display">00:00</span>
+                </div>
+
+                <button onclick="openScoreModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs sm:text-sm font-semibold transition" title="View Detailed Analytics">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span id="header-score">0/50</span>
+                </button>
+
+                <button onclick="toggleTheme()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-700 dark:text-amber-400 border border-slate-200 dark:border-slate-700 transition" title="Toggle Light/Dark Theme">
+                    <i id="theme-icon" class="fa-solid fa-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-5">
+
+        <!-- ========================================== -->
+        <!-- 1. INTERACTIVE PRACTICE QUIZ VIEW          -->
+        <!-- ========================================== -->
+        <section id="view-quiz" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- Left/Center Column: Active Question Area (8 cols) -->
+            <div class="lg:col-span-8 flex flex-col gap-4">
+                
+                <!-- Control Bar: Category Filter & Exam Mode Toggle -->
+                <div class="bg-white dark:bg-navy-900 rounded-2xl p-3.5 sm:p-4 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <label for="quiz-category-select" class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">
+                            <i class="fa-solid fa-filter mr-1 text-cyan-500"></i>Filter:
+                        </label>
+                        <select id="quiz-category-select" onchange="applyQuizFilter()" class="text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-xl px-3 py-1.5 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                            <option value="ALL">All 50 Questions (Complete PYQs)</option>
+                            <option value="Atomic Structure">Atomic Structure & Quantum (9)</option>
+                            <option value="Gas Laws & Matter">Gas Laws & States of Matter (10)</option>
+                            <option value="Metals & Non-Metals">Metals, Non-Metals & Oxides (11)</option>
+                            <option value="Acids, Bases & Salts">Acids, Bases & Salts (10)</option>
+                            <option value="Periodic Table & Bonding">Periodic Table & Bonding (10)</option>
+                            <option value="BOOKMARKED">★ Bookmarked Questions Only</option>
+                            <option value="INCORRECT">✕ Incorrectly Answered Only</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <!-- Instant Feedback vs Exam Mode Toggle -->
+                        <button id="mode-feedback-btn" onclick="toggleFeedbackMode()" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span id="feedback-mode-label">Instant Check: ON</span>
+                        </button>
+
+                        <button onclick="shuffleQuizQuestions()" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition" title="Shuffle Order">
+                            <i class="fa-solid fa-shuffle mr-1"></i>Shuffle
+                        </button>
+
+                        <button onclick="confirmResetQuiz()" class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 transition" title="Reset All Progress">
+                            <i class="fa-solid fa-rotate-right mr-1"></i>Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress & Live Stats Strip -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    <div class="bg-white dark:bg-navy-900 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase text-slate-400">Progress</p>
+                            <p id="stat-progress" class="text-sm sm:text-base font-bold text-slate-800 dark:text-white">0 / 50</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-navy-900 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase text-slate-400">Correct</p>
+                            <p id="stat-correct" class="text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400">0</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-navy-900 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase text-slate-400">Accuracy</p>
+                            <p id="stat-accuracy" class="text-sm sm:text-base font-bold text-cyan-600 dark:text-cyan-400">0%</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-500 flex items-center justify-center">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-navy-900 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase text-slate-400">Streak</p>
+                            <p id="stat-streak" class="text-sm sm:text-base font-bold text-amber-500">0 🔥</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Question Card -->
+                <div id="question-card" class="bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md overflow-hidden transition-all">
+                    <!-- Progress Bar Top Strip -->
+                    <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5">
+                        <div id="quiz-progress-bar" class="bg-gradient-to-r from-cyan-500 to-blue-600 h-1.5 transition-all duration-300" style="width: 2%;"></div>
+                    </div>
+
+                    <div class="p-5 sm:p-7">
+                        <!-- Question Meta Header -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span id="q-number-badge" class="px-3 py-1 rounded-lg bg-cyan-600 text-white font-mono text-xs sm:text-sm font-bold shadow-sm">
+                                    Q.1 / 50
+                                </span>
+                                <span id="q-category-badge" class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-700">
+                                    Atomic Structure
+                                </span>
+                                <span id="q-topic-badge" class="px-2.5 py-1 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-semibold border border-blue-500/20">
+                                    Atomic Number Definition
+                                </span>
+                            </div>
+
+                            <!-- Bookmark Button -->
+                            <button id="bookmark-btn" onclick="toggleBookmarkCurrent()" class="flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Bookmark for Revision">
+                                <i id="bookmark-icon" class="fa-regular fa-star"></i>
+                                <span id="bookmark-text">Bookmark</span>
+                            </button>
+                        </div>
+
+                        <!-- Question Text -->
+                        <div id="q-text" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed mb-6">
+                            <!-- Dynamic HTML Question Loaded Here -->
+                        </div>
+
+                        <!-- Options List (A, B, C, D) -->
+                        <div id="options-container" class="space-y-3">
+                            <!-- Dynamic Options Rendered Here -->
+                        </div>
+
+                        <!-- Explanation Box (Shown after answering in Instant mode or clicking Reveal) -->
+                        <div id="explanation-box" class="hidden mt-6 rounded-2xl bg-gradient-to-br from-slate-50 to-cyan-50/30 dark:from-slate-800/90 dark:to-cyan-950/30 border border-cyan-500/30 p-4 sm:p-5 transition-all">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span id="exp-status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase">
+                                        Correct Answer
+                                    </span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 flex items-center gap-1">
+                                        <i class="fa-solid fa-lightbulb"></i> Step-by-Step Explanation / शॉर्ट नोट्स
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="exp-content" class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed mt-1">
+                                <!-- Explanation HTML -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer Navigation -->
+                    <div class="bg-slate-50 dark:bg-slate-900/90 px-5 sm:px-7 py-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                        <button id="prev-btn" onclick="navigateQuestion(-1)" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 font-semibold text-sm transition disabled:opacity-40 disabled:pointer-events-none">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Previous</span>
+                        </button>
+
+                        <div class="flex items-center gap-2">
+                            <button id="reveal-btn" onclick="revealCurrentAnswer()" class="px-3.5 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-semibold text-xs sm:text-sm transition">
+                                <i class="fa-regular fa-eye mr-1"></i>Show Note
+                            </button>
+                            <button onclick="openScoreModal()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm shadow-sm transition">
+                                <i class="fa-solid fa-flag-checkered mr-1"></i>Finish & Scorecard
+                            </button>
+                        </div>
+
+                        <button id="next-btn" onclick="navigateQuestion(1)" class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-sm shadow-md shadow-cyan-500/20 transition disabled:opacity-40 disabled:pointer-events-none">
+                            <span>Next</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Keyboard Shortcut Hint -->
+                <div class="hidden sm:flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 px-2">
+                    <span><i class="fa-regular fa-keyboard mr-1"></i>Keyboard Shortcuts: Press <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">A</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">B</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">C</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">D</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">1-4</kbd> to answer</span>
+                    <span>Use <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">→</kbd> arrows to navigate</span>
+                </div>
+            </div>
+
+            <!-- Right Column: Question Palette Navigator (4 cols) -->
+            <div class="lg:col-span-4 bg-white dark:bg-navy-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 sm:p-5 sticky top-20">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200 flex items-center gap-2">
+                        <i class="fa-solid fa-table-cells text-cyan-500"></i>
+                        Question Palette (1–50)
+                    </h2>
+                    <span id="palette-count-label" class="text-xs font-semibold text-slate-400">50 Questions</span>
+                </div>
+
+                <!-- Legend -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-2 text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-4 pb-3 border-b border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span> Correct
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded bg-rose-500 inline-block"></span> Incorrect
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded bg-amber-400 inline-block"></span> Bookmarked
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded border-2 border-cyan-500 inline-block"></span> Current
+                    </div>
+                </div>
+
+                <!-- 1 to 50 Grid -->
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-2 max-h-[380px] overflow-y-auto pr-1">
+                    <!-- Dynamically populated 1-50 buttons -->
+                </div>
+
+                <!-- Quick Jump to Mistakes -->
+                <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-2">
+                    <button onclick="retryMistakesOnly()" class="w-full py-2 px-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Practice Mistakes Only
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. INTERACTIVE 3D FLASHCARDS VIEW          -->
+        <!-- ========================================== -->
+        <section id="view-flashcards" class="hidden max-w-3xl mx-auto">
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm mb-5 flex flex-wrap items-center justify-between gap-3">
+                <div>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-amber-500"></i> Rapid-Fire 3D Flashcards
+                    </h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Click the card or press Spacebar to flip between Question and Answer + Short Notes.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="fc-counter" class="px-3 py-1 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-mono text-xs sm:text-sm font-bold border border-cyan-500/20">
+                        Card 1 of 50
+                    </span>
+                </div>
+            </div>
+
+            <!-- 3D Flip Container -->
+            <div onclick="flipFlashcard()" class="perspective-1000 cursor-pointer select-none mb-6">
+                <div id="flashcard-inner" class="transform-style-3d relative w-full min-h-[340px] sm:min-h-[380px] rounded-3xl">
+                    
+                    <!-- Front of Flashcard (Question) -->
+                    <div class="backface-hidden absolute inset-0 bg-white dark:bg-navy-900 rounded-3xl border-2 border-slate-200 dark:border-slate-800 shadow-xl p-6 sm:p-10 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span id="fc-front-topic" class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs font-bold border border-cyan-500/20">
+                                Topic
+                            </span>
+                            <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
+                                <i class="fa-solid fa-rotate"></i> Click to Flip
+                            </span>
+                        </div>
+
+                        <div class="my-auto py-6">
+                            <p id="fc-front-question" class="text-xl sm:text-2xl font-bold text-center text-slate-800 dark:text-white leading-relaxed">
+                                Question text
+                            </p>
+                            <div id="fc-front-options" class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-xl mx-auto text-sm text-slate-600 dark:text-slate-300">
+                                <!-- Mini option preview -->
+                            </div>
+                        </div>
+
+                        <div class="text-center text-xs font-semibold text-cyan-600 dark:text-cyan-400">
+                            Tap anywhere on card to reveal Correct Answer & Hindi Explanation →
+                        </div>
+                    </div>
+
+                    <!-- Back of Flashcard (Answer & Explanation) -->
+                    <div class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-cyan-950 via-slate-900 to-navy-950 text-white rounded-3xl border-2 border-cyan-500/40 shadow-xl p-6 sm:p-10 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
+                                <i class="fa-solid fa-check-circle mr-1"></i>Verified PYQ Solution
+                            </span>
+                            <span class="text-xs font-semibold text-slate-400">
+                                <i class="fa-solid fa-rotate"></i> Click to Flip Back
+                            </span>
+                        </div>
+
+                        <div class="my-auto py-4 text-center">
+                            <p class="text-xs uppercase tracking-widest text-cyan-400 font-bold mb-2">Correct Answer</p>
+                            <div id="fc-back-answer" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mb-6">
+                                (B) Protons
+                            </div>
+                            <div class="max-w-xl mx-auto bg-white/5 rounded-2xl p-4 sm:p-5 border border-white/10 text-left">
+                                <p class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1.5">
+                                    <i class="fa-solid fa-lightbulb mr-1"></i>Step-by-Step Note:
+                                </p>
+                                <p id="fc-back-explanation" class="text-sm sm:text-base text-slate-200 leading-relaxed">
+                                    Explanation here
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="text-center text-xs text-slate-400">
+                            Anglo-Eastern Sponsorship Chemistry Marathon
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Flashcard Controls -->
+            <div class="flex items-center justify-between gap-4">
+                <button onclick="changeFlashcard(-1)" class="flex-1 py-3 px-4 rounded-2xl bg-white dark:bg-navy-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 font-bold text-sm transition flex items-center justify-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-arrow-left"></i> Previous Card
+                </button>
+                <button onclick="flipFlashcard()" class="py-3 px-6 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 font-bold text-sm transition">
+                    <i class="fa-solid fa-arrows-rotate mr-1"></i> Flip
+                </button>
+                <button onclick="changeFlashcard(1)" class="flex-1 py-3 px-4 rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-sm transition flex items-center justify-center gap-2 shadow-md">
+                    Next Card <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 3. INTERACTIVE STUDY NOTES BANK (ALL 50)   -->
+        <!-- ========================================== -->
+        <section id="view-notes" class="hidden space-y-5">
+            <!-- Search & Filter Header -->
+            <div class="bg-white dark:bg-navy-900 rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                <!-- Search Input -->
+                <div class="relative flex-1">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input id="notes-search-input" type="text" oninput="renderStudyNotes()" placeholder="Search across all 50 PYQs (e.g., Boyle, Isotope, pH, H2SO4, Valency, अम्ल)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                </div>
+
+                <!-- Category Filter & Self-Test Toggle -->
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <select id="notes-category-select" onchange="renderStudyNotes()" class="text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded-xl px-3.5 py-2.5 border border-slate-200 dark:border-slate-700 focus:outline-none">
+                        <option value="ALL">All Categories (50)</option>
+                        <option value="Atomic Structure">Atomic Structure & Quantum</option>
+                        <option value="Gas Laws & Matter">Gas Laws & States of Matter</option>
+                        <option value="Metals & Non-Metals">Metals, Non-Metals & Oxides</option>
+                        <option value="Acids, Bases & Salts">Acids, Bases & Salts</option>
+                        <option value="Periodic Table & Bonding">Periodic Table & Bonding</option>
+                    </select>
+
+                    <button id="toggle-all-answers-btn" onclick="toggleAllStudyAnswers()" class="px-4 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 text-xs sm:text-sm font-bold transition flex items-center gap-2">
+                        <i class="fa-regular fa-eye-slash"></i>
+                        <span id="toggle-answers-label">Hide Answers (Self-Test)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notes List Container -->
+            <div id="notes-list-container" class="space-y-4">
+                <!-- Populated dynamically with all 50 formatted cards -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- SCORECARD & ANALYTICS MODAL                -->
+    <!-- ========================================== -->
+    <div id="score-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-navy-900 rounded-3xl max-w-lg w-full border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden animate-pop">
+            <div class="bg-gradient-to-r from-cyan-600 to-blue-600 p-6 text-white flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-cyan-100">Anglo-Eastern Sponsorship</span>
+                    <h3 class="text-xl font-extrabold mt-0.5">Chemistry PYQ Performance Report</h3>
+                </div>
+                <button onclick="closeScoreModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-5">
+                <!-- Score Circle & Summary -->
+                <div class="grid grid-cols-3 gap-3 text-center">
+                    <div class="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+                        <p class="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400" id="modal-correct">0</p>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Correct</p>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/20">
+                        <p class="text-2xl font-extrabold text-rose-600 dark:text-rose-400" id="modal-wrong">0</p>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Incorrect</p>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <p class="text-2xl font-extrabold text-slate-700 dark:text-slate-200" id="modal-unanswered">50</p>
+                        <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">Unattempted</p>
+                    </div>
+                </div>
+
+                <!-- Accuracy & Grade -->
+                <div class="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-4 border border-slate-200 dark:border-slate-700/70 flex items-center justify-between">
+                    <div>
+                        <p class="text-xs font-bold uppercase text-slate-400">Overall Accuracy</p>
+                        <p id="modal-accuracy" class="text-2xl font-extrabold text-cyan-600 dark:text-cyan-400">0%</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs font-bold uppercase text-slate-400">Time Taken</p>
+                        <p id="modal-time" class="text-lg font-mono font-bold text-slate-700 dark:text-slate-200">00:00</p>
+                    </div>
+                </div>
+
+                <p id="modal-feedback-msg" class="text-sm text-center text-slate-600 dark:text-slate-300 font-medium">
+                    Keep practicing to master all 50 Anglo-Eastern Chemistry PYQs!
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-2.5 pt-2">
+                    <button onclick="closeScoreModal()" class="flex-1 py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-sm transition">
+                        Continue Practice
+                    </button>
+                    <button onclick="closeScoreModal(); retryMistakesOnly();" class="flex-1 py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm transition">
+                        <i class="fa-solid fa-rotate mr-1"></i> Retry Mistakes
+                    </button>
+                    <button onclick="closeScoreModal(); resetQuizState();" class="py-2.5 px-4 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm transition">
+                        Restart All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification (No native alert/confirm) -->
+    <div id="toast-box" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-2xl shadow-xl border border-slate-700 dark:border-slate-200 flex items-center gap-3 text-sm font-semibold transition-all">
+        <i id="toast-icon" class="fa-solid fa-circle-info text-cyan-400 dark:text-cyan-600"></i>
+        <span id="toast-msg">Notification</span>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- COMPLETE 50 QUESTIONS DATA & APPLICATION JS-->
+    <!-- ========================================== -->
+    <script>
+        /**
+         * All 50 Anglo-Eastern Sponsorship Exam Chemistry PYQs
+         * Every formula, subscript, superscript, and fraction uses clean HTML tags
+         * so there are zero raw LaTeX backslashes.
+         */
+        const QUESTIONS_DB = [
+            {
+                id: 1,
+                topic: "Atomic Number Definition",
+                category: "Atomic Structure",
+                question: "The atomic number of an element represents the number of:",
+                options: [
+                    "Neutrons",
+                    "Protons",
+                    "Electrons + Protons",
+                    "Mass number"
+                ],
+                correct: 1,
+                explanation: "किसी भी एलिमेंट का एटॉमिक नंबर (<span class='chem-eq'>Z</span>) उसके नाभिक में मौजूद <strong>प्रोटॉन्स की संख्या (Number of Protons)</strong> के बराबर होता है। उदासीन परमाणु (Neutral atom) में प्रोटॉन और इलेक्ट्रॉन की संख्या बराबर होती है।"
+            },
+            {
+                id: 2,
+                topic: "Isotopes vs Isobars",
+                category: "Atomic Structure",
+                question: "Two atoms having the same atomic number but different mass numbers are called:",
+                options: [
+                    "Isobars",
+                    "Isotopes",
+                    "Isotones",
+                    "Isomers"
+                ],
+                correct: 1,
+                explanation: "जिनका एटॉमिक नंबर (<span class='chem-eq'>Z</span>) समान हो लेकिन मास नंबर (<span class='chem-eq'>A</span>) अलग हो, उन्हें <strong>Isotopes (समस्थानिक)</strong> कहते हैं (उदा. Protium <span class='chem-eq'><sup>1</sup>H<sub>1</sub></span>, Deuterium <span class='chem-eq'><sup>2</sup>H<sub>1</sub></span>, Tritium <span class='chem-eq'><sup>3</sup>H<sub>1</sub></span>)। जिनका मास नंबर समान हो लेकिन एटॉमिक नंबर अलग हो, उन्हें <strong>Isobars (समभारिक)</strong> कहते हैं (उदा. Calcium-40 और Argon-40)।"
+            },
+            {
+                id: 3,
+                topic: "De Broglie Wavelength",
+                category: "Atomic Structure",
+                question: "According to De Broglie, the wavelength (<span class='chem-eq'>&lambda;</span>) of a particle is given by:",
+                options: [
+                    "<span class='chem-eq'>&lambda; = h &middot; mv</span>",
+                    "<span class='chem-eq'>&lambda; = </span><span class='math-frac'><span class='num'>h</span><span class='den'>mv</span></span>",
+                    "<span class='chem-eq'>&lambda; = </span><span class='math-frac'><span class='num'>mv</span><span class='den'>h</span></span>",
+                    "<span class='chem-eq'>&lambda; = </span><span class='math-frac'><span class='num'>h</span><span class='den'>m</span></span>"
+                ],
+                correct: 1,
+                explanation: "डी-ब्रोग्ली के अनुसार, गतिमान कण की तरंगदैर्ध्य (<span class='chem-eq'>&lambda;</span>) प्लैंक्स कांस्टेंट (<span class='chem-eq'>h</span>) के समानुपाती और संवेग यानी मोमेंटम (<span class='chem-eq'>p = mv</span>) के व्युत्क्रमानुपाती होती है: <span class='chem-eq'>&lambda; = h / mv</span>।"
+            },
+            {
+                id: 4,
+                topic: "Heisenberg's Uncertainty Principle",
+                category: "Atomic Structure",
+                question: "Heisenberg's Uncertainty Principle states that:",
+                options: [
+                    "Position and velocity cannot both be exactly known simultaneously",
+                    "Mass cannot be measured",
+                    "Energy is always constant",
+                    "Electrons move in a fixed path"
+                ],
+                correct: 0,
+                explanation: "हाइजेनबर्ग के अनिश्चितता सिद्धांत (<span class='chem-eq'>&Delta;x &middot; &Delta;p &ge; h / 4&pi;</span>) के अनुसार किसी भी गतिशील सूक्ष्म कण (जैसे इलेक्ट्रॉन) की <strong>स्थिति (Position)</strong> और <strong>वेग/संवेग (Velocity/Momentum)</strong> दोनों को एक ही समय पर पूर्ण सटीकता के साथ निर्धारित करना असंभव है।"
+            },
+            {
+                id: 5,
+                topic: "Boyle's Law",
+                category: "Gas Laws & Matter",
+                question: "Boyle's Law states that at constant temperature:",
+                options: [
+                    "<span class='chem-eq'>P &prop; V</span>",
+                    "<span class='chem-eq'>P &prop; T</span>",
+                    "<span class='chem-eq'>P &prop; </span><span class='math-frac'><span class='num'>1</span><span class='den'>V</span></span>",
+                    "<span class='chem-eq'>V &prop; T</span>"
+                ],
+                correct: 2,
+                explanation: "नियत तापमान (Constant Temperature) पर किसी गैस की निश्चित मात्रा का प्रेशर (<span class='chem-eq'>P</span>) उसके वॉल्यूम (<span class='chem-eq'>V</span>) के व्युत्क्रमानुपाती होता है (<span class='chem-eq'>P &prop; 1/V</span> या <span class='chem-eq'>P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></span>)।"
+            },
+            {
+                id: 6,
+                topic: "Charles's Law",
+                category: "Gas Laws & Matter",
+                question: "Charles's Law states that at constant pressure:",
+                options: [
+                    "<span class='chem-eq'>V &prop; T</span>",
+                    "<span class='chem-eq'>V &prop; </span><span class='math-frac'><span class='num'>1</span><span class='den'>T</span></span>",
+                    "<span class='chem-eq'>P &prop; V</span>",
+                    "<span class='chem-eq'>P &prop; T</span>"
+                ],
+                correct: 0,
+                explanation: "चार्ल्स के नियम के अनुसार, नियत दाब (Constant Pressure) पर किसी गैस का आयतन (<span class='chem-eq'>V</span>) उसके परम तापमान (<span class='chem-eq'>T</span> in Kelvin) के समानुपाती होता है (<span class='chem-eq'>V &prop; T</span> या <span class='chem-eq'>V<sub>1</sub>/T<sub>1</sub> = V<sub>2</sub>/T<sub>2</sub></span>)।"
+            },
+            {
+                id: 7,
+                topic: "SI Unit of Pressure",
+                category: "Gas Laws & Matter",
+                question: "The SI unit of pressure is:",
+                options: [
+                    "Pascal (<span class='chem-eq'>N/m<sup>2</sup></span>)",
+                    "Joule",
+                    "Watt",
+                    "Newton"
+                ],
+                correct: 0,
+                explanation: "<span class='chem-eq'>Pressure = </span><span class='math-frac'><span class='num'>Force</span><span class='den'>Area</span></span> = <span class='math-frac'><span class='num'>Newton</span><span class='den'>Meter<sup>2</sup></span></span> = <strong>Pascal (Pa)</strong>। (Joule कार्य/ऊर्जा का, Watt शक्ति का और Newton बल का मात्रक है)।"
+            },
+            {
+                id: 8,
+                topic: "Molar Volume at STP",
+                category: "Gas Laws & Matter",
+                question: "The molar volume of any ideal gas at STP is:",
+                options: [
+                    "<span class='chem-eq'>11.2 L</span>",
+                    "<span class='chem-eq'>22.4 L</span>",
+                    "<span class='chem-eq'>44.8 L</span>",
+                    "<span class='chem-eq'>2.24 L</span>"
+                ],
+                correct: 1,
+                explanation: "मानक ताप एवं दाब (STP: <span class='chem-eq'>273.15 K</span> और <span class='chem-eq'>1 atm</span> दाब) पर किसी भी आदर्श गैस (Ideal Gas) के 1 मोल का आयतन <strong><span class='chem-eq'>22.4 Liters</span></strong> होता है।"
+            },
+            {
+                id: 9,
+                topic: "States of Matter Property",
+                category: "Gas Laws & Matter",
+                question: "Which state of matter has a definite volume but no definite shape?",
+                options: [
+                    "Solid",
+                    "Liquid",
+                    "Gas",
+                    "Plasma"
+                ],
+                correct: 1,
+                explanation: "<strong>द्रव (Liquid)</strong> का आयतन (Volume) तो निश्चित होता है परंतु आकार (Shape) अनिश्चित होता है; इसे जिस पात्र में डाला जाता है, यह उसी का आकार ले लेता है।"
+            },
+            {
+                id: 10,
+                topic: "Solids Packing",
+                category: "Gas Laws & Matter",
+                question: "Particles in solids are:",
+                options: [
+                    "Closely packed",
+                    "Far apart",
+                    "Moderately spaced",
+                    "Randomly moving"
+                ],
+                correct: 0,
+                explanation: "ठोस (Solids) के कणों के बीच प्रबल अंतर-आणविक आकर्षण बल (Strong intermolecular forces) होता है, इसलिए इसके कण <strong>बहुत पास-पास (Closely packed)</strong> बंधे होते हैं।"
+            },
+            {
+                id: 11,
+                topic: "Reactivity Series",
+                category: "Metals & Non-Metals",
+                question: "Which of the following metals is most reactive?",
+                options: [
+                    "Gold",
+                    "Sodium",
+                    "Copper",
+                    "Silver"
+                ],
+                correct: 1,
+                explanation: "रिएक्टिविटी सीरीज़ में <strong>सोडियम (<span class='chem-eq'>Na</span>)</strong> सबसे ऊपर आता है और अत्यधिक सक्रिय होने के कारण हवा/नमी से तुरंत रिएक्ट कर लेता है, इसलिए इसे केरोसिन तेल (Kerosene oil) में डुबोकर रखा जाता है।"
+            },
+            {
+                id: 12,
+                topic: "Non-Metals Ion Formation",
+                category: "Metals & Non-Metals",
+                question: "Non-metals generally form:",
+                options: [
+                    "Positive ions (Cations)",
+                    "Negative ions (Anions)",
+                    "Neutral ions",
+                    "Double ions"
+                ],
+                correct: 1,
+                explanation: "अधातुएं (Non-metals) की विद्युत ऋणात्मकता अधिक होती है, इसलिए वे अपना अष्टक पूरा करने के लिए इलेक्ट्रॉन ग्रहण (Gain) करके <strong>ऋणायन यानी Negative ions (Anions)</strong> बनाती हैं (जैसे <span class='chem-eq'>Cl<sup>&minus;</sup>, O<sup>2&minus;</sup></span>)।"
+            },
+            {
+                id: 13,
+                topic: "Rusting Reaction Type",
+                category: "Metals & Non-Metals",
+                question: "Rusting of iron is an example of a/an:",
+                options: [
+                    "Reduction reaction",
+                    "Oxidation reaction",
+                    "Decomposition reaction",
+                    "Displacement reaction"
+                ],
+                correct: 1,
+                explanation: "लोहे में जंग लगना (Rusting of Iron) एक <strong>ऑक्सीकरण अभिक्रिया (Oxidation reaction)</strong> है, जिसमें लोहा वायुमंडलीय ऑक्सीजन और नमी (<span class='chem-eq'>H<sub>2</sub>O</span>) से क्रिया करके हाइड्रेटेड आयरन(III) ऑक्साइड (<span class='chem-eq'>Fe<sub>2</sub>O<sub>3</sub>&middot;xH<sub>2</sub>O</span>) बनाता है।"
+            },
+            {
+                id: 14,
+                topic: "Arrhenius Acid Definition",
+                category: "Acids, Bases & Salts",
+                question: "According to Arrhenius theory, an acid in water produces:",
+                options: [
+                    "<span class='chem-eq'>H<sup>+</sup></span> ions (or Hydronium ions <span class='chem-eq'>H<sub>3</sub>O<sup>+</sup></span>)",
+                    "<span class='chem-eq'>OH<sup>&minus;</sup></span> ions",
+                    "<span class='chem-eq'>Na<sup>+</sup></span> ions",
+                    "<span class='chem-eq'>Cl<sup>&minus;</sup></span> ions"
+                ],
+                correct: 0,
+                explanation: "आरहेनियस सिद्धांत के अनुसार, वे पदार्थ जो जलीय विलयन में घुलकर हाइड्रोजन आयन (<span class='chem-eq'>H<sup>+</sup></span>) या हाइड्रोनियम आयन (<span class='chem-eq'>H<sub>3</sub>O<sup>+</sup></span>) देते हैं, <strong>अम्ल (Acids)</strong> कहलाते हैं।"
+            },
+            {
+                id: 15,
+                topic: "Arrhenius Base Definition",
+                category: "Acids, Bases & Salts",
+                question: "According to Arrhenius theory, a base in water produces:",
+                options: [
+                    "<span class='chem-eq'>H<sup>+</sup></span> ions",
+                    "<span class='chem-eq'>OH<sup>&minus;</sup></span> ions",
+                    "<span class='chem-eq'>O<sup>2&minus;</sup></span> ions",
+                    "Hydronium ions"
+                ],
+                correct: 1,
+                explanation: "आरहेनियस के अनुसार, क्षार (Base) वे पदार्थ हैं जो जल में घुलकर <strong>हाइड्रॉक्साइड आयन (<span class='chem-eq'>OH<sup>&minus;</sup></span>)</strong> प्रदान करते हैं (उदा. <span class='chem-eq'>NaOH &rarr; Na<sup>+</sup> + OH<sup>&minus;</sup></span>)।"
+            },
+            {
+                id: 16,
+                topic: "Neutralization Reaction",
+                category: "Acids, Bases & Salts",
+                question: "The reaction between an acid and a base produces:",
+                options: [
+                    "Salt and Water",
+                    "Gas and Acid",
+                    "Only Water",
+                    "Base and Hydrogen"
+                ],
+                correct: 0,
+                explanation: "एसिड और बेस की परस्पर रिएक्शन को <strong>उदासीनीकरण अभिक्रिया (Neutralization Reaction)</strong> कहते हैं जिसमें लवण और जल (Salt & Water) बनते हैं: <span class='chem-eq'>HCl + NaOH &rarr; NaCl + H<sub>2</sub>O</span>।"
+            },
+            {
+                id: 17,
+                topic: "Strong Acids",
+                category: "Acids, Bases & Salts",
+                question: "Which of the following is a strong (mineral) acid?",
+                options: [
+                    "Acetic acid",
+                    "Hydrochloric acid (<span class='chem-eq'>HCl</span>)",
+                    "Carbonic acid",
+                    "Citric acid"
+                ],
+                correct: 1,
+                explanation: "<strong>हाइड्रोक्लोरिक एसिड (<span class='chem-eq'>HCl</span>)</strong> एक प्रबल खनिज अम्ल (Strong Mineral Acid) है जो जल में पूर्णतः आयनित हो जाता है। Acetic, Citric और Carbonic अम्ल दुर्बल अम्ल (Weak acids) हैं।"
+            },
+            {
+                id: 18,
+                topic: "Conjugate Base",
+                category: "Acids, Bases & Salts",
+                question: "The conjugate base of <span class='chem-eq'>H<sub>2</sub>SO<sub>4</sub></span> is:",
+                options: [
+                    "<span class='chem-eq'>SO<sub>4</sub><sup>2&minus;</sup></span>",
+                    "<span class='chem-eq'>HSO<sub>4</sub><sup>&minus;</sup></span>",
+                    "<span class='chem-eq'>H<sub>3</sub>SO<sub>4</sub><sup>+</sup></span>",
+                    "<span class='chem-eq'>H<sub>2</sub>SO<sub>3</sub></span>"
+                ],
+                correct: 1,
+                explanation: "ब्रॉन्स्टेड-लोरी सिद्धांत के अनुसार किसी अम्ल (Acid) में से <strong>एक <span class='chem-eq'>H<sup>+</sup></span> प्रोटॉन निकलने पर</strong> बचा हुआ भाग उसका संयुग्मी क्षार (Conjugate Base) कहलाता है: <span class='chem-eq'>H<sub>2</sub>SO<sub>4</sub> &minus; H<sup>+</sup> &rarr; HSO<sub>4</sub><sup>&minus;</sup></span>।"
+            },
+            {
+                id: 19,
+                topic: "Periodic Table Groups",
+                category: "Periodic Table & Bonding",
+                question: "Elements in the same group of the periodic table have the same:",
+                options: [
+                    "Atomic number",
+                    "Valence electrons",
+                    "Mass number",
+                    "Number of neutrons"
+                ],
+                correct: 1,
+                explanation: "आवर्त सारणी के एक ही समूह (Vertical Group) में मौजूद सभी तत्वों के बाहरी कोश में <strong>संयोजी इलेक्ट्रॉनों की संख्या (Valence electrons)</strong> समान होती है।"
+            },
+            {
+                id: 20,
+                topic: "Atomic Radius Trend in Period",
+                category: "Periodic Table & Bonding",
+                question: "Atomic radius generally decreases across a period (left to right) because:",
+                options: [
+                    "Nuclear charge increases",
+                    "Shells increase",
+                    "Electrons decrease",
+                    "Mass number decreases"
+                ],
+                correct: 0,
+                explanation: "आवर्त (Period) में बाएं से दाएं जाने पर कोशों की संख्या वही रहती है लेकिन <strong>प्रभावी नाभिकीय आवेश (Effective Nuclear Charge) बढ़ता है</strong>, जो बाहरी इलेक्ट्रॉनों को नाभिक की ओर खींचता है और परमाणु त्रिज्या घट जाती है।"
+            },
+            {
+                id: 21,
+                topic: "Atomic Radius Trend in Group",
+                category: "Periodic Table & Bonding",
+                question: "Atomic radius increases down a group because:",
+                options: [
+                    "Nuclear charge decreases",
+                    "New electron shells are added",
+                    "Electrons decrease",
+                    "Mass decreases"
+                ],
+                correct: 1,
+                explanation: "किसी समूह (Group) में ऊपर से नीचे जाने पर हर नए आवर्त के साथ <strong>नए इलेक्ट्रॉन कोश (New electron shells) जुड़ते जाते हैं</strong>, जिससे नाभिक और बाहरी कोश के बीच की दूरी बढ़ जाती है।"
+            },
+            {
+                id: 22,
+                topic: "Atomic Number 8 Element",
+                category: "Atomic Structure",
+                question: "The element with atomic number 8 is:",
+                options: [
+                    "Nitrogen",
+                    "Carbon",
+                    "Oxygen",
+                    "Fluorine"
+                ],
+                correct: 2,
+                explanation: "<strong>ऑक्सीजन (<span class='chem-eq'>O</span>)</strong> का परमाणु क्रमांक (Atomic Number) 8 होता है। (Carbon = 6, Nitrogen = 7, Oxygen = 8, Fluorine = 9)।"
+            },
+            {
+                id: 23,
+                topic: "Outermost Shell Electrons",
+                category: "Atomic Structure",
+                question: "The number of electrons in the outermost shell is called:",
+                options: [
+                    "Core electrons",
+                    "Mass electrons",
+                    "Valence electrons",
+                    "Free electrons"
+                ],
+                correct: 2,
+                explanation: "किसी परमाणु के सबसे बाहरी कक्ष (Outermost shell) में उपस्थित इलेक्ट्रॉनों को <strong>संयोजी इलेक्ट्रॉन (Valence electrons)</strong> कहते हैं जो रासायनिक बंध बनाने में भाग लेते हैं।"
+            },
+            {
+                id: 24,
+                topic: "Combined Gas Law",
+                category: "Gas Laws & Matter",
+                question: "Which gas law combines Boyle's Law and Charles's Law?",
+                options: [
+                    "Avogadro's Law",
+                    "Combined Gas Law",
+                    "Dalton's Law",
+                    "Gay-Lussac's Law"
+                ],
+                correct: 1,
+                explanation: "बॉयल के नियम (<span class='chem-eq'>P &prop; 1/V</span>) और चार्ल्स के नियम (<span class='chem-eq'>V &prop; T</span>) को एक साथ मिलाने पर <strong>Combined Gas Law</strong> (<span class='math-frac'><span class='num'>P<sub>1</sub>V<sub>1</sub></span><span class='den'>T<sub>1</sub></span></span> = <span class='math-frac'><span class='num'>P<sub>2</sub>V<sub>2</sub></span><span class='den'>T<sub>2</sub></span></span>) प्राप्त होता है।"
+            },
+            {
+                id: 25,
+                topic: "Gas Density Dependencies",
+                category: "Gas Laws & Matter",
+                question: "The density of a gas depends on:",
+                options: [
+                    "Volume only",
+                    "Temperature only",
+                    "Pressure and Temperature",
+                    "Mass only"
+                ],
+                correct: 2,
+                explanation: "गैस का घनत्व (<span class='chem-eq'>&rho; = PM / RT</span>) <strong>दाब (Pressure) और तापमान (Temperature)</strong> दोनों पर निर्भर करता है। डेंसिटी प्रेशर के समानुपाती (<span class='chem-eq'>&rho; &prop; P</span>) और टेम्परेचर के व्युत्क्रमानुपाती (<span class='chem-eq'>&rho; &prop; 1/T</span>) होती है।"
+            },
+            {
+                id: 26,
+                topic: "Metalloids Example",
+                category: "Metals & Non-Metals",
+                question: "Which of the following is a metalloid?",
+                options: [
+                    "Sodium",
+                    "Silicon",
+                    "Chlorine",
+                    "Magnesium"
+                ],
+                correct: 1,
+                explanation: "<strong>सिलिकॉन (Silicon - <span class='chem-eq'>Si</span>)</strong> एक उपधातु (Metalloid) और अर्धचालक (Semiconductor) है, जिसके गुण धातु (Metal) और अधातु (Non-metal) दोनों के बीच के होते हैं।"
+            },
+            {
+                id: 27,
+                topic: "Metals Conductivity",
+                category: "Metals & Non-Metals",
+                question: "Metals are generally:",
+                options: [
+                    "Poor conductors",
+                    "Good conductors",
+                    "Brittle",
+                    "Non-lustrous"
+                ],
+                correct: 1,
+                explanation: "धातुओं (Metals) में मुक्त इलेक्ट्रॉनों (Free mobile electrons) की उपस्थिति होती है, जिसके कारण वे ऊष्मा और विद्युत की <strong>सुचालक (Good conductors of heat and electricity)</strong> होती हैं।"
+            },
+            {
+                id: 28,
+                topic: "Highest Electronegativity Element",
+                category: "Periodic Table & Bonding",
+                question: "The element with the highest electronegativity in the periodic table is:",
+                options: [
+                    "Chlorine",
+                    "Oxygen",
+                    "Fluorine",
+                    "Nitrogen"
+                ],
+                correct: 2,
+                explanation: "पूरी आवर्त सारणी में <strong>फ्लोरीन (Fluorine - <span class='chem-eq'>F</span>)</strong> की विद्युत ऋणात्मकता (Electronegativity = 4.0 पॉलिंग स्केल पर) सबसे अधिक होती है।"
+            },
+            {
+                id: 29,
+                topic: "Ionization Energy Trend",
+                category: "Periodic Table & Bonding",
+                question: "Ionization energy generally __________ across a period.",
+                options: [
+                    "Decreases",
+                    "Increases",
+                    "Remains constant",
+                    "Fluctuates"
+                ],
+                correct: 1,
+                explanation: "आवर्त (Period) में बाएं से दाएं जाने पर परमाणु का आकार छोटा होता है और नाभिकीय आकर्षण बढ़ता है, इसलिए बाहरी कोश से इलेक्ट्रॉन निकालने के लिए आवश्यक <strong>आयनन ऊर्जा (Ionization Energy) बढ़ती (Increases) है</strong>।"
+            },
+            {
+                id: 30,
+                topic: "Abundant Gas in Air",
+                category: "Gas Laws & Matter",
+                question: "Which gas is most abundant in Earth's atmosphere?",
+                options: [
+                    "Oxygen",
+                    "Nitrogen",
+                    "Carbon dioxide",
+                    "Argon"
+                ],
+                correct: 1,
+                explanation: "पृथ्वी के वायुमंडल में <strong>नाइट्रोजन (<span class='chem-eq'>N<sub>2</sub></span>)</strong> सबसे प्रचुर मात्रा (लगभग <strong>78%</strong>) में पाई जाती है, जबकि ऑक्सीजन लगभग 21% और आर्गन 0.93% होती है।"
+            },
+            {
+                id: 31,
+                topic: "Neutral Oxide Example",
+                category: "Metals & Non-Metals",
+                question: "Which of the following is a neutral oxide?",
+                options: [
+                    "<span class='chem-eq'>Na<sub>2</sub>O</span>",
+                    "<span class='chem-eq'>SO<sub>2</sub></span>",
+                    "<span class='chem-eq'>CaO</span>",
+                    "<span class='chem-eq'>CO</span>"
+                ],
+                correct: 3,
+                explanation: "धात्विक ऑक्साइड (<span class='chem-eq'>Na<sub>2</sub>O, CaO</span>) क्षारीय होते हैं, अधात्विक ऑक्साइड (<span class='chem-eq'>SO<sub>2</sub></span>) अम्लीय होते हैं, लेकिन <strong>कार्बन मोनोऑक्साइड (<span class='chem-eq'>CO</span>)</strong>, <span class='chem-eq'>NO</span>, <span class='chem-eq'>N<sub>2</sub>O</span> और <span class='chem-eq'>H<sub>2</sub>O</span> <strong>उदासीन ऑक्साइड (Neutral Oxides)</strong> हैं।"
+            },
+            {
+                id: 32,
+                topic: "Oxygen Valency",
+                category: "Atomic Structure",
+                question: "The valency of oxygen (<span class='chem-eq'>Z = 8</span>) is:",
+                options: [
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+                ],
+                correct: 1,
+                explanation: "ऑक्सीजन (<span class='chem-eq'>Z = 8</span>) का इलेक्ट्रॉनिक विन्यास <span class='chem-eq'>2, 6</span> होता है। बाहरी कोश में अष्टक (8 इलेक्ट्रॉन) पूरा करने के लिए इसे 2 इलेक्ट्रॉनों की आवश्यकता होती है, अतः इसकी <strong>संयोजकता (Valency) 2</strong> होती है।"
+            },
+            {
+                id: 33,
+                topic: "Amphoteric Oxide Example",
+                category: "Metals & Non-Metals",
+                question: "Which of the following is an amphoteric oxide?",
+                options: [
+                    "<span class='chem-eq'>Al<sub>2</sub>O<sub>3</sub></span>",
+                    "<span class='chem-eq'>CaO</span>",
+                    "<span class='chem-eq'>Na<sub>2</sub>O</span>",
+                    "<span class='chem-eq'>SO<sub>2</sub></span>"
+                ],
+                correct: 0,
+                explanation: "जो ऑक्साइड अम्ल (Acid) और क्षार (Base) दोनों के साथ अभिक्रिया करके लवण व जल बनाते हैं, उन्हें <strong>उभयधर्मी ऑक्साइड (Amphoteric Oxides)</strong> कहते हैं। प्रमुख उदाहरण: <strong><span class='chem-eq'>Al<sub>2</sub>O<sub>3</sub></span> (एल्युमिनियम ऑक्साइड)</strong> और <span class='chem-eq'>ZnO</span> (जिंक ऑक्साइड)।"
+            },
+            {
+                id: 34,
+                topic: "Neutral Solution pH",
+                category: "Acids, Bases & Salts",
+                question: "The pH of a neutral solution is:",
+                options: [
+                    "0",
+                    "7",
+                    "14",
+                    "1"
+                ],
+                correct: 1,
+                explanation: "<span class='chem-eq'>25&deg;C</span> पर किसी उदासीन विलयन (Neutral solution जैसे शुद्ध जल) का <strong>pH मान 7</strong> होता है। (<span class='chem-eq'>pH &lt; 7</span> अम्लीय और <span class='chem-eq'>pH &gt; 7</span> क्षारीय होता है)।"
+            },
+            {
+                id: 35,
+                topic: "Litmus Indicator Action",
+                category: "Acids, Bases & Salts",
+                question: "Blue litmus turns red in a/an:",
+                options: [
+                    "Base",
+                    "Acid",
+                    "Neutral solution",
+                    "Salt solution"
+                ],
+                correct: 1,
+                explanation: "<strong>अम्ल (Acid)</strong> नीले लिटमस पेपर को लाल (Blue &rarr; Red) कर देता है, जबकि क्षार (Base) लाल लिटमस पेपर को नीला (Red &rarr; Blue) कर देता है।"
+            },
+            {
+                id: 36,
+                topic: "Acid in Vinegar",
+                category: "Acids, Bases & Salts",
+                question: "Which acid is present in vinegar?",
+                options: [
+                    "Hydrochloric acid",
+                    "Acetic acid (<span class='chem-eq'>CH<sub>3</sub>COOH</span>)",
+                    "Nitric acid",
+                    "Sulfuric acid"
+                ],
+                correct: 1,
+                explanation: "सिरके (Vinegar) में मुख्य रूप से 5–8% <strong>एसिटिक एसिड (<span class='chem-eq'>CH<sub>3</sub>COOH</span> / Ethanoic acid)</strong> पाया जाता है।"
+            },
+            {
+                id: 37,
+                topic: "Noble Gas Identification",
+                category: "Periodic Table & Bonding",
+                question: "Which of the following is a noble gas?",
+                options: [
+                    "Chlorine",
+                    "Neon",
+                    "Oxygen",
+                    "Nitrogen"
+                ],
+                correct: 1,
+                explanation: "<strong>नियॉन (Neon - <span class='chem-eq'>Ne</span>)</strong> आवर्त सारणी के समूह 18 (Zero Group) की एक अक्रिय/उत्कृष्ट गैस (Noble Gas) है। अन्य नोबल गैसें: <span class='chem-eq'>He, Ar, Kr, Xe, Rn</span>।"
+            },
+            {
+                id: 38,
+                topic: "Chemical Inertness of Noble Gases",
+                category: "Periodic Table & Bonding",
+                question: "Noble gases are chemically inert because:",
+                options: [
+                    "Their outer orbital is completely filled",
+                    "They have 1 electron",
+                    "They are metals",
+                    "They are unstable"
+                ],
+                correct: 0,
+                explanation: "नोबल गैसों का सबसे बाहरी कोश (Valence shell / orbital) <strong>पूर्ण रूप से भरा होता है (Octet या Duplet पूर्ण)</strong>, इसलिए वे इलेक्ट्रॉन का आदान-प्रदान नहीं करतीं और रासायनिक रूप से निष्क्रिय (Inert) होती हैं।"
+            },
+            {
+                id: 39,
+                topic: "Vigorous Water Reaction",
+                category: "Metals & Non-Metals",
+                question: "Which metal reacts vigorously with water?",
+                options: [
+                    "Copper",
+                    "Gold",
+                    "Sodium",
+                    "Silver"
+                ],
+                correct: 2,
+                explanation: "<strong>सोडियम (<span class='chem-eq'>Na</span>)</strong> एक अत्यधिक क्रियाशील क्षार धातु है जो ठंडे पानी के साथ भी बहुत तेजी से (Vigorously) अभिक्रिया करके सोडियम हाइड्रॉक्साइड और हाइड्रोजन गैस बनाती है: <span class='chem-eq'>2Na + 2H<sub>2</sub>O &rarr; 2NaOH + H<sub>2</sub>&uarr; + Heat</span>।"
+            },
+            {
+                id: 40,
+                topic: "Liquid Non-Metal at Room Temp",
+                category: "Metals & Non-Metals",
+                question: "Which non-metal is liquid at room temperature?",
+                options: [
+                    "Mercury",
+                    "Bromine",
+                    "Iodine",
+                    "Chlorine"
+                ],
+                correct: 1,
+                explanation: "याद रखें: <strong>ब्रोमीन (Bromine - <span class='chem-eq'>Br<sub>2</sub></span>)</strong> कमरे के तापमान पर द्रव अवस्था में पाया जाने वाला एकमात्र <strong>नॉन-मेटल (अधातु)</strong> है, जबकि मरकरी (Mercury - <span class='chem-eq'>Hg</span>) कमरे के तापमान पर लिक्विड <strong>मेटल (धातु)</strong> है।"
+            },
+            {
+                id: 41,
+                topic: "Electronic Configuration of Neon",
+                category: "Atomic Structure",
+                question: "The electronic configuration of Neon (<span class='chem-eq'>Z = 10</span>) is:",
+                options: [
+                    "2, 8",
+                    "2, 8, 1",
+                    "2, 6",
+                    "2, 8, 2"
+                ],
+                correct: 0,
+                explanation: "नियॉन का परमाणु क्रमांक 10 है। इसके प्रथम कोश (K shell) में 2 इलेक्ट्रॉन और द्वितीय कोश (L shell) में 8 इलेक्ट्रॉन होते हैं, अतः विन्यास <strong>2, 8</strong> है।"
+            },
+            {
+                id: 42,
+                topic: "Avogadro's Law",
+                category: "Gas Laws & Matter",
+                question: "Which gas law states that equal volumes of gases at the same temperature and pressure contain equal numbers of moles/molecules?",
+                options: [
+                    "Boyle's Law",
+                    "Charles's Law",
+                    "Avogadro's Law",
+                    "Gay-Lussac's Law"
+                ],
+                correct: 2,
+                explanation: "<strong>आवोगाद्रो के नियम (Avogadro's Law: <span class='chem-eq'>V &prop; n</span>)</strong> के अनुसार, समान ताप और दाब पर सभी गैसों के समान आयतन में अणुओं या मोलों (<span class='chem-eq'>n</span>) की संख्या समान होती है।"
+            },
+            {
+                id: 43,
+                topic: "Mass Number Definition",
+                category: "Atomic Structure",
+                question: "The number of protons and neutrons together in an atomic nucleus is called:",
+                options: [
+                    "Atomic number",
+                    "Mass number",
+                    "Valence number",
+                    "Charge number"
+                ],
+                correct: 1,
+                explanation: "किसी परमाणु के नाभिक में उपस्थित प्रोटॉन्स (<span class='chem-eq'>p</span>) और न्यूट्रॉन्स (<span class='chem-eq'>n</span>) की कुल संख्या के योग को <strong>द्रव्यमान संख्या (Mass Number, <span class='chem-eq'>A = p + n</span>)</strong> या न्यूक्लिऑन संख्या कहते हैं।"
+            },
+            {
+                id: 44,
+                topic: "Sodium Valency",
+                category: "Atomic Structure",
+                question: "The valency of Sodium (<span class='chem-eq'>Z = 11</span>) is:",
+                options: [
+                    "1",
+                    "2",
+                    "3",
+                    "0"
+                ],
+                correct: 0,
+                explanation: "सोडियम (<span class='chem-eq'>Z = 11</span>) का इलेक्ट्रॉनिक विन्यास <span class='chem-eq'>2, 8, 1</span> होता है। अपना अष्टक स्थायी करने के लिए यह बाहरी कोश का 1 इलेक्ट्रॉन त्याग देता है, इसलिए इसकी <strong>संयोजकता (Valency) 1</strong> है।"
+            },
+            {
+                id: 45,
+                topic: "Liquid Metal in Thermometer",
+                category: "Metals & Non-Metals",
+                question: "Which metal is used in traditional liquid thermometers?",
+                options: [
+                    "Sodium",
+                    "Mercury",
+                    "Copper",
+                    "Iron"
+                ],
+                correct: 1,
+                explanation: "<strong>मरकरी / पारा (Mercury - <span class='chem-eq'>Hg</span>)</strong> कमरे के तापमान पर द्रव अवस्था में रहने वाली धातु है और ऊष्मा की सुचालक तथा कांच पर न चिपकने के कारण इसका उपयोग थर्मामीटर और बैरोमीटर में किया जाता है।"
+            },
+            {
+                id: 46,
+                topic: "Property Decreasing Across Period",
+                category: "Periodic Table & Bonding",
+                question: "Which property generally decreases across a period (left to right)?",
+                options: [
+                    "Electronegativity",
+                    "Ionization energy",
+                    "Atomic radius",
+                    "Nuclear charge"
+                ],
+                correct: 2,
+                explanation: "आवर्त में बाएं से दाएं जाने पर नाभिकीय आवेश (Nuclear charge), आयनन ऊर्जा (Ionization energy) और विद्युत ऋणात्मकता (Electronegativity) तीनों बढ़ते हैं, जबकि <strong>परमाणु त्रिज्या (Atomic radius) घटती है</strong>।"
+            },
+            {
+                id: 47,
+                topic: "Halogen Group Element",
+                category: "Periodic Table & Bonding",
+                question: "Which element belongs to Group 17 (Halogens)?",
+                options: [
+                    "Sodium",
+                    "Chlorine",
+                    "Argon",
+                    "Calcium"
+                ],
+                correct: 1,
+                explanation: "फ्लोरीन (<span class='chem-eq'>F</span>), <strong>क्लोरीन (<span class='chem-eq'>Cl</span>)</strong>, ब्रोमीन (<span class='chem-eq'>Br</span>), आयोडीन (<span class='chem-eq'>I</span>) आवर्त सारणी के <strong>समूह 17 (Halogen Family - लवण बनाने वाले तत्व)</strong> के सदस्य हैं।"
+            },
+            {
+                id: 48,
+                topic: "Ideal Gas Equation",
+                category: "Gas Laws & Matter",
+                question: "The Ideal Gas equation is given by:",
+                options: [
+                    "<span class='chem-eq'>PV = nRT</span>",
+                    "<span class='chem-eq'>P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></span>",
+                    "<span class='chem-eq'>V / T = k</span>",
+                    "<span class='chem-eq'>P / T = k</span>"
+                ],
+                correct: 0,
+                explanation: "आदर्श गैस समीकरण (Ideal Gas Equation) <strong><span class='chem-eq'>PV = nRT</span></strong> है, जहाँ <span class='chem-eq'>P</span> = दाब, <span class='chem-eq'>V</span> = आयतन, <span class='chem-eq'>n</span> = गैस के मोलों की संख्या, <span class='chem-eq'>R</span> = सार्वत्रिक गैस नियतांक (<span class='chem-eq'>8.314 J&middot;mol<sup>&minus;1</sup>&middot;K<sup>&minus;1</sup></span>) और <span class='chem-eq'>T</span> = परम ताप (Kelvin) है।"
+            },
+            {
+                id: 49,
+                topic: "Bond Between Metal and Non-Metal",
+                category: "Periodic Table & Bonding",
+                question: "Which type of bond is formed between a metal and a non-metal?",
+                options: [
+                    "Covalent bond",
+                    "Ionic bond",
+                    "Metallic bond",
+                    "Hydrogen bond"
+                ],
+                correct: 1,
+                explanation: "धातु (Metal) से अधातु (Non-metal) में इलेक्ट्रॉनों के पूर्ण स्थानांतरण (Complete transfer of electrons) से <strong>आयनिक बंध (Ionic bond / Electrovalent bond)</strong> बनता है (उदा. <span class='chem-eq'>Na<sup>+</sup>Cl<sup>&minus;</sup></span>)।"
+            },
+            {
+                id: 50,
+                topic: "Conjugate Acid-Base Pair",
+                category: "Acids, Bases & Salts",
+                question: "Which of the following represents a conjugate acid-base pair?",
+                options: [
+                    "<span class='chem-eq'>HCl / Cl<sup>&minus;</sup></span>",
+                    "<span class='chem-eq'>NaOH / NaCl</span>",
+                    "<span class='chem-eq'>H<sub>2</sub>O / H<sub>2</sub>SO<sub>4</sub></span>",
+                    "<span class='chem-eq'>HNO<sub>3</sub> / NaNO<sub>3</sub></span>"
+                ],
+                correct: 0,
+                explanation: "संयुग्मी अम्ल-क्षार युग्म (Conjugate Acid-Base Pair) के सदस्यों में <strong>केवल एक प्रोटॉन (<span class='chem-eq'>H<sup>+</sup></span>) का अंतर</strong> होता है। <span class='chem-eq'>HCl</span> अम्ल है और एक <span class='chem-eq'>H<sup>+</sup></span> त्यागने के बाद बना <strong><span class='chem-eq'>Cl<sup>&minus;</sup></span></strong> उसका संयुग्मी क्षार (Conjugate base) है।"
+            }
+        ];
+
+        // ==========================================
+        // APPLICATION STATE
+        // ==========================================
+        let activeQuestions = [...QUESTIONS_DB];
+        let currentIndex = 0;
+        let userAnswers = {};      // { questionId: selectedOptionIndex }
+        let bookmarkedIds = new Set();
+        let instantFeedback = true;
+        let currentStreak = 0;
+        let currentAppMode = 'quiz'; // 'quiz' | 'flashcards' | 'notes'
+
+        // Flashcard State
+        let fcIndex = 0;
+        let isFcFlipped = false;
+
+        // Study Notes State
+        let hideAllNotesAnswers = false;
+
+        // Timer State
+        let elapsedSeconds = 0;
+        let timerInterval = null;
+
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            startTimer();
+            renderQuizQuestion();
+            renderPalette();
+            updateStatsUI();
+            renderFlashcard();
+            renderStudyNotes();
+
+            // Keyboard Navigation Support
+            window.addEventListener('keydown', handleKeyboardShortcuts);
+        });
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                elapsedSeconds++;
+                const mins = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
+                const secs = String(elapsedSeconds % 60).padStart(2, '0');
+                document.getElementById('timer-display').textContent = `${mins}:${secs}`;
+            }, 1000);
+        }
+
+        // ==========================================
+        // QUIZ RENDERING & INTERACTION LOGIC
+        // ==========================================
+        function renderQuizQuestion() {
+            if (activeQuestions.length === 0) {
+                document.getElementById('q-text').innerHTML = `<div class="text-center py-8 text-slate-400">No questions match this filter! Switching back to All 50 Questions...</div>`;
+                setTimeout(() => {
+                    document.getElementById('quiz-category-select').value = 'ALL';
+                    applyQuizFilter();
+                }, 1200);
+                return;
+            }
+
+            if (currentIndex >= activeQuestions.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = 0;
+
+            const q = activeQuestions[currentIndex];
+            const total = activeQuestions.length;
+
+            // Update Progress Bar
+            const pct = Math.round(((currentIndex + 1) / total) * 100);
+            document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
+
+            // Update Meta Badges
+            document.getElementById('q-number-badge').textContent = `Q.${q.id} (${currentIndex + 1}/${total})`;
+            document.getElementById('q-category-badge').textContent = q.category;
+            document.getElementById('q-topic-badge').textContent = q.topic;
+
+            // Update Bookmark Button
+            const bmIcon = document.getElementById('bookmark-icon');
+            const bmText = document.getElementById('bookmark-text');
+            const bmBtn = document.getElementById('bookmark-btn');
+            if (bookmarkedIds.has(q.id)) {
+                bmIcon.className = "fa-solid fa-star text-amber-400";
+                bmText.textContent = "Bookmarked";
+                bmBtn.classList.add('border-amber-500/40', 'bg-amber-500/10', 'text-amber-500');
+            } else {
+                bmIcon.className = "fa-regular fa-star";
+                bmText.textContent = "Bookmark";
+                bmBtn.classList.remove('border-amber-500/40', 'bg-amber-500/10', 'text-amber-500');
+            }
+
+            // Render Question Text
+            document.getElementById('q-text').innerHTML = q.question;
+
+            // Render Options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+            const userSelected = userAnswers[q.id];
+            const hasAnswered = userSelected !== undefined;
+
+            q.options.forEach((optHtml, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => selectOption(idx);
+
+                // Base Styling
+                let cardClasses = "w-full text-left p-4 rounded-xl border-2 transition-all flex items-center justify-between gap-3 group ";
+                let badgeClasses = "w-8 h-8 rounded-lg font-mono font-bold text-sm flex items-center justify-center shrink-0 transition-all ";
+                let statusIcon = "";
+
+                if (!hasAnswered) {
+                    cardClasses += "bg-slate-50/70 dark:bg-slate-800/50 hover:bg-cyan-500/5 dark:hover:bg-cyan-500/10 border-slate-200 dark:border-slate-700/80 hover:border-cyan-500 dark:hover:border-cyan-500 text-slate-800 dark:text-slate-100";
+                    badgeClasses += "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 group-hover:bg-cyan-600 group-hover:text-white group-hover:border-cyan-600";
+                } else if (instantFeedback) {
+                    // Show Correct / Wrong States
+                    if (idx === q.correct) {
+                        cardClasses += "bg-emerald-500/10 dark:bg-emerald-500/15 border-emerald-500 text-emerald-950 dark:text-emerald-100 font-semibold";
+                        badgeClasses += "bg-emerald-500 text-white";
+                        statusIcon = `<span class="text-emerald-500 font-bold text-xs sm:text-sm flex items-center gap-1 shrink-0"><i class="fa-solid fa-circle-check text-base"></i> Correct</span>`;
+                    } else if (idx === userSelected && userSelected !== q.correct) {
+                        cardClasses += "bg-rose-500/10 dark:bg-rose-500/15 border-rose-500 text-rose-950 dark:text-rose-100";
+                        badgeClasses += "bg-rose-500 text-white";
+                        statusIcon = `<span class="text-rose-500 font-bold text-xs sm:text-sm flex items-center gap-1 shrink-0"><i class="fa-solid fa-circle-xmark text-base"></i> Your Choice</span>`;
+                    } else {
+                        cardClasses += "bg-slate-50/40 dark:bg-slate-800/30 border-slate-200/60 dark:border-slate-800 text-slate-400 dark:text-slate-500 opacity-75";
+                        badgeClasses += "bg-slate-200 dark:bg-slate-800 text-slate-500";
+                    }
+                } else {
+                    // Exam mode (no instant color reveal until requested)
+                    if (idx === userSelected) {
+                        cardClasses += "bg-cyan-500/15 border-cyan-500 text-slate-900 dark:text-white font-semibold";
+                        badgeClasses += "bg-cyan-600 text-white";
+                        statusIcon = `<span class="text-cyan-500 font-semibold text-xs">Selected</span>`;
+                    } else {
+                        cardClasses += "bg-slate-50/70 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300";
+                        badgeClasses += "bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300";
+                    }
+                }
+
+                btn.className = cardClasses;
+                btn.innerHTML = `
+                    <div class="flex items-center gap-3.5">
+                        <span class="${badgeClasses}">${letters[idx]}</span>
+                        <span class="text-sm sm:text-base leading-snug">${optHtml}</span>
+                    </div>
+                    ${statusIcon}
+                `;
+                optionsContainer.appendChild(btn);
+            });
+
+            // Explanation Box Handling
+            const expBox = document.getElementById('explanation-box');
+            const expBadge = document.getElementById('exp-status-badge');
+            const expContent = document.getElementById('exp-content');
+
+            if (hasAnswered && instantFeedback) {
+                const isCorrect = userSelected === q.correct;
+                expBox.classList.remove('hidden');
+                if (isCorrect) {
+                    expBadge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold uppercase bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/30";
+                    expBadge.innerHTML = `<i class="fa-solid fa-check mr-1"></i>Spot On! (${letters[q.correct]})`;
+                } else {
+                    expBadge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold uppercase bg-rose-500/20 text-rose-600 dark:text-rose-300 border border-rose-500/30";
+                    expBadge.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i>Correct Option: (${letters[q.correct]})`;
+                }
+                expContent.innerHTML = q.explanation;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Prev / Next Button States
+            document.getElementById('prev-btn').disabled = currentIndex === 0;
+            document.getElementById('next-btn').disabled = currentIndex === total - 1;
+
+            renderPalette();
+        }
+
+        function selectOption(optionIdx) {
+            const q = activeQuestions[currentIndex];
+            const previouslyAnswered = userAnswers[q.id] !== undefined;
+
+            userAnswers[q.id] = optionIdx;
+
+            if (!previouslyAnswered) {
+                if (optionIdx === q.correct) {
+                    currentStreak++;
+                } else {
+                    currentStreak = 0;
+                }
+            }
+
+            renderQuizQuestion();
+            updateStatsUI();
+        }
+
+        function revealCurrentAnswer() {
+            const q = activeQuestions[currentIndex];
+            const letters = ['A', 'B', 'C', 'D'];
+            const expBox = document.getElementById('explanation-box');
+            const expBadge = document.getElementById('exp-status-badge');
+            const expContent = document.getElementById('exp-content');
+
+            expBox.classList.remove('hidden');
+            expBadge.className = "px-2.5 py-0.5 rounded-full text-xs font-bold uppercase bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30";
+            expBadge.innerHTML = `<i class="fa-solid fa-key mr-1"></i>Answer: (${letters[q.correct]}) ${q.options[q.correct]}`;
+            expContent.innerHTML = q.explanation;
+        }
+
+        function navigateQuestion(delta) {
+            const nextIdx = currentIndex + delta;
+            if (nextIdx >= 0 && nextIdx < activeQuestions.length) {
+                currentIndex = nextIdx;
+                renderQuizQuestion();
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            currentIndex = idx;
+            renderQuizQuestion();
+        }
+
+        // ==========================================
+        // PALETTE & STATS LOGIC
+        // ==========================================
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            grid.innerHTML = '';
+            document.getElementById('palette-count-label').textContent = `${activeQuestions.length} Questions`;
+
+            activeQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => jumpToQuestion(idx);
+
+                const ans = userAnswers[q.id];
+                const isCurrent = idx === currentIndex;
+                const isBookmarked = bookmarkedIds.has(q.id);
+
+                let cls = "h-9 rounded-lg font-mono text-xs font-bold transition-all relative flex items-center justify-center ";
+
+                if (ans !== undefined) {
+                    if (instantFeedback) {
+                        if (ans === q.correct) {
+                            cls += "bg-emerald-500 text-white shadow-sm ";
+                        } else {
+                            cls += "bg-rose-500 text-white shadow-sm ";
+                        }
+                    } else {
+                        cls += "bg-cyan-600 text-white ";
+                    }
+                } else {
+                    cls += "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 ";
+                }
+
+                if (isCurrent) {
+                    cls += "ring-2 ring-cyan-500 ring-offset-2 dark:ring-offset-navy-900 scale-105 ";
+                }
+
+                btn.className = cls;
+                btn.innerHTML = `
+                    <span>${q.id}</span>
+                    ${isBookmarked ? '<span class="w-2 h-2 rounded-full bg-amber-400 absolute -top-0.5 -right-0.5 ring-1 ring-white dark:ring-navy-900"></span>' : ''}
+                `;
+                grid.appendChild(btn);
+            });
+        }
+
+        function updateStatsUI() {
+            const totalAnswered = Object.keys(userAnswers).length;
+            let correctCount = 0;
+
+            QUESTIONS_DB.forEach(q => {
+                if (userAnswers[q.id] === q.correct) {
+                    correctCount++;
+                }
+            });
+
+            const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+
+            document.getElementById('stat-progress').textContent = `${totalAnswered} / 50`;
+            document.getElementById('stat-correct').textContent = `${correctCount}`;
+            document.getElementById('stat-accuracy').textContent = `${accuracy}%`;
+            document.getElementById('stat-streak').textContent = `${currentStreak} 🔥`;
+            document.getElementById('header-score').textContent = `${correctCount}/50`;
+        }
+
+        // ==========================================
+        // FILTERS, BOOKMARKS, SHUFFLE & RESET
+        // ==========================================
+        function toggleBookmarkCurrent() {
+            const q = activeQuestions[currentIndex];
+            if (bookmarkedIds.has(q.id)) {
+                bookmarkedIds.delete(q.id);
+                showToast(`Removed Q.${q.id} from Bookmarks`);
+            } else {
+                bookmarkedIds.add(q.id);
+                showToast(`Bookmarked Q.${q.id} for revision ★`);
+            }
+            renderQuizQuestion();
+        }
+
+        function applyQuizFilter() {
+            const filterVal = document.getElementById('quiz-category-select').value;
+
+            if (filterVal === 'ALL') {
+                activeQuestions = [...QUESTIONS_DB];
+            } else if (filterVal === 'BOOKMARKED') {
+                activeQuestions = QUESTIONS_DB.filter(q => bookmarkedIds.has(q.id));
+                if (activeQuestions.length === 0) {
+                    showToast("No bookmarked questions yet! Click ★ Bookmark on any question first.");
+                    document.getElementById('quiz-category-select').value = 'ALL';
+                    activeQuestions = [...QUESTIONS_DB];
+                }
+            } else if (filterVal === 'INCORRECT') {
+                activeQuestions = QUESTIONS_DB.filter(q => userAnswers[q.id] !== undefined && userAnswers[q.id] !== q.correct);
+                if (activeQuestions.length === 0) {
+                    showToast("Great job! You have no incorrect answers to retry right now.");
+                    document.getElementById('quiz-category-select').value = 'ALL';
+                    activeQuestions = [...QUESTIONS_DB];
+                }
+            } else {
+                activeQuestions = QUESTIONS_DB.filter(q => q.category === filterVal);
+            }
+
+            currentIndex = 0;
+            renderQuizQuestion();
+        }
+
+        function retryMistakesOnly() {
+            const mistakes = QUESTIONS_DB.filter(q => userAnswers[q.id] !== undefined && userAnswers[q.id] !== q.correct);
+            if (mistakes.length === 0) {
+                showToast("Zero mistakes found! Answer some questions or keep up the 100% accuracy.");
+                return;
+            }
+            // Clear previous wrong answers for those questions so user can re-attempt them fresh
+            mistakes.forEach(q => delete userAnswers[q.id]);
+            activeQuestions = mistakes;
+            currentIndex = 0;
+            updateStatsUI();
+            renderQuizQuestion();
+            showToast(`Loaded ${mistakes.length} incorrect question(s) for fresh retry!`);
+        }
+
+        function shuffleQuizQuestions() {
+            for (let i = activeQuestions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [activeQuestions[i], activeQuestions[j]] = [activeQuestions[j], activeQuestions[i]];
+            }
+            currentIndex = 0;
+            renderQuizQuestion();
+            showToast("Questions shuffled randomly!");
+        }
+
+        function toggleFeedbackMode() {
+            instantFeedback = !instantFeedback;
+            const label = document.getElementById('feedback-mode-label');
+            const btn = document.getElementById('mode-feedback-btn');
+            if (instantFeedback) {
+                label.textContent = "Instant Check: ON";
+                btn.className = "text-xs font-semibold px-3 py-1.5 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 flex items-center gap-1.5 transition";
+                showToast("Instant Answer & Explanation Mode Activated");
+            } else {
+                label.textContent = "Exam Mode: ON";
+                btn.className = "text-xs font-semibold px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 flex items-center gap-1.5 transition";
+                showToast("Exam Mode Activated: Answers hidden until Scorecard or Show Note");
+            }
+            renderQuizQuestion();
+        }
+
+        function confirmResetQuiz() {
+            resetQuizState();
+            showToast("Quiz progress reset to 0/50!");
+        }
+
+        function resetQuizState() {
+            userAnswers = {};
+            currentStreak = 0;
+            elapsedSeconds = 0;
+            activeQuestions = [...QUESTIONS_DB];
+            document.getElementById('quiz-category-select').value = 'ALL';
+            currentIndex = 0;
+            updateStatsUI();
+            renderQuizQuestion();
+        }
+
+        // ==========================================
+        // 3D FLASHCARDS LOGIC
+        // ==========================================
+        function renderFlashcard() {
+            const q = QUESTIONS_DB[fcIndex];
+            const letters = ['A', 'B', 'C', 'D'];
+
+            // Reset Flip State
+            isFcFlipped = false;
+            document.getElementById('flashcard-inner').classList.remove('flipped');
+
+            document.getElementById('fc-counter').textContent = `Card ${q.id} of ${QUESTIONS_DB.length}`;
+            document.getElementById('fc-front-topic').textContent = `${q.category} • ${q.topic}`;
+            document.getElementById('fc-front-question').innerHTML = `${q.id}. ${q.question}`;
+
+            const optsHtml = q.options.map((opt, idx) => `
+                <div class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium">
+                    <span class="font-bold text-cyan-600 dark:text-cyan-400 mr-1">(${letters[idx]})</span> ${opt}
+                </div>
+            `).join('');
+            document.getElementById('fc-front-options').innerHTML = optsHtml;
+
+            document.getElementById('fc-back-answer').innerHTML = `(${letters[q.correct]}) ${q.options[q.correct]}`;
+            document.getElementById('fc-back-explanation').innerHTML = q.explanation;
+        }
+
+        function flipFlashcard() {
+            isFcFlipped = !isFcFlipped;
+            const inner = document.getElementById('flashcard-inner');
+            if (isFcFlipped) {
+                inner.classList.add('flipped');
+            } else {
+                inner.classList.remove('flipped');
+            }
+        }
+
+        function changeFlashcard(delta) {
+            fcIndex = (fcIndex + delta + QUESTIONS_DB.length) % QUESTIONS_DB.length;
+            renderFlashcard();
+        }
+
+        // ==========================================
+        // STUDY NOTES BANK (ALL 50) LOGIC
+        // ==========================================
+        function renderStudyNotes() {
+            const searchQuery = (document.getElementById('notes-search-input').value || '').toLowerCase().trim();
+            const catFilter = document.getElementById('notes-category-select').value;
+            const container = document.getElementById('notes-list-container');
+            const letters = ['A', 'B', 'C', 'D'];
+
+            const filtered = QUESTIONS_DB.filter(q => {
+                const matchesCat = catFilter === 'ALL' || q.category === catFilter;
+                const plainText = `${q.id} ${q.topic} ${q.category} ${q.question} ${q.options.join(' ')} ${q.explanation}`.toLowerCase();
+                const matchesSearch = !searchQuery || plainText.includes(searchQuery);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-8 text-center border border-slate-200 dark:border-slate-800">
+                        <p class="text-base font-bold text-slate-600 dark:text-slate-300">No matching Chemistry questions found.</p>
+                        <p class="text-xs text-slate-400 mt-1">Try searching another keyword or selecting "All Categories".</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(q => {
+                const optionsGrid = q.options.map((opt, idx) => {
+                    const isCorrect = idx === q.correct;
+                    const highlightClass = (!hideAllNotesAnswers && isCorrect)
+                        ? "bg-emerald-500/10 border-emerald-500/50 text-emerald-900 dark:text-emerald-300 font-semibold"
+                        : "bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700/70 text-slate-700 dark:text-slate-300";
+                    return `
+                        <div class="px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm flex items-center justify-between ${highlightClass}">
+                            <span><strong class="mr-1.5">(${letters[idx]})</strong>${opt}</span>
+                            ${(!hideAllNotesAnswers && isCorrect) ? '<i class="fa-solid fa-check text-emerald-500"></i>' : ''}
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="bg-white dark:bg-navy-900 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-cyan-500/40 transition">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2.5 py-1 rounded-lg bg-cyan-600 text-white font-mono text-xs font-bold">
+                                    #${q.id}
+                                </span>
+                                <span class="text-sm sm:text-base font-extrabold text-cyan-600 dark:text-cyan-400">
+                                    ${q.topic}
+                                </span>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-semibold border border-slate-200 dark:border-slate-700">
+                                ${q.category}
+                            </span>
+                        </div>
+
+                        <p class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4">
+                            ${q.question}
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
+                            ${optionsGrid}
+                        </div>
+
+                        <!-- Answer & Explanation Accordion / Box -->
+                        <div id="note-ans-${q.id}" class="${hideAllNotesAnswers ? 'hidden' : ''} rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-cyan-500/20 p-4">
+                            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                                <span class="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                                    Correct Answer: (${letters[q.correct]}) ${q.options[q.correct]}
+                                </span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+                                <strong class="text-cyan-600 dark:text-cyan-400">Explanation:</strong> ${q.explanation}
+                            </p>
+                        </div>
+
+                        ${hideAllNotesAnswers ? `
+                            <button onclick="document.getElementById('note-ans-${q.id}').classList.toggle('hidden')" class="mt-2 text-xs font-bold text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1">
+                                <i class="fa-regular fa-eye"></i> Reveal Answer & Explanation
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleAllStudyAnswers() {
+            hideAllNotesAnswers = !hideAllNotesAnswers;
+            const label = document.getElementById('toggle-answers-label');
+            if (hideAllNotesAnswers) {
+                label.textContent = "Show All Answers";
+                showToast("Answers hidden for self-testing!");
+            } else {
+                label.textContent = "Hide Answers (Self-Test)";
+                showToast("All answers & explanations visible!");
+            }
+            renderStudyNotes();
+        }
+
+        // ==========================================
+        // VIEW SWITCHER, MODAL, THEME & SHORTCUTS
+        // ==========================================
+        function switchAppMode(mode) {
+            currentAppMode = mode;
+            const views = {
+                quiz: document.getElementById('view-quiz'),
+                flashcards: document.getElementById('view-flashcards'),
+                notes: document.getElementById('view-notes')
+            };
+            const tabs = {
+                quiz: document.getElementById('tab-quiz'),
+                flashcards: document.getElementById('tab-flashcards'),
+                notes: document.getElementById('tab-notes')
+            };
+
+            Object.keys(views).forEach(k => {
+                if (k === mode) {
+                    views[k].classList.remove('hidden');
+                    tabs[k].className = "flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-cyan-600 text-cyan-600 dark:text-white shadow-sm";
+                } else {
+                    views[k].classList.add('hidden');
+                    tabs[k].className = "flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white";
+                }
+            });
+        }
+
+        function openScoreModal() {
+            const totalAnswered = Object.keys(userAnswers).length;
+            let correctCount = 0;
+            let wrongCount = 0;
+
+            QUESTIONS_DB.forEach(q => {
+                if (userAnswers[q.id] !== undefined) {
+                    if (userAnswers[q.id] === q.correct) correctCount++;
+                    else wrongCount++;
+                }
+            });
+
+            const unanswered = QUESTIONS_DB.length - totalAnswered;
+            const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+
+            document.getElementById('modal-correct').textContent = correctCount;
+            document.getElementById('modal-wrong').textContent = wrongCount;
+            document.getElementById('modal-unanswered').textContent = unanswered;
+            document.getElementById('modal-accuracy').textContent = `${accuracy}%`;
+            document.getElementById('modal-time').textContent = document.getElementById('timer-display').textContent;
+
+            const msgEl = document.getElementById('modal-feedback-msg');
+            if (totalAnswered === 0) {
+                msgEl.textContent = "You haven't attempted any questions yet. Start clicking options to test yourself!";
+            } else if (accuracy >= 85) {
+                msgEl.textContent = "Outstanding Cadet! You have strong command over Anglo-Eastern Sponsorship Chemistry PYQs!";
+            } else if (accuracy >= 60) {
+                msgEl.textContent = "Good effort! Review the explanations for your incorrect answers to hit 90%+.";
+            } else {
+                msgEl.textContent = "Keep practicing! Use the Study Bank & 3D Flashcards mode to revise formulas and concepts.";
+            }
+
+            document.getElementById('score-modal').classList.remove('hidden');
+        }
+
+        function closeScoreModal() {
+            document.getElementById('score-modal').classList.add('hidden');
+        }
+
+        function toggleTheme() {
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                icon.className = "fa-solid fa-moon text-slate-700";
+            } else {
+                htmlEl.classList.add('dark');
+                icon.className = "fa-solid fa-sun text-amber-400";
+            }
+        }
+
+        function showToast(message) {
+            const box = document.getElementById('toast-box');
+            document.getElementById('toast-msg').textContent = message;
+            box.classList.remove('hidden');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                box.classList.add('hidden');
+            }, 2600);
+        }
+
+        function handleKeyboardShortcuts(e) {
+            // Ignore shortcuts when typing in search input
+            if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+
+            if (currentAppMode === 'quiz') {
+                const key = e.key.toUpperCase();
+                if (key === '1' || key === 'A') selectOption(0);
+                else if (key === '2' || key === 'B') selectOption(1);
+                else if (key === '3' || key === 'C') selectOption(2);
+                else if (key === '4' || key === 'D') selectOption(3);
+                else if (e.key === 'ArrowRight') navigateQuestion(1);
+                else if (e.key === 'ArrowLeft') navigateQuestion(-1);
+            } else if (currentAppMode === 'flashcards') {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    flipFlashcard();
+                } else if (e.key === 'ArrowRight') {
+                    changeFlashcard(1);
+                } else if (e.key === 'ArrowLeft') {
+                    changeFlashcard(-1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

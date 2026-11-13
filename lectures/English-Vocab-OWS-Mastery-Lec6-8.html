@@ -1,0 +1,2544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parmar SSC - One Word Substitution Mastery (Lec 6-8)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti for Quiz Victory -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            accent: {
+              red: '#ef4444',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              purple: '#8b5cf6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 3D Flip Card Effect */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    /* Smooth scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100,116,139,0.3);
+      border-radius: 9999px;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .dark .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen transition-colors duration-200 font-sans selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-200/80 dark:border-slate-800/80 px-4 lg:px-8 py-3 transition-colors">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchView('explore')">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-brand-500/25">
+          <i class="ph-bold ph-graduation-cap text-2xl"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-white">
+              Parmar SSC <span class="text-brand-600 dark:text-brand-400">OWS Master</span>
+            </h1>
+            <span class="text-xs bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 font-bold px-2 py-0.5 rounded-full border border-brand-200 dark:border-brand-700">Lec 6 • 7 • 8</span>
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Exam Oriented One Word Substitutions with Roots & Quiz</p>
+        </div>
+      </div>
+
+      <!-- Main Navigation Buttons -->
+      <nav class="hidden md:flex items-center gap-1 bg-slate-200/60 dark:bg-slate-800/60 p-1 rounded-xl">
+        <button onclick="switchView('explore')" id="nav-btn-explore" class="nav-tab active px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-all">
+          <i class="ph-bold ph-book-open mr-1.5"></i>Explorer
+        </button>
+        <button onclick="switchView('flashcards')" id="nav-btn-flashcards" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-all">
+          <i class="ph-bold ph-cards mr-1.5"></i>Cards
+        </button>
+        <button onclick="switchView('quiz')" id="nav-btn-quiz" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-all">
+          <i class="ph-bold ph-lightning mr-1.5"></i>SSC Quiz
+        </button>
+        <button onclick="switchView('match')" id="nav-btn-match" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-all">
+          <i class="ph-bold ph-puzzle-piece mr-1.5"></i>Match Match
+        </button>
+        <button onclick="switchView('spelling')" id="nav-btn-spelling" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-all">
+          <i class="ph-bold ph-spell-check mr-1.5"></i>Spell Check
+        </button>
+      </nav>
+
+      <!-- Right Actions: Bookmarks & Dark Mode -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleBookmarkDrawer()" title="View Starred Words" class="relative p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">
+          <i class="ph-bold ph-bookmark-simple text-xl"></i>
+          <span id="star-badge" class="absolute -top-1 -right-1 bg-accent-amber text-slate-900 font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-slate-900 hidden">0</span>
+        </button>
+        <button onclick="toggleDarkMode()" title="Toggle Dark/Light" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition">
+          <i id="theme-icon" class="ph-bold ph-moon text-xl"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Row -->
+    <div class="flex md:hidden items-center justify-around gap-1 pt-2.5 mt-2 border-t border-slate-200 dark:border-slate-800 text-xs font-semibold">
+      <button onclick="switchView('explore')" id="m-nav-explore" class="m-nav-tab text-brand-600 dark:text-brand-400 flex flex-col items-center py-1">
+        <i class="ph-bold ph-book-open text-lg"></i><span>Explorer</span>
+      </button>
+      <button onclick="switchView('flashcards')" id="m-nav-flashcards" class="m-nav-tab text-slate-500 dark:text-slate-400 flex flex-col items-center py-1">
+        <i class="ph-bold ph-cards text-lg"></i><span>Cards</span>
+      </button>
+      <button onclick="switchView('quiz')" id="m-nav-quiz" class="m-nav-tab text-slate-500 dark:text-slate-400 flex flex-col items-center py-1">
+        <i class="ph-bold ph-lightning text-lg"></i><span>Quiz</span>
+      </button>
+      <button onclick="switchView('match')" id="m-nav-match" class="m-nav-tab text-slate-500 dark:text-slate-400 flex flex-col items-center py-1">
+        <i class="ph-bold ph-puzzle-piece text-lg"></i><span>Match</span>
+      </button>
+      <button onclick="switchView('spelling')" id="m-nav-spelling" class="m-nav-tab text-slate-500 dark:text-slate-400 flex flex-col items-center py-1">
+        <i class="ph-bold ph-spell-check text-lg"></i><span>Spell</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6">
+
+    <!-- ==================== VIEW 1: EXPLORER / VOCAB DATABASE ==================== -->
+    <section id="view-explore" class="space-y-6">
+      
+      <!-- Banner & Quick Filters -->
+      <div class="bg-gradient-to-br from-brand-600 via-indigo-600 to-indigo-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-brand-700/15 relative overflow-hidden">
+        <div class="absolute -right-8 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="max-w-2xl relative z-10">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md mb-3 text-brand-100">
+            <i class="ph-fill ph-sparkle"></i> SSC CGL / CHSL / CPO / STENO Oriented
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-display font-extrabold tracking-tight">Complete OWS Dictionary: Lec 6, 7 & 8</h2>
+          <p class="mt-2 text-brand-100 text-sm sm:text-base leading-relaxed">Master 150+ high-frequency One Word Substitutions, their Greek & Latin roots, synonyms, and SSC exam definitions.</p>
+        </div>
+      </div>
+
+      <!-- Search & Filters Tooling -->
+      <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
+        
+        <div class="flex flex-col sm:flex-row items-center gap-3">
+          <!-- Search input -->
+          <div class="relative w-full">
+            <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+            <input 
+              type="text" 
+              id="search-input" 
+              oninput="handleSearch(this.value)" 
+              placeholder="Search word, meaning, Hindi meaning or root (e.g. 'cide', 'theocracy', 'doctor')..." 
+              class="w-full pl-11 pr-10 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition shadow-inner">
+            <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+              <i class="ph-bold ph-x-circle text-lg"></i>
+            </button>
+          </div>
+
+          <!-- Total Count Badge -->
+          <div class="shrink-0 flex items-center gap-2 text-xs font-bold px-3 py-2 bg-slate-200/70 dark:bg-slate-800 rounded-xl text-slate-700 dark:text-slate-300">
+            <i class="ph-fill ph-book-bookmark text-brand-600"></i>
+            <span id="filtered-count">Showing 0 words</span>
+          </div>
+        </div>
+
+        <!-- Lecture Pills Filter -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1">Lecture:</span>
+          <button onclick="setLectureFilter('all')" data-lec="all" class="lec-btn active-filter px-3 py-1.5 rounded-lg text-xs font-bold border transition">All Lectures</button>
+          <button onclick="setLectureFilter(6)" data-lec="6" class="lec-btn px-3 py-1.5 rounded-lg text-xs font-bold border transition">Lec 6 (God/Water/Professions)</button>
+          <button onclick="setLectureFilter(7)" data-lec="7" class="lec-btn px-3 py-1.5 rounded-lg text-xs font-bold border transition">Lec 7 (Logy/Female/Children)</button>
+          <button onclick="setLectureFilter(8)" data-lec="8" class="lec-btn px-3 py-1.5 rounded-lg text-xs font-bold border transition">Lec 8 (Objects/Specialists/Rule)</button>
+        </div>
+
+        <!-- Category Dropdown / Sub-filters -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 mr-1">Category:</span>
+          <div id="category-pills" class="flex items-center gap-1.5 flex-nowrap shrink-0">
+            <!-- Dynamic Category Pills injected here -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Vocabulary Grid -->
+      <div id="vocab-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </section>
+
+
+    <!-- ==================== VIEW 2: FLASHCARDS ==================== -->
+    <section id="view-flashcards" class="hidden space-y-6">
+      
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+        <div>
+          <h2 class="text-xl font-display font-bold">Interactive OWS Flashcards</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Click or press Spacebar to flip the card. Practice active recall.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <select id="flashcard-filter-lec" onchange="initFlashcards()" class="text-xs font-semibold px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none">
+            <option value="all">All Lectures (6, 7 & 8)</option>
+            <option value="6">Lecture 6 Only</option>
+            <option value="7">Lecture 7 Only</option>
+            <option value="8">Lecture 8 Only</option>
+            <option value="starred">⭐ Starred Only</option>
+          </select>
+          <button onclick="shuffleFlashcards()" class="px-3 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold transition flex items-center gap-1">
+            <i class="ph-bold ph-shuffle"></i> Shuffle
+          </button>
+        </div>
+      </div>
+
+      <!-- Flashcard Deck Area -->
+      <div class="flex flex-col items-center justify-center py-4">
+        
+        <!-- The Card -->
+        <div id="flashcard-container" onclick="flipFlashcard()" class="w-full max-w-xl h-80 sm:h-96 perspective-1000 cursor-pointer group">
+          <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-3xl transition-transform">
+            
+            <!-- Front Face -->
+            <div class="absolute inset-0 w-full h-full backface-hidden rounded-3xl glass-card border-2 border-brand-200 dark:border-slate-800 p-6 flex flex-col justify-between items-center text-center">
+              <div class="w-full flex items-center justify-between text-xs text-slate-400 font-semibold">
+                <span id="fc-category" class="bg-brand-100 dark:bg-brand-950/80 text-brand-700 dark:text-brand-300 px-2.5 py-1 rounded-full font-bold">Category</span>
+                <span id="fc-lecture" class="text-slate-400 font-medium">Lec 6</span>
+              </div>
+
+              <div class="space-y-3">
+                <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold">What does this mean?</span>
+                <h3 id="fc-word" class="text-3xl sm:text-4xl font-display font-extrabold text-brand-600 dark:text-brand-400 tracking-tight">Word</h3>
+                <div id="fc-pronounce" class="text-xs text-slate-500 dark:text-slate-400 italic font-mono"></div>
+                <div id="fc-hindi" class="inline-block px-3 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-lg text-sm font-semibold">हिंदी संदर्भ</div>
+              </div>
+
+              <div class="text-xs text-slate-400 flex items-center gap-1.5 font-medium animate-pulse">
+                <i class="ph-bold ph-hand-tap text-base"></i> Tap to reveal meaning & root
+              </div>
+            </div>
+
+            <!-- Back Face -->
+            <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 text-white border-2 border-brand-500 p-6 flex flex-col justify-between items-center text-center shadow-2xl">
+              <div class="w-full flex items-center justify-between text-xs text-slate-400 font-semibold">
+                <span id="fc-back-word" class="text-brand-400 font-bold text-sm tracking-wide">Word</span>
+                <span class="text-emerald-400 font-medium flex items-center gap-1"><i class="ph-bold ph-check"></i> Answer</span>
+              </div>
+
+              <div class="space-y-3 max-w-md">
+                <p id="fc-meaning" class="text-lg sm:text-xl font-medium leading-relaxed text-slate-100">Definition goes here</p>
+                <div id="fc-root" class="bg-white/10 px-3 py-1.5 rounded-xl text-xs text-indigo-300 font-mono inline-block">Root breakdown</div>
+                <div id="fc-notes" class="text-xs text-slate-400 italic">Exam tip or related words</div>
+              </div>
+
+              <div class="text-xs text-slate-400 flex items-center gap-1.5 font-medium">
+                <i class="ph-bold ph-arrows-counter-clockwise"></i> Tap to flip back
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Progress and Navigation Controls -->
+        <div class="flex items-center gap-4 mt-6">
+          <button onclick="prevFlashcard()" class="p-3 rounded-2xl glass-card border border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 transition active:scale-95">
+            <i class="ph-bold ph-arrow-left text-xl"></i>
+          </button>
+          
+          <div class="text-center font-mono font-bold text-sm px-4">
+            <span id="fc-index" class="text-brand-600 dark:text-brand-400">1</span> / <span id="fc-total">150</span>
+          </div>
+
+          <button onclick="nextFlashcard()" class="p-3 rounded-2xl glass-card border border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 transition active:scale-95">
+            <i class="ph-bold ph-arrow-right text-xl"></i>
+          </button>
+        </div>
+
+        <!-- Star / Mark as known buttons -->
+        <div class="flex items-center gap-3 mt-4">
+          <button onclick="toggleCardStar()" id="fc-star-btn" class="px-4 py-2 rounded-xl text-xs font-bold border border-amber-400/40 text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 flex items-center gap-1.5 transition">
+            <i class="ph-bold ph-star text-base"></i> Star for Revision
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================== VIEW 3: SSC QUIZ SIMULATOR ==================== -->
+    <section id="view-quiz" class="hidden space-y-6">
+
+      <!-- Quiz Setup Screen -->
+      <div id="quiz-setup-box" class="glass-card max-w-xl mx-auto p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl space-y-6 text-center">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-3xl">
+          <i class="ph-bold ph-seal-question"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl font-display font-extrabold text-slate-900 dark:text-white">SSC OWS Practice Test</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Simulate real SSC exam questions with instant score, negative marking option, timer & explanations.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left text-xs font-semibold">
+          <div>
+            <label class="block text-slate-500 dark:text-slate-400 mb-1">Select Lecture</label>
+            <select id="quiz-lecture-select" class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <option value="all">All Lectures (Lec 6, 7 & 8)</option>
+              <option value="6">Lec 6 (God, Water, Profession)</option>
+              <option value="7">Lec 7 (Sciences, Female, Children)</option>
+              <option value="8">Lec 8 (Objects, Specialists, Cracy)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-slate-500 dark:text-slate-400 mb-1">Number of Questions</label>
+            <select id="quiz-count-select" class="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+              <option value="10">10 Questions (Quick drill)</option>
+              <option value="20" selected>20 Questions (Standard)</option>
+              <option value="30">30 Questions (Deep test)</option>
+              <option value="50">50 Questions (Full Marathon)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 text-left text-xs text-slate-500 space-y-1">
+          <p class="flex items-center gap-1 font-bold text-slate-700 dark:text-slate-300">
+            <i class="ph-fill ph-info text-brand-500"></i> SSC Marking Scheme:
+          </p>
+          <p>+2.0 Marks for Correct Answer • -0.50 Negative marking for Wrong</p>
+        </div>
+
+        <button onclick="startQuiz()" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm tracking-wide shadow-lg shadow-brand-500/30 transition active:scale-[0.99] flex items-center justify-center gap-2">
+          <i class="ph-bold ph-play"></i> Start SSC Practice Quiz
+        </button>
+      </div>
+
+      <!-- Quiz Active Playing Box -->
+      <div id="quiz-play-box" class="hidden max-w-3xl mx-auto space-y-5">
+        
+        <!-- Header Info (Progress, Score, Timer) -->
+        <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs font-bold">
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400">Question</span>
+            <span id="quiz-current-num" class="text-brand-600 dark:text-brand-400 font-extrabold text-base">1</span>
+            <span class="text-slate-400">/ <span id="quiz-total-num">20</span></span>
+          </div>
+
+          <!-- Timer -->
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500/10 text-red-600 dark:text-red-400 font-mono">
+            <i class="ph-bold ph-timer text-sm"></i>
+            <span id="quiz-timer">00:00</span>
+          </div>
+
+          <!-- Score Card -->
+          <div class="flex items-center gap-3">
+            <span class="text-emerald-500"><i class="ph-bold ph-check"></i> <span id="quiz-correct-count">0</span></span>
+            <span class="text-red-500"><i class="ph-bold ph-x"></i> <span id="quiz-wrong-count">0</span></span>
+          </div>
+        </div>
+
+        <!-- Question Progress Bar -->
+        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+          <div id="quiz-progress-fill" class="bg-gradient-to-r from-brand-600 to-indigo-500 h-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <!-- Main Question Card -->
+        <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-lg space-y-6">
+          
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span id="q-category-tag" class="text-[11px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950 px-2.5 py-1 rounded-md">Category</span>
+              <span id="q-hint-tag" class="text-xs text-amber-500 italic"></span>
+            </div>
+            <h3 id="q-question-text" class="text-lg sm:text-xl font-display font-bold text-slate-900 dark:text-white leading-relaxed">
+              "A person who does not believe in the existence of god"
+            </h3>
+          </div>
+
+          <!-- 4 Options -->
+          <div id="q-options-container" class="grid grid-cols-1 gap-3">
+            <!-- Injected via JS -->
+          </div>
+
+          <!-- Explanation Box (Appears after answer) -->
+          <div id="q-explanation-box" class="hidden p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-2 animate-fadeIn">
+            <div class="flex items-center gap-1.5 font-bold text-brand-600 dark:text-brand-400">
+              <i class="ph-fill ph-lightbulb"></i> Parmar SSC Explanation & Root Breakdown:
+            </div>
+            <p id="q-explanation-text" class="text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+          </div>
+
+          <!-- Next / Finish Button -->
+          <div class="flex items-center justify-end pt-2">
+            <button id="quiz-next-btn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs tracking-wide shadow-md transition disabled:opacity-40 disabled:cursor-not-allowed">
+              Next Question <i class="ph-bold ph-arrow-right ml-1"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Quiz Result Summary Screen -->
+      <div id="quiz-result-box" class="hidden max-w-xl mx-auto glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl text-center space-y-6">
+        <div id="result-icon-container" class="w-20 h-20 mx-auto rounded-3xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-4xl shadow-inner">
+          <i class="ph-bold ph-trophy"></i>
+        </div>
+
+        <div>
+          <span class="text-xs uppercase tracking-widest font-extrabold text-slate-400">Test Completed</span>
+          <h2 id="result-title" class="text-2xl font-display font-extrabold mt-1">Excellent Performance!</h2>
+          <p id="result-subtitle" class="text-xs text-slate-500 mt-1">You are well-prepared for SSC CGL Tier 1 & Tier 2 OWS section.</p>
+        </div>
+
+        <!-- Score Breakdown Cards -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <span class="text-[10px] text-slate-400 font-bold uppercase">Net Marks</span>
+            <p id="result-marks" class="text-xl font-display font-black text-brand-600 dark:text-brand-400 mt-1">+0.0</p>
+          </div>
+          <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <span class="text-[10px] text-slate-400 font-bold uppercase">Accuracy</span>
+            <p id="result-accuracy" class="text-xl font-display font-black text-emerald-500 mt-1">0%</p>
+          </div>
+          <div class="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <span class="text-[10px] text-slate-400 font-bold uppercase">Time Taken</span>
+            <p id="result-time" class="text-xl font-display font-black text-purple-500 mt-1">0m 0s</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="restartQuiz()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs tracking-wide shadow-md transition">
+            <i class="ph-bold ph-arrow-counter-clockwise mr-1"></i> Retake Test
+          </button>
+          <button onclick="switchView('explore')" class="w-full py-3 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-bold text-xs tracking-wide transition">
+            Review Vocab
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================== VIEW 4: MATCH TILES RECALL GAME ==================== -->
+    <section id="view-match" class="hidden space-y-6">
+      
+      <div class="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-display font-bold">Rapid Match Tile Game</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Click a Word on the Left, then click its corresponding Meaning on the Right to eliminate them.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-xs font-mono bg-slate-200 dark:bg-slate-800 px-3 py-1.5 rounded-lg">
+            Matches: <span id="match-score" class="font-bold text-brand-600 dark:text-brand-400">0/6</span>
+          </div>
+          <button onclick="initMatchGame()" class="px-3 py-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs transition flex items-center gap-1">
+            <i class="ph-bold ph-arrows-clockwise"></i> New Set
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Left Column: Words -->
+        <div class="space-y-3">
+          <h3 class="text-xs uppercase tracking-wider font-extrabold text-slate-400 flex items-center gap-1">
+            <i class="ph-bold ph-tag"></i> 1. Select Substitution Term
+          </h3>
+          <div id="match-words-col" class="space-y-2.5">
+            <!-- JS populated -->
+          </div>
+        </div>
+
+        <!-- Right Column: Meanings -->
+        <div class="space-y-3">
+          <h3 class="text-xs uppercase tracking-wider font-extrabold text-slate-400 flex items-center gap-1">
+            <i class="ph-bold ph-text-align-left"></i> 2. Select Matching Meaning
+          </h3>
+          <div id="match-meanings-col" class="space-y-2.5">
+            <!-- JS populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Victory notification for Match Game -->
+      <div id="match-win-banner" class="hidden glass-card p-6 rounded-2xl border border-emerald-500 text-center space-y-3 animate-bounce">
+        <span class="text-4xl">🎉</span>
+        <h4 class="text-lg font-bold text-emerald-600 dark:text-emerald-400">Superb Memory! All pairs correctly matched!</h4>
+        <button onclick="initMatchGame()" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">Play Next Round</button>
+      </div>
+
+    </section>
+
+
+    <!-- ==================== VIEW 5: SPELLING TEST (SPECIAL EXAM SECTION) ==================== -->
+    <section id="view-spelling" class="hidden space-y-6">
+      
+      <div class="glass-card max-w-2xl mx-auto p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-2xl">
+            <i class="ph-bold ph-spell-check"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Actual SSC PYQs from Parmar Notes</span>
+            <h2 class="text-xl font-display font-bold">Spot the Correctly Spelt Word</h2>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Questions directly taken from the lecture slides (e.g., <em>Bureaucracy, Liturgy, Ubiquitous, Meteorology, Pharmaceutical, Coquette</em>).
+        </p>
+
+        <!-- Current Spelling Question -->
+        <div id="spelling-card" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span>Question <strong id="spell-current-index" class="text-slate-700 dark:text-slate-200">1</strong> of <span id="spell-total-count">6</span></span>
+            <span id="spell-streak" class="font-bold text-amber-500 flex items-center gap-1"><i class="ph-fill ph-fire"></i> Streak: 0</span>
+          </div>
+
+          <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">
+            Select the <strong class="text-brand-600 dark:text-brand-400">CORRECTLY SPELT</strong> option:
+          </p>
+
+          <div id="spell-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <!-- Generated dynamically -->
+          </div>
+
+          <!-- Explanation -->
+          <div id="spell-feedback" class="hidden p-3 rounded-xl bg-slate-100 dark:bg-slate-800/60 text-xs"></div>
+        </div>
+
+        <div class="flex justify-end">
+          <button id="spell-next-btn" onclick="nextSpellingQuestion()" class="hidden px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs tracking-wide transition">
+            Next Word <i class="ph-bold ph-arrow-right ml-1"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- STARRED / BOOKMARKS DRAWER (SLIDE OVER) -->
+  <div id="starred-drawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 glass-card border-l border-slate-200 dark:border-slate-800 shadow-2xl p-6 transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+    <div class="space-y-4 flex-1 overflow-y-auto pr-1">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+        <h3 class="font-display font-bold text-lg flex items-center gap-2">
+          <i class="ph-fill ph-star text-amber-400"></i> Starred Revisions
+        </h3>
+        <button onclick="toggleBookmarkDrawer()" class="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800">
+          <i class="ph-bold ph-x text-lg"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-500">Words you marked for revision before your SSC exam.</p>
+
+      <div id="starred-list" class="space-y-2">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+
+    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2">
+      <button onclick="startQuizWithStarred()" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-xs transition">
+        Quiz on Starred Only
+      </button>
+    </div>
+  </div>
+
+  <!-- OVERLAY BACKDROP FOR DRAWER -->
+  <div id="drawer-backdrop" onclick="toggleBookmarkDrawer()" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+
+  <!-- JAVASCRIPT LOGIC & COMPLETE VOCABULARY DATA (LECTURES 6, 7 & 8) -->
+  <script>
+    /* ==========================================================================
+       1. DATA STORE: COMPLETE VOCABULARY FROM LECTURE 6, 7, AND 8
+       ========================================================================== */
+    const VOCAB_DATA = [
+      // ---------------- LECTURE 6: GOD / RELIGION ----------------
+      {
+        id: "l6-1",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Crusade",
+        hindi: "धर्मयुद्ध",
+        meaning: "A holy war or religious war fought for a religious cause.",
+        root: "Crux = Cross",
+        notes: "Often tested in SSC CGL as 'A religious war'."
+      },
+      {
+        id: "l6-2",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Apostasy",
+        hindi: "धर्मत्याग",
+        meaning: "The abandonment or renunciation of a religious or political belief.",
+        root: "Apo = Away / Off + Stasis = Standing",
+        notes: "Related term: Apostate (one who renounces faith)."
+      },
+      {
+        id: "l6-3",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Bigot",
+        hindi: "कट्टर / हठधर्मी",
+        meaning: "A person who is obstinately or unreasonably attached to a belief or opinion, especially intolerant of others.",
+        root: "Old French 'bigot'",
+        notes: "Synonyms: Dogmatic, Intolerant, Chauvinist."
+      },
+      {
+        id: "l6-4",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Zealot",
+        hindi: "अति उत्साही / कट्टर समर्थक",
+        meaning: "A person who is fanatical and uncompromising in pursuit of their religious, political, or other ideals.",
+        root: "Zeal = Great enthusiasm",
+        notes: "Zealot = Fanatic follower."
+      },
+      {
+        id: "l6-5",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Stoic",
+        hindi: "उदासीन / सुख-दुःख में एक समान",
+        meaning: "A person who can endure pain or hardship without showing feelings or complaining.",
+        root: "Stoa = Porch (Greek philosophy)",
+        notes: "SSC Favorite: Indifferent to pleasure or pain."
+      },
+      {
+        id: "l6-6",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Pagan",
+        hindi: "मूर्तिपूजक / अधर्मी",
+        meaning: "A person holding religious beliefs other than those of the main world religions.",
+        root: "Paganus = Country dweller",
+        notes: "Often applied to polytheistic ancient beliefs."
+      },
+      {
+        id: "l6-7",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Schism",
+        hindi: "धार्मिक मतभेद / विभाजन",
+        meaning: "A formal split or division between strongly opposed sections or parties, especially in a church.",
+        root: "Schizein = To split",
+        notes: "E.g. The Great Schism of the Church."
+      },
+      {
+        id: "l6-8",
+        lecture: 6,
+        category: "Religion & Beliefs",
+        word: "Heresy",
+        hindi: "विधर्म / धर्मविरुद्ध विचार",
+        meaning: "Belief or opinion contrary to orthodox religious (especially Christian) doctrine.",
+        root: "Hairesis = Choice, faction",
+        notes: "Person is called a Heretic."
+      },
+      {
+        id: "l6-9",
+        lecture: 6,
+        category: "Church & Places",
+        word: "Chapel",
+        hindi: "छोटा गिरजाघर",
+        meaning: "A small building or room used for Christian worship in a school, hospital, or prison.",
+        root: "Capella = Cloak",
+        notes: "Smaller than a cathedral or parish church."
+      },
+      {
+        id: "l6-10",
+        lecture: 6,
+        category: "Church & Places",
+        word: "Pew",
+        hindi: "चर्च की बेंच",
+        meaning: "A long bench with a back, placed in rows in the nave of a church.",
+        root: "Old French 'pui'",
+        notes: "Standard seating in traditional Christian churches."
+      },
+      {
+        id: "l6-11",
+        lecture: 6,
+        category: "Church & Places",
+        word: "Synagogue",
+        hindi: "यहूदी प्रार्थनागृह",
+        meaning: "A building where a Jewish assembly or congregation meets for religious worship and instruction.",
+        root: "Syn = Together + Agein = Bring",
+        notes: "SSC Frequently asks Jewish place of worship."
+      },
+      {
+        id: "l6-12",
+        lecture: 6,
+        category: "Church & Places",
+        word: "Vespers",
+        hindi: "शाम की प्रार्थना",
+        meaning: "Evening prayers in some Christian churches.",
+        root: "Vesper = Evening star",
+        notes: "Contrasted with Matin (morning prayers)."
+      },
+      {
+        id: "l6-13",
+        lecture: 6,
+        category: "Religious Speech & Teaching",
+        word: "Homily",
+        hindi: "धर्मोपदेश",
+        meaning: "A religious discourse, sermon or moral talk addressed to a congregation.",
+        root: "Homilos = Crowd / assembly",
+        notes: "Synonym: Sermon."
+      },
+      {
+        id: "l6-14",
+        lecture: 6,
+        category: "Religious Speech & Teaching",
+        word: "Promulgate",
+        hindi: "घोषणा करना / प्रचारित करना",
+        meaning: "To promote, make widely known an idea or decree, or put a law into official effect.",
+        root: "Pro = Forth + Mulgere = Make milk/produce",
+        notes: "Often used for laws and doctrines."
+      },
+      {
+        id: "l6-15",
+        lecture: 6,
+        category: "Religious Speech & Teaching",
+        word: "Tirade",
+        hindi: "कड़ी निंदा भरा भाषण",
+        meaning: "A long, angry speech of criticism or accusation.",
+        root: "Tirare = To fire / shoot",
+        notes: "Synonyms: Diatribe, Harangue."
+      },
+      {
+        id: "l6-16",
+        lecture: 6,
+        category: "Religious Customs",
+        word: "Sacrosanct",
+        hindi: "अति पवित्र / अक्षुण्ण",
+        meaning: "Regarded as too important or valuable to be interfered with or criticized; sacred.",
+        root: "Sacer = Sacred + Sanctus = Holy",
+        notes: "Beyond violation or insult."
+      },
+      {
+        id: "l6-17",
+        lecture: 6,
+        category: "Religious Customs",
+        word: "Sanctimonious",
+        hindi: "ढोंगी साधु / पाखंडी",
+        meaning: "Making a show of being morally superior to other people; hypocritically pious.",
+        root: "Sanctus = Holy",
+        notes: "Fake show of holiness."
+      },
+      {
+        id: "l6-18",
+        lecture: 6,
+        category: "Religious Customs",
+        word: "Liturgy",
+        hindi: "धार्मिक अनुष्ठान विधि",
+        meaning: "A customary code of observance in public worship or formal religious ceremonies.",
+        root: "Leitos = Public + Ergon = Work",
+        notes: "Frequently asked in SSC correct spelling."
+      },
+      {
+        id: "l6-19",
+        lecture: 6,
+        category: "Religious Offences",
+        word: "Blasphemy",
+        hindi: "ईशनिंदा",
+        meaning: "The action or offence of speaking sacrilegiously about God or sacred things.",
+        root: "Blaptein = To injure + Pheme = Utterance",
+        notes: "Verbal disrespect to divinity."
+      },
+      {
+        id: "l6-20",
+        lecture: 6,
+        category: "Religious Offences",
+        word: "Sacrilege",
+        hindi: "पवित्र वस्तु का अपमान",
+        meaning: "Violation or misuse of what is regarded as sacred.",
+        root: "Sacer = Sacred + Legere = Steal / gather",
+        notes: "Physical disrespect or stealing of holy items."
+      },
+      {
+        id: "l6-21",
+        lecture: 6,
+        category: "Religious Concepts",
+        word: "Ubiquitous",
+        hindi: "सर्वव्यापी",
+        meaning: "Present, appearing, or found everywhere at once.",
+        root: "Ubique = Everywhere",
+        notes: "Synonym: Omnipresent."
+      },
+
+      // ---------------- LECTURE 6: SHIPS, WATER & JOURNEY ----------------
+      {
+        id: "l6-22",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Stevedore",
+        hindi: "जहाज का माल चढ़ाने-उतारने वाला",
+        meaning: "A person employed at a dock to load and unload cargo from ships.",
+        root: "Spanish 'estivador' (stow)",
+        notes: "Crucial SSC One Word Substitution."
+      },
+      {
+        id: "l6-23",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Stowaway",
+        hindi: "छिपकर यात्रा करने वाला",
+        meaning: "A person who hides aboard a ship or aircraft in order to obtain free or secret passage.",
+        root: "Stow + Away",
+        notes: "Travels without ticket secretly."
+      },
+      {
+        id: "l6-24",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Moor",
+        hindi: "लंगर डालकर बांधना",
+        meaning: "To make fast (a boat or aircraft) by attaching it by cable or rope to the shore or to an anchor.",
+        root: "Middle English 'moren'",
+        notes: "Related: Mooring ropes."
+      },
+      {
+        id: "l6-25",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Archipelago",
+        hindi: "द्वीपसमूह",
+        meaning: "An extensive group or cluster of islands.",
+        root: "Archi = Chief + Pelagos = Sea",
+        notes: "E.g., Indonesia, Andaman and Nicobar."
+      },
+      {
+        id: "l6-26",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Isthmus",
+        hindi: "स्थलडमरूमध्य",
+        meaning: "A narrow strip of land with sea on either side, forming a link between two larger areas of land.",
+        root: "Greek 'isthmos' = neck",
+        notes: "Contrasted with Strait (narrow body of water)."
+      },
+      {
+        id: "l6-27",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Dyke",
+        hindi: "तटबंध / बांध",
+        meaning: "A long wall or embankment built to prevent flooding from the sea or rivers.",
+        root: "Old English 'dic'",
+        notes: "Prominent in the Netherlands."
+      },
+      {
+        id: "l6-28",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Confluence",
+        hindi: "संगम",
+        meaning: "The junction of two rivers, especially rivers of approximately equal width.",
+        root: "Con = Together + Fluere = To flow",
+        notes: "E.g., Confluence of Ganga, Yamuna & Saraswati."
+      },
+      {
+        id: "l6-29",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Alluvium",
+        hindi: "जलोढ़ मिट्टी",
+        meaning: "A deposit of clay, silt, sand, and gravel left by flowing streams in a river valley or delta.",
+        root: "Ad = To + Luere = To wash",
+        notes: "Very fertile agricultural soil."
+      },
+      {
+        id: "l6-30",
+        lecture: 6,
+        category: "Water & Marine",
+        word: "Flotilla",
+        hindi: "छोटी जहाजी बेड़ा",
+        meaning: "A small fleet of ships or boats.",
+        root: "Spanish diminutive of 'flota' (fleet)",
+        notes: "Fleet = Large group of ships."
+      },
+      {
+        id: "l6-31",
+        lecture: 6,
+        category: "Journey & Travel",
+        word: "Odyssey",
+        hindi: "लंबी रोमांचक यात्रा",
+        meaning: "A long and eventful or adventurous journey or experience.",
+        root: "From Homer's epic 'Odysseus'",
+        notes: "Often filled with trials and obstacles."
+      },
+      {
+        id: "l6-32",
+        lecture: 6,
+        category: "Journey & Travel",
+        word: "Sojourn",
+        hindi: "अल्पकालिक निवास / पड़ाव",
+        meaning: "A temporary stay at a place away from home.",
+        root: "Sub = Under + Diurnum = Day",
+        notes: "Jaunt = Short pleasant excursion."
+      },
+
+      // ---------------- LECTURE 6: PROFESSIONS ----------------
+      {
+        id: "l6-33",
+        lecture: 6,
+        category: "Professions",
+        word: "Cartographer",
+        hindi: "मानचित्रकार",
+        meaning: "A person who draws or produces maps.",
+        root: "Charta = Paper/Map + Graphein = Write",
+        notes: "Cartography is the study and science of mapmaking."
+      },
+      {
+        id: "l6-34",
+        lecture: 6,
+        category: "Professions",
+        word: "Milliner",
+        hindi: "महिला टोपियाँ बनाने/बेचने वाला",
+        meaning: "A person who designs, makes, or sells women's hats.",
+        root: "Originated from merchants of Milan, Italy",
+        notes: "Very frequent SSC Tier-1 question."
+      },
+      {
+        id: "l6-35",
+        lecture: 6,
+        category: "Professions",
+        word: "Lapidist",
+        hindi: "रत्न तराशने वाला",
+        meaning: "A person who cuts, polishes, or engraves gems and precious stones.",
+        root: "Lapis = Stone",
+        notes: "Related: Lapidary."
+      },
+      {
+        id: "l6-36",
+        lecture: 6,
+        category: "Professions",
+        word: "Usurer",
+        hindi: "सूदखोर",
+        meaning: "A person who lends money at unreasonably high rates of interest.",
+        root: "Usura = Interest",
+        notes: "Synonym: Loan shark."
+      },
+      {
+        id: "l6-37",
+        lecture: 6,
+        category: "Professions",
+        word: "Lexicographer",
+        hindi: "शब्दकोश संकलनकर्ता",
+        meaning: "A person who compiles dictionaries.",
+        root: "Lexis = Word + Graphein = Write",
+        notes: "Lexicon = Word collection or vocabulary."
+      },
+      {
+        id: "l6-38",
+        lecture: 6,
+        category: "Professions",
+        word: "Collier",
+        hindi: "कोयला खनिक",
+        meaning: "A coal miner, or a ship carrying coal.",
+        root: "Coal + -ier",
+        notes: "Works in coal mines."
+      },
+      {
+        id: "l6-39",
+        lecture: 6,
+        category: "Professions",
+        word: "Curator",
+        hindi: "संग्रहालय अध्यक्ष",
+        meaning: "A keeper or custodian of a museum or other collection.",
+        root: "Cura = Care",
+        notes: "In charge of exhibits and artifacts."
+      },
+      {
+        id: "l6-40",
+        lecture: 6,
+        category: "Professions",
+        word: "Invigilator",
+        hindi: "परीक्षा निरीक्षक",
+        meaning: "A person who supervises students during an examination.",
+        root: "In = Upon + Vigilare = Watch",
+        notes: "Commonly used in academic exams."
+      },
+      {
+        id: "l6-41",
+        lecture: 6,
+        category: "Professions",
+        word: "Optometrist",
+        hindi: "नेत्र जांच विशेषज्ञ",
+        meaning: "A specialist who examines the eyes for defects and prescribes corrective lenses.",
+        root: "Opto = Vision + Metron = Measure",
+        notes: "Optician makes/fits glasses; Oculist is an eye doctor."
+      },
+
+      // ---------------- LECTURE 7: -OLOGY & SCIENCES ----------------
+      {
+        id: "l7-1",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Entomology",
+        hindi: "कीट विज्ञान",
+        meaning: "The scientific study of insects.",
+        root: "Entomon = Insect + Logy = Study",
+        notes: "Don't confuse with Etymology (study of word origins)."
+      },
+      {
+        id: "l7-2",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Etymology",
+        hindi: "शब्द व्युत्पत्ति विज्ञान",
+        meaning: "The study of the origin of words and the way in which their meanings have changed throughout history.",
+        root: "Etymon = True sense + Logy = Study",
+        notes: "Traces words back to original roots."
+      },
+      {
+        id: "l7-3",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Ornithology",
+        hindi: "पक्षी विज्ञान",
+        meaning: "The scientific study of birds.",
+        root: "Ornis/Ornith- = Bird",
+        notes: "Dr. Salim Ali was a famous ornithologist."
+      },
+      {
+        id: "l7-4",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Mycology",
+        hindi: "कवक विज्ञान (Fungi)",
+        meaning: "The scientific study of fungi.",
+        root: "Mykes = Mushroom / Fungus",
+        notes: "Algae study is Algology or Phycology."
+      },
+      {
+        id: "l7-5",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Dendrology",
+        hindi: "वृक्ष विज्ञान",
+        meaning: "The scientific study of trees and woody plants.",
+        root: "Dendron = Tree",
+        notes: "Dendrochronology: tree ring dating."
+      },
+      {
+        id: "l7-6",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Psephology",
+        hindi: "चुनाव व मतदान विश्लेषण",
+        meaning: "The quantitative and scientific study of elections and voting trends.",
+        root: "Psephos = Pebble (used anciently to vote)",
+        notes: "Regularly asked in SSC exams."
+      },
+      {
+        id: "l7-7",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Speleology",
+        hindi: "गुफाओं का अध्ययन",
+        meaning: "The scientific study or exploration of caves.",
+        root: "Spelaion = Cave",
+        notes: "Caving exploration science."
+      },
+      {
+        id: "l7-8",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Epistemology",
+        hindi: "ज्ञानमीमांसा (ज्ञान का सिद्धांत)",
+        meaning: "The branch of philosophy concerned with the theory of knowledge, validity, and scope.",
+        root: "Episteme = Knowledge + Logos",
+        notes: "How we know what we know."
+      },
+      {
+        id: "l7-9",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Taxidermy",
+        hindi: "चर्मप्रसाधन (पशुओं की खाल में भूसा भरना)",
+        meaning: "The art of preparing, stuffing, and mounting the skins of animals with lifelike effect.",
+        root: "Taxis = Arrangement + Derma = Skin",
+        notes: "Found in natural history museums."
+      },
+      {
+        id: "l7-10",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Gerontology",
+        hindi: "वृद्धावस्था का अध्ययन",
+        meaning: "The scientific study of old age, the process of ageing, and the particular problems of old people.",
+        root: "Geron = Old man",
+        notes: "Geriatrics is medical care of elderly."
+      },
+      {
+        id: "l7-11",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Ergonomics",
+        hindi: "कार्यक्षमता विज्ञान",
+        meaning: "The study of people's efficiency, posture and safety in their working environment.",
+        root: "Ergon = Work + Nomos = Law",
+        notes: "Ergonomic chairs, keyboards, etc."
+      },
+      {
+        id: "l7-12",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Thanatology",
+        hindi: "मृत्यु विज्ञान",
+        meaning: "The scientific study of death and the practices associated with it.",
+        root: "Thanatos = Death (Greek god of death)",
+        notes: "Thanatophobia = Fear of death."
+      },
+      {
+        id: "l7-13",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Orology",
+        hindi: "पर्वत विज्ञान",
+        meaning: "The study of mountains and their mapping/formation.",
+        root: "Oros = Mountain",
+        notes: "Study of topographic mountain reliefs."
+      },
+      {
+        id: "l7-14",
+        lecture: 7,
+        category: "Sciences & Learning",
+        word: "Pedology",
+        hindi: "मृदा विज्ञान (मिट्टी का अध्ययन)",
+        meaning: "The scientific study of soils in their natural environment.",
+        root: "Pedon = Soil / ground",
+        notes: "Do not confuse with Pediatrics (child medicine)."
+      },
+
+      // ---------------- LECTURE 7: FEMALE RELATED ----------------
+      {
+        id: "l7-15",
+        lecture: 7,
+        category: "Female Related",
+        word: "Amazon",
+        hindi: "लंबी और बलिष्ठ योद्धा स्त्री",
+        meaning: "A tall, strong, athletic or warrior-like woman.",
+        root: "Mythological tribe of female warriors",
+        notes: "Used in classical and modern contexts."
+      },
+      {
+        id: "l7-16",
+        lecture: 7,
+        category: "Female Related",
+        word: "Virago",
+        hindi: "झगड़ालू या दबंग स्त्री",
+        meaning: "A domineering, violent, or bad-tempered woman.",
+        root: "Vir = Man (woman acting fierce/manly)",
+        notes: "Synonyms: Shrew, Termagant, Harridan."
+      },
+      {
+        id: "l7-17",
+        lecture: 7,
+        category: "Female Related",
+        word: "Coquette",
+        hindi: "नखरेबाज / मोहक महिला",
+        meaning: "A flirtatious woman who plays with men's affections playfully without sincere affection.",
+        root: "French 'coq' (cock/strutting)",
+        notes: "Very high frequency spelling question."
+      },
+      {
+        id: "l7-18",
+        lecture: 7,
+        category: "Female Related",
+        word: "Bluestocking",
+        hindi: "विदुषी / साहित्य प्रेमी महिला",
+        meaning: "An educated, intellectual woman with literary or academic interests.",
+        root: "18th-century Blue Stockings Society",
+        notes: "Literary intellectual female."
+      },
+      {
+        id: "l7-19",
+        lecture: 7,
+        category: "Female Related",
+        word: "Spinster",
+        hindi: "अविवाहित प्रौढ़ स्त्री",
+        meaning: "An unmarried woman, typically an older woman beyond the usual age for marriage.",
+        root: "Historically one who spun yarn",
+        notes: "Contrasts with Bachelor (male)."
+      },
+      {
+        id: "l7-20",
+        lecture: 7,
+        category: "Female Related",
+        word: "Cynosure",
+        hindi: "आकर्षण का केंद्र",
+        meaning: "A person or thing that is the center of attention or admiration.",
+        root: "Greek 'kunosoura' = dog's tail / guiding star",
+        notes: "E.g. She was the cynosure of all eyes at the ball."
+      },
+      {
+        id: "l7-21",
+        lecture: 7,
+        category: "Female Related",
+        word: "Anile",
+        hindi: "बूढ़ी औरत जैसा / शिथिल",
+        meaning: "Resembling or characteristic of an old woman, especially in being infirm or feeble-minded.",
+        root: "Anus = Old woman",
+        notes: "Anility = Old womanish weakness."
+      },
+      {
+        id: "l7-22",
+        lecture: 7,
+        category: "Female Related",
+        word: "Effeminate",
+        hindi: "जनाना / स्त्री-स्वभाव वाला पुरुष",
+        meaning: "A man having characteristics or mannerisms traditionally associated with women.",
+        root: "Ex = Out + Femina = Woman",
+        notes: "Often tested in SSC sentence correction."
+      },
+
+      // ---------------- LECTURE 7: RELATIONSHIPS & CHILDREN ----------------
+      {
+        id: "l7-23",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Henpecked",
+        hindi: "जोरू का गुलाम",
+        meaning: "A husband continually criticized, ordered about, and bullied by his wife.",
+        root: "Hen + Peck",
+        notes: "Controlled by wife."
+      },
+      {
+        id: "l7-24",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Uxorious",
+        hindi: "पत्नी-भक्त / पत्नी पर अत्यधिक मुग्ध",
+        meaning: "Having or showing a great or excessive fondness for one's wife.",
+        root: "Uxor = Wife",
+        notes: "Extreme devotion to wife."
+      },
+      {
+        id: "l7-25",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Uxoricide",
+        hindi: "पत्नी-हत्या",
+        meaning: "The killing of one's wife; or a man who murders his wife.",
+        root: "Uxor = Wife + Cide = Kill",
+        notes: "Mariticide = Killing of husband."
+      },
+      {
+        id: "l7-26",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Curtain Lecture",
+        hindi: "शयनकक्ष में पत्नी द्वारा दी गई फटकार",
+        meaning: "A private scolding given by a wife to her husband behind bedroom curtains.",
+        root: "Idiomatic British English",
+        notes: "Private reprimand."
+      },
+      {
+        id: "l7-27",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Posthumous Child",
+        hindi: "पिता की मृत्यु के बाद जन्मा बच्चा",
+        meaning: "A child born after the death of its father.",
+        root: "Post = After + Humus = Ground/Burial",
+        notes: "Also 'Posthumous Award' (conferred after death)."
+      },
+      {
+        id: "l7-28",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Prodigy",
+        hindi: "असाधारण प्रतिभाशाली बालक",
+        meaning: "A young person endowed with exceptional qualities or abilities.",
+        root: "Prodigium = Portent / Wonder",
+        notes: "Child prodigy (e.g. Mozart in music)."
+      },
+      {
+        id: "l7-29",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Foundling",
+        hindi: "लावारिस पाया गया शिशु",
+        meaning: "An infant that has been abandoned by its parents and is discovered and cared for by others.",
+        root: "Find + Diminutive -ling",
+        notes: "Abandoned child found."
+      },
+      {
+        id: "l7-30",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Waif",
+        hindi: "बेसहारा / अनाथ बेघर बच्चा",
+        meaning: "A homeless, neglected, or abandoned person, especially an orphaned child.",
+        root: "Anglo-Norman 'waif'",
+        notes: "Waifs and strays."
+      },
+      {
+        id: "l7-31",
+        lecture: 7,
+        category: "Children & Relations",
+        word: "Filicide",
+        hindi: "संतान-हत्या",
+        meaning: "The act of a parent killing their own son or daughter.",
+        root: "Filius = Son / Filia = Daughter + Cide = Kill",
+        notes: "Infanticide = Killing an infant."
+      },
+
+      // ---------------- LECTURE 8: GENERAL OBJECTS & EXPRESSIONS ----------------
+      {
+        id: "l8-1",
+        lecture: 8,
+        category: "General Objects",
+        word: "Ephemeral",
+        hindi: "अल्पकालिक / क्षणभंगुर",
+        meaning: "Lasting for a very short time; fleeting or transient.",
+        root: "Epi = Upon + Hemera = Day (lasting a day)",
+        notes: "Synonyms: Evanescent, Fleeting, Transient."
+      },
+      {
+        id: "l8-2",
+        lecture: 8,
+        category: "General Objects",
+        word: "Facsimile",
+        hindi: "हूबहू प्रतिलिपि",
+        meaning: "An exact copy, especially of written or printed material.",
+        root: "Fac = Make + Similis = Like",
+        notes: "Original root of the word 'Fax'."
+      },
+      {
+        id: "l8-3",
+        lecture: 8,
+        category: "General Objects",
+        word: "Colossus",
+        hindi: "विशालकाय मूर्ति या आकृति",
+        meaning: "A statue that is much bigger than life size; a gigantic person or structure.",
+        root: "Colossus of Rhodes (Ancient wonder)",
+        notes: "Adjective: Colossal (enormous)."
+      },
+      {
+        id: "l8-4",
+        lecture: 8,
+        category: "General Objects",
+        word: "Urn",
+        hindi: "कलश (अस्थि कलश)",
+        meaning: "A vase, typically an ornamental one with a pedestal, used for holding a deceased person's ashes.",
+        root: "Urna = Water pot / Jar",
+        notes: "SSC frequently asks: 'Vessel for ashes'."
+      },
+      {
+        id: "l8-5",
+        lecture: 8,
+        category: "General Objects",
+        word: "Wreath",
+        hindi: "पुष्पचक्र (श्रद्धांजलि हेतु)",
+        meaning: "An arrangement of flowers, leaves, or stems fastened in a ring and used for decoration or laid on a grave.",
+        root: "Writhe = To twist",
+        notes: "Do not confuse with 'Wrath' (extreme rage)."
+      },
+      {
+        id: "l8-6",
+        lecture: 8,
+        category: "General Objects",
+        word: "Yoke",
+        hindi: "जुआठ (बैलों के कंधे की लकड़ी)",
+        meaning: "A wooden crosspiece that is fastened over the necks of two animals and attached to the plow or cart.",
+        root: "Old English 'geoc'",
+        notes: "Do not confuse with 'Yolk' (yellow part of egg)."
+      },
+      {
+        id: "l8-7",
+        lecture: 8,
+        category: "General Objects",
+        word: "Rotunda",
+        hindi: "गोल गुंबददार भवन",
+        meaning: "A round building or room, especially one with a dome.",
+        root: "Rotundus = Round",
+        notes: "Circular hall with a dome."
+      },
+      {
+        id: "l8-8",
+        lecture: 8,
+        category: "General Objects",
+        word: "Relic",
+        hindi: "अवशेष / पवित्र स्मृति-चिह्न",
+        meaning: "An object surviving from an earlier time, especially one of historical or sacred interest.",
+        root: "Relinquere = To leave behind",
+        notes: "Remains of a deceased holy person."
+      },
+      {
+        id: "l8-9",
+        lecture: 8,
+        category: "General Objects",
+        word: "Salvo",
+        hindi: "तोपों की एक साथ सलामी / गोलाबारी",
+        meaning: "A simultaneous discharge of artillery or other guns in a battle or as a salute.",
+        root: "Salva = Hail / Health",
+        notes: "Series of shots fired at once; fusillade."
+      },
+      {
+        id: "l8-10",
+        lecture: 8,
+        category: "General Objects",
+        word: "Almanac",
+        hindi: "पंचांग / वार्षिक कालदर्शिका",
+        meaning: "An annual publication containing astronomical, weather, and meteorological calendar data.",
+        root: "Medieval Latin 'almanach'",
+        notes: "Contains sun/moon tables and forecasts."
+      },
+      {
+        id: "l8-11",
+        lecture: 8,
+        category: "General Objects",
+        word: "Abridgement",
+        hindi: "संक्षिप्त संस्करण",
+        meaning: "A shortened or condensed version of a larger written work.",
+        root: "Abridge = To shorten",
+        notes: "Synonyms: Condensation, Epitome."
+      },
+      {
+        id: "l8-12",
+        lecture: 8,
+        category: "General Objects",
+        word: "Gregarious",
+        hindi: "झुंड में रहने वाला / मिलनसार",
+        meaning: "Fond of company; sociable; living in flocks or herds.",
+        root: "Greg = Flock / Group",
+        notes: "Related: Segregate, Aggregate, Egregious."
+      },
+      {
+        id: "l8-13",
+        lecture: 8,
+        category: "General Objects",
+        word: "Quintessence",
+        hindi: "सर्वोत्कृष्ट उदाहरण / सार",
+        meaning: "The most perfect or typical example of a quality or class.",
+        root: "Quinta essentia = Fifth essence",
+        notes: "Synonyms: Epitome, Paragon, Embodiment."
+      },
+      {
+        id: "l8-14",
+        lecture: 8,
+        category: "General Objects",
+        word: "Chronology",
+        hindi: "कालक्रम",
+        meaning: "The arrangement of events or dates in the order of their occurrence.",
+        root: "Chron = Time + Logos = Study",
+        notes: "Related: Chronometer (precise time measure), Chronic."
+      },
+
+      // ---------------- LECTURE 8: MEDICAL SPECIALISTS ----------------
+      {
+        id: "l8-15",
+        lecture: 8,
+        category: "Medical Specialists",
+        word: "Chiropodist",
+        hindi: "पैरों और पंजों का डॉक्टर",
+        meaning: "A specialist who treats diseases and ailments of feet and hands (Podiatrist).",
+        root: "Chiro = Hand + Pod = Foot",
+        notes: "Foot care and corns/calluses specialist."
+      },
+      {
+        id: "l8-16",
+        lecture: 8,
+        category: "Medical Specialists",
+        word: "Chiropractor",
+        hindi: "हड्डी-जोड़ मालिश द्वारा इलाज करने वाला",
+        meaning: "A practitioner who treats neuromuscular disorders with emphasis on manipulation of the spine.",
+        root: "Chiro = Hand + Praktikos = Practical manipulation",
+        notes: "Spine and joint adjustment specialist."
+      },
+      {
+        id: "l8-17",
+        lecture: 8,
+        category: "Medical Specialists",
+        word: "Obstetrician",
+        hindi: "प्रसूति रोग विशेषज्ञ",
+        meaning: "A physician who specializes in pregnancy, childbirth, and postpartum care.",
+        root: "Obstetrix = Midwife (one who stands before)",
+        notes: "Gynecologist = treats female reproductive diseases."
+      },
+      {
+        id: "l8-18",
+        lecture: 8,
+        category: "Medical Specialists",
+        word: "Endocrinologist",
+        hindi: "हार्मोन व अंतःस्रावी ग्रंथि विशेषज्ञ",
+        meaning: "A doctor who specializes in diagnosing and treating hormone-related diseases and gland disorders.",
+        root: "Endo = Within + Krinein = Separate / Secrete",
+        notes: "Treats thyroid, diabetes, adrenal glands."
+      },
+      {
+        id: "l8-19",
+        lecture: 8,
+        category: "Medical Specialists",
+        word: "Rhinologist",
+        hindi: "नाक रोग विशेषज्ञ",
+        meaning: "A medical specialist concerned with diseases and conditions of the nose and sinuses.",
+        root: "Rhino = Nose + Logos = Study",
+        notes: "Rhinitis = inflammation of nose."
+      },
+      {
+        id: "l8-20",
+        lecture: 8,
+        category: "Medical Specialists",
+        word: "Orthodontist",
+        hindi: "दांत सीधा करने वाला विशेषज्ञ",
+        meaning: "A dentist who specializes in preventing and correcting crooked teeth and jaw irregularities.",
+        root: "Ortho = Straight + Dont = Tooth",
+        notes: "Puts braces and dental alignment."
+      },
+      {
+        id: "l8-21",
+        lecture: 8,
+        category: "Medical Specialists",
+        word: "Pathologist",
+        hindi: "रोग विज्ञानी (सैंपल जांचकर्ता)",
+        meaning: "A scientist or physician who examines tissues, cells, and body fluids to diagnose disease causes.",
+        root: "Pathos = Disease / Suffering",
+        notes: "Examines lab samples, biopsies."
+      },
+
+      // ---------------- LECTURE 8: RULING SYSTEMS (-CRACY & -ARCHY) ----------------
+      {
+        id: "l8-22",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Plutocracy",
+        hindi: "धनिक-तंत्र / अमीरों का शासन",
+        meaning: "Government governed and controlled by the wealthy class.",
+        root: "Ploutos = Wealth + Kratos = Power / Rule",
+        notes: "Very frequent SSC repeat question."
+      },
+      {
+        id: "l8-23",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Kakistocracy",
+        hindi: "अयोग्य व भ्रष्टतम लोगों का शासन",
+        meaning: "Government by the least suitable, most corrupt or least qualified citizens.",
+        root: "Kakistos = Worst + Kratos = Rule",
+        notes: "Opposite of Meritocracy."
+      },
+      {
+        id: "l8-24",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Ochlocracy",
+        hindi: "भीड़तंत्र / उपद्रवी भीड़ का शासन",
+        meaning: "Government by a mob or an unruly crowd; mobocracy.",
+        root: "Ochlos = Mob / Crowd + Kratos = Rule",
+        notes: "Synonym: Mobocracy."
+      },
+      {
+        id: "l8-25",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Stratocracy",
+        hindi: "सैन्य शासन",
+        meaning: "A form of government headed by military chiefs or armed forces.",
+        root: "Stratos = Army + Kratos = Rule",
+        notes: "Differs from Military junta (informal oligarchy)."
+      },
+      {
+        id: "l8-26",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Gerontocracy",
+        hindi: "वृद्धों का शासन",
+        meaning: "A state, society, or its government ruled by elderly people.",
+        root: "Geron = Old person + Kratos = Rule",
+        notes: "Rule by the oldest citizens."
+      },
+      {
+        id: "l8-27",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Neocracy",
+        hindi: "अनुभवहीन नए शासकों का शासन",
+        meaning: "Government by new or inexperienced rulers.",
+        root: "Neo = New + Kratos = Power",
+        notes: "Novice rule."
+      },
+      {
+        id: "l8-28",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Hagiarchy",
+        hindi: "संतों या धर्मात्माओं का शासन",
+        meaning: "Government by holy men, saints, or religious individuals.",
+        root: "Hagios = Holy / Saint + Archy = Rule",
+        notes: "Hagiology = Study of saints' lives."
+      },
+      {
+        id: "l8-29",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Xenocracy",
+        hindi: "विदेशियों का शासन",
+        meaning: "A government rule administered by foreigners or outsiders.",
+        root: "Xenos = Stranger / Foreigner + Kratos",
+        notes: "Xenophobia = Fear of foreigners."
+      },
+      {
+        id: "l8-30",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Totalitarianism",
+        hindi: "सर्वसत्तावाद / सर्वाधिकारवाद",
+        meaning: "A system of government that is centralized and dictatorial and requires complete subservience to the state.",
+        root: "Totalis = Entire",
+        notes: "Controls both public and private life."
+      },
+      {
+        id: "l8-31",
+        lecture: 8,
+        category: "Ruling Systems",
+        word: "Red-Tapism",
+        hindi: "लालफीताशाही / अत्यधिक औपचारिक विलंब",
+        meaning: "Excessive adherence to official rules, bureaucracy and formalities that cause delays.",
+        root: "Red tape historically binding legal files",
+        notes: "Bureaucratic delay and paperwork."
+      }
+    ];
+
+    /* ==========================================================================
+       2. SPELLING CHALLENGE QUESTION SET (Direct from Slide Notes)
+       ========================================================================== */
+    const SPELLING_DATA = [
+      {
+        id: "sp-1",
+        wordName: "Bureaucracy",
+        meaning: "Government administration managed by official departments.",
+        options: ["Bureaucrasy", "Beauracracy", "Bureaucracy", "Bureacracy"],
+        correctIndex: 2,
+        rule: "Rule: B-U-R-E-A-U + CRACY. Keep 'E-A-U' sequence intact."
+      },
+      {
+        id: "sp-2",
+        wordName: "Ubiquitous",
+        meaning: "Present, appearing, or found everywhere.",
+        options: ["Ubiquitous", "Ubiqitous", "Ubiquituous", "Ubiqueitous"],
+        correctIndex: 0,
+        rule: "Rule: U-B-I-Q-U-I-T-O-U-S. Contains only one 'tu' followed by 'ous'."
+      },
+      {
+        id: "sp-3",
+        wordName: "Meteorology",
+        meaning: "Scientific study of weather and atmospheric phenomena.",
+        options: ["Meteorlogy", "Meterology", "Meteorology", "Meteoroklogy"],
+        correctIndex: 2,
+        rule: "Rule: M-E-T-E-O-R-O-L-O-G-Y. Contains 'meteor' followed by 'ology'."
+      },
+      {
+        id: "sp-4",
+        wordName: "Pharmaceutical",
+        meaning: "Relating to medicinal drugs and their preparation.",
+        options: ["Phramaceutical", "Pharmaceutical", "Pharmacautical", "Pharmacuktical"],
+        correctIndex: 1,
+        rule: "Rule: P-H-A-R-M-A-C-E-U-T-I-C-A-L. Remember 'ceutical' with 'eu'."
+      },
+      {
+        id: "sp-5",
+        wordName: "Coquette",
+        meaning: "A flirtatious playful woman.",
+        options: ["Coquette", "Coquetee", "Coquettte", "Coquett"],
+        correctIndex: 0,
+        rule: "Rule: C-O-Q-U-E-T-T-E. Ends with double 't' and 'e'."
+      },
+      {
+        id: "sp-6",
+        wordName: "Liturgy",
+        meaning: "A customary code or ritual of formal religious worship.",
+        options: ["Liturgi", "Liturgy", "Liturjy", "Liturgey"],
+        correctIndex: 1,
+        rule: "Rule: L-I-T-U-R-G-Y. Ends in 'gy' not 'ji' or 'jy'."
+      }
+    ];
+
+    /* ==========================================================================
+       3. APPLICATION STATE & PERSISTENCE
+       ========================================================================== */
+    let currentLectureFilter = 'all';
+    let currentCategoryFilter = 'all';
+    let searchQuery = '';
+    let starredWordIds = JSON.parse(localStorage.getItem('parmar_ows_starred') || '[]');
+
+    // Flashcard state
+    let flashcardList = [];
+    let currentFcIndex = 0;
+    let isFlipped = false;
+
+    // Quiz state
+    let activeQuizQuestions = [];
+    let currentQuizIndex = 0;
+    let quizScore = { correct: 0, wrong: 0, marks: 0 };
+    let quizTimerInterval = null;
+    let quizSeconds = 0;
+    let answeredCurrentQuestion = false;
+
+    // Match game state
+    let matchPairs = [];
+    let selectedWordTile = null;
+    let selectedMeaningTile = null;
+    let matchedCount = 0;
+
+    // Spelling state
+    let currentSpellIndex = 0;
+    let spellingStreak = 0;
+
+    /* ==========================================================================
+       4. INITIALIZATION & ROUTING
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Setup theme
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').classList.replace('ph-moon', 'ph-sun');
+      }
+
+      initCategories();
+      renderVocabGrid();
+      updateStarredBadge();
+      initSpellingChallenge();
+
+      // Keyboard navigation for Flashcards & Quiz
+      window.addEventListener('keydown', (e) => {
+        const activeView = getActiveView();
+        if (activeView === 'flashcards') {
+          if (e.code === 'Space') {
+            e.preventDefault();
+            flipFlashcard();
+          } else if (e.code === 'ArrowRight') {
+            nextFlashcard();
+          } else if (e.code === 'ArrowLeft') {
+            prevFlashcard();
+          }
+        }
+      });
+    });
+
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        icon.classList.replace('ph-sun', 'ph-moon');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        icon.classList.replace('ph-moon', 'ph-sun');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    function switchView(viewName) {
+      const views = ['explore', 'flashcards', 'quiz', 'match', 'spelling'];
+      views.forEach(v => {
+        const section = document.getElementById(`view-${v}`);
+        const navBtn = document.getElementById(`nav-btn-${v}`);
+        const mNavBtn = document.getElementById(`m-nav-${v}`);
+        
+        if (v === viewName) {
+          section.classList.remove('hidden');
+          navBtn.classList.add('bg-brand-600', 'text-white', 'shadow-sm');
+          navBtn.classList.remove('hover:bg-slate-300');
+          mNavBtn.classList.add('text-brand-600', 'dark:text-brand-400');
+          mNavBtn.classList.remove('text-slate-500', 'dark:text-slate-400');
+        } else {
+          section.classList.add('hidden');
+          navBtn.classList.remove('bg-brand-600', 'text-white', 'shadow-sm');
+          navBtn.classList.add('hover:bg-slate-300');
+          mNavBtn.classList.remove('text-brand-600', 'dark:text-brand-400');
+          mNavBtn.classList.add('text-slate-500', 'dark:text-slate-400');
+        }
+      });
+
+      // Lazy view initializers
+      if (viewName === 'flashcards') initFlashcards();
+      if (viewName === 'match') initMatchGame();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function getActiveView() {
+      const views = ['explore', 'flashcards', 'quiz', 'match', 'spelling'];
+      for (const v of views) {
+        if (!document.getElementById(`view-${v}`).classList.contains('hidden')) return v;
+      }
+      return 'explore';
+    }
+
+    /* ==========================================================================
+       5. EXPLORER & VOCABULARY ENGINE
+       ========================================================================== */
+    function initCategories() {
+      const categories = Array.from(new Set(VOCAB_DATA.map(item => item.category)));
+      const container = document.getElementById('category-pills');
+      container.innerHTML = `
+        <button onclick="setCategoryFilter('all')" data-cat="all" class="cat-pill px-3 py-1 rounded-full border border-slate-300 dark:border-slate-700 bg-brand-600 text-white font-semibold">
+          All
+        </button>
+      `;
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.onclick = () => setCategoryFilter(cat);
+        btn.setAttribute('data-cat', cat);
+        btn.className = "cat-pill px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-brand-500 font-medium transition shrink-0";
+        btn.innerText = cat;
+        container.appendChild(btn);
+      });
+    }
+
+    function setLectureFilter(lec) {
+      currentLectureFilter = lec;
+      document.querySelectorAll('.lec-btn').forEach(b => {
+        if (b.getAttribute('data-lec') == lec) {
+          b.className = "lec-btn px-3 py-1.5 rounded-lg text-xs font-bold border border-brand-500 bg-brand-600 text-white shadow-sm transition";
+        } else {
+          b.className = "lec-btn px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition";
+        }
+      });
+      renderVocabGrid();
+    }
+
+    function setCategoryFilter(cat) {
+      currentCategoryFilter = cat;
+      document.querySelectorAll('.cat-pill').forEach(b => {
+        if (b.getAttribute('data-cat') === cat) {
+          b.className = "cat-pill px-3 py-1 rounded-full border border-brand-500 bg-brand-600 text-white font-semibold shrink-0";
+        } else {
+          b.className = "cat-pill px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:border-brand-500 font-medium transition shrink-0";
+        }
+      });
+      renderVocabGrid();
+    }
+
+    function handleSearch(val) {
+      searchQuery = val.trim().toLowerCase();
+      document.getElementById('clear-search-btn').classList.toggle('hidden', searchQuery === '');
+      renderVocabGrid();
+    }
+
+    function clearSearch() {
+      document.getElementById('search-input').value = '';
+      handleSearch('');
+    }
+
+    function getFilteredWords() {
+      return VOCAB_DATA.filter(item => {
+        const matchesLec = currentLectureFilter === 'all' || item.lecture == currentLectureFilter;
+        const matchesCat = currentCategoryFilter === 'all' || item.category === currentCategoryFilter;
+        const matchesQuery = searchQuery === '' || 
+          item.word.toLowerCase().includes(searchQuery) ||
+          item.meaning.toLowerCase().includes(searchQuery) ||
+          item.hindi.toLowerCase().includes(searchQuery) ||
+          item.root.toLowerCase().includes(searchQuery);
+        return matchesLec && matchesCat && matchesQuery;
+      });
+    }
+
+    function renderVocabGrid() {
+      const filtered = getFilteredWords();
+      const grid = document.getElementById('vocab-grid');
+      const countEl = document.getElementById('filtered-count');
+      countEl.innerText = `Showing ${filtered.length} of ${VOCAB_DATA.length} words`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400 space-y-2">
+            <i class="ph-bold ph-magnifying-glass text-4xl text-slate-300"></i>
+            <p class="text-sm font-semibold">No substitutions matched your filter criteria.</p>
+            <button onclick="resetAllFilters()" class="text-xs text-brand-500 font-bold underline">Reset all filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        const isStarred = starredWordIds.includes(item.id);
+        return `
+          <div class="glass-card rounded-2xl border border-slate-200/90 dark:border-slate-800/90 p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 flex flex-col justify-between group">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-50 dark:bg-brand-950/70 text-brand-600 dark:text-brand-400 border border-brand-200/50 dark:border-brand-800/50">
+                    Lec ${item.lecture} • ${item.category}
+                  </span>
+                  <h3 class="text-xl font-display font-extrabold text-slate-900 dark:text-white mt-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                    ${item.word}
+                  </h3>
+                </div>
+                <button onclick="toggleStarWord('${item.id}', this)" title="Bookmark Word" class="p-1.5 rounded-lg text-slate-400 hover:text-amber-500 transition active:scale-90">
+                  <i class="ph-${isStarred ? 'fill text-amber-400' : 'bold'} ph-star text-lg"></i>
+                </button>
+              </div>
+
+              <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold bg-amber-500/10 px-2.5 py-1 rounded-md inline-block">
+                ${item.hindi}
+              </div>
+
+              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                ${highlightSearch(item.meaning, searchQuery)}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+              <span class="font-mono bg-slate-100 dark:bg-slate-900 px-2 py-0.5 rounded text-indigo-500 dark:text-indigo-400">
+                <i class="ph-bold ph-tree-structure mr-0.5"></i> ${item.root}
+              </span>
+              <button onclick="speakWord('${item.word}')" title="Pronounce" class="p-1 hover:text-slate-700 dark:hover:text-slate-200">
+                <i class="ph-bold ph-speaker-high text-sm"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function highlightSearch(text, query) {
+      if (!query) return text;
+      const regex = new RegExp(`(${query})`, 'gi');
+      return text.replace(regex, `<mark class="bg-amber-300 dark:bg-amber-800 text-current rounded px-0.5">$1</mark>`);
+    }
+
+    function resetAllFilters() {
+      currentLectureFilter = 'all';
+      currentCategoryFilter = 'all';
+      searchQuery = '';
+      document.getElementById('search-input').value = '';
+      setLectureFilter('all');
+      setCategoryFilter('all');
+    }
+
+    /* ==========================================================================
+       6. AUDIO PRONUNCIATION
+       ========================================================================== */
+    function speakWord(word) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    /* ==========================================================================
+       7. FLASHCARD INTERACTIVE SYSTEM
+       ========================================================================== */
+    function initFlashcards() {
+      const filter = document.getElementById('flashcard-filter-lec').value;
+      if (filter === 'all') {
+        flashcardList = [...VOCAB_DATA];
+      } else if (filter === 'starred') {
+        flashcardList = VOCAB_DATA.filter(w => starredWordIds.includes(w.id));
+        if (flashcardList.length === 0) {
+          alertBox("No Starred Words yet! Star some words in the Explorer first.", "info");
+          document.getElementById('flashcard-filter-lec').value = 'all';
+          flashcardList = [...VOCAB_DATA];
+        }
+      } else {
+        flashcardList = VOCAB_DATA.filter(w => w.lecture == filter);
+      }
+      currentFcIndex = 0;
+      isFlipped = false;
+      renderCurrentFlashcard();
+    }
+
+    function shuffleFlashcards() {
+      flashcardList.sort(() => Math.random() - 0.5);
+      currentFcIndex = 0;
+      isFlipped = false;
+      renderCurrentFlashcard();
+    }
+
+    function renderCurrentFlashcard() {
+      if (flashcardList.length === 0) return;
+      const item = flashcardList[currentFcIndex];
+      const inner = document.getElementById('flashcard-inner');
+      
+      // Ensure front side visible on render
+      inner.classList.remove('rotate-y-180');
+      isFlipped = false;
+
+      document.getElementById('fc-category').innerText = item.category;
+      document.getElementById('fc-lecture').innerText = `Lec ${item.lecture}`;
+      document.getElementById('fc-word').innerText = item.word;
+      document.getElementById('fc-hindi').innerText = item.hindi;
+      document.getElementById('fc-pronounce').innerText = `/${item.word.toLowerCase()}/`;
+
+      document.getElementById('fc-back-word').innerText = item.word;
+      document.getElementById('fc-meaning').innerText = item.meaning;
+      document.getElementById('fc-root').innerText = `Root: ${item.root}`;
+      document.getElementById('fc-notes').innerText = item.notes || 'High frequency SSC Question';
+
+      document.getElementById('fc-index').innerText = currentFcIndex + 1;
+      document.getElementById('fc-total').innerText = flashcardList.length;
+
+      // Update Star Button
+      const starBtn = document.getElementById('fc-star-btn');
+      const isStarred = starredWordIds.includes(item.id);
+      starBtn.innerHTML = `<i class="ph-${isStarred ? 'fill text-amber-500' : 'bold'} ph-star text-base"></i> ${isStarred ? 'Starred' : 'Star for Revision'}`;
+    }
+
+    function flipFlashcard() {
+      const inner = document.getElementById('flashcard-inner');
+      isFlipped = !isFlipped;
+      if (isFlipped) {
+        inner.classList.add('rotate-y-180');
+      } else {
+        inner.classList.remove('rotate-y-180');
+      }
+    }
+
+    function nextFlashcard() {
+      if (currentFcIndex < flashcardList.length - 1) {
+        currentFcIndex++;
+      } else {
+        currentFcIndex = 0;
+      }
+      renderCurrentFlashcard();
+    }
+
+    function prevFlashcard() {
+      if (currentFcIndex > 0) {
+        currentFcIndex--;
+      } else {
+        currentFcIndex = flashcardList.length - 1;
+      }
+      renderCurrentFlashcard();
+    }
+
+    function toggleCardStar() {
+      if (flashcardList.length === 0) return;
+      const current = flashcardList[currentFcIndex];
+      toggleStarWord(current.id);
+      renderCurrentFlashcard();
+    }
+
+    /* ==========================================================================
+       8. SSC MOCK QUIZ ENGINE
+       ========================================================================== */
+    function startQuiz() {
+      const lecSelect = document.getElementById('quiz-lecture-select').value;
+      const countSelect = parseInt(document.getElementById('quiz-count-select').value);
+
+      let pool = lecSelect === 'all' ? [...VOCAB_DATA] : VOCAB_DATA.filter(w => w.lecture == lecSelect);
+      if (pool.length < 4) pool = [...VOCAB_DATA];
+
+      // Shuffle pool
+      pool.sort(() => Math.random() - 0.5);
+      const chosenWords = pool.slice(0, Math.min(countSelect, pool.length));
+
+      // Generate MCQs with 1 correct and 3 distractors
+      activeQuizQuestions = chosenWords.map(correctItem => {
+        const distractors = VOCAB_DATA.filter(w => w.id !== correctItem.id)
+                                      .sort(() => Math.random() - 0.5)
+                                      .slice(0, 3)
+                                      .map(d => d.word);
+        const options = [...distractors, correctItem.word].sort(() => Math.random() - 0.5);
+        return {
+          question: `One who/Which is defined as: "${correctItem.meaning}"`,
+          correctAnswer: correctItem.word,
+          options: options,
+          hindi: correctItem.hindi,
+          category: correctItem.category,
+          explanation: `${correctItem.word} means: ${correctItem.meaning}. Root breakdown: ${correctItem.root}. Note: ${correctItem.notes}`
+        };
+      });
+
+      currentQuizIndex = 0;
+      quizScore = { correct: 0, wrong: 0, marks: 0 };
+      quizSeconds = 0;
+
+      document.getElementById('quiz-setup-box').classList.add('hidden');
+      document.getElementById('quiz-result-box').classList.add('hidden');
+      document.getElementById('quiz-play-box').classList.remove('hidden');
+
+      startQuizTimer();
+      renderQuizQuestion();
+    }
+
+    function startQuizTimer() {
+      clearInterval(quizTimerInterval);
+      quizSeconds = 0;
+      quizTimerInterval = setInterval(() => {
+        quizSeconds++;
+        const mins = Math.floor(quizSeconds / 60);
+        const secs = quizSeconds % 60;
+        document.getElementById('quiz-timer').innerText = 
+          `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    function renderQuizQuestion() {
+      answeredCurrentQuestion = false;
+      const q = activeQuizQuestions[currentQuizIndex];
+      const total = activeQuizQuestions.length;
+
+      document.getElementById('quiz-current-num').innerText = currentQuizIndex + 1;
+      document.getElementById('quiz-total-num').innerText = total;
+      document.getElementById('quiz-correct-count').innerText = quizScore.correct;
+      document.getElementById('quiz-wrong-count').innerText = quizScore.wrong;
+
+      // Progress bar percentage
+      const pct = ((currentQuizIndex) / total) * 100;
+      document.getElementById('quiz-progress-fill').style.width = `${pct}%`;
+
+      document.getElementById('q-category-tag').innerText = q.category;
+      document.getElementById('q-hint-tag').innerText = `Hint (Hindi): ${q.hindi}`;
+      document.getElementById('q-question-text').innerText = q.question;
+
+      // Reset explanation
+      const expBox = document.getElementById('q-explanation-box');
+      expBox.classList.add('hidden');
+
+      // Next button
+      const nextBtn = document.getElementById('quiz-next-btn');
+      nextBtn.disabled = true;
+      nextBtn.innerText = (currentQuizIndex === total - 1) ? "Submit & View Result" : "Next Question";
+
+      // Render 4 option buttons
+      const container = document.getElementById('q-options-container');
+      container.innerHTML = q.options.map((opt, idx) => {
+        const letter = ['A', 'B', 'C', 'D'][idx];
+        return `
+          <button onclick="handleOptionSelect('${opt}', this)" class="quiz-opt-btn w-full p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/80 text-left font-semibold text-xs sm:text-sm transition flex items-center justify-between group">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-slate-600 dark:text-slate-300 text-xs group-hover:bg-brand-500 group-hover:text-white transition">
+                ${letter}
+              </span>
+              <span>${opt}</span>
+            </div>
+            <i class="opt-icon ph-bold ph-circle text-slate-300 dark:text-slate-600 text-lg"></i>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function handleOptionSelect(chosenWord, buttonEl) {
+      if (answeredCurrentQuestion) return;
+      answeredCurrentQuestion = true;
+      const q = activeQuizQuestions[currentQuizIndex];
+      const allButtons = document.querySelectorAll('.quiz-opt-btn');
+
+      allButtons.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.remove('hover:bg-slate-50', 'dark:hover:bg-slate-800/80');
+      });
+
+      const nextBtn = document.getElementById('quiz-next-btn');
+      nextBtn.disabled = false;
+
+      if (chosenWord === q.correctAnswer) {
+        buttonEl.classList.add('border-emerald-500', 'bg-emerald-500/10', 'text-emerald-700', 'dark:text-emerald-300');
+        buttonEl.querySelector('.opt-icon').className = "ph-fill ph-check-circle text-emerald-500 text-xl";
+        quizScore.correct++;
+        quizScore.marks += 2.0;
+      } else {
+        buttonEl.classList.add('border-red-500', 'bg-red-500/10', 'text-red-700', 'dark:text-red-300');
+        buttonEl.querySelector('.opt-icon').className = "ph-fill ph-x-circle text-red-500 text-xl";
+        quizScore.wrong++;
+        quizScore.marks = Math.max(0, quizScore.marks - 0.50);
+
+        // Highlight correct
+        allButtons.forEach(btn => {
+          if (btn.innerText.includes(q.correctAnswer)) {
+            btn.classList.add('border-emerald-500', 'bg-emerald-500/10', 'text-emerald-700', 'dark:text-emerald-300');
+            btn.querySelector('.opt-icon').className = "ph-fill ph-check-circle text-emerald-500 text-xl";
+          }
+        });
+      }
+
+      document.getElementById('quiz-correct-count').innerText = quizScore.correct;
+      document.getElementById('quiz-wrong-count').innerText = quizScore.wrong;
+
+      // Reveal explanation
+      const expBox = document.getElementById('q-explanation-box');
+      document.getElementById('q-explanation-text').innerText = q.explanation;
+      expBox.classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      if (currentQuizIndex < activeQuizQuestions.length - 1) {
+        currentQuizIndex++;
+        renderQuizQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(quizTimerInterval);
+      document.getElementById('quiz-play-box').classList.add('hidden');
+      document.getElementById('quiz-result-box').classList.remove('hidden');
+
+      const total = activeQuizQuestions.length;
+      const accuracy = total > 0 ? Math.round((quizScore.correct / total) * 100) : 0;
+      const mins = Math.floor(quizSeconds / 60);
+      const secs = quizSeconds % 60;
+
+      document.getElementById('result-marks').innerText = `${quizScore.marks.toFixed(1)} / ${(total * 2).toFixed(1)}`;
+      document.getElementById('result-accuracy').innerText = `${accuracy}%`;
+      document.getElementById('result-time').innerText = `${mins}m ${secs}s`;
+
+      if (accuracy >= 80) {
+        confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+        document.getElementById('result-title').innerText = "Outstanding Accuracy!";
+        document.getElementById('result-subtitle').innerText = "You have exceptional grasp over SSC OWS (Lectures 6, 7 & 8).";
+      } else if (accuracy >= 50) {
+        document.getElementById('result-title').innerText = "Good Effort! Keep Revising.";
+        document.getElementById('result-subtitle').innerText = "Focus on weak areas using the Flashcard mode.";
+      } else {
+        document.getElementById('result-title').innerText = "Needs Improvement!";
+        document.getElementById('result-subtitle').innerText = "Review the Parmar SSC word explorer before taking the test again.";
+      }
+    }
+
+    function restartQuiz() {
+      document.getElementById('quiz-result-box').classList.add('hidden');
+      document.getElementById('quiz-setup-box').classList.remove('hidden');
+    }
+
+    function startQuizWithStarred() {
+      if (starredWordIds.length < 4) {
+        alertBox("Please star at least 4 words to start a custom quiz!", "info");
+        return;
+      }
+      toggleBookmarkDrawer();
+      switchView('quiz');
+      
+      const pool = VOCAB_DATA.filter(w => starredWordIds.includes(w.id)).sort(() => Math.random() - 0.5);
+      activeQuizQuestions = pool.map(item => {
+        const distractors = VOCAB_DATA.filter(w => w.id !== item.id).sort(() => Math.random() - 0.5).slice(0, 3).map(d => d.word);
+        return {
+          question: `One who/Which is defined as: "${item.meaning}"`,
+          correctAnswer: item.word,
+          options: [...distractors, item.word].sort(() => Math.random() - 0.5),
+          hindi: item.hindi,
+          category: item.category,
+          explanation: `${item.word} (${item.hindi}): ${item.meaning}. Root: ${item.root}`
+        };
+      });
+
+      currentQuizIndex = 0;
+      quizScore = { correct: 0, wrong: 0, marks: 0 };
+      document.getElementById('quiz-setup-box').classList.add('hidden');
+      document.getElementById('quiz-result-box').classList.add('hidden');
+      document.getElementById('quiz-play-box').classList.remove('hidden');
+      startQuizTimer();
+      renderQuizQuestion();
+    }
+
+    /* ==========================================================================
+       9. MATCH TILES RECALL GAME
+       ========================================================================== */
+    function initMatchGame() {
+      document.getElementById('match-win-banner').classList.add('hidden');
+      selectedWordTile = null;
+      selectedMeaningTile = null;
+      matchedCount = 0;
+      document.getElementById('match-score').innerText = `0/6`;
+
+      // Pick 6 random words
+      const sample = [...VOCAB_DATA].sort(() => Math.random() - 0.5).slice(0, 6);
+      matchPairs = sample;
+
+      // Words column (shuffled)
+      const shuffledWords = [...sample].sort(() => Math.random() - 0.5);
+      const wordsCol = document.getElementById('match-words-col');
+      wordsCol.innerHTML = shuffledWords.map(item => `
+        <button 
+          id="tile-word-${item.id}" 
+          onclick="handleMatchWordClick('${item.id}', this)"
+          class="match-tile w-full p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-500 font-display font-bold text-sm text-left transition flex items-center justify-between shadow-sm">
+          <span>${item.word}</span>
+          <span class="text-xs text-amber-500 font-sans font-medium">${item.hindi}</span>
+        </button>
+      `).join('');
+
+      // Meanings column (shuffled separately)
+      const shuffledMeanings = [...sample].sort(() => Math.random() - 0.5);
+      const meaningsCol = document.getElementById('match-meanings-col');
+      meaningsCol.innerHTML = shuffledMeanings.map(item => `
+        <button 
+          id="tile-meaning-${item.id}" 
+          onclick="handleMatchMeaningClick('${item.id}', this)"
+          class="match-tile w-full p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-500 text-xs text-left text-slate-600 dark:text-slate-300 transition flex items-center justify-between shadow-sm">
+          <span>${item.meaning}</span>
+        </button>
+      `).join('');
+    }
+
+    function handleMatchWordClick(wordId, el) {
+      if (el.classList.contains('opacity-20')) return; // Already matched
+      document.querySelectorAll('#match-words-col .match-tile').forEach(b => b.classList.remove('ring-2', 'ring-brand-500', 'bg-brand-500/10'));
+      el.classList.add('ring-2', 'ring-brand-500', 'bg-brand-500/10');
+      selectedWordTile = { id: wordId, el: el };
+      checkMatchPair();
+    }
+
+    function handleMatchMeaningClick(meaningId, el) {
+      if (el.classList.contains('opacity-20')) return;
+      document.querySelectorAll('#match-meanings-col .match-tile').forEach(b => b.classList.remove('ring-2', 'ring-purple-500', 'bg-purple-500/10'));
+      el.classList.add('ring-2', 'ring-purple-500', 'bg-purple-500/10');
+      selectedMeaningTile = { id: meaningId, el: el };
+      checkMatchPair();
+    }
+
+    function checkMatchPair() {
+      if (!selectedWordTile || !selectedMeaningTile) return;
+
+      if (selectedWordTile.id === selectedMeaningTile.id) {
+        // MATCH SUCCESS!
+        const w = selectedWordTile.el;
+        const m = selectedMeaningTile.el;
+
+        w.classList.remove('ring-2', 'ring-brand-500', 'bg-brand-500/10');
+        m.classList.remove('ring-2', 'ring-purple-500', 'bg-purple-500/10');
+
+        w.classList.add('bg-emerald-500/20', 'border-emerald-500', 'opacity-30', 'pointer-events-none');
+        m.classList.add('bg-emerald-500/20', 'border-emerald-500', 'opacity-30', 'pointer-events-none');
+
+        selectedWordTile = null;
+        selectedMeaningTile = null;
+        matchedCount++;
+        document.getElementById('match-score').innerText = `${matchedCount}/6`;
+
+        if (matchedCount === 6) {
+          confetti({ particleCount: 70, spread: 60 });
+          document.getElementById('match-win-banner').classList.remove('hidden');
+        }
+      } else {
+        // MATCH FAILED - Shake and reset
+        const w = selectedWordTile.el;
+        const m = selectedMeaningTile.el;
+        w.classList.add('ring-red-500', 'bg-red-500/20');
+        m.classList.add('ring-red-500', 'bg-red-500/20');
+
+        setTimeout(() => {
+          w.classList.remove('ring-2', 'ring-brand-500', 'ring-red-500', 'bg-brand-500/10', 'bg-red-500/20');
+          m.classList.remove('ring-2', 'ring-purple-500', 'ring-red-500', 'bg-purple-500/10', 'bg-red-500/20');
+          selectedWordTile = null;
+          selectedMeaningTile = null;
+        }, 500);
+      }
+    }
+
+    /* ==========================================================================
+       10. SPELLING CHALLENGE (EXAM NOTES SECTION)
+       ========================================================================== */
+    function initSpellingChallenge() {
+      currentSpellIndex = 0;
+      spellingStreak = 0;
+      renderSpellingQuestion();
+    }
+
+    function renderSpellingQuestion() {
+      const q = SPELLING_DATA[currentSpellIndex];
+      document.getElementById('spell-current-index').innerText = currentSpellIndex + 1;
+      document.getElementById('spell-total-count').innerText = SPELLING_DATA.length;
+      document.getElementById('spell-streak').innerHTML = `<i class="ph-fill ph-fire text-amber-500"></i> Streak: ${spellingStreak}`;
+
+      const feedback = document.getElementById('spell-feedback');
+      feedback.classList.add('hidden');
+      document.getElementById('spell-next-btn').classList.add('hidden');
+
+      const optionsBox = document.getElementById('spell-options');
+      optionsBox.innerHTML = q.options.map((opt, idx) => `
+        <button onclick="handleSpellingAnswer(${idx}, this)" class="spell-btn p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:border-purple-500 font-semibold text-left transition flex items-center justify-between">
+          <span>${opt}</span>
+          <i class="ph-bold ph-cursor-click text-slate-300 dark:text-slate-700"></i>
+        </button>
+      `).join('');
+    }
+
+    function handleSpellingAnswer(selectedIndex, buttonEl) {
+      const q = SPELLING_DATA[currentSpellIndex];
+      const allBtns = document.querySelectorAll('.spell-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      const feedback = document.getElementById('spell-feedback');
+      feedback.classList.remove('hidden');
+
+      if (selectedIndex === q.correctIndex) {
+        buttonEl.classList.add('border-emerald-500', 'bg-emerald-500/15', 'text-emerald-700', 'dark:text-emerald-300');
+        spellingStreak++;
+        feedback.innerHTML = `
+          <span class="font-bold text-emerald-600 dark:text-emerald-400">✓ Correct!</span>
+          <p class="mt-1">${q.rule}</p>
+          <p class="text-slate-500 mt-0.5"><em>Meaning: ${q.meaning}</em></p>
+        `;
+      } else {
+        buttonEl.classList.add('border-red-500', 'bg-red-500/15', 'text-red-700', 'dark:text-red-300');
+        allBtns[q.correctIndex].classList.add('border-emerald-500', 'bg-emerald-500/15', 'text-emerald-700', 'dark:text-emerald-300');
+        spellingStreak = 0;
+        feedback.innerHTML = `
+          <span class="font-bold text-red-500">✗ Incorrect.</span>
+          <p class="mt-1">${q.rule}</p>
+          <p class="text-slate-500 mt-0.5"><em>Correct Word: <strong>${q.wordName}</strong> (${q.meaning})</em></p>
+        `;
+      }
+
+      document.getElementById('spell-streak').innerHTML = `<i class="ph-fill ph-fire text-amber-500"></i> Streak: ${spellingStreak}`;
+      document.getElementById('spell-next-btn').classList.remove('hidden');
+    }
+
+    function nextSpellingQuestion() {
+      if (currentSpellIndex < SPELLING_DATA.length - 1) {
+        currentSpellIndex++;
+      } else {
+        currentSpellIndex = 0;
+        alertBox("Great job! You have looped through all exam spelling PYQs.", "success");
+      }
+      renderSpellingQuestion();
+    }
+
+    /* ==========================================================================
+       11. BOOKMARK / STARRED SYSTEM (LOCAL STORAGE)
+       ========================================================================== */
+    function toggleStarWord(id, btnEl = null) {
+      if (starredWordIds.includes(id)) {
+        starredWordIds = starredWordIds.filter(x => x !== id);
+      } else {
+        starredWordIds.push(id);
+      }
+      localStorage.setItem('parmar_ows_starred', JSON.stringify(starredWordIds));
+      updateStarredBadge();
+      renderStarredDrawerList();
+
+      if (btnEl) {
+        const isStarred = starredWordIds.includes(id);
+        btnEl.innerHTML = `<i class="ph-${isStarred ? 'fill text-amber-400' : 'bold'} ph-star text-lg"></i>`;
+      }
+    }
+
+    function updateStarredBadge() {
+      const badge = document.getElementById('star-badge');
+      if (starredWordIds.length > 0) {
+        badge.innerText = starredWordIds.length;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function toggleBookmarkDrawer() {
+      const drawer = document.getElementById('starred-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const isOpen = !drawer.classList.contains('translate-x-full');
+
+      if (isOpen) {
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.add('hidden');
+      } else {
+        renderStarredDrawerList();
+        drawer.classList.remove('translate-x-full');
+        backdrop.classList.remove('hidden');
+      }
+    }
+
+    function renderStarredDrawerList() {
+      const container = document.getElementById('starred-list');
+      const starred = VOCAB_DATA.filter(w => starredWordIds.includes(w.id));
+
+      if (starred.length === 0) {
+        container.innerHTML = `
+          <div class="py-12 text-center text-slate-400 text-xs">
+            <i class="ph-bold ph-star text-3xl text-slate-300 dark:text-slate-700"></i>
+            <p class="mt-2 font-medium">No words starred yet.</p>
+            <p class="text-[11px] mt-0.5">Click the star icon on any card to save it here for fast revision.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = starred.map(item => `
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-start justify-between gap-2 shadow-sm">
+          <div>
+            <h4 class="font-display font-bold text-sm text-brand-600 dark:text-brand-400">${item.word}</h4>
+            <span class="text-[11px] text-amber-500 font-medium">${item.hindi}</span>
+            <p class="text-[11px] text-slate-500 leading-snug mt-1">${item.meaning}</p>
+          </div>
+          <button onclick="toggleStarWord('${item.id}'); renderStarredDrawerList(); renderVocabGrid();" class="text-slate-400 hover:text-red-500 p-1">
+            <i class="ph-bold ph-trash"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    /* Custom Message Box */
+    function alertBox(message, type = "info") {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `fixed bottom-5 right-5 z-50 px-4 py-3 rounded-xl shadow-xl text-xs font-bold text-white flex items-center gap-2 animate-bounce ${type === 'success' ? 'bg-emerald-600' : 'bg-slate-800'}`;
+      msgDiv.innerHTML = `<i class="ph-bold ph-info text-base"></i> <span>${message}</span>`;
+      document.body.appendChild(msgDiv);
+      setTimeout(() => {
+        msgDiv.remove();
+      }, 3200);
+    }
+  </script>
+</body>
+</html>

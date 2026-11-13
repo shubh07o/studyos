@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Study Guide: Anglo-Eastern Sponsorship Written Exam & Interview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.92);
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent-blue: #0284c7;
+      --accent-navy: #1e3a8a;
+      --accent-indigo: #4f46e5;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.68;
+      padding-bottom: 80px;
+    }
+
+    /* Clean Native HTML Math & Formula Styling */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #0369a1;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 1px 7px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.03em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .m-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      font-size: 1.12rem;
+      color: #0c4a6e;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-left: 4px solid var(--accent-blue);
+      padding: 12px 18px;
+      border-radius: 10px;
+      margin: 12px 0;
+    }
+
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 4px;
+      font-size: 0.88em;
+      line-height: 1.1;
+    }
+    .frac-num {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 4px 2px;
+    }
+    .frac-den {
+      padding: 2px 4px 0;
+    }
+
+    .sqrt {
+      display: inline-flex;
+      align-items: center;
+    }
+    .sqrt-rad {
+      font-size: 1.15em;
+      margin-right: 1px;
+    }
+    .sqrt-body {
+      border-top: 1.5px solid currentColor;
+      padding: 1px 3px 0;
+    }
+
+    sub, sup {
+      font-size: 0.75em;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+    sup { top: -0.5em; }
+    sub { bottom: -0.25em; }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-navy), var(--accent-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .global-search {
+      width: 290px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: #fff;
+      font-size: 0.86rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: 0.2s;
+    }
+    .global-search:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+    }
+
+    .ctrl-btn {
+      background: #fff;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      padding: 8px 14px;
+      border-radius: 9px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .ctrl-btn:hover {
+      background: var(--bg-subtle);
+      border-color: var(--accent-blue);
+    }
+    .ctrl-btn.active {
+      background: var(--accent-navy);
+      color: #fff;
+      border-color: var(--accent-navy);
+    }
+
+    /* Navigation Bar */
+    .nav-container {
+      max-width: 1360px;
+      margin: 18px auto 0;
+      padding: 0 24px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .tab-btn {
+      background: #fff;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--accent-navy), var(--accent-blue));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1360px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    .module-section {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+    .module-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards & Subsections */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .section-banner {
+      background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+      border: 1px solid #bae6fd;
+      border-radius: 16px;
+      padding: 22px 28px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .section-banner h2 {
+      font-size: 1.38rem;
+      font-weight: 800;
+      color: var(--accent-navy);
+    }
+
+    .section-banner p {
+      font-size: 0.9rem;
+      color: #0369a1;
+      font-weight: 500;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent-navy);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--bg-subtle);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sub-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 20px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sub-heading::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+      border-radius: 4px;
+      background: var(--accent-blue);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .info-box h4 {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--accent-navy);
+      margin-bottom: 8px;
+    }
+
+    ul.study-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    ul.study-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    ul.study-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 2px;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    /* Captain's Evaluation Note Callout */
+    .captain-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 5px solid var(--accent-amber);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .captain-note-header {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: #92400e;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .captain-note p {
+      color: #78350f;
+      font-size: 0.94rem;
+      font-weight: 500;
+    }
+
+    /* PYQ Solution Box */
+    .pyq-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 5px solid var(--accent-emerald);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 14px 0;
+    }
+
+    .pyq-header {
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: #065f46;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 14px 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: var(--accent-navy);
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #f8fafc;
+    }
+
+    /* Diagrams & Visual Schematics */
+    .diagram-card {
+      background: #f8fafc;
+      border: 1.5px dashed #94a3b8;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 16px 0;
+      text-align: center;
+    }
+
+    .quadrant-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 540px;
+      margin: 12px auto;
+      border: 2px solid var(--accent-navy);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .quad-cell {
+      padding: 18px;
+      border: 1px solid var(--border);
+    }
+    .quad-cell h5 {
+      font-size: 0.9rem;
+      color: var(--accent-navy);
+      margin-bottom: 6px;
+    }
+    .quad-cell p {
+      font-weight: 700;
+      color: var(--accent-blue);
+      font-size: 0.95rem;
+    }
+
+    /* Flowchart Steps */
+    .flow-vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .flow-step {
+      width: 100%;
+      max-width: 740px;
+      background: #fff;
+      border: 1.5px solid #93c5fd;
+      border-left: 6px solid var(--accent-blue);
+      border-radius: 12px;
+      padding: 14px 20px;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .flow-step strong {
+      color: var(--accent-navy);
+      display: block;
+      font-size: 0.96rem;
+      margin-bottom: 3px;
+    }
+
+    .flow-arrow {
+      font-size: 1.2rem;
+      color: var(--accent-blue);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    /* Interview Q&A Cards */
+    .interview-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-q {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent-navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .panel-q-badge {
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 0.72rem;
+      padding: 3px 9px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 3px;
+    }
+
+    .candidate-script {
+      background: #f8fafc;
+      border-left: 4px solid var(--accent-emerald);
+      padding: 16px 20px;
+      border-radius: 10px;
+      font-size: 0.96rem;
+      color: #1e293b;
+      transition: filter 0.25s ease;
+    }
+
+    /* Self-Test Blur Mode for Formulas, PYQ Solutions & Interview Scripts */
+    body.self-test-mode .pyq-ans,
+    body.self-test-mode .candidate-script,
+    body.self-test-mode td.blur-target {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    body.self-test-mode .pyq-ans:hover,
+    body.self-test-mode .candidate-script:hover,
+    body.self-test-mode td.blur-target:hover {
+      filter: blur(0);
+    }
+
+    /* Essay Tabs */
+    .essay-pill-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .essay-pill {
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: #fff;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .essay-pill.active {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+    }
+
+    .vocab-chip {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 11px;
+      border-radius: 999px;
+      margin: 3px;
+    }
+
+    .route-chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin: 8px 0;
+    }
+
+    .route-node {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .route-arrow {
+      color: var(--accent-blue);
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">⚓</div>
+      <div class="brand-text">
+        <h1>Master Study Guide: Anglo-Eastern Written Exam & Interview</h1>
+        <p>Complete PYQ Mastery • Physics, Maths, Chemistry, Maritime GK, 296 Psychometric, Essays & Panel Interview</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <input type="text" id="searchInput" class="global-search" placeholder="🔍 Search any formula, topic, port, or interview Q..." oninput="filterGuideContent()" />
+      <button class="ctrl-btn" id="selfTestBtn" onclick="toggleSelfTestMode()">🙈 Self-Test Mode (Blur Answers)</button>
+      <button class="ctrl-btn" onclick="showAllModules()">📖 Show All Sections</button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="nav-tabs" id="navTabs">
+    <button class="tab-btn active" onclick="switchTab('physics', this)">⚛️ 1.1 Physics PYQs</button>
+    <button class="tab-btn" onclick="switchTab('maths', this)">📐 1.2 Maths & Shortcuts</button>
+    <button class="tab-btn" onclick="switchTab('chemistry', this)">🧪 1.3 Chemistry & Fuels</button>
+    <button class="tab-btn" onclick="switchTab('maritime', this)">🌍 1.4 Maritime GK & Routes</button>
+    <button class="tab-btn" onclick="switchTab('psychometric', this)">🧠 2. Psychometric (296 Qs)</button>
+    <button class="tab-btn" onclick="switchTab('essay', this)">✍️ 3. Written Essays (250–300w)</button>
+    <button class="tab-btn" onclick="switchTab('interview', this)">🎙️ 4. Panel Interview & COSWP</button>
+    <button class="tab-btn" onclick="switchTab('drill', this)">🎯 5. Rapid Oral & PYQ Drill</button>
+  </div>
+</div>
+
+<main id="mainContainer">
+
+  <!-- =====================================================================
+       MODULE 1.1: PHYSICS FORMULA SHEET & HIGH-FREQUENCY PYQ SOLUTIONS
+  ====================================================================== -->
+  <section id="mod-physics" class="module-section active">
+    <div class="section-banner">
+      <div>
+        <h2>1.1. Physics Formula Sheet & High-Frequency PYQ Solutions</h2>
+        <p>Mechanics, Hydrostatics, Metrology, Thermodynamics, Electrodynamics & Wave Optics</p>
+      </div>
+      <span class="vocab-chip">Written + Oral Viva Core</span>
+    </div>
+
+    <!-- Mechanics & Dynamics -->
+    <div class="card searchable-block">
+      <div class="card-title">⚙️ Mechanics & Dynamics</div>
+      <div class="grid-2">
+        <div class="info-box">
+          <h4>Newton's Laws of Motion & Gravitation</h4>
+          <ul class="study-list">
+            <li><b>First Law (Law of Inertia):</b> A body remains at rest or in uniform motion along a straight line unless acted upon by an external resultant force.</li>
+            <li><b>Second Law:</b> The rate of change of momentum of a body is directly proportional to the applied force and takes place in the direction of the force (<span class="m-expr">F = ma</span>).</li>
+            <li><b>Third Law:</b> To every action, there is an equal and opposite reaction.</li>
+            <li><b>Newton's Law of Gravitation:</b> The gravitational force between two point masses is directly proportional to the product of their masses and inversely proportional to the square of the distance separating them:
+              <div class="m-block">F = G <span class="frac"><span class="frac-num">m<sub>1</sub> m<sub>2</sub></span><span class="frac-den">r<sup>2</sup></span></span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Free-Fall Kinematics & Tower Height PYQ Solution</h4>
+          <p style="font-size:0.92rem; margin-bottom:8px;"><b>Kinematic Equations for Free-Fall (<span class="m-expr">u = 0 m/s</span>):</b></p>
+          <div class="m-block">
+            <span>v = gt</span> •
+            <span>h = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>gt<sup>2</sup></span> •
+            <span>v<sup>2</sup> = 2gh</span>
+          </div>
+          <div class="pyq-box">
+            <div class="pyq-header">📌 PYQ Mathematical Solution — Tower Height</div>
+            <p><b>Problem:</b> Calculate the height of a tower if a dropped ball touches the ground in <span class="m-expr">t = 10 seconds</span>.</p>
+            <div class="pyq-ans" style="margin-top:8px;">
+              <p>• <b>Candidate Verbal Etiquette:</b> Before stating your final calculated height to the panel, explicitly state your assumed value for <span class="m-expr">g</span>.</p>
+              <p>• <b>Calculation (assuming <span class="m-expr">g = 9.8 m/s<sup>2</sup></span>):</b> <span class="m-expr">h = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span> × 9.8 × (10)<sup>2</sup> = 0.5 × 9.8 × 100 = <b>490 meters</b></span></p>
+              <p>• <b>Calculation (assuming <span class="m-expr">g = 10 m/s<sup>2</sup></span>):</b> <span class="m-expr">h = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span> × 10 × 100 = <b>500 meters</b></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="captain-note">
+        <div class="captain-note-header">🎖️ Captain's Evaluation Note</div>
+        <p>In oral examinations, candidates often lose points not because their arithmetic is wrong, but because they blurt out "500 meters" without stating that they assumed <span class="m-expr">g = 10 m/s<sup>2</sup></span>. Always declare your constants first—it demonstrates disciplined engineering protocol.</p>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <div class="info-box">
+          <h4>Rotational Dynamics, Escape Velocity & Curved Motion</h4>
+          <ul class="study-list">
+            <li><b>Escape Velocity:</b> Minimum vertical velocity required for a body to overcome a celestial body's gravitational field completely:
+              <span class="m-expr">v<sub>e</sub> = <span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">2gR</span></span> ≈ 11.2 km/s</span> (for Earth).
+            </li>
+            <li><b>Centripetal Force:</b> Inward force required to constrain a mass to a curved path (<span class="m-expr">F<sub>c</sub> = <span class="frac"><span class="frac-num">mv<sup>2</sup></span><span class="frac-den">r</span></span></span>).</li>
+            <li><b>Centrifugal Force:</b> Apparent, inertia-driven outward force experienced within a rotating frame of reference.</li>
+            <li><b>Physics of a Cyclist Bending on Turns:</b> A cyclist leaning inward at an angle <span class="m-expr">θ</span> from the vertical creates a horizontal component of the normal contact force (<span class="m-expr">N sin θ</span>) that provides the exact centripetal force (<span class="m-expr">mv<sup>2</sup>/r</span>) required to execute the turn without skidding laterally.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Elasticity Mechanics (Steel vs. Rubber Ball PYQ)</h4>
+          <div class="m-block">
+            Y = <span class="frac"><span class="frac-num">Stress</span><span class="frac-den">Strain</span></span> = <span class="frac"><span class="frac-num">F / A</span><span class="frac-den">ΔL / L<sub>0</sub></span></span>
+          </div>
+          <div class="pyq-box">
+            <div class="pyq-header">📌 PYQ Analysis: Steel Ball vs. Rubber Ball</div>
+            <p class="pyq-ans"><b>A steel ball is more elastic than a rubber ball.</b> Steel possesses a significantly higher Young's Modulus (<span class="m-expr">Y</span>) than rubber, meaning steel requires a far greater deforming stress to produce the same strain, and generates a much stronger internal restoring force to regain its original geometry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fluid Mechanics & Hydrostatics -->
+    <div class="card searchable-block">
+      <div class="card-title">🌊 Fluid Mechanics & Hydrostatics</div>
+      <div class="grid-2">
+        <div class="info-box">
+          <h4>Hydrostatic Pressure & Fluid Density</h4>
+          <ul class="study-list">
+            <li><b>Fluid Density:</b> <span class="m-expr">ρ = <span class="frac"><span class="frac-num">m</span><span class="frac-den">V</span></span></span> (Unit: <span class="m-expr">kg/m<sup>3</sup></span>).</li>
+            <li><b>Hydrostatic Pressure Equation:</b> <span class="m-expr">P = ρgh</span>.</li>
+            <li><b>Absolute Pressure at Dam Wall Base:</b>
+              <div class="m-block">P<sub>bottom</sub> = P<sub>atm</sub> + ρgh</div>
+              Where <span class="m-expr">ρ</span> represents stored water density (<span class="m-expr">≈ 1000 kg/m<sup>3</sup></span>) and <span class="m-expr">h</span> is vertical water depth.
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Bernoulli's Principle & Aerodynamic Lift</h4>
+          <p style="font-size:0.93rem;"><b>Bernoulli's Theorem:</b> For laminar, incompressible, non-viscous fluid flow, total mechanical energy remains constant along a streamline:</p>
+          <div class="m-block">P + <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>ρv<sup>2</sup> + ρgz = Constant</div>
+          <p style="font-size:0.93rem;"><b>Aerodynamic Lift:</b> Air travels faster over the curved upper surface of an airfoil than beneath the flat lower surface. Elevated fluid velocity over the top reduces static pressure, producing a net upward aerodynamic lift force.</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <div class="info-box">
+          <h4>Archimedes' Principle, Buoyancy & Vessel Flotation</h4>
+          <ul class="study-list">
+            <li><b>Archimedes' Principle:</b> A body immersed wholly or partially in a fluid experiences an upward buoyant force equal to the weight of the fluid displaced by the body.</li>
+            <li><b>Iron Needle vs. Steel Ship:</b> A solid iron needle sinks because its structural density (<span class="m-expr">≈ 7850 kg/m<sup>3</sup></span>) exceeds water density (<span class="m-expr">≈ 1000 kg/m<sup>3</sup></span>). A steel ship floats because its hollowed hull encloses vast air space; its overall mean displacement density (<span class="m-expr">Total Mass / Total Enclosed Volume</span>) is less than water, displacing a weight of water equal to its total displacement mass.</li>
+            <li><b>Partially Submerged Steel Bucket:</b> The weight of the submerged portion of the bucket plus its contents is exactly equal to the weight of the liquid displaced by that submerged volume.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Capillarity & Surface Tension Mechanics</h4>
+          <ul class="study-list">
+            <li><b>Surface Tension:</b> Cohesive intermolecular forces pulling liquid molecules inward at an interface, causing the surface layer to behave like a stretched elastic membrane (Unit: <span class="m-expr">N/m</span>).</li>
+            <li><b>Capillary Action:</b> Spontaneous movement of a liquid through narrow channels driven by adhesive forces between liquid and solid surfaces exceeding internal cohesive forces.</li>
+            <li><b>Oil Lamp Mechanism:</b> Fuel ascends a woven cotton wick via capillary action through microscopic interstitial spaces between fabric strands.</li>
+            <li><b>Paper on Wet Table:</b> Laying dry paper on a wet table engages strong adhesive molecular forces between liquid and paper cellulose fibers, while liquid surface tension pulls the paper flat onto the table.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrology, Modern Physics & Thermodynamics -->
+    <div class="card searchable-block">
+      <div class="card-title">🔬 Metrology, Modern Physics, Thermodynamics & Geophysics</div>
+      <div class="grid-2">
+        <div class="info-box">
+          <h4>Instrument Least Count Calculations (High-Frequency PYQ)</h4>
+          <ul class="study-list">
+            <li><b>Meter Scale:</b> Least Count = <span class="m-expr">1 mm = 0.1 cm</span>.</li>
+            <li><b>Standard Vernier Caliper:</b>
+              <div class="m-block">LC = <span class="frac"><span class="frac-num">1 Main Scale Division (MSD)</span><span class="frac-den">Total Vernier Scale Divisions (VSD)</span></span> = <span class="frac"><span class="frac-num">1 mm</span><span class="frac-den">50</span></span> = 0.02 mm <span style="font-size:0.85em;">(or 1/10 = 0.1 mm)</span></div>
+            </li>
+            <li><b>Standard Screw Gauge (Micrometer):</b>
+              <div class="m-block">LC = <span class="frac"><span class="frac-num">Pitch of Screw</span><span class="frac-den">Total Circular Scale Divisions</span></span> = <span class="frac"><span class="frac-num">0.5 mm</span><span class="frac-den">50</span></span> or <span class="frac"><span class="frac-num">1 mm</span><span class="frac-den">100</span></span> = 0.01 mm</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Quantum Mechanics & Wave Optics (Interference vs. Diffraction)</h4>
+          <ul class="study-list">
+            <li><b>Planck's Constant (<span class="m-expr">h</span>):</b> <span class="m-expr">h = 6.626 × 10<sup>−34</sup> J·s</span> (or <span class="m-expr">kg·m<sup>2</sup>/s</span>).</li>
+            <li><b>De Broglie Hypothesis:</b> Matter exhibits dual wave-particle properties:
+              <span class="m-expr">λ = <span class="frac"><span class="frac-num">h</span><span class="frac-den">p</span></span> = <span class="frac"><span class="frac-num">h</span><span class="frac-den">mv</span></span></span>
+            </li>
+            <li><b>Interference:</b> Superposition of light waves from two coherent, distinct sources, producing uniform fringe widths and equal intensity maxima.</li>
+            <li><b>Diffraction:</b> Bending of light waves around sharp obstacle edges or narrow slits, producing non-uniform fringe widths and rapidly decaying intensity maxima.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top:18px;">
+        <div class="info-box">
+          <h4>Gas Laws & Thermal Physics</h4>
+          <ul class="study-list">
+            <li><b>Ideal Gas Law:</b> <span class="m-expr">PV = nRT</span> (<span class="m-expr">R = 8.314 J/(mol·K)</span>).</li>
+            <li><b>Boyle's Law (Const T):</b> <span class="m-expr">P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></span></li>
+            <li><b>Charles' Law (Const P):</b> <span class="m-expr"><span class="frac"><span class="frac-num">V<sub>1</sub></span><span class="frac-den">T<sub>1</sub></span></span> = <span class="frac"><span class="frac-num">V<sub>2</sub></span><span class="frac-den">T<sub>2</sub></span></span></span></li>
+            <li><b>Gay-Lussac's (Const V):</b> <span class="m-expr"><span class="frac"><span class="frac-num">P<sub>1</sub></span><span class="frac-den">T<sub>1</sub></span></span> = <span class="frac"><span class="frac-num">P<sub>2</sub></span><span class="frac-den">T<sub>2</sub></span></span></span></li>
+            <li><b>Latent Heat:</b> <span class="m-expr">Q = mL</span> (phase change at constant T).</li>
+            <li><b>Linear Expansion:</b> <span class="m-expr">α = <span class="frac"><span class="frac-num">ΔL</span><span class="frac-den">L<sub>0</sub> ΔT</span></span></span> (<span class="m-expr">K<sup>−1</sup></span>).</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Boiling, Anomalous Water & Condensation</h4>
+          <ul class="study-list">
+            <li><b>Pressure Cooker:</b> Elevated internal pressure raises water's boiling point above <span class="m-expr">100°C</span> (<span class="m-expr">≈ 120°C</span> at <span class="m-expr">2 atm</span>).</li>
+            <li><b>Boiling Water at 5°C:</b> Using a vacuum pump to drop ambient vessel pressure to <span class="m-expr">0.87 kPa (0.0087 bar)</span> makes water boil at <span class="m-expr">5°C</span>.</li>
+            <li><b>Anomalous Expansion:</b> Water reaches maximum density (<span class="m-expr">1000 kg/m<sup>3</sup></span>) at <span class="m-expr">4°C</span>; ice at <span class="m-expr">0°C</span> is less dense (<span class="m-expr">≈ 917 kg/m<sup>3</sup></span>).</li>
+            <li><b>Cold Glass Condensation:</b> Ice cools glass below ambient air's <b>dew point</b>, condensing water vapor into droplets.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Geophysical & Astronomical PYQs</h4>
+          <ul class="study-list">
+            <li><b>Earth's Axial Tilt:</b> <span class="m-expr">23.5°</span> relative to orbital plane normal.</li>
+            <li><b>Cause of Seasons:</b> Fixed <span class="m-expr">23.5°</span> axial tilt + annual revolution around the Sun.</li>
+            <li><b>Day & Night:</b> Diurnal rotation on axis every 24 hours.</li>
+            <li><b>High-Altitude Drop:</b> Lower partial <span class="m-expr">O<sub>2</sub></span> pressure causes hypoxia; lower ambient pressure lowers boiling points and alters pipe head pressure (causing air-locks).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Electrodynamics, Magnetism & Wave Optics -->
+    <div class="card searchable-block">
+      <div class="card-title">⚡ Electrodynamics, Circuitry, Sound & Optics</div>
+      <div class="grid-2">
+        <div class="info-box">
+          <h4>Circuit Parameters, Kirchhoff's Laws & Wheatstone Bridge</h4>
+          <ul class="study-list">
+            <li><b>Ohm's Law:</b> <span class="m-expr">V = IR</span> • <b>Electric Potential:</b> <span class="m-expr">V = W / Q</span> (Volts).</li>
+            <li><b>Domestic AC Supply:</b> <span class="m-expr">220V RMS</span> at <span class="m-expr">50 Hz</span> (India/UK).</li>
+            <li><b>KCL (Nodal Law):</b> <span class="m-expr">∑I<sub>in</sub> = ∑I<sub>out</sub></span> (Conservation of Charge).</li>
+            <li><b>KVL (Loop Law):</b> <span class="m-expr">∑V = 0</span> (Conservation of Energy).</li>
+            <li><b>Wheatstone Bridge Balance Condition:</b> <span class="m-expr"><span class="frac"><span class="frac-num">P</span><span class="frac-den">Q</span></span> = <span class="frac"><span class="frac-num">R</span><span class="frac-den">S</span></span></span> (Zero current through central galvanometer <span class="m-expr">G</span>).</li>
+          </ul>
+          <div class="diagram-card" style="font-family:'JetBrains Mono', monospace; font-size:0.86rem; background:#fff;">
+            <div><b>Wheatstone Bridge Balanced Network (I<sub>G</sub> = 0)</b></div>
+            <div style="margin-top:8px; color:var(--accent-navy);">
+              (+) ──┬── [ Resistor P ] ──┬── [ Resistor Q ] ──┬── (−)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( G )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [ Resistor R ] ──┴── [ Resistor S ] ──┘
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <h4>EMI, Power Equipment & Wave/Optics Phenomena</h4>
+          <ul class="study-list">
+            <li><b>Faraday & Lenz's Law:</b> Induced EMF <span class="m-expr">ℰ = −<span class="frac"><span class="frac-num">dΦ<sub>B</sub></span><span class="frac-den">dt</span></span></span> (opposes the flux change).</li>
+            <li><b>Power Devices:</b> <b>Dynamo</b> (Mechanical to DC), <b>Transformer</b> (Mutual induction AC converter: <span class="m-expr">V<sub>p</sub>/V<sub>s</sub> = N<sub>p</sub>/N<sub>s</sub></span>), <b>Rectifier</b> (AC to DC via diodes), <b>Inverter</b> (DC to AC).</li>
+            <li><b>Doppler Effect:</b> <span class="m-expr">f' = f (<span class="frac"><span class="frac-num">v ± v<sub>o</sub></span><span class="frac-den">v ∓ v<sub>s</sub></span></span>)</span> (Train horn pitch drop; bat echolocation).</li>
+            <li><b>Resonance:</b> Forced oscillations matching natural frequency causing maximum amplitude (e.g., acoustic voice shattering crystal glass).</li>
+            <li><b>Total Internal Reflection (TIR):</b> Dense to rarer medium with <span class="m-expr">θ<sub>i</sub> &gt; θ<sub>c</sub> = arcsin(n<sub>2</sub>/n<sub>1</sub>)</span> (Diamonds, mirages, optical fibers).</li>
+            <li><b>Brewster's Law:</b> Reflective polarization when reflected & refracted rays are perpendicular: <span class="m-expr">tan θ<sub>p</sub> = n</span>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MODULE 1.2: MATHEMATICS KEY FORMULAS & SHORTCUT PATTERNS
+  ====================================================================== -->
+  <section id="mod-maths" class="module-section">
+    <div class="section-banner">
+      <div>
+        <h2>1.2. Mathematics Key Formulas & Shortcut Problem-Solving Patterns</h2>
+        <p>Mensuration, Triangle Centers, Quadrant Rules, Inaccessible Peak Trigonometry & Nautical Conversions</p>
+      </div>
+      <span class="vocab-chip">Speed Calculation Focus</span>
+    </div>
+
+    <div class="card searchable-block">
+      <div class="card-title">📏 Mensuration & 3D Geometry Master Table</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Shape / Solid</th>
+              <th>Area / Surface Area Formula</th>
+              <th>Volume Formula</th>
+              <th>Candidate Quick-Calculation Shortcuts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Circle</b></td>
+              <td class="blur-target"><span class="m-expr">A = πr<sup>2</sup></span></td>
+              <td>N/A</td>
+              <td class="blur-target">Use <span class="m-expr">π ≈ 22/7</span> or <span class="m-expr">3.1416</span>. For <span class="m-expr">r = 7</span>, <span class="m-expr">A = 154</span>.</td>
+            </tr>
+            <tr>
+              <td><b>Semicircle</b></td>
+              <td class="blur-target"><span class="m-expr">A = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>πr<sup>2</sup></span><br>Perimeter <span class="m-expr">P = πr + 2r = r(π + 2)</span></td>
+              <td>N/A</td>
+              <td class="blur-target">For <span class="m-expr">r = 7</span>, Perimeter <span class="m-expr">= 22 + 14 = 36 units</span>.</td>
+            </tr>
+            <tr>
+              <td><b>Sector of Circle</b></td>
+              <td class="blur-target"><span class="m-expr">A = <span class="frac"><span class="frac-num">θ</span><span class="frac-den">360°</span></span> × πr<sup>2</sup></span> (deg) or <span class="m-expr"><span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>r<sup>2</sup>θ</span> (rad)</td>
+              <td>N/A</td>
+              <td class="blur-target">Arc Length <span class="m-expr">L = <span class="frac"><span class="frac-num">θ</span><span class="frac-den">360°</span></span> × 2πr = rθ</span>.</td>
+            </tr>
+            <tr>
+              <td><b>Trapezium</b></td>
+              <td class="blur-target"><span class="m-expr">A = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>(a + b)h</span></td>
+              <td>N/A</td>
+              <td class="blur-target">Average of parallel sides × perpendicular height.</td>
+            </tr>
+            <tr>
+              <td><b>Rhombus</b></td>
+              <td class="blur-target"><span class="m-expr">A = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span>d<sub>1</sub>d<sub>2</sub></span></td>
+              <td>N/A</td>
+              <td class="blur-target">Diagonals bisect each other at <span class="m-expr">90°</span>.</td>
+            </tr>
+            <tr>
+              <td><b>Regular Hexagon</b></td>
+              <td class="blur-target"><span class="m-expr">A = <span class="frac"><span class="frac-num">3<span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">3</span></span></span><span class="frac-den">2</span></span>a<sup>2</sup></span></td>
+              <td>N/A</td>
+              <td class="blur-target">Sum of interior angles <span class="m-expr">= (6 − 2) × 180° = 720°</span> (Each <span class="m-expr">= 120°</span>).</td>
+            </tr>
+            <tr>
+              <td><b>Sphere</b></td>
+              <td class="blur-target">Total Area <span class="m-expr">A = 4πr<sup>2</sup></span></td>
+              <td class="blur-target"><span class="m-expr">V = <span class="frac"><span class="frac-num">4</span><span class="frac-den">3</span></span>πr<sup>3</sup></span></td>
+              <td class="blur-target">Ratio <span class="m-expr">Volume / Area = r / 3</span>.</td>
+            </tr>
+            <tr>
+              <td><b>Cylinder</b></td>
+              <td class="blur-target"><span class="m-expr">CSA = 2πrh</span><br><span class="m-expr">TSA = 2πr(r + h)</span></td>
+              <td class="blur-target"><span class="m-expr">V = πr<sup>2</sup>h</span></td>
+              <td class="blur-target"><span class="m-expr">TSA = CSA + 2(Base Area)</span>.</td>
+            </tr>
+            <tr>
+              <td><b>Cone</b></td>
+              <td class="blur-target"><span class="m-expr">CSA = πrl</span> (<span class="m-expr">l = <span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">r<sup>2</sup> + h<sup>2</sup></span></span></span>)<br><span class="m-expr">TSA = πr(r + l)</span></td>
+              <td class="blur-target"><span class="m-expr">V = <span class="frac"><span class="frac-num">1</span><span class="frac-den">3</span></span>πr<sup>2</sup>h</span></td>
+              <td class="blur-target">Volume is exactly <span class="m-expr">1/3</span> of a cylinder with identical base and height.</td>
+            </tr>
+            <tr>
+              <td><b>Cube</b></td>
+              <td class="blur-target"><span class="m-expr">TSA = 6a<sup>2</sup></span></td>
+              <td class="blur-target"><span class="m-expr">V = a<sup>3</sup></span></td>
+              <td class="blur-target">Space diagonal <span class="m-expr">= a<span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">3</span></span></span>.</td>
+            </tr>
+            <tr>
+              <td><b>Cuboid</b></td>
+              <td class="blur-target"><span class="m-expr">TSA = 2(lb + bh + hl)</span></td>
+              <td class="blur-target"><span class="m-expr">V = l × b × h</span></td>
+              <td class="blur-target">Space diagonal <span class="m-expr">= <span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">l<sup>2</sup> + b<sup>2</sup> + h<sup>2</sup></span></span></span>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-heading">Geometric Triangle Centers & Angular Definitions</div>
+      <div class="grid-3">
+        <div class="info-box">
+          <h4>Median & Centroid</h4>
+          <p style="font-size:0.9rem;"><b>Median:</b> Line connecting a vertex to the midpoint of the opposite side.<br><b>Centroid:</b> Intersection point of the three medians (divides each median in a <b>2:1 ratio</b>).</p>
+        </div>
+        <div class="info-box">
+          <h4>Altitude, Incenter & Circumcenter</h4>
+          <p style="font-size:0.9rem;"><b>Altitude:</b> Perpendicular dropped from vertex to opposite side.<br><b>Incenter:</b> Intersection of interior angle bisectors.<br><b>Circumcenter:</b> Intersection of perpendicular side bisectors.</p>
+        </div>
+        <div class="info-box">
+          <h4>Vertex, Arc & Radian</h4>
+          <p style="font-size:0.9rem;"><b>Radian:</b> Plane angle subtended at a circle's center by an arc equal in length to the radius:<br><span class="m-expr">1 rad = <span class="frac"><span class="frac-num">180°</span><span class="frac-den">π</span></span> ≈ 57.2958°</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trigonometry & Inaccessible Peak -->
+    <div class="card searchable-block">
+      <div class="card-title">📐 Trigonometry, Quadrant Rules & Inaccessible Mountain Peak Method</div>
+      <div class="grid-2">
+        <div class="info-box">
+          <h4>Quadrant Rules ("All Silver Tea Cups") & Core Identities</h4>
+          <div class="quadrant-grid">
+            <div class="quad-cell">
+              <h5>Quadrant II (90° – 180°)</h5>
+              <p>Silver: Sin, Cosec (+)</p>
+            </div>
+            <div class="quad-cell">
+              <h5>Quadrant I (0° – 90°)</h5>
+              <p>All Positive (+)</p>
+            </div>
+            <div class="quad-cell">
+              <h5>Quadrant III (180° – 270°)</h5>
+              <p>Tea: Tan, Cot (+)</p>
+            </div>
+            <div class="quad-cell">
+              <h5>Quadrant IV (270° – 360°)</h5>
+              <p>Cups: Cos, Sec (+)</p>
+            </div>
+          </div>
+          <ul class="study-list" style="margin-top:10px;">
+            <li><span class="m-expr">sin<sup>2</sup>θ + cos<sup>2</sup>θ = 1</span> • <span class="m-expr">cos(−θ) = cos θ</span> • <span class="m-expr">sin(−θ) = −sin θ</span></li>
+            <li><b>PYQ Evaluation:</b> <span class="m-expr">cos<sup>2</sup>(45°) + sin<sup>2</sup>(45°) = (<span class="frac"><span class="frac-num">1</span><span class="frac-den">√2</span></span>)<sup>2</sup> + (<span class="frac"><span class="frac-num">1</span><span class="frac-den">√2</span></span>)<sup>2</sup> = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span> + <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span> = 1</span>.</li>
+            <li><b>Standard Values:</b> <span class="m-expr">cos 30° = <span class="frac"><span class="frac-num">√3</span><span class="frac-den">2</span></span> ≈ 0.866</span>, <span class="m-expr">sin 30° = <span class="frac"><span class="frac-num">1</span><span class="frac-den">2</span></span> = 0.5</span>.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Inaccessible Mountain Peak Height Calculation</h4>
+          <p style="font-size:0.92rem;"><b>Problem:</b> Calculate the vertical height <span class="m-expr">h</span> of an inaccessible mountain peak without knowing the distance to its base.</p>
+          <ul class="study-list" style="margin-top:8px;">
+            <li><b>Method:</b> Measure initial angle of elevation <span class="m-expr">α</span> at Position A. Walk a measured horizontal distance <span class="m-expr">d</span> toward the peak to Position B and measure new elevation angle <span class="m-expr">β</span> (<span class="m-expr">β &gt; α</span>).</li>
+            <li><b>Derivation:</b> <span class="m-expr">cot α = <span class="frac"><span class="frac-num">X</span><span class="frac-den">h</span></span></span> and <span class="m-expr">cot β = <span class="frac"><span class="frac-num">X − d</span><span class="frac-den">h</span></span></span>.</li>
+            <li><b>Subtracting Equations Yields:</b></li>
+          </ul>
+          <div class="m-block pyq-ans">
+            cot α − cot β = <span class="frac"><span class="frac-num">d</span><span class="frac-den">h</span></span> &nbsp;⇒&nbsp; h = <span class="frac"><span class="frac-num">d</span><span class="frac-den">cot α − cot β</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Algebra, Arithmetic, Conversions & Catch-Up -->
+    <div class="card searchable-block">
+      <div class="card-title">🔢 Algebra, Unit Conversions & Speed Catch-Up PYQ</div>
+      <div class="grid-3">
+        <div class="info-box">
+          <h4>Algebra, Ratio & Tiling PYQs</h4>
+          <ul class="study-list">
+            <li><span class="m-expr">(a + b)<sup>3</sup> = a<sup>3</sup> + b<sup>3</sup> + 3ab(a + b)</span></li>
+            <li><span class="m-expr">(a − b)<sup>3</sup> = a<sup>3</sup> − b<sup>3</sup> − 3ab(a − b)</span></li>
+            <li><b>Exponent PYQ:</b> <span class="m-expr">10<sup>0</sup> − 1 = 1 − 1 = 0</span>.</li>
+            <li><b>Ratio PYQ (100 toys in 3:2):</b> 5 parts = 100 ⇒ 1 part = 20. Share A = <b>60</b>, Share B = <b>40</b>.</li>
+            <li><b>Floor Tiling PYQ:</b> <span class="m-expr">10m × 10m = 100 m<sup>2</sup></span> (100 tiles). 10 tiles cost 100 ⇒ 1 tile = 10. Total Cost = <b>1000 units</b>.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Essential Nautical Conversion Factors</h4>
+          <ul class="study-list">
+            <li><span class="m-expr">1 m<sup>3</sup> = 1000 Litres</span></li>
+            <li><span class="m-expr">1 Fathom = 6 Feet = 1.8288 meters</span></li>
+            <li><span class="m-expr">1 Foot = 12 Inches = 30.48 cm = 0.3048 m</span></li>
+            <li><span class="m-expr">1 Inch = 2.54 cm = 0.0254 meters</span></li>
+            <li><span class="m-expr">1 Nautical Mile (NM) = 1.852 km</span></li>
+            <li><span class="m-expr">1 Kilometer = 0.53996 Nautical Miles</span></li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Time, Speed & Distance Overtake PYQ</h4>
+          <p style="font-size:0.9rem;"><b>Problem:</b> A leaves at 1000 hrs at <span class="m-expr">3 km/h</span>. B leaves same origin at 1200 hrs at <span class="m-expr">9 km/h</span>. When will B overtake A?</p>
+          <div class="pyq-box pyq-ans" style="margin-top:8px; padding:12px;">
+            <p style="font-size:0.88rem;">1. <b>Head Start (2 hrs):</b> <span class="m-expr">3 km/h × 2 h = 6 km</span><br>
+            2. <b>Relative Speed:</b> <span class="m-expr">9 − 3 = 6 km/h</span><br>
+            3. <b>Catch-up Time:</b> <span class="m-expr">6 km / 6 km/h = 1 hr</span><br>
+            4. <b>Meeting Time:</b> <span class="m-expr">1200 + 1 hr = <b>1300 hrs (1:00 PM)</b></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MODULE 1.3: CHEMISTRY FOUNDATIONS, REACTIONS & INDUSTRIAL MATERIALS
+  ====================================================================== -->
+  <section id="mod-chemistry" class="module-section">
+    <div class="section-banner">
+      <div>
+        <h2>1.3. Chemistry Foundations, Reactions & Industrial Materials</h2>
+        <p>Chemical Nomenclature, Stoichiometry, Avogadro's Law, Rusting Electrochemistry & Marine Fuels</p>
+      </div>
+      <span class="vocab-chip">Formula & Material Mastery</span>
+    </div>
+
+    <div class="card searchable-block">
+      <div class="card-title">🧪 Chemical Formulas, Stoichiometry & Industrial Materials</div>
+      <div class="grid-3">
+        <div class="info-box">
+          <h4>Chemical Formulas & Nomenclature</h4>
+          <ul class="study-list">
+            <li><b>Common Salt:</b> Sodium Chloride (<span class="m-expr">NaCl</span>)</li>
+            <li><b>Acetic Acid:</b> Ethanoic Acid (<span class="m-expr">CH<sub>3</sub>COOH</span>)</li>
+            <li><b>Citric Acid:</b> <span class="m-expr">C<sub>6</sub>H<sub>8</sub>O<sub>7</sub></span></li>
+            <li><b>Sulphuric Acid:</b> <span class="m-expr">H<sub>2</sub>SO<sub>4</sub></span></li>
+            <li><b>Baking Soda:</b> Sodium Bicarbonate (<span class="m-expr">NaHCO<sub>3</sub></span>)</li>
+            <li><b>Washing Soda:</b> Sodium Carbonate (<span class="m-expr">Na<sub>2</sub>CO<sub>3</sub></span>)</li>
+            <li><b>Aqua Regia:</b> 1:3 molar mixture of conc. Nitric & Hydrochloric Acid (<span class="m-expr">HNO<sub>3</sub> + 3HCl</span>)</li>
+            <li><b>Laughing Gas:</b> Nitrous Oxide (<span class="m-expr">N<sub>2</sub>O</span>)</li>
+            <li><b>Dry Ice:</b> Solidified Carbon Dioxide (<span class="m-expr">CO<sub>2</sub></span>)</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Atomic Structure, Gas Laws & pH</h4>
+          <ul class="study-list">
+            <li><b>Stoichiometry:</b> Quantitative mass-mole relationships. Hydrogen gas is diatomic (<span class="m-expr">H<sub>2</sub></span>).</li>
+            <li><b>Avogadro's Number:</b> <span class="m-expr">N<sub>A</sub> = 6.022 × 10<sup>23</sup> entities/mol</span>.</li>
+            <li><b>Avogadro's Law:</b> Equal volumes of ideal gases at identical T and P contain equal numbers of molecules.</li>
+            <li><b>Saturated Solution:</b> Holds maximum dissolved solute equilibrium concentration at a given T.</li>
+            <li><b>Electrolysis:</b> Electrochemical decomposition of ionic compounds using Direct Current (DC).</li>
+            <li><b>Inert/Noble Gases:</b> Group 18 (<span class="m-expr">He, Ne, Ar, Kr, Xe, Rn</span>) with stable filled octet shells.</li>
+            <li><b>pH Scale:</b> <span class="m-expr">pH = −log<sub>10</sub>[H<sup>+</sup>]</span> ('P' = <i>Potenz</i> / power).</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Alloys, Rusting & Marine Fuels</h4>
+          <ul class="study-list">
+            <li><b>Brass Alloy:</b> Copper (<span class="m-expr">Cu ≈ 60–70%</span>) + Zinc (<span class="m-expr">Zn ≈ 30–40%</span>).</li>
+            <li><b>Iron Rusting Reaction:</b>
+              <div class="m-block" style="font-size:0.92rem;">4Fe + 3O<sub>2</sub> + 2xH<sub>2</sub>O → 2Fe<sub>2</sub>O<sub>3</sub>·xH<sub>2</sub>O</div>
+              Prevented via Galvanization (zinc coating), cathodic protection, and marine paint systems.
+            </li>
+            <li><b>CNG:</b> Compressed Methane (<span class="m-expr">CH<sub>4</sub> ≈ 85–90%</span>).</li>
+            <li><b>LPG:</b> Pressurized Propane (<span class="m-expr">C<sub>3</sub>H<sub>8</sub></span>) + Butane (<span class="m-expr">C<sub>4</sub>H<sub>10</sub></span>).</li>
+            <li><b>LNG:</b> Cryogenic liquid Methane at <span class="m-expr">−162°C</span>.</li>
+            <li><b>Materials:</b> Drip irrigation uses HDPE/PVC. Ship lightning conductors use heavy copper rods grounded to the steel hull.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MODULE 1.4: GENERAL KNOWLEDGE, GEOGRAPHY & MARITIME AWARENESS
+  ====================================================================== -->
+  <section id="mod-maritime" class="module-section">
+    <div class="section-banner">
+      <div>
+        <h2>1.4. General Knowledge, Geography & Maritime Awareness</h2>
+        <p>World Capitals, Strategic Canals & Choke Points, Major Shipping Passages, Time Zones & Nautical Physics</p>
+      </div>
+      <span class="vocab-chip">Map & Navigation Mastery</span>
+    </div>
+
+    <div class="card searchable-block">
+      <div class="card-title">🌍 Global Geography, Strategic Canals & Shipping Routes</div>
+      <div class="grid-2">
+        <div class="info-box">
+          <h4>World Capitals & Strategic Maritime Waterways</h4>
+          <p style="font-size:0.9rem; margin-bottom:10px;">
+            <b>Capitals Master List:</b> Australia (<b>Canberra</b>) • Brazil (<b>Brasília</b>) • China (<b>Beijing</b>) • New Zealand (<b>Wellington</b>) • Russia (<b>Moscow</b>) • USA (<b>Washington D.C.</b>) • Ukraine (<b>Kyiv</b>) • Venezuela (<b>Caracas</b>).
+          </p>
+          <ul class="study-list">
+            <li><b>Suez Canal:</b> Sea-level Egyptian canal connecting Mediterranean Sea to Red Sea.</li>
+            <li><b>Panama Canal:</b> Freshwater lock-system canal connecting Caribbean Sea (Atlantic) to Pacific Ocean.</li>
+            <li><b>Kiel Canal:</b> German canal connecting North Sea directly to Baltic Sea.</li>
+            <li><b>Strait of Malacca:</b> Choke point between Malay Peninsula and Sumatra.</li>
+            <li><b>Strait of Bab-el-Mandeb:</b> Connects Red Sea to Gulf of Aden.</li>
+            <li><b>Gulf of Aden Branching PYQ:</b> Proceeding west through Gulf of Aden without entering Red Sea leads into <b>Port of Djibouti / Gulf of Tadjoura</b> (or turns SE around Horn of Africa into Indian Ocean).</li>
+            <li><b>Other Features:</b> Black Sea (Eastern Europe/Anatolia), Palk Strait (Tamil Nadu & Sri Lanka), Thar Desert (NW India/Pakistan).</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Primary Shipping Passages & Major Ports</h4>
+          <p style="font-size:0.88rem; font-weight:700; color:var(--accent-navy);">1. Mumbai to London Passage:</p>
+          <div class="route-chain">
+            <span class="route-node">Arabian Sea</span><span class="route-arrow">→</span>
+            <span class="route-node">Gulf of Aden</span><span class="route-arrow">→</span>
+            <span class="route-node">Bab-el-Mandeb</span><span class="route-arrow">→</span>
+            <span class="route-node">Red Sea</span><span class="route-arrow">→</span>
+            <span class="route-node">Suez Canal</span><span class="route-arrow">→</span>
+            <span class="route-node">Mediterranean</span><span class="route-arrow">→</span>
+            <span class="route-node">Gibraltar</span><span class="route-arrow">→</span>
+            <span class="route-node">Atlantic</span><span class="route-arrow">→</span>
+            <span class="route-node">English Channel</span><span class="route-arrow">→</span>
+            <span class="route-node">London</span>
+          </div>
+
+          <p style="font-size:0.88rem; font-weight:700; color:var(--accent-navy); margin-top:10px;">2. Kolkata to Singapore:</p>
+          <div class="route-chain">
+            <span class="route-node">Bay of Bengal</span><span class="route-arrow">→</span>
+            <span class="route-node">Andaman Sea</span><span class="route-arrow">→</span>
+            <span class="route-node">Strait of Malacca</span><span class="route-arrow">→</span>
+            <span class="route-node">Singapore</span>
+          </div>
+
+          <p style="font-size:0.88rem; font-weight:700; color:var(--accent-navy); margin-top:10px;">3. Vizag to China / Mexico & Chile to Rotterdam:</p>
+          <p style="font-size:0.88rem; color:var(--text-secondary);">• <b>Vizag:</b> Bay of Bengal → Malacca Strait → South China Sea → Pacific.<br>• <b>Chile to Rotterdam:</b> South Pacific → Cape Horn (or Panama Canal) → Atlantic Ocean → Rotterdam.</p>
+          <p style="font-size:0.88rem; margin-top:10px;"><b>Major Ports:</b> India (Mormugao Goa, Mumbai, Kolkata, Vizag, Chennai, Cochin, Tuticorin) • Global (Rotterdam, Dubai/Jebel Ali, Singapore, NY/NJ).</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <div class="info-box">
+          <h4>Time Zone Computations & Sea Water vs. Fresh Water</h4>
+          <ul class="study-list">
+            <li><b>GMT/UTC:</b> <span class="m-expr">0°</span> Longitude baseline.</li>
+            <li><b>Indian Standard Time (IST):</b> <span class="m-expr">UTC + 05:30</span> (<span class="m-expr">82.5°E</span> Meridian).</li>
+            <li><b>Dubai Time (GST):</b> <span class="m-expr">UTC + 04:00</span> (<span class="m-expr">60°E</span> Meridian) — 1 hour 30 mins behind IST (or as referenced in lecture notes).</li>
+            <li><b>Sea Water Density (<span class="m-expr">≈ 1025 kg/m<sup>3</sup></span>) vs. Fresh Water (<span class="m-expr">1000 kg/m<sup>3</sup></span>):</b> A vessel displaces less volume in denser sea water, so it <b>floats higher (more freeboard)</b> in sea water than in fresh water.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>Nautical Instruments, Icebergs, Titanic & Submarines</h4>
+          <ul class="study-list">
+            <li><b>Fathometer:</b> Ultrasonic echo depth-sounding instrument (<span class="m-expr">1 Fathom = 6 ft = 1.8288 m</span>).</li>
+            <li><b>Iceberg Submergence:</b> <span class="m-expr">917 / 1025 ≈ 89.5%</span> (roughly <b>90%</b>) of an iceberg's volume lies hidden underwater.</li>
+            <li><b>RMS Titanic (1912):</b> Starboard iceberg impact flooded 5 forward watertight compartments (exceeding its 4-compartment limit).</li>
+            <li><b>Submarine Oxygen:</b> Generated via water electrolysis (<span class="m-expr">2H<sub>2</sub>O → 2H<sub>2</sub> + O<sub>2</sub></span>) + backup <span class="m-expr">NaClO<sub>3</sub></span> oxygen candles.</li>
+            <li><b>2nd Mate CoC:</b> Granted under <b>STCW Regulation II/1</b> (Officer in Charge of a Navigational Watch - OOW).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MODULE 2: PSYCHOMETRIC TEST STRATEGY (296 QUESTIONS)
+  ====================================================================== -->
+  <section id="mod-psychometric" class="module-section">
+    <div class="section-banner">
+      <div>
+        <h2>2. Psychometric Test Strategy (296 Questions)</h2>
+        <p>Navigating Consistency Traps, Safety-First Primacy, SOP Compliance & Conflict Resolution</p>
+      </div>
+      <span class="vocab-chip">Zero-Contradiction Protocol</span>
+    </div>
+
+    <div class="card searchable-block">
+      <div class="card-title">🧠 2.1. Navigating Consistency Traps & Rule-Based Answering</div>
+      <div class="grid-3">
+        <div class="info-box">
+          <h4>1. Consistency Maintenance</h4>
+          <ul class="study-list">
+            <li><b>Test Mechanics:</b> Evaluates safety compliance, stress tolerance, rule adherence, emotional stability, authority alignment, and team living across 296 items.</li>
+            <li><b>Identify Inverted Statements:</b>
+              <br>• <i>"I strictly follow manuals under time pressure"</i> → <b>Strongly Agree</b>.
+              <br>• <i>"Skipping minor checklist items is acceptable when behind schedule"</i> → <b>Strongly Disagree</b>.
+            </li>
+            <li><b>Eliminate Neutral Hesitation:</b> Avoid "Neutral" on safety, rule adherence, or integrity. Examiners view neutral responses on safety as latent non-compliance.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>2. Safety-First & Command Alignment</h4>
+          <ul class="study-list">
+            <li><b>Core Rule 1 (Safety Primacy):</b> Prioritize human life, environment, and vessel safety above commercial speed or cargo schedules.</li>
+            <li><b>Core Rule 2 (Absolute SOP Compliance):</b> Complete adherence to SOPs, Permits to Work (PTW), and safety manuals. Reject all shortcuts.</li>
+            <li><b>Core Rule 3 (Zero Tolerance Dry Ship):</b> Absolute zero tolerance for alcohol or unprescribed substances onboard.</li>
+            <li><b>Core Rule 4 (Environmental Stewardship):</b> Enforce strict MARPOL pollution prevention compliance.</li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4>3. Conflict & Emotional Resilience</h4>
+          <ul class="study-list">
+            <li><b>Interpersonal Living:</b> Demonstrate patience, cultural respect, emotional self-control, and professional resolution via chain of command.</li>
+            <li><b>Stress & Isolation Coping:</b> High fatigue resilience, calm composure in emergencies, and willingness to report personal limits before safety is compromised.</li>
+            <li><b>Stop Work Authority:</b> Mandatory obligation of any seafarer to stop work immediately upon identifying an unmanaged hazard.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MODULE 3: WRITTEN ESSAY TASK (250–300 WORDS)
+  ====================================================================== -->
+  <section id="mod-essay" class="module-section">
+    <div class="section-banner">
+      <div>
+        <h2>3. Written Essay Task (250–300 Words)</h2>
+        <p>4-Part Structural Blueprint, Evaluation Criteria & 4 Complete Model Maritime Essays</p>
+      </div>
+      <span class="vocab-chip">Strict 250–300 Word Band</span>
+    </div>
+
+    <div class="card searchable-block">
+      <div class="card-title">📐 3.1. Essay Structure, Criteria & 4-Block Blueprint</div>
+      <div class="flow-vertical">
+        <div class="flow-step">
+          <strong>1. INTRODUCTION (40–50 words)</strong>
+          • Opening contextual hook & immediate domain relevance • Direct, unambiguous thesis statement establishing essay position.
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">
+          <strong>2. BODY PARAGRAPH 1: Technical Core & Primary Arguments (80–100 words)</strong>
+          • Applied technical concepts, operational mechanisms, and data • Integration of domain terminology and specific evidence.
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">
+          <strong>3. BODY PARAGRAPH 2: Secondary Impact & Operational Control (80–100 words)</strong>
+          • Wider societal, human factor, or environmental implications • Practical implementation, safety controls, or mitigation steps.
+        </div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step">
+          <strong>4. CONCLUSION (40–50 words)</strong>
+          • Restatement of core thesis in updated technical terms • Forward-looking closing summary emphasizing operational balance.
+        </div>
+      </div>
+    </div>
+
+    <div class="card searchable-block">
+      <div class="card-title">✍️ 3.2. Complete Model Essay Exemplars (Click Topic to Switch)</div>
+      <div class="essay-pill-bar">
+        <button class="essay-pill active" onclick="showEssay(1, this)">Topic 1: Impact of Technology on Maritime (272w)</button>
+        <button class="essay-pill" onclick="showEssay(2, this)">Topic 2: Global Warming & Ocean Acidification (257w)</button>
+        <button class="essay-pill" onclick="showEssay(3, this)">Topic 3: Utilization of Leisure Time Onboard (251w)</button>
+        <button class="essay-pill" onclick="showEssay(4, this)">Topic 4: Modern Education vs. Industry Readiness (252w)</button>
+      </div>
+
+      <!-- Essay 1 -->
+      <div id="essay-box-1" class="essay-content-box">
+        <div style="margin-bottom:12px;">
+          <b>Model Vocabulary Bank:</b>
+          <span class="vocab-chip">Automation</span><span class="vocab-chip">Satellite Navigation</span><span class="vocab-chip">ECDIS</span><span class="vocab-chip">ARPA</span><span class="vocab-chip">Supply Chain Resilience</span><span class="vocab-chip">Cyber Security</span><span class="vocab-chip">Human Oversight</span>
+        </div>
+        <div class="candidate-script">
+          <p style="margin-bottom:10px;"><b>1. Introduction (40–50 words):</b> Technology has restructured modern industry, with its most profound impact visible in maritime logistics. Advanced electronic navigation, vessel automation, and digital communication networks have transformed global shipping into an efficient, interconnected transport system upon which global trade depends.</p>
+          <p style="margin-bottom:10px;"><b>2. Body Paragraph 1 (80–100 words):</b> Shipboard operations have advanced through automated engine management and digital bridge systems. Automated Radar Plotting Aids (ARPA) and Electronic Chart Display and Information Systems (ECDIS) replace manual plotting, minimizing human navigation errors in heavy traffic lanes. Engine room sensor arrays monitor machinery real-time, detecting thermal and mechanical anomalies early. These technical integrations optimize fuel consumption, lower operational costs, and increase vessel reliability, allowing global supply chains to move raw materials and containerized goods safely across international waters.</p>
+          <p style="margin-bottom:10px;"><b>3. Body Paragraph 2 (80–100 words):</b> Technological integration directly improves crew safety and ship-to-shore connectivity. Satellite communication facilitates precise weather routing, allowing watchkeepers to steer clear of severe storm systems and protect vessel structural integrity. Real-time internet access connects seafarers with families, reducing isolation during extended contracts. However, increasing software dependency introduces vulnerability to cyber threats and system outages. Maintaining rigorous hands-on training for nautical officers remains critical to ensure manual watchkeeping competency when automated systems fail.</p>
+          <p><b>4. Conclusion (40–50 words):</b> In conclusion, technological advances have modernized maritime transportation by enhancing operational efficiency and crew safety. Maintaining a balance between advanced automated systems and well-trained seafarers ensures a resilient, sustainable global supply chain capable of meeting international trade demands safely. <b>(Total: 272 words)</b></p>
+        </div>
+      </div>
+
+      <!-- Essay 2 -->
+      <div id="essay-box-2" class="essay-content-box" style="display:none;">
+        <div style="margin-bottom:12px;">
+          <b>Model Vocabulary Bank:</b>
+          <span class="vocab-chip">Greenhouse Effect</span><span class="vocab-chip">Anthropogenic Carbon</span><span class="vocab-chip">Carbonic Acid</span><span class="vocab-chip">Decarbonization</span><span class="vocab-chip">MARPOL Annex VI</span><span class="vocab-chip">EEDI</span><span class="vocab-chip">Alternative Fuels</span>
+        </div>
+        <div class="candidate-script">
+          <p style="margin-bottom:10px;">Rising global temperatures driven by anthropogenic greenhouse gas emissions pose a severe threat to Earth's climate and marine environments. Industrial activity and transport networks release excess carbon dioxide (<span class="m-expr">CO<sub>2</sub></span>), triggering global warming while fundamentally altering ocean chemistry through rapid ocean acidification. Addressing this crisis requires immediate international environmental controls and sustainable maritime shipping policies.</p>
+          <p style="margin-bottom:10px;">Oceanic absorption of excess atmospheric <span class="m-expr">CO<sub>2</sub></span> forms carbonic acid (<span class="m-expr">H<sub>2</sub>CO<sub>3</sub></span>), lowering sea surface pH levels and depleting carbonate ions vital for shell-building organisms. Coral reefs, which support marine life and buffer coastal erosion, suffer widespread bleaching. Concurrently, polar ice cap melting raises global sea levels, destabilizing coastal ecosystems and altering thermohaline ocean circulation patterns. These ecological disruptions threaten global fisheries, biodiversity, and coastal infrastructure, requiring structured global environmental intervention.</p>
+          <p style="margin-bottom:10px;">The commercial maritime sector, through the International Maritime Organization (IMO), is actively deploying aggressive decarbonization strategies to mitigate ocean damage. IMO MARPOL Annex VI regulations mandate lower fuel sulfur content, stricter Energy Efficiency Design Index (EEDI) benchmarks for new vessels, and transition pathways toward zero-carbon alternative fuels such as green ammonia and methanol. Furthermore, advanced hull coatings and energy-saving propulsion devices reduce vessel fuel consumption, directly lowering greenhouse gas output per ton-mile of cargo transported.</p>
+          <p>In conclusion, combating global warming and ocean acidification requires continuous global environmental action and sustainable industrial practices. Enforcing strict vessel emission controls and transitioning to clean alternative fuels ensures that international shipping supports global trade while safeguarding marine ecosystems for future generations. <b>(Total: 257 words)</b></p>
+        </div>
+      </div>
+
+      <!-- Essay 3 -->
+      <div id="essay-box-3" class="essay-content-box" style="display:none;">
+        <div style="margin-bottom:12px;">
+          <b>Model Vocabulary Bank:</b>
+          <span class="vocab-chip">Fatigue Management</span><span class="vocab-chip">Physical Fitness</span><span class="vocab-chip">Mental Resilience</span><span class="vocab-chip">Continuous Professional Development</span><span class="vocab-chip">Multicultural Cohesion</span>
+        </div>
+        <div class="candidate-script">
+          <p style="margin-bottom:10px;">Working in the merchant navy involves extended periods away from home within confined shipboard environments. Consequently, the effective utilization of off-duty leisure hours is critical for maintaining seafarer physical health, mental resilience, and operational alertness. Structured leisure time management directly counters fatigue, mitigates isolation, and improves overall safety onboard commercial vessels.</p>
+          <p style="margin-bottom:10px;">Engaging in regular physical exercise during off-duty hours serves as a cornerstone for maintaining physical fitness and managing stress. Onboard gymnasiums provide spaces for cardiovascular and strength training, helping seafarers combat physical lethargy and maintain stamina required for demanding deck and engine room watchkeeping duties. Additionally, allocating rest hours to structured reading, professional study, and preparation for Certificate of Competency (CoC) examinations ensures continuous career advancement while keeping the mind mentally engaged during long ocean voyages.</p>
+          <p style="margin-bottom:10px;">Building team cohesion during recreational hours significantly improves onboard culture and crew morale. Participating in communal activities in the ship's mess room—such as table tennis tournaments, group film viewings, or shared meals—fosters positive interpersonal relationships among multicultural crew members. Strong social bonds lower workplace stress, resolve interpersonal friction, and build trust, directly enhancing operational teamwork and safety communication during critical onboard operations.</p>
+          <p>In conclusion, structured utilization of off-duty leisure hours is essential for seafarer wellbeing and shipboard safety. Prioritizing physical fitness, professional development, and crew social cohesion enables seafarers to manage isolation effectively and maintain peak operational performance throughout their contracts. <b>(Total: 251 words)</b></p>
+        </div>
+      </div>
+
+      <!-- Essay 4 -->
+      <div id="essay-box-4" class="essay-content-box" style="display:none;">
+        <div style="margin-bottom:12px;">
+          <b>Model Vocabulary Bank:</b>
+          <span class="vocab-chip">Theoretical Foundation</span><span class="vocab-chip">Hands-on Competency</span><span class="vocab-chip">Simulator Training</span><span class="vocab-chip">Competency-Based Training</span><span class="vocab-chip">STCW Standards</span>
+        </div>
+        <div class="candidate-script">
+          <p style="margin-bottom:10px;">The modern educational system provides students with broad theoretical knowledge, yet a significant gap remains between traditional academic curricula and practical industry readiness. Industrial sectors, particularly specialized fields like maritime transportation, require hands-on technical competencies, strict behavioral discipline, and real-world operational problem-solving skills that standard classroom settings rarely provide.</p>
+          <p style="margin-bottom:10px;">Traditional academic institutions prioritize written examinations and abstract theoretical models over practical execution. While foundational instruction in mathematics, physics, and chemistry is essential, it does not prepare individuals for high-risk, real-world operational environments. In contrast, specialized industry training programs—such as the Diploma in Nautical Science (DNS)—bridge this educational gap by combining theoretical academic instruction with mandatory hands-on workshop training, bridge simulator drills, and structured shipboard cadetship programs.</p>
+          <p style="margin-bottom:10px;">Achieving true operational readiness requires developing personal discipline, situational awareness, and strict adherence to safety protocols. Specialized maritime academies instill these professional traits through structured daily routines, practical seamanship training, advanced safety drills, and standardized emergency response simulations complying with international STCW standards. This practical training ensures that cadets develop the mental resilience and hands-on operational confidence necessary to execute technical duties safely onboard commercial vessels.</p>
+          <p>In conclusion, bridging the gap between academic education and practical industry readiness requires structured, competency-based technical training. Integrating theoretical science with hands-on simulator drills and practical discipline produces competent seafarers fully equipped to handle the demands of modern industrial operations. <b>(Total: 252 words)</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MODULE 4: PANEL INTERVIEW PREPARATION (TECHNICAL, HR & COSWP)
+  ====================================================================== -->
+  <section id="mod-interview" class="module-section">
+    <div class="section-banner">
+      <div>
+        <h2>4. Panel Interview Preparation (Technical, HR & COSWP Safety)</h2>
+        <p>Verbatim Candidate Response Scripts, Technical Trick Questions, COSWP Risk Assessment & Just Culture</p>
+      </div>
+      <span class="vocab-chip">Hover in Self-Test Mode to Practice</span>
+    </div>
+
+    <!-- 4.1 HR & Personal Questions -->
+    <div class="card searchable-block">
+      <div class="card-title">👔 4.1. HR & Personal Questions PYQ Master Bank</div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">HR Q1</span> "Tell me about yourself, your family background, and your academic performance."</div>
+        <div class="candidate-script">
+          "Good morning Captain and Members of the Panel. My name is [Candidate Name], and I come from [City/State]. I completed my Class 12 education from [Board Name] scoring [PCM %]% in Physics, Chemistry, and Mathematics. My father works as a [Father's Occupation], where he taught me the values of discipline, hard work, and accountability from an early age. During my schooling, I actively balanced my academics with sports, playing cricket regularly. I have researched the demanding environment of a seafaring career, and I am here today to earn a sponsorship with Anglo-Eastern to begin my journey as a Nautical Cadet."
+        </div>
+        <div class="captain-note" style="margin-top:12px; margin-bottom:0;">
+          <div class="captain-note-header">🎖️ Captain's Evaluation Note — Sports Dimensions</div>
+          <p>• <b>Cricket Dimensions:</b> Pitch length = <span class="m-expr">22 yards / 20.12 m</span>; Bowling crease width = <span class="m-expr">8.8 ft / 2.64 m</span>; Ball weight = <span class="m-expr">5.5 to 5.75 oz (155.9g to 163g)</span>.<br>
+          • <b>Football Dimensions:</b> Pitch length = <span class="m-expr">100 to 110 m</span>; Goalpost width = <span class="m-expr">7.32 m (8 yards)</span>; Goalpost height = <span class="m-expr">2.44 m (8 feet)</span>.</p>
+        </div>
+      </div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">HR Q2</span> "Why do you want to join the Merchant Navy instead of pursuing a shore-based career or your father's profession?"</div>
+        <div class="candidate-script">
+          "Captain, while I deeply respect my father's profession and the stable upbringing it provided, my personal aptitude aligns with applied physical sciences, practical mechanics, and global transportation operations. A shore-based corporate job offers limited early operational responsibility. In contrast, the Merchant Navy offers early professional responsibility, structured leadership development, exposure to international shipping operations, and a merit-based career path governed by Certificate of Competency (CoC) examinations. I want a career where performance, discipline, and practical competence directly drive professional growth."
+        </div>
+      </div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">HR Q3</span> "Why have you chosen Anglo-Eastern specifically above other ship management companies?"</div>
+        <div class="candidate-script">
+          "Sir, Anglo-Eastern is recognized across the maritime industry for its uncompromised safety culture, extensive global fleet management, and exceptional training standards at the Anglo-Eastern Maritime Academy (AEMA). Unlike companies that outsource training, Anglo-Eastern invests directly in its cadets through structured pre-sea training and guaranteed onboard sea-time training. Joining Anglo-Eastern offers a clear, stable career path from Trainee Nautical Officer up to Master Mariner, supported by high safety standards and modern vessel technology."
+        </div>
+      </div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">HR Q4</span> "A seafaring career involves long contracts, months of isolation from family, and tough conditions. How are you prepared for this?"</div>
+        <div class="candidate-script">
+          "I recognize that long contracts, isolation, and varying weather conditions are core realities of a seafaring career. I have prepared myself mentally by understanding the operational demands before applying. During my school years, I developed personal independence, emotional stability, and physical fitness through regular exercise. Furthermore, modern vessels offer satellite communication to stay in touch with family. I view long voyages not as isolation, but as an opportunity to focus on my professional watchkeeping duties, study for higher CoC examinations, and work as part of a professional team."
+        </div>
+      </div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">HR Q5</span> "You have a 1-year (or 2-year) gap after your Class 12 standard. Explain this gap."</div>
+        <div class="candidate-script">
+          "Captain, post my Class 12 examinations, I dedicated my gap period to systematic preparation for competitive engineering and maritime sponsorship examinations. I utilized this time to strengthen my core fundamentals in Physics and Mathematics, refine my aptitude and English communication skills, and maintain physical fitness. This dedicated preparation period allowed me to clear my IMU-CET written examination and focus entirely on securing a sponsorship with Anglo-Eastern."
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.2 High-Frequency Technical & Maritime Interview PYQs -->
+    <div class="card searchable-block">
+      <div class="card-title">🔬 4.2. High-Frequency Technical & Applied Physics Interview PYQs</div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">Tech Q1</span> "Explain how a massive steel ship floats without using Archimedes' Principle or the word 'Buoyancy'."</div>
+        <div class="candidate-script">
+          "Sir, flotation can be explained by analyzing total enclosed geometry and mean mass density. A ship's hull is built as a large, hollow steel structure enclosing a massive volume of empty air space. The overall mean density of the vessel is calculated as <span class="m-expr">ρ<sub>mean</sub> = Total Structural Mass / Total Enclosed Hull Volume</span>. Because air density is roughly <span class="m-expr">1.2 kg/m<sup>3</sup></span>, the ship's overall mean density is significantly lower than surrounding sea water (<span class="m-expr">≈ 1025 kg/m<sup>3</sup></span>). Downward gravity acting on the ship's total mass is balanced by the upward static hydrostatic fluid pressure exerted by the ocean against the submerged hull plates, holding the vessel in stable equilibrium."
+        </div>
+      </div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">Tech Q2</span> "How is oxygen generated inside a submerged submarine during extended underwater missions?"</div>
+        <div class="candidate-script">
+          "Primary oxygen is generated onboard a submerged submarine through continuous water electrolysis. Electrical power supplied by the submarine's generator passes through an automated oxygen generator unit, splitting purified fresh water into hydrogen and oxygen gas (<span class="m-expr">2H<sub>2</sub>O → 2H<sub>2</sub>↑ + O<sub>2</sub>↑</span>). The oxygen is piped into the ventilation system, while hydrogen is safely discharged overboard. For emergency backup, submarines carry solid chlorate oxygen candles containing sodium chlorate (<span class="m-expr">NaClO<sub>3</sub></span>) and iron powder, which release oxygen through a self-sustaining chemical reaction when thermally ignited."
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Tech Q3</span> "Why are air conditioners not used in high-altitude mountain regions?"</div>
+          <div class="candidate-script">
+            "Sir, high-altitude mountain regions already feature low ambient temperatures, making space cooling unnecessary. Furthermore, atmospheric air density decreases with altitude. Standard air conditioner condenser units rely on dense ambient air to absorb rejected heat; lower air density reduces condenser heat-exchange efficiency."
+          </div>
+        </div>
+
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Tech Q4</span> "Why do evaporative water coolers work in dry summer but fail during the monsoon?"</div>
+          <div class="candidate-script">
+            "Water coolers operate on evaporative cooling, where water absorbs latent heat of vaporization from surrounding air. Summer air has low relative humidity, allowing rapid evaporation. Monsoon air is saturated with water vapor (high relative humidity), preventing evaporation."
+          </div>
+        </div>
+
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Tech Q5</span> "A man wears a green shirt into a dark room illuminated purely by blue light. What color will the shirt appear?"</div>
+          <div class="candidate-script">
+            "The green shirt will appear <b>black</b>, Sir. Green pigment reflects green wavelengths while absorbing all others. Under pure blue light, the green pigment absorbs the incident blue wavelength, leaving no reflected light to reach the observer's eye."
+          </div>
+        </div>
+
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Tech Q6</span> "Which gives better thermal insulation: one thick wool blanket or two thin blankets layered together?"</div>
+          <div class="candidate-script">
+            "<b>Two thin blankets layered together</b> provide superior insulation, Captain. Layering traps a pocket of still air between them. Since still air is a poor thermal conductor, it drastically reduces conductive and convective heat loss."
+          </div>
+        </div>
+
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Tech Q7</span> "Why does the cylinder of a manual bicycle pump heat up rapidly while inflating a tire?"</div>
+          <div class="candidate-script">
+            "Pushing the piston performs rapid mechanical work compressing the air inside. Under the First Law of Thermodynamics, rapid adiabatic compression increases the gas's internal thermal kinetic energy before heat can dissipate."
+          </div>
+        </div>
+
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Tech Q8</span> "Why are condensation droplets seen on the outer surface of a glass containing ice cubes?"</div>
+          <div class="candidate-script">
+            "Ice cubes cool the outer glass surface below the <b>dew point</b> of surrounding air. Atmospheric water vapor colliding with the cold glass loses thermal kinetic energy and condenses into liquid droplets."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.3 Behavioral Scenarios & COSWP Safety Integration -->
+    <div class="card searchable-block">
+      <div class="card-title">🛡️ 4.3. Behavioral Scenarios & COSWP Safety Framework</div>
+
+      <div class="grid-2">
+        <div class="info-box">
+          <h4>10 Core COSWP Safety Leadership Qualities</h4>
+          <ol style="padding-left:20px; font-size:0.93rem; color:var(--text-secondary); display:grid; gap:6px;">
+            <li><b>Instil Respect & Command Authority</b></li>
+            <li><b>Lead the Team by Example</b></li>
+            <li><b>Draw on Knowledge & Experience</b></li>
+            <li><b>Remain Calm in a Crisis</b></li>
+            <li><b>Practise 'Tough Empathy'</b></li>
+            <li><b>Be Sensitive to Different Cultures</b></li>
+            <li><b>Recognise Seafarers' Limitations</b></li>
+            <li><b>Motivate a Sense of Community</b></li>
+            <li><b>Place Safety Above Everything Else</b></li>
+            <li><b>Communicate Clearly ('Closed-Loop')</b></li>
+          </ol>
+        </div>
+
+        <div class="info-box">
+          <h4>4 Risk Assessment Levels & Management of Change (MOC)</h4>
+          <ul class="study-list">
+            <li><b>Level 1 (Generic Company RA):</b> Shore-based SMS baseline policies.</li>
+            <li><b>Level 2 (Task-Based RA - TBRA):</b> Shipboard officer/crew assessment prior to high-risk tasks (hot work, enclosed space, work aloft).</li>
+            <li><b>Level 3 (Toolbox Talk):</b> Pre-job worksite verbal briefing confirming controls via closed-loop communication.</li>
+            <li><b>Level 4 (Personal / Dynamic RA):</b> Continuous individual mental assessment during work (exercising Stop Work Authority if hazards emerge).</li>
+            <li><b>Simple Change vs. Complex Change (MOC):</b> Simple task shifts require stopping work, re-assessing TBRA, and a new Toolbox Talk. Complex equipment/structural changes require formal MOC Form, shore superintendent review, Master/CE approval, and crew training.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sub-heading">5 Steps to Risk Assessment & Just Culture Substitution Test</div>
+      <div class="grid-2">
+        <div class="flow-vertical" style="margin:0;">
+          <div class="flow-step"><strong>STEP 1: Identify the Hazards</strong>Walk worksite, review incident logs, check chemical safety sheets (SDS).</div>
+          <div class="flow-arrow">▼</div>
+          <div class="flow-step"><strong>STEP 2: Decide Who Might Be Harmed and How</strong>Identify groups: duty watchkeepers, engine ratings, contractors.</div>
+          <div class="flow-arrow">▼</div>
+          <div class="flow-step"><strong>STEP 3: Evaluate Risks and Decide on Precautions</strong>Hierarchy: Eliminate ➔ Substitute ➔ Guard ➔ PPE.</div>
+          <div class="flow-arrow">▼</div>
+          <div class="flow-step"><strong>STEP 4: Record Findings and Implement Them</strong>Simple documentation, assign clear task responsibility.</div>
+          <div class="flow-arrow">▼</div>
+          <div class="flow-step"><strong>STEP 5: Review Risk Assessment and Update if Necessary</strong>Continuous revision for operational shifts, weather, or equipment.</div>
+        </div>
+
+        <div class="info-box">
+          <h4>Just Culture & The Substitution Test Decision Tree</h4>
+          <p style="font-size:0.9rem; margin-bottom:12px;"><b>The Substitution Test:</b> <i>"Given the exact circumstances and information available at the time of the event, would a peer of equal experience and competence have made the same choice or error?"</i></p>
+          <div class="flow-vertical" style="margin:0;">
+            <div class="flow-step" style="border-left-color:var(--accent-rose);"><strong>1. UNSAFE EVENT / SAFETY BREACH OCCURS</strong>Was the act deliberate or reckless?</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-step" style="border-left-color:var(--accent-amber);"><strong>2. IF YES → RECKLESS VIOLATION</strong>Triggers formal disciplinary action or dismissal.</div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-step" style="border-left-color:var(--accent-emerald);"><strong>3. IF NO → APPLY SUBSTITUTION TEST</strong>• <b>Peer would make same error (YES):</b> System Error (Coaching & Procedure Revision).<br>• <b>Peer would NOT make error (NO):</b> Negligent Error (Targeted Training & Warning).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-heading" style="margin-top:24px;">Situational Panel Interview Scenarios</div>
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">Scenario 1</span> "How will you handle a strict, highly demanding, or unreasonable senior officer onboard?"</div>
+        <div class="candidate-script">
+          "Captain, I will maintain absolute professional discipline, respect the onboard chain of command, and execute all lawful orders efficiently and without complaint. If an officer's communication style is demanding, I will focus strictly on duty performance and vessel safety. However, if an order directly compromises safety, violates COSWP safety regulations, or breaches SMS procedures, I will respectfully raise my concerns using clear, factual communication, referencing the SMS safety guidelines while maintaining full professional respect."
+        </div>
+      </div>
+
+      <div class="interview-card">
+        <div class="panel-q"><span class="panel-q-badge">Scenario 2</span> "A fire breaks out in a pan of cooking oil in the galley. Another fire breaks out on an office wooden table. How do you respond to each?"</div>
+        <div class="candidate-script">
+          "Sir, these two fires require different extinguishing methods:<br>
+          <b>1. Galley Oil Pan Fire (Class F / Class K Fire):</b> Never apply water, as water causes explosive steam expansion, spraying burning oil across the galley. Raise the alarm immediately. Smother the fire by covering the pan with a certified Fire Blanket or tight metal lid to starve it of oxygen, and isolate the heat source by shutting off the stove's power supply. Allow cooling before removing the blanket.<br>
+          <b>2. Office Table Fire (Class A Combustible Fire):</b> Raise the alarm immediately. Use a portable Water, Foam, or Dry Powder extinguisher directly on the burning wood to cool the material below its ignition temperature, removing the heat leg of the Fire Triangle."
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Scenario 3</span> "If a senior officer offers you alcohol on a dry ship or asks you to skip a mandatory safety checklist, what will you do?"</div>
+          <div class="candidate-script">
+            "Sir, Anglo-Eastern enforces a strict zero-tolerance Dry Ship policy and uncompromising safety standards. I will politely but firmly refuse the alcohol or request to skip the safety checklist, citing company SMS policy, COSWP guidelines, and maritime safety regulations. If pressured, I will report the non-compliance to the Designated Person Ashore (DPA) or Safety Officer."
+          </div>
+        </div>
+
+        <div class="interview-card">
+          <div class="panel-q"><span class="panel-q-badge">Scenario 4</span> "How is your family planning to finance your DNS course fees, and are you financially prepared?"</div>
+          <div class="candidate-script">
+            "Captain, my family is fully aware of the DNS training fee structure and personal expenses at the academy. We have arranged our finances through [Family Savings / Approved Educational Loan], ensuring that all financial obligations are paid on time so I can focus entirely on my training."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       MODULE 5: RAPID ORAL & PYQ DRILL (INTERACTIVE QUIZ)
+  ====================================================================== -->
+  <section id="mod-drill" class="module-section">
+    <div class="section-banner">
+      <div>
+        <h2>5. Interactive Rapid PYQ & Interview Viva Drill</h2>
+        <p>Test your mastery of key numbers, formulas, and interview concepts from this Master Study Guide</p>
+      </div>
+      <span class="vocab-chip" id="drillScoreBadge">Score: 0 / 15</span>
+    </div>
+
+    <div class="card" id="drillContainer"></div>
+  </section>
+
+</main>
+
+<script>
+function switchTab(modId, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.module-section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById('mod-' + modId).classList.add('active');
+}
+
+function showAllModules() {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.module-section').forEach(sec => sec.classList.add('active'));
+}
+
+function toggleSelfTestMode() {
+  document.body.classList.toggle('self-test-mode');
+  const btn = document.getElementById('selfTestBtn');
+  btn.classList.toggle('active');
+  btn.textContent = document.body.classList.contains('self-test-mode')
+    ? '👁️ Show All Answers (Exit Self-Test)'
+    : '🙈 Self-Test Mode (Blur Answers)';
+}
+
+function showEssay(num, btn) {
+  document.querySelectorAll('.essay-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.essay-content-box').forEach(b => b.style.display = 'none');
+  document.getElementById('essay-box-' + num).style.display = 'block';
+}
+
+function filterGuideContent() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (!q) {
+    document.querySelectorAll('.searchable-block').forEach(el => el.style.display = 'block');
+    return;
+  }
+  showAllModules();
+  document.querySelectorAll('.searchable-block').forEach(block => {
+    const text = block.innerText.toLowerCase();
+    block.style.display = text.includes(q) ? 'block' : 'none';
+  });
+}
+
+// Interactive 15-Question Rapid Oral & PYQ Drill
+const DRILL_QUESTIONS = [
+  {
+    q: "1. If a ball is dropped from rest from a tower and hits the ground in t = 10 s, what is the tower height assuming g = 9.8 m/s²?",
+    opts: ["490 meters (stating assumed g = 9.8 m/s² first)", "98 meters", "500 meters", "196 meters"],
+    ans: 0
+  },
+  {
+    q: "2. Which ball is more elastic according to physics: a steel ball or a rubber ball?",
+    opts: ["Steel ball (higher Young's Modulus Y = Stress/Strain)", "Rubber ball", "Both have equal elasticity", "Depends on ambient pressure"],
+    ans: 0
+  },
+  {
+    q: "3. What is the Least Count of a standard Screw Gauge (Micrometer) with 0.5 mm pitch and 50 circular divisions?",
+    opts: ["0.01 mm", "0.02 mm", "0.1 mm", "0.05 mm"],
+    ans: 0
+  },
+  {
+    q: "4. At what temperature does water reach its maximum density of 1000 kg/m³?",
+    opts: ["4°C", "0°C", "100°C", "5°C"],
+    ans: 0
+  },
+  {
+    q: "5. Using the inaccessible mountain peak formula, if horizontal walk distance is d and elevation angles are α and β (β > α), height h equals:",
+    opts: ["d / (cot α − cot β)", "d × (tan α + tan β)", "d / (sin β − sin α)", "d × cot α"],
+    ans: 0
+  },
+  {
+    q: "6. Person A leaves at 1000 hrs at 3 km/h. Person B leaves the same point at 1200 hrs at 9 km/h. At what time will B overtake A?",
+    opts: ["1300 hrs (1:00 PM)", "1400 hrs (2:00 PM)", "1230 hrs", "1500 hrs"],
+    ans: 0
+  },
+  {
+    q: "7. How many feet and meters equal 1 Fathom?",
+    opts: ["6 Feet = 1.8288 meters", "3 Feet = 0.9144 meters", "10 Feet = 3.048 meters", "12 Feet = 3.6576 meters"],
+    ans: 0
+  },
+  {
+    q: "8. What is the molar ratio of concentrated Nitric Acid (HNO₃) to Hydrochloric Acid (HCl) in Aqua Regia?",
+    opts: ["1 : 3 (HNO₃ + 3HCl)", "3 : 1 (3HNO₃ + HCl)", "1 : 1", "2 : 3"],
+    ans: 0
+  },
+  {
+    q: "9. At what cryogenic temperature is Liquefied Natural Gas (LNG - Methane) maintained?",
+    opts: ["−162°C", "−42°C", "−273°C", "−78°C"],
+    ans: 0
+  },
+  {
+    q: "10. Approximately what percentage of an iceberg's total volume remains submerged beneath the sea surface?",
+    opts: ["~89.5% (roughly 90%)", "~50%", "~75%", "~99%"],
+    ans: 0
+  },
+  {
+    q: "11. Under which STCW Convention Regulation is the 2nd Mate Certificate of Competency (OOW) issued?",
+    opts: ["STCW Regulation II/1", "STCW Regulation III/1", "STCW Regulation IV/2", "SOLAS Chapter V"],
+    ans: 0
+  },
+  {
+    q: "12. What color will a green shirt appear when illuminated purely by blue light in a dark room?",
+    opts: ["Black (green pigment absorbs blue light and reflects nothing)", "Cyan", "Green", "Blue"],
+    ans: 0
+  },
+  {
+    q: "13. In COSWP Risk Assessment, what is a Level 3 Risk Assessment?",
+    opts: ["Toolbox Talk (pre-job verbal safety briefing at the worksite)", "Generic Company Risk Assessment", "Task-Based Risk Assessment (TBRA)", "Personal Dynamic Risk Assessment"],
+    ans: 0
+  },
+  {
+    q: "14. How should you extinguish a Galley Cooking Oil Pan Fire (Class F / K)?",
+    opts: ["Never use water; smother with a Fire Blanket/lid and shut off heat supply", "Spray with a high-pressure water hose", "Leave the galley door open for ventilation", "Pour cold water into the pan"],
+    ans: 0
+  },
+  {
+    q: "15. What is the strict target word count band for the Anglo-Eastern Written Essay Task?",
+    opts: ["250 to 300 words", "100 to 150 words", "500 to 600 words", "No word limit"],
+    ans: 0
+  }
+];
+
+let drillUserAns = {};
+
+function renderDrill() {
+  const container = document.getElementById('drillContainer');
+  let score = 0;
+  Object.keys(drillUserAns).forEach(idx => {
+    if (drillUserAns[idx] === 0) score++;
+  });
+  document.getElementById('drillScoreBadge').textContent = `Score: ${score} / ${DRILL_QUESTIONS.length}`;
+
+  container.innerHTML = DRILL_QUESTIONS.map((item, qIdx) => {
+    const chosen = drillUserAns[qIdx];
+    return `
+      <div style="padding:16px 0; border-bottom:1px solid var(--border);">
+        <div style="font-weight:700; color:var(--accent-navy); margin-bottom:10px;">${item.q}</div>
+        <div class="grid-2" style="gap:10px;">
+          ${item.opts.map((opt, oIdx) => {
+            let bg = '#f8fafc', border = '#e2e8f0', col = '#0f172a';
+            if (chosen !== undefined) {
+              if (oIdx === item.ans) { bg = '#ecfdf5'; border = '#059669'; col = '#065f46'; }
+              else if (oIdx === chosen) { bg = '#fff1f2'; border = '#e11d48'; col = '#9f1239'; }
+            }
+            return `<button onclick="answerDrill(${qIdx}, ${oIdx})" ${chosen !== undefined ? 'disabled' : ''} style="padding:11px 14px; border-radius:10px; border:1.5px solid ${border}; background:${bg}; color:${col}; text-align:left; font-weight:600; cursor:pointer;">${opt}</button>`;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function answerDrill(qIdx, oIdx) {
+  drillUserAns[qIdx] = oIdx;
+  renderDrill();
+}
+
+renderDrill();
+</script>
+</body>
+</html>

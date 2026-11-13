@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VocabMaster Pro (English Edition) | Lectures 1–5 Complete Portal</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354d;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-soft: rgba(99, 102, 241, 0.15);
+      --success: #10b981;
+      --success-soft: rgba(16, 185, 129, 0.15);
+      --warning: #f59e0b;
+      --warning-soft: rgba(245, 158, 11, 0.15);
+      --danger: #ef4444;
+      --danger-soft: rgba(239, 68, 68, 0.15);
+      --border: #334155;
+      --radius: 14px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f1f5f9;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --accent-soft: rgba(79, 70, 229, 0.1);
+      --border: #e2e8f0;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding-bottom: 60px;
+      transition: background-color 0.25s, color 0.25s;
+    }
+
+    header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .brand p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stat-pill.mastered { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+    .stat-pill.bookmarked { color: var(--warning); border-color: var(--warning); background: var(--warning-soft); }
+
+    .theme-btn {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .theme-btn:hover { border-color: var(--accent); }
+
+    .nav-tabs {
+      max-width: 1320px;
+      margin: 22px auto 0;
+      padding: 0 20px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .tab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 11px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--accent);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
+
+    .controls-panel {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.2fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) { .controls-panel { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 550px) { .controls-panel { grid-template-columns: 1fr; } }
+
+    .input-box, .select-box {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .input-box:focus, .select-box:focus { border-color: var(--accent); }
+
+    .lecture-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .lec-pill {
+      padding: 7px 14px;
+      border-radius: 99px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .lec-pill.active, .lec-pill:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+    }
+
+    .vocab-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+      position: relative;
+    }
+
+    .vocab-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+
+    .vocab-card.is-mastered { border-left: 4px solid var(--success); }
+    .vocab-card.is-bookmarked { border-left: 4px solid var(--warning); }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .word-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .word-id {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .cat-tag {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      background: var(--bg-primary);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .word-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .speak-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.05rem;
+      opacity: 0.75;
+      transition: 0.2s;
+    }
+    .speak-btn:hover { opacity: 1; transform: scale(1.15); }
+
+    .word-meaning {
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .mnemonic-box {
+      background: var(--bg-primary);
+      border-left: 3px solid var(--accent);
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-size: 0.81rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .mnemonic-box strong { color: var(--accent); }
+
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      gap: 8px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .action-btn.active-master {
+      background: var(--success-soft);
+      color: var(--success);
+      border-color: var(--success);
+    }
+
+    .action-btn.active-bookmark {
+      background: var(--warning-soft);
+      color: var(--warning);
+      border-color: var(--warning);
+    }
+
+    .roots-grid, .confusion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
+    }
+
+    .root-card, .confusion-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .root-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .root-title { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+    .root-meaning {
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 99px;
+    }
+
+    .root-examples {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .root-examples li {
+      font-size: 0.9rem;
+      background: var(--bg-primary);
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .confusion-title {
+      font-weight: 800;
+      color: var(--warning);
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .vs-item {
+      background: var(--bg-primary);
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .flashcard-wrapper {
+      max-width: 680px;
+      margin: 10px auto;
+      text-align: center;
+    }
+
+    .flashcard-scene {
+      width: 100%;
+      height: 360px;
+      perspective: 1000px;
+      margin: 18px 0;
+      cursor: pointer;
+    }
+
+    .flashcard-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flashcard-scene.is-flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      border: 2px solid var(--border);
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 32px;
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent);
+    }
+
+    .fc-word { font-size: 2.3rem; font-weight: 800; margin: 12px 0; }
+    .fc-meaning { font-size: 1.4rem; font-weight: 700; color: var(--success); margin-bottom: 16px; }
+
+    .fc-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn-outline {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); }
+
+    .quiz-container {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .quiz-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .quiz-question-box { margin-bottom: 22px; }
+    .quiz-prompt-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .quiz-question-text { font-size: 1.55rem; font-weight: 800; margin-top: 6px; }
+    .quiz-options { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+
+    .quiz-opt-btn {
+      text-align: left;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.18s;
+    }
+
+    .quiz-opt-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .quiz-opt-btn.correct { border-color: var(--success); background: var(--success-soft); color: var(--success); }
+    .quiz-opt-btn.wrong { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
+
+    .quiz-feedback {
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      font-size: 0.92rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-logo">V</div>
+        <div>
+          <h1>VocabMaster Pro (Pure English Edition)</h1>
+          <p>474 Complete One-Word Substitutions • Etymology & Mnemonics • Smart Quizzes</p>
+        </div>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-pill">📚 Total: <span id="stat-total">474</span></div>
+        <div class="stat-pill mastered">✅ Mastered: <span id="stat-mastered">0</span></div>
+        <div class="stat-pill bookmarked">📌 Revise: <span id="stat-bookmarked">0</span></div>
+        <button class="theme-btn" onclick="toggleTheme()" id="theme-toggle-btn">☀️ Light</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('notes', this)">📖 Interactive Notes (All 474)</button>
+    <button class="tab-btn" onclick="switchTab('roots', this)">🧬 Root Word & Etymology Guide</button>
+    <button class="tab-btn" onclick="switchTab('confusions', this)">⚡ Confusion Buster Pairs</button>
+    <button class="tab-btn" onclick="switchTab('flashcards', this)">🎴 3D Flashcards</button>
+    <button class="tab-btn" onclick="switchTab('quiz', this)">🎯 Smart Quiz Engine</button>
+  </nav>
+
+  <main class="container">
+
+    <!-- 1. INTERACTIVE NOTES SECTION -->
+    <section id="tab-notes" class="tab-section active">
+      <div class="lecture-pills" id="lecture-pills">
+        <button class="lec-pill active" onclick="setLectureFilter('ALL', this)">All Lectures (474)</button>
+        <button class="lec-pill" onclick="setLectureFilter('L1', this)">🦁 Lec 1: Animals & Sounds (1–68)</button>
+        <button class="lec-pill" onclick="setLectureFilter('L2', this)">🏛️ Lec 2: Places & Medical (69–216)</button>
+        <button class="lec-pill" onclick="setLectureFilter('L3', this)">📜 Lec 3: Literary, Time & Names (217–322)</button>
+        <button class="lec-pill" onclick="setLectureFilter('L4', this)">🥗 Lec 4: Food, Money & Persons-1 (323–396)</button>
+        <button class="lec-pill" onclick="setLectureFilter('L5', this)">👥 Lec 5: Persons-2 & Roots (397–474)</button>
+      </div>
+
+      <div class="controls-panel">
+        <input type="text" id="search-input" class="input-box" placeholder="🔍 Search word, English definition, root, or number (e.g., 'Canine', 'sleep', 'government')..." oninput="renderNotes()" />
+        <select id="category-select" class="select-box" onchange="renderNotes()">
+          <option value="ALL">All Sub-Categories</option>
+        </select>
+        <select id="status-select" class="select-box" onchange="renderNotes()">
+          <option value="ALL">All Statuses</option>
+          <option value="UNLEARNED">⏳ Unlearned Only</option>
+          <option value="MASTERED">✅ Mastered Only</option>
+          <option value="BOOKMARKED">📌 Need Revision (Bookmarked)</option>
+        </select>
+        <button class="btn-outline" onclick="resetFilters()">🔄 Reset Filters</button>
+      </div>
+
+      <div style="margin-bottom: 12px; font-size: 0.88rem; color: var(--text-secondary);">
+        Showing <strong id="showing-count">0</strong> words
+      </div>
+
+      <div class="vocab-grid" id="vocab-grid"></div>
+    </section>
+
+    <!-- 2. ROOT WORD DECODER SECTION -->
+    <section id="tab-roots" class="tab-section">
+      <div style="margin-bottom: 18px;">
+        <h2>🧬 Master 12 High-Yield Etymology Families (Learn 1 Root = Master 15+ Words)</h2>
+        <p style="color: var(--text-secondary); font-size: 0.92rem;">Understanding Latin and Greek roots makes decoding unfamiliar exam words effortless.</p>
+      </div>
+      <div class="roots-grid" id="roots-grid"></div>
+    </section>
+
+    <!-- 3. CONFUSION BUSTER SECTION -->
+    <section id="tab-confusions" class="tab-section">
+      <div style="margin-bottom: 18px;">
+        <h2>⚡ Exam Confusion Buster (Side-by-Side Comparison)</h2>
+        <p style="color: var(--text-secondary); font-size: 0.92rem;">Clear up closely related homophones and look-alike words frequently tested in competitive exams.</p>
+      </div>
+      <div class="confusion-grid" id="confusion-grid"></div>
+    </section>
+
+    <!-- 4. 3D FLASHCARDS SECTION -->
+    <section id="tab-flashcards" class="tab-section">
+      <div class="flashcard-wrapper">
+        <div class="controls-panel" style="grid-template-columns: 1fr 1fr 1fr;">
+          <select id="fc-lecture" class="select-box" onchange="initFlashcards()">
+            <option value="ALL">All Lectures (474 Words)</option>
+            <option value="L1">Lecture 1 (Animals)</option>
+            <option value="L2">Lecture 2 (Places & Medical)</option>
+            <option value="L3">Lecture 3 (Literary & Time)</option>
+            <option value="L4">Lecture 4 (Food, Money, Persons)</option>
+            <option value="L5">Lecture 5 (Persons & Roots)</option>
+          </select>
+          <select id="fc-status" class="select-box" onchange="initFlashcards()">
+            <option value="ALL">All Words</option>
+            <option value="BOOKMARKED">📌 Revision Bookmarks Only</option>
+            <option value="UNLEARNED">⏳ Unlearned Only</option>
+          </select>
+          <button class="btn-outline" onclick="shuffleFlashcards()">🔀 Shuffle Deck</button>
+        </div>
+
+        <div style="font-size: 0.9rem; color: var(--text-secondary);">
+          Card <strong id="fc-index">1</strong> of <strong id="fc-total">474</strong> (Click card or press <code>Space</code> to flip)
+        </div>
+
+        <div class="flashcard-scene" id="fc-scene" onclick="flipCard()">
+          <div class="flashcard-inner">
+            <div class="fc-face fc-front">
+              <span class="word-id" id="fc-id">#1</span>
+              <div class="fc-word" id="fc-word">Terrestrial</div>
+              <p style="color: var(--text-secondary); font-size: 0.85rem;" id="fc-cat">Lecture 1 • Animals & Habitat</p>
+              <button class="btn-outline" style="margin-top: 18px;" onclick="event.stopPropagation(); speakById(currentFcId())">🔊 Pronounce</button>
+              <p style="margin-top: 22px; font-size: 0.78rem; color: var(--text-secondary);">Tap to reveal definition & memory trick 👆</p>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-meaning" id="fc-meaning">Animals living on land</div>
+              <div class="mnemonic-box" id="fc-trick" style="max-width: 90%; text-align: left;"></div>
+              <div style="display:flex; gap: 10px; margin-top: 12px;" onclick="event.stopPropagation();">
+                <button class="btn-outline" id="fc-master-btn" onclick="toggleFcMaster()">✅ Mark Mastered</button>
+                <button class="btn-outline" id="fc-bookmark-btn" onclick="toggleFcBookmark()">📌 Bookmark</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-controls">
+          <button class="btn-outline" onclick="prevCard()">⬅️ Previous</button>
+          <button class="btn-primary" onclick="flipCard()">🔄 Flip Card</button>
+          <button class="btn-outline" onclick="nextCard()">Next ➡️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SMART QUIZ ENGINE SECTION -->
+    <section id="tab-quiz" class="tab-section">
+      <div class="quiz-container">
+        <div class="controls-panel" style="grid-template-columns: 1fr 1fr 1fr; margin-bottom: 18px;">
+          <select id="quiz-scope" class="select-box" onchange="startNewQuiz()">
+            <option value="ALL">All 5 Lectures (474 Words)</option>
+            <option value="L1">Lecture 1 Only</option>
+            <option value="L2">Lecture 2 Only</option>
+            <option value="L3">Lecture 3 Only</option>
+            <option value="L4">Lecture 4 Only</option>
+            <option value="L5">Lecture 5 Only</option>
+            <option value="BOOKMARKED">📌 My Bookmarked Words</option>
+          </select>
+          <select id="quiz-mode" class="select-box" onchange="startNewQuiz()">
+            <option value="W2M">Mode: Word ➔ Definition</option>
+            <option value="M2W">Mode: Definition ➔ Word (OWS Exam Style)</option>
+          </select>
+          <button class="btn-primary" onclick="startNewQuiz()">🔄 New Question</button>
+        </div>
+
+        <div class="quiz-top">
+          <div>
+            <span class="stat-pill" style="display:inline-flex;">🏆 Score: <span id="q-score">0</span> / <span id="q-total">0</span></span>
+            <span class="stat-pill mastered" style="display:inline-flex; margin-left: 8px;">🔥 Streak: <span id="q-streak">0</span></span>
+          </div>
+          <span class="cat-tag" id="q-meta">Lecture 1</span>
+        </div>
+
+        <div class="quiz-question-box">
+          <div class="quiz-prompt-label" id="q-prompt-label">CHOOSE THE CORRECT DEFINITION FOR:</div>
+          <div class="quiz-question-text" id="q-question-text">Terrestrial</div>
+        </div>
+
+        <div class="quiz-options" id="q-options"></div>
+        <div class="quiz-feedback" id="q-feedback"></div>
+
+        <div style="display: flex; justify-content: flex-end;">
+          <button class="btn-primary" id="q-next-btn" onclick="nextQuizQuestion()" style="display:none;">Next Question ➡️</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PURE ENGLISH 474 VOCABULARY DATA BLOCK -->
+  <script id="vocab-raw-data" type="text/plain">
+L1|1. Animals & Habitat|1|Terrestrial|Living on or relating to land or earth
+L1|1. Animals & Habitat|2|Extraterrestrial|Originating or existing outside the earth or its atmosphere
+L1|1. Animals & Habitat|3|Aquatic|Living or growing in or near water
+L1|1. Animals & Habitat|4|Amphibious|Able to live both on land and in water (e.g., frogs)
+L1|1. Animals & Habitat|5|Reptiles|Cold-blooded vertebrates that crawl or move on their bellies
+L1|1. Animals & Habitat|6|Predator|An animal that naturally preys on and hunts other animals
+L1|1. Animals & Habitat|7|Parasite|An organism that lives in or on a host and benefits at its expense
+L1|1. Animals & Habitat|8|Hibernation|A state of extended dormancy and deep sleep during winter
+L1|1. Animals & Habitat|9|Aerial|Living, moving, or operating in the air
+L1|1. Animals & Habitat|10|Arboreal|Animals living primarily in trees
+L1|1. Animals & Habitat|11|Biped|A two-footed creature
+L1|1. Animals & Habitat|12|Quadruped|A four-footed animal
+L1|1. Animals & Habitat|13|Octopus|A sea creature having eight arms or tentacles
+L1|1. Animals & Habitat|14|Centipede|A predatory arthropod having a hundred (many) legs
+L1|1. Animals & Habitat|15|Oviparous|Producing young by laying eggs
+L1|1. Animals & Habitat|16|Viviparous|Bringing forth live young rather than laying eggs
+L1|1. Animals & Habitat|17|Mammals|Warm-blooded vertebrates that nourish their young with milk
+L1|1. Animals & Habitat|18|Brood|A family of young animals or birds produced at one hatching
+L1|1. Animals & Habitat|19|Vivacious|Attractively lively, animated, and full of energy
+L1|1. Animals & Habitat|20|Ostler|A person employed at an inn to look after horses
+L1|2. Animal Resemblances (-ine)|21|Bovine|Relating to or resembling cattle; sluggish or dull-witted
+L1|2. Animal Resemblances (-ine)|22|Feline|Relating to or resembling a cat; sleek and graceful
+L1|2. Animal Resemblances (-ine)|23|Canine|Relating to or resembling a dog
+L1|2. Animal Resemblances (-ine)|24|Elephantine|Resembling an elephant; enormous, huge, or clumsy
+L1|2. Animal Resemblances (-ine)|25|Leonine|Relating to or resembling a lion; fierce and majestic
+L1|2. Animal Resemblances (-ine)|26|Equine|Relating to or resembling a horse
+L1|2. Animal Resemblances (-ine)|27|Ovine|Relating to or resembling a sheep
+L1|2. Animal Resemblances (-ine)|28|Vulpine|Relating to a fox; crafty, cunning, and sly
+L1|2. Animal Resemblances (-ine)|29|Porcine|Relating to or resembling a pig or swine
+L1|2. Animal Resemblances (-ine)|30|Asinine|Relating to a donkey; extremely stupid or foolish
+L1|3. Dog Words (Cani-)|31|Canicide|The act of killing a dog
+L1|3. Dog Words (Cani-)|32|Canophobia|An extreme or irrational fear of dogs
+L1|3. Dog Words (Cani-)|33|Canology|The scientific study of dogs
+L1|3. Dog Words (Cani-)|34|Canophilia|Fondness or love for dogs
+L1|4. Eating Habits (Vor-)|35|Herbivorous|An animal that feeds exclusively on plants
+L1|4. Eating Habits (Vor-)|36|Carnivorous|An animal that feeds on flesh or meat
+L1|4. Eating Habits (Vor-)|37|Omnivorous|Feeding on a variety of food of both plant and animal origin
+L1|4. Eating Habits (Vor-)|38|Graminivorous|Feeding primarily on grass
+L1|4. Eating Habits (Vor-)|39|Insectivorous|An organism that feeds on insects
+L1|4. Eating Habits (Vor-)|40|Frugivorous|An animal that thrives mostly on raw fruits
+L1|4. Eating Habits (Vor-)|41|Piscivorous|A carnivorous animal that eats primarily fish
+L1|4. Eating Habits (Vor-)|42|Pisciculture|The controlled breeding and rearing of fish
+L1|4. Eating Habits (Vor-)|43|Vegan|A person who does not eat or use any animal products
+L1|4. Eating Habits (Vor-)|44|Cannibal|A person who eats human flesh, or an animal that eats its own kind
+L1|4. Eating Habits (Vor-)|45|Voracious|Wanting or devouring great quantities of food; having an eager appetite
+L1|4. Eating Habits (Vor-)|46|Veracious|Speaking or representing the truth; habitually honest
+L1|4. Eating Habits (Vor-)|47|Veracity|Conformity to facts; accuracy and truthfulness
+L1|4. Eating Habits (Vor-)|48|Glutton|An excessively greedy eater
+L1|4. Eating Habits (Vor-)|49|Nocturnal|Active mainly during the night and sleeping by day
+L1|4. Eating Habits (Vor-)|50|Diurnal|Active chiefly during the daytime
+L1|5. Horse & Riding Terms|51|Equinox|The time or date twice each year when day and night are of equal length
+L1|5. Horse & Riding Terms|52|Jockey|A professional rider in horse races
+L1|5. Horse & Riding Terms|53|Cavalry|Soldiers who fought on horseback in the past
+L1|5. Horse & Riding Terms|54|Infantry|Soldiers marching or fighting on foot
+L1|5. Horse & Riding Terms|55|Stable|A building set apart and adapted for keeping horses
+L1|5. Horse & Riding Terms|56|Farrier|A craftsman who trims and shoes horses' hooves
+L1|6. Animal Sounds|57|Neigh|A characteristic high-pitched sounduttered by a horse
+L1|6. Animal Sounds|58|Hiss|A sharp sibilant sound made by a snake
+L1|6. Animal Sounds|59|Bleat|The weak, wavering cry made by a sheep, goat, or calf
+L1|6. Animal Sounds|60|Grunt|A low, short guttural sound made by a camel or pig
+L1|6. Animal Sounds|61|Growl|A low guttural sound of hostility made by a bear or dog
+L1|6. Animal Sounds|62|Bellow|A deep loud roar emitted by a crocodile or bull
+L1|6. Animal Sounds|63|Caw|The harsh cry of a crow, raven, or rook
+L1|6. Animal Sounds|64|Cluck|A short, low sound made by a hen
+L1|6. Animal Sounds|65|Buzz|A low, continuous humming sound made by a bee
+L1|7. Special Animal Terms|66|Taxidermy|The art of preparing, stuffing, and mounting the skins of dead animals
+L1|7. Special Animal Terms|67|Sanctuary|A nature reserve where endangered animals and birds are protected
+L1|7. Special Animal Terms|68|Menagerie|A collection of wild animals kept in captivity for exhibition
+L2|1. Places, Structures & Storage|69|Walkway|A passage or path for walking inside or between buildings
+L2|1. Places, Structures & Storage|70|Jaywalk|To cross or walk in the street unlawfully or without regard for approaching traffic
+L2|1. Places, Structures & Storage|71|Thoroughfare|A main road or public highway between two places
+L2|1. Places, Structures & Storage|72|Terminus|The final station at the end of a railway or bus route
+L2|1. Places, Structures & Storage|73|Suite|A set of connected rooms in a hotel, or a matching set of furniture/clothes
+L2|1. Places, Structures & Storage|74|Port|A town or city with a harbor where ships load or unload cargo
+L2|1. Places, Structures & Storage|75|Harbour|A sheltered place on the coast where ships and boats can anchor safely
+L2|1. Places, Structures & Storage|76|Dockyard|An area with docks and equipment for building and repairing ships
+L2|1. Places, Structures & Storage|77|Hangar|A large building with extensive floor area used for housing aircraft
+L2|1. Places, Structures & Storage|78|Fleet|A group of naval ships or vessels operating together under one command
+L2|1. Places, Structures & Storage|79|Crew|A group of people who work on and operate a ship, aircraft, or train
+L2|1. Places, Structures & Storage|80|Fuselage|The main body of an aircraft where passengers and cargo are carried
+L2|1. Places, Structures & Storage|81|Pantry|A small room or closet near the kitchen where food and provisions are stored
+L2|1. Places, Structures & Storage|82|Scullery|A small room at the back of a house used for washing dishes and kitchen utensils
+L2|1. Places, Structures & Storage|83|Mausoleum|A large, stately building housing a tomb or group of tombs
+L2|1. Places, Structures & Storage|84|Mansion|A large, impressive, and luxurious house
+L2|1. Places, Structures & Storage|85|Honeycomb|A structure of hexagonal cells of wax, made by bees to store honey and eggs
+L2|1. Places, Structures & Storage|86|Ghetto|A poor, densely populated urban area occupied primarily by a minority group
+L2|1. Places, Structures & Storage|87|Foyer|An entrance hall or large open area in a hotel, theater, or building
+L2|1. Places, Structures & Storage|88|Drey|The nest of a squirrel, typically built in the fork of a tree
+L2|1. Places, Structures & Storage|89|Deranged|Mad, insane, or mentally disturbed
+L2|1. Places, Structures & Storage|90|Citadel|A fortress, typically on high ground, protecting or dominating a city
+L2|1. Places, Structures & Storage|91|Cellar|An underground room used for storing wine, coal, or provisions
+L2|1. Places, Structures & Storage|92|Cache|A hidden store of things, such as weapons or valuables, kept in a secret place
+L2|1. Places, Structures & Storage|93|Byre|A cowshed where cattle are kept
+L2|1. Places, Structures & Storage|94|Condominium|A building or complex containing a number of individually owned apartments
+L2|1. Places, Structures & Storage|95|Apiary|A place where bees and beehives are kept
+L2|1. Places, Structures & Storage|96|Apicide|The killing or destruction of bees
+L2|1. Places, Structures & Storage|97|Apiculture|The scientific maintenance of honeybee colonies (beekeeping)
+L2|1. Places, Structures & Storage|98|Aviary|A large cage, building, or enclosure for keeping birds
+L2|1. Places, Structures & Storage|99|Aviator|A pilot of an aircraft
+L2|1. Places, Structures & Storage|100|Avicide|The act or substance used for killing birds
+L2|1. Places, Structures & Storage|101|Abattoir|A slaughterhouse where animals are killed for meat
+L2|1. Places, Structures & Storage|102|Aquarium|A transparent tank of water in which live fish and aquatic creatures are kept
+L2|1. Places, Structures & Storage|103|Arena|A level area surrounded by seating for sports, wrestling, or entertainment
+L2|1. Places, Structures & Storage|104|Arsenal|A place where weapons and military ammunition are stored or made
+L2|1. Places, Structures & Storage|105|Brewery|A place where beer is manufactured commercially
+L2|1. Places, Structures & Storage|106|Distillery|A place where strong alcoholic liquor is manufactured by distillation
+L2|1. Places, Structures & Storage|107|Burrow|A hole or tunnel dug by a small animal, especially a rabbit, as a dwelling
+L2|1. Places, Structures & Storage|108|Casino|A public room or building where gambling games are played
+L2|1. Places, Structures & Storage|109|Cemetery|A burial ground where dead people are buried
+L2|1. Places, Structures & Storage|110|Cloakroom|A room in a public building or station where coats and luggage may be left
+L2|1. Places, Structures & Storage|111|Monastery|A building or residence occupied by a community of monks living under religious vows
+L2|1. Places, Structures & Storage|112|Nunnery|A convent or residence of a religious community of nuns
+L2|1. Places, Structures & Storage|113|Abbot|A man who is the head of an abbey of monks
+L2|1. Places, Structures & Storage|114|Abbess|A woman who is the head of an abbey of nuns
+L2|1. Places, Structures & Storage|115|Dormitory|A large bedroom for a number of people in a school, hostel, or institution
+L2|1. Places, Structures & Storage|116|Utopia|An imagined place or state of things in which everything is perfect
+L2|1. Places, Structures & Storage|117|Dystopia|An imagined state or society in which there is great suffering and injustice
+L2|1. Places, Structures & Storage|118|Crematorium|A place where a dead person's body is cremated (burned to ashes)
+L2|1. Places, Structures & Storage|119|Mortuary|A room or building in which dead bodies are kept prior to burial, cremation, or autopsy
+L2|1. Places, Structures & Storage|120|Morgue|A place where bodies of victims are kept for identification
+L2|1. Places, Structures & Storage|121|Autopsy / Post-mortem|A medical examination of a dead body to discover the cause of death
+L2|1. Places, Structures & Storage|122|Biopsy|An examination of tissue removed from a living body to discover the presence of disease
+L2|1. Places, Structures & Storage|123|Sanatorium|An establishment for the medical treatment and recuperation of people with chronic illness
+L2|1. Places, Structures & Storage|124|Hospice|A home providing care for the sick, especially the terminally ill
+L2|1. Places, Structures & Storage|125|Teetotaler|A person who never drinks alcohol
+L2|1. Places, Structures & Storage|126|Mint|A place where official coins and medals of a country are made
+L2|1. Places, Structures & Storage|127|Numismatist|A person who studies or collects coins, paper money, and medals
+L2|1. Places, Structures & Storage|128|Curator|A keeper or custodian of a museum or other collection
+L2|1. Places, Structures & Storage|129|Antique|A collectible object such as a piece of furniture or work of art that has high value because of its age
+L2|1. Places, Structures & Storage|130|Antics|Foolish, outrageous, or amusing behavior
+L2|1. Places, Structures & Storage|131|Resort|A place that is frequented for holidays, relaxation, or recreation
+L2|1. Places, Structures & Storage|132|Garage|A building for housing a motor vehicle or vehicles
+L2|1. Places, Structures & Storage|133|Granary|A storehouse for threshed grain
+L2|1. Places, Structures & Storage|134|Gymnasium|A room or building equipped for gymnastics, games, and physical exercise
+L2|1. Places, Structures & Storage|135|Hutch|A box or cage, typically with a wire mesh front, for keeping rabbits
+L2|1. Places, Structures & Storage|136|Kennel|A small shelter for a dog
+L2|1. Places, Structures & Storage|137|Kiln|A furnace or oven for burning, baking, or drying pottery and bricks
+L2|1. Places, Structures & Storage|138|Laboratory|A room or building equipped for scientific experiments and research
+L2|1. Places, Structures & Storage|139|Lair / Den|A wild animal's resting place, especially a fierce or predatory one
+L2|1. Places, Structures & Storage|140|Museum|A building in which objects of historical, scientific, or artistic interest are exhibited
+L2|1. Places, Structures & Storage|141|Nursery|A place where young plants and trees are grown for sale, or a room for young children
+L2|1. Places, Structures & Storage|142|Orchard|A piece of enclosed land planted with fruit trees
+L2|1. Places, Structures & Storage|143|Observatory|A building equipped for observing astronomical or meteorological phenomena
+L2|1. Places, Structures & Storage|144|Orphanage|A residential institution for the care and education of orphans
+L2|1. Places, Structures & Storage|145|Reservoir|A large natural or artificial lake used as a source of water supply
+L2|1. Places, Structures & Storage|146|Tannery|A place where animal hides are tanned to make leather
+L2|1. Places, Structures & Storage|147|Wardrobe|A large, tall cupboard in which clothes may be hung or stored
+L2|1. Places, Structures & Storage|148|Vineyard|A plantation of grapevines, typically producing grapes used in winemaking
+L2|1. Places, Structures & Storage|149|Igloo|A dome-shaped Eskimo house, typically built from blocks of solid snow
+L2|1. Places, Structures & Storage|150|Hermitage|The dwelling of a hermit, where a person lives in religious seclusion
+L2|1. Places, Structures & Storage|151|Hermit / Recluse|A person living in solitude as a religious discipline or to avoid society
+L2|1. Places, Structures & Storage|152|Oasis|A fertile spot in a desert, where water and vegetation are found
+L2|1. Places, Structures & Storage|153|Web|A network of fine threads constructed by a spider to catch prey
+L2|1. Places, Structures & Storage|154|Archipelago|An extensive group or chain of islands
+L2|1. Places, Structures & Storage|155|Anteroom|An antechamber; a small room leading to a main one, used as a waiting room
+L2|1. Places, Structures & Storage|156|Lavatory|A room fitted with a toilet and washbasin
+L2|1. Places, Structures & Storage|157|Hovel|A small, squalid, unpleasant, or simply constructed dwelling
+L2|1. Places, Structures & Storage|158|Promenade|A paved public walk, typically one along a seafront at a resort
+L2|2. Diseases, Medical Terms & Drugs|159|Valetudinarian / Hypochondriac|A person who is unduly anxious about their health
+L2|2. Diseases, Medical Terms & Drugs|160|Cadaverous|Resembling a corpse in being very pale, thin, or bony
+L2|2. Diseases, Medical Terms & Drugs|161|Carcass|The dead body of an animal
+L2|2. Diseases, Medical Terms & Drugs|162|Corpse|A dead body, especially of a human being
+L2|2. Diseases, Medical Terms & Drugs|163|Sedative / Soporific / Tranquilizer|A drug taken for its calming or sleep-inducing effect
+L2|2. Diseases, Medical Terms & Drugs|164|Anaesthetic|A substance that induces insensitivity to pain or temporary unconsciousness
+L2|2. Diseases, Medical Terms & Drugs|165|Rejuvenated|Restored to a youthful appearance, vigor, or fresh energy
+L2|2. Diseases, Medical Terms & Drugs|166|Rehabilitate|To restore someone to health or normal life by training and therapy
+L2|2. Diseases, Medical Terms & Drugs|167|Laceration|A deep cut or tear in skin or flesh
+L2|2. Diseases, Medical Terms & Drugs|168|Amputee|A person who has had a limb removed by surgical amputation
+L2|2. Diseases, Medical Terms & Drugs|169|Gingivitis|Inflammation of the gums
+L2|2. Diseases, Medical Terms & Drugs|170|Anemia|A condition marked by a deficiency of red blood cells or hemoglobin
+L2|2. Diseases, Medical Terms & Drugs|171|Panacea|A solution or remedy for all difficulties or diseases (a cure-all)
+L2|2. Diseases, Medical Terms & Drugs|172|Delirium|An acutely disturbed state of mind characterized by restlessness and incoherence
+L2|2. Diseases, Medical Terms & Drugs|173|Emetic|A medicine or other substance which causes vomiting
+L2|2. Diseases, Medical Terms & Drugs|174|Dyslexia|A learning disorder that involves difficulty reading due to problems identifying speech sounds
+L2|2. Diseases, Medical Terms & Drugs|175|Dysgraphia|Inability to write coherently, as a symptom of brain disease or neurological disorder
+L2|2. Diseases, Medical Terms & Drugs|176|Contagious|A disease spread from one person or organism to another by direct contact
+L2|2. Diseases, Medical Terms & Drugs|177|Infectious|A disease liable to be transmitted to people through the environment (air, water)
+L2|2. Diseases, Medical Terms & Drugs|178|Epidemic|A widespread occurrence of an infectious disease in a community at a particular time
+L2|2. Diseases, Medical Terms & Drugs|179|Endemic|A disease regularly found among particular people or in a certain geographic area
+L2|2. Diseases, Medical Terms & Drugs|180|Pandemic|An infectious disease prevalent over a whole country or the entire world
+L2|2. Diseases, Medical Terms & Drugs|181|Tangible|Perceptible by touch; clear and definite
+L2|2. Diseases, Medical Terms & Drugs|182|Intangible|Unable to be touched or grasped; not having physical presence
+L2|2. Diseases, Medical Terms & Drugs|183|Congenital|A disease or physical abnormality present from birth
+L2|2. Diseases, Medical Terms & Drugs|184|Hereditary|Passed on from parents to offspring through genes
+L2|2. Diseases, Medical Terms & Drugs|185|Diagnosis|The identification of the nature of an illness by examination of the symptoms
+L2|2. Diseases, Medical Terms & Drugs|186|Prognosis|A forecast of the likely course and outcome of a disease or ailment
+L2|2. Diseases, Medical Terms & Drugs|187|Haemorrhage|An escape of blood from a ruptured blood vessel; profuse bleeding
+L2|2. Diseases, Medical Terms & Drugs|188|Pathology|The science of the causes and effects of diseases
+L2|2. Diseases, Medical Terms & Drugs|189|Pathophobia|An abnormal fear of disease
+L2|2. Diseases, Medical Terms & Drugs|190|Antidote|A medicine taken or given to counteract a particular poison
+L2|2. Diseases, Medical Terms & Drugs|191|Ante Meridiem (AM)|Before noon (between midnight and 12:00 PM)
+L2|2. Diseases, Medical Terms & Drugs|192|Post Meridiem (PM)|After noon (between 12:00 PM and midnight)
+L2|2. Diseases, Medical Terms & Drugs|193|Antediluvian|Belonging to the time before the biblical Flood; ridiculously old-fashioned
+L2|2. Diseases, Medical Terms & Drugs|194|Antagonist|A person who actively opposes or is hostile to someone (adversary/villain)
+L2|2. Diseases, Medical Terms & Drugs|195|Protagonist|The leading character or one of the major characters in a drama, movie, or novel
+L2|2. Diseases, Medical Terms & Drugs|196|Antipathy|A deep-seated feeling of dislike or aversion
+L2|2. Diseases, Medical Terms & Drugs|197|Antithesis|A person or thing that is the direct opposite of someone or something else
+L2|2. Diseases, Medical Terms & Drugs|198|Sympathy|Feelings of pity and sorrow for someone else's misfortune
+L2|2. Diseases, Medical Terms & Drugs|199|Empathy|The ability to understand and share the feelings of another
+L2|2. Diseases, Medical Terms & Drugs|200|Apathy|Lack of interest, enthusiasm, or concern (indifference)
+L2|2. Diseases, Medical Terms & Drugs|201|Telepathy|The supposed communication of thoughts or ideas by means other than the known senses
+L2|2. Diseases, Medical Terms & Drugs|202|Antiseptic|Preventing the growth of disease-causing microorganisms on living tissue
+L2|2. Diseases, Medical Terms & Drugs|203|Anodyne / Aspirin|A painkilling drug or medicine
+L2|2. Diseases, Medical Terms & Drugs|204|Amnesia|A partial or total loss of memory
+L2|2. Diseases, Medical Terms & Drugs|205|Aphonia|Loss of ability to speak through disease of or damage to the larynx
+L2|2. Diseases, Medical Terms & Drugs|206|Aphasia|Loss of ability to understand or express speech, caused by brain damage
+L2|2. Diseases, Medical Terms & Drugs|207|Insomnia|Habitual sleeplessness; inability to sleep
+L2|2. Diseases, Medical Terms & Drugs|208|Somniloquent|Talking while asleep
+L2|2. Diseases, Medical Terms & Drugs|209|Somnambulist|A person who walks about in their sleep (sleepwalker)
+L2|2. Diseases, Medical Terms & Drugs|210|Convalescence|Time spent recovering from an illness or medical treatment
+L2|2. Diseases, Medical Terms & Drugs|211|Laxative / Purgative|A medicine that tends to stimulate or facilitate evacuation of the bowels
+L2|2. Diseases, Medical Terms & Drugs|212|Placebo|A harmless pill or substance given for the psychological benefit of the patient
+L2|2. Diseases, Medical Terms & Drugs|213|Palliative|A medicine that relieves pain without dealing with the underlying cause of the condition
+L2|2. Diseases, Medical Terms & Drugs|214|Terminal|A disease predicted to lead to death; incurable
+L2|2. Diseases, Medical Terms & Drugs|215|Chronic|An illness persisting for a long time or constantly recurring
+L2|2. Diseases, Medical Terms & Drugs|216|Neurotic|Suffering from or relating to neurosis, anxiety, or nervous disorders
+L3|1. Literary Devices, Forms & Terms|217|Soliloquy|An act of speaking one's thoughts aloud when by oneself in a play
+L3|1. Literary Devices, Forms & Terms|218|Monologue|A long speech by one actor in a play or movie
+L3|1. Literary Devices, Forms & Terms|219|Dialogue|Conversation between two or more people as a feature of a book, play, or movie
+L3|1. Literary Devices, Forms & Terms|220|Palindrome|A word, phrase, or sequence that reads the same backward as forward (e.g., MADAM)
+L3|1. Literary Devices, Forms & Terms|221|Scurrilous|Making or spreading scandalous claims about someone with the intention of damaging their reputation
+L3|1. Literary Devices, Forms & Terms|222|Sarcasm|The use of irony to mock or convey contempt
+L3|1. Literary Devices, Forms & Terms|223|Satire|The use of humor, irony, or exaggeration to expose and criticize people's stupidity or vices
+L3|1. Literary Devices, Forms & Terms|224|Revile|To criticize in an abusive or angrily insulting manner
+L3|1. Literary Devices, Forms & Terms|225|Diatribe|A forceful and bitter verbal attack against someone or something
+L3|1. Literary Devices, Forms & Terms|226|Deride|To express contempt for; ridicule or mock
+L3|1. Literary Devices, Forms & Terms|227|Opprobrium|Harsh criticism or censure; public disgrace arising from shameful conduct
+L3|1. Literary Devices, Forms & Terms|228|Replica|An exact copy or model of something, especially one on a smaller scale
+L3|1. Literary Devices, Forms & Terms|229|Parody|An imitation of the style of a particular writer, artist, or genre with deliberate exaggeration for comic effect
+L3|1. Literary Devices, Forms & Terms|230|Postscript|An additional remark at the end of a letter, after the signature and introduced by 'P.S.'
+L3|1. Literary Devices, Forms & Terms|231|Epilogue|A section or speech at the end of a book or play that serves as a comment on or conclusion to what has happened
+L3|1. Literary Devices, Forms & Terms|232|Prologue / Preface / Preamble / Prelude|A separate introductory section of a literary, dramatic, or musical work
+L3|1. Literary Devices, Forms & Terms|233|Epigraph|An inscription on a building, statue, or coin, or a short quotation at the beginning of a book
+L3|1. Literary Devices, Forms & Terms|234|Fable|A short story, typically with animals as characters, conveying a moral
+L3|1. Literary Devices, Forms & Terms|235|Parable|A simple story used to illustrate a moral or spiritual lesson
+L3|1. Literary Devices, Forms & Terms|236|Anecdote|A short amusing or interesting story about a real incident or person
+L3|1. Literary Devices, Forms & Terms|237|Ballad|A poem or song narrating a story in short stanzas
+L3|1. Literary Devices, Forms & Terms|238|Raconteur|A person who tells anecdotes in a skillful and amusing way
+L3|1. Literary Devices, Forms & Terms|239|Allegory|A story, poem, or picture that can be interpreted to reveal a hidden moral or political meaning
+L3|1. Literary Devices, Forms & Terms|240|Lullaby|A quiet, gentle song sung to send a child to sleep
+L3|1. Literary Devices, Forms & Terms|241|Idyllic|Extremely happy, peaceful, or picturesque
+L3|1. Literary Devices, Forms & Terms|242|Hymn|A religious song or poem of praise to God
+L3|1. Literary Devices, Forms & Terms|243|Axiom|A statement or proposition which is regarded as being established, accepted, or self-evidently true
+L3|1. Literary Devices, Forms & Terms|244|Elegy|A poem of serious reflection, typically a lament for the dead
+L3|1. Literary Devices, Forms & Terms|245|Dirge|A mournful song, piece of music, or poem performed at a funeral
+L3|1. Literary Devices, Forms & Terms|246|Sonnet|A poem of fourteen lines using any of a number of formal rhyme schemes
+L3|1. Literary Devices, Forms & Terms|247|Limerick|A humorous five-line poem with a rhyme scheme of AABBA
+L3|1. Literary Devices, Forms & Terms|248|Haiku|A Japanese poem of seventeen syllables, in three lines of five, seven, and five, evoking images of the natural world
+L3|1. Literary Devices, Forms & Terms|249|Refrain|A repeated line or number of lines in a poem or song, typically at the end of each verse
+L3|1. Literary Devices, Forms & Terms|250|Opus|An artistic work, especially one on a large scale
+L3|1. Literary Devices, Forms & Terms|251|Magnum Opus|A large and important work of art, music, or literature, especially one regarded as the most important work of an artist or writer
+L3|1. Literary Devices, Forms & Terms|252|Corpus|A collection of written texts, especially the entire works of a particular author or a body of writing on a particular subject
+L3|1. Literary Devices, Forms & Terms|253|Medley|A varied mixture of people or things; a collection of musical pieces played as a continuous piece
+L3|1. Literary Devices, Forms & Terms|254|Anthology|A published collection of poems or other pieces of writing
+L3|1. Literary Devices, Forms & Terms|255|Samizdat|The clandestine copying and distribution of literature banned by the state
+L3|1. Literary Devices, Forms & Terms|256|Ode|A lyric poem in the form of an address to a particular subject, often elevated in style
+L3|1. Literary Devices, Forms & Terms|257|Epistle|A poem or other literary work in the form of a letter or series of letters
+L3|1. Literary Devices, Forms & Terms|258|Erratum|An error in printing or writing, especially one noted in a list of corrections
+L3|1. Literary Devices, Forms & Terms|259|Edify|To instruct or improve someone morally or intellectually
+L3|1. Literary Devices, Forms & Terms|260|Directory|A book or alphabetical list of names, addresses, and telephone numbers
+L3|1. Literary Devices, Forms & Terms|261|Catalogue|A complete list of items, typically one in alphabetical or other systematic order
+L3|1. Literary Devices, Forms & Terms|262|Cypher|A secret or disguised way of writing; a code
+L3|1. Literary Devices, Forms & Terms|263|Plagiarism|The practice of taking someone else's work or ideas and passing them off as one's own
+L3|1. Literary Devices, Forms & Terms|264|Avant-Garde|New and experimental ideas and methods in art, music, or literature
+L3|1. Literary Devices, Forms & Terms|265|Epic|A long poem, typically one derived from ancient oral tradition, narrating the deeds and adventures of heroic or legendary figures
+L3|1. Literary Devices, Forms & Terms|266|Biography|An account of someone's life written by someone else
+L3|1. Literary Devices, Forms & Terms|267|Autobiography|An account of a person's life written by that person
+L3|1. Literary Devices, Forms & Terms|268|Memoir|A historical account or biography written from personal knowledge or special sources
+L3|1. Literary Devices, Forms & Terms|269|Extempore / Impromptu|Spoken or done without prior preparation
+L3|1. Literary Devices, Forms & Terms|270|Maiden Speech|The first speech made by a newly elected member of a parliament or legislature
+L3|1. Literary Devices, Forms & Terms|271|Epitaph|A phrase or form of words written in memory of a person who has died, especially as an inscription on a tombstone
+L3|1. Literary Devices, Forms & Terms|272|Epithet|An adjective or descriptive phrase expressing a quality characteristic of the person or thing mentioned
+L3|2. Time Related Vocabulary|273|Siesta|An afternoon rest or nap, especially one taken during the hottest hours of the day in a warm climate
+L3|2. Time Related Vocabulary|274|Matinee|An afternoon performance in a theater or cinema
+L3|2. Time Related Vocabulary|275|Interlude / Interval|An intervening period of time or a pause between the acts of a play
+L3|2. Time Related Vocabulary|276|Annual|Occurring once every year
+L3|2. Time Related Vocabulary|277|Biannual|Occurring twice a year
+L3|2. Time Related Vocabulary|278|Biennial|Taking place every other year (once in two years)
+L3|2. Time Related Vocabulary|279|Triennial|Lasting for or recurring every three years
+L3|2. Time Related Vocabulary|280|Quadrennial|Recurring every four years
+L3|2. Time Related Vocabulary|281|Quinquennial|Recurring every five years
+L3|2. Time Related Vocabulary|282|Sexennial|Lasting for or recurring every six years
+L3|2. Time Related Vocabulary|283|Septennial|Recurring every seven years
+L3|2. Time Related Vocabulary|284|Octennial|Recurring every eight years
+L3|2. Time Related Vocabulary|285|Decennial|Recurring every ten years
+L3|2. Time Related Vocabulary|286|Semi-Centennial|Relating to or marking a 50th anniversary
+L3|2. Time Related Vocabulary|287|Centennial / Centenary|Relating to or marking a 100th anniversary
+L3|2. Time Related Vocabulary|288|Sesquicentennial|Relating to or marking a 150th anniversary
+L3|2. Time Related Vocabulary|289|Bicentennial|Relating to or marking a 200th anniversary
+L3|2. Time Related Vocabulary|290|Tercentennial|Relating to or marking a 300th anniversary
+L3|2. Time Related Vocabulary|291|Tetracentennial|Relating to or marking a 400th anniversary
+L3|2. Time Related Vocabulary|292|Pentcentennial|Relating to or marking a 500th anniversary
+L3|2. Time Related Vocabulary|293|Hexcentennial|Relating to or marking a 600th anniversary
+L3|2. Time Related Vocabulary|294|Century|A period of one hundred years
+L3|2. Time Related Vocabulary|295|Millennium|A period of a thousand years
+L3|2. Time Related Vocabulary|296|Decade|A period of ten years
+L3|2. Time Related Vocabulary|297|Lustrum|A period of five years
+L3|2. Time Related Vocabulary|298|Perennial|Lasting or existing for a long or apparently infinite time; enduring through the years
+L3|2. Time Related Vocabulary|299|Adolescent / Adolescence|The transitional period of development between childhood and adulthood (ages 13 to 19)
+L3|2. Time Related Vocabulary|300|Sexagenarian|A person who is between 60 and 69 years old
+L3|2. Time Related Vocabulary|301|Septuagenarian|A person who is between 70 and 79 years old
+L3|2. Time Related Vocabulary|302|Octogenarian|A person who is between 80 and 89 years old
+L3|2. Time Related Vocabulary|303|Nonagenarian|A person who is between 90 and 99 years old
+L3|2. Time Related Vocabulary|304|Centenarian|A person who is one hundred or more years old
+L3|2. Time Related Vocabulary|305|Celibacy|The state of abstaining from marriage and sexual relations
+L3|2. Time Related Vocabulary|306|Reign|The period during which a sovereign rules on the throne
+L3|2. Time Related Vocabulary|307|Tenure|The conditions or period under which an office or position is held
+L3|2. Time Related Vocabulary|308|Interregnum|A period when normal government is suspended, especially between successive reigns or regimes
+L3|3. Names & Identity Vocabulary|309|Reminiscence|A story told about a past event remembered by the narrator; fond recollection of past memories
+L3|3. Names & Identity Vocabulary|310|Souvenir / Memento|A thing that is kept as a reminder of a person, place, or event
+L3|3. Names & Identity Vocabulary|311|Regalia|The emblems, symbols, or distinctive clothing of royalty
+L3|3. Names & Identity Vocabulary|312|Pseudonym|A fictitious name, especially one used by an author (pen name)
+L3|3. Names & Identity Vocabulary|313|Prototype|A first, typical, or preliminary model of something, from which other forms are developed
+L3|3. Names & Identity Vocabulary|314|Nomenclature|The devising or choosing of names for things, especially in science
+L3|3. Names & Identity Vocabulary|315|Namesake|A person or thing that has the same name as another
+L3|3. Names & Identity Vocabulary|316|Misnomer|A wrong or inaccurate name or designation
+L3|3. Names & Identity Vocabulary|317|Sobriquet|A person's nickname
+L3|3. Names & Identity Vocabulary|318|Alias|A false or assumed identity used to conceal one's real name
+L3|3. Names & Identity Vocabulary|319|Allonym|The name of another person assumed by an author as a pen name
+L3|3. Names & Identity Vocabulary|320|Alibi|A claim or piece of evidence that one was elsewhere when an act, typically a criminal one, is alleged to have taken place
+L3|3. Names & Identity Vocabulary|321|Anonymous|Of unknown name; not identified by name
+L3|3. Names & Identity Vocabulary|322|Titular|Holding or constituting a purely formal position or title without any real authority
+L4|1. Food & Drink Vocabulary|323|Succulent|Tender, juicy, and tasty food
+L4|1. Food & Drink Vocabulary|324|Slobber|To let saliva drip copiously from the mouth (drool)
+L4|1. Food & Drink Vocabulary|325|Sumptuous|Splendid and expensive-looking feast or meal
+L4|1. Food & Drink Vocabulary|326|Tacky|Showing poor taste and quality; cheap and vulgar
+L4|1. Food & Drink Vocabulary|327|Putrefy / Putrid|To decay or rot and produce a fetid, foul smell
+L4|1. Food & Drink Vocabulary|328|Parboil|To partly cook food by boiling
+L4|1. Food & Drink Vocabulary|329|Limivorous|Organisms (like earthworms) that feed on mud or soil for organic matter
+L4|1. Food & Drink Vocabulary|330|Gastronomy|The practice or art of choosing, cooking, and eating good food
+L4|1. Food & Drink Vocabulary|331|Cuisine|A style or method of cooking, especially as characteristic of a particular country or region
+L4|1. Food & Drink Vocabulary|332|Culinary|Of or for cooking and the kitchen
+L4|1. Food & Drink Vocabulary|333|Gourmet|A connoisseur of good food; a person with a discerning palate
+L4|1. Food & Drink Vocabulary|334|Gourmand / Glutton|A person who enjoys eating and often eats too much
+L4|1. Food & Drink Vocabulary|335|Brunch|A late morning meal eaten instead of breakfast and lunch
+L4|1. Food & Drink Vocabulary|336|Beverage|A drink, especially one other than water
+L4|1. Food & Drink Vocabulary|337|Cocktail|An alcoholic drink consisting of a spirit or several spirits mixed with other ingredients
+L4|1. Food & Drink Vocabulary|338|Mocktail|A non-alcoholic drink consisting of a mixture of fruit juices or other soft drinks
+L4|1. Food & Drink Vocabulary|339|Potable|Safe to drink; drinkable water
+L4|1. Food & Drink Vocabulary|340|Edible|Fit or suitable to be eaten
+L4|1. Food & Drink Vocabulary|341|Rancid / Stale|Smelling or tasting unpleasant as a result of being old, decomposed, or stale (especially fats/oils)
+L4|1. Food & Drink Vocabulary|342|Yummy / Palatable / Savory|Pleasant to taste; delicious and appetizing
+L4|2. Money & Financial Terms|343|Remuneration|Money paid for work or a service
+L4|2. Money & Financial Terms|344|Ransom|A sum of money demanded or paid for the release of a captive
+L4|2. Money & Financial Terms|345|Pecuniary|Relating to or consisting of money
+L4|2. Money & Financial Terms|346|Parvenu|A person of obscure origin who has gained wealth, influence, or celebrity (newly rich)
+L4|2. Money & Financial Terms|347|Inheritance / Legacy|Money or property left to someone in a will or handed down from ancestors
+L4|2. Money & Financial Terms|348|Serendipity / Windfall / Fluke|A piece of unexpected good fortune, typically one that involves receiving a large amount of money
+L4|2. Money & Financial Terms|349|Extortion|The practice of obtaining something, especially money, through force or threats
+L4|2. Money & Financial Terms|350|Intestate|A person who has died without having made a legal will
+L4|2. Money & Financial Terms|351|Codicil|An addition or supplement that explains, modifies, or revokes a will or part of one
+L4|2. Money & Financial Terms|352|Coffer|A strongbox or small chest for holding valuables, or the financial funds of an organization
+L4|2. Money & Financial Terms|353|Mortgage|A legal agreement by which a bank lends money in exchange for taking title of the debtor's property
+L4|2. Money & Financial Terms|354|Embezzlement|Theft or misappropriation of funds placed in one's trust or belonging to one's employer
+L4|2. Money & Financial Terms|355|Fiscal|Relating to government revenue, especially taxes
+L4|2. Money & Financial Terms|356|Dowry|Property or money brought by a bride to her husband on their marriage
+L4|2. Money & Financial Terms|357|Alimony|A husband's or wife's court-ordered provision for a spouse after separation or divorce
+L4|2. Money & Financial Terms|358|Lump Sum|A single payment made at a particular time, as opposed to a number of smaller payments or installments
+L4|2. Money & Financial Terms|359|Arrears|Money that is owed and should already have been paid
+L4|2. Money & Financial Terms|360|Bribery|The giving or offering of a bribe to Dishonestly persuade someone to act in one's favor
+L4|2. Money & Financial Terms|361|Bounty|A sum paid as a reward for killing or capturing a criminal or animal
+L4|2. Money & Financial Terms|362|Gratis|Without charge; free of cost
+L4|2. Money & Financial Terms|363|Bereft|Deprived of or lacking something, especially a nonmaterial asset or happiness
+L4|2. Money & Financial Terms|364|Pin Money|A small sum of money for spending on inessentials (pocket money)
+L4|3. Persons & Personalities (Part 1)|365|Vindictive|Having or showing a strong or unreasoning desire for revenge
+L4|3. Persons & Personalities (Part 1)|366|Usher|A person who shows people to their seats, especially in a cinema, theater, or church
+L4|3. Persons & Personalities (Part 1)|367|Usurer|A person who lends money at unreasonably high rates of interest
+L4|3. Persons & Personalities (Part 1)|368|Virtuoso|A person highly skilled in music or another artistic pursuit
+L4|3. Persons & Personalities (Part 1)|369|Wag|A witty,joking, or humorous person
+L4|3. Persons & Personalities (Part 1)|370|Triumvirate|A group of three powerful or notable people or things in control
+L4|3. Persons & Personalities (Part 1)|371|Tartar|A ferocious, violent, or intractable person
+L4|3. Persons & Personalities (Part 1)|372|Stevedore|A person employed at a dock to load and unload cargo from ships
+L4|3. Persons & Personalities (Part 1)|373|Stowaway|A person who hides aboard a ship or aircraft in order to travel without paying
+L4|3. Persons & Personalities (Part 1)|374|Plaintiff|A person who brings a legal case against another in a court of law
+L4|3. Persons & Personalities (Part 1)|375|Probationer / Novice / Tyro / Rookie|A person new to and inexperienced in a job, situation, or activity (a beginner)
+L4|3. Persons & Personalities (Part 1)|376|Prowler|A person who moves around stealthily in search of prey or with the intention of committing a crime
+L4|3. Persons & Personalities (Part 1)|377|Punter|A person who gambles or places a bet
+L4|3. Persons & Personalities (Part 1)|378|Fastidious|Very attentive to and concerned about accuracy and detail; hard to please
+L4|3. Persons & Personalities (Part 1)|379|Egoist|A self-centered or selfish person who places their own interests first
+L4|3. Persons & Personalities (Part 1)|380|Egotist|A person who is excessively conceited and talks boastfully about their own achievements
+L4|3. Persons & Personalities (Part 1)|381|Ascetic / Recluse / Hermit|A person who practices severe self-discipline and abstention from all forms of indulgence
+L4|3. Persons & Personalities (Part 1)|382|Hedonist / Sybarite|A person who believes that the pursuit of pleasure and luxury is the most important thing in life
+L4|3. Persons & Personalities (Part 1)|383|Contemporary|Living or occurring at the same time
+L4|3. Persons & Personalities (Part 1)|384|Fatalist|A person who believes that all events are predetermined and therefore inevitable
+L4|3. Persons & Personalities (Part 1)|385|Dilettante|A person who cultivates an area of interest, such as the arts, without real commitment or knowledge
+L4|3. Persons & Personalities (Part 1)|386|Iconoclast|A person who attacks cherished beliefs, traditional institutions, or religious images
+L4|3. Persons & Personalities (Part 1)|387|Bohemian|A socially unconventional person, especially one who is involved in the arts
+L4|3. Persons & Personalities (Part 1)|388|Mercenary|Primarily concerned with making money at the expense of ethics; a professional soldier hired to serve in a foreign army
+L4|3. Persons & Personalities (Part 1)|389|Honorary|Conferred as an honor, without the usual requirements, duties, or salary
+L4|3. Persons & Personalities (Part 1)|390|Sinecure|A position requiring little or no work but giving the holder status or financial benefit
+L4|3. Persons & Personalities (Part 1)|391|Introvert|A shy, reticent person who focuses more on internal thoughts and feelings than external stimulation
+L4|3. Persons & Personalities (Part 1)|392|Extrovert|An outgoing, socially confident person
+L4|3. Persons & Personalities (Part 1)|393|Ambivert|A person who has a balance of extrovert and introvert features in their personality
+L4|3. Persons & Personalities (Part 1)|394|Versatile|Able to adapt or be adapted to many different functions or activities
+L4|3. Persons & Personalities (Part 1)|395|Henpecked|A man continually criticized and given orders by his domineering wife
+L4|3. Persons & Personalities (Part 1)|396|Arbitrator|An independent person or body officially appointed to settle a dispute
+L5|1. Root Words (Mis- & Phil-)|397|Misogamist|A person who hates or avoids marriage
+L5|1. Root Words (Mis- & Phil-)|398|Misogynist|A person who dislikes, despises, or is strongly prejudiced against women
+L5|1. Root Words (Mis- & Phil-)|399|Misandrist|A person who dislikes, despises, or is strongly prejudiced against men
+L5|1. Root Words (Mis- & Phil-)|400|Misanthrope|A person who dislikes humankind and avoids human society
+L5|1. Root Words (Mis- & Phil-)|401|Misologist|A hater of enlightenment, reason, or knowledge
+L5|1. Root Words (Mis- & Phil-)|402|Misoneist|A person who hates or fears change and new ideas
+L5|1. Root Words (Mis- & Phil-)|403|Philanthropist / Altruist|A person who seeks to promote the welfare of others, especially by the generous donation of money to good causes
+L5|1. Root Words (Mis- & Phil-)|404|Philogynist|A person who likes, admires, or supports women
+L5|1. Root Words (Mis- & Phil-)|405|Philatelist|A person who collects or studies postage stamps
+L5|1. Root Words (Mis- & Phil-)|406|Philanderer|A man who readily or frequently enters into casual romantic relationships with women (a flirt)
+L5|1. Root Words (Mis- & Phil-)|407|Bibliophile|A person who collects or has a great love of books
+L5|1. Root Words (Mis- & Phil-)|408|Philistine|A person who is hostile or indifferent to culture and the arts
+L5|2. Special Personalities & Types|409|Nonentity / Man of straw|A person or thing with no special or interesting qualities; an unimportant person
+L5|2. Special Personalities & Types|410|Mediocre|Of only moderate quality; not very good (ordinary/average)
+L5|2. Special Personalities & Types|411|Oaf / Maladroit|A stupid, uncultured, or clumsy person
+L5|2. Special Personalities & Types|412|Jinx / Ominous|A person or thing that brings bad luck; giving the impression that something bad is going to happen
+L5|2. Special Personalities & Types|413|Mascot|A person or thing that is supposed to bring good luck, especially one linked to an organization or team
+L5|2. Special Personalities & Types|414|Consummate|Showing a high degree of skill and flair; complete or perfect
+L5|2. Special Personalities & Types|415|Brigand / Bandit|A member of a gang that ambushes and robs people in forests and mountains
+L5|2. Special Personalities & Types|416|Effeminate|A man having characteristics and ways of behaving traditionally associated with women
+L5|2. Special Personalities & Types|417|Feminist|An advocate of women's rights on the basis of the equality of the sexes
+L5|2. Special Personalities & Types|418|Emigrant|A person who leaves their own country in order to settle permanently in another
+L5|2. Special Personalities & Types|419|Immigrant|A person who comes to live permanently in a foreign country
+L5|2. Special Personalities & Types|420|Exodus|A mass departure of people, especially emigrants
+L5|2. Special Personalities & Types|421|Transmigration|The movement of a soul into another body after death
+L5|2. Special Personalities & Types|422|Apostate / Renegade / Turncoat|A person who renounces a religious or political belief or principle; a deserter
+L5|2. Special Personalities & Types|423|Heretic|A person believing in or practicing religious heresy contrary to orthodox doctrine
+L5|2. Special Personalities & Types|424|Chauvinist / Jingoist|A person displaying aggressive or exaggerated patriotism or blind superiority
+L5|2. Special Personalities & Types|425|Patriot|A person who vigorously supports their country and is prepared to defend it
+L5|2. Special Personalities & Types|426|Traitor|A person who betrays a friend, country, principle, etc.
+L5|2. Special Personalities & Types|427|Anarchist|A person who believes in or tries to bring about anarchy (absence of government)
+L5|2. Special Personalities & Types|428|Demagogue|A political leader who seeks support by appealing to popular desires and prejudices rather than by using rational argument
+L5|2. Special Personalities & Types|429|Pedagogue|A teacher, especially a strict or pedantic one
+L5|2. Special Personalities & Types|430|Synagogue|A Jewish house of worship and assembly
+L5|2. Special Personalities & Types|431|Impostor / Charlatan / Quack|A person who pretends to be someone else or falsely claims to have medical/special skills in order to deceive others
+L5|2. Special Personalities & Types|432|Pander|To gratify or indulge an immoral or distasteful desire, need, or habit
+L5|2. Special Personalities & Types|433|Sadist|A person who derives pleasure from inflicting pain, suffering, or humiliation on others
+L5|2. Special Personalities & Types|434|Masochist|A person who derives pleasure from their own pain or humiliation
+L5|2. Special Personalities & Types|435|Volunteer|A person who freely offers to take part in an enterprise or undertake a task without pay
+L5|2. Special Personalities & Types|436|Libertine / Lecher|A person who behaves without moral principles or a sense of responsibility, especially in sexual matters
+L5|2. Special Personalities & Types|437|Bankrupt / Insolvent / Pauper|Declared in law as unable to pay outstanding debts; extremely poor
+L5|2. Special Personalities & Types|438|Martyr|A person who is killed because of their religious or other beliefs, or who sacrifices their life for their nation
+L5|2. Special Personalities & Types|439|Connoisseur|An expert judge in matters of taste (such as fine art, wine, or food)
+L5|2. Special Personalities & Types|440|Termagant / Shrew / Harridan / Virago|A harsh-tempered, overbearing, orbad-tempered quarrelsome woman
+L5|2. Special Personalities & Types|441|Fugitive / Absconder|A person who has escaped from a place or is in hiding, especially to avoid arrest or persecution
+L5|2. Special Personalities & Types|442|Truant|A pupil who stays away from school without leave or explanation
+L5|2. Special Personalities & Types|443|Elope|To run away secretly in order to get married, especially without parental consent
+L5|2. Special Personalities & Types|444|Verbatim|In exactly the same words as were used originally (word for word)
+L5|2. Special Personalities & Types|445|Verbose / Verbiage|Using or expressed in more words than are needed
+L5|2. Special Personalities & Types|446|Garrulous / Loquacious|Excessively talkative, especially on trivial matters
+L5|2. Special Personalities & Types|447|Cosmopolitan|A citizen of the world; familiar with and at ease in many different countries and cultures
+L5|2. Special Personalities & Types|448|Optimist|A person who tends to be hopeful and confident about the future
+L5|2. Special Personalities & Types|449|Pessimist|A person who tends to see the worst aspect of things or believe that the worst will happen
+L5|2. Special Personalities & Types|450|Narcissist|A person who has an excessive interest in or admiration of themselves
+L5|2. Special Personalities & Types|451|Pacifist|A person who believes that war and violence are unjustifiable and promotes peace
+L5|2. Special Personalities & Types|452|Cynosure|A person or thing that is the center of attention or admiration
+L5|2. Special Personalities & Types|453|Highbrow / Snob / Egghead|A person who claims superior intellectual or cultural tastes
+L5|2. Special Personalities & Types|454|Swashbuckler|A swaggering, boastful adventurer or swordsman
+L5|2. Special Personalities & Types|455|Samaritan|A charitable or helpful person who assists people in distress
+L5|2. Special Personalities & Types|456|Gullible / Credulous|Easily persuaded to believe something; easily tricked or deceived
+L5|2. Special Personalities & Types|457|Polyglot / Linguist|A person who knows and is able to use several languages
+L5|2. Special Personalities & Types|458|Theist|A person who believes in the existence of a god or gods
+L5|2. Special Personalities & Types|459|Atheist|A person who disbelieves or lacks belief in the existence of God or gods
+L5|2. Special Personalities & Types|460|Agnostic|A person who believes that nothing is known or can be known of the existence or nature of God
+L5|2. Special Personalities & Types|461|Bigot|A person who is obstinately or unreasonably attached to a belief, opinion, or faction, and intolerant toward others
+L5|2. Special Personalities & Types|462|Theocracy|A system of government in which priests rule in the name of God
+L5|2. Special Personalities & Types|463|Cynic|A person who believes that people are motivated purely by self-interest rather than honorable reasons
+L5|2. Special Personalities & Types|464|Amateur|A person who engages in a pursuit, especially a sport or art, on an unpaid rather than a professional basis
+L5|2. Special Personalities & Types|465|Calligraphist|A person skilled in beautiful handwriting and decorative penmanship
+L5|2. Special Personalities & Types|466|Cacographist|A person with bad handwriting or poor spelling
+L5|2. Special Personalities & Types|467|Cartographist|A person who draws or produces maps
+L5|2. Special Personalities & Types|468|Ambidextrous|Able to use the right and left hands equally well
+L5|2. Special Personalities & Types|469|Debonair|Confident, stylish, charming, and suave (typically used of a man)
+L5|2. Special Personalities & Types|470|Malevolent|Having or showing a wish to do evil or harm to others
+L5|2. Special Personalities & Types|471|Munificent|Larger or more generous than is usual or necessary; lavishly generous
+L5|2. Special Personalities & Types|472|Tenacious|Tending to keep a firm hold of something; persistent and determined
+L5|2. Special Personalities & Types|473|Ingenious|Clever, original, and inventive
+L5|2. Special Personalities & Types|474|Malcontent|A person who is dissatisfied and rebellious
+  </script>
+
+  <script>
+    // ============================================================================
+    // SAFE STORAGE WRAPPER FOR ELECTRON SANDBOXED IFRAMES & BROWSERS
+    // ============================================================================
+    const memoryStorage = {};
+    function safeGetStorage(key, fallback) {
+      try {
+        const val = window.localStorage.getItem(key);
+        return val ? JSON.parse(val) : fallback;
+      } catch (err) {
+        return memoryStorage[key] || fallback;
+      }
+    }
+
+    function safeSetStorage(key, value) {
+      try {
+        window.localStorage.setItem(key, JSON.stringify(value));
+      } catch (err) {
+        memoryStorage[key] = value;
+      }
+    }
+
+    // Pure English Smart Memory Trick / Etymology Generator
+    function generateSmartTrick(word, meaning, cat) {
+      const w = word.toLowerCase();
+      if (w.includes('vorous') || w.includes('vorac')) return '<strong>Etymology Tip:</strong> Root <code>Vor</code> = "to devour/eat". The prefix tells you what the organism eats!';
+      if (w.endsWith('ine') && cat.includes('-ine')) return '<strong>Etymology Tip:</strong> Suffix <code>-ine</code> means "resembling or characteristic of" that animal.';
+      if (w.includes('cide')) return '<strong>Etymology Tip:</strong> Suffix <code>-cide</code> = "killing or murder" (Apis=Bee, Avis=Bird, Canis=Dog).';
+      if (w.includes('phobia')) return '<strong>Etymology Tip:</strong> Root <code>Phobos</code> = "extreme or irrational fear".';
+      if (w.includes('philia') || w.startsWith('phil') || w.includes('phile')) return '<strong>Etymology Tip:</strong> Root <code>Philos</code> = "love, fondness, or affinity".';
+      if (w.startsWith('miso') || w.startsWith('misa')) return '<strong>Etymology Tip:</strong> Root <code>Misein</code> = "to hate". (Gyne=Woman, Gamos=Marriage, Anthropos=Mankind, Logos=Reason).';
+      if (w.includes('somn')) return '<strong>Etymology Tip:</strong> Root <code>Somnus</code> = "sleep". (Loqu=Speak, Ambul=Walk, In-=Not).';
+      if (w.includes('path')) return '<strong>Etymology Tip:</strong> Root <code>Pathos</code> = "feeling or disease". (Sym=With, Anti=Against, A=Without, Tele=Far).';
+      if (w.includes('ennial') || w.includes('annual')) return '<strong>Etymology Tip:</strong> Root <code>Annus / Enni</code> = "year". (Bi=2, Tri=3, Quad=4, Quin=5, Dec=10, Per=Through).';
+      if (w.includes('genarian')) return '<strong>Etymology Tip:</strong> Suffix <code>-genarian</code> denotes a person\'s age decade (Sexa=60s, Septua=70s, Octo=80s, Nona=90s).';
+      if (w.includes('cent')) return '<strong>Etymology Tip:</strong> Root <code>Centum</code> = 100. (Semi=Half/50, Sesqui=1.5x/150, Bi=200, Ter=300).';
+      if (w.includes('ped') || w.includes('pus')) return '<strong>Etymology Tip:</strong> Root <code>Ped / Pod / Pus</code> = "foot". (Bi=2, Quad=4, Octo=8, Centi=100).';
+      if (w.includes('logue') || w.includes('loqu')) return '<strong>Etymology Tip:</strong> Root <code>Logos / Loqui</code> = "speech or talk". (Mono=One, Dia=Two, Soli=Alone, Epi=After, Pro=Before).';
+      if (w.includes('graph')) return '<strong>Etymology Tip:</strong> Root <code>Graphein</code> = "to write or draw". (Calli=Beautiful, Caco=Bad, Carto=Map, Auto=Self).';
+      if (w.includes('theist') || w.includes('theo')) return '<strong>Etymology Tip:</strong> Root <code>Theos</code> = "God". (A-=Without, Gnos=Knowledge, Cracy=Rule).';
+      if (w.includes('vert') || w.includes('vers')) return '<strong>Etymology Tip:</strong> Root <code>Vertere</code> = "to turn". (Intro=Inward, Extro=Outward, Ambi=Both ways).';
+      if (w.includes('nym') || w.includes('nom')) return '<strong>Etymology Tip:</strong> Root <code>Nomen / Onyma</code> = "name". (Pseudo=False, An=Without, Mis=Wrong).';
+      if (w.includes('dys')) return '<strong>Etymology Tip:</strong> Prefix <code>Dys-</code> = "bad, difficult, or impaired" (Lexia=Reading, Graphia=Writing, Topia=Place).';
+      if (w.includes('mal')) return '<strong>Etymology Tip:</strong> Prefix <code>Mal-</code> = "bad, ill, or evil" (Malcontent=Dissatisfied, Malevolent=Wishing evil).';
+      if (w.includes('ambi') || w.includes('amphi')) return '<strong>Etymology Tip:</strong> Prefix <code>Ambi / Amphi</code> = "both" (Dextrous=Skilled hands, Bios=Life on land & water).';
+      if (w.includes('api')) return '<strong>Etymology Tip:</strong> Latin <code>Apis</code> = "bee" (Apiary, Apiculture, Apicide).';
+      if (w.includes('avi')) return '<strong>Etymology Tip:</strong> Latin <code>Avis</code> = "bird" (Aviary, Aviator, Avicide).';
+      if (w.includes('mort') || w.includes('morg')) return '<strong>Etymology Tip:</strong> Latin <code>Mors / Mortis</code> = "death".';
+      if (w.includes('gogue')) return '<strong>Etymology Tip:</strong> Greek <code>Agogos</code> = "leader" (Dema=People, Peda=Children).';
+      if (w === 'egotist') return '<strong>Memory Trick:</strong> Ego<strong>T</strong>ist has an extra <strong>"T"</strong> for <strong>Talk</strong>—someone who constantly boasts about themselves.';
+      if (w === 'emigrant') return '<strong>Memory Trick:</strong> <strong>E</strong>migrant starts with <strong>E</strong> for <strong>Exit</strong> (leaving one\'s own country).';
+      if (w === 'immigrant') return '<strong>Memory Trick:</strong> <strong>I</strong>mmigrant starts with <strong>I</strong> for <strong>In</strong> (coming into a new country).';
+      if (w === 'hangar') return '<strong>Memory Trick:</strong> Hang<strong>A</strong>r is spelled with an <strong>A</strong> for <strong>A</strong>ircraft!';
+      return '<strong>Memory Hook:</strong> Visualize "<em>' + word.split('/')[0].trim() + '</em>" in context: ' + meaning + '.';
+    }
+
+    // Parse Data
+    const rawText = document.getElementById('vocab-raw-data').textContent.trim();
+    const vocabList = rawText.split('\n').map(line => {
+      const parts = line.trim().split('|');
+      const lecture = parts[0];
+      const category = parts[1];
+      const id = parseInt(parts[2], 10);
+      const word = parts[3];
+      const meaning = parts[4];
+      return {
+        id,
+        lecture,
+        category,
+        word,
+        meaning,
+        trick: generateSmartTrick(word, meaning, category)
+      };
+    });
+
+    let masteredIds = safeGetStorage('vm_en_mastered', []);
+    let bookmarkedIds = safeGetStorage('vm_en_bookmarked', []);
+    let currentLectureFilter = 'ALL';
+
+    function saveState() {
+      safeSetStorage('vm_en_mastered', masteredIds);
+      safeSetStorage('vm_en_bookmarked', bookmarkedIds);
+      updateStatsBar();
+    }
+
+    function updateStatsBar() {
+      document.getElementById('stat-total').textContent = vocabList.length;
+      document.getElementById('stat-mastered').textContent = masteredIds.length;
+      document.getElementById('stat-bookmarked').textContent = bookmarkedIds.length;
+    }
+
+    function speakById(id) {
+      const item = vocabList.find(i => i.id === id);
+      if (!item || !('speechSynthesis' in window)) return;
+      const cleanText = item.word.split('/')[0].split('(')[0].trim();
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.92;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function populateCategories() {
+      const select = document.getElementById('category-select');
+      const cats = [...new Set(vocabList
+        .filter(item => currentLectureFilter === 'ALL' || item.lecture === currentLectureFilter)
+        .map(i => i.category))];
+
+      select.innerHTML = '<option value="ALL">All Sub-Categories</option>';
+      cats.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        select.appendChild(opt);
+      });
+    }
+
+    function setLectureFilter(lec, btn) {
+      currentLectureFilter = lec;
+      document.querySelectorAll('.lec-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      populateCategories();
+      renderNotes();
+    }
+
+    function resetFilters() {
+      document.getElementById('search-input').value = '';
+      document.getElementById('category-select').value = 'ALL';
+      document.getElementById('status-select').value = 'ALL';
+      setLectureFilter('ALL', document.querySelector('.lec-pill'));
+    }
+
+    function renderNotes() {
+      const query = document.getElementById('search-input').value.toLowerCase().trim();
+      const catFilter = document.getElementById('category-select').value;
+      const statusFilter = document.getElementById('status-select').value;
+
+      const filtered = vocabList.filter(item => {
+        if (currentLectureFilter !== 'ALL' && item.lecture !== currentLectureFilter) return false;
+        if (catFilter !== 'ALL' && item.category !== catFilter) return false;
+        if (statusFilter === 'MASTERED' && !masteredIds.includes(item.id)) return false;
+        if (statusFilter === 'BOOKMARKED' && !bookmarkedIds.includes(item.id)) return false;
+        if (statusFilter === 'UNLEARNED' && masteredIds.includes(item.id)) return false;
+
+        if (query) {
+          const matchWord = item.word.toLowerCase().includes(query);
+          const matchMean = item.meaning.toLowerCase().includes(query);
+          const matchId = String(item.id) === query;
+          return matchWord || matchMean || matchId;
+        }
+        return true;
+      });
+
+      document.getElementById('showing-count').textContent = filtered.length;
+      const grid = document.getElementById('vocab-grid');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px; color: var(--text-secondary);">No matching words found. Try clearing filters!</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        const isMaster = masteredIds.includes(item.id);
+        const isBook = bookmarkedIds.includes(item.id);
+        return '<div class="vocab-card ' + (isMaster ? 'is-mastered ' : '') + (isBook ? 'is-bookmarked' : '') + '">' +
+          '<div>' +
+            '<div class="card-top">' +
+              '<div class="word-badge-group">' +
+                '<span class="word-id">#' + item.id + ' • ' + item.lecture + '</span>' +
+                '<span class="cat-tag">' + item.category + '</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="word-title">' +
+              '<span>' + item.word + '</span>' +
+              '<button class="speak-btn" title="Listen Pronunciation" onclick="speakById(' + item.id + ')">🔊</button>' +
+            '</div>' +
+            '<div class="word-meaning">' + item.meaning + '</div>' +
+            '<div class="mnemonic-box">' + item.trick + '</div>' +
+          '</div>' +
+          '<div class="card-actions">' +
+            '<button class="action-btn ' + (isMaster ? 'active-master' : '') + '" onclick="toggleMaster(' + item.id + ')">' +
+              (isMaster ? '✅ Mastered' : '☑️ Mark Mastered') +
+            '</button>' +
+            '<button class="action-btn ' + (isBook ? 'active-bookmark' : '') + '" onclick="toggleBookmark(' + item.id + ')">' +
+              (isBook ? '📌 Revise' : '🔖 Bookmark') +
+            '</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function toggleMaster(id) {
+      if (masteredIds.includes(id)) {
+        masteredIds = masteredIds.filter(i => i !== id);
+      } else {
+        masteredIds.push(id);
+      }
+      saveState();
+      renderNotes();
+    }
+
+    function toggleBookmark(id) {
+      if (bookmarkedIds.includes(id)) {
+        bookmarkedIds = bookmarkedIds.filter(i => i !== id);
+      } else {
+        bookmarkedIds.push(id);
+      }
+      saveState();
+      renderNotes();
+    }
+
+    // Pure English Root Families
+    const rootFamilies = [
+      { root: "VOR / VOUR", meaning: "To Eat / Devour", words: [
+        ["Herbivorous", "Feeding on plants"], ["Carnivorous", "Feeding on flesh/meat"],
+        ["Omnivorous", "Eating both plants and meat"], ["Graminivorous", "Feeding on grass"],
+        ["Frugivorous", "Feeding primarily on fruit"], ["Piscivorous", "Feeding on fish"],
+        ["Limivorous", "Feeding on mud/soil"], ["Voracious", "Devouring huge quantities of food"]
+      ]},
+      { root: "-INE (Suffix)", meaning: "Resembling an Animal", words: [
+        ["Bovine", "Cow-like; sluggish"], ["Feline", "Cat-like; graceful"],
+        ["Canine", "Dog-like"], ["Leonine", "Lion-like; majestic"],
+        ["Vulpine", "Fox-like; crafty and sly"], ["Equine", "Horse-like"],
+        ["Porcine", "Pig-like"], ["Asinine", "Donkey-like; extremely foolish"]
+      ]},
+      { root: "MISO- / MIS-", meaning: "To Hate / Despise", words: [
+        ["Misogamist", "Hater of marriage (gamos)"], ["Misogynist", "Hater of women (gyne)"],
+        ["Misandrist", "Hater of men (andros)"], ["Misanthrope", "Hater of humankind (anthropos)"],
+        ["Misologist", "Hater of reason/knowledge"], ["Misoneist", "Hater of novelty/change"]
+      ]},
+      { root: "PHIL- / -PHILE", meaning: "To Love / Admire", words: [
+        ["Philanthropist", "Lover of humankind"], ["Philogynist", "Supporter/admirer of women"],
+        ["Bibliophile", "Lover/collector of books"], ["Philatelist", "Collector of postage stamps"],
+        ["Canophilia", "Fondness for dogs"], ["Philanderer", "Casual male flirt"]
+      ]},
+      { root: "SOMN-", meaning: "Sleep", words: [
+        ["Insomnia", "Habitual inability to sleep"], ["Somnambulist", "Person who walks in sleep"],
+        ["Somniloquent", "Talking while asleep"], ["Soporific / Sedative", "Sleep-inducing drug"]
+      ]},
+      { root: "PATH-", meaning: "Feeling / Disease", words: [
+        ["Sympathy", "Feelings of pity for another"], ["Empathy", "Sharing another's emotions"],
+        ["Apathy", "Complete lack of interest/feeling"], ["Antipathy", "Deep-seated dislike"],
+        ["Telepathy", "Mind-to-mind communication"], ["Pathology", "Scientific study of diseases"]
+      ]},
+      { root: "ANN / ENN", meaning: "Year", words: [
+        ["Annual", "Happening once a year"], ["Biannual", "Happening twice a year"],
+        ["Biennial", "Happening every two years"], ["Triennial / Quadrennial", "Every 3 / 4 years"],
+        ["Quinquennial / Decennial", "Every 5 / 10 years"], ["Perennial", "Lasting throughout the years"]
+      ]},
+      { root: "-GENARIAN", meaning: "Age Decade Group", words: [
+        ["Sexagenarian", "60 to 69 years old"], ["Septuagenarian", "70 to 79 years old"],
+        ["Octogenarian", "80 to 89 years old"], ["Nonagenarian", "90 to 99 years old"],
+        ["Centenarian", "100 or more years old"]
+      ]},
+      { root: "LOGUE / LOQU", meaning: "Speech / Talk", words: [
+        ["Soliloquy", "Speaking thoughts aloud alone"], ["Monologue", "Long speech by one person"],
+        ["Dialogue", "Conversation between people"], ["Prologue", "Introductory section/speech"],
+        ["Epilogue", "Concluding section of a work"], ["Loquacious", "Excessively talkative"]
+      ]},
+      { root: "THEO / THEIST", meaning: "God / Religion", words: [
+        ["Theist", "Believer in God"], ["Atheist", "Disbeliever in God"],
+        ["Agnostic", "Doubts whether God can be known"], ["Theocracy", "Rule by religious leaders"]
+      ]},
+      { root: "GRAPH", meaning: "To Write / Draw", words: [
+        ["Calligraphist", "Skilled in beautiful handwriting"], ["Cacographist", "Person with poor handwriting/spelling"],
+        ["Cartographist", "Map drawer/maker"], ["Dysgraphia", "Neurological difficulty in writing"],
+        ["Biography / Autobiography", "Life story written by another / oneself"]
+      ]},
+      { root: "PED / POD / PUS", meaning: "Foot", words: [
+        ["Biped", "Two-footed creature"], ["Quadruped", "Four-footed animal"],
+        ["Octopus", "Eight-limbed sea creature"], ["Centipede", "Many-legged arthropod"]
+      ]}
+    ];
+
+    function renderRoots() {
+      const container = document.getElementById('roots-grid');
+      container.innerHTML = rootFamilies.map(fam => {
+        const listHtml = fam.words.map(pair => '<li><strong>' + pair[0] + '</strong> <span style="color:var(--text-secondary)">' + pair[1] + '</span></li>').join('');
+        return '<div class="root-card">' +
+          '<div class="root-header"><span class="root-title">' + fam.root + '</span><span class="root-meaning">' + fam.meaning + '</span></div>' +
+          '<ul class="root-examples">' + listHtml + '</ul>' +
+        '</div>';
+      }).join('');
+    }
+
+    // Pure English Confusion Buster Pairs
+    const confusionPairs = [
+      { title: "1. Egoist vs. Egotist", items: [["Egoist (#379)", "A self-centered, selfish person who puts their own interests first."], ["Egotist (#380)", "A boastful person who talks excessively about their own accomplishments (T = Talk)."]] },
+      { title: "2. Biannual vs. Biennial", items: [["Biannual (#277)", "Occurring twice within a single year (semiannual)."], ["Biennial (#278)", "Occurring once every two years."]] },
+      { title: "3. Emigrant vs. Immigrant", items: [["Emigrant (#418)", "One who leaves (Exits) their native country to settle elsewhere."], ["Immigrant (#419)", "One who comes Into a foreign country to live permanently."]] },
+      { title: "4. Autopsy vs. Biopsy", items: [["Autopsy (#121)", "Surgical examination of a dead body to determine the cause of death."], ["Biopsy (#122)", "Removal and examination of tissue from a living body to diagnose disease."]] },
+      { title: "5. Mortuary vs. Morgue vs. Crematorium", items: [["Mortuary (#119)", "A building or room where dead bodies are kept prior to burial or autopsy."], ["Morgue (#120)", "A place where unidentified dead bodies are kept for identification."], ["Crematorium (#118)", "A facility where dead bodies are cremated (reduced to ashes)."]] },
+      { title: "6. Corpse vs. Carcass vs. Cadaverous", items: [["Corpse (#162)", "The dead body of a human being."], ["Carcass (#161)", "The dead body of an animal."], ["Cadaverous (#160)", "Looking extremely pale, thin, and gaunt like a corpse."]] },
+      { title: "7. Fable vs. Parable vs. Allegory", items: [["Fable (#234)", "A short moral story featuring animals as characters."], ["Parable (#235)", "A simple story involving human characters used to illustrate a spiritual or moral lesson."], ["Allegory (#239)", "A narrative in which characters and events stand as symbols for deeper political or moral meanings."]] },
+      { title: "8. Gourmet vs. Gourmand", items: [["Gourmet (#333)", "A connoisseur of fine food and drink with a refined palate."], ["Gourmand (#334)", "A person who takes excessive pleasure in eating large amounts of food (glutton)."]] },
+      { title: "9. Endemic vs. Epidemic vs. Pandemic", items: [["Endemic (#179)", "A disease regularly restricted to a specific locality or region."], ["Epidemic (#178)", "A sudden, widespread outbreak of a disease within a community or region."], ["Pandemic (#180)", "An epidemic that has spread across multiple continents or the entire world."]] },
+      { title: "10. Voracious vs. Veracious", items: [["Voracious (#45)", "Having a huge appetite; devouring food or knowledge eagerly."], ["Veracious (#46)", "Habitually speaking the truth; honest and accurate."]] },
+      { title: "11. Apiary vs. Aviary", items: [["Apiary (#95)", "A place where beehives of honeybees are kept."], ["Aviary (#98)", "A large enclosure for keeping birds."]] },
+      { title: "12. Elegy vs. Dirge", items: [["Elegy (#244)", "A reflective poem written to lament someone's death."], ["Dirge (#245)", "A somber, mournful song performed specifically during a funeral."]] }
+    ];
+
+    function renderConfusions() {
+      const container = document.getElementById('confusion-grid');
+      container.innerHTML = confusionPairs.map(pair => {
+        const itemsHtml = pair.items.map(it => '<div class="vs-item"><strong>' + it[0] + ':</strong> <span style="color:var(--text-secondary)">' + it[1] + '</span></div>').join('');
+        return '<div class="confusion-card"><div class="confusion-title">' + pair.title + '</div>' + itemsHtml + '</div>';
+      }).join('');
+    }
+
+    // Flashcards
+    let fcDeck = vocabList.slice();
+    let fcPos = 0;
+
+    function initFlashcards() {
+      const lec = document.getElementById('fc-lecture').value;
+      const stat = document.getElementById('fc-status').value;
+
+      fcDeck = vocabList.filter(item => {
+        if (lec !== 'ALL' && item.lecture !== lec) return false;
+        if (stat === 'BOOKMARKED' && !bookmarkedIds.includes(item.id)) return false;
+        if (stat === 'UNLEARNED' && masteredIds.includes(item.id)) return false;
+        return true;
+      });
+
+      if (fcDeck.length === 0) fcDeck = vocabList.slice();
+      fcPos = 0;
+      updateFlashcardUI();
+    }
+
+    function currentFcId() {
+      return fcDeck[fcPos] ? fcDeck[fcPos].id : 1;
+    }
+
+    function updateFlashcardUI() {
+      document.getElementById('fc-scene').classList.remove('is-flipped');
+      const item = fcDeck[fcPos];
+      if (!item) return;
+
+      document.getElementById('fc-index').textContent = fcPos + 1;
+      document.getElementById('fc-total').textContent = fcDeck.length;
+      document.getElementById('fc-id').textContent = '#' + item.id + ' (' + item.lecture + ')';
+      document.getElementById('fc-word').textContent = item.word;
+      document.getElementById('fc-cat').textContent = item.category;
+      document.getElementById('fc-meaning').textContent = item.meaning;
+      document.getElementById('fc-trick').innerHTML = item.trick;
+
+      document.getElementById('fc-master-btn').textContent = masteredIds.includes(item.id) ? '✅ Mastered' : '☑️ Mark Mastered';
+      document.getElementById('fc-bookmark-btn').textContent = bookmarkedIds.includes(item.id) ? '📌 Bookmarked' : '🔖 Bookmark';
+    }
+
+    function flipCard() { document.getElementById('fc-scene').classList.toggle('is-flipped'); }
+    function nextCard() { fcPos = (fcPos + 1) % fcDeck.length; updateFlashcardUI(); }
+    function prevCard() { fcPos = (fcPos - 1 + fcDeck.length) % fcDeck.length; updateFlashcardUI(); }
+    function shuffleFlashcards() { fcDeck.sort(() => Math.random() - 0.5); fcPos = 0; updateFlashcardUI(); }
+    function toggleFcMaster() { if (fcDeck[fcPos]) { toggleMaster(fcDeck[fcPos].id); updateFlashcardUI(); } }
+    function toggleFcBookmark() { if (fcDeck[fcPos]) { toggleBookmark(fcDeck[fcPos].id); updateFlashcardUI(); } }
+
+    // Quiz Engine
+    let qScore = 0, qTotal = 0, qStreak = 0, currentQItem = null;
+
+    function startNewQuiz() {
+      qScore = 0; qTotal = 0; qStreak = 0;
+      updateQuizScoreUI();
+      nextQuizQuestion();
+    }
+
+    function updateQuizScoreUI() {
+      document.getElementById('q-score').textContent = qScore;
+      document.getElementById('q-total').textContent = qTotal;
+      document.getElementById('q-streak').textContent = qStreak;
+    }
+
+    function nextQuizQuestion() {
+      const scope = document.getElementById('quiz-scope').value;
+      const mode = document.getElementById('quiz-mode').value;
+
+      let pool = vocabList.filter(item => {
+        if (scope === 'BOOKMARKED') return bookmarkedIds.includes(item.id);
+        if (scope !== 'ALL') return item.lecture === scope;
+        return true;
+      });
+
+      if (pool.length < 4) pool = vocabList.slice();
+      currentQItem = pool[Math.floor(Math.random() * pool.length)];
+
+      let sameCatPool = vocabList.filter(i => i.id !== currentQItem.id && i.category === currentQItem.category);
+      if (sameCatPool.length < 3) sameCatPool = vocabList.filter(i => i.id !== currentQItem.id);
+
+      const distractors = sameCatPool.sort(() => Math.random() - 0.5).slice(0, 3);
+      const options = [currentQItem].concat(distractors).sort(() => Math.random() - 0.5);
+
+      document.getElementById('q-meta').textContent = currentQItem.lecture + ' • ' + currentQItem.category;
+      document.getElementById('q-feedback').style.display = 'none';
+      document.getElementById('q-next-btn').style.display = 'none';
+
+      if (mode === 'W2M') {
+        document.getElementById('q-prompt-label').textContent = 'CHOOSE THE CORRECT DEFINITION FOR:';
+        document.getElementById('q-question-text').innerHTML = currentQItem.word + ' <button class="speak-btn" onclick="speakById(' + currentQItem.id + ')">🔊</button>';
+      } else {
+        document.getElementById('q-prompt-label').textContent = 'ONE-WORD SUBSTITUTION FOR:';
+        document.getElementById('q-question-text').textContent = '"' + currentQItem.meaning + '"';
+      }
+
+      document.getElementById('q-options').innerHTML = options.map(opt => {
+        const label = mode === 'W2M' ? opt.meaning : opt.word;
+        return '<button class="quiz-opt-btn" data-id="' + opt.id + '" onclick="checkQuizAnswer(' + opt.id + ', this)">' + label + '</button>';
+      }).join('');
+    }
+
+    function checkQuizAnswer(selectedId, btnElement) {
+      const allBtns = document.querySelectorAll('.quiz-opt-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      qTotal++;
+      const fb = document.getElementById('q-feedback');
+      fb.style.display = 'block';
+
+      if (selectedId === currentQItem.id) {
+        btnElement.classList.add('correct');
+        qScore++; qStreak++;
+        fb.style.background = 'var(--success-soft)';
+        fb.style.border = '1px solid var(--success)';
+        fb.innerHTML = '<strong>🎉 Correct!</strong> <em>' + currentQItem.word + '</em> = ' + currentQItem.meaning + '<br><span style="font-size:0.82rem;">' + currentQItem.trick + '</span>';
+      } else {
+        btnElement.classList.add('wrong');
+        qStreak = 0;
+        allBtns.forEach(b => {
+          if (parseInt(b.getAttribute('data-id'), 10) === currentQItem.id) b.classList.add('correct');
+        });
+        fb.style.background = 'var(--danger-soft)';
+        fb.style.border = '1px solid var(--danger)';
+        fb.innerHTML = '<strong>❌ Incorrect! Correct Answer:</strong> <em>' + currentQItem.word + '</em> — ' + currentQItem.meaning + '<br><span style="font-size:0.82rem;">' + currentQItem.trick + '</span>';
+      }
+
+      updateQuizScoreUI();
+      document.getElementById('q-next-btn').style.display = 'inline-block';
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      document.getElementById('theme-toggle-btn').textContent = next === 'dark' ? '☀️ Light' : '🌙 Dark';
+    }
+
+    // Bootloader
+    let hasBooted = false;
+    function bootApp() {
+      if (hasBooted) return;
+      hasBooted = true;
+      updateStatsBar();
+      populateCategories();
+      renderNotes();
+      renderRoots();
+      renderConfusions();
+      initFlashcards();
+      startNewQuiz();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootApp);
+    } else {
+      bootApp();
+    }
+    window.addEventListener('load', bootApp);
+  </script>
+</body>
+</html>

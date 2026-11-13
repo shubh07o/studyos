@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 1: NOUN - Interactive Digital Notes & Quizzes | Parmar SSC</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #edf2f9;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-dark: #60a5fa;
+      --accent: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --border: #334155;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 290px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand {
+      padding: 20px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .brand p {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .stats-bar {
+      padding: 12px 20px;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 12px;
+      flex: 1;
+    }
+
+    .nav-item {
+      margin-bottom: 4px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--surface-alt);
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-btn .badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(100, 116, 139, 0.2);
+    }
+
+    .nav-btn.active .badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    /* Main Content Area */
+    .main {
+      flex: 1;
+      margin-left: 290px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 450px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .content-container {
+      padding: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-page {
+      display: none;
+    }
+
+    .section-page.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Cards */
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .rule-box {
+      background: var(--surface-alt);
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+    }
+
+    .warn-box {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 6px;
+      background: var(--surface-alt);
+      color: var(--primary);
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .tag.correct { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+    .tag.wrong { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+
+    /* Interactive Drill Item (Click to Reveal) */
+    .drill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .drill-item {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .drill-item:hover {
+      border-color: var(--primary);
+    }
+
+    .drill-q {
+      font-weight: 500;
+    }
+
+    .drill-ans {
+      font-weight: 700;
+      color: var(--success);
+      background: rgba(16, 185, 129, 0.12);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .drill-ans.hidden {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+    }
+
+    /* Interactive MCQ / Error Spotting Quiz Component */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-meta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quiz-question {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.15s;
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .quiz-opt.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger);
+    }
+
+    .quiz-exp {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--success);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .quiz-exp.visible {
+      display: block;
+    }
+
+    /* Pill / Chip Grid */
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+    }
+
+    .chip strong {
+      color: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main {
+        margin-left: 0;
+      }
+      .menu-toggle {
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>PARMAR SSC | ENGLISH</h1>
+      <p>Topper's Batch • Chapter 1: NOUN (By PSP Sir)</p>
+    </div>
+    <div class="stats-bar">
+      <span>Score: <strong id="score-val">0</strong> / <span id="total-val">0</span></span>
+      <button class="btn" style="padding:3px 8px;font-size:0.75rem;" onclick="resetAllQuizzes()">Reset</button>
+    </div>
+    <ul class="nav-list" id="nav-list">
+      <li class="nav-item"><button class="nav-btn active" onclick="showTab('tab-syllabus', this)">📋 0. Syllabus & Intro <span class="badge">P. 1-3</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-collective', this)">🦁 1. Collective & Spellings <span class="badge">P. 3-5</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-material', this)">💎 2. Material & Abstract <span class="badge">P. 5-7</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-countable', this)">⚖️ 3. Countable & Uncountable <span class="badge">P. 7-9</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-numbers', this)">🔢 4. Unit, Number & Compound <span class="badge">P. 9-12</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-types5', this)">👓 5. 5 Special Noun Types <span class="badge">P. 12-14</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-modifiers', this)">📐 6. 'Of', Fractions & Modifiers <span class="badge">P. 14-16</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-cases', this)">👑 7. Noun Cases & Possessive <span class="badge">P. 16-18</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-misc', this)">🧩 8. Confusing & Superfluous <span class="badge">P. 18-20</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-arena1', this)">🎯 9. Spotting Errors & Improv. <span class="badge">P. 20-23</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-arena2', this)">🏆 10. PYQs & Difficult Qs <span class="badge">P. 23-24</span></button></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ Menu</button>
+      <div class="search-box">
+        <input type="text" id="global-search" placeholder="Search any rule, noun, or question across the current tab..." oninput="filterCurrentTab(this.value)" />
+      </div>
+      <div class="top-actions">
+        <button class="btn" onclick="toggleAllDrills(true)">👁️ Reveal All Answers</button>
+        <button class="btn" onclick="toggleAllDrills(false)">🙈 Hide Answers</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+      </div>
+    </header>
+
+    <div class="content-container">
+
+      <!-- ================= TAB 0: SYLLABUS & INTRO (PAGES 1-3) ================= -->
+      <section class="section-page active" id="tab-syllabus">
+        <h2 class="page-title">Chapter 1: NOUN — Foundation & Classification</h2>
+        <p class="page-subtitle">Concept Based Notes • Exam Oriented Content • Topicwise Coverage for All SSC Exams (By PSP Sir)</p>
+
+        <div class="card">
+          <h3>📚 Noun Syllabus (10 Modules)</h3>
+          <div class="grid-2">
+            <ol style="padding-left:20px;">
+              <li><strong>Kinds of Noun</strong> (Proper, Common, Collective, Material, Abstract)</li>
+              <li><strong>Noun Numbers</strong> (Singular & Plural Conversions)</li>
+              <li><strong>Noun Gender</strong> & Classification</li>
+              <li><strong>Noun Case</strong> (Subjective, Objective, Possessive, Vocative, Appositive)</li>
+              <li><strong>Miscellaneous Questions</strong> (Confusing Nouns & Redundancies)</li>
+            </ol>
+            <ol start="6" style="padding-left:20px;">
+              <li><strong>Concept of Modifier</strong> (Hyphenated & Adjectival Nouns)</li>
+              <li><strong>Concept of Fraction</strong> (One-third of, Percentage of, Most of)</li>
+              <li><strong>Concept of Number</strong> (Dozen, Hundred, Thousand, Million)</li>
+              <li><strong>Concept of Compound Noun</strong> (Plurals & Possessives)</li>
+              <li><strong>Practice Session</strong> (PYQs + 150+ Questions)</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>💡 What is a Noun?</h3>
+          <p><strong>"Name is Noun. Or, Everything is Noun."</strong></p>
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <h4>1. Concrete Noun</h4>
+              <p>It has <strong>Physical Appearance</strong> (can be seen & touched).</p>
+              <p><em>Examples:</em> Bus, Car, Jeep, Tree, House.</p>
+            </div>
+            <div class="rule-box">
+              <h4>2. Abstract Noun</h4>
+              <p>It has <strong>No Physical Appearance</strong> (can only be felt).</p>
+              <p><em>Examples:</em> Sadness, Bravery, Happiness, Gallantry, Honesty.</p>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top:14px;">
+            <div>
+              <h4>Types of Noun According to Property (5):</h4>
+              <div class="chip-grid">
+                <span class="chip">1. Proper Noun</span>
+                <span class="chip">2. Common Noun</span>
+                <span class="chip">3. Collective Noun</span>
+                <span class="chip">4. Material Noun</span>
+                <span class="chip">5. Abstract Noun</span>
+              </div>
+            </div>
+            <div>
+              <h4>Types of Noun According to Counting (2):</h4>
+              <div class="chip-grid">
+                <span class="chip">1. Countable Noun</span>
+                <span class="chip">2. Uncountable Noun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🏛️ Proper Noun vs. Common Noun (Page 3)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Proper Noun</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Individual Names:</strong> Ex: Urfi Javed, Rakhi Savant, Kangana Ranaut, Yamuna, Himalaya.</li>
+                <li><strong>Capitalization Rule:</strong> First letter of any proper noun should be <strong>CAPITAL</strong>.
+                  <br>• ritika → <strong>Ritika</strong> | rohan → <strong>Rohan</strong>
+                  <br>• seven stages of life → <strong>Seven Stages of Life</strong>
+                  <br>• madan mohan malveeya → <strong>Madan Mohan Malviya</strong>
+                  <br>• united states of america → <strong>United States of America</strong>
+                </li>
+                <li>All <strong>Titles</strong> are Proper Nouns.</li>
+                <li><strong>Proper Adjective:</strong> <em>Indian, American, etc.</em> Just like Proper Nouns, the first letter of a Proper Adjective must always be capitalized.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Common Noun & Conversion Rule</h4>
+              <p>A Noun which is common for same kind of things, people. <br><em>Ex:</em> Actor, Actress, Girl, River, Teacher, House.</p>
+              <hr style="margin:10px 0;border-color:var(--border);">
+              <p><strong>Rule: We can use a Proper Noun as a Common Noun!</strong> (When comparing qualities, use an article <em>a/an/the</em> before it):</p>
+              <ol style="padding-left:18px;margin-top:6px;">
+                <li><span class="tag wrong">✗ No Article</span> <strong>Sachin</strong> is a great player. <em>(Proper Noun)</em></li>
+                <li>We can see <strong>a Sachin</strong> in every player of Indian team. <em>(Common Noun)</em></li>
+                <li><span class="tag wrong">✗ No Article</span> <strong>Bhagat Singh</strong> is a great warrior. <em>(Proper Noun)</em></li>
+                <li>We can find <strong>the Bhagat Singh</strong> in every Indian soldier. <em>(Common Noun)</em></li>
+              </ol>
+            </div>
+          </div>
+
+          <h4 style="margin-top:18px;">⚡ Interactive Classification Drill (Page 3) — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p3"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 1: COLLECTIVE NOUNS & SPELLINGS (PAGES 3-5) ================= -->
+      <section class="section-page" id="tab-collective">
+        <h2 class="page-title">1. Collective Nouns, Spellings & One-Word Substitutions</h2>
+        <p class="page-subtitle">Pages 3, 4 & 5 • Group Terms, Spelling Tests, and Singular vs. Plural Verb Agreement</p>
+
+        <div class="card">
+          <h3>👥 Complete List of Collective Nouns (Page 4)</h3>
+          <p><strong>Collective Noun:</strong> It refers to a group of common nouns of the same kind.</p>
+          <div class="chip-grid" style="margin-top:14px;">
+            <span class="chip"><strong>Fleet:</strong> Ships / Vehicles</span>
+            <span class="chip"><strong>Flotilla:</strong> Boats</span>
+            <span class="chip"><strong>Crew:</strong> Sailors</span>
+            <span class="chip"><strong>Galaxy:</strong> Stars</span>
+            <span class="chip"><strong>Constellation:</strong> Stars (fixed shape)</span>
+            <span class="chip"><strong>Army:</strong> Soldiers</span>
+            <span class="chip"><strong>Battalion:</strong> Soldiers</span>
+            <span class="chip"><strong>Troop:</strong> Soldiers</span>
+            <span class="chip"><strong>Infantry:</strong> Soldiers on foot</span>
+            <span class="chip"><strong>Cavalry:</strong> Soldiers on horse</span>
+            <span class="chip"><strong>Pack:</strong> Playing Cards / Dogs / Wolves</span>
+            <span class="chip"><strong>Pride:</strong> Lions</span>
+            <span class="chip"><strong>Band:</strong> Musicians</span>
+            <span class="chip"><strong>Choir:</strong> Singers</span>
+            <span class="chip"><strong>Orchestra:</strong> Singers / Dancers</span>
+            <span class="chip"><strong>Troupe:</strong> Dancers / Artists</span>
+            <span class="chip"><strong>Bunting:</strong> Small Flags</span>
+            <span class="chip"><strong>Muster:</strong> Peacocks</span>
+            <span class="chip"><strong>String:</strong> Camels</span>
+            <span class="chip"><strong>School:</strong> Learners / Fish</span>
+            <span class="chip"><strong>Bunch:</strong> Keys / Grapes</span>
+            <span class="chip"><strong>Herd:</strong> Cattle / Elephants</span>
+            <span class="chip"><strong>Flight:</strong> Birds</span>
+            <span class="chip"><strong>Syndicate:</strong> Merchants</span>
+            <span class="chip"><strong>Caravan:</strong> Gypsies / Travellers</span>
+            <span class="chip"><strong>Parliament:</strong> Owls</span>
+            <span class="chip"><strong>Battery:</strong> Heavy Guns</span>
+            <span class="chip"><strong>Shoal:</strong> Fish</span>
+            <span class="chip"><strong>Series:</strong> Events / Lectures</span>
+            <span class="chip"><strong>Gang:</strong> Robbers</span>
+            <span class="chip"><strong>Congregation:</strong> Worshippers</span>
+            <span class="chip"><strong>Swarm:</strong> Ants / Bees</span>
+            <span class="chip"><strong>Hive:</strong> Bees</span>
+            <span class="chip"><strong>Kennel:</strong> Dogs</span>
+            <span class="chip"><strong>Posse:</strong> Constables</span>
+            <span class="chip"><strong>Staff:</strong> Members / Teachers</span>
+            <span class="chip"><strong>Committee:</strong> Members</span>
+            <span class="chip"><strong>Bench:</strong> A group of Judges</span>
+            <span class="chip"><strong>Jury:</strong> Judges</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>⚖️ Collective Noun Grammar Rules (Page 5)</h3>
+          <div class="rule-box">
+            <ol style="padding-left:20px;">
+              <li><strong>Gentry, Infantry, Cavalry, Cattle, Poultry, Peasantry, Police:</strong> Usually plural in sense → <strong>Plural verb is used</strong> (and never add -s/-ies like <em>gentries</em>).</li>
+              <li><strong>United vs. Divided Rule (Jury, Committee, Team, Audience):</strong>
+                <br>• When the group is <strong>united / unanimous / acting as one unit</strong> → use a <strong>Singular Verb</strong> & Singular Pronoun (<em>its</em>).
+                <br>• When the members are <strong>divided / acting individually</strong> → use a <strong>Plural Verb</strong> & Plural Pronoun (<em>their</em>).
+              </li>
+              <li><strong>"A [Collective] of [Plural Noun]" Rule:</strong> When constructions like <em>"A pack of", "A gang of", "A herd of", "A pride of"</em> are used, the verb agrees with the first/main singular term (e.g., <em>pack, herd, pride</em>), so a <strong>Singular Verb</strong> (<em>is/was</em>) is used.</li>
+            </ol>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Collective Noun Classroom Drills (Page 5, Q1–Q11)</h4>
+          <div class="drill-list" id="drill-p5"></div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Interactive Quiz: Spellings, OWS & Collective Noun PYQs (Pages 4–5)</h3>
+          <div id="quiz-collective"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: MATERIAL & ABSTRACT NOUNS (PAGES 5-7) ================= -->
+      <section class="section-page" id="tab-material">
+        <h2 class="page-title">2. Material Noun & Abstract Noun</h2>
+        <p class="page-subtitle">Pages 5, 6 & 7 • Articles with Material Nouns, Singular-to-Plural Meaning Shifts, and Abstract Noun Suffixes</p>
+
+        <div class="card">
+          <h3>🧱 Material Noun Concepts & Rules (Pages 5–6)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Properties of Material Noun</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Metal & Non-Metal:</strong>
+                  <br>• <strong>Solid:</strong> Iron, Gold, Silver
+                  <br>• <strong>Liquid:</strong> Water, Oil, Milk
+                  <br>• <strong>Gas:</strong> Oxygen, Nitrogen
+                </li>
+                <li>It has physical existence, can be seen, and can be touched.</li>
+                <li>Material noun is an <strong>Uncountable Noun</strong>.</li>
+                <li>Generally, we <strong>cannot make plural</strong> of a material noun (e.g., <em>A water ✗, Some waters ✗</em>).</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Article Rule with Material Nouns</h4>
+              <p>1. Generally, <strong>NO article</strong> is used before a Material Noun.<br>
+              <em>Ex:</em> <strong>(No Article)</strong> Water is colourless.<br>
+              <em>Ex:</em> <strong>(No Article)</strong> Milk is sweet.<br>
+              <em>Ex:</em> <strong>(No Article)</strong> Gold is more precious than <strong>(No Article)</strong> Iron.</p>
+              <p style="margin-top:8px;">2. <strong>Exception (Specified by Phrase/Clause):</strong> When a phrase or clause is added to specify the Material Noun, <strong>"The"</strong> is used before it!<br>
+              <em>Ex:</em> <strong>The</strong> water <em>of this river</em> is not polluted.<br>
+              <em>Ex:</em> <strong>The</strong> milk <em>of cow</em> is sweet.<br>
+              <em>Ex:</em> <strong>The</strong> gold <em>of this ring</em> is pure.</p>
+              <p style="margin-top:8px;">3. <strong>Special Cases (Page 6):</strong><br>
+              • <em>"All that glitters is not gold."</em> (Here <em>gold</em> = Abstract quality ✓)<br>
+              • <em>"India has won many golds."</em> (Here <em>golds</em> = Gold medals ✓)<br>
+              • <em>"There are five waters in all over the world."</em> (Meaning changed to Oceans ✓)</p>
+            </div>
+          </div>
+
+          <h4 style="margin-top:18px;">🔄 Material/Uncountable Nouns That Change Meaning When Pluralized (Page 6 Table)</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Singular Noun (Material / Base)</th>
+                  <th>Plural Form (Meaning Changed!)</th>
+                  <th>Singular Noun (Material / Base)</th>
+                  <th>Plural Form (Meaning Changed!)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Water</strong> (पानी)</td><td><strong>Waters</strong> (Oceans / समुद्र)</td><td><strong>Work</strong> (काम)</td><td><strong>Works</strong> (Literary Works / रचनाएँ, कारखाने)</td></tr>
+                <tr><td><strong>Iron</strong> (लोहा)</td><td><strong>Irons</strong> (Iron Tools / Chains / बेड़ियाँ)</td><td><strong>Custom</strong> (रीति-रिवाज)</td><td><strong>Customs</strong> (Taxes / सीमा शुल्क)</td></tr>
+                <tr><td><strong>Air</strong> (हवा)</td><td><strong>Airs</strong> (Pretence / दिखावा)</td><td><strong>Fruit</strong> (Edible fruit)</td><td><strong>Fruits</strong> (Result / मेहनत का फल)</td></tr>
+                <tr><td><strong>Sand</strong> (रेत)</td><td><strong>Sands</strong> (Desert / रेगिस्तान)</td><td><strong>Arm</strong> (भुजा)</td><td><strong>Arms</strong> (Weapons / हथियार)</td></tr>
+                <tr><td><strong>Wood</strong> (लकड़ी)</td><td><strong>Woods</strong> (Jungle / जंगल)</td><td><strong>Good</strong> (अच्छा / भलाई)</td><td><strong>Goods</strong> (Commodities / माल-सामान)</td></tr>
+                <tr><td><strong>Abuse</strong> (गाली)</td><td><strong>Abuses</strong> (Bad Evils / कुरीतियाँ)</td><td>—</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>💭 Abstract Noun Concepts & Suffixes (Pages 6–7)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>What is an Abstract Noun?</h4>
+              <ul style="padding-left:18px;">
+                <li>Includes: <strong>Emotions, State of mind, System, Belief, Action</strong>.</li>
+                <li>An Abstract noun can be <strong>felt only</strong>; it does not have physical existence.</li>
+                <li><strong>Abstract nouns are Uncountable Nouns</strong> (Singular verb is used; never pluralize like <em>sympathies, loyalties, gratitudes</em>).</li>
+                <li><strong>Examples (Not just feelings!):</strong> Sadness, Bravery, Gallantry, Happiness, Polygamy, Atheism, Democracy, Dance, Childhood, Birth, Growth, Enjoyment, Ambition, Accuracy.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Identification via Suffixes</h4>
+              <div class="chip-grid">
+                <span class="chip"><strong>-ness</strong> (Sadness, Happiness)</span>
+                <span class="chip"><strong>-gamy</strong> (Polygamy)</span>
+                <span class="chip"><strong>-th</strong> (Birth, Growth)</span>
+                <span class="chip"><strong>-tion</strong> (Ambition)</span>
+                <span class="chip"><strong>-hood</strong> (Childhood)</span>
+                <span class="chip"><strong>-ence / -ance</strong></span>
+                <span class="chip"><strong>-cracy</strong> (Democracy)</span>
+                <span class="chip"><strong>-ment</strong> (Enjoyment)</span>
+                <span class="chip"><strong>-logy</strong></span>
+                <span class="chip"><strong>-y</strong> (Bravery, Accuracy)</span>
+                <span class="chip"><strong>-ism</strong> (Atheism)</span>
+              </div>
+              <p style="margin-top:10px;font-size:0.88rem;"><em>Note:</em> Words ending in <strong>-ist</strong> or <strong>-er</strong> denote people (<strong>Common Nouns</strong>).</p>
+            </div>
+          </div>
+
+          <div class="warn-box" style="margin-top:16px;">
+            <h4>🌟 Making Abstract Noun from Common Noun (Page 7): Use "The + Common Noun + in him/her"</h4>
+            <p>When referring to the inner quality/feeling inside a person, place <strong>"The"</strong> before the Common Noun:</p>
+            <ul style="padding-left:18px;margin-top:6px;">
+              <li>Mother → <strong>The mother in her</strong> | Sister → <strong>The sister in her</strong> | Brother → <strong>The brother in him</strong> | Father → <strong>The father in him</strong> | Player → <strong>The player in him</strong></li>
+              <li>1. <strong>[The]</strong> Mother in her could not see the child burning live.</li>
+              <li>2. Generally, brother and sister quarrel with each other but on the day of Raksha Bandhan, <strong>[the]</strong> sister in her wakes up.</li>
+              <li>3. When he sees Virat's batting, <strong>[the]</strong> player in him wakes up.</li>
+            </ul>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Abstract Noun Practice Drills & Questions (Page 6, Q1–Q7)</h4>
+          <div class="drill-list" id="drill-p6"></div>
+          <div id="quiz-abstract" style="margin-top:16px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: COUNTABLE & UNCOUNTABLE NOUNS (PAGES 7-9) ================= -->
+      <section class="section-page" id="tab-countable">
+        <h2 class="page-title">3. Countable vs. Uncountable Nouns</h2>
+        <p class="page-subtitle">Pages 7, 8 & 9 • Master List of Uncountable Nouns, Noun vs. Verb Pairs, and 29 Exam Questions</p>
+
+        <div class="card">
+          <h3>⚖️ Countable vs. Uncountable Rules (Page 7)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Countable Nouns</h4>
+              <ul style="padding-left:18px;">
+                <li>Nouns which <strong>can be counted</strong> (have Singular & Plural forms).</li>
+                <li>Can use <strong>A / An</strong>.</li>
+                <li>Use <strong>Many</strong> and <strong>Few</strong>.</li>
+                <li><em>Examples from Page 7:</em> Pen, Boy, Horse, Star, Six Boys, Shop, Machine, Poem (Sonnet, Elegy, Satire, Epic, Ode), Bench/Sofa/Bed/Chair, Rupee/Dollar.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Uncountable Nouns</h4>
+              <ul style="padding-left:18px;">
+                <li>Nouns which <strong>cannot be counted</strong> (Always Singular; <strong>Cannot be made Plural</strong> with -s/-es).</li>
+                <li><strong>Do NOT use A / An</strong> directly before them! Instead, use: <em>A piece of, An item of, An act of, A slice of, etc.</em></li>
+                <li>Use <strong>Much</strong> and <strong>Little</strong>.</li>
+                <li><em>Note on Measurements:</em> <strong>Milk</strong> (Uncountable), <strong>5 Litre Milk</strong> (Still Uncountable!), <strong>Sugar</strong> (Uncountable), <strong>5 kg Sugar</strong> (Uncountable), <strong>Soap</strong> (Uncountable).</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">📌 High-Frequency Uncountable Nouns in SSC Exams (Page 7)</h4>
+          <div class="chip-grid">
+            <span class="chip"><strong>Machinery</strong> (Countable unit: machine)</span>
+            <span class="chip"><strong>Work</strong></span>
+            <span class="chip"><strong>Advice</strong></span>
+            <span class="chip"><strong>Information</strong></span>
+            <span class="chip"><strong>Stationery</strong> (pen, pencil)</span>
+            <span class="chip"><strong>Luggage</strong></span>
+            <span class="chip"><strong>Baggage</strong></span>
+            <span class="chip"><strong>Cookery</strong></span>
+            <span class="chip"><strong>Knowledge</strong></span>
+            <span class="chip"><strong>News</strong> (Singular! vs. <em>Tidings</em> = Plural)</span>
+            <span class="chip"><strong>Mischief</strong></span>
+            <span class="chip"><strong>Clothing / Wear</strong> (pants, jeans)</span>
+            <span class="chip"><strong>Traffic</strong> (car, bus, bike)</span>
+            <span class="chip"><strong>Evidence</strong> (knife, gun, letter)</span>
+            <span class="chip"><strong>Equipment</strong> (tool)</span>
+            <span class="chip"><strong>Jewellery</strong></span>
+            <span class="chip"><strong>Feedback</strong></span>
+            <span class="chip"><strong>Revenue</strong></span>
+            <span class="chip"><strong>Violence</strong></span>
+            <span class="chip"><strong>Poetry</strong> (Sonnet, elegy, satire, epic, ode)</span>
+            <span class="chip"><strong>Furniture</strong> (bench, sofa, bed, chair)</span>
+            <span class="chip"><strong>Money</strong> (rupee, dollar)</span>
+            <span class="chip"><strong>Scenery</strong> (river, mountain, people)</span>
+            <span class="chip"><strong>Bread / Ice / Cake / Time</strong></span>
+          </div>
+
+          <div class="warn-box" style="margin-top:16px;">
+            <h4>⚠️ Confusing Noun vs. Verb Pairs (Page 7)</h4>
+            <div class="grid-3" style="margin-top:8px;">
+              <div>• <strong>Advice (Noun)</strong> → सलाह<br>• <strong>Advise (Verb)</strong> → सलाह देना</div>
+              <div>• <strong>Practice (Noun)</strong> → अभ्यास<br>• <strong>Practise (Verb)</strong> → अभ्यास करना</div>
+              <div>• <strong>Effect (Noun)</strong> → प्रभाव<br>• <strong>Affect (Verb)</strong> → प्रभाव डालना</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>⚡ Uncountable Noun Drills & Spotting Errors (Pages 7–9, Q1–Q29)</h3>
+          <div class="drill-list" id="drill-p8"></div>
+          <div id="quiz-countable" style="margin-top:16px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: UNIT, NUMBER & COMPOUND NOUNS (PAGES 9-12) ================= -->
+      <section class="section-page" id="tab-numbers">
+        <h2 class="page-title">4. Dozen/Hundred, Compound Nouns & Foreign Plurals</h2>
+        <p class="page-subtitle">Pages 9, 10, 11 & 12 • Unit Rules, Compound Noun Plurals/Possessives, and Latin/Greek Singular-Plural Tables</p>
+
+        <div class="card">
+          <h3>🔢 Concept of Dozen / Hundred / Thousand / Lakh / Million / Score (Page 9)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Rule 1: Preceded by a Definite Number → SINGULAR</h4>
+              <p><code>Number + Dozen / Hundred / Thousand / Lakh / Million + Plural Noun</code> (No -s, No "of")</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li>Two <strong>dozen</strong> eggs (दो दर्जन अंडे)</li>
+                <li>Two <strong>dozen</strong> books</li>
+                <li>Five <strong>thousand</strong> students / people (पाँच हजार छात्र)</li>
+                <li>Two <strong>lakh</strong> copies</li>
+                <li>Two <strong>score</strong> books</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Rule 2: No Number + Followed by "of" → PLURAL</h4>
+              <p><code>Dozens / Hundreds / Thousands / Millions + of + Plural Noun</code></p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>Dozens of</strong> eggs / apples (दर्जनों अंडे)</li>
+                <li><strong>Thousands of</strong> students (हजारों छात्र)</li>
+                <li><strong>Hundreds of</strong> applicants</li>
+              </ul>
+            </div>
+          </div>
+          <h4 style="margin-top:14px;">⚡ Unit & Number Drills (Pages 9–10)</h4>
+          <div class="drill-list" id="drill-p9"></div>
+          <div id="quiz-p9" style="margin-top:14px;"></div>
+        </div>
+
+        <div class="card">
+          <h3>🔗 Concept of Compound Noun (Pages 10–11)</h3>
+          <p><strong>Definition:</strong> The noun which is made of more than one word. <em>Ex: Commander-in-chief, Woman servant.</em></p>
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="rule-box">
+              <h4>4 Types of Compound Nouns & Their Plurals</h4>
+              <ol style="padding-left:18px;">
+                <li><strong>Type 1 (Noun + Noun):</strong> Pluralize the 2nd (main) noun.<br>
+                  • Railway station → <strong>Railway stations</strong> | Bus terminal → <strong>Bus terminals</strong><br>
+                  • Step daughter → <strong>Step daughters</strong> | Step son → <strong>Step sons</strong> | Step mother → <strong>Step mothers</strong> | Maid servant → <strong>Maid servants</strong> | Pick pocket → <strong>Pick pockets</strong>
+                </li>
+                <li><strong>Type 2 (Noun + Preposition/Adverb):</strong> Pluralize the 1st (noun) part.<br>
+                  • Passer-by → <strong>Passers-by</strong> | Looker-on → <strong>Lookers-on</strong> | Hanger-on → <strong>Hangers-on</strong> | Looker-out → <strong>Lookers-out</strong>
+                </li>
+                <li><strong>Type 3 (Noun + Preposition + Noun):</strong> Pluralize the 1st (head) noun.<br>
+                  • Brother-in-law → <strong>Brothers-in-law</strong> | Daughter-in-law → <strong>Daughters-in-law</strong> | Commander-in-chief → <strong>Commanders-in-chief</strong> | Good-for-nothing → <strong>Goods-for-nothing</strong>
+                </li>
+                <li><strong>Type 4 (Noun + Preposition + Same Noun):</strong> <strong>NO PLURAL! Always Singular Noun + Singular Verb!</strong><br>
+                  • <strong>Door to door</strong> | <strong>Step by step</strong> | <strong>City after city</strong> | <strong>Town after town</strong> | <strong>Page after page</strong>
+                </li>
+              </ol>
+            </div>
+            <div class="rule-box">
+              <h4>Special Compound Plural & Possessive Rules</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Profession vs. Gender (Man/Woman):</strong>
+                  <br>• Washer man → <strong>Washer men</strong> | Post man → <strong>Post men</strong> | Dutch man → <strong>Dutch men</strong> | Kins man → <strong>Kins men</strong> | French man → <strong>French men</strong>
+                  <br>• <strong>Rule:</strong> If a compound noun is formed with <em>man</em> or <em>woman</em> to denote gender/profession of the whole person, <strong>BOTH</strong> become plural:
+                  <br>• Man servant → <strong>Men servants</strong>
+                  <br>• Woman servant → <strong>Women servants</strong>
+                </li>
+                <li><strong>"-ful" Nouns (Add -s at the very end):</strong>
+                  <br>• Handful → <strong>Handfuls</strong> | Mouthful → <strong>Mouthfuls</strong> | Spoonful → <strong>Spoonfuls</strong> | Glassful/Grassful → <strong>Glassfuls/Grassfuls</strong> | Cupful → <strong>Cupfuls</strong>
+                </li>
+                <li><strong>Possessive of Compound Noun:</strong> Add <strong>'s</strong> at the <strong>end of the entire word/phrase</strong>:
+                  <br>• <strong>Brother-in-law's</strong> house | <strong>Commander-in-chief's</strong> orders | <strong>Brothers-in-law's</strong> wallet.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h4 style="margin-top:14px;">⚡ Compound Noun Drills & Questions (Pages 10–11)</h4>
+          <div class="drill-list" id="drill-p10"></div>
+          <div id="quiz-compound" style="margin-top:14px;"></div>
+        </div>
+
+        <div class="card">
+          <h3>📖 Complete Singular to Plural Conversion Tables (Page 11–12)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rule / Pattern</th>
+                  <th>Singular → Plural Pairs (All from Page 11)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Latin "-um" → "-a"</strong></td>
+                  <td>Corrigendum → <strong>Corrigenda</strong> | Momentum → <strong>Momenta</strong> | Maximum → <strong>Maxima</strong> | Datum → <strong>Data</strong> <em>(Note: Now 'data' is also used as Singular)</em> | Erratum → <strong>Errata</strong> | Agendum → <strong>Agenda</strong> | Bacterium → <strong>Bacteria</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>2. "-um" → "-ums" (Regular)</strong></td>
+                  <td>Pendulum → <strong>Pendulums</strong> | Decorum → <strong>Decorums</strong> | Auditorium → <strong>Auditoriums</strong> | Museum → <strong>Museums</strong> | Asylum → <strong>Asylums</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>3. Greek "-is" → "-es"</strong></td>
+                  <td>Narcosis → <strong>Narcoses</strong> | Thesis → <strong>Theses</strong> | Axis → <strong>Axes</strong> | Crisis → <strong>Crises</strong> | Oasis → <strong>Oases</strong> | Ellipsis → <strong>Ellipses</strong> | Metamorphosis → <strong>Metamorphoses</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>4. "-on" → "-a" & "-us" → "-i"</strong></td>
+                  <td>Phenomenon → <strong>Phenomena</strong> | Criterion → <strong>Criteria</strong> | Radius → <strong>Radii</strong> | Focus → <strong>Foci</strong> | Locus → <strong>Loci</strong> | Cactus → <strong>Cacti</strong> | Alumnus → <strong>Alumni (Male) / Alumnae (Female)</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>5. Ending in -ch, -ss, -x, -o → "+es"</strong></td>
+                  <td>Watch → <strong>Watches</strong> | Ass → <strong>Asses</strong> | Fix → <strong>Fixes</strong> | Church → <strong>Churches</strong> | Class → <strong>Classes</strong> | Tax → <strong>Taxes</strong> | Hero → <strong>Heroes</strong> | Cargo → <strong>Cargoes</strong> | Mosquito → <strong>Mosquitoes</strong> | Solo → <strong>Soloes</strong> <em>(Exception: Stomach → <strong>Stomachs</strong>)</em></td>
+                </tr>
+                <tr>
+                  <td><strong>6. Vowel + Y → "+s" vs. Consonant + Y → "-ies"</strong></td>
+                  <td>• Vowel + Y: Toy → <strong>Toys</strong> | Boy → <strong>Boys</strong><br>• Consonant + Y: Family → <strong>Families</strong> | Country → <strong>Countries</strong> | City → <strong>Cities</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>7. Double Vowel → "+s"</strong></td>
+                  <td>Bee → <strong>Bees</strong> | Zoo → <strong>Zoos</strong> | Tree → <strong>Trees</strong> | Radio → <strong>Radios</strong> | Ratio → <strong>Ratios</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>8. "-f / -fe" → "-ves" vs. Exceptions ("+s")</strong></td>
+                  <td>• Change to -ves: Calf → <strong>Calves</strong> | Wolf → <strong>Wolves</strong> | Wife → <strong>Wives</strong> | Leaf → <strong>Leaves</strong> | Shelf → <strong>Shelves</strong><br>• Exceptions (+s): Belief → <strong>Beliefs</strong> | Proof → <strong>Proofs</strong> | Cliff → <strong>Cliffs</strong> | Turf → <strong>Turfs</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>9. Internal Vowel Change & "-en"</strong></td>
+                  <td>Man → <strong>Men</strong> | Woman → <strong>Women</strong> | Foot → <strong>Feet</strong> | Mouse → <strong>Mice</strong> | Ox → <strong>Oxen</strong> | Child → <strong>Children</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>10. No Change (Singular = Plural)</strong></td>
+                  <td><strong>Sheep → Sheep</strong> | <strong>Deer → Deer</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Foreign & Irregular Plural Drills (Page 12, Q1–Q10)</h4>
+          <div class="drill-list" id="drill-p12"></div>
+          <div id="quiz-p12" style="margin-top:14px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: 5 SPECIAL NOUN TYPES (PAGES 12-14) ================= -->
+      <section class="section-page" id="tab-types5">
+        <h2 class="page-title">5. Five Special Categories of Nouns (Pages 12–14)</h2>
+        <p class="page-subtitle">Subjects ending in -ics, Paired Tools, Always-Plural Nouns, Collective Plurals, Titles, Innings, Summons & Wages</p>
+
+        <div class="card">
+          <h3>🗂️ The 5 Special Types of Nouns (Pages 12–13)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>TYPE 1: Looks Plural (-s), But is SINGULAR</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Subjects:</strong> Physics, Civics, Economics, Mathematics, Phonetics, Statistics, Linguistics, Dynamics.</li>
+                <li><strong>Games:</strong> Gymnastics, Billiards, Draughts.</li>
+                <li><strong>Diseases:</strong> Measles, Mumps, Rickets, Diabetes.</li>
+                <li><strong>⚠️ Exception (Possessive / Calculation):</strong>
+                  <br>• Subject → <strong>Singular</strong> (<em>Mathematics is a difficult subject.</em>)
+                  <br>• Preceded by Possessive (<em>My/His/The + Noun</em> referring to calculation/data) → <strong>Plural!</strong> (<em>His mathematics <strong>are</strong> not good. The statistics of this company <strong>are</strong> not reviewed.</em>)
+                </li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>TYPE 2: Paired Nouns (Always PLURAL)</h4>
+              <p><strong>Scissors, Trousers, Binoculars, Spectacles, Goggles, Pincers, Tongs, Pants, Jeans, Breeches, Slippers, Shoes.</strong></p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li>These nouns have two parts joined together → <strong>Always take a Plural Verb</strong>.</li>
+                <li>Never remove -s (<em>A trouser ✗, A spectacle ✗</em>) and never use <em>a/an</em> directly (<em>A trousers ✗</em>).</li>
+                <li>To make singular/countable, use <strong>"A pair of..."</strong>:
+                  <br>• <em>A pair of trousers <strong>was</strong> bought.</em>
+                  <br>• <em>Two pairs of trousers <strong>were</strong> bought.</em>
+                </li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>TYPE 3: Nouns Always PLURAL in Form & Verb</h4>
+              <p><strong>Rations, Ashes, Gallows, Surroundings, Thanks, Regards, Auspices, Proceedings, Contents, Riches, Credentials, Assets, Tidings, Alms, Congratulations, Amends, Savings, Earnings, Dues, Ruins, Odds, Valuables, Movables, Embers, Fetters, Arrears, Outskirts, Winnings, Orders, Goods, Belongings, Bowels.</strong></p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><em>Content (adj.)</em> = satisfied vs. <em>Contents (N)</em> = विषय-वस्तु.</li>
+                <li><em>Riches</em> = assets/wealth (Proverb: <em>"Riches have wings"</em>).</li>
+                <li><em>Order (V)</em> vs. <em>Orders (N)</em> = official instructions.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>TYPE 4: Looks Singular, But Always PLURAL</h4>
+              <p><strong>Clergy, Peasantry, Cattle, People, Police, Electorate, Poultry, Gentry, Vermin.</strong></p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li>Never add -s (<em>Cattles ✗</em>).</li>
+                <li><em>Four cattle ✓</em> OR <em>Four heads of cattle ✓</em>.</li>
+                <li><strong>People vs. Peoples:</strong> <em>People</em> = लोग (Plural) | <em>Peoples</em> = Nations / Races (विभिन्न राष्ट्रों के लोग).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <h4>TYPE 5: Titles & Country Names (Always SINGULAR)</h4>
+              <p><em>Seven Stages of Life, Daffodils, Arabian/Amazing Nights, Gulliver's Travels, The Canterbury Tales, The Three Musketeers, United States of America, The Netherlands.</em> → Always take a <strong>Singular Verb (is/was)</strong>.</p>
+            </div>
+            <div class="rule-box">
+              <h4>Special Cases: Innings, Summons & Wages (Page 13)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>INNINGS:</strong> Never "Inning ✗". Always spelled <strong>Innings</strong>.
+                  <br>• <em>First innings <strong>was</strong>...</em> | <em>Fourth innings <strong>was</strong>...</em> | <em>Four innings <strong>were</strong>...</em>
+                </li>
+                <li><strong>SUMMONS:</strong>
+                  <br>• <em>Summon</em> = Verb | <em>Summons</em> = Singular Noun (<em>was</em>) | <em>Summonses</em> = Plural Noun (<em>were/have</em>).
+                </li>
+                <li><strong>WAGES:</strong>
+                  <br>• Labour money = <strong>Plural</strong> (<em>His wages <strong>were</strong> looted.</em>)
+                  <br>• Result/Outcome = <strong>Singular</strong> (<em>The wages of sin <strong>is</strong> death.</em>)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:18px;">⚡ 41 Classroom Drills & Exam Questions on Special Nouns (Pages 13–14)</h4>
+          <div class="drill-list" id="drill-p13"></div>
+          <div id="quiz-p13" style="margin-top:16px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: 'OF', FRACTIONS & MODIFIERS (PAGES 14-16) ================= -->
+      <section class="section-page" id="tab-modifiers">
+        <h2 class="page-title">6. Concept of 'Of', Fractions, Modifiers & Same-Form Nouns</h2>
+        <p class="page-subtitle">Pages 14, 15 & 16 • One of the + Plural Noun, Fraction Agreement, Noun Modifiers, and Invariable Nouns</p>
+
+        <div class="card">
+          <h3>🎯 Concept of Preposition "OF" & Fractions (Pages 14–15)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>"One of / Each of / Either of" Rule</h4>
+              <p><code>One / Two / Each / Either / Neither / None / Most / Many + OF + The/Determiner + PLURAL NOUN/PRONOUN</code></p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li>After <strong>"one of"</strong>, the first countable noun that follows is <strong>ALWAYS PLURAL</strong>, and <strong>"the"</strong> (or another determiner like <em>these/my</em>) is required before it.</li>
+                <li>1. The advice of my <strong>friend / friends</strong> (Both ✓)</li>
+                <li>2. One of the <strong>students</strong> (has done it)</li>
+                <li>3. Two of the <strong>workers</strong></li>
+                <li>4. Each of the <strong>movies</strong></li>
+                <li>5. Everyone of <strong>them</strong></li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Concept of Fraction (Page 15)</h4>
+              <p>With <strong>A part of / One third of / 50% of / Most of / Part of</strong>, the verb depends on the noun after "of":</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>Singular / Uncountable Noun → Singular Verb</strong>
+                  <br>• <em>One third of the movie <strong>was</strong> interesting.</em>
+                  <br>• <em>One part of the mango <strong>is</strong> rotten.</em>
+                  <br>• <em>20% of the milk <strong>was</strong> bought.</em>
+                </li>
+                <li><strong>Plural Countable Noun → Plural Verb</strong>
+                  <br>• <em>One third of the movies <strong>were</strong> interesting.</em>
+                  <br>• <em>20% of the books <strong>were</strong> very useful.</em>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:14px;">⚡ "One of" & Fraction Questions (Pages 14–15)</h4>
+          <div class="drill-list" id="drill-p14"></div>
+          <div id="quiz-p14" style="margin-top:14px;"></div>
+        </div>
+
+        <div class="card">
+          <h3>📏 Concept of Modifier & Invariable Nouns (Pages 15–16)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Noun as a Modifier (Adjective) → ALWAYS SINGULAR!</h4>
+              <p><code>Article/Number + [Number + Singular Modifier Noun] + Main Noun</code></p>
+              <p>When a noun comes before another noun to describe/modify it, the modifier noun functions as an adjective and <strong>cannot be pluralized</strong>:</p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li>A five <strong>hundred rupee</strong> note (NOT <em>hundreds</em> or <em>rupees</em>)</li>
+                <li>Two five <strong>hundred rupee</strong> notes (Main noun <em>notes</em> is plural!)</li>
+                <li>A five <strong>kilometer</strong> race</li>
+                <li>A five <strong>man</strong> committee | A four <strong>boy</strong> union</li>
+                <li>Delicate <strong>eye</strong> surgery | Five two-hundred-<strong>page</strong> books</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Nouns Identical in Singular & Plural (Pages 15–16)</h4>
+              <p><strong>Fish, sheep, deer, vocation, offspring, species, headquarters, aircraft, spacecraft, wages, means, fruit.</strong></p>
+              <ul style="padding-left:18px;margin-top:6px;">
+                <li><strong>Fish vs. Fishes / Fruit vs. Fruits:</strong> Use singular form for food/general plural (<em>We take fruit after meal</em>), but use <strong>Fishes / Fruits</strong> when referring to <strong>different species, kinds, or varieties</strong> (<em>There are many kinds of fishes/fruits</em>).</li>
+                <li><strong>Headquarters / Means / Species:</strong> Take singular or plural verb depending on whether one or multiple are meant.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:14px;">⚡ Modifier & Invariable Noun Drills (Pages 15–16)</h4>
+          <div class="drill-list" id="drill-p15"></div>
+          <div id="quiz-p15" style="margin-top:14px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 7: NOUN CASES & POSSESSIVES (PAGES 16-18) ================= -->
+      <section class="section-page" id="tab-cases">
+        <h2 class="page-title">7. Cases of Noun & Possessive Case ('s) Rules</h2>
+        <p class="page-subtitle">Pages 16, 17 & 18 • 5 Cases, Living vs. Non-Living Possession, Double Possessive, and Common vs. Split Possession</p>
+
+        <div class="card">
+          <h3>👑 The 5 Cases of Noun (Page 16)</h3>
+          <div class="grid-3">
+            <div class="rule-box">
+              <h4>1. Subjective (Nominative)</h4>
+              <p><strong>Rohan</strong> plays well. (Acts as Subject)</p>
+            </div>
+            <div class="rule-box">
+              <h4>2. Objective (Accusative)</h4>
+              <p>I helped <strong>Rohan</strong>. (Acts as Object)</p>
+            </div>
+            <div class="rule-box">
+              <h4>3. Possessive Case ('s / of)</h4>
+              <p><strong>Rohan's</strong> friend. (Shows ownership)</p>
+            </div>
+            <div class="rule-box">
+              <h4>4. Vocative Case (S, V1)</h4>
+              <p><strong>"Rohan, come here."</strong><br>
+              • <em>He said, "Boys, work hard"</em> → He advised boys to work hard.<br>
+              • <em>He said, "Boys work hard."</em> → He said that boys worked hard.</p>
+            </div>
+            <div class="rule-box">
+              <h4>5. Appositive Case (S, ___, V)</h4>
+              <p><em>Rohan, my friend, <strong>is</strong> working hard.</em><br>
+              <strong>Rule:</strong> Verb agrees with the first main subject, NOT the appositive phrase!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🔑 Complete Rules of Possessive Case ('s vs. of) (Pages 16–18)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Living vs. Non-Living Things</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Living Things:</strong> Use <strong>'s</strong> or <strong>of</strong> (<em>Ram's Bat, Rohan's Cat, Ritika's Brother</em>).</li>
+                <li><strong>Non-Living Things:</strong> <strong>"Of" is compulsory!</strong> Do NOT use <em>'s</em>:
+                  <br>• Table's leg ✗ → <strong>The leg of the table ✓</strong>
+                  <br>• Room's wall ✗ → <strong>The wall of the room ✓</strong>
+                  <br>• Fan's blade ✗ → <strong>The blade of the fan ✓</strong>
+                </li>
+                <li><strong>Exceptions where Non-Living Things TAKE ('s):</strong>
+                  <br>• <strong>Personification:</strong> <em>Death's icy hands, Nature's beauty, Fortune's favourite, Heaven's mercy, Duty's call, Mind's eye.</em>
+                  <br>• <strong>Heavenly Bodies:</strong> <em>Sun's rays, Earth's atmosphere/temperature.</em>
+                  <br>• <strong>Time / Weight / Distance / Idioms:</strong> <em>A day's leave, A pound's weight, Today's function, Yesterday's programme, This year's campaign, At a stone's throw.</em>
+                  <br>• <strong>Countries / Cities / Organizations:</strong> <em>Mumbai's people, Kanpur's students, India's success, Country's population, Company's report, Society's needs, Government's decision, Court's decision.</em>
+                </li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>2. Plural Possessive, Double Possessive & Joint/Split</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Plural Nouns ending in -s:</strong> Add ONLY an apostrophe <strong>(')</strong> to avoid a hissing sound:
+                  <br>• <strong>Boys' Hostel ✓</strong> (Not <em>Boy's</em> or <em>Boys's</em>)
+                  <br>• <strong>Girls' Degree College ✓</strong> | <strong>Workers' organization ✓</strong> | <strong>Babies' faces ✓</strong> | <strong>For justice' sake / peace' sake ✓</strong>
+                  <br>• Irregular Plurals (not ending in -s) take <strong>'s</strong>: <strong>Children's Toys ✓</strong>, <strong>People's behaviour ✓</strong>, <strong>Men's / Women's ✓</strong>.
+                </li>
+                <li><strong>Sequential Double Possession is NOT Allowed (N's N's ✗):</strong>
+                  <br>• <em>My daughter's son's dog ✗</em> → <strong>The dog of my daughter's son ✓</strong>
+                  <br>• <em>My uncle's secretary's wife ✗</em> → <strong>The wife of my uncle's secretary ✓</strong>
+                </li>
+                <li><strong>Indefinite Pronouns + "Else":</strong>
+                  <br>• <em>Somebody's / Everybody's problem ✓</em>
+                  <br>• With <em>else</em>, put <strong>'s on else</strong>: <em>Somebody's else ✗</em> → <strong>Somebody else's ✓</strong>.
+                </li>
+                <li><strong>Common (Joint) vs. Split Possession (Page 18):</strong>
+                  <br>• <strong>Common Possession (Shared item):</strong> <code>Noun 1 and Noun 2's</code> → <em>India and Pakistan's border; Rohan and Rahul's joint account; Sandeep and Vivek's friendship; Ram and Sita's house.</em>
+                  <br>• <strong>Split Possession (Separate items):</strong> <code>Noun 1's and Noun 2's</code> → <em>India's and Pakistan's players; Rohan's and Rahul's accounts; Dinkar's and Nirala's poetry.</em>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:16px;">📊 Personal Pronoun & Possessive Table (Page 17)</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Personal Pronoun (Subjective)</th><th>Objective Case</th><th>Possessive Adjective (+ Noun)</th><th>Possessive Pronoun (No Noun / No Apostrophe!)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>I</strong></td><td>Me</td><td>My</td><td><strong>Mine</strong></td></tr>
+                <tr><td><strong>We</strong></td><td>Us</td><td>Our</td><td><strong>Ours</strong></td></tr>
+                <tr><td><strong>You</strong></td><td>You</td><td>Your</td><td><strong>Yours</strong> (Never <em>Your's ✗</em> → Yours faithfully/obediently ✓)</td></tr>
+                <tr><td><strong>He / She</strong></td><td>Him / Her</td><td>His / Her</td><td><strong>His / Hers</strong></td></tr>
+                <tr><td><strong>It</strong></td><td>It</td><td><strong>Its</strong> (Note: <em>It's = It is / It has</em>)</td><td><strong>Its</strong></td></tr>
+                <tr><td><strong>They</strong></td><td>Them</td><td>Their</td><td><strong>Theirs</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ 53 Possessive Case Drills & Questions (Pages 16–18)</h4>
+          <div class="drill-list" id="drill-p16"></div>
+          <div id="quiz-p16" style="margin-top:14px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 8: MISCELLANEOUS, CONFUSING & SUPERFLUOUS (PAGES 18-20) ================= -->
+      <section class="section-page" id="tab-misc">
+        <h2 class="page-title">8. Confusing Nouns & Superfluous Expressions</h2>
+        <p class="page-subtitle">Pages 18, 19 & 20 • Word Distinctions, Redundant Phrases, and Parts of Speech Conversions</p>
+
+        <div class="card">
+          <h3>🔍 Confusing Noun Pairs (Pages 18–20)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <ul style="padding-left:18px;">
+                <li><strong>Astronomer vs. Astrologer:</strong> <em>Astronomer</em> = Scientist of celestial bodies | <em>Astrologer</em> = Fortune teller (predicts future).</li>
+                <li><strong>Place vs. Room:</strong> <em>Place</em> = General location | <em>Room</em> = Unoccupied space for a specific purpose (in a car, bench, class, compartment).</li>
+                <li><strong>Center vs. Middle:</strong> <em>Center</em> = Central point of a circle/building | <em>Middle</em> = Between two sides (e.g., <em>middle of the road</em>).</li>
+                <li><strong>Habit vs. Custom vs. Customs:</strong> <em>Habit</em> = Individual tendency | <em>Custom</em> = Social tradition | <em>Customs</em> = Border taxes.</li>
+                <li><strong>Female vs. Woman:</strong> <em>Female</em> = Gender/sex classification | <em>Woman</em> = Adult female human being (<em>I saw two women in the park</em>).</li>
+                <li><strong>Envy vs. Jealousy:</strong> <em>Envy</em> = Wanting what another person has | <em>Jealousy</em> = Fear of losing something/someone you already have to another person.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <ul style="padding-left:18px;">
+                <li><strong>Talent vs. Skill:</strong> <em>Talent</em> = Natural ability (by birth) | <em>Skill</em> = Ability developed through learning or practice (e.g., driving).</li>
+                <li><strong>Ground vs. Floor vs. Grounds:</strong> <em>Ground</em> = Surface of the earth (outdoors) | <em>Floor</em> = Surface of a room indoors | <em>Grounds</em> = Valid reasons or justification.</li>
+                <li><strong>Sign vs. Signature:</strong> <em>Sign</em> = Symbol/indication (Noun) or Verb | <em>Signature</em> = A person's written name (Noun).</li>
+                <li><strong>Brick and Stone:</strong> <strong>Uncountable</strong> when used as building materials (<em>made of brick and stone</em>); <strong>Countable</strong> when referring to separate bricks/stones.</li>
+                <li><strong>Word vs. Words:</strong> <em>Word (C.N.)</em> = शब्द | <em>Word (U.N. Singular)</em> = Promise (<em>Man of word; true to one's word</em>).</li>
+                <li><strong>Alphabet vs. Alphabets:</strong> <em>Alphabet</em> = वर्णमाला (A–Z set of letters) | <em>Alphabets</em> = Languages.</li>
+                <li><strong>Pain vs. Pains:</strong> <em>Pain</em> = Suffering | <em>Pains</em> = Hard work / great effort (<em>takes pains over his work</em>).</li>
+                <li><strong>House vs. Home:</strong> <em>House</em> = Building (<em>buy a new house</em>) | <em>Home</em> = Emotional attachment / residence (<em>Go home</em> = Adverb; <em>Go to his home</em> = Noun).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🚫 26 Superfluous / Incorrect Expressions to Avoid (Pages 18–20)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>❌ Incorrect / Superfluous Expression</th><th>✅ Correct Expression (SSC Standard)</th><th>Why? / Note</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Marriage party</td><td><strong>Wedding party / Reception</strong></td><td>—</td></tr>
+                <tr><td>Family members</td><td><strong>The members of the family</strong></td><td><em>Note: Family doctor ✓ is correct.</em></td></tr>
+                <tr><td>Cousin brother / Cousin sister</td><td><strong>Cousin</strong></td><td>Cousin = child of uncle/aunt; Sibling = brother/sister.</td></tr>
+                <tr><td>Strong breeze</td><td><strong>Strong wind</strong></td><td>Breeze is always gentle/light wind.</td></tr>
+                <tr><td>Blunder mistake</td><td><strong>Blunder</strong></td><td>Blunder = big mistake (Idiom: <em>Himalayan blunder ✓</em>).</td></tr>
+                <tr><td>Hundred percent marks</td><td><strong>Full marks</strong></td><td>—</td></tr>
+                <tr><td>Ticket window</td><td><strong>Ticket counter</strong></td><td>—</td></tr>
+                <tr><td>Passing marks</td><td><strong>Pass marks</strong></td><td>—</td></tr>
+                <tr><td>Angry mob</td><td><strong>Mob</strong></td><td>Mob already means an angry crowd.</td></tr>
+                <tr><td>Date of birth (in informal/possessive)</td><td><strong>Birth date</strong></td><td>—</td></tr>
+                <tr><td>Front side / Back side / Behind back</td><td><strong>Front / Back / Behind</strong></td><td>—</td></tr>
+                <tr><td>Teaching line</td><td><strong>Teaching profession</strong></td><td>—</td></tr>
+                <tr><td>Freeship</td><td><strong>Free studentship</strong></td><td>—</td></tr>
+                <tr><td>Linking road</td><td><strong>Link road</strong></td><td>—</td></tr>
+                <tr><td>Fast enemies</td><td><strong>Sworn enemies</strong></td><td>—</td></tr>
+                <tr><td>Final conclusion</td><td><strong>Conclusion / Result</strong></td><td>Conclusion is already final.</td></tr>
+                <tr><td>Free gift</td><td><strong>Gift</strong></td><td>A gift is always free.</td></tr>
+                <tr><td>Reception party</td><td><strong>Reception</strong></td><td>—</td></tr>
+                <tr><td>Basic fundamental</td><td><strong>Fundamental</strong></td><td>—</td></tr>
+                <tr><td>Added bonus</td><td><strong>Bonus</strong></td><td>—</td></tr>
+                <tr><td>The truth facts</td><td><strong>The truth / Facts</strong></td><td>—</td></tr>
+                <tr><td>Two twins</td><td><strong>Twins</strong></td><td>—</td></tr>
+                <tr><td>Spouse wife</td><td><strong>Spouse / Wife</strong></td><td>—</td></tr>
+                <tr><td>Funeral service</td><td><strong>Funeral</strong></td><td>—</td></tr>
+                <tr><td>Mutual friend</td><td><strong>Common friend</strong></td><td>—</td></tr>
+                <tr><td>English teacher</td><td><strong>Teacher of English</strong></td><td>("English teacher" means a teacher from England).</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:16px;">⚡ Miscellaneous Drills & Questions (Pages 18–20)</h4>
+          <div class="drill-list" id="drill-p18"></div>
+          <div id="quiz-p18" style="margin-top:14px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 9: PRACTICE ARENA 1 (PAGES 20-23) ================= -->
+      <section class="section-page" id="tab-arena1">
+        <h2 class="page-title">9. Practice Arena I — Spotting Errors & Sentence Improvement</h2>
+        <p class="page-subtitle">Pages 20, 21, 22 & 23 • 33 Spotting Errors + 25 Sentence Improvements + 54 Mixed Spotting Errors</p>
+
+        <div class="card">
+          <h3>🛠️ Set A: Spotting Errors (Pages 20–21, Q1–Q33)</h3>
+          <div class="drill-list" id="drill-p20-se"></div>
+        </div>
+
+        <div class="card">
+          <h3>🎯 Set B: Interactive Sentence Improvement Quiz (Pages 21–22, Q1–Q25)</h3>
+          <div class="warn-box">
+            <strong>💡 Special Notes from Page 22:</strong>
+            <br>• <strong>Hair vs. Hairs:</strong> As a part of our body collectively → <strong>Singular</strong> (<em>Her hair is very nice; My grandmother's hair is grey</em>). When referring to separate/individual strands → <strong>Plural</strong> (<em>Do not leave hairs on the comb</em>).
+            <br>• <strong>Brothers vs. Brethren:</strong> <em>Brothers</em> = blood brothers/general | <em>Brethren</em> = members of the same community/race/fellowship (<em>Hindus and Sikhs are brethren</em>).
+            <br>• <strong>Gerund with Possessive Noun (Page 23):</strong> Use a possessive noun/adjective before a Gerund (<em>Verb+ing</em>): <em>Ajay's singing, Riya's studying, Rahul's practising, Jaya's walking</em>.
+          </div>
+          <div id="quiz-si" style="margin-top:16px;"></div>
+        </div>
+
+        <div class="card">
+          <h3>🛠️ Set C: Comprehensive Spotting Errors (Pages 22–23, Q1–Q54)</h3>
+          <div class="drill-list" id="drill-p22-se"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 10: PRACTICE ARENA 2 (PAGES 23-24) ================= -->
+      <section class="section-page" id="tab-arena2">
+        <h2 class="page-title">10. Practice Arena II — Noun PYQs & Difficult Questions</h2>
+        <p class="page-subtitle">Pages 23 & 24 • 11 Classic PYQs + 20 High-Level Exam Questions</p>
+
+        <div class="card">
+          <h3>🏅 Section 1: Noun Previous Year Questions (Pages 23–24, Q1–Q11)</h3>
+          <div id="quiz-pyq"></div>
+        </div>
+
+        <div class="card">
+          <h3>🔥 Section 2: Noun Difficult Questions Practice (Page 24, Q1–Q20)</h3>
+          <div class="rule-box">
+            <strong>📌 Golden Rule on Page 24:</strong>
+            <br>• <code>Preposition + Noun / Pronoun (Always)</code>
+            <br>• <code>Preposition + Verb (-ing / Gerund)</code> (Never use V1/V2/V3 or an Adjective alone after a Preposition or Article!)
+          </div>
+          <div id="quiz-difficult" style="margin-top:16px;"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // ==================== DATA STORE (ALL PDF QUESTIONS & DRILLS) ====================
+
+    // Page 3: Common vs Proper Noun Drills
+    const drillsP3 = [
+      { q: "1. Road", a: "Common Noun" },
+      { q: "2. Place", a: "Common Noun" },
+      { q: "3. City", a: "Common Noun" },
+      { q: "4. Country", a: "Common Noun" },
+      { q: "5. Bird", a: "Common Noun" },
+      { q: "6. Animal", a: "Common Noun" },
+      { q: "7. Crow", a: "Common Noun" },
+      { q: "8. G.T Road", a: "Proper Noun" },
+      { q: "9. Agra", a: "Proper Noun" },
+      { q: "10. Kanpur", a: "Proper Noun" },
+      { q: "11. America", a: "Proper Noun" },
+      { q: "12. Dog", a: "Common Noun" },
+      { q: "13. Sparrow", a: "Common Noun" },
+      { q: "14. Snake", a: "Common Noun" }
+    ];
+
+    // Page 5: Collective Noun Drills (Q1-Q11)
+    const drillsP5 = [
+      { q: "1. The Gentries is/are at the gate.", a: "[Gentry] are (Gentry is already plural)" },
+      { q: "2. The Infantry is / are present there.", a: "are (Infantry takes a plural verb)" },
+      { q: "3. The audience has/have taken their seats.", a: "have (Individual seats / 'their')" },
+      { q: "4. The Jury is/are one on this point.", a: "is (United)" },
+      { q: "5. The Jury is/are divided on this point.", a: "are (Divided)" },
+      { q: "6. A Pack of Dogs were/was wandering here and there.", a: "was (Agrees with singular 'A Pack')" },
+      { q: "7. The team is/are in the same dress.", a: "is (United)" },
+      { q: "8. The Committee is/are unanimous on this Decision.", a: "is (United)" },
+      { q: "9. A Herd of Elephants is/are wandering here and there.", a: "is (Agrees with 'A Herd')" },
+      { q: "10. The jury agree/agrees that the lawyers are not focusing on its/their cases so it/they has/have decided that it/they should not be allowed to attend its/their cases.", a: "agrees / its / it / has / it / its (United decision)" },
+      { q: "11. A pride of lions is/are moving towards the jungle.", a: "is (Agrees with 'A pride')" }
+    ];
+
+    // Pages 4-5: Spellings, OWS & Collective Noun MCQs
+    const quizCollectiveData = [
+      { meta: "Page 4 • Spelling Q1", q: "Q1. Choose the correctly spelled word:", opts: ["A. Comittee", "B. Committe", "C. Committee", "D. Commitee"], ans: 2, exp: "Correct spelling is C-O-M-M-I-T-T-E-E (Double M, Double T, Double E)." },
+      { meta: "Page 4 • Spelling Q2", q: "Q2. Choose the correctly spelt word:", opts: ["A. Lieutenent", "B. Leutenant", "C. Lieutenant", "D. Lietenant"], ans: 2, exp: "Correct spelling is L-I-E-U-T-E-N-A-N-T (Trick: Lie + U + Ten + Ant)." },
+      { meta: "Page 4 • Spelling Q3", q: "Q3. Choose the correctly spelt word:", opts: ["A. Colonal", "B. Colonel", "C. Colenel", "D. Coronel"], ans: 1, exp: "Correct spelling is Colonel." },
+      { meta: "Page 4 • Spelling Q4", q: "Q4. Choose the correctly spelt word:", opts: ["a) Batallion", "b) Battallion", "c) Battalion", "d) Batallian"], ans: 2, exp: "Correct spelling is Battalion (Double T, Single L)." },
+      { meta: "Page 4 • Spelling Q5", q: "Q5. Choose the correctly spelt word:", opts: ["A. Baracks", "B. Barracks", "C. Baraks", "D. Barraks"], ans: 1, exp: "Correct spelling is Barracks." },
+      { meta: "Page 4 • Spelling Q6", q: "Q6a. Choose the correctly spelt word:", opts: ["A. Gregarious", "B. Gregariouss", "C. Gregerious", "D. Gregarous"], ans: 0, exp: "Correct spelling is Gregarious (sociable / living in flocks)." },
+      { meta: "Page 4 • Collective Noun Q6", q: "Q6b. _______ is a group of Lions.", opts: ["A. Bunting", "B. Group", "C. School", "D. Pride"], ans: 3, exp: "A group of lions is called a Pride." },
+      { meta: "Page 4 • OWS Q7", q: "Q7. A small group of people who spend their time together and do not welcome other people into that group:", opts: ["A) Squad", "B) Clique", "C) Employees", "D) Lobby"], ans: 1, exp: "Clique refers to a small, exclusive group of people." },
+      { meta: "Page 4 • OWS Q8", q: "Q8. A large number of fish swimming together:", opts: ["1. String", "2. Sheaf", "3. Shoal", "4. Stream"], ans: 2, exp: "A large group of fish swimming together is a Shoal (or School)." },
+      { meta: "Page 4 • OWS Q9", q: "Q9. A group of worshippers:", opts: ["1. Crowd", "2. Congregation", "3. Caravan", "4. Constellation"], ans: 1, exp: "Congregation is a group of worshippers." },
+      { meta: "Page 4 • OWS Q10", q: "Q10. A formal agreement between two or more nations or peoples:", opts: ["1. Bond", "2. Charter", "3. Pact", "4. Concord"], ans: 2, exp: "Pact is a formal agreement between nations or peoples." },
+      { meta: "Page 4 • OWS Q11", q: "Q11. A group of stars having a particular shape:", opts: ["1. Orbit", "2. Galaxy", "3. Planet", "4. Constellation"], ans: 3, exp: "Constellation is a group of stars forming a recognized pattern." },
+      { meta: "Page 5 • OWS Q12", q: "Q12. A group of people, typically with vehicles or animals, travelling together:", opts: ["(a) Alibi", "(b) Anachronism / Troupe", "(c) Caravan", "(d) Bohemian"], ans: 2, exp: "Caravan is a group of travellers/gypsies with vehicles or animals." },
+      { meta: "Page 5 • SSC CGL PRE 2024 Q13", q: "Q13. 'A herd of cattle' consists of related females, cubs, and a small number of adult males. (Substitute the underlined part):", opts: ["A) pride of lions", "B) pack of wolves", "C) school of fish", "D) flock of birds"], ans: 0, exp: "Lions have cubs and live in a 'pride of lions'." },
+      { meta: "Page 5 • SSC Steno 2025 Q12", q: "Q12. The team were playing well. (SSC Steno 2025)", opts: ["A) No error", "B) were playing", "C)C) The team", "D) well."], ans: 1, exp: "Here the team is acting together as a single unit, so use singular verb 'was playing'." },
+      { meta: "Page 5 • Collective Noun Q14", q: "Q14. A gang of robbers _______ arrested by the police last night.", opts: ["A) were", "B) was", "C) have been", "D) are"], ans: 1, exp: "With 'A gang of + plural noun', the verb agrees with the singular collective noun 'gang' -> 'was'." },
+      { meta: "Page 5 • Collective Noun Q15", q: "Q15. The committee _______ divided in their opinions regarding the new policy.", opts: ["A) is", "B) was", "C) are", "D) has"], ans: 2, exp: "Since the members are 'divided in their opinions' (acting individually), the plural verb 'are' is used." }
+    ];
+
+    // Page 6: Abstract & Material Noun Drills (Q1-Q7)
+    const drillsP6 = [
+      { q: "1. All my sympathies are with you in this difficult time.", a: "All my sympathy is (Sympathy is an uncountable abstract noun)" },
+      { q: "2. He has shown great loyalties towards his nation.", a: "great loyalty (Abstract noun cannot be pluralized)" },
+      { q: "3. I express my deep gratitudes to all the teachers.", a: "deep gratitude (Uncountable abstract noun)" },
+      { q: "4. The prisoner was put in iron.", a: "put in irons ('Irons' means chains/fetters)" },
+      { q: "5. We should not give ourselves airs.", a: "Correct ('Airs' means false pride / pretence)" },
+      { q: "6. The woods of this table is very expensive.", a: "The wood ('Wood' = timber/material; 'Woods' = forest)" },
+      { q: "7. Shakespeare's work are immortal.", a: "Shakespeare's works ('Works' = literary compositions)" }
+    ];
+
+    const quizAbstractData = [
+      { meta: "Page 6 • Abstract Noun Q1", q: "Q1. Identify the Abstract Noun among the following words:", opts: ["A) Patriot", "B) Patriotic", "C) Patriotism", "D) Patrol"], ans: 2, exp: "Words ending in '-ism' (Patriotism) represent a state/belief and are Abstract Nouns." },
+      { meta: "Page 6 • Material Plural Shift Q2", q: "Q2. The _______ of the consignment were damaged during transit.", opts: ["A) good", "B) goods", "C) goodness", "D) goodies"], ans: 1, exp: "'Goods' (always plural) means commodities or merchandise." },
+      { meta: "Page 7 • Common to Abstract Q3", q: "Q3. Seeing the hungry orphan crying on the street, _______ in her woke up immediately.", opts: ["A) a mother", "B) mother", "C) the mother", "D) mothers"], ans: 2, exp: "To express the inner quality (motherhood) inside a person, we use 'The + Common Noun + in him/her' -> 'the mother in her'." },
+      { meta: "Page 7 • Material Article Rule Q4", q: "Q4. _______ gold you bought from that jeweller yesterday is of twenty-four carats.", opts: ["A) A", "B) An", "C) The", "D) No Article"], ans: 2, exp: "When a Material Noun is made specific by a clause ('you bought from that jeweller'), we use 'The'." }
+    ];
+
+    // Pages 7-9: Countable & Uncountable Drills (Q1-Q29)
+    const drillsP8 = [
+      { q: "1. He gave me an advice before the exam.", a: "gave me advice / a piece of advice ('Advice' is uncountable)" },
+      { q: "2. She gave me many informations about the case.", a: "much information / many pieces of information" },
+      { q: "3. Where are my luggages kept?", a: "Where is my luggage kept? ('Luggage' is uncountable)" },
+      { q: "4. All the furnitures of this room are old-fashioned.", a: "All the furniture ... is old-fashioned" },
+      { q: "5. The sceneries of Kashmir enchant everyone.", a: "The scenery of Kashmir enchants everyone" },
+      { q: "6. I like the poetries of Keats and Shelley.", a: "the poetry / the poems ('Poetry' is uncountable)" },
+      { q: "7. New machineries have been ordered for the factory.", a: "New machinery has been ordered / New machines have been ordered" },
+      { q: "8. I have an urgent work at home today.", a: "urgent work / a piece of urgent work" },
+      { q: "9. He ate two breads for breakfast.", a: "two slices/loaves of bread ('Bread' is uncountable)" },
+      { q: "10. No news are good news.", a: "No news is good news ('News' is always singular)" },
+      { q: "11. The police have found many vital evidences.", a: "much vital evidence / many pieces of evidence" },
+      { q: "12. We need modern equipments for the laboratory.", a: "modern equipment (Never 'equipments')" },
+      { q: "13. She bought costly jewelleries for the wedding.", a: "costly jewellery / articles of jewellery" },
+      { q: "14. The traffics in Delhi are very heavy in the evening.", a: "The traffic in Delhi is very heavy" },
+      { q: "15. I need some stationeries for my office.", a: "some stationery ('Stationery' is uncountable)" },
+      { q: "16. The little boy committed many mischiefs.", a: "much mischief / many acts of mischief" },
+      { q: "17. He has a sound knowledges of English grammar.", a: "a sound knowledge (With 'a + adj + knowledge of', singular 'knowledge' is used)" }
+    ];
+
+    const quizCountableData = [
+      { meta: "Page 8 • Spotting Error Q18", q: "Q18. My father gave me (A) / a lot of advices (B) / before I left for hostel. (C) / No Error (D)", opts: ["A) My father gave me", "B) a lot of advices", "C) before I left for hostel", "D) No Error"], ans: 1, exp: "Replace 'advices' with 'advice' or 'pieces of advice'. 'Advice' is uncountable." },
+      { meta: "Page 8 • Spotting Error Q19", q: "Q19. All the furnitures have been (A) / sent to the new house (B) / located in Kanpur. (C) / No Error (D)", opts: ["A) All the furnitures have been", "B) sent to the new house", "C) located in Kanpur", "D) No Error"], ans: 0, exp: "Replace 'furnitures have been' with 'furniture has been'." },
+      { meta: "Page 8 • Noun vs Verb Q20", q: "Q20. The teacher _______ the students to _______ regularly for the upcoming examination.", opts: ["A) advice, practice", "B) advised, practise", "C) advised, practice", "D) advice, practise"], ans: 1, exp: "'Advised' (Verb) and 'to practise' (2nd Verb after 'to'). Remember: C = Noun (Advice, Practice), S = Verb (Advise, Practise)." },
+      { meta: "Page 9 • Spotting Error Q21", q: "Q21. The laboratory of our college (A) / is lacking in latest equipments (B) / and chemicals. (C) / No Error (D)", opts: ["A) The laboratory of our college", "B) is lacking in latest equipments", "C) and chemicals", "D) No Error"], ans: 1, exp: "Use 'equipment' instead of 'equipments'." },
+      { meta: "Page 9 • Spotting Error Q22", q: "Q22. Wordsworth's poetries (A) / are characterized by his subtle description (B) / of the beauty of nature. (C) / No Error (D)", opts: ["A) Wordsworth's poetries", "B) are characterized by his subtle description", "C) of the beauty of nature", "D) No Error"], ans: 0, exp: "Replace 'poetries are' with 'poetry is' (or 'poems are')." },
+      { meta: "Page 9 • Spotting Error Q23", q: "Q23. He had no other choice (A) / but to carry all his baggages (B) / himself at the station. (C) / No Error (D)", opts: ["A) He had no other choice", "B) but to carry all his baggages", "C) himself at the station", "D) No Error"], ans: 1, exp: "'Baggage' and 'Luggage' are uncountable nouns; never add '-s'." }
+    ];
+
+    // Pages 9-10: Unit & Number Drills
+    const drillsP9 = [
+      { q: "1. I bought two dozens bananas from the market.", a: "two dozen bananas (Definite number + singular unit)" },
+      { q: "2. Dozen of people were injured in the stampede.", a: "Dozens of people (Indefinite plural + 'of')" },
+      { q: "3. Five thousands rupees were spent on the party.", a: "Five thousand rupees" },
+      { q: "4. Thousands of student appeared in the examination.", a: "Thousands of students" },
+      { q: "5. Three hundreds of soldiers marched past the gate.", a: "Three hundred soldiers (Remove 's' and 'of')" },
+      { q: "6. Millions of dollars was wasted on the project.", a: "Millions of dollars were wasted" }
+    ];
+
+    const quizP9Data = [
+      { meta: "Page 10 • Number Concept Q1", q: "Q1. Almost five (A) / thousands candidates appeared (B) / for the interview yesterday. (C) / No Error (D)", opts: ["A) Almost five", "B) thousands candidates appeared", "C) for the interview yesterday", "D) No Error"], ans: 1, exp: "After a definite number ('five'), 'thousand' remains singular: 'five thousand candidates'." },
+      { meta: "Page 10 • Number Concept Q2", q: "Q2. Hundred of migratory birds (A) / visit this sanctuary (B) / every winter season. (C) / No Error (D)", opts: ["A) Hundred of migratory birds", "B) visit this sanctuary", "C) every winter season", "D) No Error"], ans: 0, exp: "When no definite number precedes and 'of' follows, use plural: 'Hundreds of migratory birds'." },
+      { meta: "Page 10 • Number Concept Q3", q: "Q3. She ordered three _______ of mangoes from the orchard.", opts: ["A) dozen", "B) dozens", "C) dozens of", "D) dozen of"], ans: 0, exp: " Note: If 'of' is not needed, 'three dozen mangoes' is standard; with determiners like 'these/the' we can say 'three dozen of these mangoes'." }
+    ];
+
+    // Pages 10-11: Compound Noun Drills
+    const drillsP10 = [
+      { q: "1. All his brother-in-laws are invited to the wedding.", a: "brothers-in-law (Pluralize root word 'brother')" },
+      { q: "2. The passer-bys helped the injured cyclist.", a: "passers-by (Pluralize main noun 'passer')" },
+      { q: "3. Two woman-servants were hired for the house.", a: "Two women-servants (Man/Woman denoting gender of whole person -> both plural)" },
+      { q: "4. Take two spoonsful of this medicine daily.", a: "two spoonfuls (Add '-s' at the very end of '-ful' nouns)" },
+      { q: "5. Pages after pages of the Ramayana were read.", a: "Page after page ... was read (Noun + Prep + Same Noun = Always Singular!)" },
+      { q: "6. Women after women spoke against the dowry system.", a: "Woman after woman spoke" },
+      { q: "7. My sister's-in-law husband is an officer.", a: "My sister-in-law's husband (Possessive 's goes at the very end)" },
+      { q: "8. All the commander-in-chiefs attended the meeting.", a: "commanders-in-chief" }
+    ];
+
+    const quizCompoundData = [
+      { meta: "Page 11 • Compound Noun Q1", q: "Q1. Towns after towns (A) / were conquered by Alexander (B) / during his campaign. (C) / No Error (D)", opts: ["A) Towns after towns", "B) were conquered by Alexander", "C) during his campaign", "D) No Error"], ans: 0, exp: "'Town after town was conquered...' (Noun + Preposition + Same Noun is always singular with a singular verb)." },
+      { meta: "Page 11 • Compound Noun Q2", q: "Q2. All the _______ were summoned by the Defence Minister.", opts: ["A) Commander-in-chiefs", "B) Commanders-in-chief", "C) Commanders-in-chiefs", "D) Commander-in-chief"], ans: 1, exp: "The principal word 'Commander' takes the plural '-s': 'Commanders-in-chief'." },
+      { meta: "Page 11 • Compound Noun Q3", q: "Q3. What is the correct plural of 'Man-hater' and 'Woman-doctor'?", opts: ["A) Men-haters, Women-doctors", "B) Man-haters, Women-doctors", "C) Man-haters, Woman-doctors", "D) Men-hater, Women-doctor"], ans: 1, exp: "'Man-hater' means a hater of man (object) -> 'Man-haters'. 'Woman-doctor' means a doctor who is a woman -> both change: 'Women-doctors'." }
+    ];
+
+    // Page 12: Foreign & Irregular Plurals Drills
+    const drillsP12 = [
+      { q: "1. What is the criteria for selection in this exam?", a: "What is the criterion (OR What are the criteria)" },
+      { q: "2. Many natural phenomenons were observed last night.", a: "Many natural phenomena ('Phenomena' is plural of 'Phenomenon')" },
+      { q: "3. Several oasis were found in the Sahara desert.", a: "Several oases (Singular: Oasis -> Plural: Oases)" },
+      { q: "4. The country is facing many economic crisis.", a: "many economic crises (Singular: Crisis -> Plural: Crises)" },
+      { q: "5. Harmful bacterias are visible under a microscope.", a: "Harmful bacteria ('Bacteria' is already the plural of 'Bacterium')" },
+      { q: "6. All the alumnuses of the college gathered on Sunday.", a: "All the alumni (Singular: Alumnus -> Plural: Alumni)" },
+      { q: "7. The radiuses of the two circles are equal.", a: "The radii (Singular: Radius -> Plural: Radii)" },
+      { q: "8. The agenda of the meeting were discussed.", a: "is/was discussed (In modern usage, 'agenda' is used as a singular countable noun too, or plural of agendum)" },
+      { q: "9. Two wolves attacked the herd of sheeps.", a: "herd of sheep ('Sheep' and 'Deer' never take -s)" },
+      { q: "10. He has strong believes in his traditions.", a: "strong beliefs (Noun plural is 'beliefs'; 'believes' is a verb)" }
+    ];
+
+    const quizP12Data = [
+      { meta: "Page 12 • Foreign Plural Q1", q: "Q1. A solar eclipse is one of the rarest natural _______ in the world.", opts: ["A) phenomenon", "B) phenomena", "C) phenomenons", "D) phenomenas"], ans: 1, exp: "After 'one of the + superlative', we need a plural noun: 'phenomena' is the plural of 'phenomenon'." },
+      { meta: "Page 12 • Foreign Plural Q2", q: "Q2. Which of the following Singular — Plural pairs is INCORRECT?", opts: ["A) Criterion — Criteria", "B) Thesis — Theses", "C) Museum — Musea", "D) Erratum — Errata"], ans: 2, exp: "The plural of 'Museum' is 'Museums' (regular), NOT 'Musea'." },
+      { meta: "Page 12 • Foreign Plural Q3", q: "Q3. How many _______ have you submitted for your doctoral degree?", opts: ["A) thesis", "B) theses", "C) thesises", "D) theum"], ans: 1, exp: "After 'How many', use the plural 'theses' (Greek '-is' changes to '-es')." }
+    ];
+
+    // Pages 13-14: 5 Special Noun Types Drills
+    const drillsP13 = [
+      { q: "1. Mathematics are my favourite subject.", a: "Mathematics is (Name of a subject is singular)" },
+      { q: "2. His mathematics is very weak.", a: "His mathematics are (Preceded by possessive -> means 'calculations' -> plural)" },
+      { q: "3. Politics are a dirty game.", a: "Politics is a dirty game" },
+      { q: "4. What is his politics?", a: "What are his politics? (Possessive + politics = political views -> plural)" },
+      { q: "5. Measles have broken out in the village.", a: "Measles has broken out (Disease name is singular)" },
+      { q: "6. Billiards are played by rich people.", a: "Billiards is played (Game name is singular)" },
+      { q: "7. Where is my spectacles?", a: "Where are my spectacles? (Paired tool -> always plural)" },
+      { q: "8. This scissors is not sharp.", a: "These scissors are not sharp (OR This pair of scissors is not sharp)" },
+      { q: "9. A pair of shoes were lying in the corner.", a: "A pair of shoes was lying ('A pair' is singular)" },
+      { q: "10. Alms was given to the beggars.", a: "Alms were given ('Alms' is always plural)" },
+      { q: "11. Riches has wings.", a: "Riches have wings ('Riches' is always plural)" },
+      { q: "12. My surroundings is very peaceful.", a: "My surroundings are very peaceful" },
+      { q: "13. The cattles are grazing in the field.", a: "The cattle are grazing ('Cattle' is already plural; never 'cattles')" },
+      { q: "14. The police has arrested the thief.", a: "The police have arrested ('Police' takes a plural verb; 'A policeman has...')" },
+      { q: "15. Vermins destroy our crops.", a: "Vermin destroy ('Vermin' is already plural)" },
+      { q: "16. The Arabian Nights are an interesting book.", a: "The Arabian Nights is (Book title is singular)" },
+      { q: "17. The United States have a big army.", a: "The United States has (Country name is a single unit)" },
+      { q: "18. India won the match by an inning and 50 runs.", a: "by an innings ('Innings' is spelled with -s in both singular and plural)" },
+      { q: "19. Two summons were issued by the court.", a: "Two summonses were issued ('Summons' is singular; 'Summonses' is plural)" },
+      { q: "20. The wages of sin are death.", a: "The wages of sin is death (Here 'wages' = result/punishment -> singular)" },
+      { q: "21. His wages is very low.", a: "His wages are very low (Here 'wages' = labour income -> plural)" }
+    ];
+
+    const quizP13Data = [
+      { meta: "Page 14 • Special Nouns Q1", q: "Q1. Two summons (A) / have been issued by the district court (B) / against the proprietor. (C) / No Error (D)", opts: ["A) Two summons", "B) have been issued by the district court", "C) against the proprietor", "D) No Error"], ans: 0, exp: "'Summons' is a singular countable noun. Its plural after 'Two' is 'Two summonses'." },
+      { meta: "Page 14 • Special Nouns Q2", q: "Q2. My spectacles (A) / has been broken (B) / by my younger brother. (C) / No Error (D)", opts: ["A) My spectacles", "B) has been broken", "C) by my younger brother", "D) No Error"], ans: 1, exp: "'Spectacles' is a paired plural noun. Replace 'has been' with 'have been'." },
+      { meta: "Page 14 • Special Nouns Q3", q: "Q3. The gentry of this town (A) / was invited to the inauguration (B) / of the new hospital. (C) / No Error (D)", opts: ["A) The gentry of this town", "B) was invited to the inauguration", "C) of the new hospital", "D) No Error"], ans: 1, exp: "'Gentry' (along with cattle, clergy, peasantry, police) is always plural. Replace 'was' with 'were'." },
+      { meta: "Page 14 • Special Nouns Q4", q: "Q4. 'Gulliver's Travels' (A) / were written by Jonathan Swift (B) / in the 18th century. (C) / No Error (D)", opts: ["A) 'Gulliver's Travels'", "B) were written by Jonathan Swift", "C) in the 18th century", "D) No Error"], ans: 1, exp: "The title of a single book takes a singular verb: 'was written'." }
+    ];
+
+    // Pages 14-15: 'Of' & Fractions Drills
+    const drillsP14 = [
+      { q: "1. One of my friend lives in Lucknow.", a: "One of my friends ('One of' + Plural Noun)" },
+      { q: "2. Each of the student was given a certificate.", a: "Each of the students was given" },
+      { q: "3. Neither of the two road leads to the station.", a: "Neither of the two roads leads" },
+      { q: "4. One third of the work are still pending.", a: "is still pending ('Work' is uncountable -> singular verb)" },
+      { q: "5. One third of the students was absent yesterday.", a: "were absent ('Students' is plural countable -> plural verb)" },
+      { q: "6. Forty percent of the population of India are below 30.", a: "is below 30 ('Population' is singular here)" },
+      { q: "7. Most of the mango were rotten.", a: "Most of the mangoes were rotten (OR Most of the mango was rotten)" }
+    ];
+
+    const quizP14Data = [
+      { meta: "Page 15 • 'One of' Rule Q1", q: "Q1. One of the most important factor (A) / that leads to success (B) / is consistency. (C) / No Error (D)", opts: ["A) One of the most important factor", "B) that leads to success", "C) is consistency", "D) No Error"], ans: 0, exp: "After 'One of the...', the noun must be plural: 'One of the most important factors'." },
+      { meta: "Page 15 • Fraction Rule Q2", q: "Q2. Three-fourths of the pillar (A) / have been painted (B) / by the workers today. (C) / No Error (D)", opts: ["A) Three-fourths of the pillar", "B) have been painted", "C) by the workers today", "D) No Error"], ans: 1, exp: "Since 'the pillar' is singular, a fraction of it also takes a singular verb: 'has been painted'." }
+    ];
+
+    // Pages 15-16: Modifiers & Same-Form Nouns Drills
+    const drillsP15 = [
+      { q: "1. I found a five hundreds rupees note on the road.", a: "a five-hundred-rupee note (Modifier nouns are always singular)" },
+      { q: "2. He gave me five two-hundred-rupees notes.", a: "five two-hundred-rupee notes (Only the final main noun 'notes' is plural)" },
+      { q: "3. It is a three-years degree course.", a: "a three-year degree course" },
+      { q: "4. The government formed a five-men committee.", a: "a five-man committee" },
+      { q: "5. She underwent a delicate eyes surgery.", a: "a delicate eye surgery ('Eye' modifies 'surgery')" },
+      { q: "6. He stayed at a five-stars hotel in Mumbai.", a: "a five-star hotel" },
+      { q: "7. Many deers and sheeps were seen in the meadow.", a: "Many deer and sheep (Invariable nouns)" },
+      { q: "8. This species of birds are very rare.", a: "This species of birds is very rare ('This' = singular)" },
+      { q: "9. His means is very limited, so he cannot buy a car.", a: "His means are very limited ('Means' = income/resources -> always plural)" }
+    ];
+
+    const quizP15Data = [
+      { meta: "Page 16 • Modifier Concept Q1", q: "Q1. We are going to launch (A) / a three-months training programme (B) / for the new recruits. (C) / No Error (D)", opts: ["A) We are going to launch", "B) a three-months training programme", "C) for the new recruits", "D) No Error"], ans: 1, exp: "Because 'three-month' modifies 'training programme' (preceded by 'a'), 'month' must be singular: 'a three-month training programme'." },
+      { meta: "Page 16 • Modifier Concept Q2", q: "Q2. My uncle gifted me (A) / two five-hundreds-rupees notes (B) / on my birthday. (C) / No Error (D)", opts: ["A) My uncle gifted me", "B) two five-hundreds-rupees notes", "C) on my birthday", "D) No Error"], ans: 1, exp: "Modifiers before the main noun 'notes' must be singular: 'two five-hundred-rupee notes'." },
+      { meta: "Page 16 • Invariable Noun Q3", q: "Q3. The aquarium has many colourful _______ from the Pacific Ocean.", opts: ["A) fishes", "B) fishs", "C) a fish", "D) fishing"], ans: 0, exp: "When referring to different species/varieties of fish (colourful varieties in an aquarium), 'fishes' is correct." }
+    ];
+
+    // Pages 16-18: Possessive Case Drills
+    const drillsP16 = [
+      { q: "1. The table's legs are broken.", a: "The legs of the table (Non-living thing takes 'of')" },
+      { q: "2. The house's roof is leaking.", a: "The roof of the house" },
+      { q: "3. I live in a boy's hostel.", a: "a boys' hostel (Plural 'boys' ending in -s takes only apostrophe)" },
+      { q: "4. For goodness's sake, forgive him.", a: "For goodness' sake (Hissing sound -> only apostrophe)" },
+      { q: "5. My wife's secretary's mother has expired.", a: "The mother of my wife's secretary (Avoid sequential double 's)" },
+      { q: "6. I followed nobody's else advice.", a: "nobody else's advice (With 'else', apostrophe goes on 'else')" },
+      { q: "7. Ram's and Sita's house was decorated.", a: "Ram and Sita's house (Joint possession of one shared house)" },
+      { q: "8. Keats and Shelley's poems are taught in this class.", a: "Keats's and Shelley's poems (Separate poets -> split possession)" },
+      { q: "9. India's population is increasing rapidly.", a: "Correct (Country/Place names can take 's)" },
+      { q: "10. He lives at a stone throw from my college.", a: "at a stone's throw (Idiom with distance takes 's)" },
+      { q: "11. I have applied for two day's leave.", a: "two days' leave (Plural 'days' -> apostrophe after s)" },
+      { q: "12. Yours' affectionately.", a: "Yours affectionately (Possessive pronouns never take an apostrophe)" }
+    ];
+
+    const quizP16Data = [
+      { meta: "Page 18 • Possessive Case Q1", q: "Q1. The building's roof (A) / needs immediate repair (B) / before the monsoon arrives. (C) / No Error (D)", opts: ["A) The building's roof", "B) needs immediate repair", "C) before the monsoon arrives", "D) No Error"], ans: 0, exp: "Non-living things do not take ('s). Change 'The building's roof' to 'The roof of the building'." },
+      { meta: "Page 18 • Possessive Case Q2", q: "Q2. Tagore's and Sarat Chandra's novels (A) / portray the true picture (B) / of Bengal's society. (C) / No Error (D)", opts: ["A) Tagore's and Sarat Chandra's novels", "B) portray the true picture", "C) of Bengal's society", "D) No Error"], ans: 3, exp: "No Error! Tagore and Sarat Chandra wrote separate novels (split possession -> 's on both), and 'Bengal's' (place name) is also valid." },
+      { meta: "Page 18 • Possessive Case Q3", q: "Q3. You should not put your sign (A) / on somebody's else papers (B) / without reading them. (C) / No Error (D)", opts: ["A) You should not put your sign", "B) on somebody's else papers", "C) without reading them", "D) Error in both A & B"], ans: 3, exp: "In (A) use 'signature' (Noun) instead of 'sign', and in (B) use 'somebody else's papers'." }
+    ];
+
+    // Pages 18-20: Confusing & Superfluous Drills
+    const drillsP18 = [
+      { q: "1. My cousin brother is preparing for SSC CGL.", a: "My cousin ('Cousin brother/sister' is superfluous)" },
+      { q: "2. There is no place in this compartment.", a: "no room in this compartment ('Room' = unoccupied space)" },
+      { q: "3. What is the passing marks in this exam?", a: "What are the pass marks ('Pass marks', not 'passing marks')" },
+      { q: "4. Put your sign on this application form.", a: "Put your signature ('Signature' is the noun; 'sign' is the verb)" },
+      { q: "5. All my family members are going to Shimla.", a: "All the members of my family" },
+      { q: "6. Mr. Sharma is our English teacher.", a: "our teacher of English ('English teacher' = a citizen of England)" },
+      { q: "7. An angry mob attacked the police station.", a: "A mob ('Mob' already means an angry crowd)" },
+      { q: "8. He committed a big blunder mistake.", a: "committed a blunder ('Blunder' = big mistake)" },
+      { q: "9. A strong breeze blew my hat off.", a: "A strong wind ('Breeze' is always gentle and light)" },
+      { q: "10. He is a man of words.", a: "a man of word (Promise = singular 'word')" },
+      { q: "11. She learnt all the alphabets at the age of three.", a: "learnt the alphabet ('Alphabets' means languages)" },
+      { q: "12. This house is built of bricks and stones.", a: "built of brick and stone (Material usage -> uncountable)" }
+    ];
+
+    const quizP18Data = [
+      { meta: "Page 20 • Superfluous Q1", q: "Q1. All his family members (A) / were present at the (B) / railway station to see him off. (C) / No Error (D)", opts: ["A) All his family members", "B) were present at the", "C) railway station to see him off", "D) No Error"], ans: 0, exp: "'Family members' is non-standard in SSC exams. Use 'All the members of his family'." },
+      { meta: "Page 20 • Confusing Nouns Q2", q: "Q2. There is no _______ for another passenger in this car.", opts: ["A) place", "B) seat", "C) room", "D) space"], ans: 2, exp: "'Room' is used for unoccupied space that can be occupied by a person or thing in an enclosed area." },
+      { meta: "Page 20 • Confusing Nouns Q3", q: "Q3. You must be true to your _______ if you want people to trust you.", opts: ["A) words", "B) word", "C) wording", "D) a word"], ans: 1, exp: "When 'word' means 'promise', it is used in the singular form: 'true to your word'." }
+    ];
+
+    // Pages 20-21: Set A - Spotting Errors (Q1-Q33)
+    const drillsP20SE = [
+      { q: "1. My sister (A) / has read (B) / pages after pages of the Bible. (C) / No Error (D)", a: "(C) Replace 'pages after pages' with 'page after page'." },
+      { q: "2. I went to the temple (A) / with my parents, aunts (B) / and cousin sisters. (C) / No Error (D)", a: "(C) Replace 'cousin sisters' with 'cousins'." },
+      { q: "3. He takes pain (A) / over his work. (B) / No Error (C)", a: "(A) Replace 'pain' with 'pains' ('takes pains' = makes great effort)." },
+      { q: "4. The Manager put forward (A) / a number of criterions (B) / for the post. (C) / No Error (D)", a: "(B) Replace 'criterions' with 'criteria'." },
+      { q: "5. I like (A) / the poetries (B) / of Byron and Shelley. (C) / No Error (D)", a: "(B) Replace 'poetries' with 'poetry'." },
+      { q: "6. The sceneries (A) / of Kashmir (B) / is very charming. (C) / No Error (D)", a: "(A) Replace 'sceneries' with 'scenery'." },
+      { q: "7. The cattle in the meadow (A) / was terrified to hear (B) / the roar of a lion. (C) / No Error (D)", a: "(B) Replace 'was' with 'were' ('Cattle' is plural)." },
+      { q: "8. Many a student (A) / have passed (B) / the IIT examination. (C) / No Error (D)", a: "(B) Replace 'have' with 'has' ('Many a + Singular Noun + Singular Verb')." },
+      { q: "9. Look at the (A) / childrens playing (B) / in the park. (C) / No Error (D)", a: "(B) Replace 'childrens' with 'children'." },
+      { q: "10. It is a big blunder (A) / but we had to (B) / ignore it. (C) / No Error (D)", a: "(A) Remove 'big' ('Blunder' already means a big mistake)." },
+      { q: "11. The police has (A) / received two important informations (B) / regarding the robbery. (C) / No Error (D)", a: "(A/B) 'The police have received two important pieces of information'." },
+      { q: "12. The sheaves of the wheat-plants (A) / were too heavy for the (B) / weak farmer to carry. (C) / No Error (D)", a: "(D) No Error ('Sheaves' is the correct plural of 'sheaf')." },
+      { q: "13. The population of India (A) / is divided into two classes - (B) / Haves and Haves not. (C) / No Error (D)", a: "(C) Replace 'Haves not' with 'Have-nots' (rich and poor)." },
+      { q: "14. All his sister-in-laws (A) / are extremely co-operative (B) / and she doesn't miss her real sisters at all. (C)", a: "(A) Replace 'sister-in-laws' with 'sisters-in-law'." },
+      { q: "15. Envy strikes a woman (A) / when she sees her husband (B) / talking to another woman. (C) / No Error (D)", a: "(A) Replace 'Envy' with 'Jealousy' (fear of losing one's own)." },
+      { q: "16. Two summons have been issued (A) / by the court (B) / but he has not appeared yet. (C) / No Error (D)", a: "(A) Replace 'summons' with 'summonses'." },
+      { q: "17. The Vaidya's (A) / have been living here (B) / for about a decade. (C) / No Error (D)", a: "(A) Replace 'The Vaidya's' with 'The Vaidyas' (family surname plural)." },
+      { q: "18. You are among those (A) / man who earned name and fame (B) / not by chance but by hard work. (C)", a: "(B) Replace 'man' with 'men' ('those' takes plural noun)." },
+      { q: "19. Children are playing (A) / and making mischiefs (B) / as their holidays have started. (C) / No Error (D)", a: "(B) Replace 'mischiefs' with 'mischief'." },
+      { q: "20. Sheeps are economically useful (A) / and so they are reared (B) / for wool and meat. (C) / No Error (D)", a: "(A) Replace 'Sheeps' with 'Sheep'." },
+      { q: "21. I read the letter (A) / and made him aware (B) / of its content. (C) / No Error (D)", a: "(C) Replace 'content' with 'contents' (what is written inside)." },
+      { q: "22. I shall not attend the meeting (A) / since I have many works to complete (B) / within allotted time. (C)", a: "(B) Replace 'many works' with 'much work' or 'many pieces of work'." },
+      { q: "23. You should always be (A) / true to your words (B) / if you are to succeed in life. (C) / No Error (D)", a: "(B) Replace 'words' with 'word'." },
+      { q: "24. It is a pity (A) / that even five years old boys (B) / are engaged in hazardous factories. (C) / No Error (D)", a: "(B) Replace 'five years old boys' with 'five-year-old boys'." },
+      { q: "25. I gave him (A) / two five hundred-rupees notes (B) / for depositing in my account. (C) / No Error (D)", a: "(B) Replace 'rupees' with 'rupee' ('two five-hundred-rupee notes')." },
+      { q: "26. It is never my business (A) / to give an advice to those (B) / who are not sensible enough to deal with their own problems. (C)", a: "(B) Remove 'an' before 'advice'." },
+      { q: "27. The committee could not come to (A) / a final conclusion (B) / regarding the new bill. (C) / No Error (D)", a: "(B) Remove 'final' ('Conclusion' is already final)." },
+      { q: "28. The farmer was leading (A) / oxes to his field (B) / for ploughing early in the morning. (C) / No Error (D)", a: "(B) Replace 'oxes' with 'oxen'." },
+      { q: "29. Please convey my (A) / best regard and wishes (B) / to your parents. (C) / No Error (D)", a: "(B) Replace 'regard' with 'regards'." },
+      { q: "30. This type of books (A) / are certainly helpful to the students (B) / preparing for bank service examinations. (C)", a: "(A/B) 'These types of books are...' OR 'This type of book is...'." },
+      { q: "31. I have never seen (A) / such a lovely spectacles (B) / in my life, said the passer-by. (C) / No Error (D)", a: "(B) Replace 'spectacles' with 'spectacle' (Here it means 'sight/view', not eyeglasses!)." },
+      { q: "32. You can buy (A) / the scissors that is (B) / sharp. (C) / No Error (D)", a: "(B) Replace 'is' with 'are' ('scissors' is plural)." },
+      { q: "33. He goes (A) / to fishing (B) / every Sunday. (C) / No Error (D)", a: "(B) Replace 'to fishing' with 'fishing' ('go fishing', 'go shopping', 'go swimming')." }
+    ];
+
+    // Pages 21-22: Set B - Sentence Improvement Quiz (Q1-Q25)
+    const quizSIData = [
+      { meta: "Page 21 • Sentence Improvement Q1", q: "Q1. Walk carefully lest you should fall due to [four-inch] of snow on the road.", opts: ["A) four-inches of", "B) four inches of", "C) a four-inch of", "D) No improvement"], ans: 1, exp: "Here 'inches' is the main noun followed by 'of', not a pre-noun modifier. So use plural 'four inches of snow'." },
+      { meta: "Page 21 • Sentence Improvement Q2", q: "Q2. My grandmother's [hairs are] grey now.", opts: ["A) hair is", "B) hairs is", "C) hair are", "D) No improvement"], ans: 0, exp: "Collectively, 'hair' on the head is an uncountable singular noun: 'hair is'." },
+      { meta: "Page 21 • Sentence Improvement Q3", q: "Q3. You have found [two grey hair] on my head.", opts: ["A) two grey hairs", "B) two greys hair", "C) two grey's hair", "D) No improvement"], ans: 0, exp: "When counted individually ('two'), 'hair' becomes countable: 'two grey hairs'." },
+      { meta: "Page 21 • Sentence Improvement Q4", q: "Q4. Hindus and Muslims are [brothers].", opts: ["A) brother", "B) brethren", "C) brotherhood", "D) No improvement"], ans: 1, exp: "Members of the same society, nation, or fellowship (not blood brothers) are called 'brethren'." },
+      { meta: "Page 21 • Sentence Improvement Q5", q: "Q5. [A five-men] committee was appointed to look into the matter.", opts: ["A) A five-man", "B) Five-men", "C) A five-mens", "D) No improvement"], ans: 0, exp: "Noun modifier before 'committee' must be singular: 'A five-man committee'." },
+      { meta: "Page 21 • Sentence Improvement Q6", q: "Q6. The [sceneries] of the Himalayas are breathtaking.", opts: ["A) scenery ... is", "B) sceneries ... is", "C) scenery ... are", "D) No improvement"], ans: 0, exp: "'Scenery' is uncountable and takes a singular verb ('is')." },
+      { meta: "Page 22 • Sentence Improvement Q7", q: "Q7. I do not like [Ajay singing] late at night.", opts: ["A) Ajay's singing", "B) Ajay to sing", "C) singing of Ajay", "D) No improvement"], ans: 0, exp: "Before a Gerund ('singing'), use the Possessive Case: 'Ajay's singing'." },
+      { meta: "Page 22 • Sentence Improvement Q8", q: "Q8. The teacher appreciated [me solving] the tough puzzle.", opts: ["A) my solving", "B) mine solving", "C) I solving", "D) No improvement"], ans: 0, exp: "Before a Gerund ('solving'), use the Possessive Adjective 'my' instead of objective 'me'." },
+      { meta: "Page 22 • Sentence Improvement Q9", q: "Q9. He gave me [two-hundred-rupees] notes.", opts: ["A) two hundred-rupee", "B) two-hundred-rupee", "C) two-hundreds-rupee", "D) No improvement"], ans: 1, exp: "Hyphenated modifier before 'notes' must be singular: 'two-hundred-rupee notes'." },
+      { meta: "Page 22 • Sentence Improvement Q10", q: "Q10. The [furnitures] in this showroom are imported from Italy.", opts: ["A) furniture ... is", "B) furniture ... are", "C) furnitures ... is", "D) No improvement"], ans: 0, exp: "'Furniture' is uncountable and takes a singular verb ('is')." },
+      { meta: "Page 22 • Sentence Improvement Q11", q: "Q11. We stayed at [Ram's and Shyam's] joint house.", opts: ["A) Ram and Shyam's", "B) Rams and Shyam's", "C) Ram's and Shyams", "D) No improvement"], ans: 0, exp: "For joint possession ('joint house'), put the apostrophe only on the second noun: 'Ram and Shyam's'." },
+      { meta: "Page 22 • Sentence Improvement Q12", q: "Q12. What is the [passing marks] in the SSC examination?", opts: ["A) pass marks", "B) pass mark", "C) passing mark", "D) No improvement"], ans: 0, exp: "The correct standard collocation is 'pass marks' (with plural verb 'are')." }
+    ];
+
+    // Pages 22-23: Set C - Comprehensive Spotting Errors (Q1-Q25 Selected High-Yield from 54)
+    const drillsP22SE = [
+      { q: "1. The driver showed (A) / great talent in keeping (B) / the damaged car under control. (C) / No Error (D)", a: "(B) Replace 'talent' with 'skill' (Driving is learned through practice -> skill)." },
+      { q: "2. When I entered the bedroom (A) / I saw a snake crawling (B) / on the ground. (C) / No Error (D)", a: "(C) Replace 'ground' with 'floor' (Indoors inside a room = floor)." },
+      { q: "3. It is very difficult (A) / to chase a huge score (B) / in the fourth inning. (C) / No Error (D)", a: "(C) Replace 'inning' with 'innings'." },
+      { q: "4. She misplaced her spectacle (A) / and is now feeling (B) / great difficulty in studying. (C) / No Error (D)", a: "(A) Replace 'spectacle' with 'spectacles' (Eyeglasses)." },
+      { q: "5. They have already (A) / given you an information (B) / regarding that incident. (C) / No Error (D)", a: "(B) Remove 'an' before 'information' (or use 'a piece of information')." },
+      { q: "6. Thousand of people (A) / came to see the final test match (B) / between India and Australia. (C) / No Error (D)", a: "(A) Replace 'Thousand' with 'Thousands'." },
+      { q: "7. Today is (A) / my brother's-in-law (B) / birthday party. (C) / No Error (D)", a: "(B) Replace 'brother's-in-law' with 'brother-in-law's'." },
+      { q: "8. Thirty millions of people (A) / are below the poverty line (B) / in that country. (C) / No Error (D)", a: "(A) Replace 'Thirty millions of people' with 'Thirty million people'." },
+      { q: "9. Gold is (A) / more precious than (B) / any metals. (C) / No Error (D)", a: "(C) Replace 'any metals' with 'any other metal'." },
+      { q: "10. He does not cut paper (A) / with blade, but (B) / with a scissors. (C) / No Error (D)", a: "(C) Replace 'a scissors' with 'scissors' or 'a pair of scissors'." },
+      { q: "11. Two-thirds of the book (A) / were rubbish and (B) / not worth reading. (C) / No Error (D)", a: "(B) Replace 'were' with 'was' ('the book' is singular)." },
+      { q: "12. Many a man (A) / have succumbed to (B) / this temptation. (C) / No Error (D)", a: "(B) Replace 'have' with 'has'." },
+      { q: "13. A few tiles on Skylab (A) / were the only equipments (B) / that failed to perform well in outer space. (C)", a: "(B) Replace 'equipments' with 'equipment'." },
+      { q: "14. The long-distance train (A) / which met with an accident (B) / was carrying some army personnels. (C)", a: "(C) Replace 'personnels' with 'personnel' ('Personnel' is already plural/collective)." },
+      { q: "15. The young men from Japan (A) / found the assent of the mountain (B) / hard going. (C) / No Error (D)", a: "(B) Replace 'assent' (agreement) with 'ascent' (climbing up)." },
+      { q: "16. On my way to the office (A) / I saw a flock of sheeps (B) / grazing in the pasture. (C) / No Error (D)", a: "(B) Replace 'sheeps' with 'sheep'." },
+      { q: "17. Tomorrow we shall dine (A) / at our uncle's (B) / house's terrace. (C) / No Error (D)", a: "(B/C) 'on the terrace of our uncle's house' (Avoid double 's and non-living 's)." },
+      { q: "18. All the evidences against him (A) / were rejected by the (B) / High Court. (C) / No Error (D)", a: "(A/B) 'All the evidence against him was rejected...'." },
+      { q: "19. Commander-in-chiefs are (A) / among those who (B) / get handsome salary. (C) / No Error (D)", a: "(A) Replace 'Commander-in-chiefs' with 'Commanders-in-chief'." },
+      { q: "20.Only to-days paper (A) / has full details (B) / of the budget. (C) / No Error (D)", a: "(A) Replace 'to-days' with 'today's' (Time takes apostrophe 's)." }
+    ];
+
+    // Pages 23-24: Section 1 - Noun PYQs (Q1-Q11)
+    const quizPYQData = [
+      { meta: "Page 23 • PYQ Q1 (SSC CGL)", q: "Q1. Whenever he goes to Mumbai (A) / he stays in (B) / five-stars hotels. (C) / No Error (D)", opts: ["A) Whenever he goes to Mumbai", "B) he stays in", "C) five-stars hotels", "D) No Error"], ans: 2, exp: "Replace 'five-stars hotels' with 'five-star hotels' (Noun modifier before 'hotels' is singular)." },
+      { meta: "Page 23 • PYQ Q2 (SSC CGL)", q: "Q2. The company has ordered (A) / some new equipments (B) / for the new branch. (C) / No Error (D)", opts: ["A) The company has ordered", "B) some new equipments", "C) for the new branch", "D) No Error"], ans: 1, exp: "'Equipment' is an uncountable noun and never takes '-s'. Use 'some new equipment'." },
+      { meta: "Page 23 • PYQ Q3 (SSC CPO)", q: "Q3. A strong breeze (A) / blew his cap off (B) / while he was crossing the bridge. (C) / No Error (D)", opts: ["A) A strong breeze", "B) blew his cap off", "C) while he was crossing the bridge", "D) No Error"], ans: 0, exp: "'Breeze' is gentle and light. Use 'A strong wind' instead of 'A strong breeze'." },
+      { meta: "Page 23 • PYQ Q4 (SSC CHSL)", q: "Q4. One of her firmest belief (A) / was that her friend shouted at her (B) / with a view to making her aware of her repeated lapses. (C)", opts: ["A) One of her firmest belief", "B) was that her friend shouted at her", "C) with a view to making her aware...", "D) No Error"], ans: 0, exp: "After 'One of her + superlative', the noun must be plural: 'One of her firmest beliefs'." },
+      { meta: "Page 23 • PYQ Q5 (SSC CGL Mains)", q: "Q5. In one of our first conversation (A) / she informed me (B) / that she had lost her husband in a bus accident. (C)", opts: ["A) In one of our first conversation", "B) she informed me", "C) that she had lost her husband...", "D) No Error"], ans: 0, exp: "After 'one of our...', use the plural noun: 'conversations'." },
+      { meta: "Page 24 • PYQ Q6 (SSC CGL)", q: "Q6. All the girls students (A) / of the college are advised (B) / to sit in the girls' common room. (C) / No Error (D)", opts: ["A) All the girls students", "B) of the college are advised", "C) to sit in the girls' common room", "D) No Error"], ans: 0, exp: "In the compound noun 'girl student', 'girl' acts as a modifier, so only the main noun becomes plural: 'All the girl students'." },
+      { meta: "Page 24 • PYQ Q7 (SSC MTS)", q: "Q7. The majority of the woman (A) / teachers are persuading (B) / the principal to consider their demands. (C) / No Error (D)", opts: ["A) The majority of the woman", "B) teachers are persuading", "C) the principal to consider their demands", "D) No Error"], ans: 0, exp: "When a compound noun with 'man/woman' denotes the profession of the person, both words become plural: 'women teachers'." },
+      { meta: "Page 24 • PYQ Q8 (SSC CGL)", q: "Q8. It is harmful (A) / to take cupsful (B) / of tea five times a day. (C) / No Error (D)", opts: ["A) It is harmful", "B) to take cupsful", "C) of tea five times a day", "D) No Error"], ans: 1, exp: "Nouns ending in '-ful' form their plural by adding '-s' at the very end: 'cupfuls'." },
+      { meta: "Page 24 • PYQ Q9 (SSC Steno)", q: "Q9. In the last election (A) / the electorates disinterestedness (B) / puzzled the politicians very much. (C) / No Error (D)", opts: ["A) In the last election", "B) the electorates disinterestedness", "C) puzzled the politicians very much", "D) No Error"], ans: 1, exp: "Possessive apostrophe is required: 'the electorate's disinterestedness'." },
+      { meta: "Page 24 • PYQ Q10 (SSC CGL)", q: "Q10. The present datas (A) / show that the illiteracy rate (B) / in India has fallen down but not to the level of expectation. (C)", opts: ["A) The present datas", "B) show that the illiteracy rate", "C) in India has fallen down...", "D) No Error"], ans: 0, exp: "'Data' is already the plural of 'datum'. Never write 'datas'." },
+      { meta: "Page 24 • PYQ Q11 (SSC CPO)", q: "Q11. She has bought (A) / a dozen of copies (B) / of English Grammar books. (C) / No Error (D)", opts: ["A) She has bought", "B) a dozen of copies", "C) of English Grammar books", "D) No Error"], ans: 1, exp: "After 'a dozen' (or two dozen), do not use 'of' before a general plural noun: 'a dozen copies'." }
+    ];
+
+    // Page 24: Section 2 - 20 Difficult Questions Practice
+    const quizDifficultData = [
+      { meta: "Page 24 • Difficult Q1", q: "Q1. After a complaint was filed (A) / police teams was given the photograph (B) / of the accused from the CCTV footage. (C)", opts: ["A) After a complaint was filed", "B) police teams was given the photograph", "C) of the accused from the CCTV footage", "D) No Error"], ans: 1, exp: "'Police teams' is plural, so replace 'was given' with 'were given'." },
+      { meta: "Page 24 • Difficult Q2", q: "Q2. Having been a student activist once, (A) / a politician never forgets (B) / those days of छात्र राजनीति (student's politics). (C)", opts: ["A) Having been a student activist once", "B) a politician never forgets", "C) student's politics -> student politics", "D) No Error"], ans: 2, exp: "Use the noun adjunct 'student politics' (or 'students' politics') instead of singular possessive 'student's politics'." },
+      { meta: "Page 24 • Difficult Q3 (Preposition + Noun)", q: "Q3. He was advised to take two spoonfuls of medicine (A) / before [retire] (B) / to bed at night. (C)", opts: ["A) before retire (No change)", "B) before retiring (Gerund)", "C) before retired", "D) before to retire"], ans: 1, exp: "Golden Rule on Page 24: After a Preposition ('before'), always use a Noun/Pronoun or a Verb+ing (Gerund): 'before retiring'." },
+      { meta: "Page 24 • Difficult Q4 (Article + Noun)", q: "Q4. The government has announced (A) / a complete [withdraw] of troops (B) / from the border area. (C)", opts: ["A) withdraw (No change)", "B) withdrawal (Noun)", "C) withdrew", "D) withdrawn"], ans: 1, exp: "After 'a complete' (Article + Adjective), we need a Noun. 'Withdraw' is a verb; its noun form is 'withdrawal'." },
+      { meta: "Page 24 • Difficult Q5 (Adjective vs Noun)", q: "Q5. In the [absent] of the principal, (A) / the vice-principal took charge (B) / of the college administration. (C)", opts: ["A) In the absent of", "B) In the absence of", "C) In the absently of", "D) No Improvement"], ans: 1, exp: "'Absent' is an adjective. Between 'the' and 'of', we must use the Abstract Noun 'absence': 'In the absence of'." },
+      { meta: "Page 24 • Difficult Q6", q: "Q6. People who are not belonging to (A) / any nationalist party (B) / want to divide the country. (C)", opts: ["A) People who are not belonging to -> do not belong to", "B) any nationalist party", "C) want to divide the country", "D) No Error"], ans: 0, exp: "State verbs like 'belong' are not used in the continuous tense: 'People who do not belong to...'." },
+      { meta: "Page 24 • Difficult Q7", q: "Q7. There is a great [scarce] of food grains (A) / in the drought-affected regions (B) / of the state. (C)", opts: ["A) scarce (Adjective)", "B) scarcity (Noun)", "C) scarcely (Adverb)", "D) No Error"], ans: 1, exp: "After 'a great' (Article + Adjective) and before 'of', a Noun is required: 'a great scarcity of'." },
+      { meta: "Page 24 • Difficult Q8", q: "Q8. His [proud] was deeply hurt (A) / when his junior superseded him (B) / in the promotion list. (C)", opts: ["A) His proud", "B) His pride", "C) His proudly", "D) No Error"], ans: 1, exp: "After a Possessive Adjective ('His'), we need a Noun. 'Proud' is an adjective; 'pride' is the noun: 'His pride'." },
+      { meta: "Page 24 • Difficult Q9", q: "Q9. She has no [guilt] about leaving her job, (A) / nor does she have any [regretful] (B) / about her decision. (C)", opts: ["A) Replace 'guilt' with 'guilty'", "B) Replace 'regretful' with 'regret'", "C) Replace 'decision' with 'decide'", "D) No Error"], ans: 1, exp: "After the determiner 'any', we need a Noun ('regret'), not the adjective 'regretful'." },
+      { meta: "Page 24 • Difficult Q10", q: "Q10. Many a [villages] were inundated (A) / when the river overflowed its banks (B) / during the heavy monsoon rains. (C)", opts: ["A) Many a village was inundated", "B) Many a villages was inundated", "C) Many village were inundated", "D) No Error"], ans: 0, exp: "'Many a' is always followed by a Singular Countable Noun and a Singular Verb: 'Many a village was inundated'." },
+      { meta: "Page 24 • Difficult Q11", q: "Q11. All the [evidence] were against him, (A) / yet the jury acquitted him (B) / due to lack of eyewitnesses. (C)", opts: ["A) All the evidence was against him", "B) All the evidences were against him", "C) All the evidence were against him", "D) No Error"], ans: 0, exp: "'Evidence' is uncountable and always takes a singular verb: 'All the evidence was against him'." },
+      { meta: "Page 24 • Difficult Q12", q: "Q12. He lost all his [belonging] (A) / in the devastating fire (B) / that broke out in the market last night. (C)", opts: ["A) all his belonging", "B) all his belongings", "C) all his belong", "D) No Error"], ans: 1, exp: "When referring to personal possessions, the noun is always plural: 'belongings'." }
+    ];
+
+    // ==================== RENDERING & INTERACTIVITY ENGINE ====================
+
+    let score = 0;
+    let totalQuestions = 0;
+
+    function renderDrills(containerId, items) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = items.map(item => `
+        <div class="drill-item" onclick="this.querySelector('.drill-ans').classList.toggle('hidden')">
+          <span class="drill-q">${item.q}</span>
+          <span class="drill-ans hidden" data-answer="✓ ${item.a}">Click to Reveal</span>
+        </div>
+      `).join('');
+
+      // Swap text when clicked
+      container.querySelectorAll('.drill-item').forEach(el => {
+        el.addEventListener('click', function () {
+          const ansSpan = this.querySelector('.drill-ans');
+          if (ansSpan.classList.contains('hidden')) {
+            ansSpan.textContent = 'Click to Reveal';
+          } else {
+            ansSpan.textContent = ansSpan.getAttribute('data-answer');
+          }
+        });
+      });
+    }
+
+    function renderQuiz(containerId, quizArray) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      totalQuestions += quizArray.length;
+      document.getElementById('total-val').textContent = totalQuestions;
+
+      container.innerHTML = quizArray.map((qObj, qIdx) => {
+        const uniqueId = `${containerId}-q${qIdx}`;
+        const optsHtml = qObj.opts.map((optText, oIdx) => `
+          <button class="quiz-opt" onclick="checkQuizAnswer('${uniqueId}', ${oIdx}, ${qObj.ans}, this)">
+            ${optText}
+          </button>
+        `).join('');
+
+        return `
+          <div class="quiz-card" id="${uniqueId}">
+            <div class="quiz-meta"><span>${qObj.meta}</span><span>Interactive MCQ</span></div>
+            <div class="quiz-question">${qObj.q}</div>
+            <div class="quiz-options">${optsHtml}</div>
+            <div class="quiz-exp" id="${uniqueId}-exp"><strong>Explanation:</strong> ${qObj.exp}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.checkQuizAnswer = function (cardId, selectedIdx, correctIdx, btnEl) {
+      const card = document.getElementById(cardId);
+      const buttons = card.querySelectorAll('.quiz-opt');
+      const expBox = document.getElementById(`${cardId}-exp`);
+
+      buttons.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === correctIdx) {
+          b.classList.add('correct');
+        }
+      });
+
+      if (selectedIdx === correctIdx) {
+        score++;
+        document.getElementById('score-val').textContent = score;
+      } else {
+        btnEl.classList.add('wrong');
+      }
+
+      expBox.classList.add('visible');
+    };
+
+    window.showTab = function (tabId, btnEl) {
+      document.querySelectorAll('.section-page').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+
+      // Close mobile sidebar if open
+      document.getElementById('sidebar').classList.remove('open');
+      // Reset search filter
+      const searchInput = document.getElementById('global-search');
+      if (searchInput.value) {
+        searchInput.value = '';
+        filterCurrentTab('');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.toggleAllDrills = function (reveal) {
+      document.querySelectorAll('.drill-ans').forEach(ansSpan => {
+        if (reveal) {
+          ansSpan.classList.remove('hidden');
+          ansSpan.textContent = ansSpan.getAttribute('data-answer');
+        } else {
+          ansSpan.classList.add('hidden');
+          ansSpan.textContent = 'Click to Reveal';
+        }
+      });
+    };
+
+    window.toggleTheme = function () {
+      const htmlEl = document.documentElement;
+      if (htmlEl.getAttribute('data-theme') === 'dark') {
+        htmlEl.removeAttribute('data-theme');
+      } else {
+        htmlEl.setAttribute('data-theme', 'dark');
+      }
+    };
+
+    window.filterCurrentTab = function (query) {
+      const q = query.toLowerCase().trim();
+      const activeSection = document.querySelector('.section-page.active');
+      if (!activeSection) return;
+
+      activeSection.querySelectorAll('.card, .drill-item, .quiz-card, .chip, tr').forEach(el => {
+        if (!q) {
+          el.style.display = '';
+          return;
+        }
+        // Only filter granular items inside cards so headers stay intact
+        if (el.classList.contains('drill-item') || el.classList.contains('quiz-card') || el.classList.contains('chip')) {
+          const text = el.textContent.toLowerCase() + ' ' + (el.querySelector('.drill-ans')?.getAttribute('data-answer') || '').toLowerCase();
+          el.style.display = text.includes(q) ? '' : 'none';
+        }
+      });
+    };
+
+    window.resetAllQuizzes = function () {
+      score = 0;
+      totalQuestions = 0;
+      document.getElementById('score-val').textContent = '0';
+      initAllContent();
+    };
+
+    function initAllContent() {
+      // Render all Drill Lists
+      renderDrills('drill-p3', drillsP3);
+      renderDrills('drill-p5', drillsP5);
+      renderDrills('drill-p6', drillsP6);
+      renderDrills('drill-p8', drillsP8);
+      renderDrills('drill-p9', drillsP9);
+      renderDrills('drill-p10', drillsP10);
+      renderDrills('drill-p12', drillsP12);
+      renderDrills('drill-p13', drillsP13);
+      renderDrills('drill-p14', drillsP14);
+      renderDrills('drill-p15', drillsP15);
+      renderDrills('drill-p16', drillsP16);
+      renderDrills('drill-p18', drillsP18);
+      renderDrills('drill-p20-se', drillsP20SE);
+      renderDrills('drill-p22-se', drillsP22SE);
+
+      // Render all Interactive MCQ Quizzes
+      renderQuiz('quiz-collective', quizCollectiveData);
+      renderQuiz('quiz-abstract', quizAbstractData);
+      renderQuiz('quiz-countable', quizCountableData);
+      renderQuiz('quiz-p9', quizP9Data);
+      renderQuiz('quiz-compound', quizCompoundData);
+      renderQuiz('quiz-p12', quizP12Data);
+      renderQuiz('quiz-p13', quizP13Data);
+      renderQuiz('quiz-p14', quizP14Data);
+      renderQuiz('quiz-p15', quizP15Data);
+      renderQuiz('quiz-p16', quizP16Data);
+      renderQuiz('quiz-p18', quizP18Data);
+      renderQuiz('quiz-si', quizSIData);
+      renderQuiz('quiz-pyq', quizPYQData);
+      renderQuiz('quiz-difficult', quizDifficultData);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initAllContent);
+  </script>
+</body>
+</html>

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Noun Century Practice Quiz - Parmar SSC</title>
+  <style>
+    :root {
+      --primary: #db2777;
+      --primary-dark: #be185d;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #ca8a04;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-badge {
+      background: #f43f5e;
+      color: #ffffff;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .brand h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .mode-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1e293b;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .mode-switch input {
+      accent-color: #f43f5e;
+      cursor: pointer;
+    }
+
+    .timer {
+      font-family: monospace;
+      font-size: 1.1rem;
+      background: #1e293b;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    .btn-danger:hover {
+      opacity: 0.9;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    /* Main Layout */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 1.5rem;
+      max-width: 1400px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1.25rem;
+      flex: 1;
+    }
+
+    /* Question Area */
+    .question-card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .q-num {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .q-tag {
+      font-size: 0.78rem;
+      background: #fdf2f8;
+      color: #be185d;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      font-weight: 600;
+      border: 1px solid #fbcfe8;
+    }
+
+    .q-body {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      white-space: pre-line;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.9rem 1.1rem;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      color: var(--text);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: #f9a8d4;
+      background: #fdf2f8;
+    }
+
+    .opt-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background: #fdf2f8;
+    }
+    .option-btn.selected .opt-letter {
+      background: var(--primary);
+      color: white;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+    .option-btn.correct .opt-letter {
+      background: var(--success);
+      color: white;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+    .option-btn.wrong .opt-letter {
+      background: var(--danger);
+      color: white;
+    }
+
+    .feedback-banner {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .q-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .nav-group {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    /* Sidebar Palette */
+    .sidebar {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: fit-content;
+      max-height: calc(100vh - 95px);
+      position: sticky;
+      top: 75px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .stat-box {
+      padding: 0.5rem 0.65rem;
+      border-radius: 6px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.45rem;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+      max-height: 420px;
+    }
+
+    .p-btn {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s;
+    }
+
+    .p-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .p-btn.current {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+
+    .p-btn.answered {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .p-btn.correct {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+    }
+
+    .p-btn.wrong {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+
+    .p-btn.review {
+      background: var(--warning);
+      color: white;
+      border-color: var(--warning);
+    }
+
+    /* Result Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+
+    .modal {
+      background: white;
+      max-width: 520px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #fdf2f8;
+      border: 4px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1.25rem auto;
+    }
+
+    .score-circle span {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .result-breakdown {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+      text-align: left;
+    }
+
+    @media (max-width: 950px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+      .palette-grid {
+        grid-template-columns: repeat(8, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+      .palette-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="brand-badge">PARMAR SSC</span>
+      <h1>English (Noun) Century Quiz — By PSP Sir (100 Qs)</h1>
+    </div>
+    <div class="header-controls">
+      <label class="mode-switch" title="Instant answer check on click">
+        <input type="checkbox" id="practiceModeToggle" checked />
+        <span>Instant Practice Mode</span>
+      </label>
+      <div class="timer" id="timerDisplay">00:00:00</div>
+      <button class="btn btn-danger" onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="question-card">
+      <div>
+        <div class="q-header">
+          <span class="q-num" id="qNumber">Question 1 of 100</span>
+          <span class="q-tag" id="qTag">SSC Exam</span>
+        </div>
+        <div class="q-body" id="qText"></div>
+        <div class="options-list" id="optionsContainer"></div>
+        <div class="feedback-banner" id="feedbackBanner"></div>
+      </div>
+
+      <div class="q-footer">
+        <div class="nav-group">
+          <button class="btn btn-outline" onclick="clearResponse()">Clear</button>
+          <button class="btn btn-outline" onclick="toggleReview()">Mark for Review</button>
+        </div>
+        <div class="nav-group">
+          <button class="btn btn-outline" id="prevBtn" onclick="changeQuestion(-1)">← Previous</button>
+          <button class="btn btn-primary" id="nextBtn" onclick="changeQuestion(1)">Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h3 style="font-size: 1rem;">Question Palette</h3>
+      <div class="stats-grid">
+        <div class="stat-box"><span>Answered</span><span id="statAnswered" style="color:var(--primary)">0</span></div>
+        <div class="stat-box"><span>Correct</span><span id="statCorrect" style="color:var(--success)">0</span></div>
+        <div class="stat-box"><span>Wrong</span><span id="statWrong" style="color:var(--danger)">0</span></div>
+        <div class="stat-box"><span>Marked</span><span id="statReview" style="color:var(--warning)">0</span></div>
+      </div>
+      <div class="palette-grid" id="paletteGrid"></div>
+      <button class="btn btn-outline" style="width:100%" onclick="resetQuiz()">Reset All Progress</button>
+    </aside>
+  </main>
+
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal">
+      <h2>Quiz Summary</h2>
+      <p style="color:var(--muted); font-size:0.9rem;">Parmar Toppers Batch — English Noun Century PDF</p>
+      <div class="score-circle">
+        <span id="finalScore">0</span>
+        <small style="color:var(--muted); font-size:0.75rem;">/ 200 Marks</small>
+      </div>
+      <div class="result-breakdown">
+        <div class="stat-box"><span>Attempted</span><span id="resAttempted">0</span></div>
+        <div class="stat-box"><span>Correct (+2)</span><span id="resCorrect" style="color:var(--success)">0</span></div>
+        <div class="stat-box"><span>Wrong (-0.5)</span><span id="resWrong" style="color:var(--danger)">0</span></div>
+        <div class="stat-box"><span>Unattempted</span><span id="resSkipped">0</span></div>
+      </div>
+      <div style="display:flex; gap:0.75rem; justify-content:center; margin-top:1rem;">
+        <button class="btn btn-primary" onclick="closeModal()">Review Answers</button>
+        <button class="btn btn-outline" onclick="resetQuiz(); closeModal();">Restart Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { id: 1, tag: "SSC CGL 2025 Tier-01 S3", q: "The workshop aims at providing entrepreneurs (1)/ with practical advices (2)/ on scaling operations (3)/ in emerging markets. (4)/", options: ["(1)", "(2)", "(3)", "(4)"], ans: "B" },
+      { id: 2, tag: "SSC CGL 2025 Tier-01 S2", q: "Several of the evidences (1)/ presented during the hearing (2)/ were considered circumstantial at best (3)/ and irrelevant at worst. (4)", options: ["(1)", "(2)", "(3)", "(4)"], ans: "A" },
+      { id: 3, tag: "SSC CGL 2025 Tier-01 S2", q: "Most of the feedbacks received from senior scholars were (1)/ overwhelmingly in favour (2)/ of increasing emphasis on interdisciplinary research (3)/ as opposed to segmented evaluation models. (4)", options: ["(1)", "(2)", "(3)", "(4)"], ans: "A" },
+      { id: 4, tag: "SSC CGL 2025 Tier-01 S2", q: "The official, addressing the press yesterday, (1)/ claimed that the matter had been resolved (2)/ though no evidences supporting the statement (3)/ was ever made available. (4)", options: ["1", "2", "3", "4"], ans: "C" },
+      { id: 5, tag: "SSC CHSL Tier-01 2025 S3", q: "Identify the incorrect sentence.", options: ["These pieces of jewelleries are designed by a highly acclaimed expert.", "Elephants can swim very well.", "The Nilgiris are the most productive mountains of the south.", "There are not many followers of Gandhiji these days."], ans: "A" },
+      { id: 6, tag: "SSC CHSL Tier-01 2025 S3", q: "A bigger budget has been set aside for this years marketing campaign in Asia.", options: ["A bigger budget", "has been set aside", "for this years", "marketing campaign in Asia."], ans: "C" },
+      { id: 7, tag: "SSC CHSL Tier-01 2025 S2", q: "Nowadays, the lack of money makes people spend too much times working.", options: ["Nowadays, the lack of money", "makes people spend", "too much times working.", "No correction required"], ans: "C" },
+      { id: 8, tag: "SSC CHSL Tier-01 2025 S3", q: "A. The main affect B. of the new policy C. will be an increase D. in productivity.", options: ["The main affect", "of the new policy", "will be an increase", "in productivity"], ans: "A" },
+      { id: 9, tag: "SSC SP Matriculation Level 2025 S1", q: "They enjoyed (1) / the sceneries (2) / during their trip (3) / to the mountains (4).", options: ["They enjoyed (1)", "the sceneries (2)", "during their trip (3)", "to the mountains. (4)"], ans: "B" },
+      { id: 10, tag: "SSC Steno Exam 2026 S1", q: "The people here have nothing. Their poverty's extreme.", options: ["poverty's", "extreme", "people", "nothing"], ans: "A" },
+      { id: 11, tag: "SSC Steno Exam 2026 S2", q: "Britains towns were given a new and an elegant appearance between 1700 and 1830.", options: ["Britains", "elegant", "towns", "appearance"], ans: "A" },
+      { id: 12, tag: "SSC STENO Exam 2025 S2", q: "The sceneries of Ooty was wonderful.", options: ["of Ooty", "The sceneries", "No error", "were wonderful"], ans: "B" },
+      { id: 13, tag: "SSC STENO Exam 2025 S3", q: "She gave me a good advice.", options: ["good", "She gave me", "a good advice", "No error"], ans: "C" },
+      { id: 14, tag: "SSC CGL Tier-01 2024 S1", q: "Mr. Suman / asked me / to pack / my luggages.", options: ["asked me", "my luggages.", "to pack", "Mr. Suman"], ans: "B" },
+      { id: 15, tag: "SSC CGL Tier-01 2024 S1", q: "Mr. Abhilash and his family / have received / no informations / about the incident.", options: ["have received", "no informations", "about the incident.", "Mr. Abhilash and his family"], ans: "B" },
+      { id: 16, tag: "SSC CGL PRE 2021 S1", q: "My neighbour's grandson / is only / five month old.", options: ["five month old", "is only", "No error", "My neighbour's grandson"], ans: "A" },
+      { id: 17, tag: "SSC CGL PRE 2021 S1", q: "The crew / of sailors / were not perturbed / by the strong gale.", options: ["The crew", "by the strong gale", "were not perturbed", "of sailors"], ans: "C" },
+      { id: 18, tag: "SSC CGL PRE 2021 S1", q: "We bought / two dozens / mangoes from / the market.", options: ["the market", "We bought", "mangoes from", "two dozens"], ans: "D" },
+      { id: 19, tag: "SSC CGL PRE 2021 S2", q: "I do not / like to read / these kind / of novels.", options: ["these kind", "of novels", "I do not", "like to read"], ans: "A" },
+      { id: 20, tag: "SSC MTS Exam 2024 S1", q: "You know that I am fond of reading / and also that all books are my favourite / but you don't know that this is one of / my favourite book.", options: ["but you don't know that this is one of", "and also that all books are my favourite", "my favourite book.", "You know that I am fond of reading"], ans: "C" },
+      { id: 21, tag: "SSC MTS Exam 2022 S2", q: "The baby's faces are expressionless and / their pupils aren't visible which gives / the appearance of lifelessness and dreadfulness.", options: ["The baby's faces are expressionless and", "No error", "the appearance of lifelessness and dreadfulness.", "their pupils aren't visible which gives"], ans: "A" },
+      { id: 22, tag: "SSC MTS Exam 2022 S2", q: "Ben Essenburg is widely known / as one of the world's best portrayer / of the Everglades.", options: ["as one of the world's best portrayer", "No Error", "of the Everglades.", "Ben Essenburg is widely known"], ans: "A" },
+      { id: 23, tag: "SSC MTS Exam 2022 S1", q: "Peoples might confess just to get out of the interrogation room.", options: ["No error", "Peoples might confess", "just to get out of", "the interrogation room."], ans: "B" },
+      { id: 24, tag: "SSC MTS Exam 2022 S3", q: "Without the greenhouse effect, Earths temperature would be below freezing.", options: ["Earths temperature would", "be below freezing.", "Without the greenhouse effect,", "No error"], ans: "A" },
+      { id: 25, tag: "SSC MTS Exam 2021 S2", q: "Scholars have / studied the lives of / present-day farmer's / who practise agriculture.", options: ["who practise agriculture", "present-day farmer's", "studied the lives of", "Scholars have"], ans: "B" },
+      { id: 26, tag: "SSC MTS Exam 2021 S1", q: "Telecom is one of Indias globally recognised success stories.", options: ["recognised success stories", "Telecom is one of", "No error", "Indias globally"], ans: "D" },
+      { id: 27, tag: "SSC MTS Exam 2021 S2", q: "Uttar Pradesh / accounts for about 16 percent / of the / country population.", options: ["of the", "country population", "Uttar Pradesh", "accounts for about 16 percent"], ans: "B" },
+      { id: 28, tag: "SSC MTS Exam 2021 S1", q: "My friend Jatin usually wears a spectacle.", options: ["My friend Jatin", "usually wears", "a spectacle", "No error"], ans: "C" },
+      { id: 29, tag: "Noun Practice", q: "The local farmers suffered (1) / heavy losses because (2) / vermin has destroyed (3) / most of the standing wheat crops. (4)", options: ["The local farmers suffered", "heavy losses because", "vermin has destroyed", "most of the standing wheat crops."], ans: "C" },
+      { id: 30, tag: "SSC JHT Exam 2022", q: "I wondered why both the wife of Lord Easton had left him.", options: ["of Lord Easton", "had left him", "I wondered why", "both the wife"], ans: "D" },
+      { id: 31, tag: "SSC GD Exam 2024 S2", q: "The official agencies often struggle to contain the spreading of fake news.", options: ["the spreading of fake news.", "often struggle to contain", "No error", "The official agencies"], ans: "A" },
+      { id: 32, tag: "SSC GD Exam 2021 S1", q: "Please stay back for Sunnys first birthday celebration at Taj West End.", options: ["Sunnys", "first birthday celebration", "at Taj West End", "stay back"], ans: "A" },
+      { id: 33, tag: "SSC GD Exam 2021 S2", q: "Children are fond of eating food from Mala aunties small shop at the corner of the street.", options: ["Mala aunties small shop", "are fond of", "food from", "at the corner"], ans: "A" },
+      { id: 34, tag: "SSC GD Exam 2021 S3", q: "We bought / good quality / furnitures / for our new house.", options: ["We bought", "furnitures", "good quality", "for our new house"], ans: "B" },
+      { id: 35, tag: "SSC GD Exam 2021 S2", q: "Jyoti is one of / the best police officer / in this town. / No error", options: ["No error", "the best police officer", "in this town", "Jyoti is one of"], ans: "B" },
+      { id: 36, tag: "SSC GD Exam 2021 S2", q: "Her friends house is close to the high school where Sarathi teaches.", options: ["the high school", "Her friends", "teaches", "close to"], ans: "B" },
+      { id: 37, tag: "SSC GD Exam 2021 S1", q: "Reva is / one of Gita's best friend / in the class.", options: ["one of Gita's best friend", "No error", "in the class", "Reva is"], ans: "A" },
+      { id: 38, tag: "SSC GD Exam 2021 S3", q: "The man turned to him with a look of disapprove.", options: ["The man", "with a look", "of disapprove", "turned to him"], ans: "C" },
+      { id: 39, tag: "SSC GD Exam 2021 S1", q: "My friend sold / all the furnitures / he had before / leaving the city.", options: ["My friend sold", "he had before", "all the furnitures", "leaving the city"], ans: "C" },
+      { id: 40, tag: "SSC GD Exam 2021 S3", q: "Mr. Sharma is one of / the best teacher / I have ever seen.", options: ["the best teacher", "I have ever seen", "Mr. Sharma is one of", "No error"], ans: "A" },
+      { id: 41, tag: "SSC GD Exam 2021 S3", q: "Last month, / we purchased / electronic equipments from / a European country.", options: ["we purchased", "Last month", "electronic equipments from", "a European country"], ans: "C" },
+      { id: 42, tag: "SSC CPO Mains 2020", q: "All the school have been closed in the country due to Covid-19.", options: ["All the school", "in the country", "have been closed", "due to Covid-19"], ans: "A" },
+      { id: 43, tag: "SSC CHSL Tier-01 2022 S2", q: "Workers and companies in all sectors can contribute their skills to meet society new needs.", options: ["sectors can contribute their skills", "No error", "to meet society new needs.", "Workers and companies in all"], ans: "C" },
+      { id: 44, tag: "SSC CHSL Tier-01 2022 S4", q: "And so for the sakes / of his son he remained, / absolutely calm.", options: ["absolutely calm", "No error", "of his son he remained", "And so for the sakes"], ans: "D" },
+      { id: 45, tag: "SSC CHSL Tier-01 2022 S2", q: "Balloons filled with helium travel hundreds or even thousands of mile.", options: ["Balloons filled with helium", "travel hundreds or", "No error", "even thousands of mile."], ans: "D" },
+      { id: 46, tag: "SSC CHSL Tier-01 2022", q: "The London-based Brodsky / Quartet, meanwhile, is one of / the world's leading string quartet.", options: ["The London-based Brodsky", "the world's leading string quartet.", "Quartet, meanwhile, is one of", "No error"], ans: "B" },
+      { id: 47, tag: "SSC CHSL Tier-01 2022", q: "We talked about writing a will, but it / was one of those thing you never / get around to doing.", options: ["was one of those thing you never", "No error", "get around to doing.", "We talked about writing a will, but it"], ans: "A" },
+      { id: 48, tag: "SSC CHSL Tier-01 2022", q: "I just don't like the themes of todays music.", options: ["No error", "I just don't", "like the themes of", "todays music."], ans: "D" },
+      { id: 49, tag: "SSC STENO Exam 2023", q: "The abstract noun form of 'act' is 'action'. Similarly, the abstract noun form of 'wide' will be:", options: ["widespread", "wideness", "width", "wisdom"], ans: "C" },
+      { id: 50, tag: "SSC CHSL Tier-01 2023", q: "She has gone to the stationery store to buy a scissor.", options: ["buying a pair of scissors", "buy a scissors", "buy a pair of scissors", "buy a pair of scissor"], ans: "C" },
+      { id: 51, tag: "SSC CHSL Tier-01 2022", q: "I didn't have times to watch the whole movie.", options: ["time to watch", "timer to watched", "time to watching", "No improvement"], ans: "A" },
+      { id: 52, tag: "SSC CHSL Tier-01 2022", q: "None of the witnessed could identify the suspect.", options: ["No improvement", "witness had identify", "witnessed could identified", "witnesses could identify"], ans: "D" },
+      { id: 53, tag: "SSC CHSL Tier-01 2022", q: "My new shoes gave me a blistered on my right heel.", options: ["me a blisters", "I a blister", "No improvement", "me a blister"], ans: "D" },
+      { id: 54, tag: "SSC CPO Pre 2020", q: "A large swarm of dogs was blocking the way.", options: ["pack of", "No substitution required", "herd of", "school of"], ans: "A" },
+      { id: 55, tag: "SSC GD Exam 2022", q: "There are hundred of superstitions that survive in various parts of the country, and the study of them is rather amusing.", options: ["There are hundred of superstition that survive in various parts of the country, and the study of them is rather amusing.", "There are hundred of superstition that survived in various parts of the country, and the study of them is rather amusing.", "No substitution", "There are hundreds of superstitions that survive in various parts of the country, and the study of them is rather amusing."], ans: "D" },
+      { id: 56, tag: "SSC GD Exam 2022", q: "People in temperate (country pay little attention) to mangroves.", options: ["country pays little attention", "countries pays little attention", "countries pay little attention", "country paid little attention"], ans: "C" },
+      { id: 57, tag: "SSC GD Exam 2022", q: "I visited the hospital to enquire about eyes surgery.", options: ["enquire about eye surgery", "enquire for eyes surgery", "enquired about eye surgery", "No substitution"], ans: "A" },
+      { id: 58, tag: "SSC GD Exam 2022", q: "Some passengers misplaced their luggages before boarding the train.", options: ["misplaced their luggage", "No substitution", "misplaces their luggages", "misplaced his luggages"], ans: "A" },
+      { id: 59, tag: "SSC GD Exam 2024", q: "Life would be a burdened without good companionship.", options: ["burden without", "No correct", "burdens without", "burdening without"], ans: "A" },
+      { id: 60, tag: "SSC GD Exam 2024", q: "Mange is caused by a types of parasitic mite.", options: ["types of parasitically", "type of parasitic", "No improvement", "types of parasite"], ans: "B" },
+      { id: 61, tag: "SSC GD Exam 2024", q: "The software revolution is at its peaks in India.", options: ["its peak", "No improvement", "its peaked", "it's peaking"], ans: "A" },
+      { id: 62, tag: "SSC GD Exam 2024", q: "There's no waters in the swimming pool.", options: ["no water", "No improvement", "no watering", "none water"], ans: "A" },
+      { id: 63, tag: "SSC MTS Exam 2024", q: "Reduced price of cooking gas brought happy to the face of every citizen.", options: ["happier", "happiest", "happily", "happiness"], ans: "D" },
+      { id: 64, tag: "SSC MTS Exam 2023", q: "The cats_ food bowl was empty, so he meowed incessantly until his owner finally filled it with fresh kibble.", options: ["The cats'", "A cat's", "A cats'", "The cat's"], ans: "D" },
+      { id: 65, tag: "SSC MTS Exam 2022", q: "I like to hang my laundry outside in the suns to dry.", options: ["No improvement", "sun to dried", "sun to dries", "sun to dry"], ans: "D" },
+      { id: 66, tag: "SSC MTS Exam 2022", q: "The number of homes with running watered has been rising sharply since 1985.", options: ["with run water", "with running water", "of ran watered", "No improvement"], ans: "B" },
+      { id: 67, tag: "SSC MTS Exam 2022", q: "The Yoruba was (one of the west African city - state culture).", options: ["No substitution required", "one of the west African city state cultures", "one of a west African city state cultures", "one of the west's African city state culture"], ans: "B" },
+      { id: 68, tag: "SSC MTS Exam 2021", q: "No other informations was conveyed to him.", options: ["No other's information", "No improvement required", "No other information", "None another information"], ans: "C" },
+      { id: 69, tag: "SSC Steno Exam 2026", q: "The new fiscal amendments have had a significant affect on the purchasing power of the middle class during this period of deflation.", options: ["has had a significant affect", "have significant affected", "have had a significant effect", "had significant effect"], ans: "C" },
+      { id: 70, tag: "SSC STENO Exam 2025", q: "She gave me many informations.", options: ["many pieces of information", "lots of knowledge", "several data", "much informations"], ans: "A" },
+      { id: 71, tag: "SSC STENO Exam 2023", q: "In the jungle, they encountered a school of lions.", options: ["pride of lions", "pack of lions", "No substitution", "sloth of lions"], ans: "A" },
+      { id: 72, tag: "SSC STENO Exam 2021", q: "Some people fear of groups results in long-silences or excessive talking.", options: ["No substitution", "Some peoples'", "Some people's", "Some of the people"], ans: "C" },
+      { id: 73, tag: "SSC Steno Exam 2026", q: "The ______ of the antique vase was estimated to be in the millions.", options: ["valuable", "valuing", "valued", "value"], ans: "D" },
+      { id: 74, tag: "SSC CPO Pre 2025", q: "A lamb was grazing with ______ sheep one day.", options: ["a flock of", "a group of", "a mob of", "a number of"], ans: "A" },
+      { id: 75, tag: "SSC CPO Pre 2020", q: "Second-hand furniture ______ here at reasonable prices.", options: ["are sold", "were selling", "has sold", "is sold"], ans: "D" },
+      { id: 76, tag: "Noun Practice", q: "Identify the incorrect sentence.", options: ["The committee has submitted its report to the director.", "The scenery of Kashmir is truly breathtaking and serene.", "All the modern equipments were imported from Germany last year.", "Athletics requires a great deal of physical stamina and discipline."], ans: "C" },
+      { id: 77, tag: "Noun Practice", q: "Identify the incorrect sentence.", options: ["The tribunal directed the defaulting corporation to pay substantial damages to the affected landowners.", "A three-member delegation has been sent to participate in the international summit.", "The tranquil surroundings of the ancient monastery provided the ideal atmosphere for meditation.", "Both of his offsprings have chosen to pursue careers in environmental research."], ans: "D" },
+      { id: 78, tag: "Noun Practice", q: "The regulatory authority initiated a formal inquiry after discovering glaring discrepancies in both company's financial statements.", options: ["The regulatory authority initiated", "a formal inquiry after", "discovering glaring discrepancies", "in both company's financial statements."], ans: "D" },
+      { id: 79, tag: "Noun Practice", q: "A. The economist's grim prophesy B. regarding the impending collapse C. of the banking sector D. was initially dismissed as unwarranted alarmism.", options: ["The economist's grim prophesy", "regarding the impending collapse", "of the banking sector", "was initially dismissed as unwarranted alarmism"], ans: "A" },
+      { id: 80, tag: "Noun Practice", q: "Rohan and Sania's mothers are both renowned surgeons who operate separate private clinics in the city.", options: ["Rohan and Sania's mothers", "are both renowned surgeons", "who operate separate private clinics", "in the city"], ans: "B" },
+      { id: 81, tag: "Noun Practice", q: "The arbitration committee criticized the contractor for the four weeks delay in executing the highway expansion project.", options: ["criticized", "weeks", "executing", "expansion"], ans: "B" },
+      { id: 82, tag: "Noun Practice", q: "The Chief Justice decided / to constitute a five-judges bench / to review the controversial verdict / delivered last year.", options: ["The Chief Justice decided", "to constitute a five-judges bench", "to review the controversial verdict", "delivered last year."], ans: "B" },
+      { id: 83, tag: "Noun Practice", q: "The following sentence has been split into four segments. Identify the segment that contains a grammatical error.\nThe panel of judges / was divided in their opinions / regarding the winner of / the national debate championship.", options: ["regarding the winner of", "The panel of judges", "was divided in their opinions", "the national debate championship"], ans: "C" },
+      { id: 84, tag: "Noun Practice", q: "As soon as the judge announced the acquittal, the heavy shackle was unlocked from the accused man's wrists.", options: ["the heavy shackles was unlocked", "the heavy shackles were unlocked", "the heavy shackle were unlocked", "No improvement required"], ans: "B" },
+      { id: 85, tag: "Noun Practice", q: "The proceeds from the auction of the ancestral property ______ divided equally among the legal heirs last week.", options: ["was", "has been", "were", "is"], ans: "C" },
+      { id: 86, tag: "Noun Practice", q: "The defense ministry reviewed all three commander-in-chiefs' strategic proposals before finalizing the joint operation.", options: ["commander-in-chief's", "commanders'-in-chief", "commanders-in-chief's", "No substitution"], ans: "C" },
+      { id: 87, tag: "Noun Practice", q: "The laboratory has procured many new equipments which is essential for advanced biochemical research.", options: ["several new pieces of equipment which are", "much new equipments which is", "many new equipment which is", "No improvement"], ans: "A" },
+      { id: 88, tag: "Noun Practice", q: "Alms was distributed (1) / among the needy people (2) / standing outside the temple (3) / on the auspicious occasion. (4)", options: ["among the needy people", "Alms was distributed", "standing outside the temple", "on the auspicious occasion."], ans: "B" },
+      { id: 89, tag: "Noun Practice", q: "The defense attorney questioned the ______ of the witness's statement, pointing out several glaring contradictions.", options: ["veracious", "veracity", "voracious", "voracity"], ans: "B" },
+      { id: 90, tag: "Noun Practice", q: "The young pianist performed the intricate sonata with such virtuoso that the critics were left utterly mesmerised.", options: ["virtuously", "virtuosic", "virtuosity", "virtuousness"], ans: "C" },
+      { id: 91, tag: "Noun Practice", q: "Rabies are transmitted (1) / to humans through the bite (2) / or scratch of an (3) / infected animal. (4)", options: ["Rabies are transmitted", "to humans through the bite", "or scratch of an", "infected animal."], ans: "A" },
+      { id: 92, tag: "Noun Practice", q: "The factory could not resume operations because the machineries imported from Germany was defective.", options: ["the machinery imported from Germany was", "the machineries imported from Germany were", "a machinery imported from Germany was", "No improvement"], ans: "A" },
+      { id: 93, tag: "Noun Practice", q: "All the delicate cutleries (1) / imported from Europe (2) / were displayed elegantly (3) / in the glass cabinet. (4)", options: ["All the delicate cutleries", "imported from Europe", "were displayed elegantly", "in the glass cabinet."], ans: "A" },
+      { id: 94, tag: "Noun Practice", q: "The historical mansion (1) / was constructed entirely (2) / of red bricks and heavy stones (3) / imported from Rajasthan. (4)", options: ["The historical mansion", "was constructed entirely", "of red bricks and heavy stones", "imported from Rajasthan."], ans: "C" },
+      { id: 95, tag: "Noun Practice", q: "The high court issued a summon to the government official directing him to present the original financial files.", options: ["issued a summons to the government official", "issued two summons to the government official", "issued a summonses to the government official", "No improvement required"], ans: "A" },
+      { id: 96, tag: "Noun Practice", q: "Billiards are played (1) / on a large cloth-covered table (2) / with pocket holes at (3) / each of the four corners. (4)", options: ["Billiards are played", "on a large cloth-covered table", "with pocket holes at", "each of the four corners."], ans: "A" },
+      { id: 97, tag: "SSC Phase-14 (Matriculation) Exam 2026 S3", q: "Identify the segment that contains the grammatical error: She has / a three years old / daughter / studying in class one.", options: ["She has", "a three years old", "daughter", "studying in class one"], ans: "B" },
+      { id: 98, tag: "SSC Phase-14 (Matriculation) Exam 2026 S3", q: "Identify the segment that contains the grammatical error: The sceneries / of Kashmir / attract / many tourists.", options: ["The sceneries", "of Kashmir", "attract", "many tourists"], ans: "A" },
+      { id: 99, tag: "SSC Phase-14 (Matriculation) Exam 2026 S3", q: "Identify the segment that contains the grammatical error: Your advice / are / always helpful / to me.", options: ["Your advice", "are", "always helpful", "to me"], ans: "B" },
+      { id: 100, tag: "SSC Phase-14 (Graduation) Exam 2026 S1", q: "Identify the error in the sentence.\nWe are hopeful for a rapid recover.", options: ["recover", "hopeful", "rapid", "are"], ans: "A" }
+    ];
+
+    let currentIdx = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+    let reviewMarked = new Array(questions.length).fill(false);
+    let isSubmitted = false;
+    let secondsElapsed = 0;
+    let timerInterval = null;
+
+    const letters = ["A", "B", "C", "D"];
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        if (!isSubmitted) {
+          secondsElapsed++;
+          const hrs = String(Math.floor(secondsElapsed / 3600)).padStart(2, '0');
+          const mins = String(Math.floor((secondsElapsed % 3600) / 60)).padStart(2, '0');
+          const secs = String(secondsElapsed % 60).padStart(2, '0');
+          document.getElementById("timerDisplay").textContent = `${hrs}:${mins}:${secs}`;
+        }
+      }, 1000);
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById("paletteGrid");
+      grid.innerHTML = "";
+      const practiceMode = document.getElementById("practiceModeToggle").checked;
+
+      let answered = 0, correct = 0, wrong = 0, review = 0;
+
+      questions.forEach((item, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "p-btn";
+        btn.textContent = item.id;
+
+        if (idx === currentIdx) btn.classList.add("current");
+
+        const ua = userAnswers[idx];
+        if (ua !== null) {
+          answered++;
+          if (practiceMode || isSubmitted) {
+            if (ua === item.ans) {
+              btn.classList.add("correct");
+              correct++;
+            } else {
+              btn.classList.add("wrong");
+              wrong++;
+            }
+          } else {
+            btn.classList.add("answered");
+          }
+        } else if (reviewMarked[idx]) {
+          btn.classList.add("review");
+        }
+
+        if (reviewMarked[idx]) review++;
+
+        btn.onclick = () => {
+          currentIdx = idx;
+          renderQuestion();
+          renderPalette();
+        };
+        grid.appendChild(btn);
+      });
+
+      document.getElementById("statAnswered").textContent = answered;
+      document.getElementById("statCorrect").textContent = (practiceMode || isSubmitted) ? correct : "-";
+      document.getElementById("statWrong").textContent = (practiceMode || isSubmitted) ? wrong : "-";
+      document.getElementById("statReview").textContent = review;
+    }
+
+    function renderQuestion() {
+      const item = questions[currentIdx];
+      const practiceMode = document.getElementById("practiceModeToggle").checked;
+      const ua = userAnswers[currentIdx];
+
+      document.getElementById("qNumber").textContent = `Question ${item.id} of ${questions.length}`;
+      document.getElementById("qTag").textContent = item.tag;
+      document.getElementById("qText").textContent = item.q;
+
+      const optsDiv = document.getElementById("optionsContainer");
+      optsDiv.innerHTML = "";
+
+      item.options.forEach((optText, i) => {
+        const letter = letters[i];
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+
+        const showResult = (practiceMode && ua !== null) || isSubmitted;
+
+        if (showResult) {
+          if (letter === item.ans) btn.classList.add("correct");
+          else if (ua === letter && ua !== item.ans) btn.classList.add("wrong");
+        } else if (ua === letter) {
+          btn.classList.add("selected");
+        }
+
+        btn.innerHTML = `
+          <span class="opt-letter">${letter}</span>
+          <span>${optText}</span>
+        `;
+
+        btn.onclick = () => selectOption(letter);
+        optsDiv.appendChild(btn);
+      });
+
+      const banner = document.getElementById("feedbackBanner");
+      if ((practiceMode && ua !== null) || isSubmitted) {
+        banner.style.display = "block";
+        if (ua === item.ans) {
+          banner.style.background = "#dcfce7";
+          banner.style.color = "#166534";
+          banner.textContent = `✓ Correct! Official Answer Key: Option (${item.ans})`;
+        } else if (ua === null) {
+          banner.style.background = "#fef9c3";
+          banner.style.color = "#854d0e";
+          banner.textContent = `Unattempted. Official Answer Key: Option (${item.ans})`;
+        } else {
+          banner.style.background = "#fee2e2";
+          banner.style.color = "#991b1b";
+          banner.textContent = `✗ Incorrect. You selected (${ua}), Official Answer Key is Option (${item.ans})`;
+        }
+      } else {
+        banner.style.display = "none";
+      }
+
+      document.getElementById("prevBtn").disabled = currentIdx === 0;
+      document.getElementById("nextBtn").disabled = currentIdx === questions.length - 1;
+    }
+
+    function selectOption(letter) {
+      if (isSubmitted) return;
+      userAnswers[currentIdx] = letter;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function clearResponse() {
+      if (isSubmitted) return;
+      userAnswers[currentIdx] = null;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function toggleReview() {
+      reviewMarked[currentIdx] = !reviewMarked[currentIdx];
+      renderPalette();
+    }
+
+    function changeQuestion(dir) {
+      const next = currentIdx + dir;
+      if (next >= 0 && next < questions.length) {
+        currentIdx = next;
+        renderQuestion();
+        renderPalette();
+      }
+    }
+
+    function submitQuiz() {
+      isSubmitted = true;
+      let attempted = 0, correct = 0, wrong = 0;
+
+      questions.forEach((q, i) => {
+        if (userAnswers[i] !== null) {
+          attempted++;
+          if (userAnswers[i] === q.ans) correct++;
+          else wrong++;
+        }
+      });
+
+      const score = (correct * 2) - (wrong * 0.5);
+      document.getElementById("finalScore").textContent = score.toFixed(1);
+      document.getElementById("resAttempted").textContent = attempted;
+      document.getElementById("resCorrect").textContent = correct;
+      document.getElementById("resWrong").textContent = wrong;
+      document.getElementById("resSkipped").textContent = questions.length - attempted;
+
+      document.getElementById("resultModal").style.display = "flex";
+      renderQuestion();
+      renderPalette();
+    }
+
+    function closeModal() {
+      document.getElementById("resultModal").style.display = "none";
+    }
+
+    function resetQuiz() {
+      userAnswers.fill(null);
+      reviewMarked.fill(false);
+      isSubmitted = false;
+      secondsElapsed = 0;
+      currentIdx = 0;
+      renderQuestion();
+      renderPalette();
+    }
+
+    document.getElementById("practiceModeToggle").addEventListener("change", () => {
+      renderQuestion();
+      renderPalette();
+    });
+
+    // Keyboard navigation (Left/Right arrows & 1-4 / A-D keys)
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") changeQuestion(1);
+      else if (e.key === "ArrowLeft") changeQuestion(-1);
+      else if (["1", "a", "A"].includes(e.key)) selectOption("A");
+      else if (["2", "b", "B"].includes(e.key)) selectOption("B");
+      else if (["3", "c", "C"].includes(e.key)) selectOption("C");
+      else if (["4", "d", "D"].includes(e.key)) selectOption("D");
+    });
+
+    // Initialize
+    startTimer();
+    renderQuestion();
+    renderPalette();
+  </script>
+</body>
+</html>

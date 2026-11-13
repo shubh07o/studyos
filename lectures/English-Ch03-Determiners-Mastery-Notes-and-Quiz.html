@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Determiners Mastery — Interactive Notes & 100 PYQ Quiz</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --success-border: #bbf7d0;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --warning: #d97706;
+      --warning-bg: #fffbeb;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--surface-alt);
+      padding: 4px;
+      border-radius: 10px;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--primary);
+      box-shadow: var(--shadow);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1150px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    /* Notes Controls & Grid */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .pill-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .pill.active, .pill:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary-border);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
+    }
+
+    .note-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .note-card.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .note-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      border-bottom: 1px solid var(--surface-alt);
+      padding-bottom: 10px;
+    }
+
+    .note-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .note-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .rule-box {
+      background: var(--surface-alt);
+      border-left: 3px solid var(--primary);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      margin-top: 4px;
+    }
+
+    .compare-table th, .compare-table td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .compare-table th {
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+
+    .example-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.88rem;
+    }
+
+    .ex-wrong {
+      color: var(--danger);
+      background: var(--danger-bg);
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-decoration: line-through;
+    }
+
+    .ex-right {
+      color: var(--success);
+      background: var(--success-bg);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    /* Interactive Mini Drill inside Notes */
+    .drill-item {
+      background: var(--surface-alt);
+      padding: 12px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .drill-reveal-btn {
+      align-self: flex-start;
+      border: 1px solid var(--primary-border);
+      background: var(--surface);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .drill-answer {
+      display: none;
+      color: var(--success);
+      font-weight: 600;
+      background: var(--success-bg);
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--success-border);
+    }
+
+    .drill-answer.visible {
+      display: block;
+    }
+
+    /* Quiz Dashboard */
+    .quiz-stats-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .stat-value.correct { color: var(--success); }
+    .stat-value.wrong { color: var(--danger); }
+    .stat-value.score { color: var(--primary); }
+
+    .quiz-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--surface-alt);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .quiz-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .q-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .q-num {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .q-exam {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--surface-alt);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .q-stem {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+    }
+
+    .opt-btn {
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .opt-letter {
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 20px;
+    }
+
+    .opt-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: #065f46;
+      font-weight: 600;
+    }
+
+    .opt-btn.correct .opt-letter {
+      color: var(--success);
+    }
+
+    .opt-btn.wrong {
+      background: var(--danger-bg);
+      border-color: var(--danger);
+      color: #991b1b;
+    }
+
+    .opt-btn.wrong .opt-letter {
+      color: var(--danger);
+    }
+
+    .q-feedback {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    .q-feedback.visible {
+      display: block;
+    }
+
+    .q-feedback.ok {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: #065f46;
+    }
+
+    .q-feedback.err {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: #991b1b;
+    }
+
+    @media (max-width: 640px) {
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-badge">PARMAR SSC</span>
+        <h1>Determiners — Digital Notes & 100 PYQ Quiz</h1>
+      </div>
+      <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('notes')">📘 Interactive Notes</button>
+        <button class="tab-btn" onclick="switchTab('drills')">⚡ Concept Drills (30)</button>
+        <button class="tab-btn" onclick="switchTab('quiz')">🏆 100 PYQ Quiz</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- SECTION 1: INTERACTIVE NOTES -->
+    <section id="view-notes" class="view-section active">
+      <div class="toolbar">
+        <input type="text" id="noteSearch" class="search-input" placeholder="Search rules (e.g. 'Each vs Every', 'Few', 'Little', 'Ordinal', 'A number of')..." oninput="filterNotes()" />
+        <div class="pill-filters">
+          <button class="pill active" onclick="filterNotesByTag('all', this)">All Topics</button>
+          <button class="pill" onclick="filterNotesByTag('foundation', this)">Foundation & Group A/B</button>
+          <button class="pill" onclick="filterNotesByTag('distributive', this)">Each / Every / Either</button>
+          <button class="pill" onclick="filterNotesByTag('quantifier', this)">Some / Any / Few / Little / Much</button>
+          <button class="pill" onclick="filterNotesByTag('order', this)">All / Both / Ordinals / Other</button>
+        </div>
+      </div>
+
+      <div class="notes-grid" id="notesGrid">
+
+        <!-- Card 1: Determiner vs Adjective -->
+        <div class="note-card" data-tag="foundation">
+          <div class="note-header">
+            <div class="note-title">1. Determiners vs. Adjectives</div>
+            <span class="note-tag">Foundation</span>
+          </div>
+          <div class="rule-box">
+            <strong>Determiner:</strong> Determines/points out a noun. Always placed <em>before</em> a noun (Attributive only).<br>
+            <strong>Adjective:</strong> Adds quality/meaning to a noun. Can be Attributive or Predicative.
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Feature</th><th>Determiner</th><th>Adjective</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Gradable (Degrees)?</td><td>No (Non-gradable)*</td><td>Yes (wise, wiser, wisest)</td></tr>
+              <tr><td>Position</td><td>Only Attributive (Before Noun)</td><td>Attributive & Predicative</td></tr>
+              <tr><td>Articles Note</td><td colspan="2">All Articles (A, An, The) are Determiners, but not all Determiners are Articles.</td></tr>
+            </tbody>
+          </table>
+          <ul class="example-list">
+            <li><span class="ex-right">✓ Some soldiers are brave.</span> ("Some" = Determiner [Attributive], "brave" = Adjective [Predicative])</li>
+            <li><span class="ex-right">✓ I met a brave soldier.</span> ("a" = Determiner, "brave" = Attributive Adj.)</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Group A vs Group B Determiners -->
+        <div class="note-card" data-tag="foundation">
+          <div class="note-header">
+            <div class="note-title">2. Group 'A' vs. Group 'B' Rule</div>
+            <span class="note-tag">High Yield</span>
+          </div>
+          <div class="rule-box">
+            <strong>Golden Rule:</strong> Never use two <strong>Group A</strong> determiners consecutively! You can only use one Group A determiner at a time, or combine with Group B / "of".
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Group 'A' (Never stack together)</th><th>Group 'B' (Can combine)</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  1. <strong>Articles:</strong> A, An, The<br>
+                  2. <strong>Possessives:</strong> My, Our, Your, His, Her, Its, Their<br>
+                  3. <strong>Demonstratives:</strong> This, That, These, Those
+                </td>
+                <td>
+                  1. <strong>Quantifiers:</strong> Some, any, few, little, much, many<br>
+                  2. <strong>Ordinals/Pre:</strong> First, second, all, both (e.g. <em>many a, a few, a little, all these, all our</em>)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ I have found a your this bag.</span></li>
+            <li><span class="ex-right">✓ I have found a / your / this bag.</span></li>
+            <li><span class="ex-wrong">✗ You are my the best friend.</span> → <span class="ex-right">✓ You are my best friend. (No article)</span></li>
+            <li><span class="ex-wrong">✗ I searched in every my cupboard.</span> → <span class="ex-right">✓ ...in every cupboard of mine.</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Demonstrative Kind/Sort/Type -->
+        <div class="note-card" data-tag="foundation">
+          <div class="note-header">
+            <div class="note-title">3. Demonstratives (This/That/These/Those)</div>
+            <span class="note-tag">Top PYQ Trap</span>
+          </div>
+          <div class="rule-box">
+            Number agreement must match across Demonstrative + Kind/Sort/Type + Noun:
+            <br>• <strong>This / That</strong> + singular noun (kind / sort / type / product)
+            <br>• <strong>These / Those</strong> + plural noun (kinds / sorts / types / products)
+          </div>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ Those kind of conclusions / These sort of arguments</span></li>
+            <li><span class="ex-right">✓ Those kinds of conclusions / These sorts of arguments</span></li>
+            <li><span class="ex-wrong">✗ That kinds of objections / This products</span></li>
+            <li><span class="ex-right">✓ That kind of objection (or Those kinds) / This product (or These products)</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Each vs Every -->
+        <div class="note-card" data-tag="distributive">
+          <div class="note-header">
+            <div class="note-title">4. Each vs. Every</div>
+            <span class="note-tag">Distributive</span>
+          </div>
+          <div class="rule-box">
+            Both take a <strong>Singular Countable Noun</strong> and a <strong>Singular Verb</strong> when used as subject determiners.
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Feature</th><th>Each</th><th>Every</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Part of Speech</td><td>Determiner <strong>& Pronoun</strong></td><td><strong>Only Determiner</strong> (Never Pronoun)</td></tr>
+              <tr><td>Number</td><td>For <strong>2 or more than 2</strong> (Individual focus)</td><td>Only for <strong>more than 2 (+2)</strong> (General group)</td></tr>
+              <tr><td>With "of"</td><td>✓ <strong>Each of</strong> the boys is...</td><td>✗ <strong>Every of</strong> the boys (Always Wrong!)</td></tr>
+              <tr><td>Special Triggers</td><td>"They each + Plural Verb" (<em>We each have...</em>)</td><td>Used after <strong>Almost, Nearly, Practically, Approximately</strong> & <strong>Time Repetition</strong> (<em>Every Sunday, Every hour</em>)</td></tr>
+            </tbody>
+          </table>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ Every of the two girls will get the reward.</span> → <span class="ex-right">✓ Each of the two girls...</span></li>
+            <li><span class="ex-wrong">✗ We each has participated.</span> → <span class="ex-right">✓ We each have participated. (Verb agrees with real plural subject 'We')</span></li>
+            <li><span class="ex-right">✓ Every word and every line fascinates us. (Singular verb + 'his/her' pronoun)</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 5: Either vs Neither -->
+        <div class="note-card" data-tag="distributive">
+          <div class="note-header">
+            <div class="note-title">5. Either / Neither vs. Any / None</div>
+            <span class="note-tag">Distributive</span>
+          </div>
+          <div class="rule-box">
+            • <strong>Either / Neither</strong> are strictly for <strong>2 persons or things</strong> and take a <strong>Singular Verb</strong>.<br>
+            • For <strong>more than 2 (+2)</strong>: replace <em>Either</em> with <strong>Any</strong>, and <em>Neither</em> with <strong>None</strong>.
+          </div>
+          <ul class="example-list">
+            <li><strong>Structure 1:</strong> Either/Neither + Singular Noun + Singular Verb (<em>Neither boy is ready.</em>)</li>
+            <li><strong>Structure 2:</strong> Either/Neither + of + Plural Noun + Singular Verb (<em>Either of these two roads leads...</em>)</li>
+            <li><span class="ex-wrong">✗ Shailja is prettier than either of her three cousins.</span></li>
+            <li><span class="ex-right">✓ Shailja is prettier than any of her three cousins. (3 cousins = +2)</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 6: Some vs Any -->
+        <div class="note-card" data-tag="quantifier">
+          <div class="note-header">
+            <div class="note-title">6. Some vs. Any</div>
+            <span class="note-tag">Quantifier</span>
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Rule</th><th>Some</th><th>Any</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Sentence Type</td><td><strong>Affirmative</strong> sentences</td><td><strong>Negative & Interrogative</strong> sentences</td></tr>
+              <tr><td>Nouns Allowed</td><td>Uncountable Noun OR Plural Countable Noun (<em>Some advice, Some boys</em> — ✗ <em>Some boy</em>)</td><td>Uncountable, Singular Countable, or Plural Countable (<em>Any book, Any books, Any milk</em>)</td></tr>
+              <tr><td>Interrogative Exceptions</td><td>Use <strong>Some</strong> in Questions for <strong>Offers, Requests (Would/Can/Could you...)</strong> or when expected answer is <strong>Yes</strong>.</td><td>Use <strong>Any</strong> after Negative words: <strong>Hardly, Scarcely, Rarely, Barely, Seldom, Without, Forbade, Refuse, Deny, Doubt</strong>.</td></tr>
+            </tbody>
+          </table>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ Would you like to have any biscuits with tea?</span> → <span class="ex-right">✓ ...some biscuits with tea? (Offer)</span></li>
+            <li><span class="ex-wrong">✗ He climbed with hardly no / some effort.</span> → <span class="ex-right">✓ ...hardly any effort.</span></li>
+            <li><span class="ex-right">✓ In affirmative meaning "All/Whichever": "I can solve any question."</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 7: Few / A Few / The Few -->
+        <div class="note-card" data-tag="quantifier">
+          <div class="note-header">
+            <div class="note-title">7. Few vs. A Few vs. The Few</div>
+            <span class="note-tag">Countable Plural</span>
+          </div>
+          <div class="rule-box">
+            Always used with <strong>Plural Countable Nouns (C.N.)</strong>. Never use with Uncountable nouns (like water, money, rice, time, juice).
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Form</th><th>Meaning</th><th>Hindi Sense / Trigger</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Few</strong></td><td>Hardly any / Almost nothing (Negative)</td><td>ना के बराबर (काम न चल सके) • Trigger: <strong>Very few</strong></td></tr>
+              <tr><td><strong>A few</strong></td><td>Some / A small number (Positive)</td><td>कुछ (काम चल सके) • Trigger: <strong>Only a few</strong>, <em>a few decades ago</em></td></tr>
+              <tr><td><strong>The few</strong></td><td>Not many, but all that is available</td><td>जितना है वह सारा • Trigger: Followed by a <strong>Relative Clause</strong> (<em>that/who + S + V</em>)</td></tr>
+            </tbody>
+          </table>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ Until few decades ago / In few words, he expressed gratitude.</span></li>
+            <li><span class="ex-right">✓ Until a few decades ago / In a few words...</span></li>
+            <li><span class="ex-right">✓ I have given you the few books that I had. (Relative clause present)</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 8: Little / A Little / The Little -->
+        <div class="note-card" data-tag="quantifier">
+          <div class="note-header">
+            <div class="note-title">8. Little vs. A Little vs. The Little</div>
+            <span class="note-tag">Uncountable Singular</span>
+          </div>
+          <div class="rule-box">
+            Always used with <strong>Uncountable Singular Nouns (U.N.)</strong> (money, water, time, patience, knowledge, rice, juice).
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Form</th><th>Meaning</th><th>Trigger / Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Little</strong></td><td>Hardly any / Almost nothing (-ve)</td><td>ना के बराबर • Trigger: <strong>Very little</strong> (✗ Never say <em>"a very little"</em>!)</td></tr>
+              <tr><td><strong>A little</strong></td><td>Some quantity (+ve)</td><td>थोड़ा/कुछ • Trigger: <strong>Only a little</strong> (<em>A little knowledge is dangerous</em>)</td></tr>
+              <tr><td><strong>The little</strong></td><td>All that small amount available</td><td>Followed by a <strong>Relative Clause</strong> (<em>The little money that I had...</em>)</td></tr>
+            </tbody>
+          </table>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ There is a very little time to prepare.</span> → <span class="ex-right">✓ There is very little time... (Drop 'a')</span></li>
+            <li><span class="ex-wrong">✗ Ritwik set aside a few money / a few rice.</span> → <span class="ex-right">✓ ...a little money / a little rice.</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 9: Many / Much / Many a / A lot of -->
+        <div class="note-card" data-tag="quantifier">
+          <div class="note-header">
+            <div class="note-title">9. Many / Much / Many a / A lot of</div>
+            <span class="note-tag">Quantifier</span>
+          </div>
+          <div class="rule-box">
+            • <strong>Many (Fewer / Fewest):</strong> Plural Countable Nouns (flaws, motifs, applications, mistakes, books).<br>
+            • <strong>Much (Less / Least):</strong> Uncountable Singular Nouns (effort, thought, time, work, water).
+          </div>
+          <ul class="example-list">
+            <li><strong>Many a / an + Singular Noun + Singular Verb:</strong> <span class="ex-right">✓ Many an hour / Many an opportunity / Many a musician has...</span></li>
+            <li><strong>A great many + Plural Noun + Plural Verb:</strong> <span class="ex-right">✓ A great many workers are...</span></li>
+            <li><strong>A lot of / Lots of:</strong> Both take Plural C.N. or Singular U.N. <span class="ex-wrong">✗ A lots of / Lot of people</span> → <span class="ex-right">✓ A lot of / Lots of people</span></li>
+            <li><strong>Much too vs Too much:</strong> <em>Too much + Noun</em> (Too much technology) vs <em>Much too + Adjective</em> (Much too painful).</li>
+            <li><strong>No fewer than vs No less than:</strong> For countable plural students: <span class="ex-right">✓ No fewer than fifty students were absent.</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 10: All / Both / Whole -->
+        <div class="note-card" data-tag="order">
+          <div class="note-header">
+            <div class="note-title">10. All vs. Both vs. Whole</div>
+            <span class="note-tag">Word Order</span>
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Word</th><th>Position of "The" / Possessive</th><th>Usage Rule</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>All</strong></td><td><strong>After</strong> All (<em>All the books, All our teachers, All these novels</em>)</td><td>For +2 Countable (Pl. Verb) or Uncountable (Sing. Verb: <em>All the milk has been sold</em>). Never use <em>All + a/an</em>.</td></tr>
+              <tr><td><strong>Both</strong></td><td><strong>After</strong> Both (<em>Both the students, Both my children</em>)</td><td>Strictly for 2. <strong>Not used in negative sentences!</strong> Use <em>Neither of the... is</em> instead of <em>Both... are not</em>.</td></tr>
+              <tr><td><strong>Whole</strong></td><td><strong>Before</strong> Whole (<em>The whole country, The whole chapter</em>)</td><td>Used with singular countable noun to denote complete unit.</td></tr>
+            </tbody>
+          </table>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ The both children / Whole country applauded.</span></li>
+            <li><span class="ex-right">✓ Both the children / The whole country applauded.</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 11: Ordinals & Cardinals + Enough -->
+        <div class="note-card" data-tag="order">
+          <div class="note-header">
+            <div class="note-title">11. Ordinals vs. Cardinals & "Enough"</div>
+            <span class="note-tag">Sequence</span>
+          </div>
+          <div class="rule-box">
+            • <strong>Ordinals (Position):</strong> First, second, third, next, last, previous → Always take <strong>"The"</strong> and come <strong>BEFORE Cardinals</strong> (one, two, three, few).<br>
+            • <strong>Formula:</strong> <strong>The + Ordinal + Cardinal + Noun</strong>
+          </div>
+          <ul class="example-list">
+            <li><span class="ex-wrong">✗ The five first girls / The few next days / Fashion might not be first thing</span></li>
+            <li><span class="ex-right">✓ The first five girls / The next few days / ...be the first thing</span></li>
+            <li><strong>Enough Position:</strong> <em>Enough + Noun</em> (<span class="ex-right">✓ enough experience</span>, <span class="ex-wrong">✗ experience enough</span>) vs <em>Adjective + Enough</em> (<em>brave enough</em>).</li>
+            <li><strong>Too + Adj + A/An + Noun:</strong> <span class="ex-wrong">✗ too grave sin</span> → <span class="ex-right">✓ too grave a sin</span></li>
+          </ul>
+        </div>
+
+        <!-- Card 12: Other / Another / Number of -->
+        <div class="note-card" data-tag="order">
+          <div class="note-header">
+            <div class="note-title">12. Other / Another & Quantity Phrases</div>
+            <span class="note-tag">Agreement</span>
+          </div>
+          <table class="compare-table">
+            <thead>
+              <tr><th>Expression</th><th>Noun & Verb Rule</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Another</strong> (An + Other)</td><td>Takes <strong>Singular Noun</strong> (<em>another cup, another outfit</em>). Never use <em>"The another"</em> or <em>"His another"</em> (use <em>His other brother</em>). Idiom: <em>"In other words"</em> (✗ <em>In another words</em>).</td></tr>
+              <tr><td><strong>The other</strong></td><td>Specific remaining one of two (<em>One is red, the other is blue</em>).</td></tr>
+              <tr><td><strong>Others</strong></td><td>Pronoun only (No noun after it: <em>Others can never understand</em>).</td></tr>
+              <tr><td><strong>A number of / A large number of</strong></td><td>Plural Countable Noun + <strong>Plural Verb</strong> (<em>A number of cars are...</em>)</td></tr>
+              <tr><td><strong>The number of</strong></td><td>Plural Countable Noun + <strong>Singular Verb</strong> (<em>The number of players is...</em>)</td></tr>
+              <tr><td><strong>A great deal of / A large amount of</strong></td><td>Uncountable Noun + <strong>Singular Verb</strong> (<em>A great deal of sugar has...</em>)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: CONCEPT DRILLS FROM DIGITAL NOTES -->
+    <section id="view-drills" class="view-section">
+      <div class="note-card full-width" style="margin-bottom: 18px;">
+        <div class="note-header">
+          <div class="note-title">⚡ 30 Concept Spot-the-Error Drills (From Class Notes)</div>
+          <span class="note-tag">Active Recall</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Spot the determiner/verb error in each classroom sentence below, then click <strong>Reveal Correction</strong> to verify.
+        </p>
+      </div>
+      <div class="notes-grid" id="drillsContainer"></div>
+    </section>
+
+    <!-- SECTION 3: 100 PYQ QUIZ -->
+    <section id="view-quiz" class="view-section">
+      <div class="quiz-stats-bar">
+        <div class="stat-group">
+          <div class="stat-item">
+            <span class="stat-label">Attempted</span>
+            <span class="stat-value" id="statAttempted">0 / 100</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Correct</span>
+            <span class="stat-value correct" id="statCorrect">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Wrong</span>
+            <span class="stat-value wrong" id="statWrong">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">SSC Marks (+2 / -0.5)</span>
+            <span class="stat-value score" id="statScore">0.0</span>
+          </div>
+        </div>
+        <div class="quiz-controls">
+          <input type="text" id="quizSearch" class="search-input" style="min-width: 200px; padding: 7px 12px;" placeholder="Search Q# or keyword..." oninput="renderQuiz()" />
+          <select id="quizRange" class="btn" onchange="renderQuiz()">
+            <option value="all">All 100 Questions</option>
+            <option value="1-25">Set 1: Q1 – Q25 (Error Spotting)</option>
+            <option value="26-50">Set 2: Q26 – Q50 (Error Spotting)</option>
+            <option value="51-75">Set 3: Q51 – Q75 (Improvement)</option>
+            <option value="76-100">Set 4: Q76 – Q100 (Fill in Blanks)</option>
+            <option value="wrong">Review Wrong Answers Only</option>
+          </select>
+          <button class="btn" onclick="resetQuiz()">↺ Reset Quiz</button>
+        </div>
+      </div>
+
+      <div class="quiz-list" id="quizContainer"></div>
+    </section>
+
+  </main>
+
+  <script>
+    // ==========================================
+    // 30 CLASSROOM CONCEPT DRILLS (FROM NOTES PDF)
+    // ==========================================
+    const conceptDrills = [
+      { q: "1. I have found a your this bag.", a: "✓ I have found a / your / this bag. (Never stack Group A determiners together)" },
+      { q: "2. Every man, woman and children was present.", a: "✓ Every man, woman and child... ('Every' takes a singular noun)" },
+      { q: "3. Every word and every line of the poems of Wordsworth fascinate us.", a: "✓ ...fascinates us. ('Every... and every...' takes a singular verb)" },
+      { q: "4. Every of the players is playing well.", a: "✓ Each of the players is playing well. ('Every of' is grammatically invalid)" },
+      { q: "5. Pratibha visits her home town each Sunday.", a: "✓ ...every Sunday. (Time repetition/frequency uses 'Every')" },
+      { q: "6. We each has participated in today's function.", a: "✓ We each have participated... (When 'each' follows plural pronoun 'We/They', verb is plural)" },
+      { q: "7. Every of the two girls will get the reward. (CHSL 2024)", a: "✓ Each of the two girls... (For two + 'of', use 'Each')" },
+      { q: "8. Every soldier and every officer was in their place.", a: "✓ ...was in his place. (Singular masculine possessive pronoun 'his')" },
+      { q: "9. The three of them shouted out to each another when the train started moving.", a: "✓ ...shouted out to one another ('Each other' = 2; 'One another' = more than 2)" },
+      { q: "10. Yesterday I searched in every my cupboard for the shirt.", a: "✓ ...in every cupboard of mine (Don't put 'my' directly after 'every')" },
+      { q: "11. Each of these girls with the bride have been warned.", a: "✓ ...has been warned. (Real subject is 'Each', which is singular)" },
+      { q: "12. He denied that he had some involvement in the crime.", a: "✓ ...any involvement in the crime. ('Denied' is negative, so use 'any')" },
+      { q: "13. Would you like to have any biscuits with tea?", a: "✓ ...some biscuits with tea? (Offers use 'some')" },
+      { q: "14. Platinum is costlier than any other metals found on earth.", a: "✓ ...any other metal found on earth. ('Any other' takes singular countable noun)" },
+      { q: "15. The old man climbed seven floors with hardly no effort at all.", a: "✓ ...with hardly any effort at all. ('Hardly' is negative; never pair with 'no')" },
+      { q: "16. Since the little girl answers a few simple question, her parents say she is intelligent.", a: "✓ ...a few simple questions ('A few' requires a plural countable noun)" },
+      { q: "17. I have spent a little of money that my brother gave me.", a: "✓ I have spent the little money that my brother gave me. (Relative clause 'that my brother gave me' requires 'the little')" },
+      { q: "18. You must make a choice immediately because there is few time left.", a: "✓ ...because there is little time left. ('Time' is uncountable)" },
+      { q: "19. Deepak said he would pack few things he had and vacate the hostel room.", a: "✓ ...pack the few things he had... (Relative clause '(that) he had' requires 'the few')" },
+      { q: "20. Much study materials has been provided.", a: "✓ Many study materials have been provided." },
+      { q: "21. Many a musicians have supported this poet.", a: "✓ Many a musician has supported this poet. ('Many a/an' + Singular Noun + Singular Verb)" },
+      { q: "22. It rains a lots in this part of the country.", a: "✓ It rains a lot in this part... (Adverb is 'a lot'; determiner is 'a lot of' or 'lots of')" },
+      { q: "23. I'm sorry, sir. How many is the fine for returning the books late?", a: "✓ How much is the fine... ('Fine' amount/money is uncountable)" },
+      { q: "24. Whole the chapter is very difficult for us.", a: "✓ The whole chapter is very difficult... ('The' comes before 'whole')" },
+      { q: "25. The both children go to the same school.", a: "✓ Both the children go... ('The' comes after 'both')" },
+      { q: "26. Both the teachers are not behaving well.", a: "✓ Neither of the teachers is behaving well. ('Both' is not used in negative sentences)" },
+      { q: "27. Shailja is prettier than either of her three cousins.", a: "✓ ...prettier than any of her three cousins. ('Either' is only for 2)" },
+      { q: "28. The five first girls will get the discount on our merchandise. (CGL 2024)", a: "✓ The first five girls... (Ordinal 'first' comes before Cardinal 'five')" },
+      { q: "29. His another brother is in the Indian Army.", a: "✓ His other brother is in the Indian Army. ('Another' = an + other; cannot follow possessive 'His')" },
+      { q: "30. A large number of student have participated, and the number of players are playing well.", a: "✓ A large number of students have..., and the number of players is..." }
+    ];
+
+    // ==========================================
+    // ALL 100 PYQ QUESTIONS (FROM DETERMINERS PDF)
+    // Verified 100% against official PDF Answer Keys
+    // ==========================================
+    const quizData = [
+      { id: 1, exam: "DSSSB ASO Exam 2026 S1", q: "Those kind of conclusions (A) / often emerge from (B) / incomplete statistical analyses. (C) / No error (D)", opts: ["A. C", "B. A", "C. D", "D. B"], ans: 1, exp: "Part (A) has the error: Replace 'Those kind' with 'Those kinds' (plural demonstrative 'Those' requires plural 'kinds')." },
+      { id: 2, exam: "DSSSB ASO Exam 2026 S1", q: "There is small (A) / chance of the proposal (B) / being rejected. (C) / No error (D)", opts: ["A. A", "B. B", "C. D", "D. C"], ans: 0, exp: "Part (A) has the error: Use 'a small chance' or 'little chance' ('chance' as a countable singular unit here requires article 'a')." },
+      { id: 3, exam: "DSSSB ASO Exam 2026 S2", q: "The historian cautioned the students (1) / against these sort of (2) / unsupported generalisations. (3) / No error (4)", opts: ["A. 4", "B. 1", "C. 3", "D. 2"], ans: 3, exp: "Part (2) has the error: Replace 'these sort of' with 'these sorts of'." },
+      { id: 4, exam: "DSSSB ASO Exam 2026 S2", q: "These sort of arguments (A) / rarely convince experienced judges (B) / during appellate hearings. (C) / No error (D)", opts: ["A. A", "B. B", "C. D", "D. C"], ans: 0, exp: "Part (A) has the error: Replace 'These sort of' with 'These sorts of'." },
+      { id: 5, exam: "DSSSB ASO Exam 2026 S2", q: "(A) Even after participating in numerous academic conferences and / (B) panel discussions, I have never encountered that kinds of objections / (C) in any academic discussion on this subject despite differing viewpoints. / (D) No error", opts: ["A. panel discussions, I have never encountered that kinds of objections", "B. Even after participating in numerous academic conferences and", "C. No error", "D. in any academic discussion on this subject despite differing viewpoints."], ans: 0, exp: "'that kinds of objections' is incorrect. Use 'that kind of objection' or 'those kinds of objections'." },
+      { id: 6, exam: "DSSSB ASO Exam 2026 S2", q: "(A) Every applicants seeking admission to the postgraduate research programme / (B) must submit two letters of recommendation along with the completed application form / (C) before the specified deadline to be considered for the final stage of the selection process. / (D) No error", opts: ["A. before the specified deadline to be considered for the final stage of the selection process.", "B. must submit two letters of recommendation along with the completed application form", "C. Every applicants seeking admission to the postgraduate research programme", "D. No error"], ans: 2, exp: "'Every' always takes a singular countable noun: replace 'Every applicants' with 'Every applicant'." },
+      { id: 7, exam: "DSSSB ASO Exam 2026 S2", q: "In response to emerging global challenges and changing regulatory requirements, these type of policies (A) / are increasingly adopted by international organisations to promote transparency, accountability, (B) / and sustainable development across diverse administrative and institutional frameworks. (C) / No error (D)", opts: ["A. and sustainable development across diverse administrative and institutional frameworks.", "B. are increasingly adopted by international organisations to promote transparency, accountability,", "C. No error", "D. In response to emerging global challenges and changing regulatory requirements, these type of policies"], ans: 3, exp: "Replace 'these type of policies' with 'these types of policies'." },
+      { id: 8, exam: "DSSSB ASO Exam 2026 S2", q: "Although the research paper was comprehensive, the committee found much flaws in the statistical methodology used to analyze the sample size.", opts: ["A. much", "B. comprehensive", "C. statistical", "D. sample"], ans: 0, exp: "'Flaws' is a plural countable noun. Replace 'much' with 'many'." },
+      { id: 9, exam: "DSSSB ASO Exam 2026 S3", q: "Ritwik set aside some savings (1) / so that he would have (2) / a few money for emergencies. (3) / No error (4)", opts: ["A. 2", "B. 4", "C. 3", "D. 1"], ans: 2, exp: "Part (3) has the error: 'Money' is an uncountable noun, so replace 'a few money' with 'a little money' (or 'some money')." },
+      { id: 10, exam: "DSSSB ASO Exam 2026 S3", q: "The master potter incorporated much intricate motifs into the ceramic vessel while preserving many delicate details along its surface.", opts: ["A. into the ceramic vessel", "B. much intricate motifs", "C. along its surface", "D. many delicate detailing"], ans: 1, exp: "'Motifs' is a plural countable noun. Replace 'much intricate motifs' with 'many intricate motifs'." },
+      { id: 11, exam: "DSSSB ASO Exam 2026 S2", q: "Several policy analysts observed (A) / that that recommendations submitted by the advisory (B) / board would require substantial revision (C) / before they could be implemented nationwide. (D)", opts: ["A. B", "B. A", "C. D", "D. C"], ans: 0, exp: "Part (B) has the error: 'recommendations' is plural, so demonstrative 'that' must be 'those' ('that those recommendations...')." },
+      { id: 12, exam: "DSSSB ASO Exam 2026 S2", q: "(A) The least resources / (B) we have, the / (C) more carefully we / (D) must plan.", opts: ["A. most carefully we", "B. we had, the", "C. The fewer resources", "D. must planned."], ans: 2, exp: "'Resources' is a plural countable noun, and parallel comparative structure ('The + comparative..., the + comparative...') requires 'The fewer resources'." },
+      { id: 13, exam: "DSSSB ASO Exam 2026 S3", q: "The recruitment committee received much applications from highly qualified candidates, making the final selection process exceptionally competitive and time-consuming for every evaluator involved.", opts: ["A. from highly qualified candidates", "B. received much applications", "C. for every evaluator involved", "D. exceptionally competitive"], ans: 1, exp: "'Applications' is countable plural; replace 'much applications' with 'many applications'." },
+      { id: 14, exam: "SSC SP (10+2) Level 2025 S2", q: "Every members of the alumni group (1) / who attended the annual meet (2) / shared their experiences with great enthusiasm (3) / over a formal dinner. (4)", opts: ["A. Every members of the alumni group (1)", "B. who attended the annual meet (2)", "C. shared their experiences with great enthusiasm (3)", "D. over a formal dinner (4)"], ans: 0, exp: "'Every' must be followed by a singular noun: 'Every member'." },
+      { id: 15, exam: "SSC Exam PYQ", q: "Only ______ crops can be grown on arid land.", opts: ["A. a few", "B. few", "C. a lot of", "D. many"], ans: 0, exp: "'Only' always pairs with 'a few' for countable plural nouns ('Only a few crops')." },
+      { id: 16, exam: "SSC CGL 2025 Tier-01 S1", q: "The company needs a detailed feedback (1) / from all departments (2) / before finalising its restructuring plan (3) / for the upcoming fiscal year. (4)", opts: ["A. 1", "B. 2", "C. 3", "D. 4"], ans: 0, exp: "'Feedback' is an uncountable noun, so indefinite article 'a' cannot be used before 'detailed feedback'." },
+      { id: 17, exam: "SSC STENO Exam 2025 S1", q: "No less than fifty students were absent.", opts: ["A. No error", "B. were absent", "C. fifty students", "D. No less than"], ans: 3, exp: "'Students' is countable plural; replace 'No less than' with 'No fewer than'." },
+      { id: 18, exam: "SSC CGL Tier-02 Paper-01 2023", q: "Everyone should respect those parents, teachers, and elders.", opts: ["A. and elders.", "B. parents, teachers,", "C. respect those", "D. Everyone should"], ans: 2, exp: "Replace 'those' with possessive 'one's' or 'their' ('respect one's/their parents...')." },
+      { id: 19, exam: "SSC JHT Exam 2022", q: "Early in the seventeenth century, / the Englishmen brought with them / a host of things, / that were alien to Indian culture.", opts: ["A. a host of things", "B. the Englishmen brought with them", "C. that were alien to Indian culture.", "D. Early in the seventeenth century"], ans: 1, exp: "Say 'Englishmen' (general plural) or 'the English' (for the nationality as a whole), not 'the Englishmen'." },
+      { id: 20, exam: "SSC STENO Exam 2024 S2", q: "Raghu did not get the job / because he did not have / experience enough for the post.", opts: ["A. experience enough for the post", "B. because he did not have", "C. Raghu did not get the job", "D. No error"], ans: 0, exp: "As a determiner before a noun, 'enough' precedes the noun: 'enough experience for the post'." },
+      { id: 21, exam: "SSC STENO Exam 2021 S2", q: "There are much advantages of working together in a group.", opts: ["A. in a group", "B. of working together", "C. much advantages", "D. There are"], ans: 2, exp: "'Advantages' is plural countable; use 'many advantages' instead of 'much advantages'." },
+      { id: 22, exam: "SSC STENO Exam 2021 S1", q: "There is a few water in the bowl on the table.", opts: ["A. There is", "B. in the bowl", "C. on the table", "D. a few water"], ans: 3, exp: "'Water' is uncountable; use 'a little water' instead of 'a few water'." },
+      { id: 23, exam: "SSC STENO Exam 2021 S2", q: "I expect each students present here to listen carefully to the instructions I'm giving.", opts: ["A. to listen carefully", "B. I expect", "C. I'm giving", "D. each students"], ans: 3, exp: "'Each' takes a singular noun: 'each student'." },
+      { id: 24, exam: "SSC MTS Exam 2024 S2", q: "We never expected most from her.", opts: ["A. much", "B. little", "C. more", "D. many"], ans: 0, exp: "In negative sentences denoting uncountable quantity/expectation, use 'much' ('We never expected much from her')." },
+      { id: 25, exam: "SSC MTS Exam 2024 S2", q: "There has been / an increase of the number / of road / accidents recently.", opts: ["A. an increase of the number", "B. of road", "C. There has been", "D. accidents recently"], ans: 0, exp: "The correct phrase is 'an increase in the number of road accidents'." },
+      { id: 26, exam: "SSC MTS Exam 2024 S1", q: "The society / of the / our place / is good.", opts: ["A. is good", "B. our place", "C. The society", "D. of the"], ans: 3, exp: "Two Group A determiners ('the' and 'our') cannot be used together. Remove 'the' ('of our place')." },
+      { id: 27, exam: "SSC MTS Exam 2023 S2", q: "The boy whose the sister is ill has left.", opts: ["A. is ill", "B. has left", "C. The boy", "D. whose the sister"], ans: 3, exp: "Possessive relative pronoun 'whose' is itself a determiner; never place article 'the' after 'whose' ('whose sister')." },
+      { id: 28, exam: "SSC MTS Exam 2023 S2", q: "They have less books than I have.", opts: ["A. I have", "B. They have", "C. than", "D. less books"], ans: 3, exp: "'Books' is a plural countable noun; use 'fewer books' instead of 'less books'." },
+      { id: 29, exam: "SSC MTS Exam 2022 S2", q: "I don't want to get involved in these game of gambling.", opts: ["A. these game of gambling.", "B. I don't want to", "C. get involved in", "D. No error"], ans: 0, exp: "'game' is singular, so replace plural 'these' with singular 'this' ('this game of gambling')." },
+      { id: 30, exam: "SSC MTS Exam 2022 S3", q: "You will get a discount on this products, if you buy one more outfit.", opts: ["A. No error", "B. on this products, if", "C. You will get a discount", "D. you buy one more outfit."], ans: 1, exp: "'products' is plural; use 'these products' or 'this product'." },
+      { id: 31, exam: "SSC MTS Exam 2022 S3", q: "Until few decades ago, researchers believed the moon was completely dry.", opts: ["A. researchers believed the moon", "B. No error", "C. was completely dry.", "D. Until few decades ago,"], ans: 3, exp: "To refer to 'some decades ago' positively, use 'Until a few decades ago'." },
+      { id: 32, exam: "SSC MTS Exam 2022 S1", q: "In another words, most of us / are made by our elders or by our / peers, but leaders are self-directed.", opts: ["A. peers, but leaders are self - directed.", "B. In another words, most of us", "C. are made by our elders or by our", "D. No error"], ans: 1, exp: "'Another' (an + other) is only for singular nouns. With plural 'words', the correct idiom is 'In other words'." },
+      { id: 33, exam: "SSC MTS Exam 2022 S2", q: "Before he could devote many more / thought to the matter, Pranav / had stepped up to him.", opts: ["A. Before he could devote many more", "B. thought to the matter, Pranav", "C. had stepped up to him.", "D. No error"], ans: 0, exp: "'Thought' (mental reflection) here is uncountable singular; replace 'many more' with 'much more'." },
+      { id: 34, exam: "SSC MTS Exam 2022 S1", q: "I ate a few brown rice this morning.", opts: ["A. brown rice", "B. I ate a few", "C. this morning.", "D. No error"], ans: 1, exp: "'Rice' is uncountable; replace 'a few' with 'a little' or 'some' ('I ate a little brown rice')." },
+      { id: 35, exam: "SSC MTS Exam 2021 S1", q: "People and / there demands / are ever-growing, but / the availability of land is limited.", opts: ["A. People and", "B. there demands", "C. the availability of land is limited", "D. are ever-growing, but"], ans: 1, exp: "Use the possessive determiner 'their demands' instead of adverb 'there'." },
+      { id: 36, exam: "SSC MTS Exam 2021 S3", q: "Wind is one / of biggest factors / in the spread of fire.", opts: ["A. of biggest factors", "B. No error", "C. in the spread of fire", "D. Wind is one"], ans: 0, exp: "Superlative degree 'biggest' requires the definite article 'the': 'one of the biggest factors'." },
+      { id: 37, exam: "SSC GD Exam 2021 S3", q: "Tortoises inhabit all of / the world's landmasses / except Australia / and Antarctica.", opts: ["A. Tortoises inhabit all of", "B. except Australia", "C. the world's landmasses", "D. and Antarctica"], ans: 0, exp: "Before a noun phrase with a determiner, 'all' is used directly ('inhabit all the world's landmasses') rather than 'all of'." },
+      { id: 38, exam: "SSC GD Exam 2021 S2", q: "The Nature Channel / gives a lots of / interesting information / on wildlife.", opts: ["A. interesting information", "B. The Nature Channel", "C. on wildlife", "D. gives a lots of"], ans: 3, exp: "'a lots of' is grammatically incorrect. Use either 'a lot of' or 'lots of'." },
+      { id: 39, exam: "SSC GD Exam 2021 S1", q: "The lions were being fed / by there keeper / when we arrived / at the zoo.", opts: ["A. at the zoo", "B. by there keeper", "C. when we arrived", "D. The lions were being fed"], ans: 1, exp: "Use possessive determiner 'their keeper' instead of 'there keeper'." },
+      { id: 40, exam: "SSC GD Exam 2024 S4", q: "I saw so much of those peasant carts in your yard.", opts: ["A. of those peasant", "B. No error", "C. I saw so much", "D. carts in your yard."], ans: 2, exp: "'Carts' is a plural countable noun; replace 'so much' with 'so many'." },
+      { id: 41, exam: "SSC GD Exam 2024 S3", q: "People put considerably many more effort when working in groups than when working alone.", opts: ["A. than when working alone", "B. People put considerably many more", "C. No error", "D. effort when working in groups"], ans: 1, exp: "'Effort' is uncountable here; replace 'many more' with 'much more'." },
+      { id: 42, exam: "SSC CPO Pre 2020 S2", q: "Two elderly ladies narrated an rather improbable story to the police.", opts: ["A. narrated an rather", "B. Two elderly ladies", "C. improbable story", "D. to the police"], ans: 0, exp: "'Rather' begins with a consonant sound /r/, so use 'a rather improbable story' (or 'rather an improbable story'), not 'an rather'." },
+      { id: 43, exam: "SSC CHSL Tier-01 2022 S4", q: "There is evidence that much too technology can lead to a loss of child development opportunities.", opts: ["A. No error", "B. technology can lead to a", "C. loss of child development opportunities", "D. There is evidence that much too"], ans: 3, exp: "Before an uncountable noun ('technology'), use 'too much' ('too much technology'), whereas 'much too' is used before adjectives." },
+      { id: 44, exam: "SSC CHSL Tier-01 2022 S4", q: "As per the study, mosquito-borne dengue fever infects little 400 million people annually.", opts: ["A. As per the study, mosquito-borne", "B. No error", "C. dengue fever infects little", "D. 400 million people annually."], ans: 2, exp: "'People' is countable and 400 million is a large quantity; 'little' is incorrect (use 'nearly / about / as many as 400 million')." },
+      { id: 45, exam: "SSC CHSL Tier-01 2022 S2", q: "Fashion might not be first thing that comes to mind when we think of isolation strategies.", opts: ["A. we think of isolation strategies.", "B. No error", "C. Fashion might not be first", "D. thing that comes to mind when"], ans: 2, exp: "Ordinal determiner 'first' requires definite article 'the': 'might not be the first thing'." },
+      { id: 46, exam: "SSC CHSL Tier-01 2022 S2", q: "Today, in fit of frenzied rage and / jealousy, you would have / killed me, your brother.", opts: ["A. killed me, your brother.", "B. No error", "C. jealousy, you would have", "D. Today, in fit of frenzied rage and"], ans: 3, exp: "Use the indefinite article 'a' in the idiom 'in a fit of frenzied rage'." },
+      { id: 47, exam: "SSC CHSL Tier-01 2021 S3", q: "Ronaldo is / a famous / player of / the football.", opts: ["A. a famous", "B. Ronaldo is", "C. the football", "D. player of"], ans: 2, exp: "No article is used before the names of sports/games: replace 'the football' with 'football'." },
+      { id: 48, exam: "SSC CGL Tier-01 2024 S1", q: "Please go and meet the chairperson. / She will be / away for the / few next days.", opts: ["A. She will be", "B. away for the", "C. few next days.", "D. Please go and meet the chairperson."], ans: 2, exp: "Ordinal ('next') must precede Cardinal/Quantifier ('few'): 'for the next few days'." },
+      { id: 49, exam: "SSC CGL Tier-01 2024 S1", q: "I have the hundred reasons to not attend the meeting tomorrow.", opts: ["A. I have the hundred reasons", "B. the meeting", "C. tomorrow", "D. to not attend"], ans: 0, exp: "For an indefinite hyperbolic number, use 'a hundred reasons', not 'the hundred reasons'." },
+      { id: 50, exam: "SSC CGL Tier-01 2023 S1", q: "Maruti likes / adventure / stories, especially / an adventures of Tarzan.", opts: ["A. stories, especially", "B. an adventures of Tarzan", "C. Maruti likes", "D. adventure"], ans: 1, exp: "'adventures' is plural and made definite by 'of Tarzan'; replace 'an adventures' with 'the adventures of Tarzan'." },
+      { id: 51, exam: "SSC CGL PRE 2021 S1", q: "Antique diamond necklace / was stolen / from the museum.", opts: ["A. was stolen", "B. from the museum", "C. Antique diamond necklace", "D. No error"], ans: 2, exp: "A singular countable noun ('necklace') cannot stand alone without a determiner; use 'An antique diamond necklace'." },
+      { id: 52, exam: "SSC CGL PRE 2021 S1", q: "This is / too grave sin / to be / pardoned.", opts: ["A. pardoned", "B. too grave sin", "C. This is", "D. to be"], ans: 1, exp: "After 'too + adjective', a singular countable noun requires 'a/an': 'too grave a sin'." },
+      { id: 53, exam: "SSC CGL PRE 2021 S1", q: "There is a very little time / for them to prepare / for the show.", opts: ["A. for them to prepare", "B. for the show", "C. There is a very little time", "D. No error"], ans: 2, exp: "Never use 'a' before 'very little'. Say 'There is very little time'." },
+      { id: 54, exam: "SSC CGL PRE 2021 S1", q: "Athens was / a most luminous / of all city-states / of ancient Greece.", opts: ["A. Athens was", "B. a most luminous", "C. of ancient Greece", "D. of all city-states"], ans: 1, exp: "Because 'of all city-states' expresses a true superlative comparison, use 'the most luminous' instead of 'a most luminous'." },
+      { id: 55, exam: "SSC GD Exam 2025-26 S3", q: "Climbing Mount Everest is not small feat; it requires months of preparation, physical endurance, and mental strength.", opts: ["A. is not small feet", "B. is not a small feet", "C. is no small feat", "D. No improvement required"], ans: 2, exp: "The correct idiomatic determiner expression is 'is no small feat' (or 'is not a small feat', where 'feat' = achievement)." },
+      { id: 56, exam: "SSC GD Exam 2025-26 S2", q: "She made less mistakes this time, showing noticeable improvement in her work, thanks to her careful preparation and focus.", opts: ["A. she made lesser mistakes this time", "B. she made fewer mistakes this time", "C. She made few mistakes this time", "D. No improvement required"], ans: 1, exp: "'Mistakes' is a plural countable noun; comparative determiner is 'fewer' ('she made fewer mistakes this time')." },
+      { id: 57, exam: "SSC GD Exam 2025-26 S2", q: "He studied all night for the exam but failed to remember nothing the next day.", opts: ["A. failed to remember anything", "B. failed to forget everything", "C. failed to forget anything", "D. No improvement required"], ans: 0, exp: "'Failed' already carries a negative meaning; avoid double negative 'nothing' and use 'failed to remember anything'." },
+      { id: 58, exam: "SSC CHSL Tier-01 2025 S3", q: "This aspects will be tested while dealing with the emerging scenario in our western neighbourhood.", opts: ["A. This aspects will be testing while dealing", "B. This aspects will be tester while dealing", "C. This aspects would be tested while dealing", "D. These aspects will be tested while dealing"], ans: 3, exp: "'Aspects' is plural, so replace singular 'This' with plural 'These' ('These aspects will be tested...')." },
+      { id: 59, exam: "SSC CHSL Tier-01 2025 S1", q: "The manager was asked to write a report in a quick, detailed and in a thorough manner.", opts: ["A. in a quick, detailed, and thorough manner", "B. in a quick, detailed and in thorough manner", "C. in a quick, detailing and thorough manner", "D. quickly, detailed and thoroughly"], ans: 0, exp: "A single shared determiner 'a' before a series of adjectives modifying 'manner' is concise and parallel: 'in a quick, detailed, and thorough manner'." },
+      { id: 60, exam: "SSC STENO Exam 2021 S2", q: "Very little people seem to realise the value of savings.", opts: ["A. Very much people", "B. Very few people", "C. Very many people", "D. No substitution required"], ans: 1, exp: "'People' is countable plural; replace 'Very little people' with 'Very few people'." },
+      { id: 61, exam: "SSC MTS Exam 2024 S3", q: "They have a few juice in the jar.", opts: ["A. least", "B. lesser", "C. little", "D. fewer"], ans: 2, exp: "'Juice' is an uncountable noun; replace 'few' with 'little' ('a little juice')." },
+      { id: 62, exam: "SSC MTS Exam 2022 S3", q: "He lights his pipe, (and on many an evenings he helps me with) dishes.", opts: ["A. and many an evenings he helps me with the", "B. No substitution required", "C. and on many evenings he helps me with the", "D. and on many evenings he helped me with the"], ans: 2, exp: "'Many' takes plural 'evenings' (or 'many an evening'). Option C ('and on many evenings he helps me with the') is grammatically correct." },
+      { id: 63, exam: "SSC MTS Exam 2022 S1", q: "(Many a opportunities came and went while) he laid wasted.", opts: ["A. Many an opportunity came and went while", "B. No substitution required", "C. Many an opportunities came and gone while", "D. Many opportunities come and went as"], ans: 0, exp: "'Many a/an' takes a singular countable noun: 'Many an opportunity came and went while'." },
+      { id: 64, exam: "SSC MTS Exam 2021 S3", q: "Peterkin readjusted his hat and soon was listening to the conversation with as much interest as I was.", opts: ["A. so many interest", "B. so much interest", "C. as many interest", "D. No substitution required"], ans: 3, exp: "'Interest' is uncountable and the positive comparison 'with as much interest as' is completely correct. No substitution required." },
+      { id: 65, exam: "SSC MTS Exam 2021 S2", q: "Both of mine child passed the examination successfully.", opts: ["A. my children passed", "B. our children passes", "C. No improvement required", "D. my child pass"], ans: 0, exp: "Before a noun, use possessive determiner 'my' and plural noun 'children' after 'Both of': 'Both of my children passed'." },
+      { id: 66, exam: "SSC MTS Exam 2021 S2", q: "In the past, (he spent many an hours playing the harp across the) 5th Ave.", opts: ["A. he spent many an hour playing the harp across the", "B. he spent much hours playing the harp across the", "C. No improvement required", "D. he had spent many an hours playing the harp across the"], ans: 0, exp: "'Many an' requires a singular countable noun: 'many an hour'." },
+      { id: 67, exam: "SSC MTS Exam 2021 S3", q: "The missing child was discovered in lower Maryland a few days later.", opts: ["A. little days later", "B. a lot of days later", "C. No substitution required", "D. few day later"], ans: 2, exp: "'a few days later' is completely correct for a small countable number of days. No substitution required." },
+      { id: 68, exam: "SSC GD Exam 2021 S2", q: "I don't have some money at all.", opts: ["A. few", "B. No substitution required", "C. any", "D. little"], ans: 2, exp: "In a negative sentence ('don't have... at all'), replace 'some' with 'any'." },
+      { id: 69, exam: "SSC GD Exam 2021 S1", q: "Lot of people want to go on the excursion.", opts: ["A. The lots of people", "B. Lots of people", "C. No substitution required", "D. The lot of people"], ans: 1, exp: "Use either 'A lot of people' or 'Lots of people', never bare 'Lot of people'." },
+      { id: 70, exam: "SSC GD Exam 2021 S2", q: "In few words, he expressed his gratitude to me.", opts: ["A. the few", "B. little", "C. a few", "D. No substitution required"], ans: 2, exp: "He used some words positively to express gratitude, so use 'In a few words'." },
+      { id: 71, exam: "SSC GD Exam 2022 S1", q: "The travelling gypsies wanted to display they're skillful antics to the crowd.", opts: ["A. No substitution", "B. there skilful antics.", "C. dare skilful antics", "D. their skilful antics"], ans: 3, exp: "Before the noun phrase 'skilful antics', use the possessive determiner 'their'." },
+      { id: 72, exam: "SSC GD Exam 2022 S2", q: "We hope these measure will take us further to a good position.", opts: ["A. hopes these measures will take us", "B. hope these measures will take us", "C. hope those measure will take us", "D. hope these measures will taking"], ans: 1, exp: "Plural demonstrative 'these' requires plural noun 'measures', and 'We' takes plural verb 'hope'." },
+      { id: 73, exam: "SSC GD Exam 2022 S1", q: "There is a few rice left in the cooker.", opts: ["A. fewest rice left in", "B. little rice left in", "C. less rice left on", "D. any rice left in"], ans: 1, exp: "'Rice' is uncountable; after 'There is a...', 'little rice left in' forms 'There is a little rice left in the cooker'." },
+      { id: 74, exam: "SSC GD Exam 2024 S3", q: "Computers are a common commodity in every homely.", opts: ["A. every home", "B. No improvement", "C. every homes", "D. all homely"], ans: 0, exp: "'Every' is a determiner that must be followed by a singular noun ('home'), not the adjective 'homely'." },
+      { id: 75, exam: "SSC GD Exam 2025 S2", q: "I will have one more of these delicious rasgullas.", opts: ["A. both", "B. many", "C. another", "D. either"], ans: 2, exp: "'One more' of the same type is replaced by 'another' ('another of these delicious rasgullas')." },
+      { id: 76, exam: "SSC GD Exam 2025 S2", q: "The toddler asked for more pieces of cake, but she wasn't given (more cake).", opts: ["A. any", "B. many", "C. none", "D. two"], ans: 0, exp: "In a negative clause ('wasn't given'), use 'any' for uncountable/unspecified quantity." },
+      { id: 77, exam: "SSC CHSL Tier-01 2022 S1", q: "He spent many an hours playing the chess across the city.", opts: ["A. No improvement", "B. He have spent many an hours playing the chess across the", "C. He had spent many an hours playing the chess across the", "D. He spent many an hour playing the chess across the"], ans: 3, exp: "'Many an' takes a singular noun: 'He spent many an hour...'." },
+      { id: 78, exam: "SSC CGL Tier-01 2023 S1", q: "The stranger stood quietly for few moments.", opts: ["A. For the few moments", "B. No improvement required", "C. For moments", "D. For a few moments"], ans: 3, exp: "To denote a short positive duration ('some moments'), use 'For a few moments'." },
+      { id: 79, exam: "SSC CGL PRE 2021 S1", q: "Such was his performance that the audience gave a standing ovation.", opts: ["A. No substitution required", "B. So was", "C. Much was", "D. Such as"], ans: 0, exp: "'Such + be + Subject + that...' is a standard inverted structure. No substitution required." },
+      { id: 80, exam: "SSC SP 2024 Graduate Level S3", q: "It is a proven fact that ______ living being can survive without water.", opts: ["A. none", "B. no", "C. any", "D. neither"], ans: 1, exp: "Before a singular noun phrase ('living being'), use the negative determiner 'no' ('no living being can survive')." },
+      { id: 81, exam: "SSC CPO Mains 2023", q: "Hurry up! There's still ______ work left to do.", opts: ["A. many", "B. much", "C. whole", "D. lot"], ans: 1, exp: "'Work' is an uncountable noun; use 'much' ('still much work left to do')." },
+      { id: 82, exam: "SSC CGL Tier-02 2024 Paper-01", q: "Mr. Amit Kumar, Proprietor of Xyling Pens is known for ______ honesty and decent behaviour in the business arena.", opts: ["A. his", "B. they", "C. it", "D. her"], ans: 0, exp: "For singular masculine subject 'Mr. Amit Kumar', use the possessive determiner 'his'." },
+      { id: 83, exam: "SSC CGL Tier-02 2024 Paper-01", q: "No other book in the series captivated readers as ______ as the final installment.", opts: ["A. many", "B. more", "C. most", "D. much"], ans: 3, exp: "In the positive degree comparison 'as ... as' modifying the verb 'captivated', use 'much' ('as much as')." },
+      { id: 84, exam: "SSC MTS Exam 2024 S2", q: "Jack always looks handsome, even if he is a ______ out of style.", opts: ["A. little", "B. more little", "C. less", "D. least"], ans: 0, exp: "After 'a', use 'little' to form the adverbial phrase 'a little out of style' (meaning slightly)." },
+      { id: 85, exam: "SSC MTS Exam 2022 S1", q: "They bought ______ tickets instead from a sleepy-looking guard.", opts: ["A. there", "B. dire", "C. their", "D. dare"], ans: 2, exp: "Before the noun 'tickets', use the possessive determiner 'their' corresponding to 'They'." },
+      { id: 86, exam: "SSC MTS Exam 2022 S1", q: "Farms are increasingly turning to automation for ______ reasons.", opts: ["A. many", "B. most", "C. much", "D. little"], ans: 0, exp: "'Reasons' is a plural countable noun; use 'many reasons'." },
+      { id: 87, exam: "SSC MTS Exam 2022 S2", q: "The school was ______ than a mile from their home.", opts: ["A. most", "B. much", "C. more", "D. many"], ans: 2, exp: "The comparative conjunction 'than' requires the comparative determiner/adverb 'more' ('more than a mile')." },
+      { id: 88, exam: "SSC MTS Exam 2022 S2", q: "______ months later, Steve returned to New York to look for a job.", opts: ["A. Few", "B. A few", "C. The few", "D. A little"], ans: 1, exp: "For a positive countable number of months ('some months later'), use 'A few'." },
+      { id: 89, exam: "SSC MTS Exam 2022 S3", q: "When there is not ______ to eat, people starve to death.", opts: ["A. Some", "B. any", "C. enough", "D. a few"], ans: 2, exp: "Starving to death occurs when there is not sufficient food: 'not enough to eat'." },
+      { id: 90, exam: "SSC MTS Exam 2021 S3", q: "My life has ______ meaning without you.", opts: ["A. not", "B. never", "C. no", "D. none"], ans: 2, exp: "Before the noun 'meaning', use the negative determiner 'no' ('has no meaning')." },
+      { id: 91, exam: "SSC MTS Exam 2021 S2", q: "______ Paul and Jenny are waiting for you in their office.", opts: ["A. Any", "B. Either", "C. All", "D. Both"], ans: 3, exp: "'Both ... and ...' pairs with two individuals and a plural verb ('Both Paul and Jenny are...')." },
+      { id: 92, exam: "SSC MTS Exam 2021 S2", q: "I think I have left ______ lunchbox at your house.", opts: ["A. I", "B. my", "C. me", "D. mine"], ans: 1, exp: "Before the noun 'lunchbox', use the possessive determiner 'my'." },
+      { id: 93, exam: "SSC MTS Exam 2021 S1", q: "I have visited ______ coaching institutes in your region.", opts: ["A. many", "B. mostly", "C. much", "D. any"], ans: 0, exp: "'Coaching institutes' is a plural countable noun in an affirmative sentence; use 'many'." },
+      { id: 94, exam: "SSC GD Exam 2022 S3", q: "She liked ______ flat.", opts: ["A. they are", "B. their", "C. there", "D. they're"], ans: 1, exp: "Before the noun 'flat', use the possessive determiner 'their'." },
+      { id: 95, exam: "SSC GD Exam 2024 S4", q: "______ of the two boys turned up the next day.", opts: ["A. But", "B. Neither", "C. Not", "D. Every"], ans: 1, exp: "For two boys with 'of the two', use 'Neither' (remember 'Every of' is always wrong)." },
+      { id: 96, exam: "SSC GD Exam 2024 S3", q: "______ small businesses shifted within a year.", opts: ["A. Little", "B. Many", "C. Very", "D. Quite"], ans: 1, exp: "'Small businesses' is a plural countable noun; use 'Many'." },
+      { id: 97, exam: "SSC GD Exam 2025 S1", q: "Fungi are tiny organisms found everywhere — in nature, in our homes and even in and on ______ bodies.", opts: ["A. their", "B. our", "C. your", "D. my"], ans: 1, exp: "To stay parallel with 'in our homes', use 'our bodies'." },
+      { id: 98, exam: "SSC GD Exam 2025 S1", q: "I can't go out tonight because I have ______ homework to do.", opts: ["A. few", "B. the little", "C. a lot of", "D. many"], ans: 2, exp: "'Homework' is an uncountable noun; 'a lot of' works with uncountable nouns in affirmative clauses." },
+      { id: 99, exam: "SSC CHSL Tier-01 2024 S4", q: "All the players from this athletic club participated in the tournament and ______ one of them got a medal.", opts: ["A. each", "B. none", "C. they", "D. all"], ans: 0, exp: "Before 'one of them', use the distributive 'each' ('each one of them got a medal')." },
+      { id: 100, exam: "SSC CHSL Tier-01 2024 S3", q: "Rosy and Nicky couldn't provide any evidence to support ______ arguments.", opts: ["A. theirs", "B. there", "C. they're", "D. their"], ans: 3, exp: "Before the noun 'arguments', use the possessive determiner 'their'." }
+    ];
+
+    // User state for quiz answers
+    let userAnswers = {};
+
+    // Tab Switching
+    function switchTab(tab) {
+      document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('view-' + tab).classList.add('active');
+      const idx = tab === 'notes' ? 0 : (tab === 'drills' ? 1 : 2);
+      document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Filter Notes by Search & Tag
+    let currentNoteTag = 'all';
+    function filterNotesByTag(tag, btn) {
+      currentNoteTag = tag;
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      filterNotes();
+    }
+
+    function filterNotes() {
+      const q = document.getElementById('noteSearch').value.toLowerCase();
+      document.querySelectorAll('#notesGrid .note-card').forEach(card => {
+        const tagMatch = currentNoteTag === 'all' || card.dataset.tag === currentNoteTag;
+        const textMatch = card.innerText.toLowerCase().includes(q);
+        card.style.display = (tagMatch && textMatch) ? 'flex' : 'none';
+      });
+    }
+
+    // Render 30 Classroom Drills
+    function renderDrills() {
+      const container = document.getElementById('drillsContainer');
+      container.innerHTML = conceptDrills.map((d, i) => `
+        <div class="drill-item">
+          <div style="font-weight:600; color:var(--text);">${d.q}</div>
+          <button class="drill-reveal-btn" onclick="toggleDrill(${i})">Reveal Correction</button>
+          <div class="drill-answer" id="drill-ans-${i}">${d.a}</div>
+        </div>
+      `).join('');
+    }
+
+    function toggleDrill(idx) {
+      document.getElementById('drill-ans-' + idx).classList.toggle('visible');
+    }
+
+    // Render 100 PYQ Quiz
+    function renderQuiz() {
+      const range = document.getElementById('quizRange').value;
+      const search = document.getElementById('quizSearch').value.toLowerCase().trim();
+      const container = document.getElementById('quizContainer');
+
+      const filtered = quizData.filter(item => {
+        if (range === '1-25' && (item.id < 1 || item.id > 25)) return false;
+        if (range === '26-50' && (item.id < 26 || item.id > 50)) return false;
+        if (range === '51-75' && (item.id < 51 || item.id > 75)) return false;
+        if (range === '76-100' && (item.id < 76 || item.id > 100)) return false;
+        if (range === 'wrong' && (userAnswers[item.id] === undefined || userAnswers[item.id] === item.ans)) return false;
+        if (search) {
+          const hay = `q${item.id} ${item.exam} ${item.q} ${item.opts.join(' ')}`.toLowerCase();
+          if (!hay.includes(search)) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="note-card" style="text-align:center; padding:30px; color:var(--text-muted);">No matching questions found.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        const picked = userAnswers[item.id];
+        const isAnswered = picked !== undefined;
+        const isCorrect = picked === item.ans;
+
+        const optsHtml = item.opts.map((optText, idx) => {
+          let cls = 'opt-btn';
+          if (isAnswered) {
+            if (idx === item.ans) cls += ' correct';
+            else if (idx === picked && picked !== item.ans) cls += ' wrong';
+          }
+          return `
+            <button class="${cls}" ${isAnswered ? 'disabled' : ''} onclick="answerQuestion(${item.id}, ${idx})">
+              <span>${optText}</span>
+            </button>
+          `;
+        }).join('');
+
+        let feedbackHtml = '';
+        if (isAnswered) {
+          const fbCls = isCorrect ? 'q-feedback visible ok' : 'q-feedback visible err';
+          const statusLabel = isCorrect ? '✓ Correct!' : `✗ Incorrect (Correct Answer: Option ${['A','B','C','D'][item.ans]})`;
+          feedbackHtml = `<div class="${fbCls}"><strong>${statusLabel}</strong> — ${item.exp}</div>`;
+        }
+
+        return `
+          <div class="q-card" id="q-card-${item.id}">
+            <div class="q-meta">
+              <span class="q-num">Question #${item.id}</span>
+              <span class="q-exam">${item.exam}</span>
+            </div>
+            <div class="q-stem">${item.q}</div>
+            <div class="options-grid">${optsHtml}</div>
+            ${feedbackHtml}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function answerQuestion(qId, optIdx) {
+      if (userAnswers[qId] !== undefined) return;
+      userAnswers[qId] = optIdx;
+      updateQuizStats();
+      renderQuiz();
+    }
+
+    function updateQuizStats() {
+      let attempted = 0, correct = 0, wrong = 0;
+      for (const qId in userAnswers) {
+        attempted++;
+        const qObj = quizData.find(x => x.id === Number(qId));
+        if (userAnswers[qId] === qObj.ans) correct++;
+        else wrong++;
+      }
+      const score = (correct * 2) - (wrong * 0.5);
+      document.getElementById('statAttempted').innerText = `${attempted} / 100`;
+      document.getElementById('statCorrect').innerText = correct;
+      document.getElementById('statWrong').innerText = wrong;
+      document.getElementById('statScore').innerText = score.toFixed(1);
+    }
+
+    function resetQuiz() {
+      userAnswers = {};
+      updateQuizStats();
+      renderQuiz();
+    }
+
+    // Initialize Views
+    renderDrills();
+    renderQuiz();
+  </script>
+</body>
+</html>

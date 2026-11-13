@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SERIES (श्रृंखला) — Interactive Digital Notes & Quiz Suite | Parmar SSC Reasoning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar & Utility Styles */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); }
+    ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.35); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.6); }
+
+    .step-arrow {
+      position: relative;
+    }
+    .step-arrow::after {
+      content: '→';
+      margin: 0 0.4rem;
+      color: #6366f1;
+      font-weight: 700;
+    }
+    .step-arrow:last-child::after {
+      content: '';
+      margin: 0;
+    }
+    .flashcard-flip {
+      perspective: 1000px;
+    }
+    .flashcard-inner {
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+    .flashcard-flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      backface-visibility: hidden;
+    }
+    .flashcard-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-between h-16 gap-3">
+        <!-- Brand Logo & Title -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 via-violet-600 to-amber-500 flex items-center justify-center text-white font-extrabold text-lg shadow-md">
+            P
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-base sm:text-lg tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">
+                PARMAR SSC • TOPPERS BATCH
+              </span>
+              <span class="hidden sm:inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 border border-amber-300/50">
+                By Kamal Sir
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">
+              Chapter 3: SERIES (श्रृंखला) — Complete Digital Notes, Analyzers & 355-Q Master Suite
+            </p>
+          </div>
+        </div>
+
+        <!-- Module Switcher -->
+        <nav class="flex items-center gap-1 sm:gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+          <button onclick="switchMainTab('cheatsheet')" id="tab-btn-cheatsheet" class="main-tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm">
+            1. Formula & Tools
+          </button>
+          <button onclick="switchMainTab('notes')" id="tab-btn-notes" class="main-tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-indigo-600">
+            2. Bilingual Notes (5 Types)
+          </button>
+          <button onclick="switchMainTab('quiz')" id="tab-btn-quiz" class="main-tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-indigo-600">
+            3. Quiz & Practice Arena
+          </button>
+        </nav>
+
+        <!-- Right Controls: Language & Theme -->
+        <div class="flex items-center gap-2">
+          <button onclick="toggleBilingualMode()" id="lang-toggle-btn" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100 transition" title="Toggle English + Hindi / English Only">
+            🇮🇳 EN + हिंदी
+          </button>
+          <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Toggle Light/Dark Theme">
+            <svg id="theme-icon-sun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            <svg id="theme-icon-moon" class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ===================================================================== -->
+    <!-- MODULE 1: INTERACTIVE FORMULA SHEET & LIVE SERIES ANALYZERS           -->
+    <!-- ===================================================================== -->
+    <section id="section-cheatsheet" class="space-y-8">
+      <!-- Hero Banner -->
+      <div class="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-700 rounded-2xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-xs font-semibold tracking-wide uppercase">
+              <span>Quick Revision Formula Sheet</span>
+              <span>•</span>
+              <span>Practice Makes Perfect</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+              Interactive Reasoning Formula & Pattern Laboratory
+            </h1>
+            <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
+              Master Squares & Cubes (1–30), Alphabetical Positions (Forward & Reverse = 27 − Pos), Prime Numbers, and test any Letter or Number Series in real time.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-3 shrink-0">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 text-center">
+              <div class="text-2xl font-extrabold">5 Types</div>
+              <div class="text-xs text-indigo-100">Complete Syllabus</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 text-center">
+              <div class="text-2xl font-extrabold">355 Qs</div>
+              <div class="text-xs text-indigo-100">Solved Question Banks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Live Analyzers Row -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Tool 1: Live Letter Cluster & Continuous Series Analyzer -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Interactive Tool 1</span>
+              <h2 class="text-lg font-bold text-slate-900 dark:text-white">Live Letter-Cluster & Alphabet Analyzer</h2>
+            </div>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 font-medium border border-emerald-200 dark:border-emerald-800">
+              Auto-Calculates Diffs & Opposites
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-3">
+            Enter comma-separated letter clusters (e.g., <code class="font-mono text-indigo-600 dark:text-indigo-400">JAK, KBL, LCM, MDN</code> or <code class="font-mono text-indigo-600 dark:text-indigo-400">SLE, CXS, MJG, WVU, GHI</code>) to see positions, differences, and sum of positions:
+          </p>
+          <div class="flex gap-2 mb-4">
+            <input id="cluster-input" type="text" value="JAK, KBL, LCM, MDN" oninput="analyzeLetterClusters()" placeholder="Type clusters e.g. JAK, KBL, LCM..." class="flex-1 px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-mono uppercase focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <button onclick="loadSampleCluster()" class="px-3 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-xs font-semibold transition shrink-0">
+              Try Sample
+            </button>
+          </div>
+          <div id="cluster-analysis-output" class="space-y-3"></div>
+        </div>
+
+        <!-- Tool 2: Live Number Series Difference & Pattern Detector -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400">Interactive Tool 2</span>
+              <h2 class="text-lg font-bold text-slate-900 dark:text-white">Number Series Multi-Level Difference Tree</h2>
+            </div>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-violet-50 text-violet-700 dark:bg-violet-950/60 dark:text-violet-300 font-medium border border-violet-200 dark:border-violet-800">
+              Step 1, 2 & 3 Differences
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-3">
+            Enter any number sequence (e.g., <code class="font-mono text-violet-600 dark:text-violet-400">3, 10, 29, 66, 127, 218</code> or <code class="font-mono text-violet-600 dark:text-violet-400">0, 6, 24, 60, 120, 210</code>) to visualize the pyramid of differences and ratio checks:
+          </p>
+          <div class="flex gap-2 mb-4">
+            <input id="number-tree-input" type="text" value="3, 10, 29, 66, 127, 218" oninput="analyzeNumberTree()" placeholder="e.g. 3, 10, 29, 66, 127" class="flex-1 px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-violet-500" />
+            <button onclick="loadSampleNumberTree()" class="px-3 py-2 rounded-xl bg-violet-50 hover:bg-violet-100 dark:bg-violet-950 dark:hover:bg-violet-900 text-violet-700 dark:text-violet-300 text-xs font-semibold transition shrink-0">
+              Try Sample
+            </button>
+          </div>
+          <div id="number-tree-output" class="space-y-2 overflow-x-auto"></div>
+        </div>
+      </div>
+
+      <!-- Alphabetical Position & Opposite Letters Interactive Grid -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span>Alphabetical Positions (Left & Right) & Opposite Pairs</span>
+              <span class="bilingual-hi text-sm font-normal text-slate-500 dark:text-slate-400">(वर्णमाला स्थिति और विपरीत अक्षर)</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">
+              <strong>Golden Formula:</strong> <code class="font-mono bg-indigo-50 dark:bg-indigo-950 px-1.5 py-0.5 rounded text-indigo-700 dark:text-indigo-300">Opposite Position = 27 − Alphabet Position</code> | <strong>Wrap-Around Rule:</strong> If Position &gt; 26, subtract 26 (e.g., Z(26) + 6 = 32 → 32 − 26 = 6 = F).
+            </p>
+          </div>
+          <!-- Quick Mnemonic Filters -->
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="highlightAlphabet('all')" class="alpha-filter-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white">All 26</button>
+            <button onclick="highlightAlphabet('ejoty')" class="alpha-filter-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">EJOTY (5s)</button>
+            <button onclick="highlightAlphabet('cfilorux')" class="alpha-filter-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">CFILORUX (3s)</button>
+            <button onclick="highlightAlphabet('vowels')" class="alpha-filter-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">Vowels (AEIOU)</button>
+          </div>
+        </div>
+
+        <!-- 26 Letters Grid -->
+        <div id="alphabet-grid" class="grid grid-cols-4 sm:grid-cols-7 md:grid-cols-13 gap-2"></div>
+
+        <!-- Letter Series Movement Rules (From Practice Sheet Page 1) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+          <div class="p-4 rounded-xl bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900">
+            <div class="font-bold text-sm text-indigo-900 dark:text-indigo-300 mb-1">1. Forward Movement (+n) →</div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">Each letter moves forward in the alphabet. Wraps around after Z (26).</p>
+            <div class="font-mono text-xs bg-white dark:bg-slate-900 p-2 rounded-lg border border-indigo-200/60 dark:border-indigo-800">
+              A → B → C → D → E (+1)<br>
+              Z → A → B → C → D (+1 wrap)
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-100 dark:border-amber-900">
+            <div class="font-bold text-sm text-amber-900 dark:text-amber-300 mb-1">2. Backward Movement (−n) ←</div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">Each letter moves to previous letter. If negative/zero, add 26 (e.g. C(3) − 8 = 29 − 8 = 21 = U).</p>
+            <div class="font-mono text-xs bg-white dark:bg-slate-900 p-2 rounded-lg border border-amber-200/60 dark:border-amber-800">
+              E → D → C → B → A (−1)<br>
+              U → O → I → E → A (Reverse Vowels)
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900">
+            <div class="font-bold text-sm text-emerald-900 dark:text-emerald-300 mb-1">3. Alternating & Opposite Pairs</div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">Odd & even positions follow separate rules or opposite pairs (A↔Z, B↔Y, C↔X, D↔W).</p>
+            <div class="font-mono text-xs bg-white dark:bg-slate-900 p-2 rounded-lg border border-emerald-200/60 dark:border-emerald-800">
+              BY, DW, GT, KP, PK (+2,+3,+4,+5)<br>
+              AZ, CX, EV, GT, IR (Opposites)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Squares & Cubes (1 to 30) + Number Series Cheat Sheet -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left 2 Cols: Squares & Cubes Table (1 to 30) -->
+        <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+                Squares (n²) & Cubes (n³) Reference Table (1 to 30)
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Memorizing 1–30 squares and cubes lets you instantly spot n²±1, n³±1, and n³+n² patterns!
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <input id="sq-search" type="text" oninput="renderSquaresTable()" placeholder="Search number (e.g. 216, 343)..." class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+              <button onclick="pickRandomFlashcard()" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold transition shrink-0">
+                ⚡ Quiz Me
+              </button>
+            </div>
+          </div>
+
+          <!-- Mini Flashcard Popup if active -->
+          <div id="sq-flashcard-box" class="hidden mb-4 p-4 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/50 dark:to-orange-950/50 border border-amber-200 dark:border-amber-800 flex items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold uppercase text-amber-700 dark:text-amber-300">Quick Memory Drill</span>
+              <div id="sq-flashcard-q" class="text-base font-extrabold text-slate-900 dark:text-white mt-0.5">What is 17² and 17³?</div>
+              <div id="sq-flashcard-a" class="hidden text-sm font-mono font-bold text-indigo-600 dark:text-indigo-400 mt-1"></div>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="revealSqFlashcard()" class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-amber-300 dark:border-amber-700 text-xs font-bold text-amber-800 dark:text-amber-300">Reveal</button>
+              <button onclick="pickRandomFlashcard()" class="px-3 py-1.5 rounded-lg bg-amber-600 text-white text-xs font-bold">Next</button>
+            </div>
+          </div>
+
+          <div id="squares-table-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 max-h-96 overflow-y-auto pr-1"></div>
+        </div>
+
+        <!-- Right Col: Prime Numbers & Small vs Big Gap Decision Tree -->
+        <div class="space-y-6">
+          <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center justify-between">
+              <span>Prime Numbers (अभाज्य संख्याएँ)</span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300">25 Primes (1–100)</span>
+            </h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
+              <strong>Remember:</strong> <code class="font-mono">1</code> is NOT a prime number. <code class="font-mono">2</code> is the only even prime. Prime number has exactly 2 factors (1 and itself).
+            </p>
+            <div class="space-y-2 text-xs font-mono">
+              <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-slate-400 block text-[10px] uppercase font-sans font-bold">1 to 30 (10 Primes) — With Positions:</span>
+                <div class="flex flex-wrap gap-1.5 mt-1">
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">1st: <b>2</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">2nd: <b>3</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">3rd: <b>5</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">4th: <b>7</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">5th: <b>11</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">6th: <b>13</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">7th: <b>17</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">8th: <b>19</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">9th: <b>23</b></span>
+                  <span class="px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200">10th: <b>29</b></span>
+                </div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <span class="text-slate-400 block text-[10px] uppercase font-sans font-bold">31 to 100 (15 Primes):</span>
+                <div class="mt-1 text-slate-700 dark:text-slate-300 leading-relaxed">
+                  11th:<b>31</b>, 12th:<b>37</b>, 13th:<b>41</b>, 14th:<b>43</b>, 15th:<b>47</b>, 16th:<b>53</b>, 17th:<b>59</b>, 18th:<b>61</b>, 19th:<b>67</b>, 20th:<b>71</b>, 21st:<b>73</b>, 22nd:<b>79</b>, 23rd:<b>83</b>, 24th:<b>89</b>, 25th:<b>97</b>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Small Gap vs Big Gap Strategy Card -->
+          <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">
+              Kamal Sir's Golden Decision Tree
+            </h3>
+            <div class="space-y-2.5 text-xs">
+              <div class="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
+                <div class="font-bold text-emerald-900 dark:text-emerald-300">Small Gap → Addition / Subtraction (+ / −)</div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">Check 1st level or 2nd level difference, prime gaps, or n²±1.</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800">
+                <div class="font-bold text-indigo-900 dark:text-indigo-300">Big Gap → Multiplication / Division (× / ÷)</div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">Look at the last two large terms first! E.g. 41 → 167 → 839 (×4+3, ×5+4).</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800">
+                <div class="font-bold text-amber-900 dark:text-amber-300">Dip & Rise (e.g. 40, 21, 22, 34, 69) → Half-Multiplier</div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">When 2nd term is ~half of 1st term, immediately test ×0.5 + 1, ×1 + 1, ×1.5 + 1...</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800">
+                <div class="font-bold text-purple-900 dark:text-purple-300">Up-Down-Up-Down → Alternating / Twin Series</div>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">Check odd positions (1st, 3rd, 5th) and even positions (2nd, 4th, 6th) separately.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- MODULE 2: BILINGUAL DIGITAL NOTES & WORKED EXAMPLES (ALL 5 TYPES)     -->
+    <!-- ===================================================================== -->
+    <section id="section-notes" class="hidden space-y-6">
+      <!-- Header & Sub-Navigation for 5 Types -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Bilingual Digital Notes • By Kamal Sir</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-0.5">
+              5 Core Types of Series & Master Pattern Library
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+              A series is a sequence of numbers, letters, or both, arranged according to a specific logical rule.
+              <span class="bilingual-hi block text-indigo-600 dark:text-indigo-400 font-medium mt-0.5">
+                श्रृंखला संख्याओं, अक्षरों या दोनों का एक क्रम है, जिसमें उन्हें किसी विशेष नियम या पैटर्न के अनुसार व्यवस्थित किया जाता है।
+              </span>
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="expandAllNoteSolutions(true)" class="px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-semibold border border-indigo-200 dark:border-indigo-800 hover:bg-indigo-100">
+              Show All Derivations
+            </button>
+            <button onclick="expandAllNoteSolutions(false)" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200">
+              Hide All (Self-Test Mode)
+            </button>
+          </div>
+        </div>
+
+        <!-- 5 Types Filter Pills -->
+        <div class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <button onclick="filterNotesByType('all')" id="note-pill-all" class="note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-sm">
+            All 5 Types
+          </button>
+          <button onclick="filterNotesByType('type1')" id="note-pill-type1" class="note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">
+            Type 1: Number Series (संख्या)
+          </button>
+          <button onclick="filterNotesByType('type2')" id="note-pill-type2" class="note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">
+            Type 2: Letter Series (अक्षर)
+          </button>
+          <button onclick="filterNotesByType('type3')" id="note-pill-type3" class="note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">
+            Type 3: Wrong Terms (गलत पद)
+          </button>
+          <button onclick="filterNotesByType('type4')" id="note-pill-type4" class="note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">
+            Type 4: Mixed Series (मिश्रित)
+          </button>
+          <button onclick="filterNotesByType('type5')" id="note-pill-type5" class="note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50">
+            Type 5: Continuous Pattern (सतत पैटर्न)
+          </button>
+        </div>
+      </div>
+
+      <!-- Dynamic Notes Content Container -->
+      <div id="notes-Dynamic-container" class="space-y-8"></div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- MODULE 3: COMPLETE INTERACTIVE QUIZ & PRACTICE ARENA                  -->
+    <!-- ===================================================================== -->
+    <section id="section-quiz" class="hidden space-y-6">
+      <!-- Top Control Bar for Quiz Suite -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm space-y-5">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Interactive Assessment Engine</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
+              Complete Quiz & PYQ Practice Arena
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+              Switch between <strong>Bank A: Century Practice PDF (All 100 Questions)</strong> and <strong>Bank B: Bilingual Notes & Sheet Master Bank (All 5 Types)</strong>. Use keyboard keys <kbd class="px-1.5 py-0.5 text-xs bg-slate-100 dark:bg-slate-800 border rounded">1</kbd>–<kbd class="px-1.5 py-0.5 text-xs bg-slate-100 dark:bg-slate-800 border rounded">4</kbd> to answer!
+            </p>
+          </div>
+
+          <!-- Score & Timer Status Pill -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700">
+              <div class="text-center">
+                <div class="text-[10px] uppercase font-bold text-slate-500">Attempted</div>
+                <div id="stat-attempted" class="text-sm font-extrabold text-slate-900 dark:text-white">0</div>
+              </div>
+              <div class="h-6 w-px bg-slate-300 dark:bg-slate-700"></div>
+              <div class="text-center">
+                <div class="text-[10px] uppercase font-bold text-emerald-600">Correct</div>
+                <div id="stat-correct" class="text-sm font-extrabold text-emerald-600">0</div>
+              </div>
+              <div class="h-6 w-px bg-slate-300 dark:bg-slate-700"></div>
+              <div class="text-center">
+                <div class="text-[10px] uppercase font-bold text-rose-600">Wrong</div>
+                <div id="stat-wrong" class="text-sm font-extrabold text-rose-600">0</div>
+              </div>
+              <div class="h-6 w-px bg-slate-300 dark:bg-slate-700"></div>
+              <div class="text-center">
+                <div class="text-[10px] uppercase font-bold text-indigo-600">Accuracy</div>
+                <div id="stat-accuracy" class="text-sm font-extrabold text-indigo-600">0%</div>
+              </div>
+            </div>
+
+            <!-- Timer Box -->
+            <div class="flex items-center gap-2 bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 px-3.5 py-2 rounded-xl">
+              <span id="quiz-timer-display" class="font-mono font-bold text-sm text-amber-800 dark:text-amber-300">00:00</span>
+              <button onclick="toggleQuizTimer()" id="timer-toggle-btn" class="text-xs font-bold px-2 py-0.5 rounded bg-amber-500 text-white hover:bg-amber-600 transition">
+                Start
+              </button>
+              <button onclick="resetQuizProgress()" class="text-xs font-semibold text-slate-500 hover:text-rose-600 ml-1" title="Reset Current Bank Stats">
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bank Selector & Filters -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+          <!-- PDF Bank Selector -->
+          <div class="md:col-span-5">
+            <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Select PDF Question Bank</label>
+            <select id="bank-selector" onchange="onBankOrFilterChange()" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="century">Bank A: SERIES.pdf — Century Practice PDF (All 100 Qs)</option>
+              <option value="notes">Bank B: Bilingual Notes & Practice Sheet (All 5 Types Master Qs)</option>
+              <option value="all">Combined All Questions (Century PDF + Bilingual Notes Sheet)</option>
+            </select>
+          </div>
+
+          <!-- Category / Type Filter -->
+          <div class="md:col-span-3">
+            <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Filter by Series Type</label>
+            <select id="type-selector" onchange="onBankOrFilterChange()" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="all">All Types</option>
+              <option value="Number Series">Type 1: Number Series</option>
+              <option value="Letter Series">Type 2: Letter Series</option>
+              <option value="Wrong Term">Type 3: Wrong Term Series</option>
+              <option value="Mixed Series">Type 4: Mixed / Alphanumeric</option>
+              <option value="Continuous Pattern">Type 5: Continuous Pattern</option>
+            </select>
+          </div>
+
+          <!-- Status / Bookmark Filter -->
+          <div class="md:col-span-2">
+            <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Filter Status</label>
+            <select id="status-selector" onchange="onBankOrFilterChange()" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="all">All Questions</option>
+              <option value="unattempted">Unattempted</option>
+              <option value="wrong">Incorrect Only</option>
+              <option value="bookmarked">★ Bookmarked</option>
+            </select>
+          </div>
+
+          <!-- Search Input -->
+          <div class="md:col-span-2">
+            <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Search Question</label>
+            <input id="quiz-search-input" type="text" oninput="onBankOrFilterChange()" placeholder="e.g. JAK, 1331, Steno..." class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Quiz Workspace: Left Question Card + Right Question Palette -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Active Question Card (8 cols) -->
+        <div class="lg:col-span-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-7 shadow-sm space-y-6">
+          <!-- Question Meta Header -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <div class="flex flex-wrap items-center gap-2">
+              <span id="q-number-badge" class="px-3 py-1 rounded-lg bg-indigo-600 text-white font-extrabold text-xs sm:text-sm">
+                Q1 / 100
+              </span>
+              <span id="q-type-badge" class="px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-semibold text-xs border border-indigo-200 dark:border-indigo-800">
+                Letter Series
+              </span>
+              <span id="q-exam-badge" class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 font-semibold text-xs border border-amber-200 dark:border-amber-800">
+                SSC Steno Exam 2026 S1
+              </span>
+            </div>
+
+            <button onclick="toggleBookmarkCurrent()" id="q-bookmark-btn" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:bg-amber-50 dark:hover:bg-amber-950/40 transition">
+              <span id="q-bookmark-star">☆</span>
+              <span>Bookmark</span>
+            </button>
+          </div>
+
+          <!-- Question Prompt & Series Box -->
+          <div class="space-y-4">
+            <p id="q-prompt-en" class="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 leading-relaxed"></p>
+            <p id="q-prompt-hi" class="bilingual-hi text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed"></p>
+            <div class="p-4 sm:p-5 rounded-2xl bg-slate-100/80 dark:bg-slate-800/90 border-2 border-indigo-200/80 dark:border-indigo-800/60 text-center">
+              <div id="q-series-display" class="font-mono text-lg sm:text-2xl font-extrabold tracking-wide text-slate-900 dark:text-white break-words"></div>
+            </div>
+          </div>
+
+          <!-- 4 Options Grid -->
+          <div id="q-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5"></div>
+
+          <!-- Instant Feedback & Detailed Solution Box -->
+          <div id="q-solution-box" class="hidden rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 p-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span id="q-feedback-title" class="text-xs font-extrabold uppercase tracking-wider text-indigo-700 dark:text-indigo-300">
+                ✓ Step-by-Step Logical Derivation (Kamal Sir's Approach)
+              </span>
+              <span id="q-correct-letter-pill" class="text-xs font-mono font-bold px-2.5 py-0.5 rounded bg-indigo-600 text-white"></span>
+            </div>
+            <div id="q-solution-text" class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-medium leading-relaxed whitespace-pre-line"></div>
+          </div>
+
+          <!-- Bottom Navigation Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <button onclick="navigateQuestion(-1)" id="prev-q-btn" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 transition flex items-center gap-1.5">
+              <span>← Previous</span>
+              <span class="hidden sm:inline text-[10px] text-slate-400 font-mono">[P]</span>
+            </button>
+
+            <div class="flex items-center gap-2">
+              <button onclick="toggleSolutionVisibility()" class="px-4 py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 dark:bg-amber-950/70 dark:hover:bg-amber-900 text-amber-900 dark:text-amber-300 text-xs sm:text-sm font-bold transition">
+                💡 Show / Hide Solution [S]
+              </button>
+              <button onclick="sendCurrentToAnalyzer()" class="hidden sm:inline-flex px-3.5 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950 dark:hover:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-xs font-bold transition" title="Open this series in the Live Analyzer">
+                🔬 Open in Analyzer
+              </button>
+            </div>
+
+            <button onclick="navigateQuestion(1)" id="next-q-btn" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-sm transition flex items-center gap-1.5">
+              <span>Next Question →</span>
+              <span class="hidden sm:inline text-[10px] text-indigo-200 font-mono">[N]</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Question Palette Sidebar (4 cols) -->
+        <div class="lg:col-span-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+              Question Palette (<span id="palette-count">100</span>)
+            </h3>
+            <div class="flex items-center gap-2 text-[11px] font-semibold">
+              <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>Right</span>
+              <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>Wrong</span>
+              <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>★</span>
+            </div>
+          </div>
+          <div id="question-palette-grid" class="grid grid-cols-5 sm:grid-cols-8 lg:grid-cols-5 gap-2 max-h-[420px] overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-5 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
+      <div>
+        <strong>PARMAR SSC • Toppers Batch Reasoning by Kamal Sir</strong> — Chapter 3: SERIES (श्रृंखला) Digital Companion
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Keyboard Shortcuts: <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border">1-4</kbd> Options, <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border">N</kbd> Next, <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border">P</kbd> Prev, <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border">S</kbd> Solution</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================= -->
+  <!-- APPLICATION JAVASCRIPT & COMPLETE DATA ARCHITECTURE                     -->
+  <!-- ======================================================================= -->
+  <script>
+    /***************************************************************************
+     * 1. BILINGUAL DIGITAL NOTES DATA (ALL 5 TYPES FROM BILINGUAL NOTES PDF)
+     ***************************************************************************/
+    const NOTES_DATA = [
+      {
+        id: 'type1',
+        badge: 'Type 1',
+        titleEn: 'Based on Numbers (Number Series)',
+        titleHi: 'प्रकार 1: संख्याओं पर आधारित श्रृंखला (Number Series)',
+        summaryEn: 'Number series questions test your ability to identify arithmetic, geometric, exponential, prime, square/cube, or digit-based rules connecting consecutive terms.',
+        summaryHi: 'संख्या श्रृंखला के प्रश्नों को तेजी से हल करने के लिए सम, विषम, अभाज्य संख्याएँ, पूर्ण वर्ग (n²), पूर्ण घन (n³), और अंतर (Difference) के नियमों को समझें।',
+        rules: [
+          'Even Numbers (सम संख्याएँ): 2, 4, 6, 8, 10... | Odd Numbers (विषम संख्याएँ): 1, 3, 5, 7, 9...',
+          'Prime Numbers (अभाज्य संख्याएँ): 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47...',
+          'Composite Numbers (भाज्य संख्याएँ): 4, 6, 8, 9, 10, 12, 14, 15...',
+          'Perfect Squares & Cubes: n², n³, (n² + 1), (n² − 1), (n³ + 2), (n³ − n), (n³ + n²)',
+          'Decimal / Half-Multiplier Pattern: ×0.5 + 0.5, ×1 + 1, ×1.5 + 1.5, ×2 + 2...',
+          'Previous Terms Sum (Fibonacci / Tribonacci): Adding previous 2 terms (3, 4, 7, 11, 18, 29 → 47) or previous 3 terms (1, 3, 4, 8, 15, 27 → 50).'
+        ],
+        examples: [
+          {
+            tag: 'Prime Numbers Pattern',
+            series: '2, 3, 5, 7, 11, ?, 17',
+            ans: '13',
+            steps: 'All numbers are Consecutive Prime Numbers (क्रमागत अभाज्य संख्याएँ): 2, 3, 5, 7, 11, [13], 17.'
+          },
+          {
+            tag: 'Alternate Squares & Cubes',
+            series: '1, 4, 27, 16, ?, 36, 343',
+            ans: '125',
+            steps: 'Pattern alternates between Cubes (odd positions) and Squares (even positions):\n1³ = 1, 2² = 4, 3³ = 27, 4² = 16, 5³ = [125], 6² = 36, 7³ = 343.'
+          },
+          {
+            tag: 'Smart Cube + 2 / Double Difference',
+            series: '3, 10, 29, 66, 127, ?',
+            ans: '218',
+            steps: 'Smart Method: n³ + 2 → 1³+2=3, 2³+2=10, 3³+2=29, 4³+2=66, 5³+2=127, 6³+2 = 216+2 = [218].\nBasic Step Method: 1st Diff = +7, +19, +37, +61, +91 | 2nd Diff = +12, +18, +24, +30.'
+          },
+          {
+            tag: 'Remove 1st Digit Trick (SSC CHSL)',
+            series: '333, 321, 328, 328, 323, 335, ?',
+            ans: '318',
+            steps: 'First digit "3" is constant in all terms! Look at the last two digits: 33, 21, 28, 28, 23, 35, ?\nAlternate series: Odd positions: 33 → 28 (−5) → 23 (−5) → 18 (−5). Combining with 3 gives [318].'
+          },
+          {
+            tag: 'Half-Multiplier Pattern (SSC GD)',
+            series: '40, 21, 22, 34, 69, ?',
+            ans: '173.5',
+            steps: '40 × 0.5 + 1 = 21\n21 × 1.0 + 1 = 22\n22 × 1.5 + 1 = 34\n34 × 2.0 + 1 = 69\n69 × 2.5 + 1 = 172.5 + 1 = [173.5].'
+          },
+          {
+            tag: 'Digit Multiplication + 1',
+            series: '69, 55, 26, 13, ?',
+            ans: '4',
+            steps: 'Multiply the digits of the current term and add 1:\n69 → (6 × 9) + 1 = 55\n55 → (5 × 5) + 1 = 26\n26 → (2 × 6) + 1 = 13\n13 → (1 × 3) + 1 = [4].'
+          },
+          {
+            tag: 'n³ + n² Pattern (SSC Phase-14)',
+            series: '2, 12, 36, 80, 150, ?',
+            ans: '252',
+            steps: 'Smart Formula (n³ + n²):\n1³+1² = 2, 2³+2² = 12, 3³+3² = 36, 4³+4² = 80, 5³+5² = 150, 6³+6² = 216 + 36 = [252].'
+          },
+          {
+            tag: 'Harmonic / Fraction Multiplier (SSC CGL 2025)',
+            series: '60, 30, 20, 15, 12, 10, ?',
+            ans: '8.57',
+            steps: 'Multiply by n/(n+1): 60 × (1/2) = 30, 30 × (2/3) = 20, 20 × (3/4) = 15, 15 × (4/5) = 12, 12 × (5/6) = 10, 10 × (6/7) = 60/7 = [8.57].'
+          }
+        ]
+      },
+      {
+        id: 'type2',
+        badge: 'Type 2',
+        titleEn: 'Letter Series (अक्षर श्रृंखला)',
+        titleHi: 'प्रकार 2: अक्षरों पर आधारित श्रृंखला (Letter Series)',
+        summaryEn: 'Solved using alphabetical positions (A=1 to Z=26), cyclic wrap-around (>26 subtract 26), opposite letter pairs (Sum = 27), and position-shifting rules.',
+        summaryHi: 'अंग्रेजी वर्णमाला में अक्षरों की स्थिति (A=1 से Z=26), विपरीत अक्षर नियम (27 − वर्णमाला क्रमांक), और स्थान परिवर्तन पर आधारित प्रश्न।',
+        rules: [
+          'Step 1: Write the alphabetical positions (A=1, B=2 ... Z=26).',
+          'Step 2: Calculate differences between corresponding letters across clusters.',
+          'Wrap-Around Rule: If position exceeds 26, subtract 26 (e.g., S(19) + 10 = 29 → 29 − 26 = 3 = C).',
+          'Opposite Letter Rule: Opposite position = 27 − Alphabet Position (e.g., J(10) ↔ Q(17), L(12) ↔ O(15)).',
+          'Smart Exam Tip: Check options first! If the last 2 letters of all 4 options are distinct, only solve the last 2 letters to save time.'
+        ],
+        examples: [
+          {
+            tag: 'Reverse Vowels Series',
+            series: 'U, O, I, ?, A',
+            ans: 'E',
+            steps: 'Vowels written in reverse order (उल्टे क्रम में स्वर): U → O → I → [E] → A.'
+          },
+          {
+            tag: 'Cyclic Wrap-Around (+6, +9, +13)',
+            series: 'NTR, TCE, ZLR, FUE, ?',
+            ans: 'LDR',
+            steps: '1st Letter (+6): N(14) → T(20) → Z(26) → F(6) → L(12)\n2nd Letter (+9): T(20) → C(3) → L(12) → U(21) → D(4)\n3rd Letter (+13): R(18) → E(5) → R(18) → E(5) → R(18)\nResult: [LDR].'
+          },
+          {
+            tag: 'Progressive Opposite Replacement',
+            series: 'BOARD, BOARW, BOAIW, ?, BLZIW, YLZIW',
+            ans: 'BOZIW',
+            steps: 'From right to left, one letter at a time is replaced by its Opposite Letter (27 − Pos):\nD ↔ W (BOARW)\nR ↔ I (BOAIW)\nA ↔ Z ([BOZIW])\nO ↔ L (BLZIW)\nB ↔ Y (YLZIW).'
+          },
+          {
+            tag: 'Even Positions + Reverse Odd Positions',
+            series: 'TRIBUTE, RBTEUIT, BEITUTR, ?, TRIBUTE',
+            ans: 'ETTRUIB',
+            steps: 'Take even positions (2, 4, 6) first, then odd positions in reverse (7, 5, 3, 1):\nBEITUTR → Even pos (2,4,6) = E, T, T | Odd pos reversed (7,5,3,1) = R, U, I, B → [ETTRUIB].'
+          },
+          {
+            tag: 'Word Sum of Positions = Perfect Squares',
+            series: 'A, AC, DAD, FEE, JACK, ?',
+            ans: 'RIDE',
+            steps: 'Sum of alphabetical positions of each word:\nA = 1 = 1²\nAC = 1+3 = 4 = 2²\nDAD = 4+1+4 = 9 = 3²\nFEE = 6+5+5 = 16 = 4²\nJACK = 10+1+3+11 = 25 = 5²\nNext = 6² = 36 → [RIDE] (18+9+4+5 = 36).'
+          },
+          {
+            tag: 'Even-Odd Rearrangement + Drop 1st Letter',
+            series: 'QUESTION, USINETO, SNTIEO, NIOTE, ?',
+            ans: 'ITOE',
+            steps: 'In each step, take even positions (2, 4, 6...) followed by odd positions excluding the 1st letter (3, 5, 7...):\nNIOTE (1:N, 2:I, 3:O, 4:T, 5:E) → Even (2,4) = IT, Odd excluding 1st (3,5) = OE → [ITOE].'
+          }
+        ]
+      },
+      {
+        id: 'type3',
+        badge: 'Type 3',
+        titleEn: 'Wrong Term Series (गलत पद श्रृंखला)',
+        titleHi: 'प्रकार 3: गलत पद पर आधारित श्रृंखला (Wrong Terms)',
+        summaryEn: 'One term in the given sequence violates the underlying pattern. Identify the exact rule and pinpoint the imposter term.',
+        summaryHi: 'गलत पद श्रृंखला में एक पद दिए गए पैटर्न का पालन नहीं करता है। हमें उस पद की पहचान करनी होती है जो श्रृंखला से मेल नहीं खाता।',
+        rules: [
+          'When a term is wrong, two consecutive differences (before and after that term) will look distorted.',
+          'Always verify that replacing the wrong term with the expected value fixes BOTH adjacent steps.',
+          'Watch out for Prime Index traps (e.g., 2nd, 4th, 7th, 11th, 16th prime) and Triangular Number squares (0², 1², 3², 6², 10², 15²).'
+        ],
+        examples: [
+          {
+            tag: 'Triangular Base Squares Trap',
+            series: '0, 1, 9, 36, 81, 225, 441',
+            ans: '81 (Should be 100)',
+            steps: 'Terms are squares of triangular numbers: 0², 1², 3², 6², 10², 15², 21² (bases increase by +1, +2, +3, +4, +5, +6).\n10² = 100, so [81] is wrong.'
+          },
+          {
+            tag: 'Prime Number Position Jump',
+            series: '3, 7, 17, 31, 59',
+            ans: '59 (Should be 53)',
+            steps: 'Check prime positions: 3 (2nd prime), 7 (4th prime), 17 (7th prime), 31 (11th prime).\nPositions: 2 → 4 (+2) → 7 (+3) → 11 (+4) → 16th prime (+5).\nThe 16th prime number is 53, not [59].'
+          },
+          {
+            tag: 'First Digit × Last Digit = Middle 2 Digits',
+            series: '3124, 9728, 6305, 2015',
+            ans: '2015 (Should be 2105)',
+            steps: 'In each 4-digit number, (1st Digit × 4th Digit) forms the middle two digits:\n3124 → 3×4 = 12\n9728 → 9×8 = 72\n6305 → 6×5 = 30\n2015 → 2×5 = 10 (should be 2105, so [2015] is wrong).'
+          },
+          {
+            tag: 'Letter-Cluster Wrong Term (SSC CHSL 2025)',
+            series: 'DMR, FOT, CLQ, GPV, BKP',
+            ans: 'GPV (Should be GPU)',
+            steps: 'All three letters follow +2, −3, +4, −5:\n3rd letter: R(18) + 2 = T(20); T(20) − 3 = Q(17); Q(17) + 4 = U(21); U(21) − 5 = P(16).\nHence [GPV] is wrong (should be GPU).'
+          }
+        ]
+      },
+      {
+        id: 'type4',
+        badge: 'Type 4',
+        titleEn: 'Mixed / Alphanumeric Series (मिश्रित श्रृंखला)',
+        titleHi: 'प्रकार 4: मिश्रित / अक्षरांकीय श्रृंखला (Mix Series)',
+        summaryEn: 'Combines letters and numbers in a single cluster. Use Option Elimination by checking whether numbers or letters are unique in the choices!',
+        summaryHi: 'इसमें अक्षरों और संख्याओं को एक साथ व्यवस्थित किया जाता है। विकल्पों (Options) को देखकर पहले केवल संख्या या अक्षर हल करें ताकि समय बचे।',
+        rules: [
+          'Time-Saver Rule 1: If all 4 options have different numbers (e.g., 506.25, 513.75, 539.25, 546.75), ONLY solve the number series!',
+          'Time-Saver Rule 2: If numbers are identical or tricky, solve the 1st/2nd letter to eliminate 3 options immediately.',
+          'Internal Relation Rule: Sometimes the number is derived from the letters in the same cluster (e.g., A2B → 1×2=2, C12D → 3×4=12, E30F → 5×6=30).'
+        ],
+        examples: [
+          {
+            tag: 'Product of Consecutive Letter Positions',
+            series: 'A2B, C12D, E30F, ?, I90J',
+            ans: 'G56H',
+            steps: 'Letters are consecutive pairs: AB, CD, EF, GH, IJ.\nMiddle number = product of their alphabet positions:\nA(1)×B(2)=2, C(3)×D(4)=12, E(5)×F(6)=30, G(7)×H(8)=56 → [G56H].'
+          },
+          {
+            tag: 'Calendar Months Puzzle',
+            series: 'A30L, J30E, A31T, O31R, ?',
+            ans: 'D31R',
+            steps: 'Alternate months starting from April (First letter, Days in month, Last letter):\nA30L = ApriL (30)\nJ30E = JunE (30)\nA31T = AugusT (31)\nO31R = OctobeR (31)\nNext (+2 months) = DecembeR (31) → [D31R].'
+          },
+          {
+            tag: 'Mixed Wrong Term (SSC MTS 2026)',
+            series: 'SUN3, QRG233, OMB465, MIV696, KEP927, IAJ1158',
+            ans: 'QRG233 (Should be QQH234)',
+            steps: 'Numbers increase by +231 each step: 3 + 231 = 234, 234 + 231 = 465, 465 + 231 = 696.\nAlso 2nd letter: U(21) − 4 = Q(17), 3rd letter: N(14) − 6 = H(8). So [QRG233] is wrong.'
+          }
+        ]
+      },
+      {
+        id: 'type5',
+        badge: 'Type 5',
+        titleEn: 'Continuous Pattern Series (सतत पैटर्न श्रृंखला)',
+        titleHi: 'प्रकार 5: निरंतर / सतत पैटर्न श्रृंखला (Continuous Pattern)',
+        summaryEn: 'A string of letters with blanks (_) that forms repeating, shifting, or growing blocks when divided into equal periods.',
+        summaryHi: 'सतत पैटर्न में अक्षरों का एक समूह लगातार दोहराया जाता है या किसी निश्चित नियम से बदलता है। कुल अक्षरों (रिक्त स्थान सहित) को गिनकर समूह (Blocks) बनाएँ।',
+        rules: [
+          'Step 1 & 2: Count total characters (including blanks) and divide into equal blocks using slashes (/) — e.g. 12 → 3×4, 16 → 4×4, 18 → 3×6 or 6×3, 20 → 4×5, 24 → 4×6 or 3×8, 28 → 4×7.',
+          'Pattern A — Simple Repeat: Same block repeats (e.g., rjss / rjss / rjss / rjss).',
+          'Pattern B — Cyclic Shifting Block: Letters rotate positions (e.g., abcd / bcda / cdab / dabc or cab / abc / bca / cab).',
+          'Pattern C — Growing Block: Count of each letter increases (e.g., xyz / xxyyzz / xxxyyyzzz).',
+          'Pattern D — Changing Letter in Fixed Frame: e.g., TRICK / TRIZK / TRIWK / TRITK (4th letter shifts −3 each block).'
+        ],
+        examples: [
+          {
+            tag: 'Cyclic Shifting Block',
+            series: 'a _ c d _ c d a _ d a b _ a b c',
+            ans: 'bbcd',
+            steps: 'Total = 16 letters → 4 groups of 4: a_cd / _cda / _dab / _abc.\nCyclic shift of (a,b,c,d): abcd / bcda / cdab / dabc.\nBlanks: [b, b, c, d].'
+          },
+          {
+            tag: 'Shifting 4th Letter Frame (SSC CHSL 2024)',
+            series: 'T R I C _ T R I _ K T _ I W K _ R _ T K',
+            ans: 'KZRTI',
+            steps: 'Total = 20 letters → 4 groups of 5: TRIC_ / TRI_K / T_IWK / _R_TK.\n1st, 2nd, 3rd, 5th letters are fixed: T R I _ K.\n4th letter decreases by −3: C(3) → Z(26) → W(23) → T(20).\nBlocks: TRICK / TRIZK / TRIWK / TRITK → Blanks: [K, Z, R, T, I].'
+          },
+          {
+            tag: 'Word Last-Letter Jump (SSC CHSL Tier-2)',
+            series: 'Buzz, Abox, Plateau, Tariq, ?, Chief',
+            ans: 'Ball',
+            steps: 'Check the LAST letter of each word:\nBuz[z](26) → Abo[x](24) [−2] → Platea[u](21) [−3] → Tari[q](17) [−4] → ? [−5] → Chie[f](6) [−6].\n17 − 5 = 12 = L. The word ending in L is [Ball].'
+          }
+        ]
+      }
+    ];
+
+    /***************************************************************************
+     * 2. COMPLETE 100 QUESTIONS FROM "SERIES.pdf" (CENTURY PDF)
+     *    Verified against the official Answer Key on Page 9 of SERIES.pdf
+     ***************************************************************************/
+    const CENTURY_PDF_QUESTIONS = [
+      { id: 'C1', num: 1, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S1', series: 'JAK, KBL, LCM, MDN, ?', options: ['OEP', 'NEO', 'MEN', 'PFQ'], ans: 1, sol: '1st letter: J(+1)→K(+1)→L(+1)→M(+1)→N\n2nd letter: A(+1)→B(+1)→C(+1)→D(+1)→E\n3rd letter: K(+1)→L(+1)→M(+1)→N(+1)→O\nCorrect term = NEO.' },
+      { id: 'C2', num: 2, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S1', series: 'AD, EI, JN, PS, ?', options: ['VW', 'WX', 'VX', 'UX'], ans: 1, sol: '1st letter: A(1) +4 → E(5) +5 → J(10) +6 → P(16) +7 → W(23).\n2nd letter: D(4) +5 → I(9) +5 → N(14) +5 → S(19) +5 → X(24).\nCorrect term = WX.' },
+      { id: 'C3', num: 3, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S3', series: 'HJM, RTW, BDG, LNQ, ?', options: ['VXZ', 'UXY', 'UWX', 'VXA'], ans: 3, sol: 'Each letter increases by +10 across clusters:\n1st: H(8)+10=R(18)+10=B(2)+10=L(12)+10=V(22)\n2nd: J(10)+10=T(20)+10=D(4)+10=N(14)+10=X(24)\n3rd: M(13)+10=W(23)+10=G(7)+10=Q(17)+10=A(1)\nCorrect term = VXA.' },
+      { id: 'C4', num: 4, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S2', series: 'AZB, CYD, EXF, GWH, ?', options: ['IVI', 'HUJ', 'IVJ', 'IVK'], ans: 2, sol: '1st letter (+2): A→C→E→G→I\n2nd letter (−1): Z→Y→X→W→V\n3rd letter (+2): B→D→F→H→J\nCorrect term = IVJ.' },
+      { id: 'C5', num: 5, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S1', series: 'ABD, BEI, CHN, DKS, ENX, ?', options: ['DOK', 'GPU', 'FQV', 'FQC'], ans: 3, sol: '1st letter (+1): A→B→C→D→E→F\n2nd letter (+3): B(2)→E(5)→H(8)→K(11)→N(14)→Q(17)\n3rd letter (+5): D(4)→I(9)→N(14)→S(19)→X(24)+5 = C(3)\nCorrect term = FQC.' },
+      { id: 'C6', num: 6, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S1', series: 'CIM, FMO, IQQ, LUS, OYU, ?', options: ['RDW', 'RCW', 'SCW', 'RCV'], ans: 1, sol: '1st letter (+3): C(3)→F(6)→I(9)→L(12)→O(15)→R(18)\n2nd letter (+4): I(9)→M(13)→Q(17)→U(21)→Y(25)+4 = C(3)\n3rd letter (+2): M(13)→O(15)→Q(17)→S(19)→U(21)→W(23)\nCorrect term = RCW.' },
+      { id: 'C7', num: 7, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S2', series: 'BCF, GHK, ___, QRU, VWZ', options: ['RST', 'QNP', 'LMP', 'LNX'], ans: 2, sol: 'Each letter shifts by +5 between clusters:\n1st: B(2)+5=G(7)+5=L(12)\n2nd: C(3)+5=H(8)+5=M(13)\n3rd: F(6)+5=K(11)+5=P(16)\nCorrect term = LMP.' },
+      { id: 'C8', num: 8, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S3', series: 'XYA, WUB, VQC, ?', options: ['UND', 'TMD', 'ULE', 'UMD'], ans: 3, sol: '1st letter (−1): X→W→V→U\n2nd letter (−4): Y(25)→U(21)→Q(17)→M(13)\n3rd letter (+1): A→B→C→D\nCorrect term = UMD.' },
+      { id: 'C9', num: 9, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S1', series: 'AZBY, CXDW, EVFU, ?', options: ['GTHS', 'GSHT', 'HRIS', 'HTGS'], ans: 0, sol: 'Pairs of opposite letters moving +2/-2:\n1st & 2nd: AZ, CX, EV, GT\n3rd & 4th: BY, DW, FU, HS\nCombined = GTHS.' },
+      { id: 'C10', num: 10, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S2', series: 'BCD, EFG, IJK, NOP, TUV, ?', options: ['YZZ', 'ZZB', 'BCD', 'ABC'], ans: 3, sol: 'Consecutive 3-letter clusters with increasing skipped letters between them:\nBCD (0 skipped) → EFG (1 skipped: H) → IJK (2 skipped: LM) → NOP (3 skipped: QRS) → TUV (4 skipped: WXYZ) → ABC.' },
+      { id: 'C11', num: 11, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S1', series: 'DEF, CCC, BAZ, AYW, ?', options: ['ZWT', 'GHU', 'YUS', 'OJS'], ans: 0, sol: '1st letter (−1): D→C→B→A→Z\n2nd letter (−2): E(5)→C(3)→A(1)→Y(25)→W(23)\n3rd letter (−3): F(6)→C(3)→Z(26)→W(23)→T(20)\nCorrect term = ZWT.' },
+      { id: 'C12', num: 12, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S1', series: 'ICE, HED, GGC, ?', options: ['FSA', 'FIB', 'FIP', 'FDR'], ans: 1, sol: '1st letter (−1): I(9)→H(8)→G(7)→F(6)\n2nd letter (+2): C(3)→E(5)→G(7)→I(9)\n3rd letter (−1): E(5)→D(4)→C(3)→B(2)\nCorrect term = FIB.' },
+      { id: 'C13', num: 13, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S2', series: 'ADG, GJM, MPS, ___, YBE', options: ['SVW', 'SVY', 'RUW', 'SUY'], ans: 1, sol: 'Within each cluster letters increase by +3, and each cluster starts where the previous ended (+6 per position):\nM(13)+6=S(19), P(16)+6=V(22), S(19)+6=Y(25) → SVY.' },
+      { id: 'C14', num: 14, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S2', series: 'CFI, DHL, EJO, ?', options: ['FLR', 'FIR', 'FRL', 'ELR'], ans: 0, sol: '1st letter (+1): C→D→E→F\n2nd letter (+2): F(6)→H(8)→J(10)→L(12)\n3rd letter (+3): I(9)→L(12)→O(15)→R(18)\nCorrect term = FLR.' },
+      { id: 'C15', num: 15, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S2', series: 'OPQ, NNN, MLK, LJH, ?', options: ['KHE', 'KHX', 'TGA', 'YTE'], ans: 0, sol: '1st letter (−1): O→N→M→L→K\n2nd letter (−2): P(16)→N(14)→L(12)→J(10)→H(8)\n3rd letter (−3): Q(17)→N(14)→K(11)→H(8)→E(5)\nCorrect term = KHE.' },
+      { id: 'C16', num: 16, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S2', series: 'ACE, GIK, MOQ, ___', options: ['SUW', 'TWY', 'RTS', 'VXZ'], ans: 0, sol: 'Consecutive odd-positioned letters (+2 within, +6 across clusters):\nA(1)C(3)E(5) → G(7)I(9)K(11) → M(13)O(15)Q(17) → S(19)U(21)W(23) = SUW.' },
+      { id: 'C17', num: 17, bank: 'century', type: 'Letter Series', exam: 'SSC Phase-14 (10+2) 2026 S2', series: 'NOP, KMO, HKN, EIM, ?', options: ['BGL', 'BGI', 'VGF', 'BIL'], ans: 0, sol: '1st letter (−3): N(14)→K(11)→H(8)→E(5)→B(2)\n2nd letter (−2): O(15)→M(13)→K(11)→I(9)→G(7)\n3rd letter (−1): P(16)→O(15)→N(14)→M(13)→L(12)\nCorrect term = BGL.' },
+      { id: 'C18', num: 18, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S1', series: 'EZI, FYJ, GXK, HWL, ?', options: ['MVM', 'MVN', 'JVM', 'IVM'], ans: 3, sol: '1st letter (+1): E→F→G→H→I\n2nd letter (−1): Z→Y→X→W→V\n3rd letter (+1): I→J→K→L→M\nCorrect term = IVM.' },
+      { id: 'C19', num: 19, bank: 'century', type: 'Letter Series', exam: 'SSC GD Exam 2025-26 S3', series: 'EN, IS, MX, QC, ?, YM, CR, GW', options: ['UH', 'TK', 'WH', 'UI'], ans: 0, sol: '1st letter (+4): E(5)→I(9)→M(13)→Q(17)→U(21)\n2nd letter (+5): N(14)→S(19)→X(24)→C(3)→H(8)\nCorrect term = UH.' },
+      { id: 'C20', num: 20, bank: 'century', type: 'Letter Series', exam: 'SSC GD Exam 2025-26 S1', series: 'LO, ?, TY, XD, BI, FN, JS, NX', options: ['QV', 'NT', 'PS', 'PT'], ans: 3, sol: '1st letter (+4): L(12)+4 = P(16), P(16)+4 = T(20)\n2nd letter (+5): O(15)+5 = T(20), T(20)+5 = Y(25)\nCorrect term = PT.' },
+      { id: 'C21', num: 21, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S1', series: '-25, ?, -230, -693, -2080, -6242, -18729, -56188', options: ['-76', '-73', '-78', '-79'], ans: 0, sol: 'Alternating ×3 − 1 and ×3 − 2:\n-25 × 3 − 1 = -76\n-76 × 3 − 2 = -230\n-230 × 3 − 3 = -693 (or alternating −1, −2, −3, −1, −2, −3, −1).\nCorrect term = -76.' },
+      { id: 'C22', num: 22, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S2', series: '347, ?, 353, 356, 359, 362, 365, 368', options: ['350', '352', '353', '347'], ans: 0, sol: 'Constant addition of +3:\n347 + 3 = 350, 350 + 3 = 353.\nCorrect term = 350.' },
+      { id: 'C23', num: 23, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S2', series: '-54, -164, -494, -1484, -4454, -13364, ?', options: ['-43392', '-40094', '-42836', '-44832'], ans: 1, sol: 'Pattern: ×3 − 2 at each step:\n-54 × 3 − 2 = -164\n-13364 × 3 − 2 = -40092 − 2 = -40094.' },
+      { id: 'C24', num: 24, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S3', series: '-32, -28, -24, -20, ?, -12, -8, -4', options: ['-16', '-19', '-17', '-15'], ans: 0, sol: 'Add +4 at each step:\n-20 + 4 = -16.' },
+      { id: 'C25', num: 25, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S3', series: '-2, -7, -23, -72, -217, ?, -1962, -5887', options: ['-652', '-653', '-650', '-651'], ans: 1, sol: 'Pattern: ×3 − 1, ×3 − 2, ×3 − 3, ×3 − 1, ×3 − 2:\n-2 × 3 − 1 = -7\n-7 × 3 − 2 = -23\n-23 × 3 − 3 = -72\n-72 × 3 − 1 = -217\n-217 × 3 − 2 = -651 − 2 = -653.' },
+      { id: 'C26', num: 26, bank: 'century', type: 'Wrong Term', exam: 'SSC GD Exam 2025-26 S1', series: '-827, -824, -819, -814, -809, -804, -799, -794', options: ['-799', '-794', '-827', '-814'], ans: 2, sol: 'Every term increases by +5 (-824+5=-819, -819+5=-814...).\nThe first term should be -829 (-829 + 5 = -824). Thus -827 is wrong.' },
+      { id: 'C27', num: 27, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S1', series: '15, 42, 123, 366, 1095, 3282, ?, 29526', options: ['9844', '9847', '9843', '9839'], ans: 2, sol: 'Pattern: ×3 − 3 at each step:\n15×3−3 = 42, 42×3−3 = 123...\n3282 × 3 − 3 = 9846 − 3 = 9843.' },
+      { id: 'C28', num: 28, bank: 'century', type: 'Wrong Term', exam: 'SSC GD Exam 2025-26 S3', series: '-194, -187, -180, -173, -166, -160, -152, -145', options: ['-173', '-166', '-180', '-160'], ans: 3, sol: 'Constant addition of +7:\n-166 + 7 = -159 (not -160), and -159 + 7 = -152.\nHence -160 is the wrong term.' },
+      { id: 'C29', num: 29, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S1', series: '67, 74, 81, 88, 95, 102, 109, ?', options: ['120', '116', '119', '118'], ans: 1, sol: 'Add +7 at each step:\n109 + 7 = 116.' },
+      { id: 'C30', num: 30, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S1', series: '200, 197, ?, 191, 188, 185, 182, 179', options: ['195', '196', '194', '198'], ans: 2, sol: 'Subtract −3 at each step:\n197 − 3 = 194.' },
+      { id: 'C31', num: 31, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S3', series: '18, 34, 100, ?, 592, 1182, 3544, 7086', options: ['198', '202', '194', '199'], ans: 0, sol: 'Alternating ×2 − 2 and ×3 − 2:\n18 × 2 − 2 = 34\n34 × 3 − 2 = 100\n100 × 2 − 2 = 198\n198 × 3 − 2 = 592.\nCorrect term = 198.' },
+      { id: 'C32', num: 32, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S1', series: '7, 21, 105, ?, 8085', options: ['315', '525', '735', '945'], ans: 2, sol: 'Multiply by consecutive odd numbers (×3, ×5, ×7, ×11 — or primes 3, 5, 7, 11):\n7 × 3 = 21\n21 × 5 = 105\n105 × 7 = 735\n735 × 11 = 8085.\nCorrect term = 735.' },
+      { id: 'C33', num: 33, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S3', series: '1, 6, 18, 40, 75, 126, ?', options: ['161', '182', '196', '204'], ans: 2, sol: '1st differences: +5, +12, +22, +35, +51\n2nd differences: +7, +10, +13, +16 (+3 each time) → next 2nd diff = +19\nNext 1st diff = 51 + 19 = 70 → 126 + 70 = 196.\n(Also formula: n² × (n+1)/2).' },
+      { id: 'C34', num: 34, bank: 'century', type: 'Number Series', exam: 'SSC Steno Exam 2026 S1', series: '9, 28, 65, 126, 217, ?', options: ['342', '331', '344', '330'], ans: 2, sol: 'Pattern: n³ + 1 (starting from n=2):\n2³+1 = 9, 3³+1 = 28, 4³+1 = 65, 5³+1 = 126, 6³+1 = 217, 7³+1 = 343 + 1 = 344.' },
+      { id: 'C35', num: 35, bank: 'century', type: 'Number Series', exam: 'SSC Steno Exam 2026 S1', series: '80, 95, 75, 90, 70, (?)', options: ['80', '85', '90', '95'], ans: 1, sol: 'Alternating +15, −20:\n80 (+15) → 95 (−20) → 75 (+15) → 90 (−20) → 70 (+15) → 85.' },
+      { id: 'C36', num: 36, bank: 'century', type: 'Number Series', exam: 'SSC Steno Exam 2026 S2', series: '7, 11, 19, 31, ?, 67', options: ['45', '47', '51', '53'], ans: 1, sol: 'Differences are multiples of 4: +4, +8, +12, +16, +20:\n31 + 16 = 47, 47 + 20 = 67.' },
+      { id: 'C37', num: 37, bank: 'century', type: 'Number Series', exam: 'SSC Steno Exam 2026 S2', series: '10, 14, 23, 39, 64, ?', options: ['90', '105', '100', '95'], ans: 2, sol: 'Add consecutive squares (+2², +3², +4², +5², +6²):\n10 + 4 = 14\n14 + 9 = 23\n23 + 16 = 39\n39 + 25 = 64\n64 + 36 = 100.' },
+      { id: 'C38', num: 38, bank: 'century', type: 'Number Series', exam: 'SSC Steno Exam 2026 S1', series: '240, 120, 60, 30, 15, ?', options: ['5', '7.5', '10', '0'], ans: 1, sol: 'Divide by 2 at each step:\n15 ÷ 2 = 7.5.' },
+      { id: 'C39', num: 39, bank: 'century', type: 'Number Series', exam: 'SSC Steno Exam 2026 S2', series: '15, 16, 34, 105, 424, ?', options: ['2535', '2050', '2125', '2245'], ans: 2, sol: 'Pattern: ×1 + 1, ×2 + 2, ×3 + 3, ×4 + 4, ×5 + 5:\n15×1+1 = 16\n16×2+2 = 34\n34×3+3 = 105\n105×4+4 = 424\n424×5+5 = 2120 + 5 = 2125.' },
+      { id: 'C40', num: 40, bank: 'century', type: 'Number Series', exam: 'SSC Steno Exam 2026 S2', series: '8, 12, 24, 60, 180, ?', options: ['360', '540', '630', '720'], ans: 2, sol: 'Multiply by ×1.5, ×2, ×2.5, ×3, ×3.5:\n8 × 1.5 = 12\n12 × 2 = 24\n24 × 2.5 = 60\n60 × 3 = 180\n180 × 3.5 = 630.' },
+      { id: 'C41', num: 41, bank: 'century', type: 'Continuous Pattern', exam: 'SSC Steno Exam 2026 S2', series: 'a b _ b _ b a b a b _ b _ b a b', options: ['aaaa', 'abab', 'bbbb', 'baba'], ans: 0, sol: 'Repeating "ab" 8 times: ab / ab / ab / ab / ab / ab / ab / ab.\nAll 4 blanks require "a" → aaaa.' },
+      { id: 'C42', num: 42, bank: 'century', type: 'Continuous Pattern', exam: 'SSC Steno Exam 2026 S2', series: 'p _ r t _ o r _ p o _ t p _ r t', options: ['o, p, t, r, o', 'o, p, r, t, s', 'p, o, r, t, p', 'o, r, t, p, o'], ans: 0, sol: 'Total = 16 letters → 4 blocks of 4: p_rt / _or_ / po_t / p_rt.\nRepeating block = port.\nBlanks: o, p, t, r, o.' },
+      { id: 'C43', num: 43, bank: 'century', type: 'Continuous Pattern', exam: 'SSC Steno Exam 2026 S2', series: 'U _ _ R P K Q _ U K D _ P K _ R _ K D R _ K _ R', options: ['KQPRQUPQ', 'KDRRUURQ', 'KDRRQUPQ', 'KDRRQPPR'], ans: 1, sol: 'Total = 24 letters → 3 blocks of 8: U K D R P K Q R / U K D R P K Q R / U K D R P K Q R.\nBlanks: K, D, R, R, U, U, R, Q → KDRRUURQ.' },
+      { id: 'C44', num: 44, bank: 'century', type: 'Letter Series', exam: 'SSC Steno Exam 2026 S2', series: 'BKS, DMU, ___, HQY, JSA', options: ['GSW', 'ENW', 'FOW', 'FNT'], ans: 2, sol: 'Each letter increases by +2 across clusters:\nB(2)+2=D(4)+2=F(6)\nK(11)+2=M(13)+2=O(15)\nS(19)+2=U(21)+2=W(23)\nCorrect term = FOW.' },
+      { id: 'C45', num: 45, bank: 'century', type: 'Continuous Pattern', exam: 'SSC Steno Exam 2026 S3', series: 't s m _ _ n q _ _ s m m n _ s t _ m m n _ q s _', options: ['mnstnqmn', 'mmstmqtn', 'mnstnqsn', 'nmstnqns'], ans: 2, sol: 'Total = 24 letters → 3 blocks of 8: t s m m n n q s / t s m m n n q s / t s m m n n q s.\nBlanks: m, n, s, t, n, q, s, n → mnstnqsn.' },
+      { id: 'C46', num: 46, bank: 'century', type: 'Wrong Term', exam: 'SSC GD Exam 2025-26 S2', series: 'QRS1500, PNM1445, OJE1394, NFX1341, MBQ1288, LXJ1235', options: ['NFX1341', 'QRS1500', 'LXJ1235', 'PNM1445'], ans: 3, sol: 'Numbers decrease by −53 each step: 1500 − 53 = 1447, 1447 − 53 = 1394, 1394 − 53 = 1341.\nAlso 3rd letter decreases by −7: S(19)−7=L(12). So PNM1445 is wrong (should be PNL1447).' },
+      { id: 'C47', num: 47, bank: 'century', type: 'Mixed Series', exam: 'SSC GD Exam 2025-26 S2', series: 'MZ504, KW630, IT756, GQ882, ?', options: ['DM1007', 'EN1008', 'FO1009', 'EN1018'], ans: 1, sol: '1st letter (−2): M→K→I→G→E\n2nd letter (−3): Z→W→T→Q→N\nNumber (+126): 504 + 126 = 630 ... 882 + 126 = 1008.\nCorrect term = EN1008.' },
+      { id: 'C48', num: 48, bank: 'century', type: 'Mixed Series', exam: 'SSC GD Exam 2025-26 S3', series: 'ZBU500, AAV708, BZW916, CYX1124, ?', options: ['YDX1323', 'DXY1332', 'XYD1232', 'DYX1233'], ans: 1, sol: '1st letter (+1): Z→A→B→C→D\n2nd letter (−1): B→A→Z→Y→X\n3rd letter (+1): U→V→W→X→Y\nNumber (+208): 500 → 708 → 916 → 1124 + 208 = 1332.\nCorrect term = DXY1332.' },
+      { id: 'C49', num: 49, bank: 'century', type: 'Mixed Series', exam: 'SSC GD Exam 2025-26 S1', series: 'KMY80, ?, GGQ180, EDM270, CAI405', options: ['IJU120', 'ITV100', 'JJW120', 'IKU100'], ans: 0, sol: '1st letter (−2): K(11)→I(9)→G(7)\n2nd letter (−3): M(13)→J(10)→G(7)\n3rd letter (−4): Y(25)→U(21)→Q(17)\nNumber (×1.5): 80 × 1.5 = 120, 120 × 1.5 = 180.\nCorrect term = IJU120.' },
+      { id: 'C50', num: 50, bank: 'century', type: 'Mixed Series', exam: 'SSC GD Exam 2025-26 S3', series: 'RB2000, NX1760, JT1520, FP1280, ?', options: ['BL1040', 'CM1050', 'BK1030', 'AL1040'], ans: 0, sol: '1st letter (−4): R(18)→N(14)→J(10)→F(6)→B(2)\n2nd letter (−4): B(28)→X(24)→T(20)→P(16)→L(12)\nNumber (−240): 1280 − 240 = 1040.\nCorrect term = BL1040.' },
+      { id: 'C51', num: 51, bank: 'century', type: 'Mixed Series', exam: 'SSC GD Exam 2025-26 S3', series: 'MAL500, KCN602, ?, GGR806, EIT908', options: ['HDP704', 'JFP705', 'IEP704', 'KGP703'], ans: 2, sol: '1st letter (−2): M→K→I→G→E\n2nd letter (+2): A→C→E→G→I\n3rd letter (+2): L→N→P→R→T\nNumber (+102): 602 + 102 = 704.\nCorrect term = IEP704.' },
+      { id: 'C52', num: 52, bank: 'century', type: 'Wrong Term', exam: 'SSC GD Exam 2025-26 S3', series: 'MPA1, PTV3, SXQ9, VCL27, YFG81, BJB243', options: ['SXQ9', 'PTV3', 'BJB243', 'VCL27'], ans: 3, sol: '2nd letter increases by +4: P(16)→T(20)→X(24)→B(2)→F(6)→J(10).\nIn VCL27, the 2nd letter is C instead of B (should be VBL27). Hence VCL27 is wrong.' },
+      { id: 'C53', num: 53, bank: 'century', type: 'Mixed Series', exam: 'SSC GD Exam 2025-26 S1', series: 'AMZ2200, BLA2027, CKB1854, DJC1681, ?', options: ['EID1508', 'DIE1528', 'IED1516', 'DEI1504'], ans: 0, sol: '1st letter (+1): A→B→C→D→E\n2nd letter (−1): M→L→K→J→I\n3rd letter (+1): Z→A→B→C→D\nNumber (−173): 1681 − 173 = 1508.\nCorrect term = EID1508.' },
+      { id: 'C54', num: 54, bank: 'century', type: 'Mixed Series', exam: 'SSC GD Exam 2025-26 S2', series: 'BZ200, ZB400, XD800, ?, TH3200', options: ['WE1600', 'UG1500', 'VF1600', 'WE1500'], ans: 2, sol: '1st letter (−2): B(2)→Z(26)→X(24)→V(22)→T(20)\n2nd letter (+2): Z(26)→B(2)→D(4)→F(6)→H(8)\nNumber (×2): 800 × 2 = 1600.\nCorrect term = VF1600.' },
+      { id: 'C55', num: 55, bank: 'century', type: 'Wrong Term', exam: 'SSC GD Exam 2025-26 S2', series: 'FFE20, EGD40, DHD88, CIB160, BJA320, AKZ640', options: ['EGD40', 'DHD88', 'BJA320', 'AKZ640'], ans: 1, sol: 'Numbers double (×2): 20, 40, 80, 160, 320, 640.\n3rd letter (−1): E→D→C→B→A→Z.\nThus DHD88 is wrong (should be DHC80).' },
+      { id: 'C56', num: 56, bank: 'century', type: 'Wrong Term', exam: 'SSC GD Exam 2025-26 S1', series: 'AZA10, BYB15, CXC22.5, DWD33.75, EWE50.60, FUF75.9375', options: ['AZA10', 'EWE50.60', 'CXC22.5', 'BYB15'], ans: 1, sol: '2nd letter decreases by −1 (Z, Y, X, W, V, U) and numbers multiply by ×1.5 (33.75 × 1.5 = 50.625).\nThus EWE50.60 is wrong (should be EVE50.625).' },
+      { id: 'C57', num: 57, bank: 'century', type: 'Wrong Term', exam: 'SSC GD Exam 2025-26 S2', series: 'BAT100, FCR120, JGP144, NJN169, RML196, VPJ225', options: ['VPJ225', 'NJN169', 'BAT100', 'FCR120'], ans: 3, sol: 'Numbers are consecutive squares: 10²=100, 11²=121, 12²=144, 13²=169, 14²=196, 15²=225.\n2nd letter (+3): A(1)→D(4)→G(7)→J(10)→M(13)→P(16).\nThus FCR120 is wrong (should be FDR121).' },
+      { id: 'C58', num: 58, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S3', series: '1, 2, 6, 12, 36, 72, ?, 432', options: ['108', '324', '216', '648'], ans: 2, sol: 'Alternating ×2 and ×3:\n1(×2)=2, 2(×3)=6, 6(×2)=12, 12(×3)=36, 36(×2)=72, 72(×3)=216, 216(×2)=432.' },
+      { id: 'C59', num: 59, bank: 'century', type: 'Letter Series', exam: 'SSC GD Exam 2025-26 S3', series: 'CL, EP, GT, IX, KB, MF, ?, QN', options: ['MJ', 'NL', 'OJ', 'OG'], ans: 2, sol: '1st letter (+2): C→E→G→I→K→M→O→Q\n2nd letter (+4): L(12)→P(16)→T(20)→X(24)→B(2)→F(6)→J(10)\nCorrect term = OJ.' },
+      { id: 'C60', num: 60, bank: 'century', type: 'Number Series', exam: 'SSC GD Exam 2025-26 S2', series: '911, 895, 877, 857, 835, 811, ?, 757', options: ['781', '785', '789', '788'], ans: 1, sol: 'Subtracting −16, −18, −20, −22, −24, −26, −28:\n811 − 26 = 785, 785 − 28 = 757.' },
+      { id: 'C61', num: 61, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL Tier-02 2022', series: 'Q W _ R T Q _ F R _ Q W _ _ T _ _ H R T', options: ['FWTGRQX', 'EXTGRQX', 'EWTGRQW', 'EWTHSQW'], ans: 2, sol: 'Total = 20 letters → 4 blocks of 5: Q W E R T / Q W F R T / Q W G R T / Q W H R T (3rd letter E→F→G→H).\nBlanks: E, W, T, G, R, Q, W → EWTGRQW.' },
+      { id: 'C62', num: 62, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL Tier-02 2022', series: '_ V J R W B _ _ R W B V L _ _ B V _ _ W', options: ['BVKRWMR', 'AVKRWMR', 'AWKRXNR', 'BWKRWMR'], ans: 0, sol: 'Total = 20 letters → 4 blocks of 5: B V J R W / B V K R W / B V L R W / B V M R W (3rd letter J→K→L→M).\nBlanks: B, V, K, R, W, M, R → BVKRWMR.' },
+      { id: 'C63', num: 63, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL Tier-02 2022', series: 'F I R _ D F _ _ E D F _ T _ D F I _ E _', options: ['EISIEUD', 'EGSJEUE', 'EHSIEUD', 'EISIEUE'], ans: 0, sol: 'Total = 20 letters → 4 blocks of 5: F I R E D / F I S E D / F I T E D / F I U E D (3rd letter R→S→T→U).\nBlanks: E, I, S, I, E, U, D → EISIEUD.' },
+      { id: 'C64', num: 64, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL Tier-02 2022', series: 'S C R _ W S _ R _ W _ C _ G W S _ R H _', options: ['GDFSRCW', 'HDFSRCW', 'ECFSRCW', 'EDFSRDW'], ans: 2, sol: 'Total = 20 letters → 4 blocks of 5: S C R E W / S C R F W / S C R G W / S C R H W (4th letter E→F→G→H).\nBlanks: E, C, F, S, R, C, W → ECFSRCW.' },
+      { id: 'C65', num: 65, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL Tier-02 2023', series: 'P R _ Y _ _ R A _ Z P _ A _ Z', options: ['AZYZRY', 'APYZZY', 'AZPYRY', 'APYZRY'], ans: 2, sol: 'Total = 15 letters → 3 blocks of 5: P R A Y Z / P R A Y Z / P R A Y Z.\nBlanks: A, Z, P, Y, R, Y → AZPYRY.' },
+      { id: 'C66', num: 66, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL Tier-02 2023', series: 'A _ D F   G I _ L   M O P _   _ U V X   Y A _ D', options: ['BJQRB', 'CJRSB', 'BJRSB', 'CJQRB'], ans: 1, sol: 'Pattern across 5 clusters of 4 letters (+6 per cluster): A C D F / G I J L / M O P R / S U V X / Y A B D.\nBlanks: C, J, R, S, B → CJRSB.' },
+      { id: 'C67', num: 67, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL 2025 Tier-02', series: 'S _ _ K B _ F H _ B S F _ K _ S F _ _ B', options: ['FHSKBHHK', 'FHSKHKHK', 'FHSKHBHK', 'FHSHKBHK'], ans: 2, sol: 'Total = 20 letters → 4 blocks of 5: S F H K B / S F H K B / S F H K B / S F H K B.\nBlanks: F, H, S, K, H, B, H, K → FHSKHBHK.' },
+      { id: 'C68', num: 68, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL 2025 Tier-02', series: 'c d _ f c _ e f c d e f c d e _ c d e f c d e _ c d e f', options: ['fcde', 'cddf', 'efdf', 'edff'], ans: 3, sol: 'Total = 28 letters → 7 blocks of 4: cdef / cdef / cdef / cdef / cdef / cdef / cdef.\nBlanks: e, d, f, f → edff.' },
+      { id: 'C69', num: 69, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S2', series: 'AG, BH, CI, ?', options: ['DJ', 'EK', 'FL', 'GM'], ans: 0, sol: '1st letter (+1): A→B→C→D\n2nd letter (+1): G→H→I→J\nCorrect term = DJ.' },
+      { id: 'C70', num: 70, bank: 'century', type: 'Wrong Term', exam: 'SSC CGL 2025 Tier-01 S2', series: '9, 19, 39, 78, 159, 319', options: ['9', '39', '78', '159'], ans: 2, sol: 'Pattern: ×2 + 1 at each step:\n9×2+1 = 19, 19×2+1 = 39, 39×2+1 = 79 (not 78), 79×2+1 = 159.\nHence 78 is the wrong number.' },
+      { id: 'C71', num: 71, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S2', series: '625, 125, 25, ___', options: ['10', '5', '15', '1'], ans: 1, sol: 'Divide by 5 at each step:\n25 ÷ 5 = 5.' },
+      { id: 'C72', num: 72, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S2', series: '76, 80, 71, 87, 62, ?', options: ['86', '98', '72', '106'], ans: 1, sol: 'Alternating addition and subtraction of consecutive squares (+2², −3², +4², −5², +6²):\n76 + 4 = 80\n80 − 9 = 71\n71 + 16 = 87\n87 − 25 = 62\n62 + 36 = 98.' },
+      { id: 'C73', num: 73, bank: 'century', type: 'Mixed Series', exam: 'SSC CGL 2025 Tier-01 S1', series: 'C3, X24, D4, W23, ?', options: ['V22', 'E5', 'F6', 'U21'], ans: 1, sol: 'Alternating forward and backward letter-position pairs:\nOdd terms: C3, D4, [E5]\nEven terms: X24, W23.' },
+      { id: 'C74', num: 74, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S1', series: '2, 4, 7, 11, 16, ?', options: ['22', '20', '24', '21'], ans: 0, sol: 'Differences increase by +1: +2, +3, +4, +5, +6:\n16 + 6 = 22.' },
+      { id: 'C75', num: 75, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S3', series: '13, 16, 32, 35, 70, ?', options: ['73', '139', '142', '145'], ans: 0, sol: 'Alternating +3 and ×2:\n13(+3)=16, 16(×2)=32, 32(+3)=35, 35(×2)=70, 70(+3)=73.' },
+      { id: 'C76', num: 76, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S2', series: '12, 6, 0, -6, ?, -18', options: ['-10', '-12', '-15', '-18'], ans: 1, sol: 'Subtract −6 at each step:\n-6 − 6 = -12.' },
+      { id: 'C77', num: 77, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S1', series: '98, 90, 82, 74, ?, 58', options: ['66', '68', '62', '70'], ans: 0, sol: 'Subtract −8 at each step:\n74 − 8 = 66.' },
+      { id: 'C78', num: 78, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S1', series: '45, 40, 50, ?, 55, 30', options: ['35', '80', '70', '85'], ans: 0, sol: 'Twin alternating series:\nOdd positions (+5): 45 → 50 → 55\nEven positions (−5): 40 → [35] → 30.' },
+      { id: 'C79', num: 79, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S3', series: '20, 62, 189, 571, 1718, ?', options: ['5160', '5168', '4660', '4659'], ans: 0, sol: 'Pattern: ×3 + 2, ×3 + 3, ×3 + 4, ×3 + 5, ×3 + 6:\n20×3+2 = 62\n62×3+3 = 189\n189×3+4 = 571\n571×3+5 = 1718\n1718×3+6 = 5154 + 6 = 5160.' },
+      { id: 'C80', num: 80, bank: 'century', type: 'Wrong Term', exam: 'SSC CGL 2025 Tier-01 S1', series: '12, 34, 100, 298, 894, 2674', options: ['298', '894', '34', '100'], ans: 1, sol: 'Pattern: ×3 − 2 at each step:\n12×3−2 = 34\n34×3−2 = 100\n100×3−2 = 298\n298×3−2 = 892 (not 894)\n892×3−2 = 2674.\nHence 894 is wrong.' },
+      { id: 'C81', num: 81, bank: 'century', type: 'Wrong Term', exam: 'SSC CGL 2025 Tier-01 S1', series: '4, 9, 12, 12, 36, 16, 108, 18, 323, 21', options: ['18, 323', '36, 16', '16, 323', '36, 108'], ans: 2, sol: 'Twin alternating series:\nOdd positions (×3): 4 → 12 → 36 → 108 → 324 (given 323 is wrong)\nEven positions (+3): 9 → 12 → 15 (given 16 is wrong) → 18 → 21.\nIncorrect combination = 16, 323.' },
+      { id: 'C82', num: 82, bank: 'century', type: 'Continuous Pattern', exam: 'SSC CGL 2025 Tier-01 S2', series: 'f _ h k _ g h _ f g _ k', options: ['g,f,k,h', 'g,k,h,f', 'k,g,f,h', 'k,g,h,f'], ans: 0, sol: 'Total = 12 letters → 3 blocks of 4: f g h k / f g h k / f g h k.\nBlanks: g, f, k, h.' },
+      { id: 'C83', num: 83, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S1', series: 'CE, EG, GI, ?', options: ['KN', 'KM', 'JL', 'IK'], ans: 3, sol: 'Each letter increases by +2:\nC(3)E(5) → E(5)G(7) → G(7)I(9) → I(9)K(11) = IK.' },
+      { id: 'C84', num: 84, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S1', series: '3, 9, 27, 81, ?, 729', options: ['243', '218', '270', '261'], ans: 0, sol: 'Multiply by 3 at each step:\n81 × 3 = 243.' },
+      { id: 'C85', num: 85, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S3', series: '120, 99, 80, 63, 48, ?', options: ['36', '35', '34', '33'], ans: 1, sol: 'Pattern: n² − 1 (11²−1, 10²−1, 9²−1, 8²−1, 7²−1, 6²−1 = 35)\nOr subtract −21, −19, −17, −15, −13 → 48 − 13 = 35.' },
+      { id: 'C86', num: 86, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S1', series: '111x222, 222x333, 333x444, ___', options: ['444x555', '432x321', '345x654', '555x666'], ans: 0, sol: 'Sequential multiples of 111: 444x555.' },
+      { id: 'C87', num: 87, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S1', series: 'CFJ, HKO, MPT, ?', options: ['RAS', 'RYS', 'TSG', 'RUY'], ans: 3, sol: 'Each letter shifts by +5 across clusters:\nM(13)+5 = R(18)\nP(16)+5 = U(21)\nT(20)+5 = Y(25)\nCorrect term = RUY.' },
+      { id: 'C88', num: 88, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S3', series: 'DIN, INS, NSX, SXC, ?', options: ['LKA', 'JNA', 'GVA', 'XCH'], ans: 3, sol: 'Each letter shifts by +5 (and first two letters of next cluster are last two of previous):\nS(19)+5 = X(24), X(24)+5 = C(3), C(3)+5 = H(8) → XCH.' },
+      { id: 'C89', num: 89, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S1', series: '3, 6, 18, 108, ?', options: ['1290', '1944', '648', '432'], ans: 1, sol: 'Each term (from 3rd onwards) is the product of the previous two terms:\n3 × 6 = 18\n6 × 18 = 108\n18 × 108 = 1944.' },
+      { id: 'C90', num: 90, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S2', series: '10, 21, 43, 87, ?, 351', options: ['175', '173', '177', '179'], ans: 0, sol: 'Pattern: ×2 + 1 at each step:\n10×2+1 = 21\n21×2+1 = 43\n43×2+1 = 87\n87×2+1 = 175.' },
+      { id: 'C91', num: 91, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S2', series: '2, 6, 12, 20, 30, ?', options: ['42', '56', '38', '48'], ans: 0, sol: 'Add +4, +6, +8, +10, +12:\n30 + 12 = 42 (or n(n+1): 1×2, 2×3, 3×4, 4×5, 5×6, 6×7 = 42).' },
+      { id: 'C92', num: 92, bank: 'century', type: 'Wrong Term', exam: 'SSC CGL 2025 Tier-01 S1', series: '4, 5, 14, 14, 34, 36, 74, 68', options: ['74', '34', '36', '68'], ans: 2, sol: 'Twin alternating series:\nOdd positions: 4 (+10) → 14 (+20) → 34 (+40) → 74\nEven positions: 5 (+9) → 14 (+18) → 32 (given 36 is wrong) (+36) → 68.\nHence 36 is wrong.' },
+      { id: 'C93', num: 93, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S1', series: 'MOA, NPB, OQC, PRD, ?', options: ['QRE', 'QTE', 'RST', 'QSE'], ans: 3, sol: '1st letter (+1): M→N→O→P→Q\n2nd letter (+1): O→P→Q→R→S\n3rd letter (+1): A→B→C→D→E\nCorrect term = QSE.' },
+      { id: 'C94', num: 94, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S3', series: '1331, 10648, 35937, 85184, ?', options: ['15478', '189384', '166375', '136789'], ans: 2, sol: 'Cubes of multiples of 11:\n11³ = 1331\n22³ = 10648\n33³ = 35937\n44³ = 85184\n55³ = 166375.' },
+      { id: 'C95', num: 95, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S3', series: 'MNO, JKL, GHI, DEF, ?', options: ['ASD', 'CGF', 'ABC', 'JHB'], ans: 2, sol: '3-letter consecutive blocks moving backwards (−3): MNO ← JKL ← GHI ← DEF ← ABC.' },
+      { id: 'C96', num: 96, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S2', series: '7, 22, 89, ___, 2677, 18740', options: ['446', '436', '448', '457'], ans: 0, sol: 'Pattern: ×3 + 1, ×4 + 1, ×5 + 1, ×6 + 1, ×7 + 1:\n7 × 3 + 1 = 22\n22 × 4 + 1 = 89\n89 × 5 + 1 = 445 + 1 = 446\n446 × 6 + 1 = 2677.' },
+      { id: 'C97', num: 97, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S1', series: 'BEK, DGM, FIO, HKQ, ?', options: ['KSA', 'JAS', 'JMS', 'KJS'], ans: 2, sol: 'Each letter shifts by +2:\nH(8)+2 = J(10)\nK(11)+2 = M(13)\nQ(17)+2 = S(19)\nCorrect term = JMS.' },
+      { id: 'C98', num: 98, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S3', series: 'SCEG, SFKP, SIQY, SLWH, ?', options: ['SOCQ', 'SOBQ', 'SPCR', 'SPDR'], ans: 0, sol: '1st letter: S (constant)\n2nd letter (+3): C(3)→F(6)→I(9)→L(12)→O(15)\n3rd letter (+6): E(5)→K(11)→Q(17)→W(23)+6 = C(3)\n4th letter (+9): G(7)→P(16)→Y(25)→H(8)+9 = Q(17)\nCorrect term = SOCQ.' },
+      { id: 'C99', num: 99, bank: 'century', type: 'Number Series', exam: 'SSC CGL 2025 Tier-01 S2', series: '4, 10, 22, 46, 94, ?', options: ['190', '191', '192', '196'], ans: 0, sol: 'Pattern: ×2 + 2 at each step:\n4×2+2 = 10, 10×2+2 = 22, 22×2+2 = 46, 46×2+2 = 94, 94×2+2 = 190.' },
+      { id: 'C100', num: 100, bank: 'century', type: 'Letter Series', exam: 'SSC CGL 2025 Tier-01 S2', series: 'HDZ, LGB, PJD, TMF, ?', options: ['XPH', 'XOH', 'XPG', 'WPH'], ans: 0, sol: '1st letter (+4): H(8)→L(12)→P(16)→T(20)→X(24)\n2nd letter (+3): D(4)→G(7)→J(10)→M(13)→P(16)\n3rd letter (+2): Z(26)→B(2)→D(4)→F(6)→H(8)\nCorrect term = XPH.' }
+    ];
+
+    /***************************************************************************
+     * 3. MASTER BILINGUAL NOTES & PRACTICE SHEET BANK (ALL 5 TYPES: Q1-Q255)
+     *    Curated from SERIES - BILINGUAL NOTES.pdf & PRACTICE SHEET.pdf
+     ***************************************************************************/
+    const NOTES_SHEET_QUESTIONS = [
+      // TYPE 1: NUMBER SERIES
+      { id: 'N1', num: 1, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q1', series: '2, 3, 5, 7, 11, ?, 17', options: ['12', '13', '14', '15'], ans: 1, sol: 'Consecutive Prime Numbers (क्रमागत अभाज्य संख्याएँ): 2, 3, 5, 7, 11, 13, 17.' },
+      { id: 'N2', num: 2, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q2', series: '1, 4, 27, 16, ?, 36, 343', options: ['25', '87', '120', '125'], ans: 3, sol: 'Alternate Cubes and Squares: 1³, 2², 3³, 4², 5³ = 125, 6², 7³.' },
+      { id: 'N3', num: 3, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q3', series: '3, 10, 29, 66, 127, ?', options: ['164', '187', '216', '218'], ans: 3, sol: 'Smart Pattern: n³ + 2 → 1³+2=3, 2³+2=10, 3³+2=29, 4³+2=66, 5³+2=127, 6³+2 = 218.' },
+      { id: 'N5', num: 5, bank: 'notes', type: 'Number Series', exam: 'SSC CGL T1 13/12/22 S1', series: '7, 9, 14, 24, ?, 67', options: ['45', '37', '41', '43'], ans: 2, sol: 'Differences are (n² + 1): +2 (1²+1), +5 (2²+1), +10 (3²+1), +17 (4²+1), +26 (5²+1).\n24 + 17 = 41.' },
+      { id: 'N9', num: 9, bank: 'notes', type: 'Number Series', exam: 'SSC CHSL T1 4 Aug 2023 S1', series: '333, 321, 328, 328, 323, 335, ?', options: ['316', '322', '318', '325'], ans: 2, sol: 'Remove 1st digit (3): 33, 21, 28, 28, 23, 35, ?\nAlternate series: 33 (−5) → 28 (−5) → 23 (−5) → 18. Putting 3 back gives 318.' },
+      { id: 'N11', num: 11, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q11', series: '6, 13, 25, 51, 101, ?', options: ['201', '202', '203', '205'], ans: 2, sol: 'Alternating ×2 + 1 and ×2 − 1:\n6×2+1=13, 13×2−1=25, 25×2+1=51, 51×2−1=101, 101×2+1 = 203.' },
+      { id: 'N13', num: 13, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q13', series: '11, 12, 36, 41, ?, 296', options: ['205', '287', '48', '123'], ans: 1, sol: 'Alternate Addition and Multiplication with consecutive odd numbers (+1, ×3, +5, ×7, +9):\n11+1=12, 12×3=36, 36+5=41, 41×7 = 287, 287+9=296.' },
+      { id: 'N14', num: 14, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q14', series: '122, 59, 28, 13, ?', options: ['6', '8', '7', '9'], ans: 0, sol: 'From right to left: 6×2+1=13, 13×2+2=28, 28×2+3=59, 59×2+4=122. Answer = 6.' },
+      { id: 'N16', num: 16, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q16', series: '1, 4, 15, 64, 325, ?', options: ['2010', '1806', '1956', '1880'], ans: 2, sol: 'Pattern: ×2+2, ×3+3, ×4+4, ×5+5, ×6+6:\n325 × 6 + 6 = 1950 + 6 = 1956.' },
+      { id: 'N22', num: 22, bank: 'notes', type: 'Number Series', exam: 'SSC GD 06 Mar 2024 S1', series: '1, 14, -3, 16, -7, ?', options: ['30', '22', '20', '27'], ans: 1, sol: 'Alternating addition and subtraction of consecutive prime numbers (+13, −17, +19, −23, +29):\n-7 + 29 = 22.' },
+      { id: 'N23', num: 23, bank: 'notes', type: 'Number Series', exam: 'SSC CPO 03 Oct 2023 S3', series: '13, 14, -2, 79, -177, ?', options: ['424', '528', '608', '448'], ans: 3, sol: 'Differences are +1², −4², +9², −16², +25² (+1, −16, +81, −256, +625):\n-177 + 625 = 448.' },
+      { id: 'N25', num: 25, bank: 'notes', type: 'Number Series', exam: 'SSC GD 24 Feb 2024 S3', series: '40, 21, 22, 34, 69, ?', options: ['145.5', '173', '180', '173.5'], ans: 3, sol: 'Pattern: ×0.5+1, ×1+1, ×1.5+1, ×2+1, ×2.5+1:\n69 × 2.5 + 1 = 172.5 + 1 = 173.5.' },
+      { id: 'N26', num: 26, bank: 'notes', type: 'Number Series', exam: 'SSC SP (10+2) 24 Sep 2026 S2', series: '3, 4, 7, 11, 18, 29, ?', options: ['56', '52', '45', '47'], ans: 3, sol: 'Sum of previous two terms (Fibonacci rule): 3+4=7, 4+7=11, 7+11=18, 11+18=29, 18+29 = 47.' },
+      { id: 'N27', num: 27, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q27', series: '1, 3, 4, 8, 15, 27, ?', options: ['37', '44', '50', '55'], ans: 2, sol: 'Sum of previous THREE terms (Tribonacci): 1+3+4=8, 3+4+8=15, 4+8+15=27, 8+15+27 = 50.' },
+      { id: 'N37', num: 37, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q37', series: '563, 647, 479, 815, ?', options: ['672', '386', '143', '279'], ans: 2, sol: 'Differences double with alternating signs: +84, −168, +336, −672:\n815 − 672 = 143.' },
+      { id: 'N38', num: 38, bank: 'notes', type: 'Number Series', exam: 'SSC CGL T1 24/09/24 S3', series: '61, ?, ?, 73, 79, 83, 89', options: ['67, 71', '63, 65', '63, 67', '67, 69'], ans: 0, sol: 'Consecutive prime numbers from 61 to 89: 61, 67, 71, 73, 79, 83, 89.' },
+      { id: 'N41', num: 41, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q41', series: '69, 55, 26, 13, ?', options: ['5', '2', '4', '3'], ans: 2, sol: 'Multiply digits + 1: (6×9)+1=55, (5×5)+1=26, (2×6)+1=13, (1×3)+1 = 4.' },
+      { id: 'N52', num: 52, bank: 'notes', type: 'Number Series', exam: 'SSC Phase XI 27/06/23 S4', series: '0.04, 0.12, 0.42, 1.68, 2.08, 10.4, ?', options: ['12.3', '10.9', '11.8', '10.6'], ans: 1, sol: 'Multiply by 100 to remove decimals: 4 (×3)→ 12 (+30)→ 42 (×4)→ 168 (+40)→ 208 (×5)→ 1040 (+50)→ 1090 ÷ 100 = 10.9.' },
+      { id: 'N56', num: 56, bank: 'notes', type: 'Number Series', exam: 'SSC CGL T1 12 Sep 2025 S3', series: '1, 2, 5, 26, 677, ?', options: ['458330', '456976', '453625', '458329'], ans: 0, sol: 'Square previous number + 1: 1²+1=2, 2²+1=5, 5²+1=26, 26²+1=677, 677²+1 = 458329 + 1 = 458330.' },
+      { id: 'N66', num: 66, bank: 'notes', type: 'Number Series', exam: 'Practice Sheet Q66', series: '3, 20, 38, 52, 75, 82, 114, ?', options: ['104', '101', '118', '110'], ans: 3, sol: '1st Diff: +17, +18, +14, +23, +7, +32, −4\n2nd Diff: +1², −2², +3², −4², +5², −6² (32 − 36 = −4) → 114 − 4 = 110.' },
+      { id: 'N86', num: 86, bank: 'notes', type: 'Number Series', exam: 'SSC CGL T1 19 Sep 2025 S2', series: '60, 30, 20, 15, 12, 10, ?', options: ['7.5', '8.57', '9', '6'], ans: 1, sol: 'Multiply by 1/2, 2/3, 3/4, 4/5, 5/6, 6/7:\n10 × (6/7) = 60/7 = 8.57.' },
+      { id: 'N91', num: 91, bank: 'notes', type: 'Number Series', exam: 'SSC CGL T1 18/09/24 S1', series: '300, 152, 80, 48, 40, 52, ?', options: ['100', '80', '90', '60'], ans: 2, sol: 'Pattern: ÷2 + 2, ÷2 + 4, ÷2 + 8, ÷2 + 16, ÷2 + 32, ÷2 + 64:\n52 ÷ 2 + 64 = 26 + 64 = 90.' },
+      { id: 'N95', num: 95, bank: 'notes', type: 'Number Series', exam: 'SSC MTS 9 Oct 2024', series: '14, 30, 93, 470, 3297, ?', options: ['36278', '23086', '29682', '36267'], ans: 0, sol: 'Prime multiplier + prime: ×2+2, ×3+3, ×5+5, ×7+7, ×11+11:\n3297 × 11 + 11 = 36267 + 11 = 36278.' },
+      { id: 'N98', num: 98, bank: 'notes', type: 'Number Series', exam: 'SSC MTS 22 Oct 2024', series: '8796, 4392, 1092, 176, ?, -4.4', options: ['16', '22', '38', '11.6'], ans: 0, sol: 'Pattern: ÷2−6, ÷4−6, ÷6−6, ÷8−6, ÷10−6:\n176 ÷ 8 − 6 = 22 − 6 = 16.' },
+      { id: 'N100', num: 100, bank: 'notes', type: 'Number Series', exam: 'SSC CPO T1 9 Dec 2025 S1', series: 'Monthly savings were 4000, 4400, 4840, and 5324. Estimate the savings in the 6th month.', options: ['6442', '6500', '5856', '6800'], ans: 0, sol: '10% compound growth per month:\n5th month = 5324 + 532.4 = 5856.4\n6th month = 5856 + 585.6 ≈ 6442.' },
+
+      // TYPE 2: LETTER SERIES
+      { id: 'N107', num: 107, bank: 'notes', type: 'Letter Series', exam: 'SSC STENO 15 Sep 2026 S2', series: 'J, Q, L, O, N, ?, P, K', options: ['I', 'K', 'M', 'L'], ans: 2, sol: 'Opposite letter pairs (sum = 27): J(10)↔Q(17), L(12)↔O(15), N(14)↔M(13), P(16)↔K(11). Answer = M.' },
+      { id: 'N108', num: 108, bank: 'notes', type: 'Letter Series', exam: 'SSC CGL T1 6 Dec 2022 S1', series: 'MU, NE, PX, QF, SA, TG, ?', options: ['UC', 'VE', 'VD', 'VC'], ans: 2, sol: '1st letters (+1, +2 alternating): M(13)+1=N(14)+2=P(16)+1=Q(17)+2=S(19)+1=T(20)+2=V(22).\n2nd letters (odd terms +3): U(21)+3=X(24)+3=A(1)+3=D(4).\nAnswer = VD.' },
+      { id: 'N110', num: 110, bank: 'notes', type: 'Letter Series', exam: 'SSC Phase 14 22 Sep 2026 S3', series: 'BY, DW, GT, KP, ?', options: ['RG', 'PK', 'EC', 'UV'], ans: 1, sol: '1st letter (+2, +3, +4, +5): B(2)→D(4)→G(7)→K(11)→P(16) and 2nd letter is Opposite: P↔K → PK.' },
+      { id: 'N113', num: 113, bank: 'notes', type: 'Letter Series', exam: 'SSC CGL T1 13 Dec 2022 S1', series: 'NTR, TCE, ZLR, FUE, ?', options: ['LDR', 'RMO', 'LMR', 'RNQ'], ans: 0, sol: '1st (+6): N→T→Z→F→L | 2nd (+9): T→C→L→U→D | 3rd (+13): R→E→R→E→R → LDR.' },
+      { id: 'N114', num: 114, bank: 'notes', type: 'Letter Series', exam: 'SSC CGL T1 12 Sep 2025 S3', series: 'ACE, EIM, IOU, MUC, ?', options: ['QSA', 'UHG', 'QAK', 'CGD'], ans: 2, sol: '1st (+4): A→E→I→M→Q | 2nd (+6): C→I→O→U→A | 3rd (+8): E→M→U→C→K → QAK.' },
+      { id: 'N116', num: 116, bank: 'notes', type: 'Letter Series', exam: 'SSC CHSL 02 Jul 2024 S4', series: 'SLE, CXS, ?, WVU, GHI', options: ['COR', 'HAP', 'OWG', 'MJG'], ans: 3, sol: '1st (+10): S(19)+10=C(3)+10=M(13)\n2nd (+12): L(12)+12=X(24)+12=J(10)\n3rd (+14): E(5)+14=S(19)+14=G(7)\nAnswer = MJG.' },
+      { id: 'N126', num: 126, bank: 'notes', type: 'Letter Series', exam: 'Practice Sheet Q126', series: 'PERSONA, ANPERSO, ANOSPER, ?', options: ['ANOSERP', 'NOSAREP', 'ANSORPE', 'ANOSREP'], ans: 3, sol: 'Each step reverses the last 2 letters of the remaining root and places them before it:\nPERSONA → AN + PERSO → AN + OS + PER → ANOS + RE + P = ANOSREP.' },
+      { id: 'N127', num: 127, bank: 'notes', type: 'Letter Series', exam: 'Practice Sheet Q127', series: 'BOARD, BOARW, BOAIW, ?, BLZIW, YLZIW', options: ['BOZIW', 'BOZRW', 'BOAIW', 'BLZRW'], ans: 0, sol: 'Right-to-left progressive opposite letter substitution: A is replaced by its opposite Z → BOZIW.' },
+      { id: 'N128', num: 128, bank: 'notes', type: 'Letter Series', exam: 'Practice Sheet Q128', series: 'TRIBUTE, RBTEUIT, BEITUTR, ?, TRIBUTE', options: ['ETTRUIB', 'BIURTTE', 'ETRTUIB', 'EURTTIB'], ans: 0, sol: 'Take even positions (2,4,6) then odd positions in reverse (7,5,3,1) → ETTRUIB.' },
+      { id: 'N129', num: 129, bank: 'notes', type: 'Letter Series', exam: 'Practice Sheet Q129', series: 'NAVIGATE, PCVIGATE, NAXKGATE, ?, NAVIGAVG', options: ['PCVIICUG', 'NAXKICTE', 'NAVIICTE', 'NAVIJCTF'], ans: 2, sol: 'Split into 4 pairs: NA | VI | GA | TE. Each step adds +2 to one pair while resetting the previous pair: GA (+2) → IC → NAVIICTE.' },
+      { id: 'N131', num: 131, bank: 'notes', type: 'Letter Series', exam: 'Practice Sheet Q131', series: 'A, AC, DAD, FEE, JACK, ?', options: ['RIDE', 'ARRIVAL', 'SMELL', 'FATHER'], ans: 0, sol: 'Sum of alphabetical positions = 1², 2², 3², 4², 5², 6²=36. RIDE = 18+9+4+5 = 36.' },
+      { id: 'N134', num: 134, bank: 'notes', type: 'Letter Series', exam: 'Practice Sheet Q134', series: 'QUESTION, USINETO, SNTIEO, NIOTE, ?', options: ['ITEO', 'TEOI', 'ITOE', 'OEIT'], ans: 2, sol: 'Even positions (2,4) = IT, followed by odd positions excluding 1st letter (3,5) = OE → ITOE.' },
+      { id: 'N135', num: 135, bank: 'notes', type: 'Letter Series', exam: 'SSC CHSL T1 2 Aug 2023 S1', series: 'G_MA, _VOY, KTQ_, MR_U, O_US', options: ['XGVSP', 'XIWSP', 'XOWSO', 'XGWTQ'], ans: 1, sol: '1st & 3rd letters (+2), 2nd & 4th letters (−2): GXMA, IVOY, KTQW, MRSU, OPUS → Blanks: X, I, W, S, P.' },
+
+      // TYPE 3: WRONG TERM SERIES
+      { id: 'N147', num: 147, bank: 'notes', type: 'Wrong Term', exam: 'Practice Sheet Q147', series: '0, 1, 9, 36, 81, 225, 441', options: ['0', '1', '36', '81'], ans: 3, sol: 'Squares of triangular numbers: 0², 1², 3², 6², 10²=100 (given 81 is wrong), 15²=225, 21²=441.' },
+      { id: 'N148', num: 148, bank: 'notes', type: 'Wrong Term', exam: 'Practice Sheet Q148', series: '3, 7, 17, 31, 59', options: ['59', '7', '17', '31'], ans: 0, sol: 'Prime number positions: 2nd (3), 4th (7), 7th (17), 11th (31), 16th prime = 53 (not 59).' },
+      { id: 'N150', num: 150, bank: 'notes', type: 'Wrong Term', exam: 'Practice Sheet Q150', series: '27, 34, 51, 62, 80, 98', options: ['80', '51', '27', '98'], ans: 0, sol: 'Pattern: 5²+2=27, 6²−2=34, 7²+2=51, 8²−2=62, 9²+2=83 (given 80 is wrong), 10²−2=98.' },
+      { id: 'N161', num: 161, bank: 'notes', type: 'Wrong Term', exam: 'Practice Sheet Q161', series: '118, 122, 149, 165, 291, 326', options: ['118', '291', '325', '122'], ans: 1, sol: 'Add +2², +3³, +4², +5³, +6²: 165 + 125 = 290 (not 291).' },
+      { id: 'N170', num: 170, bank: 'notes', type: 'Wrong Term', exam: 'Practice Sheet Q170', series: '3124, 9728, 6305, 2015', options: ['6305', '2015', '9728', '3124'], ans: 1, sol: '1st digit × 4th digit = middle two digits: 3×4=12, 9×8=72, 6×5=30, 2×5=10 (should be 2105, so 2015 is wrong).' },
+      { id: 'N176', num: 176, bank: 'notes', type: 'Wrong Term', exam: 'SSC CGL T1 19 Sep 2025 S1', series: '3, 12, 48, 194, 768, 3074', options: ['12, 194', '768, 3074', '48, 194', '194, 3074'], ans: 3, sol: 'Multiply by 4 at each step: 48×4 = 192 (not 194), and 768×4 = 3072 (not 3074). Wrong pair: 194, 3074.' },
+      { id: 'N181', num: 181, bank: 'notes', type: 'Wrong Term', exam: 'SSC CHSL T1 17 Nov 2025 S3', series: 'NVK, KSH, HPE, EMB, BJZ', options: ['EMB', 'KSH', 'BJZ', 'HPE'], ans: 2, sol: 'Every letter decreases by −3: 3rd letter B(2) − 3 = Y(25). So BJZ is wrong (should be BJY).' },
+      { id: 'N182', num: 182, bank: 'notes', type: 'Wrong Term', exam: 'SSC CHSL T1 17 Nov 2025 S3', series: 'DMR, FOT, CLQ, GPV, BKP', options: ['GPV', 'CLQ', 'DMR', 'BKP'], ans: 0, sol: 'Letters shift by +2, −3, +4, −5: Q(17) + 4 = U(21). Thus GPV is wrong (should be GPU).' },
+
+      // TYPE 4: MIXED / ALPHANUMERIC SERIES
+      { id: 'N186', num: 186, bank: 'notes', type: 'Mixed Series', exam: 'SSC CHSL T1 17 Nov 2025 S2', series: 'Z73, Y79, X83, W89, ?', options: ['V79', 'V97', 'U89', 'U97'], ans: 1, sol: 'Letters (−1): Z→Y→X→W→V | Numbers (Consecutive Primes): 73, 79, 83, 89, 97 → V97.' },
+      { id: 'N188', num: 188, bank: 'notes', type: 'Mixed Series', exam: 'RRB NTPC UG T1 17 Jun 2026 S3', series: 'KE64, MC27, PZ8, ?', options: ['TW1', 'SV1', 'TV1', 'TV8'], ans: 2, sol: '1st letter (+2,+3,+4): K→M→P→T | 2nd letter (−2,−3,−4): E→C→Z→V | Number: 4³, 3³, 2³, 1³ = 1 → TV1.' },
+      { id: 'N192', num: 192, bank: 'notes', type: 'Mixed Series', exam: 'Practice Sheet Q192', series: 'A2B, C12D, E30F, ?, I90J', options: ['G64H', 'G48H', 'G56H', 'G49H'], ans: 2, sol: 'Consecutive letters with product of positions in middle: G(7) × H(8) = 56 → G56H.' },
+      { id: 'N201', num: 201, bank: 'notes', type: 'Mixed Series', exam: 'Practice Sheet Q201', series: 'Q1F, S2E, U6D, W21C, ?', options: ['Y44B', 'Y66B', 'Y88B', 'Z88B'], ans: 2, sol: '1st (+2): Q→S→U→W→Y | Number (×1+1, ×2+2, ×3+3, ×4+4): 21×4+4 = 88 | 3rd (−1): F→E→D→C→B → Y88B.' },
+      { id: 'N213', num: 213, bank: 'notes', type: 'Mixed Series', exam: 'Practice Sheet Q213', series: 'A30L, J30E, A31T, O31R, ?', options: ['N30R', 'J31Y', 'D31R', 'M31Y'], ans: 2, sol: 'Alternate months (1st letter, days, last letter): April, June, August, October, December → D31R.' },
+      { id: 'N217', num: 217, bank: 'notes', type: 'Wrong Term', exam: 'SSC MTS 13 Feb 2026 S2', series: 'MAN32, PFU48, TJB72, VPI108, YUP162, BZW243', options: ['YUP162', 'BZW243', 'TJB72', 'MAN32'], ans: 2, sol: '1st letter (+3), 2nd (+5), 3rd (+7): P(16)+3=S(19), F(6)+5=K(11), U(21)+7=B(2). Should be SKB72, so TJB72 is wrong.' },
+
+      // TYPE 5: CONTINUOUS PATTERN SERIES
+      { id: 'N224', num: 224, bank: 'notes', type: 'Continuous Pattern', exam: 'Practice Sheet Q224', series: '_ a b _ b _ b c _ c a _', options: ['accbb', 'abcca', 'cacab', 'abacb'], ans: 2, sol: '12 letters → 4 blocks of 3: cab / abc / bca / cab (cyclic rotation). Blanks: c, a, c, a, b.' },
+      { id: 'N228', num: 228, bank: 'notes', type: 'Continuous Pattern', exam: 'Practice Sheet Q228', series: '_ c _ b d _ c b c d a _ a _ d b _ a', options: ['adabcd', 'cdbbca', 'daabbc', 'bdbcba'], ans: 0, sol: 'Groups of 4 containing (a,b,c,d): acdb / dacb / cdab / acdb / da. Blanks: a, d, a, b, c, d.' },
+      { id: 'N236', num: 236, bank: 'notes', type: 'Continuous Pattern', exam: 'SSC CHSL T1 15 Nov 2025 S3', series: 'a a b _ c c a a _ b b b c c c a a a _ b b b c c c _', options: ['baac', 'abca', 'bacc', 'aacb'], ans: 0, sol: 'Growing block series: aabbcc / aaabbbccc / aaaabbbbcccc → Blanks: b, a, a, c.' },
+      { id: 'N239', num: 239, bank: 'notes', type: 'Continuous Pattern', exam: 'SSC CHSL T1 17 Nov 2025 S1', series: 'aabaaaaa, abaaaaaa, baaaaaaa, ?', options: ['aaaaabaa', 'aaaaaaab', 'aaabaaaa', 'aaaaaaba'], ans: 1, sol: 'The single "b" shifts one position to the left each time, wrapping around to the last position: aaaaaaab.' },
+      { id: 'N240', num: 240, bank: 'notes', type: 'Continuous Pattern', exam: 'SSC CHSL T2 10 Apr 2026 S1', series: 'Buzz, Abox, Plateau, Tariq, ?, Chief', options: ['Ball', 'Jam', 'Den', 'Zero'], ans: 0, sol: 'Last letter of each word shifts by −2, −3, −4, −5, −6: z(26)→x(24)→u(21)→q(17)−5 = l(12) → Ball.' },
+      { id: 'N246', num: 246, bank: 'notes', type: 'Continuous Pattern', exam: 'SSC CHSL 03 Jul 2024 S1', series: 'T R I C _ T R I _ K T _ I W K _ R _ T K', options: ['KIRTA', 'KATIR', 'KBTIR', 'KZRTI'], ans: 3, sol: 'Blocks of 5: TRICK / TRIZK / TRIWK / TRITK (4th letter −3). Blanks: K, Z, R, T, I.' },
+      { id: 'N254', num: 254, bank: 'notes', type: 'Continuous Pattern', exam: 'SSC CGL T1 24/09/24 S2', series: 'L M _ O _ N P M R O _ K U _ T I', options: ['RPMO', 'NORP', 'NOPR', 'PNOR'], ans: 1, sol: '4 blocks of 4: LMNO / ONPM / RORK / UPTI (1st +3, 2nd +1, 3rd +2, 4th −2). Blanks: N, O, R, P.' },
+      { id: 'N255', num: 255, bank: 'notes', type: 'Continuous Pattern', exam: 'SSC CHSL 11 Jul 2024 S3', series: 'J I G _ K G _ U _ E G Z M _ G E', options: ['PGMC', 'NGCL', 'NGMC', 'PGLC'], ans: 3, sol: '4 blocks of 4: JIGP / KGGU / LEGZ / MCGE (1st +1, 2nd −2, 3rd fixed G, 4th +5). Blanks: P, G, L, C.' }
+    ];
+
+    /***************************************************************************
+     * 4. STATE MANAGEMENT & LOCAL STORAGE
+     ***************************************************************************/
+    let appState = {
+      activeTab: 'cheatsheet',
+      bilingual: true,
+      currentBank: 'century',
+      currentType: 'all',
+      currentStatus: 'all',
+      searchQuery: '',
+      filteredQuestions: [],
+      currentIndex: 0,
+      userAnswers: {},     // { questionId: selectedOptionIndex }
+      bookmarks: {},       // { questionId: true }
+      timerSeconds: 0,
+      timerRunning: false,
+      timerInterval: null
+    };
+
+    function loadSavedState() {
+      try {
+        const savedAns = localStorage.getItem('parmar_series_answers');
+        const savedBm = localStorage.getItem('parmar_series_bookmarks');
+        if (savedAns) appState.userAnswers = JSON.parse(savedAns);
+        if (savedBm) appState.bookmarks = JSON.parse(savedBm);
+      } catch (e) {
+        console.warn('localStorage not available:', e);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('parmar_series_answers', JSON.stringify(appState.userAnswers));
+        localStorage.setItem('parmar_series_bookmarks', JSON.stringify(appState.bookmarks));
+      } catch (e) {}
+    }
+
+    /***************************************************************************
+     * 5. NAVIGATION, THEME & BILINGUAL TOGGLES
+     ***************************************************************************/
+    function switchMainTab(tabName) {
+      appState.activeTab = tabName;
+      ['cheatsheet', 'notes', 'quiz'].forEach(t => {
+        const sec = document.getElementById(`section-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (t === tabName) {
+          sec.classList.remove('hidden');
+          btn.className = 'main-tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm';
+        } else {
+          sec.classList.add('hidden');
+          btn.className = 'main-tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-indigo-600';
+        }
+      });
+    }
+
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    function toggleBilingualMode() {
+      appState.bilingual = !appState.bilingual;
+      const btn = document.getElementById('lang-toggle-btn');
+      btn.textContent = appState.bilingual ? '🇮🇳 EN + हिंदी' : '🇬🇧 English Only';
+      document.querySelectorAll('.bilingual-hi').forEach(el => {
+        el.style.display = appState.bilingual ? '' : 'none';
+      });
+    }
+
+    /***************************************************************************
+     * 6. MODULE 1: CHEAT SHEET & LIVE ANALYZERS
+     ***************************************************************************/
+    function renderAlphabetGrid(filterMode = 'all') {
+      const container = document.getElementById('alphabet-grid');
+      const vowels = ['A', 'E', 'I', 'O', 'U'];
+      const ejoty = ['E', 'J', 'O', 'T', 'Y'];
+      const cfilorux = ['C', 'F', 'I', 'L', 'O', 'R', 'U', 'X'];
+
+      let html = '';
+      for (let i = 1; i <= 26; i++) {
+        const char = String.fromCharCode(64 + i);
+        const oppChar = String.fromCharCode(64 + (27 - i));
+        const oppPos = 27 - i;
+
+        let active = true;
+        if (filterMode === 'vowels') active = vowels.includes(char);
+        if (filterMode === 'ejoty') active = ejoty.includes(char);
+        if (filterMode === 'cfilorux') active = cfilorux.includes(char);
+
+        const cardStyle = active
+          ? 'bg-indigo-50/80 dark:bg-indigo-950/60 border-indigo-300 dark:border-indigo-700 scale-100 opacity-100'
+          : 'bg-slate-50 dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 opacity-35 scale-95';
+
+        html += `
+          <div class="p-2 rounded-xl border ${cardStyle} text-center transition-all">
+            <div class="flex items-center justify-between text-[10px] font-mono text-slate-500 dark:text-slate-400">
+              <span>#${i}</span>
+              <span class="text-amber-600 dark:text-amber-400">R:${oppPos}</span>
+            </div>
+            <div class="text-lg font-extrabold text-indigo-700 dark:text-indigo-300 font-mono leading-tight my-0.5">${char}</div>
+            <div class="text-[10px] font-mono font-semibold bg-white dark:bg-slate-900 rounded py-0.5 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
+              Opp: <b>${oppChar}</b>
+            </div>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+    }
+
+    function highlightAlphabet(mode) {
+      renderAlphabetGrid(mode);
+    }
+
+    function renderSquaresTable() {
+      const query = (document.getElementById('sq-search')?.value || '').trim().toLowerCase();
+      const container = document.getElementById('squares-table-container');
+      let html = '';
+
+      for (let n = 1; n <= 30; n++) {
+        const sq = n * n;
+        const cb = n * n * n;
+        const textMatch = `${n} ${sq} ${cb}`;
+        if (query && !textMatch.includes(query)) continue;
+
+        html += `
+          <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 hover:border-indigo-400 transition font-mono text-xs">
+            <div class="font-extrabold text-indigo-600 dark:text-indigo-400 text-sm mb-1">n = ${n}</div>
+            <div class="flex justify-between text-slate-700 dark:text-slate-300">
+              <span>${n}² =</span>
+              <span class="font-bold">${sq.toLocaleString()}</span>
+            </div>
+            <div class="flex justify-between text-slate-600 dark:text-slate-400 mt-0.5">
+              <span>${n}³ =</span>
+              <span class="font-bold text-violet-600 dark:text-violet-400">${cb.toLocaleString()}</span>
+            </div>
+          </div>
+        `;
+      }
+      container.innerHTML = html || `<div class="col-span-full text-center text-xs text-slate-400 py-4">No matching square or cube found.</div>`;
+    }
+
+    let currentFlashcardN = 17;
+    function pickRandomFlashcard() {
+      currentFlashcardN = Math.floor(Math.random() * 29) + 2;
+      const box = document.getElementById('sq-flashcard-box');
+      const q = document.getElementById('sq-flashcard-q');
+      const a = document.getElementById('sq-flashcard-a');
+      box.classList.remove('hidden');
+      q.textContent = `What is ${currentFlashcardN}² and ${currentFlashcardN}³? (Also check ${currentFlashcardN}²±1)`;
+      a.classList.add('hidden');
+    }
+
+    function revealSqFlashcard() {
+      const n = currentFlashcardN;
+      const a = document.getElementById('sq-flashcard-a');
+      a.textContent = `${n}² = ${n*n} | ${n}³ = ${(n*n*n).toLocaleString()} | ${n}²+1 = ${n*n+1} | ${n}³+1 = ${n*n*n+1}`;
+      a.classList.remove('hidden');
+    }
+
+    // Tool 1: Live Letter-Cluster Analyzer
+    const SAMPLE_CLUSTERS = [
+      'JAK, KBL, LCM, MDN, NEO',
+      'SLE, CXS, MJG, WVU, GHI',
+      'A, AC, DAD, FEE, JACK, RIDE',
+      'BY, DW, GT, KP, PK',
+      'NTR, TCE, ZLR, FUE, LDR'
+    ];
+    let sampleClusterIdx = 0;
+
+    function loadSampleCluster() {
+      sampleClusterIdx = (sampleClusterIdx + 1) % SAMPLE_CLUSTERS.length;
+      document.getElementById('cluster-input').value = SAMPLE_CLUSTERS[sampleClusterIdx];
+      analyzeLetterClusters();
+    }
+
+    function analyzeLetterClusters() {
+      const raw = document.getElementById('cluster-input').value || '';
+      const clusters = raw.split(/[,;\s]+/).map(s => s.trim().toUpperCase().replace(/[^A-Z]/g, '')).filter(Boolean);
+      const out = document.getElementById('cluster-analysis-output');
+
+      if (!clusters.length) {
+        out.innerHTML = `<div class="text-xs text-slate-400">Type any letters above to see live breakdown.</div>`;
+        return;
+      }
+
+      // Render each cluster card
+      let cardsHtml = `<div class="flex flex-wrap gap-2">`;
+      clusters.forEach((cl, idx) => {
+        const chars = cl.split('');
+        const positions = chars.map(c => c.charCodeAt(0) - 64);
+        const sumPos = positions.reduce((a, b) => a + b, 0);
+        const opposites = chars.map(c => String.fromCharCode(64 + (27 - (c.charCodeAt(0) - 64)))).join('');
+
+        cardsHtml += `
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-mono text-xs min-w-[120px]">
+            <div class="flex items-center justify-between text-[10px] text-slate-400 mb-1">
+              <span>Term #${idx + 1}</span>
+              <span>Sum=${sumPos}</span>
+            </div>
+            <div class="text-base font-extrabold text-indigo-600 dark:text-indigo-400 tracking-wider">${cl}</div>
+            <div class="text-[11px] text-slate-700 dark:text-slate-300 mt-1">
+              Pos: <b>[${positions.join(', ')}]</b>
+            </div>
+            <div class="text-[10px] text-slate-500 mt-0.5">
+              Opp: <b>${opposites}</b>
+            </div>
+          </div>
+        `;
+      });
+      cardsHtml += `</div>`;
+
+      // Calculate cross-cluster position differences if >= 2 clusters
+      let diffHtml = '';
+      if (clusters.length >= 2) {
+        const maxLen = Math.max(...clusters.map(c => c.length));
+        diffHtml += `<div class="p-3 rounded-xl bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-xs space-y-1 font-mono">`;
+        diffHtml += `<div class="font-sans font-bold text-indigo-800 dark:text-indigo-300 text-[11px] uppercase">Cross-Cluster Position Shifts (Cyclic Wrap-Around Aware):</div>`;
+        for (let pos = 0; pos < maxLen; pos++) {
+          let steps = [];
+          for (let cIdx = 0; cIdx < clusters.length - 1; cIdx++) {
+            const c1 = clusters[cIdx][pos];
+            const c2 = clusters[cIdx + 1][pos];
+            if (c1 && c2) {
+              const p1 = c1.charCodeAt(0) - 64;
+              const p2 = c2.charCodeAt(0) - 64;
+              let diff = p2 - p1;
+              if (diff > 13) diff -= 26;
+              if (diff < -13) diff += 26;
+              const sign = diff >= 0 ? `+${diff}` : `${diff}`;
+              steps.push(`${c1}(${p1}) → ${c2}(${p2}) [${sign}]`);
+            }
+          }
+          if (steps.length) {
+            diffHtml += `<div><span class="text-slate-500">Letter ${pos + 1}:</span> ${steps.join('  |  ')}</div>`;
+          }
+        }
+        diffHtml += `</div>`;
+      }
+
+      out.innerHTML = cardsHtml + diffHtml;
+    }
+
+    // Tool 2: Live Number Series Difference Tree
+    const SAMPLE_NUMBER_TREES = [
+      '3, 10, 29, 66, 127, 218',
+      '0, 6, 24, 60, 120, 210',
+      '5, 13, 22, 34, 51, 75, 108, 152, 209',
+      '10, 14, 23, 39, 64, 100',
+      '40, 21, 22, 34, 69, 173.5'
+    ];
+    let sampleNumIdx = 0;
+
+    function loadSampleNumberTree() {
+      sampleNumIdx = (sampleNumIdx + 1) % SAMPLE_NUMBER_TREES.length;
+      document.getElementById('number-tree-input').value = SAMPLE_NUMBER_TREES[sampleNumIdx];
+      analyzeNumberTree();
+    }
+
+    function analyzeNumberTree() {
+      const raw = document.getElementById('number-tree-input').value || '';
+      const nums = raw.split(/[,;\s]+/).map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+      const out = document.getElementById('number-tree-output');
+
+      if (nums.length < 2) {
+        out.innerHTML = `<div class="text-xs text-slate-400">Enter at least 2 numbers separated by commas.</div>`;
+        return;
+      }
+
+      const d1 = [];
+      for (let i = 0; i < nums.length - 1; i++) d1.push(Number((nums[i + 1] - nums[i]).toFixed(4)));
+      const d2 = [];
+      for (let i = 0; i < d1.length - 1; i++) d2.push(Number((d1[i + 1] - d1[i]).toFixed(4)));
+      const d3 = [];
+      for (let i = 0; i < d2.length - 1; i++) d3.push(Number((d2[i + 1] - d2[i]).toFixed(4)));
+
+      const formatRow = (arr, label, bgClass, isDiff = false) => {
+        if (!arr.length) return '';
+        return `
+          <div class="flex items-center gap-2 py-1">
+            <span class="w-24 shrink-0 text-[11px] font-bold uppercase text-slate-500">${label}</span>
+            <div class="flex flex-wrap items-center gap-2">
+              ${arr.map(v => {
+                const disp = isDiff && v >= 0 ? `+${v}` : `${v}`;
+                return `<span class="px-2.5 py-1 rounded-lg font-mono text-xs font-bold ${bgClass}">${disp}</span>`;
+              }).join('<span class="text-slate-300 dark:text-slate-600">→</span>')}
+            </div>
+          </div>
+        `;
+      };
+
+      // Predict next number if d2 or d3 is constant
+      let predictionHtml = '';
+      if (d1.length >= 2) {
+        const lastNum = nums[nums.length - 1];
+        const lastD1 = d1[d1.length - 1];
+        const lastD2 = d2.length ? d2[d2.length - 1] : 0;
+        const lastD3 = d3.length ? d3[d3.length - 1] : 0;
+        const nextByDiff = Number((lastNum + lastD1 + lastD2 + lastD3).toFixed(4));
+        predictionHtml = `
+          <div class="mt-2 p-2.5 rounded-xl bg-violet-50 dark:bg-violet-950/40 border border-violet-200 dark:border-violet-800 text-xs flex items-center justify-between">
+            <span><strong>Difference Pyramid Projection:</strong> If 3rd/2nd difference continues, Next Term ≈</span>
+            <span class="font-mono font-extrabold text-sm text-violet-700 dark:text-violet-300 px-2 py-0.5 bg-white dark:bg-slate-900 rounded border border-violet-300">${nextByDiff}</span>
+          </div>
+        `;
+      }
+
+      out.innerHTML =
+        formatRow(nums, 'Series:', 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-700', false) +
+        formatRow(d1, '1st Diff:', 'bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800', true) +
+        formatRow(d2, '2nd Diff:', 'bg-amber-50 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800', true) +
+        formatRow(d3, '3rd Diff:', 'bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800', true) +
+        predictionHtml;
+    }
+
+    /***************************************************************************
+     * 7. MODULE 2: BILINGUAL DIGITAL NOTES RENDERER
+     ***************************************************************************/
+    function renderBilingualNotes(filterType = 'all') {
+      const container = document.getElementById('notes-Dynamic-container');
+      const typesToShow = filterType === 'all' ? NOTES_DATA : NOTES_DATA.filter(t => t.id === filterType);
+
+      container.innerHTML = typesToShow.map(section => `
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-7 shadow-sm space-y-6">
+          <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
+            <span class="px-2.5 py-1 rounded-full text-xs font-extrabold uppercase bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">
+              ${section.badge}
+            </span>
+            <h3 class="text-xl font-extrabold text-slate-900 dark:text-white mt-2">${section.titleEn}</h3>
+            <p class="bilingual-hi text-sm font-semibold text-indigo-600 dark:text-indigo-400 mt-0.5">${section.titleHi}</p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">${section.summaryEn}</p>
+            <p class="bilingual-hi text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">${section.summaryHi}</p>
+          </div>
+
+          <!-- Key Concepts & Rules List -->
+          <div class="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
+            <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5">
+              Core Rules & Solving Steps (हल करने के मुख्य नियम)
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+              ${section.rules.map(r => `<li class="flex items-start gap-2"><span class="text-indigo-600 font-bold">▸</span><span>${r}</span></li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- Interactive Worked Examples Grid -->
+          <div>
+            <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
+              Interactive Worked Examples from Kamal Sir's Notes (Click to Reveal Derivation)
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${section.examples.map((ex, i) => `
+                <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-indigo-300 transition flex flex-col justify-between gap-3">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                      <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300">${ex.tag}</span>
+                      <button onclick="toggleNoteExample(this)" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                        Reveal Step-by-Step
+                      </button>
+                    </div>
+                    <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-800 font-mono font-extrabold text-sm sm:text-base text-slate-900 dark:text-white text-center">
+                      ${ex.series}
+                    </div>
+                  </div>
+                  <div class="note-ex-solution hidden pt-3 border-t border-slate-200 dark:border-slate-800 text-xs space-y-1.5">
+                    <div class="font-bold text-emerald-700 dark:text-emerald-400">Correct Answer: <span class="font-mono">${ex.ans}</span></div>
+                    <div class="text-slate-600 dark:text-slate-300 whitespace-pre-line font-mono text-[11px] leading-relaxed">${ex.steps}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterNotesByType(typeId) {
+      document.querySelectorAll('.note-type-pill').forEach(btn => {
+        btn.className = 'note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-indigo-50';
+      });
+      const activeBtn = document.getElementById(`note-pill-${typeId}`);
+      if (activeBtn) {
+        activeBtn.className = 'note-type-pill px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 text-white shadow-sm';
+      }
+      renderBilingualNotes(typeId);
+    }
+
+    function toggleNoteExample(btn) {
+      const card = btn.closest('.p-4');
+      const sol = card.querySelector('.note-ex-solution');
+      sol.classList.toggle('hidden');
+      btn.textContent = sol.classList.contains('hidden') ? 'Reveal Step-by-Step' : 'Hide Derivation';
+    }
+
+    function expandAllNoteSolutions(show) {
+      document.querySelectorAll('.note-ex-solution').forEach(el => {
+        if (show) el.classList.remove('hidden');
+        else el.classList.add('hidden');
+      });
+    }
+
+    /***************************************************************************
+     * 8. MODULE 3: COMPLETE INTERACTIVE QUIZ ENGINE
+     ***************************************************************************/
+    function getSourceBankQuestions() {
+      const bank = appState.currentBank;
+      if (bank === 'century') return CENTURY_PDF_QUESTIONS;
+      if (bank === 'notes') return NOTES_SHEET_QUESTIONS;
+      return [...CENTURY_PDF_QUESTIONS, ...NOTES_SHEET_QUESTIONS];
+    }
+
+    function onBankOrFilterChange() {
+      appState.currentBank = document.getElementById('bank-selector').value;
+      appState.currentType = document.getElementById('type-selector').value;
+      appState.currentStatus = document.getElementById('status-selector').value;
+      appState.searchQuery = (document.getElementById('quiz-search-input').value || '').trim().toLowerCase();
+
+      const source = getSourceBankQuestions();
+      appState.filteredQuestions = source.filter(q => {
+        if (appState.currentType !== 'all' && q.type !== appState.currentType) return false;
+        if (appState.currentStatus === 'unattempted' && appState.userAnswers[q.id] !== undefined) return false;
+        if (appState.currentStatus === 'wrong' && (appState.userAnswers[q.id] === undefined || appState.userAnswers[q.id] === q.ans)) return false;
+        if (appState.currentStatus === 'bookmarked' && !appState.bookmarks[q.id]) return false;
+        if (appState.searchQuery) {
+          const hay = `${q.num} ${q.series} ${q.exam} ${q.type} ${q.options.join(' ')}`.toLowerCase();
+          if (!hay.includes(appState.searchQuery)) return false;
+        }
+        return true;
+      });
+
+      appState.currentIndex = 0;
+      renderQuizWorkspace();
+    }
+
+    function getPromptByType(type) {
+      if (type === 'Wrong Term') {
+        return {
+          en: 'A series is given with one term wrong. Select the WRONG term from the given alternatives.',
+          hi: 'एक श्रृंखला दी गई है जिसमें एक पद गलत है। दिए गए विकल्पों में से उस गलत पद का चयन कीजिए।'
+        };
+      }
+      if (type === 'Continuous Pattern') {
+        return {
+          en: 'Select the combination of letters that, when sequentially placed from left to right in the blanks, will logically complete the series.',
+          hi: 'अक्षरों के उस संयोजन का चयन कीजिए, जिसे क्रमिक रूप से बाएँ से दाएँ रिक्त स्थानों में रखने पर श्रृंखला तार्किक रूप से पूर्ण हो जाएगी।'
+        };
+      }
+      return {
+        en: 'In the following question, a series is given with one term missing (?). Choose the correct alternative that will complete the series.',
+        hi: 'निम्नलिखित प्रश्न में एक श्रृंखला दी गई है जिसमें एक पद लुप्त (?) है। दिए गए विकल्पों में से वह सही विकल्प चुनिए जो श्रृंखला को पूरा करेगा।'
+      };
+    }
+
+    function renderQuizWorkspace() {
+      updateScoreStats();
+      renderQuestionPalette();
+
+      const list = appState.filteredQuestions;
+      if (!list.length) {
+        document.getElementById('q-series-display').textContent = 'No questions match your current filter.';
+        document.getElementById('q-options-grid').innerHTML = '';
+        document.getElementById('q-solution-box').classList.add('hidden');
+        return;
+      }
+
+      const q = list[appState.currentIndex];
+      const prompts = getPromptByType(q.type);
+
+      document.getElementById('q-number-badge').textContent = `Q${q.num} (${appState.currentIndex + 1} of ${list.length})`;
+      document.getElementById('q-type-badge').textContent = q.type;
+      document.getElementById('q-exam-badge').textContent = q.exam;
+      document.getElementById('q-prompt-en').textContent = prompts.en;
+      document.getElementById('q-prompt-hi').textContent = prompts.hi;
+      document.getElementById('q-series-display').textContent = q.series;
+
+      // Bookmark Star
+      const isBm = !!appState.bookmarks[q.id];
+      document.getElementById('q-bookmark-star').textContent = isBm ? '★' : '☆';
+      document.getElementById('q-bookmark-btn').className = isBm
+        ? 'inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300'
+        : 'inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold border border-slate-200 dark:border-slate-700 hover:bg-amber-50 transition';
+
+      // Render Options
+      const userChoice = appState.userAnswers[q.id];
+      const letters = ['A', 'B', 'C', 'D'];
+      const optsHtml = q.options.map((optText, idx) => {
+        let btnClass = 'border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/60 hover:border-indigo-400 text-slate-800 dark:text-slate-100';
+        let badgeClass = 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-700';
+
+        if (userChoice !== undefined) {
+          if (idx === q.ans) {
+            btnClass = 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-200 ring-2 ring-emerald-500/30';
+            badgeClass = 'bg-emerald-600 text-white';
+          } else if (idx === userChoice && userChoice !== q.ans) {
+            btnClass = 'border-rose-500 bg-rose-50 dark:bg-rose-950/60 text-rose-900 dark:text-rose-200 ring-2 ring-rose-500/30';
+            badgeClass = 'bg-rose-600 text-white';
+          }
+        }
+
+        return `
+          <button onclick="selectQuizOption(${idx})" class="w-full p-4 rounded-xl border-2 ${btnClass} transition-all flex items-center justify-between text-left group">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg font-mono text-xs font-extrabold flex items-center justify-center ${badgeClass}">
+                ${letters[idx]}
+              </span>
+              <span class="font-mono font-bold text-sm sm:text-base">${optText}</span>
+            </div>
+            <span class="text-[10px] font-mono text-slate-400 group-hover:text-indigo-500">[${idx + 1}]</span>
+          </button>
+        `;
+      }).join('');
+      document.getElementById('q-options-grid').innerHTML = optsHtml;
+
+      // Solution Box
+      const solBox = document.getElementById('q-solution-box');
+      if (userChoice !== undefined) {
+        solBox.classList.remove('hidden');
+        const isCorrect = userChoice === q.ans;
+        document.getElementById('q-feedback-title').textContent = isCorrect
+          ? '✓ Spot On! Correct Answer — Step-by-Step Derivation:'
+          : '✗ Incorrect — Review Kamal Sir\'s Step-by-Step Solution:';
+        document.getElementById('q-feedback-title').className = isCorrect
+          ? 'text-xs font-extrabold uppercase tracking-wider text-emerald-700 dark:text-emerald-400'
+          : 'text-xs font-extrabold uppercase tracking-wider text-rose-600 dark:text-rose-400';
+        document.getElementById('q-correct-letter-pill').textContent = `Ans: (${letters[q.ans]}) ${q.options[q.ans]}`;
+        document.getElementById('q-solution-text').textContent = q.sol;
+      } else {
+        solBox.classList.add('hidden');
+      }
+    }
+
+    function selectQuizOption(optIdx) {
+      const list = appState.filteredQuestions;
+      if (!list.length) return;
+      const q = list[appState.currentIndex];
+      appState.userAnswers[q.id] = optIdx;
+      saveState();
+      renderQuizWorkspace();
+    }
+
+    function toggleSolutionVisibility() {
+      const list = appState.filteredQuestions;
+      if (!list.length) return;
+      const q = list[appState.currentIndex];
+      const solBox = document.getElementById('q-solution-box');
+      const letters = ['A', 'B', 'C', 'D'];
+      solBox.classList.toggle('hidden');
+      if (!solBox.classList.contains('hidden')) {
+        document.getElementById('q-feedback-title').textContent = '💡 Step-by-Step Logical Derivation:';
+        document.getElementById('q-feedback-title').className = 'text-xs font-extrabold uppercase tracking-wider text-indigo-700 dark:text-indigo-300';
+        document.getElementById('q-correct-letter-pill').textContent = `Ans: (${letters[q.ans]}) ${q.options[q.ans]}`;
+        document.getElementById('q-solution-text').textContent = q.sol;
+      }
+    }
+
+    function navigateQuestion(delta) {
+      const list = appState.filteredQuestions;
+      if (!list.length) return;
+      appState.currentIndex = (appState.currentIndex + delta + list.length) % list.length;
+      renderQuizWorkspace();
+    }
+
+    function jumpToQuestion(idx) {
+      appState.currentIndex = idx;
+      renderQuizWorkspace();
+    }
+
+    function toggleBookmarkCurrent() {
+      const list = appState.filteredQuestions;
+      if (!list.length) return;
+      const q = list[appState.currentIndex];
+      if (appState.bookmarks[q.id]) delete appState.bookmarks[q.id];
+      else appState.bookmarks[q.id] = true;
+      saveState();
+      renderQuizWorkspace();
+    }
+
+    function renderQuestionPalette() {
+      const list = appState.filteredQuestions;
+      document.getElementById('palette-count').textContent = list.length;
+      const grid = document.getElementById('question-palette-grid');
+
+      grid.innerHTML = list.map((q, idx) => {
+        const userAns = appState.userAnswers[q.id];
+        const isBm = !!appState.bookmarks[q.id];
+        const isCurrent = idx === appState.currentIndex;
+
+        let colorClass = 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700';
+        if (userAns !== undefined) {
+          colorClass = userAns === q.ans
+            ? 'bg-emerald-500 text-white border-emerald-600'
+            : 'bg-rose-500 text-white border-rose-600';
+        }
+        const ringClass = isCurrent ? 'ring-2 ring-indigo-600 dark:ring-indigo-400 font-extrabold scale-105' : '';
+
+        return `
+          <button onclick="jumpToQuestion(${idx})" class="relative h-9 rounded-lg border text-xs font-mono font-semibold transition ${colorClass} ${ringClass}">
+            ${q.num}
+            ${isBm ? '<span class="absolute -top-1 -right-1 text-[10px] text-amber-400">★</span>' : ''}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function updateScoreStats() {
+      const source = getSourceBankQuestions();
+      let attempted = 0;
+      let correct = 0;
+      let wrong = 0;
+
+      source.forEach(q => {
+        const ua = appState.userAnswers[q.id];
+        if (ua !== undefined) {
+          attempted++;
+          if (ua === q.ans) correct++;
+          else wrong++;
+        }
+      });
+
+      const acc = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      document.getElementById('stat-attempted').textContent = `${attempted}/${source.length}`;
+      document.getElementById('stat-correct').textContent = correct;
+      document.getElementById('stat-wrong').textContent = wrong;
+      document.getElementById('stat-accuracy').textContent = `${acc}%`;
+    }
+
+    function resetQuizProgress() {
+      const source = getSourceBankQuestions();
+      source.forEach(q => delete appState.userAnswers[q.id]);
+      saveState();
+      renderQuizWorkspace();
+    }
+
+    function sendCurrentToAnalyzer() {
+      const list = appState.filteredQuestions;
+      if (!list.length) return;
+      const q = list[appState.currentIndex];
+      switchMainTab('cheatsheet');
+      if (q.type === 'Number Series') {
+        const cleaned = q.series.replace(/\?/g, '').replace(/,\s*,/g, ',');
+        document.getElementById('number-tree-input').value = cleaned;
+        analyzeNumberTree();
+      } else {
+        const cleaned = q.series.replace(/\?/g, '').replace(/_/g, '');
+        document.getElementById('cluster-input').value = cleaned;
+        analyzeLetterClusters();
+      }
+    }
+
+    // Timer Logic
+    function toggleQuizTimer() {
+      const btn = document.getElementById('timer-toggle-btn');
+      if (appState.timerRunning) {
+        clearInterval(appState.timerInterval);
+        appState.timerRunning = false;
+        btn.textContent = 'Resume';
+      } else {
+        appState.timerRunning = true;
+        btn.textContent = 'Pause';
+        appState.timerInterval = setInterval(() => {
+          appState.timerSeconds++;
+          const mins = String(Math.floor(appState.timerSeconds / 60)).padStart(2, '0');
+          const secs = String(appState.timerSeconds % 60).padStart(2, '0');
+          document.getElementById('quiz-timer-display').textContent = `${mins}:${secs}`;
+        }, 1000);
+      }
+    }
+
+    // Global Keyboard Shortcuts for Quiz
+    window.addEventListener('keydown', (e) => {
+      if (appState.activeTab !== 'quiz') return;
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+
+      if (['1', '2', '3', '4'].includes(e.key)) {
+        selectQuizOption(parseInt(e.key, 10) - 1);
+      } else if (e.key.toLowerCase() === 'n' || e.key === 'ArrowRight') {
+        navigateQuestion(1);
+      } else if (e.key.toLowerCase() === 'p' || e.key === 'ArrowLeft') {
+        navigateQuestion(-1);
+      } else if (e.key.toLowerCase() === 's') {
+        toggleSolutionVisibility();
+      }
+    });
+
+    // Initialize Everything on Window Load
+    window.onload = function () {
+      loadSavedState();
+      renderAlphabetGrid('all');
+      renderSquaresTable();
+      analyzeLetterClusters();
+      analyzeNumberTree();
+      renderBilingualNotes('all');
+      onBankOrFilterChange();
+    };
+  </script>
+</body>
+</html>

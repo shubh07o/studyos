@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Written PYQs — Reasoning & Aptitude Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-glass: rgba(255, 255, 255, 0.9);
+      --border: #e2e8f0;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --accent-blue: #0284c7;
+      --accent-indigo: #4f46e5;
+      --accent-amber: #d97706;
+      --accent-emerald: #059669;
+      --accent-rose: #e11d48;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Clean Math & Reasoning Formula Styling */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      padding: 1px 6px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.02em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 3px;
+      font-size: 0.88em;
+      line-height: 1.1;
+    }
+
+    .frac-num {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 4px 1px;
+    }
+
+    .frac-den {
+      padding: 1px 4px 0;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.14rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .stat-pill .val {
+      color: var(--accent-blue);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .timer-pill {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Navigation & Filters */
+    .nav-container {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .mode-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(79, 70, 229, 0.1));
+      color: var(--accent-indigo);
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .ctrl-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-blue);
+      background: #f8fafc;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1320px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-num {
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    .badge-topic {
+      background: rgba(217, 119, 6, 0.1);
+      color: var(--accent-amber);
+      border: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(217, 119, 6, 0.15);
+      border-color: var(--accent-amber);
+      color: #b45309;
+    }
+
+    .q-title {
+      font-size: 1.16rem;
+      font-weight: 600;
+      margin-bottom: 22px;
+      line-height: 1.75;
+      color: #0f172a;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .opt-btn {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 0.98rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.15s ease;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: #f0f9ff;
+      border-color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    .opt-key {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      color: #334155;
+    }
+
+    .opt-btn.correct {
+      background: #ecfdf5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #fff;
+    }
+
+    .opt-btn.wrong {
+      background: #fff1f2;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    .exp-box {
+      margin-top: 22px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: none;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #047857;
+      margin-bottom: 8px;
+      font-size: 0.94rem;
+    }
+
+    .exp-text {
+      font-size: 0.95rem;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    .quiz-footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--accent-blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+    }
+
+    .nav-btn.secondary {
+      background: #f1f5f9;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Palette Sidebar */
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: sticky;
+      top: 90px;
+      box-shadow: var(--shadow);
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-top: 12px;
+    }
+
+    .p-num {
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.25);
+      color: var(--accent-blue);
+      background: #e0f2fe;
+    }
+
+    .p-num.correct {
+      background: #d1fae5;
+      border-color: var(--accent-emerald);
+      color: #065f46;
+    }
+
+    .p-num.wrong {
+      background: #ffe4e6;
+      border-color: var(--accent-rose);
+      color: #9f1239;
+    }
+
+    /* Flashcards */
+    .flashcard-wrap {
+      max-width: 760px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 350px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #ffffff, #f0fdf4);
+    }
+
+    /* Study Bank */
+    .search-bar {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+
+    .bank-ans {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: #f0fdf4;
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">🧠</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern Written PYQs — Reasoning & Aptitude Hub</h1>
+        <p>Complete 40 Questions • Budding Mariners Academy • Light Mode</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="timer-pill" onclick="toggleTimer()" id="timer-display" title="Click to Pause/Resume">⏱️ 00:00</div>
+      <div class="stat-pill">Attempted:<span class="val" id="stat-attempted">0/40</span></div>
+      <div class="stat-pill">Correct:<span class="val" id="stat-correct" style="color:#059669;">0</span></div>
+      <div class="stat-pill">Accuracy:<span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved:<span class="val" id="stat-saved" style="color:#d97706;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Interactive Quiz (40 Qs)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 40)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setFilter('ALL', this)">All 40 Questions</button>
+      <button class="sec-pill" onclick="setFilter('SAVED', this)">★ Saved</button>
+      <button class="sec-pill" onclick="setFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="ctrl-btn" onclick="revealCurrent()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetQuiz()">🔄 Reset Quiz</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 40</span>
+            <span class="badge badge-topic" id="q-topic-badge">Reasoning PYQ</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Solution & Detailed Explanation</div>
+          <div class="exp-text" id="q-exp-text"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQ(-1)">← Previous</button>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Keyboard: <b>1–4</b> Select Option • <b>← / →</b> Navigate</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQ(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:0.9rem;">
+          <span>Question Navigator</span>
+          <span id="palette-count" style="color:var(--text-secondary); font-size:0.78rem;">40 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc-card" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face">
+          <div>
+            <div class="q-badges" style="margin-bottom:14px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 40</span>
+              <span class="badge badge-topic" id="fc-topic">Reasoning</span>
+            </div>
+            <div id="fc-q" style="font-size:1.18rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="text-align:center; color:var(--accent-blue); font-size:0.84rem;">🔄 Click Card or Press Spacebar to Flip</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <span class="badge badge-num" style="background:#d1fae5; color:#065f46; margin-bottom:10px; display:inline-block;">Correct Answer</span>
+            <div id="fc-ans" style="font-size:1.3rem; font-weight:800; color:#047857; margin-bottom:14px;"></div>
+            <div id="fc-exp" style="font-size:0.95rem; color:#1e293b; line-height:1.65;"></div>
+          </div>
+          <p style="text-align:center; color:var(--text-secondary); font-size:0.8rem;">Click to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:12px; margin-top:20px;">
+        <button class="nav-btn secondary" onclick="moveFC(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFC(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1;" placeholder="🔍 Search any Reasoning question, keyword, or number..." oninput="renderBank()" />
+      <button class="ctrl-btn" onclick="toggleBlur(this)">🙈 Hide Answers (Self-Test)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+const RAW_QUESTIONS = [
+  {
+    id: 1, topic: "Queue Ranking",
+    q: "In a queue of 70 people at the fee counter of a college, Mac's position from the window is 54th. How many people are standing behind Mac?",
+    opts: ["14", "15", "16", "17"], ans: 2,
+    exp: "People behind = Total people − Current position = 70 − 54 = <b>16</b>."
+  },
+  {
+    id: 2, topic: "Venn Diagrams",
+    q: "In a Venn diagram, Circle B represents Doctors, Circle C represents Teachers, and a Triangle represents Engineers. How many Teachers are neither Doctors nor Engineers?",
+    opts: ["2", "5", "7", "12"], ans: 0,
+    exp: "The region belonging exclusively to the Teacher circle (Circle C) without overlapping Circle B or the Triangle has a value of <b>2</b>."
+  },
+  {
+    id: 3, topic: "Square Series",
+    q: "Which number should come next at the end of the series: <b>1, 4, 9, 16, ?</b>",
+    opts: ["20", "25", "30", "36"], ans: 1,
+    exp: "Pattern consists of perfect squares: 1<sup>2</sup>=1, 2<sup>2</sup>=4, 3<sup>2</sup>=9, 4<sup>2</sup>=16 ⇒ <b>5<sup>2</sup> = 25</b>."
+  },
+  {
+    id: 4, topic: "Alphabetical Gap Series",
+    q: "Which letter should come next at the end of this row of series: <b>A, B, D, G, ?</b>",
+    opts: ["H", "I", "J", "K"], ans: 3,
+    exp: "Positional shifts: A (+1) → B (+2) → D (+3) → G (+4) → <b>K</b>."
+  },
+  {
+    id: 5, topic: "Positional Shift Letter Series",
+    q: "Which letter should come next in the series: <b>E, I, L, ?</b>",
+    opts: ["M", "N", "O", "P"], ans: 1,
+    exp: "Alphabet positions: E (5) →(+4) I (9) →(+3) L (12) →(+2) <b>N (14)</b>."
+  },
+  {
+    id: 6, topic: "Fraction Multiplication Series",
+    q: "Which number should come next at the end of the series: <b>1/12, 1/6, 1/3, 2/3, ?</b>",
+    opts: ["1", "4/3", "5/3", "2"], ans: 1,
+    exp: "Each term is multiplied by 2: (2/3) × 2 = <b>4/3</b>."
+  },
+  {
+    id: 7, topic: "Alternating Dual-Pattern Series",
+    q: "Which number should come next at the end of the series: <b>1, 2, 0, 3, −1, ?</b>",
+    opts: ["2", "3", "4", "5"], ans: 2,
+    exp: "Two alternating sub-series: 1, 0, −1 (decreases by 1) and 2, 3, <b>4</b> (increases by 1)."
+  },
+  {
+    id: 8, topic: "Fractional Multiplier Series",
+    q: "Which number suits the X-marked position in the series: <b>3, 4, 12, 16, 48, X</b>?",
+    opts: ["52", "60", "64", "72"], ans: 2,
+    exp: "Alternating operators (× 4/3 and × 3): 48 × 4/3 = <b>64</b>."
+  },
+  {
+    id: 9, topic: "Logical Comparison",
+    q: "A ship owner has 5 ships: A, B, C, D, and E. Ship B is twice as big as Ship D and 1.5 times as big as Ship E. Ship A is 1.5 times the size of E. Ship C is half the size of B. Which statement is TRUE?",
+    opts: ["Ship A is bigger than Ship B", "Ship C is bigger than Ship D", "Ship B is smaller than Ship D", "Ship C is smaller than Ship E"], ans: 3,
+    exp: "Let B = 100 ⇒ D = 50, E = 66.67, C = 50, A = 100. Thus, <b>Ship C (50) is smaller than Ship E (66.67)</b>."
+  },
+  {
+    id: 10, topic: "Direction Sense",
+    q: "A ship starts from position A and goes Westward for 12 miles, then North for 5 miles, then East for 24 miles. With reference to position A, what is the final direction of the ship?",
+    opts: ["North-East", "North-West", "South-East", "South-West"], ans: 0,
+    exp: "Net Eastward displacement = 24 − 12 = 12 miles. Net Northward = 5 miles. Relative direction is <b>North-East</b>."
+  },
+  {
+    id: 11, topic: "Classification",
+    q: "Select the odd one out among the following:",
+    opts: ["Iron", "Copper", "Aluminium", "Mercury"], ans: 3,
+    exp: "Iron, Copper, and Aluminium are solid metals at room temperature, whereas <b>Mercury</b> is a liquid metal."
+  },
+  {
+    id: 12, topic: "Coding-Decoding",
+    q: "In a certain code, 'CHAPTER' is written in alphabetical order as 'ACEHPRT'. How is 'GENERAL' written in that same code?",
+    opts: ["AEEGLNR", "AEEGNLR", "AGEELNR", "AEEGLRN"], ans: 0,
+    exp: "Sorting the letters of 'GENERAL' alphabetically yields <b>AEEGLNR</b>."
+  },
+  {
+    id: 13, topic: "Dictionary Ordering",
+    q: "Arrange the following words as they appear in an English dictionary: 1. LICK, 2. LIKE, 3. LACK, 4. LOCK, 5. LUCK.",
+    opts: ["3, 1, 2, 4, 5", "3, 2, 1, 4, 5", "1, 2, 3, 4, 5", "3, 1, 4, 2, 5"], ans: 0,
+    exp: "Alphabetical order: LACK (3) → LICK (1) → LIKE (2) → LOCK (4) → LUCK (5)."
+  },
+  {
+    id: 14, topic: "Double Difference Series",
+    q: "Find the value of X in the series: <b>18, 48, 100, 180, 294, X</b>",
+    opts: ["400", "420", "448", "480"], ans: 2,
+    exp: "1st diffs: 30, 52, 80, 114. 2nd diffs increase by +6 (22, 28, 34, 40). Next 1st diff = 154. X = 294 + 154 = <b>448</b>."
+  },
+  {
+    id: 15, topic: "Rate & Time",
+    q: "If a laser printer can print 5 pages per minute, how many seconds will it take to print 100 pages?",
+    opts: ["600 seconds", "1000 seconds", "1200 seconds", "1500 seconds"], ans: 2,
+    exp: "Time in minutes = 100 / 5 = 20 minutes = 20 × 60 = <b>1200 seconds</b>."
+  },
+  {
+    id: 16, topic: "Coding Pattern",
+    q: "In a certain code, 'CONTROL' is written by sorting its letters alphabetically as 'CLOORT'. Following the same rule, how is 'BREATHER' coded?",
+    opts: ["AEEBHRRT", "AEEBHRTR", "AEEBRHRT", "ABEEHRRT"], ans: 0,
+    exp: "Alphabetical sorting of letters in BREATHER yields <b>AEEBHRRT</b>."
+  },
+  {
+    id: 17, topic: "Letter Block Series",
+    q: "Which group of letters comes next in the pattern: <b>XYZ, MNO, RST, ?</b>",
+    opts: ["ABC", "IJK", "UVW", "OPQ"], ans: 1,
+    exp: "Following the specific block offset pattern yields <b>IJK</b>."
+  },
+  {
+    id: 18, topic: "Classification",
+    q: "Select the odd one out among the following:",
+    opts: ["Frog", "Swan", "Crocodile", "Hen"], ans: 3,
+    exp: "Frog, Swan, and Crocodile are aquatic or amphibious species, while <b>Hen</b> is a terrestrial bird."
+  },
+  {
+    id: 19, topic: "Missing Letter Series",
+    q: "Find the missing letter in the series: <b>J, M, ?, S, V, Y</b>",
+    opts: ["O", "P", "Q", "R"], ans: 1,
+    exp: "Positional values increase by +3: J (10) → M (13) → <b>P (16)</b> → S (19)."
+  },
+  {
+    id: 20, topic: "Mathematical Operators",
+    q: "If '+' represents '×', '−' represents '÷', '×' represents '−', and '÷' represents '+', find the value of <b>4 + 7 − 36 × 9 ÷ 32</b>:",
+    opts: ["60", "72", "80", "96"], ans: 2,
+    exp: "Replacing operators and solving via BODMAS yields <b>80</b>."
+  },
+  {
+    id: 21, topic: "Sequential Block",
+    q: "Which block of letters completes the series: <b>GHIJ, KLMN, ?</b>",
+    opts: ["OPQR", "PQRS", "NOPQ", "STUV"], ans: 0,
+    exp: "Sequential 4-letter block shift: GHIJ → KLMN → <b>OPQR</b>."
+  },
+  {
+    id: 22, topic: "Difference Progression",
+    q: "Find the missing number X in the series: <b>5, 11, X, 29, 41</b>",
+    opts: ["17", "19", "21", "23"], ans: 1,
+    exp: "Differences increase by +2 (+6, +8, +10, +12) ⇒ 11 + 8 = <b>19</b>."
+  },
+  {
+    id: 23, topic: "Vowel Removal Coding",
+    q: "In a certain code, 'CHEMISTRY' is written as 'CHMSTRY' (by omitting all vowels). How is 'HISTORY' coded in the same language?",
+    opts: ["HSTRY", "HISTRY", "HSTR", "HSOY"], ans: 0,
+    exp: "Removing vowels 'I' and 'O' from HISTORY leaves <b>HSTRY</b>."
+  },
+  {
+    id: 24, topic: "Density & Order",
+    q: "Which option correctly arranges the following substances from heaviest (densest) to lightest: Petroleum, Heavy Oil, Petrol, Diesel, Gas?",
+    opts: [
+      "Petroleum → Heavy Oil → Diesel → Petrol → Gas",
+      "Gas → Petrol → Diesel → Heavy Oil → Petroleum",
+      "Heavy Oil → Petroleum → Diesel → Petrol → Gas",
+      "Petroleum → Diesel → Heavy Oil → Petrol → Gas"
+    ], ans: 0,
+    exp: "The correct descending order of density is <b>Petroleum → Heavy Oil → Diesel → Petrol → Gas</b>."
+  },
+  {
+    id: 25, topic: "Multi-Step Direction",
+    q: "A ship sails from position A and travels East for 100 miles, South for 48 miles, East for 448 miles, and South for 100 miles. What is its net direction from starting point A?",
+    opts: ["North-East", "South-East", "South-West", "North-West"], ans: 1,
+    exp: "Net displacement is both Eastward (548 miles) and Southward (148 miles), yielding <b>South-East</b>."
+  },
+  {
+    id: 26, topic: "Number Series",
+    q: "Find the next term in the series: <b>3, 7, 13, 21, 31, ?</b>",
+    opts: ["41", "43", "45", "47"], ans: 1,
+    exp: "Differences are +4, +6, +8, +10, +12 ⇒ 31 + 12 = <b>43</b>."
+  },
+  {
+    id: 27, topic: "Alphabet Skipping",
+    q: "Complete the letter series: <b>A, C, E, G, I, ?</b>",
+    opts: ["J", "K", "L", "M"], ans: 1,
+    exp: "Alternating letters with a +2 positional step yields <b>K</b>."
+  },
+  {
+    id: 28, topic: "Alternating Operations",
+    q: "Find X in the series: <b>8, 24, 12, 36, 18, 54, X</b>",
+    opts: ["27", "36", "18", "72"], ans: 0,
+    exp: "Pattern is × 3 followed by ÷ 2: 54 ÷ 2 = <b>27</b>."
+  },
+  {
+    id: 29, topic: "Linear Seating",
+    q: "At a baseball game, Henry sat in seat 253. Marla sat in the seat to his immediate right (254). George sat to the immediate left of Henry. What seat number was George in?",
+    opts: ["251", "252", "255", "250"], ans: 1,
+    exp: "Immediate left of 253 is <b>252</b>."
+  },
+  {
+    id: 30, topic: "Venn Intersections",
+    q: "Circle P represents Hardworking people, Circle Q represents Intellectual people, Circle R represents Truthful people, and Circle S represents Honest people. Which region represents people who are Intellectual, Honest, and Truthful, but NOT Hardworking?",
+    opts: ["Region 4", "Region 5", "Region 6", "Region 7"], ans: 2,
+    exp: "Excluding Circle P while finding the common intersection of Q, R, and S yields <b>Region 6</b>."
+  },
+  {
+    id: 31, topic: "Equation Balancing",
+    q: "Given P = '+', Q = '−', R = '×', S = '=', which of the following mathematical equations is correctly balanced?",
+    opts: [
+      "1 R 5 S 16 Q 15 P 4",
+      "2 P 3 S 10",
+      "4 Q 2 S 8",
+      "5 R 2 S 12"
+    ], ans: 0,
+    exp: "1 × 5 = 16 − 15 + 4 ⇒ 5 = 5 (LHS = RHS)."
+  },
+  {
+    id: 32, topic: "Dictionary Sorting",
+    q: "Which word appears FIRST when sorted alphabetically: <b>BARN, BARK, BILL, BIRCH</b>?",
+    opts: ["BARK", "BARN", "BILL", "BIRCH"], ans: 0,
+    exp: "Alphabetical order starts with <b>BARK</b>."
+  },
+  {
+    id: 33, topic: "Age Puzzle",
+    q: "Smith has 5 children: Luke, Judy, Beth, Hugh, and Ann. Beth is 7 years old and 1 year younger than Hugh. Hugh is half the age of Ann. Ann is 4 years older than Luke and 5 years younger than Judy. How old is Judy?",
+    opts: ["15 years", "17 years", "21 years", "19 years"], ans: 1,
+    exp: "Beth=7, Hugh=8, Ann=16, Luke=12, Judy = 12 + 5 = <b>17 years</b>."
+  },
+  {
+    id: 34, topic: "Seating Arrangement",
+    q: "Five girls are sitting on a bench for a photograph. Seema is to the left of Rani and to the right of Bindu. Mary is to the right of Rani. Reeta is sitting between Rani and Mary. Who is sitting second from the right?",
+    opts: ["Rani", "Reeta", "Mary", "Seema"], ans: 1,
+    exp: "Order: Bindu → Seema → Rani → Reeta → Mary. Second from the right is <b>Reeta</b>."
+  },
+  {
+    id: 35, topic: "Statement Coding",
+    q: "In a code, 'Bring me a pen' = 7319, 'You and me' = 954, and 'Bring a good pencil' = 176. What is the code for the word 'pen'?",
+    opts: ["7", "3", "1", "None of these"], ans: 1,
+    exp: "'me' = 9, 'a' = 1, 'Bring' = 7. The remaining unmapped digit for 'pen' is <b>3</b>."
+  },
+  {
+    id: 36, topic: "Pair-Swap Coding",
+    q: "In a certain code, 'MAGNET' is written as 'AMNGTE' (swapping adjacent pairs). How is 'BROKER' coded in that same system?",
+    opts: ["RBKORE", "RBOEKR", "BROKRE", "RKBORE"], ans: 0,
+    exp: "BR → RB, OK → KO, ER → RE ⇒ <b>RBKORE</b>."
+  },
+  {
+    id: 37, topic: "Letter Series",
+    q: "What comes next in the letter series: <b>E (5), I (9), L (12), ?</b>",
+    opts: ["M", "N", "O", "P"], ans: 1,
+    exp: "Offsets are +4, +3, +2 ⇒ 12 + 2 = 14 (<b>N</b>)."
+  },
+  {
+    id: 38, topic: "Linear Equations",
+    q: "3 ducks and 2 ducklings weigh 32 kg, while 4 ducks and 3 ducklings weigh 44 kg. What is the combined weight of 1 duck and 1 duckling?",
+    opts: ["10 kg", "12 kg", "14 kg", "16 kg"], ans: 1,
+    exp: "Subtracting Eq 1 from Eq 2 gives 1 Duck + 1 Duckling = <b>12 kg</b>."
+  },
+  {
+    id: 39, topic: "Clock Angles",
+    q: "A clock shows 2:00 PM. Through how many degrees will the hour hand rotate when the clock shows 7:20 PM?",
+    opts: ["140°", "150°", "160°", "180°"], ans: 2,
+    exp: "Time interval = 5 hours 20 mins = 320 mins. Hour hand rotates 0.5° per minute: 320 × 0.5° = <b>160°</b>."
+  },
+  {
+    id: 40, topic: "Incremental Offset",
+    q: "Find the next term in the series: <b>A, C, F, J, O, ?</b>",
+    opts: ["T", "U", "V", "W"], ans: 1,
+    exp: "Positional step increases by +1 (+2, +3, +4, +5, +6) ⇒ O (15) + 6 = 21 (<b>U</b>)."
+  }
+];
+
+const QUESTIONS = RAW_QUESTIONS.map((item, idx) => {
+  const indexed = item.opts.map((t, c) => ({ t, isCorr: c === item.ans }));
+  const shift = (idx * 2 + 1) % 4;
+  const rotated = [...indexed.slice(shift), ...indexed.slice(0, shift)];
+  return {
+    ...item,
+    opts: rotated.map(o => o.t),
+    ans: rotated.findIndex(o => o.isCorr)
+  };
+});
+
+let filtered = [...QUESTIONS];
+let curIdx = 0;
+let fcIdx = 0;
+let userAns = {};
+let savedIds = new Set();
+
+let seconds = 0;
+let timerActive = true;
+setInterval(() => {
+  if (!timerActive) return;
+  seconds++;
+  const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+  const secs = String(seconds % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `⏱️ ${mins}:${secs}`;
+}, 1000);
+
+function toggleTimer() {
+  timerActive = !timerActive;
+  document.getElementById('timer-display').style.opacity = timerActive ? '1' : '0.5';
+}
+
+function renderQuiz() {
+  if (filtered.length === 0) {
+    document.getElementById('q-text').innerHTML = "No questions match this filter.";
+    document.getElementById('q-options').innerHTML = "";
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const q = filtered[curIdx];
+  document.getElementById('q-num-badge').textContent = `Q${q.id} / 40`;
+  document.getElementById('q-topic-badge').textContent = q.topic;
+  document.getElementById('q-text').innerHTML = q.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (savedIds.has(q.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save';
+  }
+
+  const optBox = document.getElementById('q-options');
+  optBox.innerHTML = '';
+  const chosen = userAns[q.id];
+  const keys = ['A', 'B', 'C', 'D'];
+
+  q.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (chosen !== undefined) {
+      btn.disabled = true;
+      if (idx === q.ans) btn.classList.add('correct');
+      else if (idx === chosen) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[idx]}</span><span>${optText}</span>`;
+    btn.onclick = () => chooseAnswer(q.id, idx);
+    optBox.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  if (chosen !== undefined) {
+    document.getElementById('q-exp-text').innerHTML = q.exp;
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = curIdx === 0;
+  document.getElementById('next-btn').disabled = curIdx === filtered.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function chooseAnswer(id, idx) {
+  userAns[id] = idx;
+  renderQuiz();
+}
+
+function revealCurrent() {
+  if (!filtered.length) return;
+  const q = filtered[curIdx];
+  userAns[q.id] = q.ans;
+  renderQuiz();
+}
+
+function moveQ(delta) {
+  const next = curIdx + delta;
+  if (next >= 0 && next < filtered.length) {
+    curIdx = next;
+    renderQuiz();
+  }
+}
+
+function toggleBookmark() {
+  if (!filtered.length) return;
+  const id = filtered[curIdx].id;
+  if (savedIds.has(id)) savedIds.delete(id);
+  else savedIds.add(id);
+  renderQuiz();
+}
+
+function setFilter(type, btn) {
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (type === 'ALL') filtered = [...QUESTIONS];
+  else if (type === 'SAVED') filtered = QUESTIONS.filter(q => savedIds.has(q.id));
+  else if (type === 'WRONG') filtered = QUESTIONS.filter(q => userAns[q.id] !== undefined && userAns[q.id] !== q.ans);
+
+  curIdx = 0;
+  renderQuiz();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filtered.length} Qs`;
+  grid.innerHTML = '';
+
+  filtered.forEach((q, idx) => {
+    const b = document.createElement('button');
+    b.className = 'p-num';
+    if (idx === curIdx) b.classList.add('current');
+    if (userAns[q.id] !== undefined) {
+      b.classList.add(userAns[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    b.textContent = q.id;
+    b.onclick = () => {
+      curIdx = idx;
+      renderQuiz();
+    };
+    grid.appendChild(b);
+  });
+}
+
+function updateStats() {
+  const keys = Object.keys(userAns);
+  const attempted = keys.length;
+  let correct = 0;
+  keys.forEach(k => {
+    const q = QUESTIONS.find(item => item.id === Number(k));
+    if (q && userAns[k] === q.ans) correct++;
+  });
+  const acc = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${attempted}/40`;
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = savedIds.size;
+}
+
+function resetQuiz() {
+  userAns = {};
+  seconds = 0;
+  renderQuiz();
+}
+
+function renderFC() {
+  const card = document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  const q = QUESTIONS[fcIdx];
+  document.getElementById('fc-num').textContent = `Card ${q.id} / 40`;
+  document.getElementById('fc-topic').textContent = q.topic;
+  document.getElementById('fc-q').innerHTML = q.q;
+  document.getElementById('fc-ans').innerHTML = `(${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}`;
+  document.getElementById('fc-exp').innerHTML = q.exp;
+}
+
+function moveFC(delta) {
+  fcIdx = (fcIdx + delta + QUESTIONS.length) % QUESTIONS.length;
+  renderFC();
+}
+
+function renderBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const listEl = document.getElementById('bank-list');
+  const matches = QUESTIONS.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.exp.toLowerCase().includes(query) ||
+    String(q.id) === query
+  );
+
+  listEl.innerHTML = matches.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:8px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.02rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#047857; font-weight:700; margin-bottom:4px;">✔ Correct Answer: (${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}</div>
+        <div style="font-size:0.92rem; color:#334155;">${q.exp}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleBlur(btn) {
+  const el = document.getElementById('bank-list');
+  el.classList.toggle('hide-answers');
+  btn.textContent = el.classList.contains('hide-answers') ? '👁️ Show All Answers' : '🙈 Hide Answers (Self-Test)';
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${view}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = view === 'quiz' ? 'flex' : 'none';
+
+  if (view === 'flashcards') renderFC();
+  if (view === 'bank') renderBank();
+}
+
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const q = filtered[curIdx];
+      if (q && userAns[q.id] === undefined) chooseAnswer(q.id, parseInt(e.key) - 1);
+    } else if (e.key === 'ArrowRight') moveQ(1);
+    else if (e.key === 'ArrowLeft') moveQ(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('fc-card').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFC(1);
+    else if (e.key === 'ArrowLeft') moveFC(-1);
+  }
+});
+
+renderQuiz();
+</script>
+</body>
+</html>

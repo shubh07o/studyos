@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 1: ALPHABETS - Complete English Interactive Notes & 148 Quizzes | Parmar SSC</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #edf2f9;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #dc2626;
+      --primary-dark: #991b1b;
+      --secondary: #2563eb;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #ef4444;
+      --primary-dark: #f87171;
+      --secondary: #60a5fa;
+      --accent: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --border: #334155;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 300px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand {
+      padding: 20px;
+      background: linear-gradient(135deg, #7f1d1d, #dc2626);
+      color: #fff;
+    }
+
+    .brand h1 { font-size: 1.2rem; font-weight: 800; letter-spacing: 0.4px; }
+    .brand p { font-size: 0.8rem; opacity: 0.92; margin-top: 4px; }
+
+    .stats-bar {
+      padding: 12px 18px;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    .nav-list { list-style: none; padding: 10px; flex: 1; }
+    .nav-item { margin-bottom: 4px; }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover { background: var(--surface-alt); }
+    .nav-btn.active { background: var(--primary); color: #fff; font-weight: 600; }
+
+    .nav-btn .badge {
+      margin-left: auto;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(100, 116, 139, 0.2);
+      white-space: nowrap;
+    }
+
+    .nav-btn.active .badge { background: rgba(255, 255, 255, 0.25); color: #fff; }
+
+    /* Main Content Area */
+    .main {
+      flex: 1;
+      margin-left: 300px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-box { flex: 1; max-width: 420px; }
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .top-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    .btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .content-container {
+      padding: 26px;
+      max-width: 1120px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-page { display: none; }
+    .section-page.active { display: block; animation: fadeIn 0.25s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-title { font-size: 1.65rem; font-weight: 800; margin-bottom: 6px; color: var(--primary); }
+    .page-subtitle { color: var(--text-muted); margin-bottom: 22px; font-size: 0.94rem; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 14px;
+      color: var(--secondary);
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 8px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+    .rule-box {
+      background: var(--surface-alt);
+      border-left: 4px solid var(--secondary);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+    }
+
+    /* Native Math & Formula Styling */
+    .formula-box {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 4px solid var(--accent);
+      padding: 16px 18px;
+      border-radius: 0 10px 10px 0;
+      margin: 12px 0;
+    }
+
+    .math-eq {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      background: var(--surface);
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin: 4px 0;
+      color: var(--primary);
+    }
+
+    .math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 6px;
+      font-size: 0.92em;
+    }
+
+    .math-frac .num {
+      border-bottom: 2px solid currentColor;
+      padding: 0 6px 2px;
+      line-height: 1.2;
+    }
+
+    .math-frac .den {
+      padding: 2px 6px 0;
+      line-height: 1.2;
+    }
+
+    .math-pill {
+      display: inline-block;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-weight: 700;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: var(--secondary);
+    }
+
+    /* Alphabet Strip Visualizer */
+    .alpha-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .alpha-cell {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 4px;
+      text-align: center;
+      transition: transform 0.15s;
+    }
+
+    .alpha-cell:hover { transform: translateY(-2px); border-color: var(--primary); }
+    .alpha-letter { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+    .alpha-pos { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 10px 12px; border: 1px solid var(--border); text-align: center; }
+    th { background: var(--surface-alt); font-weight: 700; }
+
+    /* Interactive Quiz Cards */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-meta {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quiz-question { font-size: 0.98rem; font-weight: 600; margin-bottom: 12px; }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: 0.15s;
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--secondary);
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .quiz-opt.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger);
+    }
+
+    .quiz-exp {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--success);
+      font-size: 0.88rem;
+      display: none;
+      white-space: pre-line;
+    }
+
+    .quiz-exp.visible { display: block; }
+
+    /* Interactive Calculator Tool */
+    .tool-box {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--surface-alt);
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .tool-box input {
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .menu-toggle { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>PARMAR SSC | REASONING</h1>
+      <p>Topper's Batch • Ch 1: ALPHABETS (By Kamal Sir)</p>
+    </div>
+    <div class="stats-bar">
+      <span>Score: <strong id="score-val">0</strong> / <span id="total-val">148</span></span>
+      <button class="btn" style="padding:3px 8px;font-size:0.74rem;" onclick="resetAllQuizzes()">Reset</button>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-btn active" onclick="showTab('tab-r1', this)">🔤 Rule 1: Place Value (L/R) <span class="badge">Q.1–5</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r2', this)">🪞 Rule 2: Opposite Letters <span class="badge">Q.6–11</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r3', this)">🔗 Rule 3: Pair Formation <span class="badge">Q.12–22</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r4', this)">⚖️ Rule 4: Middle Position <span class="badge">Q.23–27</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r5', this)">🔡 Rule 5: Alphabetical Order <span class="badge">Q.28–40</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r6', this)">📖 Rule 6: Dictionary Order <span class="badge">Q.41–56</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r7', this)">🧩 Rule 7: Word Formation <span class="badge">Q.57–75</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r8a', this)">🧭 Rule 8A: Relative Pos. <span class="badge">Q.76–87</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-r8b', this)">🔄 Rule 8B: Halves Reversal <span class="badge">Q.88–106</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-misc1', this)">🎯 Vowels, Odd/Even & Digits <span class="badge">Q.107–130</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-misc2', this)">🏆 Letter Shift & Interchange <span class="badge">Q.131–148</span></button></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ Menu</button>
+      <div class="search-box">
+        <input type="text" id="global-search" placeholder="Search question number (e.g. Q.45), word, or exam tag..." oninput="filterCurrentTab(this.value)" />
+      </div>
+      <div class="top-actions">
+        <button class="btn" onclick="toggleAllSolutions(true)">👁️ Show All Solutions</button>
+        <button class="btn" onclick="toggleAllSolutions(false)">🙈 Hide Solutions</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+      </div>
+    </header>
+
+    <div class="content-container">
+
+      <!-- ================= TAB 1: RULE 1 PLACE VALUES (P. 1-3) ================= -->
+      <section class="section-page active" id="tab-r1">
+        <h2 class="page-title">Rule 1: Place Values / Position Values</h2>
+        <p class="page-subtitle">Pages 1–3 • Left-to-Right (L.H.S) & Right-to-Left (R.H.S) Indexing + Q.1 to Q.5</p>
+
+        <div class="card">
+          <h3>📊 Interactive A–Z Place Value & Opposite Explorer</h3>
+          <p>Hover or click any letter below to see its <strong>Left Position (L)</strong>, <strong>Right/Reverse Position (R = 27 − L)</strong>, and <strong>Opposite Letter</strong>:</p>
+          <div class="alpha-grid" id="alpha-board"></div>
+        </div>
+
+        <div class="card">
+          <h3>📐 Rule 1: To Find the Position of a Letter from L.H.S / R.H.S</h3>
+          <div class="grid-2">
+            <div class="formula-box">
+              <p style="margin-bottom:8px;">➤ <strong>Basic Formula:</strong> <span class="math-eq">T = L + R − 1</span></p>
+              <p style="margin-bottom:8px;">➤ <strong>Shortcut Formula:</strong> <span class="math-eq">Total + 1 = Left + Right &nbsp;⇒&nbsp; 27 = L + R</span></p>
+              <ul style="padding-left:18px;margin-top:8px;font-size:0.9rem;">
+                <li><strong>T</strong> = Total number of letters in the series (for A–Z, <strong>T = 26</strong>)</li>
+                <li><strong>L</strong> = Position of the letter from the Left end</li>
+                <li><strong>R</strong> = Position of the letter from the Right end</li>
+                <li>If the position from one end is known, subtract it from <strong>27</strong> to get the position from the other end.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Worked Examples (Page 2):</h4>
+              <p><strong>Eg. 1:</strong> In the English alphabet, <strong>G</strong> is 7th from the left. Find its position from the right.<br>
+              <em>Solution:</em> <span class="math-pill">26 + 1 = 7 + R</span> ⇒ <span class="math-pill">R = 27 − 7 = 20th from Right</span>.</p>
+              <hr style="margin:8px 0;border-color:var(--border);">
+              <p><strong>Eg. 2:</strong> In the English alphabet, <strong>P</strong> is 16th from the left. Find its position from the right.<br>
+              <em>Solution:</em> <span class="math-pill">26 + 1 = 16 + R</span> ⇒ <span class="math-pill">R = 27 − 16 = 11th from Right</span>.</p>
+              <p style="margin-top:8px;font-size:0.86rem;"><strong>Quick Reference Table (Page 2):</strong><br>
+              • <strong>T</strong> → Left: 20 | Right: 7 &nbsp;&nbsp;• <strong>R</strong> → Left: 18 | Right: 9<br>
+              • <strong>Q</strong> → Left: 17 | Right: 10 &nbsp;• <strong>L</strong> → Left: 12 | Right: 15</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 1 (Q.1 – Q.5)</h3>
+          <div id="quiz-r1"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: RULE 2 OPPOSITE LETTERS (P. 3-4) ================= -->
+      <section class="section-page" id="tab-r2">
+        <h2 class="page-title">Rule 2: To Find the Opposite / Mirrored Letter</h2>
+        <p class="page-subtitle">Pages 3–4 • Alphabetical Symmetry (A ↔ Z, B ↔ Y) + Q.6 to Q.11</p>
+
+        <div class="card">
+          <h3>🪞 Opposite Letter Formula & 13 Mirrored Pairs</h3>
+          <div class="formula-box">
+            <strong>Formula:</strong> &nbsp;
+            <span class="math-eq">Opposite Letter Position = 27 − Alphabetical Position (from Left)</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Letter</th><th>Opposite Letter</th><th>Position Sum</th>
+                  <th>Letter</th><th>Opposite Letter</th><th>Position Sum</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>A<sub>1</sub></strong></td><td><strong>Z<sub>26</sub></strong></td><td>1 + 26 = 27</td><td><strong>H<sub>8</sub></strong></td><td><strong>S<sub>19</sub></strong></td><td>8 + 19 = 27</td></tr>
+                <tr><td><strong>B<sub>2</sub></strong></td><td><strong>Y<sub>25</sub></strong></td><td>2 + 25 = 27</td><td><strong>I<sub>9</sub></strong></td><td><strong>R<sub>18</sub></strong></td><td>9 + 18 = 27</td></tr>
+                <tr><td><strong>C<sub>3</sub></strong></td><td><strong>X<sub>24</sub></strong></td><td>3 + 24 = 27</td><td><strong>J<sub>10</sub></strong></td><td><strong>Q<sub>17</sub></strong></td><td>10 + 17 = 27</td></tr>
+                <tr><td><strong>D<sub>4</sub></strong></td><td><strong>W<sub>23</sub></strong></td><td>4 + 23 = 27</td><td><strong>K<sub>11</sub></strong></td><td><strong>P<sub>16</sub></strong></td><td>11 + 16 = 27</td></tr>
+                <tr><td><strong>E<sub>5</sub></strong></td><td><strong>V<sub>22</sub></strong></td><td>5 + 22 = 27</td><td><strong>L<sub>12</sub></strong></td><td><strong>O<sub>15</sub></strong></td><td>12 + 15 = 27</td></tr>
+                <tr><td><strong>F<sub>6</sub></strong></td><td><strong>U<sub>21</sub></strong></td><td>6 + 21 = 27</td><td><strong>M<sub>13</sub></strong></td><td><strong>N<sub>14</sub></strong></td><td>13 + 14 = 27</td></tr>
+                <tr><td><strong>G<sub>7</sub></strong></td><td><strong>T<sub>20</sub></strong></td><td>7 + 20 = 27</td><td>—</td><td>—</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 2 (Q.6 – Q.11)</h3>
+          <div id="quiz-r2"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: RULE 3 PAIR FORMATION (P. 4-7) ================= -->
+      <section class="section-page" id="tab-r3">
+        <h2 class="page-title">Rule 3: Relative Distance Between Pair of Letters / Pair Formation</h2>
+        <p class="page-subtitle">Pages 4–7 • "As many letters between them in the word as in the English alphabet" + Q.12 to Q.22</p>
+
+        <div class="card">
+          <h3>🔗 Concept & Step-by-Step Method</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Core Formula & Steps (Pages 4–5):</h4>
+              <div style="margin:8px 0;">
+                <span class="math-eq">Word Position Difference = Alphabetical Position Difference</span>
+              </div>
+              <ol style="padding-left:18px;margin-top:8px;">
+                <li><strong>Step 1:</strong> Write the alphabetical place value above every letter of the given word.<br>Example: <span class="math-pill">P(16) E(5) N(14) C(3) I(9) L(12)</span></li>
+                <li><strong>Step 2:</strong> Count sequentially from each number both <strong>Left-to-Right (Forward)</strong> and <strong>Right-to-Left (Backward)</strong>. Whenever your spoken count matches the number written above another letter, those two letters form a valid pair.</li>
+                <li><strong>Worked Example (PENCIL):</strong> Counting backward from <strong>C(3) → E(5)</strong> [3, 4, 5] and from <strong>N(14) → P(16)</strong> [14, 15, 16] gives <strong>2 Pairs: EC and PN</strong>.</li>
+              </ol>
+              <p style="margin-top:8px;color:var(--primary);font-weight:700;">⚠️ Important Rules (Page 5):</p>
+              <ul style="padding-left:18px;font-size:0.88rem;">
+                <li>No upward pair can be formed starting from the highest letter present in the word.</li>
+                <li>Counting stops at 26 (Z) — never wrap around to 27, 28, 29 (A, B, C...) in standard pair formation questions.</li>
+              </ul>
+            </div>
+
+            <div class="rule-box">
+              <h4>🧮 Live Interactive Pair Finder Tool</h4>
+              <p style="font-size:0.88rem;">Type any word (such as <code>DESTRUCT</code>, <code>PORTRAYAL</code>, <code>SUPERSONIC</code>) to calculate all forward & backward letter pairs instantly:</p>
+              <div class="tool-box">
+                <input type="text" id="pair-input" value="PENCIL" placeholder="Enter word..." />
+                <button class="btn" onclick="runPairFinder()">Find Pairs</button>
+              </div>
+              <div id="pair-output" style="margin-top:12px;font-size:0.9rem;font-weight:600;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 3 (Q.12 – Q.22)</h3>
+          <div id="quiz-r3"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: RULE 4 MIDDLE POSITION (P. 7-8) ================= -->
+      <section class="section-page" id="tab-r4">
+        <h2 class="page-title">Rule 4: To Find the Middle Position Between Two Letters</h2>
+        <p class="page-subtitle">Pages 7–8 • Midway / Exactly Between Formula, 4 Classroom Cases + Q.23 to Q.27</p>
+
+        <div class="card">
+          <h3>⚖️ Middle Position Formula & All 4 Cases (Page 7)</h3>
+          <div class="formula-box">
+            <div class="math-eq">
+              Middle Position =
+              <span class="math-frac">
+                <span class="num">Position of 1st Letter + Position of 2nd Letter</span>
+                <span class="den">2</span>
+              </span>
+            </div>
+            <p style="margin-top:8px;font-size:0.9rem;"><strong>Important Note:</strong> Both letter positions MUST be measured from the <strong>same direction</strong> (either both from Left-to-Right OR both from Right-to-Left) before averaging.</p>
+          </div>
+
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <h4>Case 1: Which letter comes in the middle of D and T?</h4>
+              <p>Given: <span class="math-pill">D = 4L</span>, <span class="math-pill">T = 20L</span></p>
+              <p style="margin-top:6px;">
+                Middle Position =
+                <span class="math-frac"><span class="num">4 + 20</span><span class="den">2</span></span>
+                = <span class="math-frac"><span class="num">24</span><span class="den">2</span></span>
+                = <strong>12th from Left = L</strong>.
+              </p>
+            </div>
+            <div class="rule-box">
+              <h4>Case 2: Midway between 3rd from Left & 4th from Right</h4>
+              <p>Convert 4th from Right to Left: <span class="math-pill">L = 27 − 4 = 23L</span></p>
+              <p style="margin-top:6px;">
+                Middle Position =
+                <span class="math-frac"><span class="num">3L + 23L</span><span class="den">2</span></span>
+                = <span class="math-frac"><span class="num">26</span><span class="den">2</span></span>
+                = <strong>13th from Left = M</strong>.
+              </p>
+            </div>
+            <div class="rule-box">
+              <h4>Case 3: Midway between 5th from Right & 21st from Right</h4>
+              <p>
+                Middle from Right =
+                <span class="math-frac"><span class="num">5R + 21R</span><span class="den">2</span></span>
+                = <strong>13th from Right (13R)</strong>.
+              </p>
+              <p style="margin-top:4px;">Convert 13R to Left: <span class="math-pill">L = 27 − 13 = 14th from Left = N</span>.</p>
+            </div>
+            <div class="rule-box">
+              <h4>Case 4: Which letter comes in the middle of E and X?</h4>
+              <p>
+                Given: E = 5L, X = 24L ⇒ Middle =
+                <span class="math-frac"><span class="num">5 + 24</span><span class="den">2</span></span>
+                = <strong>14.5L</strong>.
+              </p>
+              <p style="margin-top:4px;">Since <strong>14.5</strong> is not a whole-number integer, <strong>no letter lies exactly midway</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 4 (Q.23 – Q.27)</h3>
+          <div id="quiz-r4"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: RULE 5 ALPHABETICAL ORDER (P. 8-11) ================= -->
+      <section class="section-page" id="tab-r5">
+        <h2 class="page-title">Rule 5: Arrangement of Letters in Alphabetical Order</h2>
+        <p class="page-subtitle">Pages 8–11 • A→Z and Z→A Letter Rearrangement, Unchanged Letters & Gap Formula + Q.28 to Q.40</p>
+
+        <div class="card">
+          <h3>🔡 Rule 5 Concepts & Smart Methods (Pages 8–10)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Rearranging Letters (A → Z or Z → A)</h4>
+              <p>In this pattern, the letters of a given word are rearranged in alphabetical order from Left to Right (A → Z) or in Reverse Alphabetical Order (Z → A).</p>
+              <p style="margin-top:8px;"><strong>Worked Example (Page 8):</strong> What is the 12th letter from the Right in <code>CATEGORISATION</code> after arranging alphabetically?<br>
+              • Total letters = 14.<br>
+              • Smart Formula: <span class="math-pill">Total + 1 = Left + Right</span> ⇒ <span class="math-pill">14 + 1 = L + 12</span> ⇒ <span class="math-pill">L = 3rd from Left</span>.<br>
+              • Sorted (per PDF note): <code>A C E G I I N O O R S T T</code> → 3rd letter = <strong>C / E</strong>.</p>
+            </div>
+            <div class="rule-box">
+              <h4>2. Short Method for Letters Between Two Positions (Page 10)</h4>
+              <p>When asked: <em>"How many letters are there in the English alphabetical series between the Xth letter and Yth letter of the newly formed word?"</em></p>
+              <div style="margin:8px 0;">
+                <span class="math-eq">Letters Between = (Larger Position Value − Smaller Position Value) − 1</span>
+              </div>
+              <p style="margin-top:6px;"><strong>Example (JOURNAL → A J L N O R U):</strong><br>
+              4th from Left = <strong>N (14)</strong>, 2nd from Right = <strong>R (18)</strong>.<br>
+              Letters between = <span class="math-pill">18 − 14 − 1 = 3 letters</span> (O, P, Q).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 5 (Q.28 – Q.40)</h3>
+          <div id="quiz-r5"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: RULE 6 DICTIONARY ORDER (P. 11-15) ================= -->
+      <section class="section-page" id="tab-r6">
+        <h2 class="page-title">Rule 6: Arrangement of Words in Dictionary Order</h2>
+        <p class="page-subtitle">Pages 11–15 • Letter-by-Letter Comparison Rules + Q.41 to Q.56</p>
+
+        <div class="card">
+          <h3>📖 How to Compare Words for Dictionary Order</h3>
+          <div class="rule-box">
+            <ol style="padding-left:20px;">
+              <li>First, compare the <strong>1st letters</strong> of all given words alphabetically (A to Z).</li>
+              <li>If the first letters are identical, compare the <strong>2nd letters</strong>, then the <strong>3rd letters</strong>, and continue until a differing letter is found.</li>
+              <li><strong>Prefix Rule:</strong> If a shorter word is a complete prefix of a longer word (for example, <code>SICK</code> vs. <code>SICKEN</code>, or <code>PLAN</code> vs. <code>PLANK</code>), the <strong>shorter complete word always comes first</strong> in the dictionary.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 6 (Q.41 – Q.56)</h3>
+          <div id="quiz-r6"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 7: RULE 7 NEW WORD FORMATION (P. 15-19) ================= -->
+      <section class="section-page" id="tab-r7">
+        <h2 class="page-title">Rule 7: New Meaningful Word Formation</h2>
+        <p class="page-subtitle">Pages 15–19 • Anagrams, Letter Picking & Number-Code Word Building + Q.57 to Q.75</p>
+
+        <div class="card">
+          <h3>🧩 Concept Summary & High-Frequency Anagrams Covered in PDF</h3>
+          <div class="grid-3">
+            <div class="rule-box"><strong>E, M, T, U</strong> (5th, 13th, 20th, 21st) &nbsp;⇒&nbsp; <strong>MUTE</strong> (Q.57)</div>
+            <div class="rule-box"><strong>C, K, I, K</strong> &nbsp;⇒&nbsp; <strong>KICK</strong> (1 word, Q.58)</div>
+            <div class="rule-box"><strong>Y, P, R, A</strong> &nbsp;⇒&nbsp; <strong>PRAY</strong> (1 word, Q.59)</div>
+            <div class="rule-box"><strong>A, E, D, N</strong> ⇒ <strong>DEAN</strong> (Q.60) | <strong>T, U, K, S</strong> ⇒ <strong>TUSK</strong> (Q.61)</div>
+            <div class="rule-box"><strong>R, O, W, D, C</strong> &nbsp;⇒&nbsp; <strong>CROWD</strong> (1 word, Q.62)</div>
+            <div class="rule-box"><strong>R, E, S, A, T</strong> &nbsp;⇒&nbsp; <strong>STARE, TEARS, TARES, ASTER</strong> (>3 words, Q.63)</div>
+            <div class="rule-box"><strong>R, F, I, G, E, D</strong> &nbsp;⇒&nbsp; <strong>FRIDGE</strong> (Q.64)</div>
+            <div class="rule-box"><strong>AVSEBORINTO</strong> &nbsp;⇒&nbsp; <strong>OBSERVATION</strong> (Q.65)</div>
+            <div class="rule-box"><strong>C, A, M, E</strong> (from CAMERA) &nbsp;⇒&nbsp; <strong>CAME, ACME, MACE</strong> (3 words, Q.66)</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 7 (Q.57 – Q.75)</h3>
+          <div id="quiz-r7"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 8: RULE 8A RELATIVE POSITION (P. 19-22) ================= -->
+      <section class="section-page" id="tab-r8a">
+        <h2 class="page-title">Rule 8 (Part A): Relative Position Between Two Letters</h2>
+        <p class="page-subtitle">Pages 19–22 • Same Direction (Minus) vs. Opposite Direction (Plus) Shortcut + Q.76 to Q.87</p>
+
+        <div class="card">
+          <h3>🧭 Rule 8 Master Shortcut Table & 4 Cases (Pages 19–21)</h3>
+          <p style="margin-bottom:10px;"><strong>Golden Rule:</strong> Always attach the direction that comes after the word <strong>"FROM"</strong> as your reference end.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Case</th>
+                  <th>Given Starting Position ("FROM")</th>
+                  <th>Move Direction ("TO")</th>
+                  <th>Calculation</th>
+                  <th>Worked Example from PDF</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Case I</strong></td>
+                  <td>From Left</td>
+                  <td>Left</td>
+                  <td><span class="math-pill">Minus (−)</span></td>
+                  <td>4th to Left of 15th from Left ⇒ <span class="math-pill">15L − 4L = 11L = K</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Case II</strong></td>
+                  <td>From Left</td>
+                  <td>Right</td>
+                  <td><span class="math-pill">Plus (+)</span></td>
+                  <td>6th to Right of 14th from Left ⇒ <span class="math-pill">14L + 6R = 20L = T</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Case III</strong></td>
+                  <td>From Right</td>
+                  <td>Right</td>
+                  <td><span class="math-pill">Minus (−)</span></td>
+                  <td>7th to Right of 15th from Right ⇒ <span class="math-pill">15R − 7R = 8R</span> ⇒ <span class="math-pill">27 − 8 = 19L = S</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Case IV</strong></td>
+                  <td>From Right</td>
+                  <td>Left</td>
+                  <td><span class="math-pill">Plus (+)</span></td>
+                  <td>6th to Left of 14th from Right ⇒ <span class="math-pill">14R + 6L = 20R</span> ⇒ <span class="math-pill">27 − 20 = 7L = G</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Rule 8A (Q.76 – Q.87)</h3>
+          <div id="quiz-r8a"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 9: RULE 8B SPECIAL CASES OF HALVES (P. 22-26) ================= -->
+      <section class="section-page" id="tab-r8b">
+        <h2 class="page-title">Rule 8 (Part B): Special Cases of Alphabet Halves (A–M & N–Z)</h2>
+        <p class="page-subtitle">Pages 22–26 • 1st Half Reverse, 2nd Half Reverse, Interchanged Halves + Q.88 to Q.106</p>
+
+        <div class="card">
+          <h3>🔄 5 Special Cases of First Half (A–M) & Second Half (N–Z) (Page 22)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Case</th>
+                  <th>Condition / Modification</th>
+                  <th>1st Half (Positions 1–13)</th>
+                  <th>2nd Half (Positions 14–26)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Standard</strong></td><td>Normal English Alphabet</td><td><code>A B C D E F G H I J K L M</code></td><td><code>N O P Q R S T U V W X Y Z</code></td></tr>
+                <tr><td><strong>Case 1</strong></td><td>1st Half Same + 2nd Half Reverse</td><td><code>A — M</code></td><td><code>Z Y X W V U T S R Q P O N</code></td></tr>
+                <tr><td><strong>Case 2</strong></td><td>1st Half Reverse + 2nd Half Same</td><td><code>M L K J I H G F E D C B A</code></td><td><code>N — Z</code></td></tr>
+                <tr><td><strong>Case 3</strong></td><td>2nd Half Reversed + Halves Interchanged</td><td><code>Z — N</code></td><td><code>A — M</code></td></tr>
+                <tr><td><strong>Case 4</strong></td><td>1st Half Reversed + Halves Interchanged (or Interchange Only: <code>N–Z | A–M</code>)</td><td><code>N — Z</code></td><td><code>M — A</code> (or <code>A — M</code>)</td></tr>
+                <tr><td><strong>Case 5</strong></td><td>Both Halves Interchanged & Both Reversed</td><td><code>Z — N</code></td><td><code>M — A</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Halves Reversal & Interchange (Q.88 – Q.106)</h3>
+          <div id="quiz-r8b"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 10: VOWELS, CONSONANTS & NUMBER DIGITS (P. 27-30) ================= -->
+      <section class="section-page" id="tab-misc1">
+        <h2 class="page-title">Vowels/Consonants Operations & Digit Rearrangement</h2>
+        <p class="page-subtitle">Pages 27–30 • Vowel Indexing, Deletion, Prefix Matching, and Odd/Even Digit Operations + Q.107 to Q.130</p>
+
+        <div class="card">
+          <h3>🎯 Key Patterns in Q.107 – Q.130</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Vowel & Consonant Patterns (Pages 27–29)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>5 Vowels:</strong> <code>A, E, I, O, U</code> (5th vowel from Right = <strong>A</strong>; 2nd vowel from Right = <strong>O (15th letter)</strong>).</li>
+                <li><strong>Consonant Counting:</strong> Since A(1), E(5), I(9) are vowels, the 8th consonant from the Left is <strong>K (11th letter)</strong>.</li>
+                <li><strong>Alternate Deletion from B (Q.118):</strong> Deleting every 2nd letter starting from B (B, D, F, H...) leaves the 13 odd-positioned letters: <code>A C E G I K M O Q S U W Y</code>.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Number & Digit Operations (Pages 29–30)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Ascending Order:</strong> Smallest digit to Largest digit (1 → 9).</li>
+                <li><strong>Descending Order:</strong> Largest digit to Smallest digit (9 → 1).</li>
+                <li><strong>Odd/Even Digit Operations:</strong> Apply the given rule (such as Odd + 2 / Even − 1) to each digit carefully before checking for repeated digits or differences.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Vowels, Words & Digits (Q.107 – Q.130)</h3>
+          <div id="quiz-misc1"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 11: LETTER SHIFTING & PAIR INTERCHANGE (P. 30-35) ================= -->
+      <section class="section-page" id="tab-misc2">
+        <h2 class="page-title">Vowel/Consonant Shifting (+1 / −1) & Pair Interchange</h2>
+        <p class="page-subtitle">Pages 30–35 • Conditional Letter Substitution, Pairwise Swapping & Multi-Step Tracking + Q.131 to Q.148</p>
+
+        <div class="card">
+          <h3>🏆 Smart Exam Techniques for Q.131 – Q.148</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>1. Vowel/Consonant (+1 / −1) Shifting (Q.131–Q.142)</h4>
+              <p>If a question only asks for the number of letters in the English alphabet between two specific positions (e.g., 3rd from left and 1st from right), <strong>only transform those two target letters</strong> instead of the entire word to save time.</p>
+            </div>
+            <div class="rule-box">
+              <h4>2. Pairwise & Mirror Interchange (Q.143–Q.148)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Adjacent Pairs (Q.143, Q.144):</strong> Swap (1 ↔ 2), (3 ↔ 4), (5 ↔ 6), (7 ↔ 8), (9 ↔ 10).</li>
+                <li><strong>Half-Split Swap (Q.145 DISTRIBUTE):</strong> Swap (1 ↔ 6), (2 ↔ 7), (3 ↔ 8), (4 ↔ 9), (5 ↔ 10).</li>
+                <li><strong>Ends-Inward Swap (Q.146 DISTURBANCE):</strong> Swapping (1 ↔ 11), (2 ↔ 10)... simply reverses the entire word!</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📝 Practice Quiz: Letter Shifting & Interchange (Q.131 – Q.148)</h3>
+          <div id="quiz-misc2"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // ==================== COMPLETE 148 QUESTIONS DATABASE (ENGLISH ONLY) ====================
+
+    const qR1 = [
+      { id: 1, meta: "Q.1 • SSC CPO T1 12 Dec 2025 S1 (Page 2)", q: "Which of the following is the first element in the indexing system for the set {A, B, C, D, E}?", opts: ["(a) E", "(b) A", "(c) B", "(d) C"], ans: 1, exp: "Indexing system = Alphabetical Order (A → B → C → D → E). 1st element = A." },
+      { id: 2, meta: "Q.2 • SSC CGL T1 25 Sep 2025 S3 (Page 2)", q: "In the word 'PHYSICS', what is the alphabetical index (A=1 to Z=26) of the 2nd letter from the right?", opts: ["(a) 3", "(b) 19", "(c) 9", "(d) 25"], ans: 0, exp: "In 'PHYSICS', the 2nd letter from the right is C. Alphabetical position of C = 3." },
+      { id: 3, meta: "Q.3 • SSC CGL T1 22 Sep 2025 S2 (Page 2)", q: "Which group has letters with a position sum = 29?", opts: ["(a) P, Q, R", "(b) C, D, Y", "(c) A, B, Z", "(d) M, N, O"], ans: 2, exp: "A(1) + B(2) + Z(26) = 29. (P+O+R = 49; C+D+Y = 3+4+25 = 32; M+N+O = 13+14+15 = 42)." },
+      { id: 4, meta: "Q.4 • SSC SP13 30 July 2025 S1 (Page 2–3)", q: "In the English alphabet, find the position of S from the right.", opts: ["(a) 8", "(b) 5", "(c) 4", "(d) 9"], ans: 0, exp: "S = 19th from Left. Formula: Total + 1 = Left + Right ⇒ 27 = 19 + R ⇒ R = 8th from Right." },
+      { id: 5, meta: "Q.5 • SSC SP13 30 July 2025 S1 (Page 3)", q: "In the English alphabet, which letter is 10th from the right?", opts: ["(a) P", "(b) Q", "(c) R", "(d) S"], ans: 1, exp: "Formula: Total + 1 = Left + Right ⇒ 27 = L + 10 ⇒ L = 17th from Left = Q." }
+    ];
+
+    const qR2 = [
+      { id: 6, meta: "Q.6 • SSC SP13 30 July 2025 S1 (Page 3)", q: "Using the reverse code (Z=1 to A=26), what is the sum of the reverse positions of the first and last letters of 'KNOWLEDGE'?", opts: ["(a) 25", "(b) 30", "(c) 38", "(d) 32"], ans: 2, exp: "First letter K(11) → Reverse Position = 27 − 11 = 16.\nLast letter E(5) → Reverse Position = 27 − 5 = 22.\nSum = 16 + 22 = 38." },
+      { id: 7, meta: "Q.7 • SSC CGL T1 17 Sep 2025 S3 (Page 3)", q: "If each letter is coded as its position in reverse (Z=1, Y=2, ... A=26), what is ROAD?", opts: ["(a) 10, 12, 25, 23", "(b) 9, 12, 25, 23", "(c) 9, 13, 25, 23", "(d) 9, 12, 26, 23"], ans: 3, exp: "Reverse Position = 27 − Alphabetical Position:\nR(18) → 27 − 18 = 9\nO(15) → 27 − 15 = 12\nA(1) → 27 − 1 = 26\nD(4) → 27 − 4 = 23\nCode: 9, 12, 26, 23." },
+      { id: 8, meta: "Q.8 • Concept Drill (Page 3)", q: "In the English alphabet, which of the following is the opposite letter of T?", opts: ["(a) D", "(b) L", "(c) G", "(d) R"], ans: 2, exp: "T = 20 → Opposite Position = 27 − 20 = 7th letter = G." },
+      { id: 9, meta: "Q.9 • Concept Drill (Page 3)", q: "In the English alphabet, which of the following is the opposite letter of the letter which is 5th from the left?", opts: ["(a) V", "(b) W", "(c) E", "(d) U"], ans: 0, exp: "5th letter from Left = E(5). Opposite of E = 27 − 5 = 22nd letter = V." },
+      { id: 10, meta: "Q.10 • Concept Drill (Page 3–4)", q: "Which letter would be opposite to the letter which is 12th from the right end in the English Alphabet?", opts: ["(a) F", "(b) O", "(c) D", "(d) None of these (L)"], ans: 3, exp: "12th from Right = 15th from Left (O). Opposite of O(15) = 27 − 15 = 12th letter = L. Since L is not in options (a)–(c), Correct Answer is (d) None of these." },
+      { id: 11, meta: "Q.11 • SSC CGL T1 29 Sep 2025 S1 (Page 4)", q: "Sentence: 'Reflections are clearer in calm waters.' If each letter is mirrored using alphabetical symmetry (A↔Z, B↔Y...), what is the 2nd letter of the 6th word after mirroring?", opts: ["(a) d", "(b) x", "(c) y", "(d) z"], ans: 3, exp: "6th word = 'waters'. 2nd letter of 'waters' = 'a'. Mirror/Opposite of 'a' = 'z'." }
+    ];
+
+    const qR3 = [
+      { id: 12, meta: "Q.12 • SSC CHSL 15 Nov 2025 S3 (Page 5)", q: "How many letter pairs are there in the word 'DESTRUCT' that have as many letters (in both forward and backward directions) as there are between them in the English alphabetical series?", opts: ["(a) Four", "(b) One", "(c) Two", "(d) Three"], ans: 2, exp: "D(4) E(5) S(19) T(20) R(18) U(21) C(3) T(20).\nPDF Solution key marks (c) Two (highlighting DE and ES/ST in the slide diagram)." },
+      { id: 13, meta: "Q.13 • SSC CHSL 15 Nov 2025 S3 (Page 5)", q: "How many letter pairs are there in the word 'RECREATE' that have as many letters (in both forward and backward directions) as there are between them in the English alphabetical series?", opts: ["(a) One", "(b) Two", "(c) Three", "(d) Four"], ans: 1, exp: "R(18) E(5) C(3) R(18) E(5) A(1) T(20) E(5).\n2 Pairs: CE (3 to 5) and AE (1 to 5 backward)." },
+      { id: 14, meta: "Q.14 • DDA ASO 6 Oct 2023 S4 (Page 5)", q: "How many letter pairs are there in the word 'PORTRAYAL' that have as many letters (in both forward and backward directions) as there are between them in the English alphabetical series?", opts: ["(a) Zero", "(b) Four", "(c) Three", "(d) Two"], ans: 1, exp: "P(16) O(15) R(18) T(20) R(18) A(1) Y(25) A(1) L(12).\n4 Pairs: PR, OR, LR, and OP." },
+      { id: 15, meta: "Q.15 • Concept Question (Page 5)", q: "How many such pairs of letters are there in the word 'SUPERSONIC' each of which has as many letters between them as in the English Alphabet?", opts: ["(a) Five", "(b) Six", "(c) Three", "(d) Four"], ans: 0, exp: "S(19) U(21) P(16) E(5) R(18) S(19) O(15) N(14) I(9) C(3).\n5 Pairs: PR, PS, RS, RU, and NO." },
+      { id: 16, meta: "Q.16 • Forward Direction Only (Page 5–6)", q: "How many such pair(s) of letters are there in the word 'MICROSOFT' which have as many letters between them as in the alphabetical series as we move from left to right?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 0, exp: "M(13) I(9) C(3) R(18) O(15) S(19) O(15) F(6) T(20).\nMoving strictly from Left to Right, no pair has Word Gap = Alphabetical Gap." },
+      { id: 17, meta: "Q.17 • Forward Direction Only (Page 6)", q: "How many such pairs of letters are there in the word 'ADMISSION', each of which has as many letters between them in the word (only in forward direction) as they have between them in the English alphabetical order?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 2, exp: "A(1) D(4) M(13) I(9) S(19) S(19) I(9) O(15) N(14).\nIn Forward direction (Left to Right): DI (4 to 9) and IN (9 to 14) → 2 pairs." },
+      { id: 18, meta: "Q.18 • Same Sequence / Forward (Page 6)", q: "How many such pairs of letters are there in the word 'CORPORATE' each of which has as many letters in the same sequence between them in the word as in the English alphabet?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 3, exp: "C(3) O(15) R(18) P(16) O(15) R(18) A(1) T(20) E(5).\n3 Pairs in forward sequence: PR (16→18), PT (16→20), and RT (18→20)." },
+      { id: 19, meta: "Q.19 • Specific Gap = 2 (Page 6)", q: "How many such pairs of letters are there in the word 'CLEARING' each of which has exactly two letters between them in the word as also in the English alphabet?", opts: ["(a) One", "(b) Two", "(c) Three", "(d) None"], ans: 3, exp: "Pairs with 2 letters between them in 'CLEARING': C–A, L–R, E–I, A–N, R–G. None of these has an alphabetical gap of 2 letters." },
+      { id: 20, meta: "Q.20 • Specific Gap = 3 (Page 6)", q: "How many such pairs of letters are there in the word 'TRANSITION' each of which has exactly three letters between them in the word as also in the English alphabet?", opts: ["(a) One", "(b) Two", "(c) Three", "(d) None"], ans: 0, exp: "In T-R-A-N-S-I-T-I-O-N, between S(19) at pos 5 and O(15) at pos 9, there are 3 letters in the word (I, T, I) and 3 letters in the alphabet (P, Q, R) → 1 Pair (OS)." },
+      { id: 21, meta: "Q.21 • Position Match from Beginning (Page 6)", q: "How many such letters are there in the word 'BACKLASH' each of which is as far away from the beginning of the word as it is from the beginning of the English alphabet?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 2, exp: "Word: B A C K L A S H\nAlpha: A B C D E F G H\nMatches at 3rd position (C) and 8th position (H) → Two (2)." },
+      { id: 22, meta: "Q.22 • Position Match from Beginning (Page 6–7)", q: "How many such letters are there in the word 'EDUCATION' each of which is as far away from the beginning of the word as it is from the beginning of the English alphabet?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 0, exp: "Word: E D U C A T I O N\nAlpha: A B C D E F G H I\nNo letter matches at the same index → None." }
+    ];
+
+    const qR4 = [
+      { id: 23, meta: "Q.23 • SSC CGL T1 23 Sep 2025 S3 (Page 7)", q: "Which letter lies exactly between H and P in the English alphabet?", opts: ["(a) K", "(b) N", "(c) L", "(d) M"], ans: 2, exp: "H = 8L, P = 16L. Middle Position = (8 + 16) / 2 = 12th letter = L." },
+      { id: 24, meta: "Q.24 • SSC SP13 1 Aug 2025 S3 (Page 7–8)", q: "Find the middle letter between the 4th and 16th letters in the English alphabet.", opts: ["(a) J", "(b) K", "(c) I", "(d) L"], ans: 0, exp: "Middle Position = (4 + 16) / 2 = 10th letter = J." },
+      { id: 25, meta: "Q.25 • Concept Question (Page 8)", q: "In the English alphabet, which letter is midway between the third from the left and the sixth from the right end?", opts: ["(a) J", "(b) L", "(c) K", "(d) I"], ans: 1, exp: "3rd from Left = 3L. Convert 6th from Right to Left: L = 27 − 6 = 21L.\nMiddle Position = (3 + 21) / 2 = 12L = L." },
+      { id: 26, meta: "Q.26 • Concept Question (Page 8)", q: "Which letter lies exactly in the middle of the letter which is 9th from the right and the one which is 21st from the right in the English alphabet?", opts: ["(a) O", "(b) L", "(c) M", "(d) P"], ans: 1, exp: "Middle from Right = (9R + 21R) / 2 = 15R.\nConvert 15R to Left: L = 27 − 15 = 12th letter = L." },
+      { id: 27, meta: "Q.27 • Concept Question (Page 8)", q: "Which is the middle letter between D and U?", opts: ["(a) P", "(b) L", "(c) M", "(d) Not possible"], ans: 3, exp: "D = 4, U = 21. Middle Position = (4 + 21) / 2 = 12.5 (Not a whole-number integer → Not possible)." }
+    ];
+
+    const qR5 = [
+      { id: 28, meta: "Q.28 • Alphabetical Order (Page 8)", q: "When all the letters in the word 'DRAWING' are arranged alphabetically from left to right, which letter would be fifth from the right end?", opts: ["(a) G", "(b) I", "(c) W", "(d) N"], ans: 0, exp: "DRAWING → A D G I N R W. Counting from right: W(1), R(2), N(3), I(4), G(5) → G." },
+      { id: 29, meta: "Q.29 • Alphabetical Order (Page 8–9)", q: "When all the letters in the word 'CARETAKER' are arranged alphabetically from left to right, which letter would be third to the right of the letter which is in the middle?", opts: ["(a) R", "(b) K", "(c) T", "(d) E"], ans: 0, exp: "CARETAKER → A A C E E K R R T. Middle (5th) letter = E. 3rd to the right of 5th (8th letter) = R." },
+      { id: 30, meta: "Q.30 • Reverse Alphabetical (Page 9)", q: "When all the letters in the word 'MENTOR' are arranged alphabetically from right to left, which letter would be third from the left end?", opts: ["(a) O", "(b) M", "(c) R", "(d) N"], ans: 0, exp: "MENTOR arranged Right-to-Left (Reverse Z→A): T R O N M E. 3rd from left = O." },
+      { id: 31, meta: "Q.31 • SSC CHSL 2 Aug 2023 S1 (Page 9)", q: "The position of how many letters will remain unchanged if each letter in the word 'AMPLIFY' is arranged in alphabetical order?", opts: ["(a) Three", "(b) Two", "(c) Four", "(d) One"], ans: 0, exp: "Original: A M P L I F Y\nSorted:   A F I L M P Y\nUnchanged letters: A (1st), L (4th), Y (7th) → Three (3)." },
+      { id: 32, meta: "Q.32 • SSC CHSL 01 Jul 2024 S1 (Page 9)", q: "The position of how many letters will remain unchanged if each of the letters in the word 'VIRTUAL' is arranged in English alphabetical order?", opts: ["(a) None", "(b) One", "(c) Three", "(d) More than three"], ans: 1, exp: "Original: V I R T U A L\nSorted:   A I L R T U V\nUnchanged: I (2nd) → One (1)." },
+      { id: 33, meta: "Q.33 • SSC CHSL 2 Aug 2023 S2 (Page 9)", q: "The position of how many letters will remain unchanged if each of the letters in the word 'ANOTHER' is arranged in reversed alphabetical order, i.e., starting from the last letter (Z)?", opts: ["(a) None", "(b) Three", "(c) One", "(d) Two"], ans: 1, exp: "Original: A N O T H E R\nReverse:  T R O N H E A\nUnchanged: O (3rd), H (5th), E (6th) → Three (3)." },
+      { id: 34, meta: "Q.34 • SSC CHSL 01 Jul 2024 S4 (Page 9)", q: "The position of how many letters will CHANGE if each of the letters in the word 'TROUBLEMAKING' is arranged from left to right in alphabetical order?", opts: ["(a) Twelve", "(b) All", "(c) Ten", "(d) Eleven"], ans: 0, exp: "Original (13): T R O U B L E M A K I N G\nSorted (13):   A B E G I K L M N O R T U\nOnly M (8th) remains unchanged, so 13 − 1 = 12 letters CHANGE." },
+      { id: 35, meta: "Q.35 • SSC CHSL 17 Aug 2023 S1 (Page 9–10)", q: "The position of which letter will be exactly at the center of the arrangement if each of the letters in the word 'TOUCHED' is arranged in reversed alphabetical order (starting from Z)?", opts: ["(a) E", "(b) T", "(c) O", "(d) H"], ans: 3, exp: "TOUCHED in Reverse Order: U T O H E D C. Center (4th) letter = H." },
+      { id: 36, meta: "Q.36 • SSC CHSL 2 Aug 2023 S2 (Page 10)", q: "Each of the letters in the word 'JOURNAL' is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is fourth from the left and the one which is second from the right in the new letter-cluster?", opts: ["(a) Six", "(b) Three", "(c) Five", "(d) Four"], ans: 1, exp: "JOURNAL → A J L N O R U.\n4th from Left = N(14), 2nd from Right = R(18).\nLetters between = 18 − 14 − 1 = 3." },
+      { id: 37, meta: "Q.37 • SSC CHSL 02 Jul 2024 S4 (Page 10)", q: "Each of the letters in the word 'FRAMED' is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is second from the left and the one which is second from the right?", opts: ["(a) Nine", "(b) Eight", "(c) Six", "(d) Seven"], ans: 1, exp: "FRAMED → A D E F M R.\n2nd from Left = D(4), 2nd from Right = M(13).\nLetters between = 13 − 4 − 1 = 8." },
+      { id: 38, meta: "Q.38 • SSC CHSL 08 Jul 2024 S3 (Page 10)", q: "Each of the letters in the word 'TRAMPOLINE' is arranged from left to right in alphabetical order. How many letters are there in the English alphabetical series between the alphabet which is fourth from the left and the one which is first from the right?", opts: ["(a) Five", "(b) Four", "(c) Six", "(d) Seven"], ans: 3, exp: "TRAMPOLINE → A E I L M N O P R T.\n4th from Left = L(12), 1st from Right = T(20).\nLetters between = 20 − 12 − 1 = 7." },
+      { id: 39, meta: "Q.39 • SSC CGL T1 15 Sep 2025 S2 (Page 10–11)", q: "Each of the letters in the word 'DEVELOPMENT' is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is third from the left and the one that is fourth from the right?", opts: ["(a) 7", "(b) 9", "(c) 6", "(d) 8"], ans: 1, exp: "DEVELOPMENT → D E E E L M N O P T V.\n3rd from Left = E(5), 4th from Right = O(15).\nLetters between = 15 − 5 − 1 = 9." },
+      { id: 40, meta: "Q.40 • SSC CGL T1 14 Sep 2025 S2 (Page 11)", q: "Each of the letters in the word 'UNIVERSAL' is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is second from the left and the one that is fifth from the right?", opts: ["(a) 7", "(b) 8", "(c) 6", "(d) 9"], ans: 1, exp: "UNIVERSAL → A E I L N R S U V.\n2nd from Left = E(5), 5th from Right = N(14).\nLetters between = 14 − 5 − 1 = 8." }
+    ];
+
+    const qR6 = [
+      { id: 41, meta: "Q.41 • Dictionary Order (Page 11)", q: "Which of the following words will come first in the English dictionary?", opts: ["(a) Plane", "(b) Urban", "(c) Cloud", "(d) Store"], ans: 2, exp: "First letters: C, P, S, U. 'Cloud' starts with C, so it comes first." },
+      { id: 42, meta: "Q.42 • Dictionary Order (Page 11)", q: "If the following four words are arranged in alphabetical order as per dictionary, which word will come at the third place? [Nature, Mutual, Brace, Punctual]", opts: ["(a) Nature", "(b) Brace", "(c) Mutual", "(d) Punctual"], ans: 0, exp: "Order: 1. Brace → 2. Mutual → 3. Nature → 4. Punctual. 3rd word = Nature." },
+      { id: 43, meta: "Q.43 • SSC CGL T1 24 Sep 2025 S2 (Page 11–12)", q: "Which of the following words will come first in the dictionary?", opts: ["(a) apron", "(b) apple", "(c) aptitude", "(d) apply"], ans: 1, exp: "Order: apple → apply → apron → aptitude. 'apple' comes first." },
+      { id: 44, meta: "Q.44 • SSC CGL T1 15 Sep 2025 S2 (Page 12)", q: "Arrange the following words in dictionary order and choose the second word: [gold, gone, golf, good]", opts: ["(a) gold", "(b) gone", "(c) golf", "(d) good"], ans: 2, exp: "Order: 1. gold → 2. golf → 3. gone → 4. good. 2nd word = golf." },
+      { id: 45, meta: "Q.45 • SSC SP13 29 Aug 2025 S2 (Page 12)", q: "After arranging the given words according to dictionary order, which word will come in the third position? [Sickle, Sickly, Sick, Sicken]", opts: ["(a) Sickle", "(b) Sickly", "(c) Sick", "(d) Sicken"], ans: 0, exp: "Order: 1. Sick → 2. Sicken → 3. Sickle → 4. Sickly. 3rd word = Sickle." },
+      { id: 46, meta: "Q.46 • SSC CGL T1 16 Sep 2025 S2 (Page 12)", q: "Which of these words will come last in a dictionary?", opts: ["(a) bench", "(b) beneath", "(c) bend", "(d) bent"], ans: 3, exp: "4th letters after 'ben': c, d, e, t → bench, bend, beneath, bent. Last word = bent." },
+      { id: 47, meta: "Q.47 • SSC SP13 30 July 2025 S1 (Page 12)", q: "After arranging the given words according to dictionary order, which word will come at the first position?", opts: ["(a) Version", "(b) Versus", "(c) Versicolour", "(d) Verse"], ans: 3, exp: "5th letters after 'Vers': e, i, u. 'Verse' (e) comes first." },
+      { id: 48, meta: "Q.48 • SSC CPO 12 Dec 2025 S1 (Page 12–13)", q: "What is the position of the word 'PLANK' when the following words are arranged alphabetically? [PLAN, PLACARD, PLANK, PLAIN, PLANT]", opts: ["(a) 3rd", "(b) 4th", "(c) 2nd", "(d) 5th"], ans: 1, exp: "Order: 1. PLACARD → 2. PLAIN → 3. PLAN → 4. PLANK → 5. PLANT. Position of PLANK = 4th." },
+      { id: 49, meta: "Q.49 • Dictionary Arrangement (Page 13)", q: "Arrange the following words according to the English dictionary: 1. Terrific, 2. Admission, 3. Polite, 4. Twinkle", opts: ["(a) 2, 3, 1, 4", "(b) 2, 4, 3, 1", "(c) 2, 1, 4, 3", "(d) 2, 3, 4, 1"], ans: 0, exp: "Admission (2) → Polite (3) → Terrific (1) → Twinkle (4) ⇒ 2, 3, 1, 4." },
+      { id: 50, meta: "Q.50 • SSC CHSL 21 Nov 2025 S1 (Page 13)", q: "Select the option that represents the correct dictionary order: 1. Wagnor, 2. Wagged, 3. Wabash, 4. Waggon, 5. Wackily", opts: ["(a) 3, 5, 2, 1, 4", "(b) 3, 5, 1, 4, 2", "(c) 3, 2, 1, 4, 5", "(d) 3, 5, 2, 4, 1"], ans: 3, exp: "Wabash (3) → Wackily (5) → Wagged (2) → Waggon (4) → Wagnor (1) ⇒ 3, 5, 2, 4, 1." },
+      { id: 51, meta: "Q.51 • SSC CPO 28 Jun 2024 S3 (Page 13–14)", q: "Select the correct dictionary order: 1. Perplex, 2. Peroration, 3. Perpetrate, 4. Perpetuity, 5. Perpetual", opts: ["(a) 3, 2, 4, 5, 1", "(b) 2, 3, 5, 4, 1", "(c) 1, 2, 4, 3, 5", "(d) 4, 2, 5, 3, 1"], ans: 1, exp: "Peroration (2) → Perpetrate (3) → Perpetual (5) → Perpetuity (4) → Perplex (1) ⇒ 2, 3, 5, 4, 1." },
+      { id: 52, meta: "Q.52 • SSC CHSL 12 Nov 2025 S2 (Page 14)", q: "Select the correct dictionary order: 1. Commercial, 2. Commission, 3. Committee, 4. Communication, 5. Community", opts: ["(a) 1, 2, 3, 4, 5", "(b) 1, 3, 2, 4, 5", "(c) 3, 1, 2, 4, 5", "(d) 1, 2, 4, 3, 5"], ans: 0, exp: "Commercial (1) → Commission (2) → Committee (3) → Communication (4) → Community (5) ⇒ 1, 2, 3, 4, 5." },
+      { id: 53, meta: "Q.53 • SSC CHSL 12 Nov 2025 S3 (Page 14)", q: "Select the correct dictionary order: 1. Archaeology, 2. Archeologist, 3. Archipelago, 4. Architectural, 5. Architecture", opts: ["(a) 1, 2, 3, 4, 5", "(b) 2, 1, 3, 4, 5", "(c) 1, 3, 2, 4, 5", "(d) 3, 1, 2, 4, 5"], ans: 0, exp: "5th letters after 'Arch': a, e, i, i, i → Archaeology (1), Archeologist (2), Archipelago (3), Architectural (4), Architecture (5)." },
+      { id: 54, meta: "Q.54 • SSC CHSL 13 Nov 2025 S3 (Page 14–15)", q: "Select the correct dictionary order (as numbered in solution): 1. Memory, 2. Method, 3. Middle, 4. Modern, 5. Moment, 6. Monday", opts: ["(a) 1, 2, 3, 4, 5, 6", "(b) 1, 3, 2, 4, 5, 6", "(c) 1, 2, 3, 4, 6, 5", "(d) 1, 3, 2, 4, 6, 5"], ans: 0, exp: "Memory → Method → Middle → Modern → Moment → Monday ⇒ 1, 2, 3, 4, 5, 6." },
+      { id: 55, meta: "Q.55 • SSC CPO 27 Jun 2024 S1 (Page 15)", q: "Select the correct dictionary order: [Conflagration(3), Conscience(2), Considerable(4), Consignment(5), Consistence(6), Consequence(1)]", opts: ["(a) 3, 4, 2, 5, 6, 1", "(b) 4, 3, 2, 5, 6, 1", "(c) 3, 2, 4, 5, 6, 1", "(d) 4, 2, 3, 5, 1, 6"], ans: 2, exp: "Conflagration comes first (4th letter 'f'), followed by Conscience ('Consc'). Only option (c) 3, 2, 4, 5, 6, 1 starts with Conflagration and Conscience." },
+      { id: 56, meta: "Q.56 • SSC DP HCM JAN 2026 (Page 15)", q: "Choose the group of words that is in the correct dictionary order:", opts: ["(a) 4: LIBRARY, LIBRATION, LIGAMENT, LICENCE", "(b) 3: LIBRARY, LIBRATION, LICENCE, LIGAMENT", "(c) 1: LICENCE, LIBRARY, LIBRATION, LIGAMENT", "(d) 2: LIBRARY, LICENCE, LIGAMENT, LIBRATION"], ans: 1, exp: "Group 3: LIBRARY → LIBRATION → LICENCE → LIGAMENT is in exact alphabetical order." }
+    ];
+
+    const qR7 = [
+      { id: 57, meta: "Q.57 • Word Formation (Page 15–16)", q: "If you pick up the 5th, 13th, 20th and 21st letters from your left in the alphabet and form a meaningful word, what is the first letter of that word?", opts: ["(a) M", "(b) E", "(c) No word can be formed", "(d) More than one word"], ans: 0, exp: "5th = E, 13th = M, 20th = T, 21st = U. Meaningful word = MUTE → 1st letter = M." },
+      { id: 58, meta: "Q.58 • SSC CHSL 01 Jul 2024 S3 (Page 16)", q: "How many meaningful English words can be formed with letters CKIK, using each letter only once in each word?", opts: ["(a) 1", "(b) 4", "(c) 2", "(d) 3"], ans: 0, exp: "From C, K, I, K, only 1 meaningful word can be formed: KICK." },
+      { id: 59, meta: "Q.59 • SSC CHSL T2 18 Nov 2024 (Page 16)", q: "How many meaningful English words can be formed from Y, P, R and A, using each letter mandatorily but only once in each word?", opts: ["(a) None", "(b) One", "(c) Two", "(d) More than two"], ans: 1, exp: "Meaningful word formed = PRAY (1 word as per PDF solution)." },
+      { id: 60, meta: "Q.60 • SSC CHSL T2 18 Nov 2024 (Page 16)", q: "How many meaningful four-letter English words can be formed using A, E, D and N using each letter only once?", opts: ["(a) 3", "(b) 1", "(c) 0", "(d) 2"], ans: 1, exp: "Meaningful word formed = DEAN (1 word as per PDF answer key)." },
+      { id: 61, meta: "Q.61 • SSC CHSL T2 2 Nov 2023 (Page 16)", q: "How many meaningful four-letter English words can be formed using T, U, K and S using each letter only once?", opts: ["(a) Two", "(b) None", "(c) One", "(d) More than two"], ans: 2, exp: "Meaningful word formed = TUSK (1 word)." },
+      { id: 62, meta: "Q.62 • SSC CHSL T2 18 Nov 2024 (Page 16)", q: "How many meaningful English words can be formed from R, O, W, D and C, using each letter mandatorily once?", opts: ["(a) More than two", "(b) None", "(c) One", "(d) Two"], ans: 2, exp: "Meaningful word formed = CROWD (1 word)." },
+      { id: 63, meta: "Q.63 • SSC SP XIII 28 July 2025 S3 (Page 16)", q: "The word 'RESAT' is given. Determine how many meaningful English words can be formed using all the letters of the word.", opts: ["(a) One", "(b) Two", "(c) Three", "(d) More than three"], ans: 3, exp: "Words formed: 1) STARE, 2) TEARS, 3) TARES, 4) ASTER → More than three." },
+      { id: 64, meta: "Q.64 • SSC CGL T2 21 Jan 2025 (Page 16–17)", q: "How many six-lettered meaningful words can be formed using all these letters (RFIGED) only once?", opts: ["(a) Three", "(b) Two", "(c) One", "(d) Four"], ans: 2, exp: "Meaningful word formed = FRIDGE (1 word)." },
+      { id: 65, meta: "Q.65 • SSC CGL T1 12 Sep 2025 S3 (Page 17)", q: "The letters 'AVSEBORINTO' when arranged form a meaningful word. What is the position of letter R from the left?", opts: ["(a) 7", "(b) 6", "(c) 5", "(d) 8"], ans: 2, exp: "Word = OBSERVATION → O(1) B(2) S(3) E(4) R(5). Position of R from left = 5." },
+      { id: 66, meta: "Q.66 • SSC CGL T1 15 Sep 2025 S1 (Page 17)", q: "How many meaningful four-letter English words can be formed using the 1st, 2nd, 3rd, and 4th letters of 'CAMERA'?", opts: ["(a) One", "(b) Four", "(c) Two", "(d) Three"], ans: 3, exp: "Letters: C, A, M, E → 1) CAME, 2) ACME, 3) MACE → Three (3) words." },
+      { id: 67, meta: "Q.67 • SSC CGL T1 13 Sep 2025 S3 (Page 17)", q: "How many meaningful four-letter English words can be formed using the 1st, 2nd, 3rd, and 5th letters of 'SCHOOL'?", opts: ["(a) 1", "(b) 2", "(c) 3", "(d) 4"], ans: 0, exp: "Selected letters: S, C, H, O → COSH (1 meaningful word)." },
+      { id: 68, meta: "Q.68 • SSC CGL T2 18 Jan 2025 (Page 17)", q: "How many meaningful English words can be formed using the 1st, 3rd, 6th and 7th letters of 'RECOGNIZE'?", opts: ["(a) None", "(b) Two", "(c) Three", "(d) One"], ans: 0, exp: "Selected letters: R, C, N, I → No meaningful word can be formed (None)." },
+      { id: 69, meta: "Q.69 • SSC CHSL T2 10 Jan 2024 (Page 17–18)", q: "How many meaningful four-letter English words can be formed using the 2nd, 3rd, 5th and 7th letters of 'TOURIST'?", opts: ["(a) None", "(b) Two", "(c) One", "(d) More than two"], ans: 0, exp: "Selected letters: O, U, I, T → No meaningful word can be formed (None)." },
+      { id: 70, meta: "Q.70 • SSC CGL T2 2 Mar 2022 (Page 18)", q: "Select the arrangement of numbers that forms a meaningful word: E=1, Z=2, L=3, P=4, U=5, Z=6", opts: ["(a) 4, 5, 6, 2, 3, 1", "(b) 4, 5, 1, 6, 2, 3", "(c) 1, 5, 3, 4, 2, 6", "(d) 6, 1, 4, 3, 5, 2"], ans: 0, exp: "Word = PUZZLE → P(4) U(5) Z(6) Z(2) L(3) E(1) ⇒ 4, 5, 6, 2, 3, 1." },
+      { id: 71, meta: "Q.71 • SSC CGL T2 3 Mar 2022 (Page 18)", q: "Select the arrangement of numbers that forms a meaningful word: E=1, N=2, T=3, S=4, T=5, D=6, U=7", opts: ["(a) 4, 3, 7, 6, 1, 2, 5", "(b) 2, 1, 4, 3, 6, 7, 5", "(c) 4, 3, 7, 1, 6, 5, 2", "(d) 2, 1, 4, 6, 3, 5, 7"], ans: 0, exp: "Word = STUDENT → S(4) T(3) U(7) D(6) E(1) N(2) T(5) ⇒ 4, 3, 7, 6, 1, 2, 5." },
+      { id: 72, meta: "Q.72 • SSC CGL T1 26 Sep 2025 S3 (Page 18)", q: "Rearrange 'AEGORST' (A=1, E=2, G=3, O=4, R=5, S=6, T=7) into a meaningful word:", opts: ["(a) 5 4 1 2 3 6 7", "(b) 3 2 4 5 6 7 1", "(c) 6 7 4 5 1 3 2", "(d) 5 2 6 7 4 1 3"], ans: 2, exp: "Word = STORAGE → S(6) T(7) O(4) R(5) A(1) G(3) E(2) ⇒ 6, 7, 4, 5, 1, 3, 2." },
+      { id: 73, meta: "Q.73 • SSC CGL T2 6 Mar 2022 (Page 18)", q: "Select the combination of numbers to form a meaningful word: L=1, P=2, C=3, E=4, I=5, N=6", opts: ["(a) 6, 5, 3, 4, 1, 2", "(b) 2, 4, 6, 3, 1, 5", "(c) 3, 4, 1, 5, 2, 6", "(d) 2, 4, 6, 3, 5, 1"], ans: 3, exp: "Word = PENCIL → P(2) E(4) N(6) C(3) I(5) L(1) ⇒ 2, 4, 6, 3, 5, 1." },
+      { id: 74, meta: "Q.74 • SSC CPO T1 10/12/25 S1 (Page 18–19)", q: "Given R=1, E=2, S=3, T=4, A=5, U=6, R=7, A=8, N=9, T=10 ('RESTAURANT'). Which combination does NOT form a meaningful word?", opts: ["(a) 9, 5, 4, 6, 7, 2", "(b) 7, 2, 4, 6, 1, 9", "(c) 9, 8, 7, 1, 5, 4, 2, 3", "(d) 6, 10, 7, 2, 5"], ans: 3, exp: "(a) NATURE, (b) RETURN, (c) NARRATES are meaningful. (d) 6, 10, 7, 2, 5 = UTREA (Not meaningful)." },
+      { id: 75, meta: "Q.75 • SSC CGL T1 26 Sep 2025 S2 (Page 19)", q: "Select the combination of numbers to form a meaningful word: R=5, O=4, I=3, C=2, D=1", opts: ["(a) 2, 4, 5, 3, 3, 1, 4, 5", "(b) 2, 4, 5, 5, 3, 1, 4, 5", "(c) 2, 5, 5, 3, 1, 4, 5, 4", "(d) 2, 4, 4, 5, 3, 1, 3, 5"], ans: 1, exp: "Word = CORRIDOR → C(2) O(4) R(5) R(5) I(3) D(1) O(4) R(5) ⇒ 2, 4, 5, 5, 3, 1, 4, 5." }
+    ];
+
+    const qR8A = [
+      { id: 76, meta: "Q.76 • Case I: Left − Left (Page 19)", q: "In the alphabet series, which letter is fifth to the left of seventeenth from the left end?", opts: ["(a) V", "(b) D", "(c) G", "(d) L"], ans: 3, exp: "17L − 5L = 12th from Left = L." },
+      { id: 77, meta: "Q.77 • Case II: Left + Right (Page 20)", q: "In the English alphabet, which letter is 8th to the right of 16th from the left end?", opts: ["(a) D", "(b) X", "(c) V", "(d) H"], ans: 1, exp: "16L + 8R = 24th from Left = X." },
+      { id: 78, meta: "Q.78 • Case III: Right − Right (Page 20)", q: "In the alphabet series, which letter is ninth to the right of seventeenth from the right end?", opts: ["(a) R", "(b) D", "(c) H", "(d) S"], ans: 3, exp: "17R − 9R = 8th from Right. Convert to Left: 27 − 8 = 19th from Left = S." },
+      { id: 79, meta: "Q.79 • Case IV: Right + Left (Page 21)", q: "In the alphabet series, which letter would be ninth to the left of fifteenth from the right?", opts: ["(a) C", "(b) F", "(c) B", "(d) X"], ans: 0, exp: "15R + 9L = 24th from Right. Convert to Left: 27 − 24 = 3rd from Left = C." },
+      { id: 80, meta: "Q.80 • SSC CPO T1 09 Dec 2025 S2 (Page 21)", q: "Which letter is 7th to the left of P in the English alphabet?", opts: ["(a) H", "(b) I", "(c) K", "(d) J"], ans: 1, exp: "P = 16L. 16L − 7L = 9th from Left = I." },
+      { id: 81, meta: "Q.81 • SSC SP13 T1 1 Aug 2025 S3 (Page 21)", q: "Find the letter that comes 5th to the left of R in the English alphabet.", opts: ["(a) M", "(b) N", "(c) V", "(d) T"], ans: 0, exp: "R = 18L. 18L − 5L = 13th from Left = M." },
+      { id: 82, meta: "Q.82 • Multi-Step Relative Pos. (Page 21)", q: "In the English alphabet, which letter would be thirteenth to the right of the letter which is fifth to the left of letter L?", opts: ["(a) R", "(b) U", "(c) S", "(d) T"], ans: 3, exp: "L = 12L. 5th to left of L = 12 − 5 = 7L (G). 13th to right of G = 7 + 13 = 20L = T." },
+      { id: 83, meta: "Q.83 • Multi-Step Relative Pos. (Page 21)", q: "In the English alphabet, which letter is second to the right of the letter which is ninth letter to the right of G?", opts: ["(a) J", "(b) S", "(c) R", "(d) Q"], ans: 2, exp: "G = 7L. 7 + 9 = 16L (P). 2nd to right of P = 16 + 2 = 18L = R." },
+      { id: 84, meta: "Q.84 • Multi-Step Relative Pos. (Page 21)", q: "In the English alphabet, which letter is to the immediate right of the letter which is sixth letter to the right of O?", opts: ["(a) W", "(b) V", "(c) S", "(d) U"], ans: 1, exp: "O = 15L. 15 + 6 = 21L (U). Immediate right of U = 21 + 1 = 22L = V." },
+      { id: 85, meta: "Q.85 • SSC CPO T1 10 Dec 2025 S1 (Page 21–22)", q: "In the word 'SOLUTION', which letter is 3rd to the left of the 6th letter from the left?", opts: ["(a) L", "(b) O", "(c) T", "(d) U"], ans: 0, exp: "6L − 3L = 3rd letter from left in 'SOLUTION' = L." },
+      { id: 86, meta: "Q.86 • Word Alphabetical + Relative (Page 22)", q: "If the word 'EXAMINATION' is written alphabetically, then which is the third letter to the left of fifth from left?", opts: ["(a) N", "(b) O", "(c) A", "(d) M"], ans: 2, exp: "5L − 3L = 2nd letter from left. Sorted: A A E I I M N N O T X → 2nd letter = A." },
+      { id: 87, meta: "Q.87 • Word Alphabetical + Relative (Page 22)", q: "If the word 'ELECTRICITY' is written alphabetically, then which is the second letter to the right of third letter from left?", opts: ["(a) I", "(b) C", "(c) T", "(d) Y"], ans: 0, exp: "3L + 2R = 5th letter from left. Sorted: C C E E I I L R T T Y → 5th letter = I." }
+    ];
+
+    const qR8B = [
+      { id: 88, meta: "Q.88 • 1st Half Reversed (Page 22)", q: "If the first half of the English alphabet is written in the reverse order, then which letter would be 5th to the right of 10th letter from the left?", opts: ["(a) N", "(b) H", "(c) L", "(d) O"], ans: 3, exp: "10L + 5R = 15th from Left. Since 15 > 13, the 2nd half (N–Z) is unchanged → 15th letter = O." },
+      { id: 89, meta: "Q.89 • 1st Half Reversed (Page 22–23)", q: "If the first half of the English alphabet is written in the reverse order, then which letter would be 5th to the left of 12th letter from the left?", opts: ["(a) H", "(b) G", "(c) K", "(d) Q"], ans: 1, exp: "12L − 5L = 7th from Left in (M L K J I H G F E D C B A) → 7th letter is G." },
+      { id: 90, meta: "Q.90 • 2nd Half Reversed (Page 23)", q: "If the second half of the English alphabet is reversed and the first half remains unchanged, then which letter would be 7th to the right of 15th letter from the left end?", opts: ["(a) W", "(b) R", "(c) Q", "(d) V"], ans: 1, exp: "15L + 7R = 22nd from Left. Arrangement: A–M | Z Y X W V U T S R Q P O N. 22nd letter (9th in Z→N) = R." },
+      { id: 91, meta: "Q.91 • 2nd Half Reversed (Page 23)", q: "If the second half of the English alphabet is reversed and the first half remains unchanged, then which letter would be 5th to the left of 13th letter from the left end?", opts: ["(a) H", "(b) R", "(c) T", "(d) V"], ans: 0, exp: "13L − 5L = 8th from Left. Since 1st half (A–M) is unchanged, 8th letter = H." },
+      { id: 92, meta: "Q.92 • 2nd Half Reversed (Page 23)", q: "If the second half of the English alphabet is reversed and the first half remains unchanged, then which letter would be 10th to the right of 8th letter from the left end?", opts: ["(a) Z", "(b) N", "(c) S", "(d) V"], ans: 3, exp: "8L + 10R = 18th from Left. In A–M | Z Y X W V..., 18th letter (5th from Z) = V." },
+      { id: 93, meta: "Q.93 • Both Halves Interchanged (Page 23)", q: "If the first half and the second half of the English alphabet are interchanged, then which letter would be 10th to the right of 8th letter from the left end?", opts: ["(a) H", "(b) F", "(c) R", "(d) E"], ans: 3, exp: "8L + 10R = 18th from Left. Arrangement: N–Z (13 letters) | A B C D E... → 18 − 13 = 5th letter in A–M = E." },
+      { id: 94, meta: "Q.94 • Both Halves Interchanged (Page 23–24)", q: "If the first half and the second half of the English alphabet are interchanged, then which letter would be 9th to the left of 8th letter from the right end?", opts: ["(a) X", "(b) T", "(c) W", "(d) M"], ans: 2, exp: "8R + 9L = 17th from Right ⇒ 27 − 17 = 10th from Left. In N O P Q R S T U V W X Y Z | A–M, 10th letter = W." },
+      { id: 95, meta: "Q.95 • Both Halves Interchanged (Page 24)", q: "If the first half and the second half of the English alphabet are interchanged, then which letter would be 10th to the left of 15th letter from the right end?", opts: ["(a) R", "(b) P", "(c) S", "(d) O"], ans: 3, exp: "15R + 10L = 25th from Right ⇒ 27 − 25 = 2nd from Left. In N O P..., 2nd letter = O." },
+      { id: 96, meta: "Q.96 • Both Halves Interchanged (Page 24)", q: "If the first half and the second half of the English alphabet are interchanged, then which letter would be 8th to the right of 18th letter from the right end?", opts: ["(a) B", "(b) D", "(c) H", "(d) L"], ans: 1, exp: "18R − 8R = 10th from Right ⇒ 27 − 10 = 17th from Left. In N–Z (13) | A B C D..., 17th letter = D." },
+      { id: 97, meta: "Q.97 • 1st Half Reversed + Interchanged (Page 24)", q: "If the first half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 6th to the right of 17th letter from the left end?", opts: ["(a) L", "(b) J", "(c) D", "(d) F"], ans: 2, exp: "Arrangement: N–Z | M L K J I H G F E D C B A. Position: 17L + 6R = 23rd from Left → 10th in M→A = D." },
+      { id: 98, meta: "Q.98 • 1st Half Reversed + Interchanged (Page 24–25)", q: "If the first half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 6th to the right of 13th letter from the right end?", opts: ["(a) G", "(b) J", "(c) F", "(d) P"], ans: 0, exp: "13R − 6R = 7th from Right ⇒ 27 − 7 = 20th from Left. In N–Z (13) | M L K J I H G..., 20th letter = G." },
+      { id: 99, meta: "Q.99 • 1st Half Reversed + Interchanged (Page 25)", q: "If the first half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 8th to the left of 12th letter from the right end?", opts: ["(a) S", "(b) R", "(c) P", "(d) T"], ans: 3, exp: "12R + 8L = 20th from Right ⇒ 27 − 20 = 7th from Left. In N O P Q R S T..., 7th letter = T." },
+      { id: 100, meta: "Q.100 • 1st Half Reversed + Interchanged (Page 25)", q: "If the first half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 8th to the left of 18th letter from the left end?", opts: ["(a) V", "(b) T", "(c) W", "(d) X"], ans: 2, exp: "18L − 8L = 10th from Left. In N O P Q R S T U V W..., 10th letter = W." },
+      { id: 101, meta: "Q.101 • 2nd Half Reversed + Interchanged (Page 25)", q: "If the second half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 8th to the right of 13th letter from the left end?", opts: ["(a) L", "(b) C", "(c) F", "(d) H"], ans: 3, exp: "Arrangement: Z–N (13) | A–M. Position: 13L + 8R = 21st from Left → 21 − 13 = 8th in A–M = H." },
+      { id: 102, meta: "Q.102 • 2nd Half Reversed + Interchanged (Page 25)", q: "If the second half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 8th to the left of 13th letter from the left end?", opts: ["(a) U", "(b) S", "(c) V", "(d) H"], ans: 2, exp: "13L − 8L = 5th from Left. In Z Y X W V..., 5th letter = V." },
+      { id: 103, meta: "Q.103 • 2nd Half Reversed + Interchanged (Page 26)", q: "If the second half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 7th to the left of 14th letter from the right end?", opts: ["(a) U", "(b) S", "(c) X", "(d) T"], ans: 0, exp: "14R + 7L = 21st from Right ⇒ 27 − 21 = 6th from Left. In Z Y X W V U..., 6th letter = U." },
+      { id: 104, meta: "Q.104 • 2nd Half Reversed + Interchanged (Page 26)", q: "If the second half of the English alphabet is reversed and then first half and second half are interchanged, which letter would be 7th to the right of 12th letter from the right end?", opts: ["(a) K", "(b) L", "(c) S", "(d) I"], ans: 3, exp: "12R − 7R = 5th from Right ⇒ 27 − 5 = 22nd from Left. In Z–N (13) | A–M, 22 − 13 = 9th letter = I." },
+      { id: 105, meta: "Q.105 • Interchanged & Both Reversed (Page 26)", q: "If the first half and the second half of the English alphabet are interchanged and then reversed, which letter would be 10th to the left of 7th letter from the right end?", opts: ["(a) P", "(b) J", "(c) Q", "(d) L"], ans: 2, exp: "Arrangement: Z–N | M–A. Position: 7R + 10L = 17th from Right ⇒ 27 − 17 = 10th from Left. In Z Y X W V U T S R Q..., 10th letter = Q." },
+      { id: 106, meta: "Q.106 • Interchanged & Both Reversed (Page 26)", q: "If the first half and the second half of the English alphabet are interchanged and then reversed, which letter would be 10th to the left of 20th letter from the left end?", opts: ["(a) Q", "(b) J", "(c) P", "(d) M"], ans: 0, exp: "20L − 10L = 10th from Left in Z–N | M–A → 10th letter = Q." }
+    ];
+
+    const qMisc1 = [
+      { id: 107, meta: "Q.107 • SSC CGL T1 25 Sep 2025 S3 (Page 27)", q: "What is the 5th vowel from the right in the alphabet?", opts: ["(a) A", "(b) E", "(c) I", "(d) U"], ans: 0, exp: "Vowels: A, E, I, O, U. Counting from Right (U=1, O=2, I=3, E=4, A=5) → 5th vowel = A." },
+      { id: 108, meta: "Q.108 • SSC CGL T1 25 Sep 2025 S3 (Page 27)", q: "In the word 'FUNDAMENTAL', if we assign even numbers to vowels (A=2, E=4, I=6, O=8, U=10), what is the sum of all vowel values?", opts: ["(a) 24", "(b) 26", "(c) 18", "(d) 30"], ans: 2, exp: "Vowels in FUNDAMENTAL: U(10) + A(2) + E(4) + A(2) = 18." },
+      { id: 109, meta: "Q.109 • SSC CGL T1 17 Sep 2025 S2 (Page 27)", q: "Find the letter which is between the 1st and 4th letters of the word 'CUTE' as per the English alphabet series:", opts: ["(a) F", "(b) D", "(c) V", "(d) Z"], ans: 1, exp: "1st letter = C, 4th letter = E. Between C and E in the English alphabet is D." },
+      { id: 110, meta: "Q.110 • SSC CGL T1 29 Sep 2025 S1 (Page 27)", q: "If in the word 'ELECTRIC', all vowels are removed, which letter will be the 3rd from the left?", opts: ["(a) L", "(b) C", "(c) T", "(d) R"], ans: 2, exp: "Removing vowels (E, E, I) leaves: L C T R C → 3rd from left = T." },
+      { id: 111, meta: "Q.111 • SSC CPO T1 11 Dec 2025 S1 (Page 27)", q: "In the word 'EDUCATION', if vowels are removed, what is the 3rd remaining letter from the left?", opts: ["(a) C", "(b) T", "(c) D", "(d) N"], ans: 1, exp: "Removing vowels (E, U, A, I, O) leaves: D C T N → 3rd remaining letter = T." },
+      { id: 112, meta: "Q.112 • SSC CGL T1 16 Sep 2025 S3 (Page 27)", q: "'Italy is a beautiful village and China is a big building.' What is the total number of words that begin with a consonant?", opts: ["(a) 4", "(b) 5", "(c) 6", "(d) 7"], ans: 1, exp: "Words starting with a consonant: beautiful, village, China, big, building = 5 words." },
+      { id: 113, meta: "Q.113 • SSC CGL T1 12 Sep 2025 S2 (Page 27–28)", q: "Count the consonants between the 2nd and 7th letter of 'TECHNOLOGY'.", opts: ["(a) 3", "(b) 4", "(c) 5", "(d) 6"], ans: 0, exp: "2nd = E, 7th = L. Letters between them: C, H, N, O → Consonants are C, H, N = 3." },
+      { id: 114, meta: "Q.114 • SSC CGL T1 13 Sep 2025 S1 (Page 28)", q: "How many letters in 'SIGNATURE' are between the first vowel and the last consonant?", opts: ["(a) 3", "(b) 4", "(c) 5", "(d) 6"], ans: 2, exp: "First vowel = I (2nd pos), Last consonant = R (8th pos). Letters between = 8 − 2 − 1 = 5 (G, N, A, T, U)." },
+      { id: 115, meta: "Q.115 • Vowel Relative Pos. (Page 28)", q: "In the English alphabet, which letter is 7th to the left of the second vowel from the right end?", opts: ["(a) H", "(b) L", "(c) K", "(d) M"], ans: 0, exp: "2nd vowel from Right = O (15th from Left). 15L − 7L = 8th letter = H." },
+      { id: 116, meta: "Q.116 • Consonant Relative Pos. (Page 28)", q: "In the English alphabet, which letter is 9th to the right of the 8th consonant from the left end?", opts: ["(a) P", "(b) R", "(c) T", "(d) Q"], ans: 2, exp: "8th consonant from Left = K (11th letter). 11L + 9R = 20th letter = T." },
+      { id: 117, meta: "Q.117 • 1st Half Reverse Gap (Page 28)", q: "If only the first half of the English alphabet is written in the reverse order, how many letters will be there between S and L?", opts: ["(a) 14", "(b) 17", "(c) 16", "(d) 15"], ans: 2, exp: "In M L K J I H G F E D C B A | N O P Q R S..., L is at 2nd pos and S is at 19th pos. Letters between = 19 − 2 − 1 = 16." },
+      { id: 118, meta: "Q.118 • Alternate Letter Deletion (Page 28)", q: "In the English alphabet, if every alternative letter starting from B and onwards is deleted, then which letter will be 5th to the right of 4th from the left?", opts: ["(a) M", "(b) Q", "(c) L", "(d) S"], ans: 1, exp: "Remaining series: A C E G I K M O Q S U W Y. Position = 4L + 5R = 9th letter in remaining series = Q." },
+      { id: 119, meta: "Q.119 • SSC CGL T1 17 Sep 2025 S1 (Page 28)", q: "Rearrange the letters 'REPSA' to form the name of a weapon:", opts: ["(a) parse", "(b) spear", "(c) spare", "(d) asper"], ans: 1, exp: "SPEAR is the name of a weapon." },
+      { id: 120, meta: "Q.120 • SSC CGL T1 18 Sep 2025 S1 (Page 29)", q: "Rearrange the letters of the word 'LOVE' to form the name of an animal:", opts: ["(a) VOLE", "(b) VEOL", "(c) VLEO", "(d) OLEV"], ans: 0, exp: "VOLE (a small field rodent) is the name of an animal." },
+      { id: 121, meta: "Q.121 • SSC CGL T1 21 Sep 2025 S2 (Page 29)", q: "Which of the following prefixes can complete all three words meaningfully? _ABLE, _LIKELY, _BALANCE", opts: ["(a) IN", "(b) RE", "(c) UN", "(d) DE"], ans: 2, exp: "UN + ABLE = UNABLE; UN + LIKELY = UNLIKELY; UN + BALANCE = UNBALANCE." },
+      { id: 122, meta: "Q.122 • SSC CGL T1 15 Sep 2025 S1 (Page 29)", q: "Sentence: 'The quantum universe expands silently into infinity.' If the 3rd letter of every 2nd word is written in order, what word is formed?", opts: ["(a) tufe", "(b) tule", "(c) apf", "(d) apt"], ans: 3, exp: "2nd word = qu[a]ntum (a), 4th word = ex[p]ands (p), 6th word = in[t]o (t) → apt." },
+      { id: 123, meta: "Q.123 • SSC CHSL T1 15/11/25 S1 (Page 29)", q: "When all the letters of 'IMPLEMENTATION' are arranged in reverse alphabetical order from left to right, which letter is 6th to the right of 13th letter from the right end?", opts: ["(a) A", "(b) N", "(c) M", "(d) L"], ans: 2, exp: "Reverse sorted (14 letters): T T P O N N M M L I I E E A. 13R − 6R = 7th from Right (or 8th from Left) = M." },
+      { id: 124, meta: "Q.124 • SSC CHSL T2 18 Nov 2024 (Page 29)", q: "If 2 is added to each odd digit and 1 is subtracted from each even digit in the number '23584617', how many digits will appear more than once in the new number?", opts: ["(a) Three", "(b) None", "(c) One", "(d) Two"], ans: 0, exp: "23584617 → 1 5 7 7 3 5 3 9. Digits appearing more than once: 3, 5, and 7 → Three (3)." },
+      { id: 125, meta: "Q.125 • Digit Ascending Order (Page 29)", q: "Each of the digits in the number '2843715' is arranged in ascending order from left to right. The position(s) of how many digits will remain unchanged?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 0, exp: "Original:  2 8 4 3 7 1 5\nAscending: 1 2 3 4 5 7 8\nUnchanged digits = 0 (None)." },
+      { id: 126, meta: "Q.126 • Digit Descending Order (Page 29–30)", q: "Each of the digits in the number '7395426' is arranged in descending order from left to right. The position(s) of how many digits will remain unchanged?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 2, exp: "Original:   7 3 9 5 4 2 6\nDescending: 9 7 6 5 4 3 2\nUnchanged: 5 (4th) and 4 (5th) → Two (2)." },
+      { id: 127, meta: "Q.127 • Digit Ascending Match (Page 30)", q: "In the number '3512648', how many digits will be as far away from the beginning of the number if arranged in ascending order as they are within the number?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 1, exp: "Original:  3 5 1 2 6 4 8\nAscending: 1 2 3 4 5 6 8\nUnchanged: 8 (7th) → One (1)." },
+      { id: 128, meta: "Q.128 • Odd/Even Digit Operation (Page 30)", q: "If 2 is added to each odd digit and 1 is subtracted from each even digit in '53372645', how many digits will appear more than once in the new number?", opts: ["(a) 5", "(b) 2", "(c) 4", "(d) 3"], ans: 1, exp: "53372645 → 7 5 5 9 1 5 3 7. Digits appearing more than once: 5 and 7 → 2 digits." },
+      { id: 129, meta: "Q.129 • Odd/Even Digit Difference (Page 30)", q: "1 is subtracted from each odd digit and 1 is added to each even digit in '4873529'. What is the difference between the 2nd digit from the left and the 3rd digit from the right in the new number?", opts: ["(a) 4", "(b) 3", "(c) 5", "(d) 2"], ans: 2, exp: "4873529 → 5 9 6 2 4 3 8. 2nd from Left = 9, 3rd from Right = 4. Difference = 9 − 4 = 5." },
+      { id: 130, meta: "Q.130 • Digit Modification (Page 30)", q: "In the number '42367823475' (even digits +1, odd digits −1 as per solution diagram), which digit will be second to the left of the fifth digit from the right end?", opts: ["(a) 6", "(b) 4", "(c) 8", "(d) 7"], ans: 0, exp: "5R + 2L = 7th digit from Right (or 5th from Left = 7). After odd −1 / even +1: 7 − 1 = 6." }
+    ];
+
+    const qMisc2 = [
+      { id: 131, meta: "Q.131 • Vowel +1, Consonant −1 (Page 30–31)", q: "In 'LOGICAL', each vowel is changed to the next letter and each consonant to the previous letter. How many alphabets are there between the 3rd from left and 1st from right in the new word?", opts: ["(a) Four", "(b) Three", "(c) Two", "(d) More than four"], ans: 0, exp: "LOGICAL → K P F J B B K. 3rd from Left = F(6), 1st from Right = K(11). Letters between = 11 − 6 − 1 = 4." },
+      { id: 132, meta: "Q.132 • SSC CGL T1 18 Jul 2023 S1 (Page 31)", q: "In 'CAPSULE', each vowel is changed to the previous letter and each consonant to the following letter. How many alphabets are there between the 3rd from left and 3rd from right in the new word?", opts: ["(a) Three", "(b) Four", "(c) One", "(d) Two"], ans: 3, exp: "CAPSULE → D Z Q T T M D. 3rd from Left = Q(17), 3rd from Right = T(20). Letters between = 20 − 17 − 1 = 2." },
+      { id: 133, meta: "Q.133 • SSC CGL T1 20 Jul 2023 S2 (Page 31)", q: "In 'FRETSAW', each vowel is changed to the following letter and each consonant to the previous letter. How many alphabets are there between the 3rd from right and 1st from right?", opts: ["(a) Three", "(b) Four", "(c) One", "(d) Two"], ans: 0, exp: "FRETSAW → E Q F S R B V. 3rd from Right = R(18), 1st from Right = V(22). Letters between = 22 − 18 − 1 = 3." },
+      { id: 134, meta: "Q.134 • SSC CGL T1 20 Jul 2023 S4 (Page 31)", q: "In 'PURITAN', each vowel is changed to the previous letter and each consonant to the following letter. How many alphabets are there between the 1st from left and 6th from right?", opts: ["(a) One", "(b) Two", "(c) Three", "(d) Four"], ans: 1, exp: "PURITAN → Q T S H U Z O. 1st from Left = Q(17), 6th from Right (2nd from Left) = T(20). Letters between = 20 − 17 − 1 = 2." },
+      { id: 135, meta: "Q.135 • Vowel Count After Shift (Page 32)", q: "Each vowel of 'ADJECTIVE' is substituted with the next letter and each consonant with the preceding letter. How many vowels are present in the new arrangement?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 2, exp: "ADJECTIVE → B C I F B S J U F. Vowels present = I and U → Two (2)." },
+      { id: 136, meta: "Q.136 • Shift by 2 Places (Page 32)", q: "In 'SUPPLY', each consonant is replaced by the letter preceding it by two places (−2), and each vowel by the letter succeeding it by two places (+2). How many vowels are there in the newly formed word?", opts: ["(a) None", "(b) Three", "(c) Two", "(d) One"], ans: 0, exp: "SUPPLY → Q W N N J W. Vowels = 0 (None)." },
+      { id: 137, meta: "Q.137 • Vowel Count After Shift (Page 32)", q: "In 'PRACTICE', each vowel is changed to the preceding letter (−1) and each consonant to the following letter (+1). How many vowels will be there in the new word?", opts: ["(a) One", "(b) Three", "(c) Two", "(d) None"], ans: 0, exp: "PRACTICE → Q S Z D U H D D. Only 'U' is a vowel → One (1)." },
+      { id: 138, meta: "Q.138 • Vowel Count After Shift (Page 32)", q: "In 'DOORSTEP', all vowels are replaced with the immediate next letter (+1) and all consonants with the immediate previous letter (−1). How many vowels are there in the new word?", opts: ["(a) Two", "(b) None", "(c) Three", "(d) One"], ans: 3, exp: "DOORSTEP → C P P Q R S F O. Only 'O' is a vowel → One (1)." },
+      { id: 139, meta: "Q.139 • Vowels First, Then Consonants (Page 32–33)", q: "If all letters of 'INTROSPECTION' are arranged such that all vowels come first in alphabetical order followed by all consonants in alphabetical order, the position of how many letters remains unchanged?", opts: ["(a) None", "(b) One", "(c) Two", "(d) Three"], ans: 1, exp: "Original: I N T R O S P E C T I O N\nNew:      E I I O O C N N P R S T T\nOnly O (5th position) remains unchanged → One (1)." },
+      { id: 140, meta: "Q.140 • Consonants +2, Next Vowel (Page 33)", q: "In 'ADVERTENT', all consonants are changed to the second succeeding letter (+2) and all vowels to their next nearest vowel. How many letters in the alphabet series are between the 3rd and 7th letters of the new word?", opts: ["(a) 13", "(b) 10", "(c) 14", "(d) 8"], ans: 2, exp: "3rd letter V(22) + 2 = X(24). 7th letter E → next vowel = I(9). Letters between X(24) and I(9) = 24 − 9 − 1 = 14." },
+      { id: 141, meta: "Q.141 • Similar Letters Comparison (Page 33)", q: "In 'FRAGMENT', all vowels are changed to the next letter (+1) and all consonants to the previous letter (−1). How many letters of the new word are similar to the letters of the old word?", opts: ["(a) Two", "(b) Three", "(c) Four", "(d) One"], ans: 1, exp: "Old: F R A G M E N T\nNew: E Q B F L F M S\nLetters common in both words: E, F, M → Three (3)." },
+      { id: 142, meta: "Q.142 • Positional Shift (Page 33)", q: "In 'LINGUIST', the 1st, 3rd and 6th letters are changed to preceding letters (−1) and 4th and 7th letters to succeeding letters (+1). How many letters in the alphabet are between the 3rd and 5th letters of the new word?", opts: ["(a) 5", "(b) 6", "(c) 7", "(d) 8"], ans: 2, exp: "3rd letter N(14) − 1 = M(13). 5th letter U(21) remains U(21). Letters between M(13) and U(21) = 21 − 13 − 1 = 7." },
+      { id: 143, meta: "Q.143 • Pairwise Interchange (Page 33–34)", q: "If the 1st & 2nd, 3rd & 4th, 5th & 6th letters (and so on) in 'MISFORTUNE' are interchanged, which letter would be the 8th letter counting to your left (from right)?", opts: ["(a) O", "(b) F", "(c) S", "(d) T"], ans: 1, exp: "MISFORTUNE → I M F S R O U T E N. 8th from right (3rd from left) = F." },
+      { id: 144, meta: "Q.144 • Pairwise Interchange (Page 34)", q: "If the 1st & 2nd, 3rd & 4th, 5th & 6th letters (and so on) in 'DEPRESSION' are interchanged, which of the following would be the seventh letter from the right?", opts: ["(a) R", "(b) O", "(c) S", "(d) P"], ans: 3, exp: "DEPRESSION → E D R P S E I S N O. 7th from right (4th from left) = P." },
+      { id: 145, meta: "Q.145 • Half-Split Interchange (Page 34)", q: "If the 1st & 6th, 2nd & 7th, 3rd & 8th letters (and so on) in 'DISTRIBUTE' are interchanged, which letter will be fifth from the left?", opts: ["(a) E", "(b) I", "(c) S", "(d) T"], ans: 0, exp: "DISTRIBUTE (swapping 1↔6, 2↔7, 3↔8, 4↔9, 5↔10 gives B U T E E / I B U T E D I S T R). 5th letter from left = E." },
+      { id: 146, meta: "Q.146 • Ends-Inward Interchange (Page 34)", q: "In 'DISTURBANCE', if the 1st letter is interchanged with the last (11th), 2nd with 10th, and so on, which letter comes just after 'T' in the newly formed word?", opts: ["(a) I", "(b) U", "(c) S", "(d) T"], ans: 2, exp: "Reversing DISTURBANCE gives: E C N A B R U T S I D. The letter immediately after T is S." },
+      { id: 147, meta: "Q.147 • SSC Steno 11 Dec 2024 S3 (Page 34)", q: "Four words are EQUATION, MATHS, WINTER and RAIN. If every fourth letter from the left is changed to the previous letter (−1), how many words thus formed will have NO letter appearing more than once?", opts: ["(a) Four", "(b) One", "(c) Three", "(d) Two"], ans: 0, exp: "EQUATION → EQUZTION, MATHS → MATGS, WINTER → WINSER, RAIN → RAIM. None of the 4 words has any repeated letter → Four (4)." },
+      { id: 148, meta: "Q.148 • SSC DP HCM JAN 2026 (Page 34–35)", q: "In the word 'SUBSTITUTION', what is the third letter to the right of the 2nd letter to the left of the 4th letter from the right?", opts: ["(a) U", "(b) T", "(c) I", "(d) O"], ans: 2, exp: "In S-U-B-S-T-I-T-U-T-I-O-N: 4th from right = T (9th pos). 2nd to left of T = T (7th pos). 3rd to right of 7th pos = 10th pos = I." }
+    ];
+
+    // ==================== RENDER & INTERACTIVE ENGINE ====================
+
+    let score = 0;
+
+    function buildAlphabetBoard() {
+      const board = document.getElementById('alpha-board');
+      let html = '';
+      for (let i = 1; i <= 26; i++) {
+        const ch = String.fromCharCode(64 + i);
+        const opp = String.fromCharCode(64 + (27 - i));
+        html += `
+          <div class="alpha-cell" title="Left: ${i} | Right: ${27 - i} | Opposite: ${opp}">
+            <div class="alpha-letter">${ch}</div>
+            <div class="alpha-pos">L:${i} • R:${27 - i}</div>
+            <div class="alpha-pos" style="color:var(--secondary);">Opp: ${opp}</div>
+          </div>
+        `;
+      }
+      board.innerHTML = html;
+    }
+
+    function runPairFinder() {
+      const raw = document.getElementById('pair-input').value.toUpperCase().replace(/[^A-Z]/g, '');
+      const out = document.getElementById('pair-output');
+      if (!raw) {
+        out.textContent = 'Please enter a valid English word.';
+        return;
+      }
+      const fwd = [], bwd = [];
+      for (let i = 0; i < raw.length; i++) {
+        for (let j = i + 1; j < raw.length; j++) {
+          const v1 = raw.charCodeAt(i) - 64;
+          const v2 = raw.charCodeAt(j) - 64;
+          if (v2 - v1 === j - i) fwd.push(`${raw[i]}${raw[j]} (${v1}→${v2})`);
+          if (v1 - v2 === j - i) bwd.push(`${raw[j]}${raw[i]} (${v1}→${v2})`);
+        }
+      }
+      const total = fwd.length + bwd.length;
+      out.innerHTML = `
+        <div>Word: <strong>${raw.split('').map(c => `${c}(${c.charCodeAt(0)-64})`).join(' – ')}</strong></div>
+        <div style="margin-top:6px;color:var(--success);">Total Pairs Found: ${total}</div>
+        <div>• Forward (${fwd.length}): ${fwd.length ? fwd.join(', ') : 'None'}</div>
+        <div>• Backward (${bwd.length}): ${bwd.length ? bwd.join(', ') : 'None'}</div>
+      `;
+    }
+
+    function renderQuizList(containerId, list) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = list.map((item) => {
+        const uid = `qcard-${item.id}`;
+        const optsHtml = item.opts.map((opt, idx) => `
+          <button class="quiz-opt" onclick="checkAns('${uid}', ${idx}, ${item.ans}, this)">${opt}</button>
+        `).join('');
+        return `
+          <div class="quiz-card" id="${uid}">
+            <div class="quiz-meta"><span>${item.meta}</span><span>Question #${item.id}</span></div>
+            <div class="quiz-question">Q.${item.id}. ${item.q}</div>
+            <div class="quiz-options">${optsHtml}</div>
+            <div class="quiz-exp" id="${uid}-exp"><strong>Solution:</strong> ${item.exp}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.checkAns = function (cardId, selectedIdx, correctIdx, btnEl) {
+      const card = document.getElementById(cardId);
+      const btns = card.querySelectorAll('.quiz-opt');
+      const exp = document.getElementById(`${cardId}-exp`);
+
+      btns.forEach((b, i) => {
+        b.disabled = true;
+        if (i === correctIdx) b.classList.add('correct');
+      });
+
+      if (selectedIdx === correctIdx) {
+        score++;
+        document.getElementById('score-val').textContent = score;
+      } else {
+        btnEl.classList.add('wrong');
+      }
+      exp.classList.add('visible');
+    };
+
+    window.showTab = function (tabId, btnEl) {
+      document.querySelectorAll('.section-page').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('global-search').value = '';
+      filterCurrentTab('');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.toggleAllSolutions = function (show) {
+      document.querySelectorAll('.quiz-exp').forEach(el => {
+        el.classList.toggle('visible', show);
+      });
+    };
+
+    window.toggleTheme = function () {
+      const root = document.documentElement;
+      if (root.getAttribute('data-theme') === 'dark') {
+        root.removeAttribute('data-theme');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+      }
+    };
+
+    window.filterCurrentTab = function (query) {
+      const q = query.toLowerCase().trim();
+      const activeSec = document.querySelector('.section-page.active');
+      if (!activeSec) return;
+      activeSec.querySelectorAll('.quiz-card').forEach(card => {
+        if (!q) {
+          card.style.display = '';
+          return;
+        }
+        card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    };
+
+    window.resetAllQuizzes = function () {
+      score = 0;
+      document.getElementById('score-val').textContent = '0';
+      initAll();
+    };
+
+    function initAll() {
+      buildAlphabetBoard();
+      runPairFinder();
+      renderQuizList('quiz-r1', qR1);
+      renderQuizList('quiz-r2', qR2);
+      renderQuizList('quiz-r3', qR3);
+      renderQuizList('quiz-r4', qR4);
+      renderQuizList('quiz-r5', qR5);
+      renderQuizList('quiz-r6', qR6);
+      renderQuizList('quiz-r7', qR7);
+      renderQuizList('quiz-r8a', qR8A);
+      renderQuizList('quiz-r8b', qR8B);
+      renderQuizList('quiz-misc1', qMisc1);
+      renderQuizList('quiz-misc2', qMisc2);
+    }
+
+    document.addEventListener('DOMContentLoaded', initAll);
+  </script>
+</body>
+</html>

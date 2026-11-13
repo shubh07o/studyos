@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anglo-Eastern Exam — Maths & Quant 52 PYQs Interactive Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #070d19;
+      --bg-card: #10192b;
+      --bg-card-hover: #17233b;
+      --bg-glass: rgba(16, 25, 43, 0.85);
+      --border: #233354;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --math-badge: rgba(56, 189, 248, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      background-image: 
+        radial-gradient(circle at 12% 15%, rgba(56, 189, 248, 0.08), transparent 32%),
+        radial-gradient(circle at 88% 82%, rgba(99, 102, 241, 0.08), transparent 35%);
+      color: var(--text-primary);
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Native HTML Clean Math Styling */
+    .m-expr {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-weight: 600;
+      color: #e0f2fe;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      padding: 1px 7px;
+      border-radius: 6px;
+      margin: 1px 2px;
+      font-size: 1.04em;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 4px;
+      font-size: 0.9em;
+      line-height: 1.1;
+    }
+    .frac-num {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 4px 2px;
+    }
+    .frac-den {
+      padding: 2px 4px 0;
+    }
+    .sqrt {
+      display: inline-flex;
+      align-items: center;
+    }
+    .sqrt-rad {
+      font-size: 1.15em;
+      margin-right: 1px;
+    }
+    .sqrt-body {
+      border-top: 1.5px solid currentColor;
+      padding-top: 1px;
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+    }
+
+    .brand-text h1 {
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stat-pill span.val {
+      color: var(--accent-blue);
+      font-weight: 800;
+    }
+
+    /* Navigation Tabs */
+    .nav-container {
+      max-width: 1280px;
+      margin: 22px auto 0;
+      padding: 0 20px;
+    }
+
+    .mode-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 14px;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mode-btn:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.2));
+      color: #fff;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sec-pill {
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .sec-pill.active {
+      background: var(--accent-blue);
+      color: #070d19;
+      border-color: var(--accent-blue);
+      font-weight: 700;
+    }
+
+    .action-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    /* Main Content Container */
+    main {
+      max-width: 1280px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+    }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    /* Quiz Layout */
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .q-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .q-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-num {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .badge-sec {
+      background: rgba(99, 102, 241, 0.15);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .badge-topic {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .bookmark-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .bookmark-btn.saved {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: var(--accent-amber);
+      color: #fbbf24;
+    }
+
+    .q-title {
+      font-size: 1.18rem;
+      font-weight: 600;
+      margin-bottom: 22px;
+      line-height: 1.75;
+      color: #f8fafc;
+    }
+
+    .options-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.18s ease;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: var(--accent-blue);
+      transform: translateX(3px);
+    }
+
+    .opt-key {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.88rem;
+      flex-shrink: 0;
+    }
+
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent-emerald);
+      color: #ecfdf5;
+    }
+
+    .opt-btn.correct .opt-key {
+      background: var(--accent-emerald);
+      color: #052e16;
+    }
+
+    .opt-btn.wrong {
+      background: rgba(244, 63, 94, 0.15);
+      border-color: var(--accent-rose);
+      color: #fff1f2;
+    }
+
+    .opt-btn.wrong .opt-key {
+      background: var(--accent-rose);
+      color: #fff;
+    }
+
+    /* Explanation Box */
+    .exp-box {
+      margin-top: 22px;
+      background: rgba(15, 23, 42, 0.9);
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .exp-box.show {
+      display: block;
+    }
+
+    .exp-header {
+      font-weight: 700;
+      color: #34d399;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .exp-steps {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .exp-steps li {
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .exp-steps li::before {
+      content: "▸";
+      position: absolute;
+      left: 4px;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    .quiz-footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .nav-btn {
+      background: var(--accent-blue);
+      color: #070d19;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav-btn.secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Palette Sidebar */
+    .palette-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: sticky;
+      top: 90px;
+    }
+
+    .palette-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 7px;
+      max-height: 360px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .p-num {
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .p-num.current {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
+      color: #fff;
+    }
+
+    .p-num.correct {
+      background: rgba(16, 185, 129, 0.22);
+      border-color: var(--accent-emerald);
+      color: #6ee7b7;
+    }
+
+    .p-num.wrong {
+      background: rgba(244, 63, 94, 0.22);
+      border-color: var(--accent-rose);
+      color: #fda4af;
+    }
+
+    /* Flashcards Mode */
+    .flashcard-wrap {
+      max-width: 760px;
+      margin: 20px auto;
+      perspective: 1200px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 360px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent-emerald);
+      background: linear-gradient(160deg, #10192b, #0c2427);
+    }
+
+    /* Formula & Shortcut Cheat Sheet */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .formula-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .formula-card h3 {
+      font-size: 1rem;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .formula-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* Study Bank */
+    .search-bar {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .bank-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .bank-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .bank-ans {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--accent-emerald);
+      border-radius: 8px;
+    }
+
+    .hide-answers .bank-ans {
+      filter: blur(7px);
+      user-select: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .hide-answers .bank-ans:hover {
+      filter: blur(0);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">∑</div>
+      <div class="brand-text">
+        <h1>Anglo-Eastern Sponsorship — Maths & Quant Hub</h1>
+        <p>Complete 52 PYQs • Anand Sir (27 Core Maths) + Gautam Pandey Sir (25 Quant)</p>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-pill">Attempted: <span class="val" id="stat-attempted">0/52</span></div>
+      <div class="stat-pill">Correct: <span class="val" id="stat-correct" style="color:#10b981;">0</span></div>
+      <div class="stat-pill">Accuracy: <span class="val" id="stat-acc">0%</span></div>
+      <div class="stat-pill">Saved: <span class="val" id="stat-saved" style="color:#f59e0b;">0</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="nav-container">
+  <div class="mode-tabs">
+    <button class="mode-btn active" onclick="switchView('quiz', this)">🎯 Interactive Quiz (52)</button>
+    <button class="mode-btn" onclick="switchView('flashcards', this)">⚡ 3D Revision Flashcards</button>
+    <button class="mode-btn" onclick="switchView('formulas', this)">📐 Formula & Tricks Sheet</button>
+    <button class="mode-btn" onclick="switchView('bank', this)">📚 Complete Study Bank (All 52)</button>
+  </div>
+
+  <div class="filter-bar" id="quiz-filters">
+    <div class="section-pills">
+      <button class="sec-pill active" onclick="setSectionFilter('ALL', this)">All Questions (52)</button>
+      <button class="sec-pill" onclick="setSectionFilter('MATH', this)">Core Mathematics (Q1–Q27)</button>
+      <button class="sec-pill" onclick="setSectionFilter('QUANT', this)">Quantitative Aptitude (Q28–Q52)</button>
+      <button class="sec-pill" onclick="setSectionFilter('SAVED', this)">★ Bookmarked</button>
+      <button class="sec-pill" onclick="setSectionFilter('WRONG', this)">⚠️ Mistakes Only</button>
+    </div>
+    <div class="action-controls">
+      <button class="ctrl-btn" onclick="RevealCurrentAnswer()">👁️ Show Solution</button>
+      <button class="ctrl-btn" onclick="resetProgress()">🔄 Reset Score</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- 1. QUIZ VIEW -->
+  <section id="view-quiz" class="view-section active">
+    <div class="quiz-grid">
+      <div class="q-card" id="quiz-box">
+        <div class="q-meta">
+          <div class="q-badges">
+            <span class="badge badge-num" id="q-num-badge">Q1 / 52</span>
+            <span class="badge badge-sec" id="q-sec-badge">Core Maths</span>
+            <span class="badge badge-topic" id="q-topic-badge">Trigonometry</span>
+          </div>
+          <button class="bookmark-btn" id="bm-btn" onclick="toggleBookmark()">☆ Save Question</button>
+        </div>
+
+        <div class="q-title" id="q-text"></div>
+        <div class="options-list" id="q-options"></div>
+
+        <div class="exp-box" id="q-exp-box">
+          <div class="exp-header">✅ Step-by-Step Solution & Trick</div>
+          <ul class="exp-steps" id="q-exp-list"></ul>
+        </div>
+
+        <div class="quiz-footer">
+          <button class="nav-btn secondary" id="prev-btn" onclick="moveQuestion(-1)">← Previous</button>
+          <span style="font-size:0.84rem; color:var(--text-secondary);">Keyboard: <b>1-4</b> to Answer, <b>←/→</b> to Navigate</span>
+          <button class="nav-btn" id="next-btn" onclick="moveQuestion(1)">Next Question →</button>
+        </div>
+      </div>
+
+      <aside class="palette-card">
+        <div class="palette-title">
+          <span>Question Navigator</span>
+          <span id="palette-count" style="font-size:0.78rem; color:var(--text-secondary);">52 Qs</span>
+        </div>
+        <div class="palette-grid" id="palette-grid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. FLASHCARDS VIEW -->
+  <section id="view-flashcards" class="view-section">
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="flashcard-el" onclick="this.classList.toggle('flipped')">
+        <div class="fc-face fc-front">
+          <div>
+            <div class="q-badges" style="margin-bottom:16px;">
+              <span class="badge badge-num" id="fc-num">Card 1 / 52</span>
+              <span class="badge badge-topic" id="fc-topic">Topic</span>
+            </div>
+            <div id="fc-question" style="font-size:1.22rem; font-weight:600; line-height:1.7;"></div>
+          </div>
+          <p style="font-size:0.85rem; color:var(--accent-blue); text-align:center;">🔄 Click card or press Spacebar to flip for Answer & Solution</p>
+        </div>
+        <div class="fc-face fc-back">
+          <div>
+            <div class="badge badge-num" style="margin-bottom:12px; background:rgba(16,185,129,0.2); color:#6ee7b7;">Correct Answer</div>
+            <div id="fc-answer" style="font-size:1.35rem; font-weight:800; color:#34d399; margin-bottom:16px;"></div>
+            <ul class="exp-steps" id="fc-steps"></ul>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-secondary); text-align:center;">Click again to flip back</p>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center; gap:14px; margin-top:22px;">
+        <button class="nav-btn secondary" onclick="moveFlashcard(-1)">← Previous Card</button>
+        <button class="nav-btn" onclick="moveFlashcard(1)">Next Card →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. FORMULAS & SHORTCUTS VIEW -->
+  <section id="view-formulas" class="view-section">
+    <div class="formula-grid">
+      <div class="formula-card">
+        <h3>📐 Trigonometry Golden Identities (Anand Sir)</h3>
+        <ul class="formula-list">
+          <li>• <b>Complementary Rule:</b> यदि <span class="m-expr">B + C = 90°</span>, तो <span class="m-expr">sin B = cos C</span> और <span class="m-expr">tan B · tan C = 1</span></li>
+          <li>• <b>Fundamental Identity:</b> <span class="m-expr">sin<sup>2</sup>θ + cos<sup>2</sup>θ = 1</span> एवं <span class="m-expr">(1 − cos<sup>2</sup>θ) csc<sup>2</sup>θ = 1</span></li>
+          <li>• <b>Range of Sine/Cosine:</b> <span class="m-expr">−1 ≤ sin θ, cos θ ≤ 1</span> (इसलिए <span class="m-expr">sin θ · cos θ = 1</span> असंभव है क्योंकि <span class="m-expr">sin 2θ = 2</span> नहीं हो सकता)।</li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>📏 Coordinate Geometry & Straight Lines</h3>
+        <ul class="formula-list">
+          <li>• <b>Parallel Lines (No Intersection):</b> <span class="m-expr"><span class="frac"><span class="frac-num">a<sub>1</sub></span><span class="frac-den">a<sub>2</sub></span></span> = <span class="frac"><span class="frac-num">b<sub>1</sub></span><span class="frac-den">b<sub>2</sub></span></span> ≠ <span class="frac"><span class="frac-num">c<sub>1</sub></span><span class="frac-den">c<sub>2</sub></span></span></span></li>
+          <li>• <b>Slope-Intercept Form:</b> <span class="m-expr">y = mx + c</span> जहाँ <span class="m-expr">m = tan θ</span></li>
+          <li>• <b>Intercept Form:</b> <span class="m-expr"><span class="frac"><span class="frac-num">x</span><span class="frac-den">a</span></span> + <span class="frac"><span class="frac-num">y</span><span class="frac-den">b</span></span> = 1</span> (Y-अक्ष पर <span class="m-expr">x = 0 ⇒ (0, b)</span>)</li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>📦 Algebra, Polynomials & Mensuration</h3>
+        <ul class="formula-list">
+          <li>• <b>Reciprocal Roots:</b> द्विघात समीकरण <span class="m-expr">ax<sup>2</sup> + bx + c = 0</span> में व्युत्क्रम मूल होने पर <span class="m-expr">c = a</span> (अर्थात् <span class="m-expr">k = 5</span>)।</li>
+          <li>• <b>Cuboid Volume from Adjacent Faces:</b> <span class="m-expr">V = <span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">A<sub>1</sub> · A<sub>2</sub> · A<sub>3</sub></span></span></span></li>
+          <li>• <b>Complex Multiplicative Inverse:</b> <span class="m-expr">(a − bi)<sup>−1</sup> = <span class="frac"><span class="frac-num">a + bi</span><span class="frac-den">a<sup>2</sup> + b<sup>2</sup></span></span></span></li>
+        </ul>
+      </div>
+
+      <div class="formula-card">
+        <h3>⚡ Quantitative Aptitude Shortcuts (Gautam Sir)</h3>
+        <ul class="formula-list">
+          <li>• <b>2-Year CI & SI Difference:</b> <span class="m-expr">Diff = P × (<span class="frac"><span class="frac-num">R</span><span class="frac-den">100</span></span>)<sup>2</sup></span></li>
+          <li>• <b>Boat & Stream:</b> नाव की चाल <span class="m-expr">B = <span class="frac"><span class="frac-num">D + U</span><span class="frac-den">2</span></span></span>, धारा की चाल <span class="m-expr">C = <span class="frac"><span class="frac-num">D − U</span><span class="frac-den">2</span></span></span></li>
+          <li>• <b>Garrison / Provision Rule:</b> <span class="m-expr">M<sub>1</sub> × D<sub>1</sub> = M<sub>2</sub> × D<sub>2</sub></span></li>
+          <li>• <b>HCF & LCM Formula:</b> <span class="m-expr">First No. × Second No. = HCF × LCM</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. COMPLETE STUDY BANK VIEW -->
+  <section id="view-bank" class="view-section">
+    <div style="display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap;">
+      <input type="text" id="bank-search" class="search-bar" style="flex:1; margin-bottom:0;" placeholder="🔍 Search any question, topic, or keyword (e.g., Boat, Cuboid, Trigonometry, CI)..." oninput="renderStudyBank()" />
+      <button class="ctrl-btn" onclick="toggleSelfTestMode(this)">🙈 Hide Answers (Self-Test Mode)</button>
+    </div>
+    <div class="bank-list" id="bank-list"></div>
+  </section>
+</main>
+
+<script>
+// Helper functions for clean HTML mathematical rendering
+const frac = (n, d) => `<span class="frac"><span class="frac-num">${n}</span><span class="frac-den">${d}</span></span>`;
+const sqrt = (x) => `<span class="sqrt"><span class="sqrt-rad">√</span><span class="sqrt-body">${x}</span></span>`;
+const m = (content) => `<span class="m-expr">${content}</span>`;
+
+const QUESTIONS = [
+  // ================= SECTION 1: CORE MATHEMATICS (1 - 27) =================
+  {
+    id: 1, sec: "MATH", topic: "Trigonometry",
+    q: `${m("TRY")} एक समकोण समद्विबाहु त्रिभुज (Right Isosceles Triangle) है जहाँ ${m("∠Y = 90°")} है। ${m("cos T + cos R + cos Y")} का मान ज्ञात कीजिए।`,
+    options: [m(sqrt("2")), m("1"), m(`2${sqrt("2")}`), m(frac("1", sqrt("2")))],
+    ans: 0,
+    steps: [
+      `समकोण समद्विबाहु त्रिभुज में दो भुजाएँ और दो न्यून कोण बराबर होते हैं: ${m("∠T = 45°")}, ${m("∠R = 45°")}, तथा ${m("∠Y = 90°")}।`,
+      `${m("cos T + cos R + cos Y = cos 45° + cos 45° + cos 90°")}`,
+      `${m(`= ${frac("1", sqrt("2"))} + ${frac("1", sqrt("2"))} + 0 = ${frac("2", sqrt("2"))} = ${sqrt("2")}`)}।`
+    ]
+  },
+  {
+    id: 2, sec: "MATH", topic: "Straight Line",
+    q: `रेखा ${m("4x + 2y − 2 = 0")} के साथ कौन सी रेखा कभी प्रतिच्छेद (Never Intersect / Parallel) नहीं करेगी?`,
+    options: [m("−4x − 2y + 3 = 0"), m("2x − y + 5 = 0"), m("x + 2y − 4 = 0"), m("4x − 2y + 3 = 0")],
+    ans: 0,
+    steps: [
+      `दो रेखाएँ कभी प्रतिच्छेद नहीं करतीं जब वे समानांतर (Parallel) हों, अर्थात् ${m(`${frac("a<sub>1</sub>", "a<sub>2</sub>")} = ${frac("b<sub>1</sub>", "b<sub>2</sub>")} ≠ ${frac("c<sub>1</sub>", "c<sub>2</sub>")}`)}।`,
+      `दी गई रेखा ${m("4x + 2y − 2 = 0")} और विकल्प ${m("−4x − 2y + 3 = 0")} में ${m(`${frac("4", "−4")} = ${frac("2", "−2")} = −1`)} है, अतः दोनों समानांतर हैं।`
+    ]
+  },
+  {
+    id: 3, sec: "MATH", topic: "Quadratic Equation",
+    q: `द्विघात समीकरण ${m("x<sup>2</sup> − 7x + 12 = 0")} के मूल (Roots) ज्ञात कीजिए।`,
+    options: [m("x = 3, 4"), m("x = −3, −4"), m("x = 2, 6"), m("x = −3, 4")],
+    ans: 0,
+    steps: [
+      `गुणनखंड (Factorization) करने पर: ${m("x<sup>2</sup> − 4x − 3x + 12 = 0")}`,
+      `${m("x(x − 4) − 3(x − 4) = 0 ⇒ (x − 4)(x − 3) = 0")}`,
+      `अतः मूल ${m("x = 3")} और ${m("x = 4")} हैं।`
+    ]
+  },
+  {
+    id: 4, sec: "MATH", topic: "Trigonometric Range",
+    q: `यदि ${m("sin θ · cos θ = 1")} है, तो ${m("θ")} का मान क्या होगा?`,
+    options: ["संभव नहीं (Not Possible)", m("45°"), m("90°"), m("0°")],
+    ans: 0,
+    steps: [
+      `दोनों तरफ 2 से गुणा करने पर: ${m("2 sin θ cos θ = 2 ⇒ sin(2θ) = 2")}।`,
+      `चूँकि ${m("sin")} फलन का अधिकतम मान ${m("+1")} होता है, इसलिए ${m("sin(2θ) = 2")} संभव नहीं (Not Possible) है।`
+    ]
+  },
+  {
+    id: 5, sec: "MATH", topic: "Exponents Comparison",
+    q: `यदि ${m(`A = ${frac("0.01 × 10<sup>20</sup>", "5")}`)} तथा ${m(`B = ${frac("0.1 × 10<sup>8</sup>", "2")}`)} है, तो ${m("A")} और ${m("B")} में क्या संबंध है?`,
+    options: [m("A > B"), m("B > A"), m("A = B"), m("A = 2B")],
+    ans: 0,
+    steps: [
+      `${m(`A = ${frac("10<sup>−2</sup> × 10<sup>20</sup>", "5")} = ${frac("10<sup>18</sup>", "5")} = 2 × 10<sup>17</sup>`)}।`,
+      `${m(`B = ${frac("10<sup>−1</sup> × 10<sup>8</sup>", "2")} = ${frac("10<sup>7</sup>", "2")} = 5 × 10<sup>6</sup>`)}।`,
+      `अतः स्पष्ट रूप से ${m("A > B")}।`
+    ]
+  },
+  {
+    id: 6, sec: "MATH", topic: "Straight Line",
+    q: `उस रेखा का समीकरण ज्ञात कीजिए जो X-अक्ष से ${m("45°")} का कोण बनाती है तथा जिसका Y-अंतःखंड (Y-intercept) ${m("2")} है।`,
+    options: [m("y = x + 2"), m("y = 2x + 1"), m("y = x − 2"), m("y = −x + 2")],
+    ans: 0,
+    steps: [
+      `रेखा की ढाल (Slope) ${m("m = tan 45° = 1")}।`,
+      `Y-अंतःखंड ${m("c = 2")}।`,
+      `समीकरण ${m("y = mx + c ⇒ y = (1)x + 2 ⇒ y = x + 2")}।`
+    ]
+  },
+  {
+    id: 7, sec: "MATH", topic: "Radical Equation",
+    q: `यदि ${m("(8x + 6)<sup>1/3</sup> = −3")} हो, तो ${m("x")} का मान ज्ञात कीजिए।`,
+    options: [m(`−${frac("33", "8")} (−4.125)`), m(`−${frac("21", "8")}`), m(`${frac("33", "8")}`), m("−3")],
+    ans: 0,
+    steps: [
+      `दोनों पक्षों का घन (Cube) करने पर: ${m("8x + 6 = (−3)<sup>3</sup> = −27")}।`,
+      `${m(`8x = −27 − 6 = −33 ⇒ x = −${frac("33", "8")} = −4.125`)}।`
+    ]
+  },
+  {
+    id: 8, sec: "MATH", topic: "Coordinate Geometry",
+    q: `बिंदुओं ${m("A(−4, 0)")}, ${m("B(4, 0)")} तथा ${m("C(0, 3)")} को मिलाने पर बनने वाला त्रिभुज किस प्रकार का होगा?`,
+    options: ["समद्विबाहु त्रिभुज (Isosceles Triangle)", "समबाहु त्रिभुज (Equilateral Triangle)", "विषमबाहु त्रिभुज (Scalene Triangle)", "संरेखीय बिंदु (Collinear)"],
+    ans: 0,
+    steps: [
+      `दूरी सूत्र (Distance Formula) से: ${m(`AB = ${sqrt("(4 − (−4))<sup>2</sup> + 0")} = 8`)}।`,
+      `${m(`BC = ${sqrt("(0 − 4)<sup>2</sup> + (3 − 0)<sup>2</sup>")} = ${sqrt("16 + 9")} = 5`)} तथा ${m(`AC = ${sqrt("16 + 9")} = 5`)}।`,
+      `चूँकि दो भुजाएँ (${m("BC = AC = 5")}) बराबर हैं, यह एक समद्विबाहु त्रिभुज (Isosceles Triangle) है।`
+    ]
+  },
+  {
+    id: 9, sec: "MATH", topic: "Trigonometry",
+    q: `व्यंजक ${m("1 − 2 sin<sup>2</sup>θ − 2 cos<sup>2</sup>θ")} का मान क्या होगा?`,
+    options: [m("−1"), m("1"), m("0"), m("2")],
+    ans: 0,
+    steps: [
+      `${m("1 − 2(sin<sup>2</sup>θ + cos<sup>2</sup>θ)")}`,
+      `चूँकि ${m("sin<sup>2</sup>θ + cos<sup>2</sup>θ = 1")}, इसलिए ${m("1 − 2(1) = −1")}।`
+    ]
+  },
+  {
+    id: 10, sec: "MATH", topic: "Quadratic Equation",
+    q: `यदि समीकरण ${m("5x<sup>2</sup> + 13x + k = 0")} के मूल (Roots) एक-दूसरे के व्युत्क्रम (Reciprocal) हैं, तो ${m("k")} का मान ज्ञात कीजिए।`,
+    options: [m("k = 5"), m("k = 13"), m("k = 1/5"), m("k = −5")],
+    ans: 0,
+    steps: [
+      `माना मूल ${m("α")} तथा ${m(frac("1", "α"))} हैं।`,
+      `मूलों का गुणनफल ${m(`= ${frac("c", "a")} ⇒ α · ${frac("1", "α")} = ${frac("k", "5")}`)}।`,
+      `${m(`1 = ${frac("k", "5")} ⇒ k = 5`)}।`
+    ]
+  },
+  {
+    id: 11, sec: "MATH", topic: "Algebra",
+    q: `यदि ${m("A = 4b")} और ${m("C = 8b<sup>2</sup>")} हो, तो ${m(frac("C − A", "4b"))} का मान क्या होगा?`,
+    options: [m("2b − 1"), m("2b + 1"), m("4b − 1"), m("2b")],
+    ans: 0,
+    steps: [
+      `मान रखने पर: ${m(`${frac("8b<sup>2</sup> − 4b", "4b")} = ${frac("4b(2b − 1)", "4b")} = 2b − 1`)}।`
+    ]
+  },
+  {
+    id: 12, sec: "MATH", topic: "Trigonometry",
+    q: `${m("ΔABC")} में ${m("∠A = 90°")} है और ${m(`sin B = ${frac("3", "5")}`)} है। ${m("cos C")} का मान ज्ञात कीजिए।`,
+    options: [m(frac("3", "5")), m(frac("4", "5")), m(frac("3", "4")), m(frac("5", "3"))],
+    ans: 0,
+    steps: [
+      `${m("∠A = 90° ⇒ B + C = 90° ⇒ C = 90° − B")}।`,
+      `अतः ${m(`cos C = cos(90° − B) = sin B = ${frac("3", "5")}`)}।`
+    ]
+  },
+  {
+    id: 13, sec: "MATH", topic: "Trigonometry",
+    q: `${m("cot θ − sin(90° − θ) cos(90° − θ)")} का सरलतम मान क्या होगा?`,
+    options: [m("cot θ cos<sup>2</sup>θ"), m("cot θ sin<sup>2</sup>θ"), m("tan θ cos<sup>2</sup>θ"), m("cos<sup>3</sup>θ")],
+    ans: 0,
+    steps: [
+      `${m("sin(90° − θ) = cos θ")} तथा ${m("cos(90° − θ) = sin θ")}।`,
+      `व्यंजक ${m(`= ${frac("cos θ", "sin θ")} − cos θ sin θ = ${frac("cos θ(1 − sin<sup>2</sup>θ)", "sin θ")} = cot θ cos<sup>2</sup>θ`)}।`
+    ]
+  },
+  {
+    id: 14, sec: "MATH", topic: "Trigonometry",
+    q: `यदि ${m("sin θ − cos θ = 0")} (${m("0° ≤ θ ≤ 90°")}), तो ${m("θ")} का मान ज्ञात कीजिए।`,
+    options: [m("45°"), m("30°"), m("60°"), m("90°")],
+    ans: 0,
+    steps: [
+      `${m(`sin θ = cos θ ⇒ ${frac("sin θ", "cos θ")} = 1 ⇒ tan θ = 1`)}।`,
+      `अतः ${m("θ = 45°")}।`
+    ]
+  },
+  {
+    id: 15, sec: "MATH", topic: "Straight Line",
+    q: `रेखा ${m(`${frac("x", "a")} + ${frac("y", "b")} = 1`)} Y-अक्ष को किस बिंदु पर काटती है?`,
+    options: [m("(0, b)"), m("(a, 0)"), m("(0, a)"), m("(b, 0)")],
+    ans: 0,
+    steps: [
+      `Y-अक्ष पर हमेशा ${m("x = 0")} होता है।`,
+      `समीकरण में ${m("x = 0")} रखने पर: ${m(`${frac("0", "a")} + ${frac("y", "b")} = 1 ⇒ y = b`)}, अतः बिंदु ${m("(0, b)")} है।`
+    ]
+  },
+  {
+    id: 16, sec: "MATH", topic: "Functions",
+    q: `यदि ${m("f(x) = x(x − 7)")} हो, तो ${m("f(a − 3)")} का मान ज्ञात कीजिए।`,
+    options: [m("a<sup>2</sup> − 13a + 30"), m("a<sup>2</sup> − 10a + 21"), m("a<sup>2</sup> − 7a + 30"), m("a<sup>2</sup> + 13a + 30")],
+    ans: 0,
+    steps: [
+      `${m("f(a − 3) = (a − 3)[(a − 3) − 7] = (a − 3)(a − 10)")}`,
+      `${m("= a<sup>2</sup> − 10a − 3a + 30 = a<sup>2</sup> − 13a + 30")}।`
+    ]
+  },
+  {
+    id: 17, sec: "MATH", topic: "Mensuration 3D",
+    q: `एक घनाभ (Cuboid) के तीन संलग्न फलकों (Adjacent Faces) के क्षेत्रफल ${m("28 cm<sup>2</sup>")}, ${m("20 cm<sup>2</sup>")} और ${m("35 cm<sup>2</sup>")} हैं। इसका आयतन (Volume) ज्ञात कीजिए।`,
+    options: [m("140 cm<sup>3</sup>"), m("120 cm<sup>3</sup>"), m("160 cm<sup>3</sup>"), m("280 cm<sup>3</sup>")],
+    ans: 0,
+    steps: [
+      `दिया है: ${m("lb = 28, bh = 20, hl = 35")}।`,
+      `${m("l<sup>2</sup>b<sup>2</sup>h<sup>2</sup> = 28 × 20 × 35 = (7×4) × (4×5) × (7×5) = 7<sup>2</sup> × 4<sup>2</sup> × 5<sup>2</sup>")}।`,
+      `आयतन ${m("V = lbh = 7 × 4 × 5 = 140 cm<sup>3</sup>")}।`
+    ]
+  },
+  {
+    id: 18, sec: "MATH", topic: "Composite Functions",
+    q: `यदि ${m("f(x) = x<sup>2</sup> − 10")} और ${m("g(x) = 4x + 3")} हो, तो ${m("f(g(2))")} का मान ज्ञात कीजिए।`,
+    options: [m("111"), m("121"), m("91"), m("105")],
+    ans: 0,
+    steps: [
+      `पहले ${m("g(2)")} निकालें: ${m("g(2) = 4(2) + 3 = 11")}।`,
+      `अब ${m("f(11)")} निकालें: ${m("f(11) = 11<sup>2</sup> − 10 = 121 − 10 = 111")}।`
+    ]
+  },
+  {
+    id: 19, sec: "MATH", topic: "Coordinate Geometry",
+    q: `बिंदु ${m("(x, 0)")} और ${m("(0, 4)")} के बीच की दूरी ${m("5")} यूनिट है। ${m("x")} का मान ज्ञात कीजिए।`,
+    options: [m("x = ±3"), m("x = ±5"), m("x = ±4"), m("x = 9")],
+    ans: 0,
+    steps: [
+      `दूरी सूत्र से: ${m(`${sqrt("(x − 0)<sup>2</sup> + (0 − 4)<sup>2</sup>")} = 5 ⇒ x<sup>2</sup> + 16 = 25`)}।`,
+      `${m("x<sup>2</sup> = 9 ⇒ x = ±3")}।`
+    ]
+  },
+  {
+    id: 20, sec: "MATH", topic: "Mensuration 3D",
+    q: `एक बेलनाकार बर्तन की त्रिज्या ${m("14 cm")} और ऊंचाई ${m("36 cm")} है, जो रेत से भरा है। इस रेत को जमीन पर ${m("27 cm")} ऊंचाई वाले शंकु (Cone) के रूप में फैलाया जाता है। शंकु का आधार क्षेत्रफल (${m("πr'<sup>2</sup>")}) ज्ञात कीजिए।`,
+    options: [m("784π cm<sup>2</sup> (≈ 2464 cm<sup>2</sup>)"), m("576π cm<sup>2</sup>"), m("392π cm<sup>2</sup>"), m("196π cm<sup>2</sup>")],
+    ans: 0,
+    steps: [
+      `बेलन का आयतन = शंकु का आयतन ${m(`⇒ πr<sup>2</sup>h = ${frac("1", "3")} · A<sub>base</sub> · h'`)}।`,
+      `${m(`π × (14)<sup>2</sup> × 36 = ${frac("1", "3")} × A<sub>base</sub> × 27 ⇒ 196π × 36 = 9 × A<sub>base</sub>`)}।`,
+      `${m("A<sub>base</sub> = 196π × 4 = 784π cm<sup>2</sup>")}।`
+    ]
+  },
+  {
+    id: 21, sec: "MATH", topic: "Trigonometry",
+    q: `व्यंजक ${m("(1 + cos θ)(1 − cos θ) csc<sup>2</sup>θ")} का मान क्या होगा?`,
+    options: [m("1"), m("0"), m("sin<sup>2</sup>θ"), m("cos<sup>2</sup>θ")],
+    ans: 0,
+    steps: [
+      `${m("(1 − cos<sup>2</sup>θ) csc<sup>2</sup>θ = sin<sup>2</sup>θ · csc<sup>2</sup>θ = 1")}।`
+    ]
+  },
+  {
+    id: 22, sec: "MATH", topic: "Straight Line",
+    q: `समांतर रेखाओं ${m("x = −2")} और ${m("x = 5")} के बीच की लंबवत दूरी ज्ञात कीजिए।`,
+    options: [m("7 units"), m("3 units"), m("−7 units"), m("10 units")],
+    ans: 0,
+    steps: [
+      `लंबवत दूरी ${m("d = |x<sub>2</sub> − x<sub>1</sub>| = |5 − (−2)| = 7 units")}।`
+    ]
+  },
+  {
+    id: 23, sec: "MATH", topic: "Trigonometry",
+    q: `${m("ΔABC")} में ${m("∠A = 90°")} है। ${m("tan B · tan C")} का मान क्या होगा?`,
+    options: [m("1"), m("0"), m("−1"), m("∞")],
+    ans: 0,
+    steps: [
+      `${m("B + C = 90° ⇒ C = 90° − B ⇒ tan C = cot B")}।`,
+      `अतः ${m("tan B · tan C = tan B · cot B = 1")}।`
+    ]
+  },
+  {
+    id: 24, sec: "MATH", topic: "Functions",
+    q: `यदि ${m("f(x, y) = x<sup>2</sup> + xy − 16y + x")} हो, तो ${m("f(8, 3)")} का मान ज्ञात कीजिए।`,
+    options: [m("48"), m("56"), m("36"), m("64")],
+    ans: 0,
+    steps: [
+      `${m("x = 8")} तथा ${m("y = 3")} रखने पर:`,
+      `${m("f(8, 3) = 8<sup>2</sup> + (8)(3) − 16(3) + 8 = 64 + 24 − 48 + 8 = 48")}।`
+    ]
+  },
+  {
+    id: 25, sec: "MATH", topic: "Algebra",
+    q: `यदि ${m("x = y<sup>2</sup>")} और ${m(`y = ${frac("5", "k")}`)} हो, तो ${m(`k = ${frac("1", "2")}`)} होने पर ${m("x")} का मान ज्ञात कीजिए।`,
+    options: [m("100"), m("25"), m("50"), m("10")],
+    ans: 0,
+    steps: [
+      `${m(`y = ${frac("5", "1/2")} = 10`)}।`,
+      `${m("x = y<sup>2</sup> = 10<sup>2</sup> = 100")}।`
+    ]
+  },
+  {
+    id: 26, sec: "MATH", topic: "Polynomials",
+    q: `यदि बहुपद ${m("P(x) = 3x<sup>3</sup> + 2x<sup>2</sup> + 2x + k")} को ${m("(x + 2)")} से भाग देने पर शेषफल (Remainder) ${m("4")} बचता है, तो ${m("k")} का मान ज्ञात कीजिए।`,
+    options: [m("k = 24"), m("k = 20"), m("k = −24"), m("k = 16")],
+    ans: 0,
+    steps: [
+      `Remainder Theorem से ${m("P(−2) = 4")}।`,
+      `${m("3(−2)<sup>3</sup> + 2(−2)<sup>2</sup> + 2(−2) + k = 4 ⇒ −24 + 8 − 4 + k = 4")}।`,
+      `${m("−20 + k = 4 ⇒ k = 24")}।`
+    ]
+  },
+  {
+    id: 27, sec: "MATH", topic: "Complex Numbers",
+    q: `सम्मिश्र संख्या (Complex Number) ${m("5 − i")} का गुणात्मक प्रतिलोम (Multiplicative Inverse) ज्ञात कीजिए।`,
+    options: [m(frac("5 + i", "26")), m(frac("5 − i", "26")), m(frac("5 + i", "24")), m(frac("−5 + i", "26"))],
+    ans: 0,
+    steps: [
+      `गुणात्मक प्रतिलोम ${m(`= ${frac("1", "5 − i")} × ${frac("5 + i", "5 + i")}`)}।`,
+      `${m(`= ${frac("5 + i", "25 − i<sup>2</sup>")} = ${frac("5 + i", "25 − (−1)")} = ${frac("5 + i", "26")}`)}।`
+    ]
+  },
+
+  // ================= SECTION 2: QUANTITATIVE APTITUDE (28 - 52) =================
+  {
+    id: 28, sec: "QUANT", topic: "Percentage & Fractions",
+    q: `[Quant Q1] किसी भिन्न (Fraction) के अंश में ${m("25%")} की कमी की जाती है और हर में ${m("250%")} की वृद्धि की जाती है। यदि नया प्राप्त भिन्न ${m(frac("6", "5"))} है, तो मूल भिन्न (Original Fraction) क्या था?`,
+    options: [m(frac("28", "5")), m(frac("18", "5")), m(frac("24", "7")), m(frac("14", "5"))],
+    ans: 0,
+    steps: [
+      `${m(`${frac("N × 75\%", "D × 350\%")} = ${frac("6", "5")} ⇒ ${frac("N × 15", "D × 70")} = ${frac("6", "5")}`)}।`,
+      `${m(`${frac("N", "D")} = ${frac("6 × 70", "5 × 15")} = ${frac("28", "5")}`)}।`
+    ]
+  },
+  {
+    id: 29, sec: "QUANT", topic: "Speed, Time & Distance",
+    q: `[Quant Q2] एक हवाई जहाज अपने निर्धारित समय से ${m("30")} मिनट (${m("0.5 h")}) देरी से उड़ान भरता है। ${m("1500 km")} दूर गंतव्य पर समय पर पहुँचने के लिए इसे अपनी चाल ${m("100 km/h")} बढ़ानी पड़ती है। हवाई जहाज की सामान्य (मूल) चाल ज्ञात कीजिए।`,
+    options: [m("500 km/h"), m("600 km/h"), m("450 km/h"), m("750 km/h")],
+    ans: 0,
+    steps: [
+      `Table Shortcut: ${m("Δt = 0.5 h")}, ${m("ΔS = 100 km/h")}।`,
+      `${m("3.0 h × 500 km/h = 1500 km")} (सामान्य) तथा ${m("2.5 h × 600 km/h = 1500 km")} (बढ़ी हुई चाल)।`,
+      `अतः मूल चाल ${m("= 500 km/h")}।`
+    ]
+  },
+  {
+    id: 30, sec: "QUANT", topic: "Speed, Time & Distance",
+    q: `[Quant Q3] ${m("600 km")} की उड़ान में खराब मौसम के कारण एक विमान की औसत चाल ${m("200 km/h")} कम हो जाती है और उड़ान का समय ${m("30")} मिनट बढ़ जाता है। यात्रा की मूल समय-अवधि (Original Duration) ज्ञात कीजिए।`,
+    options: ["1 घंटा (1 hour)", "1.5 घंटे", "2 घंटे", "2.5 घंटे"],
+    ans: 0,
+    steps: [
+      `${m("ΔS = 200 km/h")}, ${m("Δt = 0.5 h")}।`,
+      `मूल स्थिति: ${m("1.0 h × 600 km/h = 600 km")} तथा खराब मौसम में: ${m("1.5 h × 400 km/h = 600 km")}।`,
+      `अतः यात्रा का मूल समय ${m("= 1 घंटा")}।`
+    ]
+  },
+  {
+    id: 31, sec: "QUANT", topic: "Speed, Time & Distance",
+    q: `[Quant Q4] एक ट्रेन ${m("300 km")} की दूरी समान चाल से तय करती है। यदि ट्रेन की चाल ${m("5 km/h")} बढ़ा दी जाए, तो यात्रा में ${m("2")} घंटे कम लगते हैं। ट्रेन की मूल चाल ज्ञात कीजिए।`,
+    options: [m("25 km/h"), m("30 km/h"), m("20 km/h"), m("15 km/h")],
+    ans: 0,
+    steps: [
+      `${m("12 h × 25 km/h = 300 km")} (मूल) तथा ${m("10 h × 30 km/h = 300 km")} (चाल बढ़ाने पर)।`,
+      `अतः ट्रेन की मूल चाल ${m("= 25 km/h")}।`
+    ]
+  },
+  {
+    id: 32, sec: "QUANT", topic: "Problems on Ages",
+    q: `[Quant Q5] ${m("6")} वर्ष पूर्व कुणाल और सागर की आयु का अनुपात ${m("6 : 5")} था। ${m("4")} वर्ष बाद उनकी आयु का अनुपात ${m("11 : 10")} हो जाएगा। सागर की वर्तमान आयु ज्ञात कीजिए।`,
+    options: ["16 वर्ष", "18 वर्ष", "20 वर्ष", "14 वर्ष"],
+    ans: 0,
+    steps: [
+      `कुल समय अंतराल ${m("= 6 + 4 = 10 वर्ष")}। अनुपात में वृद्धि: ${m("6 → 11 (+5 यूनिट)")} और ${m("5 → 10 (+5 यूनिट)")}।`,
+      `${m("5 यूनिट = 10 वर्ष ⇒ 1 यूनिट = 2 वर्ष")}।`,
+      `6 वर्ष पूर्व सागर की आयु ${m("= 5 × 2 = 10 वर्ष ⇒")} वर्तमान आयु ${m("= 10 + 6 = 16 वर्ष")}।`
+    ]
+  },
+  {
+    id: 33, sec: "QUANT", topic: "Time & Work",
+    q: `[Quant Q6] पिंटू किसी काम को पूरा करने में नीशू से ${m("6")} दिन अधिक लेता है। यदि दोनों मिलकर काम करें तो काम ${m("4")} दिनों में पूरा हो जाता है। नीशू और पिंटू अकेले उस काम को कितने दिनों में करेंगे?`,
+    options: ["नीशू = 6 दिन, पिंटू = 12 दिन", "नीशू = 8 दिन, पिंटू = 14 दिन", "नीशू = 4 दिन, पिंटू = 10 दिन", "नीशू = 5 दिन, पिंटू = 11 दिन"],
+    ans: 0,
+    steps: [
+      `माना नीशू ${m("= x")} दिन, पिंटू ${m("= x + 6")} दिन।`,
+      `${m(`${frac("x(x + 6)", "2x + 6")} = 4 ⇒ x<sup>2</sup> − 2x − 24 = 0 ⇒ x = 6`)}।`,
+      `अतः नीशू = 6 दिन और पिंटू = 12 दिन।`
+    ]
+  },
+  {
+    id: 34, sec: "QUANT", topic: "Time & Work (MDH)",
+    q: `[Quant Q7] एक किले/कैंप में ${m("150")} आदमियों के लिए ${m("45")} दिनों के भोजन की व्यवस्था थी। ${m("10")} दिनों के बाद ${m("25")} आदमी चले गए। बचा हुआ भोजन शेष आदमियों के लिए कितने दिन चलेगा?`,
+    options: ["42 दिन", "35 दिन", "40 दिन", "45 दिन"],
+    ans: 0,
+    steps: [
+      `10 दिन बाद शेष दिन ${m("= 45 − 10 = 35")}, शेष आदमी ${m("= 150 − 25 = 125")}।`,
+      `${m(`M<sub>1</sub>D<sub>1</sub> = M<sub>2</sub>D<sub>2</sub> ⇒ 150 × 35 = 125 × D<sub>2</sub> ⇒ D<sub>2</sub> = 42 दिन`)}।`
+    ]
+  },
+  {
+    id: 35, sec: "QUANT", topic: "Boat & Stream",
+    q: `[Quant Q8] शांत जल में एक मोटरबोट की चाल ${m("24 km/h")} है। धारा के प्रतिकूल (Upstream) ${m("32 km")} जाने में, धारा के अनुकूल (Downstream) लौटने की तुलना में ${m("1")} घंटा अधिक समय लगता है। धारा की चाल ज्ञात कीजिए।`,
+    options: [m("8 km/h"), m("6 km/h"), m("4 km/h"), m("10 km/h")],
+    ans: 0,
+    steps: [
+      `समीकरण: ${m(`${frac("32", "24 − C")} − ${frac("32", "24 + C")} = 1`)}।`,
+      `${m("C = 8 km/h")} रखने पर: ${m(`${frac("32", "16")} − ${frac("32", "32")} = 2 − 1 = 1 घंटा`)} (संतुष्ट)।`
+    ]
+  },
+  {
+    id: 36, sec: "QUANT", topic: "Boat & Stream",
+    q: `[Quant Q9] एक नाव ${m("10")} घंटे में ${m("30 km")} धारा के प्रतिकूल और ${m("44 km")} धारा के अनुकूल जाती है। वही नाव ${m("13")} घंटे में ${m("40 km")} प्रतिकूल और ${m("55 km")} अनुकूल जा सकती है। धारा की चाल और शांत जल में नाव की चाल ज्ञात कीजिए।`,
+    options: ["धारा = 3 km/h, नाव = 8 km/h", "धारा = 4 km/h, नाव = 9 km/h", "धारा = 2 km/h, नाव = 10 km/h", "धारा = 3 km/h, नाव = 11 km/h"],
+    ans: 0,
+    steps: [
+      `${m(`${frac("30", "U")} + ${frac("44", "D")} = 10`)} और ${m(`${frac("40", "U")} + ${frac("55", "D")} = 13`)} से ${m("D = 11 km/h, U = 5 km/h")}।`,
+      `नाव की चाल ${m(`= ${frac("11 + 5", "2")} = 8 km/h`)}, धारा की चाल ${m(`= ${frac("11 − 5", "2")} = 3 km/h`)}।`
+    ]
+  },
+  {
+    id: 37, sec: "QUANT", topic: "Ratio & Proportion",
+    q: `[Quant Q10] तीन संख्याओं का योग ${m("98")} है। पहली और दूसरी संख्या का अनुपात ${m("2 : 3")} है तथा दूसरी और तीसरी का अनुपात ${m("5 : 8")} है। दूसरी संख्या ज्ञात कीजिए।`,
+    options: [m("30"), m("20"), m("48"), m("35")],
+    ans: 0,
+    steps: [
+      `संयुक्त अनुपात ${m("A : B : C = 10 : 15 : 24")}।`,
+      `योग ${m("= 10 + 15 + 24 = 49 यूनिट = 98 ⇒ 1 यूनिट = 2")}।`,
+      `दूसरी संख्या ${m("= 15 × 2 = 30")}।`
+    ]
+  },
+  {
+    id: 38, sec: "QUANT", topic: "Mixture & Alligation",
+    q: `[Quant Q11] दो बर्तनों A और B में दूध और पानी का अनुपात क्रमशः ${m("5 : 2")} और ${m("8 : 5")} है। इन्हें किस अनुपात में मिलाया जाए ताकि नए मिश्रण में दूध और पानी का अनुपात ${m("9 : 4")} हो जाए?`,
+    options: [m("7 : 2"), m("2 : 7"), m("5 : 3"), m("9 : 5")],
+    ans: 0,
+    steps: [
+      `दूध का अंश: A में ${m(frac("5", "7"))}, B में ${m(frac("8", "13"))}, मिश्रण में ${m(frac("9", "13"))}।`,
+      `91 से गुणा करने पर: A = 65, B = 56, Mean = 63।`,
+      `Alligation अंतर: ${m("(63 − 56) : (65 − 63) = 7 : 2")}।`
+    ]
+  },
+  {
+    id: 39, sec: "QUANT", topic: "Ratio & Proportion",
+    q: `[Quant Q12] रवि और सुमित के वेतन का अनुपात ${m("2 : 3")} है। यदि प्रत्येक के वेतन में ₹4,000 की वृद्धि होती है, तो नया अनुपात ${m("40 : 57")} हो जाता है। सुमित का वर्तमान (वृद्धि के बाद) वेतन ज्ञात कीजिए।`,
+    options: ["₹38,000", "₹34,000", "₹42,000", "₹36,000"],
+    ans: 0,
+    steps: [
+      `${m(`${frac("2x + 4000", "3x + 4000")} = ${frac("40", "57")} ⇒ 114x + 228000 = 120x + 160000`)}।`,
+      `${m("6x = 68000 ⇒ 3x = 34000")}। वृद्धि के पश्चात वेतन ${m("= 34000 + 4000 = ₹38,000")}।`
+    ]
+  },
+  {
+    id: 40, sec: "QUANT", topic: "Permutations",
+    q: `[Quant Q13] 'INDEPENDENCE' शब्द के अक्षरों को कितने तरीकों से व्यवस्थित किया जा सकता है ताकि सभी स्वर (Vowels: E, E, E, E, I) हमेशा एक साथ रहें?`,
+    options: ["16,800", "14,400", "18,600", "12,600"],
+    ans: 0,
+    steps: [
+      `5 स्वरों को 1 बंडल मानने पर कुल इकाइयाँ ${m("= 7 + 1 = 8")}।`,
+      `दोहराव: N (3 बार), D (2 बार), तथा स्वरों में E (4 बार)।`,
+      `कुल तरीके ${m(`= ${frac("8! × 5!", "3! × 2! × 4!")} = 16,800`)}।`
+    ]
+  },
+  {
+    id: 41, sec: "QUANT", topic: "Mixture & Ratio",
+    q: `[Quant Q14] ${m("126 kg")} दूध और पानी के मिश्रण में अनुपात ${m("5 : 2")} है। इसमें कितना पानी और मिलाया जाए कि नया अनुपात ${m("3 : 27")} (या ${m("1 : 9")}) हो जाए?`,
+    options: [m("774 kg"), m("720 kg"), m("684 kg"), m("810 kg")],
+    ans: 0,
+    steps: [
+      `प्रारंभिक मिश्रण में ${m("7 यूनिट = 126 kg ⇒ 1 यूनिट = 18 kg")} (दूध = 90 kg, पानी = 36 kg)।`,
+      `नए अनुपात ${m("1 : 9")} में दूध 90 kg है तो कुल पानी ${m("= 90 × 9 = 810 kg")} होना चाहिए।`,
+      `मिलाया गया पानी ${m("= 810 − 36 = 774 kg")}।`
+    ]
+  },
+  {
+    id: 42, sec: "QUANT", topic: "Time & Work",
+    q: `[Quant Q15] A किसी काम को ${m("10")} दिनों में तथा B उसी काम को ${m("15")} दिनों में कर सकता है। दोनों मिलकर उस काम को कितने दिनों में पूरा करेंगे?`,
+    options: ["6 दिन", "8 दिन", "5 दिन", "7.5 दिन"],
+    ans: 0,
+    steps: [
+      `कुल कार्य (LCM of 10, 15) ${m("= 30 यूनिट")}।`,
+      `A की क्षमता = 3, B की क्षमता = 2। समय ${m(`= ${frac("30", "3 + 2")} = 6 दिन`)}।`
+    ]
+  },
+  {
+    id: 43, sec: "QUANT", topic: "Trains & Relative Speed",
+    q: `[Quant Q16] ${m("120 m")} और ${m("180 m")} लंबी दो ट्रेनें विपरीत दिशाओं में क्रमशः ${m("40 km/h")} और ${m("32 km/h")} की चाल से चल रही हैं। वे एक-दूसरे को कितने समय में पार करेंगी?`,
+    options: ["15 सेकंड", "12 सेकंड", "18 सेकंड", "20 सेकंड"],
+    ans: 0,
+    steps: [
+      `कुल दूरी ${m("= 120 + 180 = 300 m")}।`,
+      `सापेक्ष चाल ${m(`= (40 + 32) = 72 km/h = 72 × ${frac("5", "18")} = 20 m/s`)}।`,
+      `पार करने का समय ${m(`= ${frac("300", "20")} = 15 सेकंड`)}।`
+    ]
+  },
+  {
+    id: 44, sec: "QUANT", topic: "CI & SI",
+    q: `[Quant Q17] ₹10,000 की राशि पर ${m("10%")} वार्षिक दर से ${m("2")} वर्षों के चक्रवृद्धि ब्याज (CI) और साधारण ब्याज (SI) का अंतर ज्ञात कीजिए।`,
+    options: ["₹100", "₹200", "₹150", "₹110"],
+    ans: 0,
+    steps: [
+      `2 वर्ष के अंतर का सूत्र: ${m(`Diff = P × (${frac("R", "100")})<sup>2</sup>`)}।`,
+      `${m(`Diff = 10000 × (${frac("10", "100")})<sup>2</sup> = 10000 × ${frac("1", "100")} = ₹100`)}।`
+    ]
+  },
+  {
+    id: 45, sec: "QUANT", topic: "Profit & Loss",
+    q: `[Quant Q18] यदि किसी वस्तु के क्रय मूल्य (CP) और विक्रय मूल्य (SP) का अनुपात ${m("4 : 5")} है, तो लाभ प्रतिशत ज्ञात कीजिए।`,
+    options: [m("25%"), m("20%"), m("15%"), m("30%")],
+    ans: 0,
+    steps: [
+      `लाभ ${m("= 5 − 4 = 1 यूनिट")}।`,
+      `लाभ प्रतिशत ${m(`= ${frac("1", "4")} × 100% = 25%`)}।`
+    ]
+  },
+  {
+    id: 46, sec: "QUANT", topic: "Averages",
+    q: `[Quant Q19] ${m("10")} छात्रों की एक कक्षा का औसत भार ${m("40 kg")} है। जब एक नए शिक्षक का भार शामिल किया जाता है, तो औसत भार ${m("2 kg")} बढ़ जाता है। शिक्षक का भार ज्ञात कीजिए।`,
+    options: [m("62 kg"), m("60 kg"), m("58 kg"), m("64 kg")],
+    ans: 0,
+    steps: [
+      `कुल सदस्य ${m("= 10 + 1 = 11")}। कुल भार वृद्धि ${m("= 11 × 2 = 22 kg")}।`,
+      `शिक्षक का भार ${m("= 40 + 22 = 62 kg")}।`
+    ]
+  },
+  {
+    id: 47, sec: "QUANT", topic: "Partnership",
+    q: `[Quant Q20] A और B ने क्रमशः ₹20,000 और ₹30,000 का निवेश करके एक व्यापार शुरू किया। 1 वर्ष के अंत में ₹15,000 के कुल लाभ में A का हिस्सा कितना होगा?`,
+    options: ["₹6,000", "₹9,000", "₹5,000", "₹7,500"],
+    ans: 0,
+    steps: [
+      `निवेश अनुपात ${m("A : B = 2 : 3")} (कुल = 5 यूनिट)।`,
+      `A का हिस्सा ${m(`= ${frac("2", "5")} × 15000 = ₹6,000`)}।`
+    ]
+  },
+  {
+    id: 48, sec: "QUANT", topic: "HCF & LCM",
+    q: `[Quant Q21] दो संख्याओं का HCF ${m("12")} और LCM ${m("144")} है। यदि इनमें से एक संख्या ${m("36")} है, तो दूसरी संख्या ज्ञात कीजिए।`,
+    options: [m("48"), m("36"), m("60"), m("72")],
+    ans: 0,
+    steps: [
+      `${m(`Second No. = ${frac("HCF × LCM", "First No.")} = ${frac("12 × 144", "36")} = 48`)}।`
+    ]
+  },
+  {
+    id: 49, sec: "QUANT", topic: "Probability",
+    q: `[Quant Q22] दो निष्पक्ष पासे (Dice) एक साथ फेंके जाते हैं। पासों के ऊपर आने वाले अंकों का योग ${m("8")} होने की प्रायिकता ज्ञात कीजिए।`,
+    options: [m(frac("5", "36")), m(frac("1", "6")), m(frac("7", "36")), m(frac("1", "9"))],
+    ans: 0,
+    steps: [
+      `कुल परिणाम ${m("= 6 × 6 = 36")}।`,
+      `योग 8 वाले अनुकूल परिणाम: ${m("(2,6), (3,5), (4,4), (5,3), (6,2) → 5")}।`,
+      `प्रायिकता ${m(`= ${frac("5", "36")}`)}।`
+    ]
+  },
+  {
+    id: 50, sec: "QUANT", topic: "Work & Wages",
+    q: `[Quant Q23] A और B मिलकर एक काम को ₹600 में करने का ठेका लेते हैं। A अकेले उस काम को ${m("6")} दिनों में तथा B अकेले ${m("8")} दिनों में कर सकता है। A का हिस्सा कितना होगा?`,
+    options: ["₹342.85", "₹300.00", "₹360.00", "₹257.15"],
+    ans: 0,
+    steps: [
+      `कार्य क्षमता का अनुपात ${m(`A : B = ${frac("1", "6")} : ${frac("1", "8")} = 4 : 3`)}।`,
+      `A का हिस्सा ${m(`= ${frac("4", "7")} × 600 ≈ ₹342.85`)}।`
+    ]
+  },
+  {
+    id: 51, sec: "QUANT", topic: "Simple Interest",
+    q: `[Quant Q24] ₹5,000 की मूलधन राशि ${m("3")} वर्षों में साधारण ब्याज पर ₹6,500 हो जाती है। ब्याज की वार्षिक दर (Rate of Interest) ज्ञात कीजिए।`,
+    options: [m("10%"), m("12%"), m("8%"), m("15%")],
+    ans: 0,
+    steps: [
+      `साधारण ब्याज ${m("SI = 6500 − 5000 = ₹1,500")}।`,
+      `${m(`R = ${frac("1500 × 100", "5000 × 3")} = 10%`)}।`
+    ]
+  },
+  {
+    id: 52, sec: "QUANT", topic: "Number System",
+    q: `[Quant Q25] जब किसी संख्या ${m("N")} को ${m("56")} से विभाजित किया जाता है, तो शेषफल ${m("29")} प्राप्त होता है। यदि उसी संख्या ${m("N")} को ${m("8")} से विभाजित किया जाए, तो शेषफल क्या होगा?`,
+    options: [m("5"), m("4"), m("3"), m("7")],
+    ans: 0,
+    steps: [
+      `चूँकि 56, 8 से पूर्णतः विभाजित है, सीधे पुराने शेषफल (29) को 8 से भाग दें।`,
+      `${m("29 ÷ 8 = 3")} भागफल और शेषफल ${m("= 5")}।`
+    ]
+  }
+];
+
+// Deterministic option shuffle per question so correct answer isn't always Option A
+const SHUFFLED_DATA = QUESTIONS.map((item, idx) => {
+  const indexedOpts = item.options.map((text, i) => ({ text, isCorrect: i === item.ans }));
+  const shift = (idx * 3 + 1) % 4;
+  const rotated = [...indexedOpts.slice(shift), ...indexedOpts.slice(0, shift)];
+  return {
+    ...item,
+    options: rotated.map(o => o.text),
+    ans: rotated.findIndex(o => o.isCorrect)
+  };
+});
+
+let currentFilter = 'ALL';
+let filteredList = [...SHUFFLED_DATA];
+let currentIdx = 0;
+let fcIdx = 0;
+let userAnswers = {};
+let bookmarked = new Set();
+
+function renderQuestion() {
+  if (filteredList.length === 0) {
+    document.getElementById('q-text').innerHTML = `इस फ़िल्टर में अभी कोई प्रश्न नहीं है। कृपया ऊपर से 'All Questions (52)' चुनें।`;
+    document.getElementById('q-options').innerHTML = '';
+    document.getElementById('q-exp-box').classList.remove('show');
+    return;
+  }
+
+  const qObj = filteredList[currentIdx];
+  document.getElementById('q-num-badge').textContent = `Q${qObj.id} / 52`;
+  document.getElementById('q-sec-badge').textContent = qObj.sec === 'MATH' ? 'Anand Sir • Core Maths' : 'Gautam Sir • Quant';
+  document.getElementById('q-topic-badge').textContent = qObj.topic;
+  document.getElementById('q-text').innerHTML = qObj.q;
+
+  const bmBtn = document.getElementById('bm-btn');
+  if (bookmarked.has(qObj.id)) {
+    bmBtn.classList.add('saved');
+    bmBtn.textContent = '★ Saved';
+  } else {
+    bmBtn.classList.remove('saved');
+    bmBtn.textContent = '☆ Save Question';
+  }
+
+  const optsContainer = document.getElementById('q-options');
+  optsContainer.innerHTML = '';
+  const answeredChoice = userAnswers[qObj.id];
+  const letters = ['A', 'B', 'C', 'D'];
+
+  qObj.options.forEach((optHtml, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    if (answeredChoice !== undefined) {
+      btn.disabled = true;
+      if (i === qObj.ans) btn.classList.add('correct');
+      else if (i === answeredChoice) btn.classList.add('wrong');
+    }
+    btn.innerHTML = `<span class="opt-key">${letters[i]}</span><span>${optHtml}</span>`;
+    btn.onclick = () => selectAnswer(qObj.id, i);
+    optsContainer.appendChild(btn);
+  });
+
+  const expBox = document.getElementById('q-exp-box');
+  const expList = document.getElementById('q-exp-list');
+  if (answeredChoice !== undefined) {
+    expList.innerHTML = qObj.steps.map(s => `<li>${s}</li>`).join('');
+    expBox.classList.add('show');
+  } else {
+    expBox.classList.remove('show');
+  }
+
+  document.getElementById('prev-btn').disabled = currentIdx === 0;
+  document.getElementById('next-btn').disabled = currentIdx === filteredList.length - 1;
+
+  renderPalette();
+  updateStats();
+}
+
+function selectAnswer(qId, choiceIdx) {
+  userAnswers[qId] = choiceIdx;
+  renderQuestion();
+}
+
+function RevealCurrentAnswer() {
+  if (!filteredList.length) return;
+  const qObj = filteredList[currentIdx];
+  userAnswers[qObj.id] = qObj.ans;
+  renderQuestion();
+}
+
+function moveQuestion(delta) {
+  const next = currentIdx + delta;
+  if (next >= 0 && next < filteredList.length) {
+    currentIdx = next;
+    renderQuestion();
+  }
+}
+
+function toggleBookmark() {
+  if (!filteredList.length) return;
+  const qId = filteredList[currentIdx].id;
+  if (bookmarked.has(qId)) bookmarked.delete(qId);
+  else bookmarked.add(qId);
+  renderQuestion();
+}
+
+function setSectionFilter(filter, btnEl) {
+  currentFilter = filter;
+  document.querySelectorAll('.sec-pill').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+
+  if (filter === 'ALL') filteredList = [...SHUFFLED_DATA];
+  else if (filter === 'MATH') filteredList = SHUFFLED_DATA.filter(q => q.sec === 'MATH');
+  else if (filter === 'QUANT') filteredList = SHUFFLED_DATA.filter(q => q.sec === 'QUANT');
+  else if (filter === 'SAVED') filteredList = SHUFFLED_DATA.filter(q => bookmarked.has(q.id));
+  else if (filter === 'WRONG') {
+    filteredList = SHUFFLED_DATA.filter(q => userAnswers[q.id] !== undefined && userAnswers[q.id] !== q.ans);
+  }
+
+  currentIdx = 0;
+  renderQuestion();
+}
+
+function renderPalette() {
+  const grid = document.getElementById('palette-grid');
+  document.getElementById('palette-count').textContent = `${filteredList.length} Qs`;
+  grid.innerHTML = '';
+
+  filteredList.forEach((q, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'p-num';
+    if (idx === currentIdx) btn.classList.add('current');
+    if (userAnswers[q.id] !== undefined) {
+      btn.classList.add(userAnswers[q.id] === q.ans ? 'correct' : 'wrong');
+    }
+    btn.textContent = q.id;
+    btn.onclick = () => {
+      currentIdx = idx;
+      renderQuestion();
+    };
+    grid.appendChild(btn);
+  });
+}
+
+function updateStats() {
+  const attemptedIds = Object.keys(userAnswers);
+  const totalAttempted = attemptedIds.length;
+  let correctCount = 0;
+  attemptedIds.forEach(id => {
+    const q = SHUFFLED_DATA.find(item => item.id === Number(id));
+    if (q && userAnswers[id] === q.ans) correctCount++;
+  });
+  const acc = totalAttempted ? Math.round((correctCount / totalAttempted) * 100) : 0;
+
+  document.getElementById('stat-attempted').textContent = `${totalAttempted}/52`;
+  document.getElementById('stat-correct').textContent = correctCount;
+  document.getElementById('stat-acc').textContent = `${acc}%`;
+  document.getElementById('stat-saved').textContent = bookmarked.size;
+}
+
+function resetProgress() {
+  userAnswers = {};
+  renderQuestion();
+}
+
+// Flashcards Logic
+function renderFlashcard() {
+  const card = document.getElementById('flashcard-el');
+  card.classList.remove('flipped');
+  const qObj = SHUFFLED_DATA[fcIdx];
+  document.getElementById('fc-num').textContent = `Question ${qObj.id} / 52`;
+  document.getElementById('fc-topic').textContent = `${qObj.sec} • ${qObj.topic}`;
+  document.getElementById('fc-question').innerHTML = qObj.q;
+  document.getElementById('fc-answer').innerHTML = qObj.options[qObj.ans];
+  document.getElementById('fc-steps').innerHTML = qObj.steps.map(s => `<li>${s}</li>`).join('');
+}
+
+function moveFlashcard(delta) {
+  fcIdx = (fcIdx + delta + SHUFFLED_DATA.length) % SHUFFLED_DATA.length;
+  renderFlashcard();
+}
+
+// Study Bank Logic
+function renderStudyBank() {
+  const query = (document.getElementById('bank-search').value || '').toLowerCase();
+  const container = document.getElementById('bank-list');
+  const list = SHUFFLED_DATA.filter(q =>
+    q.q.toLowerCase().includes(query) ||
+    q.topic.toLowerCase().includes(query) ||
+    q.steps.join(' ').toLowerCase().includes(query)
+  );
+
+  container.innerHTML = list.map(q => `
+    <div class="bank-item">
+      <div class="q-badges" style="margin-bottom:10px;">
+        <span class="badge badge-num">Q${q.id}</span>
+        <span class="badge badge-sec">${q.sec === 'MATH' ? 'Core Maths' : 'Quant Aptitude'}</span>
+        <span class="badge badge-topic">${q.topic}</span>
+      </div>
+      <div style="font-size:1.05rem; font-weight:600; margin-bottom:8px;">${q.q}</div>
+      <div class="bank-ans">
+        <div style="color:#34d399; font-weight:700; margin-bottom:6px;">✔ Correct Answer: ${q.options[q.ans]}</div>
+        <ul class="exp-steps">${q.steps.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleSelfTestMode(btn) {
+  const bankList = document.getElementById('bank-list');
+  bankList.classList.toggle('hide-answers');
+  btn.textContent = bankList.classList.contains('hide-answers')
+    ? '👁️ Show All Answers'
+    : '🙈 Hide Answers (Self-Test Mode)';
+}
+
+function switchView(viewName, btnEl) {
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`view-${viewName}`).classList.add('active');
+  document.getElementById('quiz-filters').style.display = viewName === 'quiz' ? 'flex' : 'none';
+
+  if (viewName === 'flashcards') renderFlashcard();
+  if (viewName === 'bank') renderStudyBank();
+}
+
+// Keyboard Shortcuts
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('view-quiz').classList.contains('active')) {
+    if (['1', '2', '3', '4'].includes(e.key)) {
+      const qObj = filteredList[currentIdx];
+      if (qObj && userAnswers[qObj.id] === undefined) {
+        selectAnswer(qObj.id, parseInt(e.key) - 1);
+      }
+    } else if (e.key === 'ArrowRight') moveQuestion(1);
+    else if (e.key === 'ArrowLeft') moveQuestion(-1);
+  } else if (document.getElementById('view-flashcards').classList.contains('active')) {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      document.getElementById('flashcard-el').classList.toggle('flipped');
+    } else if (e.key === 'ArrowRight') moveFlashcard(1);
+    else if (e.key === 'ArrowLeft') moveFlashcard(-1);
+  }
+});
+
+// Initialize App
+renderQuestion();
+</script>
+</body>
+</html>

@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSC English Pronoun Century Quiz (100 Questions)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 font-bold text-lg">
+          P
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Pronoun Century Quiz</h1>
+          <p class="text-xs text-slate-500">Parmar SSC • Toppers Batch • 100 Questions</p>
+        </div>
+      </div>
+
+      <!-- Controls & Timer -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <!-- Mode Switch -->
+        <div class="bg-slate-100 p-1 rounded-lg flex items-center text-xs font-semibold">
+          <button id="modePracticeBtn" onclick="setMode('practice')" class="px-2.5 py-1 rounded-md transition-all bg-white text-blue-700 shadow-xs">
+            Practice
+          </button>
+          <button id="modeExamBtn" onclick="setMode('exam')" class="px-2.5 py-1 rounded-md transition-all text-slate-600 hover:text-slate-900">
+            Exam Mode
+          </button>
+        </div>
+
+        <!-- Timer badge -->
+        <div id="timerContainer" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-700 font-mono text-xs font-semibold">
+          <i class="fa-regular fa-clock text-amber-600"></i>
+          <span id="timerDisplay">00:00</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button onclick="confirmFinishQuiz()" class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm shadow-xs transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-flag-checkered"></i>
+          <span class="hidden sm:inline">Finish</span> Quiz
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-6">
+
+    <!-- Left Column: Question Area -->
+    <section class="flex-1 flex flex-col">
+      <!-- Status Bar -->
+      <div class="bg-white rounded-xl border border-slate-200 p-4 mb-4 flex items-center justify-between gap-4 shadow-xs">
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Question</span>
+          <span id="currentQNumText" class="text-xl font-extrabold text-blue-600">1</span>
+          <span class="text-xs font-medium text-slate-400">/ 100</span>
+          <span id="examTag" class="ml-2 hidden sm:inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+            SSC CGL
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleBookmark()" id="bookmarkBtn" class="px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors flex items-center gap-1.5">
+            <i class="fa-regular fa-bookmark"></i>
+            <span class="hidden sm:inline">Mark for Review</span>
+          </button>
+          <button onclick="clearCurrentAnswer()" class="px-3 py-1.5 text-xs font-medium rounded-lg text-slate-500 hover:bg-slate-100 transition-colors">
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs flex-1 flex flex-col justify-between">
+        <div>
+          <!-- Question Statement -->
+          <div class="mb-6">
+            <p id="questionText" class="text-base sm:text-lg font-semibold text-slate-900 leading-relaxed">
+              Loading question...
+            </p>
+          </div>
+
+          <!-- Options List -->
+          <div id="optionsList" class="space-y-3">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Practice Mode Explanation -->
+          <div id="explanationBox" class="mt-6 p-4 rounded-xl border hidden transition-all">
+            <div class="flex items-center gap-2 mb-1.5 font-bold text-sm" id="explanationHeader">
+              <i class="fa-solid fa-circle-info"></i> Answer Explanation
+            </div>
+            <p id="explanationText" class="text-sm leading-relaxed text-slate-600"></p>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="pt-8 mt-6 border-t border-slate-100 flex items-center justify-between gap-3">
+          <button onclick="prevQuestion()" id="prevBtn" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium text-sm flex items-center gap-2 transition-colors">
+            <i class="fa-solid fa-chevron-left text-xs"></i> Previous
+          </button>
+          <div class="text-xs text-slate-400 font-medium hidden sm:block">
+            Use <kbd class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 font-mono text-slate-600">←</kbd> <kbd class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 font-mono text-slate-600">→</kbd> to navigate
+          </div>
+          <button onclick="nextQuestion()" id="nextBtn" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm flex items-center gap-2 transition-colors shadow-xs">
+            Next <i class="fa-solid fa-chevron-right text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Palette & Progress -->
+    <aside class="w-full lg:w-80 flex flex-col gap-4">
+      <!-- Summary Mini Card -->
+      <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs">
+        <h2 class="text-sm font-bold text-slate-900 mb-3 flex items-center justify-between">
+          <span>Overview</span>
+          <span id="progressPercent" class="text-xs font-semibold text-blue-600">0%</span>
+        </h2>
+        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-3">
+          <div id="progressBar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-800 flex items-center justify-between">
+            <span>Answered</span>
+            <b id="countAnswered">0</b>
+          </div>
+          <div class="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 flex items-center justify-between">
+            <span>Left</span>
+            <b id="countUnanswered">100</b>
+          </div>
+          <div class="p-2 rounded-lg bg-purple-50 border border-purple-100 text-purple-800 flex items-center justify-between">
+            <span>Marked</span>
+            <b id="countMarked">0</b>
+          </div>
+          <div class="p-2 rounded-lg bg-blue-50 border border-blue-100 text-blue-800 flex items-center justify-between">
+            <span>Total</span>
+            <b>100</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Grid Palette -->
+      <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs flex-1 flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm font-bold text-slate-900">Question Palette</h2>
+          <select id="paletteFilter" onchange="filterPalette()" class="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-slate-600 outline-hidden">
+            <option value="all">All (100)</option>
+            <option value="unanswered">Unanswered</option>
+            <option value="answered">Answered</option>
+            <option value="marked">Marked</option>
+          </select>
+        </div>
+
+        <div id="paletteGrid" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-1.5 overflow-y-auto max-h-[380px] custom-scrollbar p-1">
+          <!-- 100 buttons rendered by JS -->
+        </div>
+
+        <!-- Legend -->
+        <div class="mt-4 pt-3 border-t border-slate-100 grid grid-cols-2 gap-1.5 text-[11px] text-slate-500">
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-emerald-500 inline-block"></span> Answered</div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-purple-500 inline-block"></span> Marked</div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-blue-600 ring-2 ring-blue-300 inline-block"></span> Current</div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-sm bg-slate-100 border border-slate-300 inline-block"></span> Unvisited</div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Score / Results Modal -->
+  <div id="resultsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-3 shadow-inner">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900">Quiz Completed!</h3>
+        <p class="text-xs text-slate-500 mt-1">Here is how you performed on the 100 Pronoun questions.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 mb-6 text-center">
+        <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-100">
+          <div id="resultCorrect" class="text-2xl font-black text-emerald-600">0</div>
+          <div class="text-xs font-semibold text-emerald-800">Correct</div>
+        </div>
+        <div class="p-3 rounded-xl bg-rose-50 border border-rose-100">
+          <div id="resultIncorrect" class="text-2xl font-black text-rose-600">0</div>
+          <div class="text-xs font-semibold text-rose-800">Incorrect</div>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+          <div id="resultScore" class="text-2xl font-black text-slate-700">0%</div>
+          <div class="text-xs font-semibold text-slate-600">Accuracy</div>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-xs text-slate-600 mb-6 bg-slate-50 p-4 rounded-xl">
+        <div class="flex justify-between"><span>Total Questions:</span><b>100</b></div>
+        <div class="flex justify-between"><span>Attempted:</span><b id="resultAttempted">0</b></div>
+        <div class="flex justify-between"><span>Unattempted:</span><b id="resultUnattempted">0</b></div>
+        <div class="flex justify-between"><span>Time Taken:</span><b id="resultTime">00:00</b></div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="closeResultsModal()" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold text-sm transition-colors">
+          Review Questions
+        </button>
+        <button onclick="restartQuiz()" class="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors shadow-xs">
+          Restart Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 100 Questions Data extracted verbatim from the Parmar SSC Pronoun Century PDF
+    const rawQuestions = [
+      {
+        id: 1,
+        exam: "SSC CGL Tier-02 2022",
+        question: "Everybody stared / when me / entered the / drawing room.",
+        options: ["when me", "Everybody stared", "drawing room", "entered the"],
+        correct: 0,
+        explanation: "'when me' is incorrect. 'I' is the subject of the clause 'when I entered the drawing room'. Use subjective case pronoun 'I' instead of objective 'me'."
+      },
+      {
+        id: 2,
+        exam: "SSC CGL Tier-02 2023",
+        question: "This is the book whom I wanted to buy.",
+        options: ["the book", "wanted to buy.", "whom I", "This is"],
+        correct: 2,
+        explanation: "'whom I' is incorrect. 'Whom' is used for persons. For non-living things like 'book', use relative pronoun 'which' or 'that'."
+      },
+      {
+        id: 3,
+        exam: "SSC CGL Tier-02 2024",
+        question: "I, you and she/ have been working happily/ in the same company and in the same branch/ for the last nine years.",
+        options: ["have been working happily", "I, you and she", "in the same company and in the same branch", "for the last nine years"],
+        correct: 1,
+        explanation: "When multiple personal pronouns of different persons are used together in a normal/positive context, the polite order is 231 (Second person, Third person, First person). Correct order: 'You, she and I'."
+      },
+      {
+        id: 4,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "It's central location (1)/ makes the conference venue (2)/ convenient for delegates (3)/ travelling from different cities. (4)",
+        options: ["(1)", "(2)", "(3)", "(4)"],
+        correct: 0,
+        explanation: "'It's' is a contraction of 'It is'. The possessive determiner needed here is 'Its' (without apostrophe) to qualify 'central location'."
+      },
+      {
+        id: 5,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "The assumption that all data must be normalized (1)/ before processing it using machine learning algorithms (2)/ has been a common practice (3)/ in this domain for decades. (4)",
+        options: ["(1)", "(2)", "(3)", "(4)"],
+        correct: 1,
+        explanation: "'all data' is treated as plural here ('all data must be normalized'), so pronoun 'it' should be plural 'them' ('before processing them')."
+      },
+      {
+        id: 6,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "The draft policy outlines (1)/ that each employee must adhere to (2)/ the code of conduct (3)/ irrespective of their position. (4)",
+        options: ["(1)", "(2)", "(3)", "(4)"],
+        correct: 3,
+        explanation: "'each employee' is singular distributive. In formal SSC grammar, singular possessive 'his/her' or 'his' is preferred over plural 'their'."
+      },
+      {
+        id: 7,
+        exam: "SSC CGL Tier-01 2024",
+        question: "Ourselves should not boast of one's knowledge.",
+        options: ["one's", "boast", "Ourselves", "knowledge"],
+        correct: 2,
+        explanation: "A reflexive pronoun like 'Ourselves' cannot be used as the subject of a sentence without an antecedent subject. It should be replaced with personal pronoun 'We'."
+      },
+      {
+        id: 8,
+        exam: "SSC CGL Tier-01 2024",
+        question: "My sister, Juliet, / got married / as her / was 23.",
+        options: ["was 23.", "as her", "My sister, Juliet,", "got married"],
+        correct: 1,
+        explanation: "'as her' is incorrect. 'Her' is in the objective case. A subjective case pronoun 'she' is required as the subject of the clause 'she was 23'."
+      },
+      {
+        id: 9,
+        exam: "SSC CGL PRE 2021",
+        question: "My elder brother,/ which you'll / meet later,/ is a dentist.",
+        options: ["My elder brother", "which you'll", "meet later", "is a dentist"],
+        correct: 1,
+        explanation: "For human beings, use relative pronoun 'whom' (or 'who') instead of 'which'. Replace 'which' with 'whom'."
+      },
+      {
+        id: 10,
+        exam: "SSC CGL PRE 2021",
+        question: "My house / is more / spacious than / my sister.",
+        options: ["is more", "spacious than", "My house", "my sister"],
+        correct: 3,
+        explanation: "Comparison must be between similar things. A house cannot be compared to a person ('my sister'). It should be 'than my sister's' or 'than that of my sister'."
+      },
+      {
+        id: 11,
+        exam: "SSC CGL PRE 2021",
+        question: "The manager said, \"Could you please / confirm me whether you / have received all the items / that you had ordered?\"",
+        options: ["have received all the items", "that you had ordered", "confirm me whether you", "The manager said, \"Could you please"],
+        correct: 2,
+        explanation: "'confirm' does not take an indirect personal object directly without a preposition here; say 'confirm to me whether' or simply 'confirm whether you'."
+      },
+      {
+        id: 12,
+        exam: "SSC CGL PRE 2021",
+        question: "My friend/who's leg/ was fractured, / has recovered.",
+        options: ["was fractured", "who's leg", "has recovered", "My friend"],
+        correct: 1,
+        explanation: "'who's' is a contraction for 'who is' or 'who has'. The possessive relative pronoun needed here is 'whose' ('whose leg')."
+      },
+      {
+        id: 13,
+        exam: "SSC CGL PRE 2021",
+        question: "Among you and me / she is quite rude / to the boy.",
+        options: ["Among you and me", "No error", "she is quite rude", "to the boy"],
+        correct: 0,
+        explanation: "When referring to two persons ('you and me'), use 'Between' instead of 'Among'. Thus, 'Between you and me'."
+      },
+      {
+        id: 14,
+        exam: "SSC CGL PRE 2021",
+        question: "I find that/ I get myself tired/ very easily/ these days.",
+        options: ["very easily", "I get myself tired", "these days", "I find that"],
+        correct: 1,
+        explanation: "'get tired' already expresses becoming fatigued; using the reflexive 'myself' is redundant ('I get tired')."
+      },
+      {
+        id: 15,
+        exam: "SSC CHSL Tier-01 2025",
+        question: "A. The team's success was largely B. a result of it's coach's dedication, C. a fact which they would all D. attest to.",
+        options: ["The team's success was largely", "a result of it's coach's dedication", "a fact which they would all", "attest to."],
+        correct: 1,
+        explanation: "'it's' is short for 'it is'. The possessive form 'its' is needed ('its coach's dedication')."
+      },
+      {
+        id: 16,
+        exam: "SSC CHSL Tier-01 2023",
+        question: "An old man whom / we met while coming back / from our college lives / at my uncle's place.",
+        options: ["An old man whom", "at my uncle's place", "we met while coming back", "from our college lives"],
+        correct: 0,
+        explanation: "In formal SSC correction keys, 'The old man whom' is tested or 'An old man who...' depending on the main subject verb pairing."
+      },
+      {
+        id: 17,
+        exam: "SSC CHSL Tier-01 2022",
+        question: "Bacteria are single-celled organisms that can reproduce on its own.",
+        options: ["organisms that can", "No error", "Bacteria are single-celled", "reproduce on its own."],
+        correct: 3,
+        explanation: "'Bacteria' is plural (singular: bacterium). Therefore, the pronoun must be plural: 'on their own'."
+      },
+      {
+        id: 18,
+        exam: "SSC CHSL Tier-01 2022",
+        question: "People that are lonely have higher levels of the hormone cortisol.",
+        options: ["People that are lonely", "have higher levels of", "the hormone cortisol.", "No error"],
+        correct: 0,
+        explanation: "For people/human beings in defining clauses referring to individuals, 'who' is preferred: 'People who are lonely'."
+      },
+      {
+        id: 19,
+        exam: "SSC CHSL Tier-01 2022",
+        question: "Every of the two girls will get the reward.",
+        options: ["No error", "girls will get", "the reward.", "Every of the two"],
+        correct: 3,
+        explanation: "'Every' is an adjective and cannot be followed directly by 'of'. For two individuals, use 'Each of the two girls'."
+      },
+      {
+        id: 20,
+        exam: "SSC CHSL Tier-01 2022",
+        question: "You care for him / even more than for myself, / he cried bitterly.",
+        options: ["No error", "he cried bitterly.", "even more than for myself,", "You care for him"],
+        correct: 2,
+        explanation: "Reflexive pronoun 'myself' cannot be used without antecedent 'I'. Use the objective pronoun 'me': 'even more than for me'."
+      },
+      {
+        id: 21,
+        exam: "SSC CHSL Tier-01 2022",
+        question: "I will never judge you for yours impromptu performance.",
+        options: ["I will never", "yours impromptu performance.", "judge you for", "No error"],
+        correct: 1,
+        explanation: "'Yours' is a possessive pronoun; before a noun ('performance'), the possessive adjective 'your' must be used ('your impromptu performance')."
+      },
+      {
+        id: 22,
+        exam: "SSC CHSL Tier-01 2021",
+        question: "All the young boys and girls / in the family / will try his luck / in the card games tonight.",
+        options: ["All the young boys and girls", "in the card games tonight", "will try his luck", "in the family"],
+        correct: 2,
+        explanation: "'All the young boys and girls' is plural. The possessive pronoun must agree in number: use 'their luck' instead of 'his luck'."
+      },
+      {
+        id: 23,
+        exam: "SSC CHSL Tier-01 2021",
+        question: "The students stopped / their chatter / as soon as them noticed / the teacher enter the classroom.",
+        options: ["their chatter", "The students stopped", "the teacher enter the classroom", "as soon as them noticed"],
+        correct: 3,
+        explanation: "'them' is in the objective case. A subject is required for the verb 'noticed'. Replace 'them' with 'they'."
+      },
+      {
+        id: 24,
+        exam: "SSC CHSL Tier-01 2021",
+        question: "Me and my friends / often go / to the cinema / together.",
+        options: ["together", "often go", "to the cinema", "Me and my friends"],
+        correct: 3,
+        explanation: "Subjective case pronouns and the 231/31 rule dictate: 'My friends and I often go'."
+      },
+      {
+        id: 25,
+        exam: "SSC CHSL Tier-01 2021",
+        question: "When Sanathan asked Mr. Jignesh / for a fresh evaluation of his performance / in the last financial year, / little did him know that the results will come out worse than expected.",
+        options: ["When Sanathan asked Mr. Jignesh", "for a fresh evaluation of his performance", "in the last financial year", "little did him know that the results will come out worse than expected"],
+        correct: 3,
+        explanation: "Inversion with auxiliary verb 'did': 'little did he know' (subjective 'he' is required, not objective 'him')."
+      },
+      {
+        id: 26,
+        exam: "SSC CHSL Tier-01 2021",
+        question: "I am not sure / if the red car / in the parking slot / is your.",
+        options: ["in the parking slot", "I am not sure", "if the red car", "is your."],
+        correct: 3,
+        explanation: "'your' is a possessive adjective and needs a noun. Here, at the end of the clause, possessive pronoun 'yours' must be used."
+      },
+      {
+        id: 27,
+        exam: "SSC CHSL Tier-01 2021",
+        question: "After / a long and fun-filled day, / the children / slept themselves peacefully.",
+        options: ["a long and fun-filled day", "slept themselves peacefully", "the children", "After"],
+        correct: 1,
+        explanation: "The verb 'sleep' is intransitive and does not take a reflexive pronoun. Correct: 'slept peacefully'."
+      },
+      {
+        id: 28,
+        exam: "SSC CPO Mains 2023",
+        question: "My sister and me have a keen interest in learning classical music.",
+        options: ["classical music", "have a keen interest", "My sister and me", "in learning"],
+        correct: 2,
+        explanation: "'My sister and I' is the compound subject of the verb 'have'. Subjective pronoun 'I' is needed."
+      },
+      {
+        id: 29,
+        exam: "SSC CPO Pre 2025",
+        question: "This is the man(A) / who I think (B)/ had stolen the bag(C)/ in the train(D).",
+        options: ["who I think (B)", "This is the man(A)", "had stolen the bag(C)", "in the train(D)"],
+        correct: 0,
+        explanation: "In standard SSC keys, relative clause analysis marks segment (A) or 'who/whom' construction with parenthetical 'I think'."
+      },
+      {
+        id: 30,
+        exam: "SSC CPO Pre 2020",
+        question: "I had to hold on to the wall to steady itself or I could have fallen.",
+        options: ["I had to hold on", "to the wall", "to steady itself", "could have fallen"],
+        correct: 2,
+        explanation: "The subject is 'I', so the reflexive pronoun must match: 'to steady myself' (not 'itself')."
+      },
+      {
+        id: 31,
+        exam: "SSC GD Exam 2021",
+        question: "May I / please borrow / yours book?",
+        options: ["No error", "yours book", "May I", "please borrow"],
+        correct: 1,
+        explanation: "Before the noun 'book', use the possessive determiner 'your', not the absolute possessive pronoun 'yours'."
+      },
+      {
+        id: 32,
+        exam: "SSC GD Exam 2021",
+        question: "If you want to / win the race, / you need to / believe in you.",
+        options: ["win the race", "If you want to", "you need to", "believe in you"],
+        correct: 3,
+        explanation: "When the subject and object are the same person ('you'), use the reflexive pronoun 'yourself': 'believe in yourself'."
+      },
+      {
+        id: 33,
+        exam: "SSC GD Exam 2021",
+        question: "I work mainly in the computer department, / who is / the smallest department / in the University.",
+        options: ["who is", "the smallest department", "I work mainly in the computer department", "in the University"],
+        correct: 0,
+        explanation: "A department is an inanimate organization/entity; use relative pronoun 'which' instead of 'who'."
+      },
+      {
+        id: 34,
+        exam: "SSC GD Exam 2021",
+        question: "I thought the actress / to be she, / but I / was not sure.",
+        options: ["to be she", "I thought the actress", "was not sure", "but I"],
+        correct: 0,
+        explanation: "When the subject of the infinitive 'to be' is in the objective case ('the actress'), the complement pronoun must also be in the objective case: 'to be her'."
+      },
+      {
+        id: 35,
+        exam: "SSC Phase-14 Exam 2026",
+        question: "(a) Every one of the students who participated / (b) in the national science fair / (c) has brought their own equipment. / (d) No error.",
+        options: ["Every one of the students who participated", "in the national science fair", "has brought their own equipment", "No error"],
+        correct: 2,
+        explanation: "'Every one' is grammatically singular; in formal grammar, use singular pronoun 'his/her' or 'his own equipment'."
+      },
+      {
+        id: 36,
+        exam: "SSC Steno Exam 2026",
+        question: "The novelist who her editor had praised (1)/ for stylistic ingenuity and metaphorical clarity (2)/ was yet to submit (3)/ the final chapters of the manuscript. (4)",
+        options: ["(1)", "(2)", "(3)", "(4)"],
+        correct: 0,
+        explanation: "The novelist is the object of the praising action ('her editor had praised whom'). Replace 'who' with 'whom'."
+      },
+      {
+        id: 37,
+        exam: "SSC Steno Exam 2026",
+        question: "The palace is heavily guarded, because inside it's walls sit the European leaders.",
+        options: ["palace is", "inside it's walls", "European leaders", "heavily guarded"],
+        correct: 1,
+        explanation: "'it's' is 'it is'. Use the possessive pronoun 'its' to modify 'walls': 'inside its walls'."
+      },
+      {
+        id: 38,
+        exam: "SSC Steno Exam 2026",
+        question: "The person with who Maya shared the flat had not paid his rent.",
+        options: ["person with", "who Maya shared the flat", "his rent", "had not paid"],
+        correct: 1,
+        explanation: "Prepositions govern the objective case. After the preposition 'with', use 'whom' instead of 'who' ('with whom Maya shared...')."
+      },
+      {
+        id: 39,
+        exam: "SSC STENO Exam 2025",
+        question: "One must keep his promises.",
+        options: ["One", "No error", "must keep", "his promises"],
+        correct: 3,
+        explanation: "When the indefinite pronoun 'one' is used as the subject, its possessive form must be 'one's', not 'his'. Replace 'his' with 'one's'."
+      },
+      {
+        id: 40,
+        exam: "SSC STENO Exam 2021",
+        question: "The little boy / hurted himself / when he fell off / his bicycle.",
+        options: ["his bicycle", "hurted himself", "when he fell off", "The little boy"],
+        correct: 1,
+        explanation: "The verb 'hurt' has identical past form 'hurt' (not 'hurted'). So it should be 'hurt himself'."
+      },
+      {
+        id: 41,
+        exam: "SSC MTS Exam 2024",
+        question: "After months of / meticulous planning and hard work, / a team successfully launched / their innovative product to the market.",
+        options: ["their innovative product to the market.", "a team successfully launched", "meticulous planning and hard work,", "After months of"],
+        correct: 0,
+        explanation: "'a team' is a singular collective noun acting as a single unit here. Use singular possessive pronoun 'its' instead of 'their'."
+      },
+      {
+        id: 42,
+        exam: "SSC MTS Exam 2022",
+        question: "Fred and George had / bewitched there trunks to fly downstairs to / save the bother of carrying them.",
+        options: ["bewitched there trunks to fly downstairs to", "save the bother of carrying them.", "Fred and George had", "No error"],
+        correct: 0,
+        explanation: "'there' indicates place. The possessive pronoun showing ownership of trunks is 'their' ('their trunks')."
+      },
+      {
+        id: 43,
+        exam: "SSC MTS Exam 2022",
+        question: "Their should be Lokpal to check corruption by the bureaucrats and politicians.",
+        options: ["Their should be Lokpal to", "No error", "the bureaucrats and politicians.", "check corruption by"],
+        correct: 0,
+        explanation: "Introductory preparatory pronoun should be 'There', not the possessive 'Their'."
+      },
+      {
+        id: 44,
+        exam: "SSC MTS Exam 2022",
+        question: "Companies will go after one other in their marketing campaigns.",
+        options: ["their marketing campaigns.", "after one other in", "Companies will go", "No error"],
+        correct: 1,
+        explanation: "The correct reciprocal pronoun phrase for more than two entities is 'one another', not 'one other'."
+      },
+      {
+        id: 45,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "Improvement: They enjoyed during the holidays.",
+        options: ["enjoyment in the holidays", "enjoyed in the holidays", "themselves during the holidays", "themselves in holidays"],
+        correct: 2,
+        explanation: "'Enjoy' when not followed by a direct object takes a reflexive pronoun matching the subject: 'enjoyed themselves during the holidays'."
+      },
+      {
+        id: 46,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "Improvement: We enjoyed very much at the party.",
+        options: ["have enjoyed very much", "enjoyed ourselves very much", "enjoyed at the party", "were enjoyed"],
+        correct: 1,
+        explanation: "'Enjoy' takes a reflexive pronoun when no direct object is present: 'enjoyed ourselves very much'."
+      },
+      {
+        id: 47,
+        exam: "SSC CGL Tier-01 2024",
+        question: "Improvement: His house is smaller than you.",
+        options: ["is smaller than yours", "is small as you", "is small than you", "is smaller than your"],
+        correct: 0,
+        explanation: "Comparison must compare a house with another house ('yours' = your house), not with a person ('you'). Correct: 'is smaller than yours'."
+      },
+      {
+        id: 48,
+        exam: "SSC CGL Tier-01 2024",
+        question: "Improvement: A computer can't function without it's mother board.",
+        options: ["its", "his", "their", "it is"],
+        correct: 0,
+        explanation: "The possessive determiner for a non-living entity is 'its' without an apostrophe."
+      },
+      {
+        id: 49,
+        exam: "SSC CGL Tier-01 2023",
+        question: "Improvement: We all should help each other.",
+        options: ["help mutually", "help one another", "help each one", "No substitution"],
+        correct: 1,
+        explanation: "'We all' indicates more than two people; therefore reciprocal pronoun 'one another' is appropriate instead of 'each other'."
+      },
+      {
+        id: 50,
+        exam: "SSC CGL Tier-01 2023",
+        question: "Improvement: The company decided to sell their stake in their subsidiary, because it was under massive debts.",
+        options: ["sell their stake in its subsidiary", "No substitution", "sell its stake in their subsidiary", "sell its stake in its subsidiary"],
+        correct: 3,
+        explanation: "'The company' is singular neuter; both possessive references must be singular 'its': 'sell its stake in its subsidiary'."
+      },
+      {
+        id: 51,
+        exam: "SSC CGL Tier-01 2023",
+        question: "Improvement: They are the people which are looking to expand their horizons in the fast growing tourism industry.",
+        options: ["which looked to expand", "who is looking to expand", "who are looking to expand", "that are looked to expand"],
+        correct: 2,
+        explanation: "For people ('the people'), use 'who'. Since 'people' is plural, the plural verb 'are looking' is required: 'who are looking to expand'."
+      },
+      {
+        id: 52,
+        exam: "SSC CGL Tier-01 2023",
+        question: "Improvement: The girl in the water whistled with full might and waved my arms to draw attention to her plight.",
+        options: ["her arms", "our arms", "his arms", "their arms"],
+        correct: 0,
+        explanation: "The subject is 'The girl'; the pronoun indicating her own arms must be 'her arms'."
+      },
+      {
+        id: 53,
+        exam: "SSC CGL Tier-01 2022",
+        question: "Improvement: The man which was present at the meeting spoke against the chairperson.",
+        options: ["The man which were present", "The men which was present", "The man whom was present", "The man who was present"],
+        correct: 3,
+        explanation: "Use relative pronoun 'who' as subject referring to a human person: 'The man who was present'."
+      },
+      {
+        id: 54,
+        exam: "SSC CGL PRE 2021",
+        question: "Improvement: The investigation revealed that both of they had given false information to obtain the certificates.",
+        options: ["No substitution required", "reveal that them both.", "reveals that how they both", "revealed that both of them"],
+        correct: 3,
+        explanation: "After preposition 'of', the objective pronoun 'them' is required: 'both of them'."
+      },
+      {
+        id: 55,
+        exam: "SSC CGL PRE 2021",
+        question: "Improvement: They each listened carefully to what each other said.",
+        options: ["each another", "No improvement required", "the other", "one another"],
+        correct: 2,
+        explanation: "'They each listened carefully to what the other said' is grammatically sound when paired with 'each'."
+      },
+      {
+        id: 56,
+        exam: "SSC CHSL Tier-02 2023",
+        question: "Improvement: Pradeep, whom is a teacher, also works as a content writer.",
+        options: [
+          "Pradeep, which is a teacher, also works as a content writer.",
+          "Pradeep, whose is a teacher, also works as a content writer.",
+          "Pradeep, who is a teacher, also works as a content writer.",
+          "Pradeep, that is a teacher, also works as a content writer."
+        ],
+        correct: 2,
+        explanation: "Subjective relative pronoun 'who' is needed as the subject of the clause 'who is a teacher'."
+      },
+      {
+        id: 57,
+        exam: "SSC CHSL Tier-01 2025",
+        question: "Improvement: One should do ones' duty.",
+        options: ["One should do one's duty", "One should do ones duties", "One should do once duties", "One should do their duty"],
+        correct: 0,
+        explanation: "The possessive form of 'one' is 'one's' (apostrophe before the 's')."
+      },
+      {
+        id: 58,
+        exam: "SSC CHSL Tier-01 2025",
+        question: "Fill in the blank: Peter did not speak to _______ in the room.",
+        options: ["anyone", "no one", "somebody", "nobody"],
+        correct: 0,
+        explanation: "Avoid double negatives: with 'did not speak', use 'anyone', not 'no one' or 'nobody'."
+      },
+      {
+        id: 59,
+        exam: "SSC CHSL Tier-01 2024",
+        question: "Improvement: It was her who first saw the criminal.",
+        options: ["hers", "she", "them", "him"],
+        correct: 1,
+        explanation: "After 'It was/is' (forms of 'be'), the subjective case pronoun is used: 'It was she who first saw...'."
+      },
+      {
+        id: 60,
+        exam: "SSC CHSL Tier-01 2024",
+        question: "Improvement: I hope you have enjoying yourselves at the party tonight!",
+        options: ["enjoys yourselves", "enjoy yourselves", "are enjoying themselves", "will be enjoy himself"],
+        correct: 1,
+        explanation: "Subjunctive/imperative friendly wish: 'I hope you enjoy yourselves at the party tonight!'."
+      },
+      {
+        id: 61,
+        exam: "SSC CHSL Tier-01 2022",
+        question: "Improvement: But what of the young people whom are part of the cricket crowds, some of who are presumably born in England?",
+        options: [
+          "who are part of the cricket crowds, some of who are presumably born in England",
+          "No improvement",
+          "whom are part of the cricket crowds, some of whom are presumably born in England",
+          "who are part of the cricket crowds, some of whom are presumably born in England"
+        ],
+        correct: 3,
+        explanation: "First part needs subjective 'who are part', second part after preposition 'of' needs objective 'some of whom'."
+      },
+      {
+        id: 62,
+        exam: "SSC CPO Pre 2023",
+        question: "Improvement: We all should respect each other.",
+        options: ["every other", "all other", "one another", "all of us"],
+        correct: 2,
+        explanation: "For more than two individuals ('We all'), reciprocal pronoun 'one another' is standard."
+      },
+      {
+        id: 63,
+        exam: "SSC CPO Pre 2020",
+        question: "Improvement: One morning I went out with my cousin which is the lawyer.",
+        options: ["who is a", "who is the", "which is a", "No substitution required"],
+        correct: 0,
+        explanation: "Use 'who' for persons, and indefinite article 'a lawyer' for a profession."
+      },
+      {
+        id: 64,
+        exam: "SSC JHT Exam 2022",
+        question: "Improvement: Each of our students pay their tuition fee at the beginning of the month.",
+        options: ["Student pay their", "Students pays their", "Students pays his", "No improvement"],
+        correct: 2,
+        explanation: "'Each of our students' takes singular verb 'pays' and singular pronoun 'his' in formal grammar."
+      },
+      {
+        id: 65,
+        exam: "SSC GD Exam 2021",
+        question: "Improvement: Asha trusts only Bhaskar who is a friend of hers.",
+        options: ["that is a friend of hers", "who are the friend of her", "who is friend of her", "No substitution required"],
+        correct: 3,
+        explanation: "The double possessive idiom 'a friend of hers' is completely correct as written."
+      },
+      {
+        id: 66,
+        exam: "SSC GD Exam 2021",
+        question: "Improvement: One day as mine little sister said she wanted to become an actress, we were shocked.",
+        options: ["since mine", "when my", "No improvement required", "that my"],
+        correct: 1,
+        explanation: "'mine' is a pronoun, whereas possessive adjective 'my' is required before the noun phrase 'little sister'."
+      },
+      {
+        id: 67,
+        exam: "SSC GD Exam 2021",
+        question: "Improvement: The decision to become a doctor is completely hers",
+        options: ["No improvement required", "are completely her", "is complete her's", "is completely her"],
+        correct: 0,
+        explanation: "'hers' is the correct predicate possessive pronoun without an apostrophe. Sentence is correct."
+      },
+      {
+        id: 68,
+        exam: "SSC GD Exam 2021",
+        question: "Improvement: Either Sumit or Amit will give their assistance in unloading the goods from the truck.",
+        options: ["his", "No substitution required", "your", "its"],
+        correct: 0,
+        explanation: "When two singular subjects are joined by 'either... or', a singular pronoun 'his' is used."
+      },
+      {
+        id: 69,
+        exam: "SSC GD Exam 2022",
+        question: "Improvement: Let I clear the doubts, if any.",
+        options: ["Let mine", "Let me", "Let myself", "Let my"],
+        correct: 1,
+        explanation: "The verb 'Let' is followed by an objective case pronoun: 'Let me clear the doubts'."
+      },
+      {
+        id: 70,
+        exam: "SSC GD Exam 2022",
+        question: "Improvement: Guess that vessel holds the least water?",
+        options: ["vessel which holds", "which vessel hold", "that vessel hold", "which vessel holds"],
+        correct: 3,
+        explanation: "When choosing from a limited number or interrogative question, 'which vessel holds' is correct."
+      },
+      {
+        id: 71,
+        exam: "SSC GD Exam 2022",
+        question: "Improvement: One must do his work.",
+        options: ["her work", "their work", "one's work", "No substitution"],
+        correct: 2,
+        explanation: "The subject 'One' takes 'one's' as its possessive form, never 'his' or 'their'."
+      },
+      {
+        id: 72,
+        exam: "SSC GD Exam 2025",
+        question: "Improvement: It is us responsible for the current situation of the company.",
+        options: ["us that are responsible", "we who are responsible", "we that responsible", "who are responsible"],
+        correct: 1,
+        explanation: "Subject complement after 'It is' must be subjective case 'we', followed by relative clause 'who are responsible'."
+      },
+      {
+        id: 73,
+        exam: "SSC GD Exam 2025",
+        question: "Improvement: She is a talented artist which paints beautiful landscapes.",
+        options: ["that paints beautiful landscapes", "whatever paints beautiful landscapes", "who paints beautiful landscapes", "whichever paints beautiful landscapes"],
+        correct: 2,
+        explanation: "Relative pronoun 'who' is used for a talented person/artist: 'who paints beautiful landscapes'."
+      },
+      {
+        id: 74,
+        exam: "SSC GD Exam 2025",
+        question: "Fill in the blank: Give the cake to _______ asks for it first.",
+        options: ["whomever", "whoever", "whom so ever", "whichever"],
+        correct: 1,
+        explanation: "'whoever' is the subject of the clause 'asks for it first'. The entire clause functions as object of 'to'."
+      },
+      {
+        id: 75,
+        exam: "SSC Steno Exam 2026",
+        question: "Improvement: The committee's decision, which was based on exhaustive data analysis, it received widespread approval from stakeholders.",
+        options: [
+          "which was based on exhaustive data analysis, it received",
+          "which was based on exhaustive data analysis, received",
+          "based on exhaustive data analysis, it received",
+          "that was based on exhaustive data analysis, it received"
+        ],
+        correct: 1,
+        explanation: "Redundant pronoun: 'it' after the relative clause repeats the subject 'The committee's decision'. Eliminate 'it'."
+      },
+      {
+        id: 76,
+        exam: "SSC Steno Exam 2026",
+        question: "Improvement: The novel's intricate plot, who was developed over many years, it captivated readers worldwide.",
+        options: [
+          "who was developed over many years, it captivated",
+          "which was developed over many years, captivated",
+          "developed over many years, it captivated",
+          "that was developed over many years, captivating"
+        ],
+        correct: 1,
+        explanation: "'plot' is non-human (use 'which') and redundant subject pronoun 'it' must be removed."
+      },
+      {
+        id: 77,
+        exam: "SSC STENO Exam 2025",
+        question: "Improvement: The fiction and non fictional book, that I borrowed, was interesting.",
+        options: ["whom I borrowed", "what I borrowed", "whose I borrowed", "which I borrowed"],
+        correct: 3,
+        explanation: "In non-defining relative clauses set off with commas, 'which' is standardly used for books/objects."
+      },
+      {
+        id: 78,
+        exam: "SSC STENO Exam 2025",
+        question: "Improvement: The teacher asked that who was absent.",
+        options: ["that whom", "which student", "who", "whose"],
+        correct: 2,
+        explanation: "In indirect questions introduced by interrogative pronouns ('who'), the conjunction 'that' is not used."
+      },
+      {
+        id: 79,
+        exam: "SSC STENO Exam 2025",
+        question: "Improvement: This is the boy who he stole the purse.",
+        options: ["who had stole", "which stole", "whom stole", "who stole"],
+        correct: 3,
+        explanation: "The pronoun 'he' is redundant because the relative pronoun 'who' serves as the subject of 'stole'."
+      },
+      {
+        id: 80,
+        exam: "SSC STENO Exam 2024",
+        question: "Improvement: I know a person who parents live in Milan.",
+        options: ["what parents", "fit parents", "whose parents", "whom parents"],
+        correct: 2,
+        explanation: "Possessive relative pronoun 'whose' is needed to show whose parents they are: 'whose parents live in Milan'."
+      },
+      {
+        id: 81,
+        exam: "SSC STENO Exam 2023",
+        question: "Improvement: Me and Samridhi live here.",
+        options: ["Samridhi and me", "I and Samridhi", "Samridhi with I", "Samridhi and I"],
+        correct: 3,
+        explanation: "Subjective case with politeness rule 231 (Third person before first person): 'Samridhi and I'."
+      },
+      {
+        id: 82,
+        exam: "SSC STENO Exam 2021",
+        question: "Improvement: Sarnath is the place when Buddha preached his first sermon.",
+        options: ["what", "where", "that", "No substitution"],
+        correct: 1,
+        explanation: "'Sarnath is the place' refers to a geographical location, so relative adverb of place 'where' is required."
+      },
+      {
+        id: 83,
+        exam: "SSC MTS Exam 2023",
+        question: "Improvement: The energetic kitten is playful after having his breakfast.",
+        options: ["its", "it's", "it", "it is"],
+        correct: 0,
+        explanation: "For animals when gender is unspecified or general, neuter possessive determiner 'its' is used."
+      },
+      {
+        id: 84,
+        exam: "SSC MTS Exam 2022",
+        question: "Improvement: He looked around for Bunty or Vinay, (but either off) them was anywhere near him.",
+        options: ["No correction required", "moreover neither of", "because either of", "but neither of"],
+        correct: 3,
+        explanation: "Negative context ('was anywhere near him' implies absence) with two individuals requires 'but neither of them'."
+      },
+      {
+        id: 85,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "Fill in the blank: She arrived at the interview ten minutes early, _______ showed professionalism.",
+        options: ["what", "which", "that", "this"],
+        correct: 1,
+        explanation: "'which' can refer back to the entire preceding clause as its antecedent ('arriving ten minutes early')."
+      },
+      {
+        id: 86,
+        exam: "SSC GD Exam 2021",
+        question: "Fill in the blank: His condition was so critical that a senior doctor _______ performed the operation.",
+        options: ["yourself", "myself", "itself", "himself"],
+        correct: 3,
+        explanation: "Emphatic pronoun agreeing with masculine singular subject 'a senior doctor' is 'himself'."
+      },
+      {
+        id: 87,
+        exam: "SSC GD Exam 2024",
+        question: "Fill in the blank: As a child, he was tender and warm-hearted towards _______",
+        options: ["one", "everybody", "everywhere", "whomever"],
+        correct: 1,
+        explanation: "Indefinite pronoun 'everybody' fits contextually to refer to all people."
+      },
+      {
+        id: 88,
+        exam: "SSC GD Exam 2025",
+        question: "Fill in the blank: He made the cake all by _______",
+        options: ["yourself", "himself", "myself", "herself"],
+        correct: 1,
+        explanation: "'by himself' means alone/without help, agreeing with the subject 'He'."
+      },
+      {
+        id: 89,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "Fill in the blank: The discovery, _______ was unexpected, altered the trajectory of the entire study.",
+        options: ["that", "which", "what", "whose"],
+        correct: 1,
+        explanation: "Non-restrictive relative clause enclosed in commas requires 'which', not 'that'."
+      },
+      {
+        id: 90,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "Fill in the blank: Though the board remained divided on procedural issues, the chairperson, _______ authority was rarely contested, pushed the resolution through.",
+        options: ["whose", "whom", "who's", "which"],
+        correct: 0,
+        explanation: "Possessive relative pronoun 'whose' modifies 'authority' ('whose authority was rarely contested')."
+      },
+      {
+        id: 91,
+        exam: "SSC CGL 2025 Tier-01",
+        question: "Fill in the blank: The finance minister's statement was laden with caveats, none of _______ were explained.",
+        options: ["that", "them", "which", "whom"],
+        correct: 2,
+        explanation: "Connecting two clauses after a preposition ('none of...'), relative pronoun 'which' must be used for caveats."
+      },
+      {
+        id: 92,
+        exam: "SSC CPO Pre 2020",
+        question: "Fill in the blank: The man _______ book you are reading is my father.",
+        options: ["who", "whose", "whom", "that"],
+        correct: 1,
+        explanation: "Possessive pronoun 'whose' indicates possession of the 'book'."
+      },
+      {
+        id: 93,
+        exam: "SSC GD Exam 2024",
+        question: "Fill in the blank: This is only a partial list of the books _______ are needed in the library.",
+        options: ["that's", "that", "those", "their"],
+        correct: 1,
+        explanation: "Relative pronoun 'that' (or 'which') acts as the subject of 'are needed'."
+      },
+      {
+        id: 94,
+        exam: "SSC GD Exam 2025",
+        question: "Fill in the blank: She is the one _______ won the award.",
+        options: ["which", "whom", "whose", "who"],
+        correct: 3,
+        explanation: "Subjective relative pronoun 'who' refers to the person 'the one' as subject of 'won'."
+      },
+      {
+        id: 95,
+        exam: "SSC GD Exam 2025",
+        question: "Fill in the blank: We will complete the project _______ without external help.",
+        options: ["ourselves", "oneself", "itself", "themselves"],
+        correct: 0,
+        explanation: "Reflexive/emphatic pronoun agreeing with subject 'We' is 'ourselves'."
+      },
+      {
+        id: 96,
+        exam: "SSC SP Matriculation Level 2025",
+        question: "Identify the correct type of pronoun: \"I enjoyed myself during the holidays.\" Here, 'Myself' is a _______ pronoun.",
+        options: ["reflexive", "possessive", "distributive", "demonstrative"],
+        correct: 0,
+        explanation: "When an -self pronoun reflects the action back onto the subject of the transitive verb, it is a Reflexive Pronoun."
+      },
+      {
+        id: 97,
+        exam: "SSC SP Matriculation Level 2025",
+        question: "Fill in the blank: He is a man _______ word is his bond.",
+        options: ["who", "whom", "whose", "which"],
+        correct: 2,
+        explanation: "'whose word' represents possession ('his word is his bond')."
+      },
+      {
+        id: 98,
+        exam: "SSC STENO Exam 2025",
+        question: "Fill in the blank: I saw a man _______ was wearing a black coat.",
+        options: ["which", "whom", "who", "whose"],
+        correct: 2,
+        explanation: "'who' is the subjective relative pronoun referring to 'a man' and acting as subject for 'was wearing'."
+      },
+      {
+        id: 99,
+        exam: "SSC STENO Exam 2024",
+        question: "Fill in the blank: One should keep _______ surroundings neat and tidy.",
+        options: ["there's", "one's", "there", "ones"],
+        correct: 1,
+        explanation: "The indefinite pronoun 'one' requires the possessive form 'one's'."
+      },
+      {
+        id: 100,
+        exam: "SSC STENO Exam 2021",
+        question: "Fill in the blank: The police will let _______ go after seeing their passes.",
+        options: ["them", "they", "he", "we"],
+        correct: 0,
+        explanation: "The verb 'let' is followed by the objective case pronoun 'them'."
+      }
+    ];
+
+    // App State
+    let currentIndex = 0;
+    let userAnswers = new Array(100).fill(null);
+    let bookmarked = new Array(100).fill(false);
+    let mode = 'practice'; // 'practice' or 'exam'
+    let timerSeconds = 0;
+    let timerInterval = null;
+
+    // Initialize App
+    function init() {
+      renderPalette();
+      renderQuestion(currentIndex);
+      updateStats();
+      startTimer();
+      document.addEventListener('keydown', handleKeyNavigation);
+    }
+
+    // Keyboard navigation
+    function handleKeyNavigation(e) {
+      if (document.getElementById('resultsModal').classList.contains('hidden') === false) return;
+      if (e.key === 'ArrowLeft') prevQuestion();
+      if (e.key === 'ArrowRight') nextQuestion();
+    }
+
+    // Timer
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerSeconds = 0;
+      timerInterval = setInterval(() => {
+        timerSeconds++;
+        const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    // Mode Toggle
+    function setMode(newMode) {
+      mode = newMode;
+      const practiceBtn = document.getElementById('modePracticeBtn');
+      const examBtn = document.getElementById('modeExamBtn');
+      if (mode === 'practice') {
+        practiceBtn.className = "px-2.5 py-1 rounded-md transition-all bg-white text-blue-700 shadow-xs";
+        examBtn.className = "px-2.5 py-1 rounded-md transition-all text-slate-600 hover:text-slate-900";
+      } else {
+        examBtn.className = "px-2.5 py-1 rounded-md transition-all bg-white text-blue-700 shadow-xs";
+        practiceBtn.className = "px-2.5 py-1 rounded-md transition-all text-slate-600 hover:text-slate-900";
+      }
+      renderQuestion(currentIndex);
+    }
+
+    // Render Question
+    function renderQuestion(idx) {
+      currentIndex = idx;
+      const q = rawQuestions[idx];
+
+      // Headers & tags
+      document.getElementById('currentQNumText').innerText = q.id;
+      document.getElementById('examTag').innerText = q.exam;
+      document.getElementById('questionText').innerText = `${q.id}. ${q.question}`;
+
+      // Mark for review button state
+      const bmBtn = document.getElementById('bookmarkBtn');
+      if (bookmarked[idx]) {
+        bmBtn.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-purple-100 border border-purple-200 text-purple-700 flex items-center gap-1.5";
+        bmBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i> <span class="hidden sm:inline">Marked</span>';
+      } else {
+        bmBtn.className = "px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors flex items-center gap-1.5";
+        bmBtn.innerHTML = '<i class="fa-regular fa-bookmark"></i> <span class="hidden sm:inline">Mark for Review</span>';
+      }
+
+      // Render Options
+      const optionsContainer = document.getElementById('optionsList');
+      optionsContainer.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      const answered = userAnswers[idx] !== null;
+
+      q.options.forEach((optText, optIdx) => {
+        const isSelected = userAnswers[idx] === optIdx;
+        const isCorrect = optIdx === q.correct;
+
+        const optBtn = document.createElement('button');
+        optBtn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl border transition-all flex items-start gap-3 text-sm ";
+
+        let badgeClass = "w-6 h-6 rounded-md flex items-center justify-center font-bold text-xs shrink-0 ";
+        let contentClass = "flex-1 font-medium ";
+
+        if (mode === 'practice' && answered) {
+          // Instant feedback styling
+          if (isCorrect) {
+            optBtn.classList.add("bg-emerald-50", "border-emerald-300", "text-emerald-900");
+            badgeClass += "bg-emerald-600 text-white";
+          } else if (isSelected) {
+            optBtn.classList.add("bg-rose-50", "border-rose-300", "text-rose-900");
+            badgeClass += "bg-rose-600 text-white";
+          } else {
+            optBtn.classList.add("bg-white", "border-slate-200", "text-slate-500", "opacity-75");
+            badgeClass += "bg-slate-100 text-slate-600";
+          }
+        } else {
+          // Exam mode or unselected
+          if (isSelected) {
+            optBtn.classList.add("bg-blue-50", "border-blue-500", "text-blue-900", "shadow-xs");
+            badgeClass += "bg-blue-600 text-white";
+          } else {
+            optBtn.classList.add("bg-white", "border-slate-200", "text-slate-800", "hover:bg-slate-50", "hover:border-slate-300");
+            badgeClass += "bg-slate-100 text-slate-600";
+          }
+        }
+
+        optBtn.onclick = () => selectOption(optIdx);
+
+        optBtn.innerHTML = `
+          <span class="${badgeClass}">${letters[optIdx]}</span>
+          <span class="${contentClass}">${optText}</span>
+          ${mode === 'practice' && answered && isCorrect ? '<i class="fa-solid fa-circle-check text-emerald-600 text-base shrink-0 mt-0.5"></i>' : ''}
+          ${mode === 'practice' && answered && isSelected && !isCorrect ? '<i class="fa-solid fa-circle-xmark text-rose-500 text-base shrink-0 mt-0.5"></i>' : ''}
+        `;
+
+        optionsContainer.appendChild(optBtn);
+      });
+
+      // Explanation Box
+      const expBox = document.getElementById('explanationBox');
+      const expText = document.getElementById('explanationText');
+      const expHeader = document.getElementById('explanationHeader');
+
+      if (mode === 'practice' && answered) {
+        expBox.classList.remove('hidden');
+        const correct = userAnswers[idx] === q.correct;
+        if (correct) {
+          expBox.className = "mt-6 p-4 rounded-xl border border-emerald-200 bg-emerald-50/70 text-emerald-900";
+          expHeader.className = "flex items-center gap-2 mb-1.5 font-bold text-sm text-emerald-800";
+          expHeader.innerHTML = '<i class="fa-solid fa-circle-check"></i> Correct Answer!';
+        } else {
+          expBox.className = "mt-6 p-4 rounded-xl border border-rose-200 bg-rose-50/70 text-rose-900";
+          expHeader.className = "flex items-center gap-2 mb-1.5 font-bold text-sm text-rose-800";
+          expHeader.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Incorrect! Correct Answer: Option ' + letters[q.correct];
+        }
+        expText.innerText = q.explanation;
+      } else {
+        expBox.classList.add('hidden');
+      }
+
+      // Prev / Next button state
+      document.getElementById('prevBtn').disabled = idx === 0;
+      document.getElementById('prevBtn').classList.toggle('opacity-40', idx === 0);
+      document.getElementById('prevBtn').classList.toggle('cursor-not-allowed', idx === 0);
+
+      const nextBtn = document.getElementById('nextBtn');
+      if (idx === rawQuestions.length - 1) {
+        nextBtn.innerHTML = 'Review <i class="fa-solid fa-check text-xs"></i>';
+      } else {
+        nextBtn.innerHTML = 'Next <i class="fa-solid fa-chevron-right text-xs"></i>';
+      }
+
+      updatePaletteHighlights();
+    }
+
+    // Select Option
+    function selectOption(optIdx) {
+      userAnswers[currentIndex] = optIdx;
+      renderQuestion(currentIndex);
+      updateStats();
+      renderPalette();
+    }
+
+    // Clear Answer
+    function clearCurrentAnswer() {
+      userAnswers[currentIndex] = null;
+      renderQuestion(currentIndex);
+      updateStats();
+      renderPalette();
+    }
+
+    // Bookmark / Mark for Review
+    function toggleBookmark() {
+      bookmarked[currentIndex] = !bookmarked[currentIndex];
+      renderQuestion(currentIndex);
+      updateStats();
+      renderPalette();
+    }
+
+    // Navigation
+    function prevQuestion() {
+      if (currentIndex > 0) renderQuestion(currentIndex - 1);
+    }
+    function nextQuestion() {
+      if (currentIndex < rawQuestions.length - 1) {
+        renderQuestion(currentIndex + 1);
+      } else {
+        confirmFinishQuiz();
+      }
+    }
+
+    // Render Question Palette
+    function renderPalette() {
+      const grid = document.getElementById('paletteGrid');
+      const filter = document.getElementById('paletteFilter').value;
+      grid.innerHTML = '';
+
+      rawQuestions.forEach((q, idx) => {
+        const isAnswered = userAnswers[idx] !== null;
+        const isMarked = bookmarked[idx];
+
+        if (filter === 'answered' && !isAnswered) return;
+        if (filter === 'unanswered' && isAnswered) return;
+        if (filter === 'marked' && !isMarked) return;
+
+        const btn = document.createElement('button');
+        btn.id = `palette-btn-${idx}`;
+        btn.innerText = idx + 1;
+        btn.onclick = () => renderQuestion(idx);
+
+        let baseClasses = "h-8 rounded-lg font-bold text-xs flex items-center justify-center transition-all ";
+
+        if (idx === currentIndex) {
+          baseClasses += "ring-2 ring-blue-600 ring-offset-1 font-extrabold ";
+        }
+
+        if (isMarked) {
+          baseClasses += "bg-purple-600 text-white shadow-xs";
+        } else if (isAnswered) {
+          baseClasses += "bg-emerald-600 text-white shadow-xs";
+        } else {
+          baseClasses += "bg-slate-100 text-slate-700 hover:bg-slate-200";
+        }
+
+        btn.className = baseClasses;
+        grid.appendChild(btn);
+      });
+    }
+
+    function updatePaletteHighlights() {
+      document.querySelectorAll('#paletteGrid button').forEach((btn, idx) => {
+        const qIndex = parseInt(btn.innerText) - 1;
+        if (qIndex === currentIndex) {
+          btn.classList.add('ring-2', 'ring-blue-600', 'ring-offset-1');
+        } else {
+          btn.classList.remove('ring-2', 'ring-blue-600', 'ring-offset-1');
+        }
+      });
+    }
+
+    function filterPalette() {
+      renderPalette();
+    }
+
+    // Update Statistics
+    function updateStats() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      const unansweredCount = 100 - answeredCount;
+      const markedCount = bookmarked.filter(Boolean).length;
+
+      document.getElementById('countAnswered').innerText = answeredCount;
+      document.getElementById('countUnanswered').innerText = unansweredCount;
+      document.getElementById('countMarked').innerText = markedCount;
+
+      const pct = Math.round((answeredCount / 100) * 100);
+      document.getElementById('progressPercent').innerText = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+    }
+
+    // Finish Quiz & Show Modal
+    function confirmFinishQuiz() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      const unansweredCount = 100 - answeredCount;
+
+      if (unansweredCount > 0) {
+        if (!confirm(`You still have ${unansweredCount} unanswered question(s). Are you sure you want to finish the quiz?`)) {
+          return;
+        }
+      }
+
+      // Calculate score
+      let correct = 0;
+      let incorrect = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans !== null) {
+          if (ans === rawQuestions[idx].correct) correct++;
+          else incorrect++;
+        }
+      });
+
+      const accuracy = answeredCount > 0 ? Math.round((correct / answeredCount) * 100) : 0;
+      const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+
+      document.getElementById('resultCorrect').innerText = correct;
+      document.getElementById('resultIncorrect').innerText = incorrect;
+      document.getElementById('resultScore').innerText = `${accuracy}%`;
+      document.getElementById('resultAttempted').innerText = `${answeredCount} / 100`;
+      document.getElementById('resultUnattempted').innerText = unansweredCount;
+      document.getElementById('resultTime').innerText = `${mins}m ${secs}s`;
+
+      document.getElementById('resultsModal').classList.remove('hidden');
+    }
+
+    function closeResultsModal() {
+      document.getElementById('resultsModal').classList.add('hidden');
+      setMode('practice'); // Switch to practice mode for reviewing explanations
+    }
+
+    function restartQuiz() {
+      if (confirm('Are you sure you want to restart the quiz? All answers will be cleared.')) {
+        userAnswers = new Array(100).fill(null);
+        bookmarked = new Array(100).fill(false);
+        closeResultsModal();
+        startTimer();
+        renderPalette();
+        renderQuestion(0);
+        updateStats();
+      }
+    }
+
+    // Boot
+    window.onload = init;
+  </script>
+</body>
+</html>

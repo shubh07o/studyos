@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alphabet Test Practice Quiz (237 Qs) - Parmar SSC</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #ca8a04;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-badge {
+      background: #14b8a6;
+      color: #0f172a;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .brand h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .set-select {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #334155;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .mode-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #1e293b;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .mode-switch input {
+      accent-color: #14b8a6;
+      cursor: pointer;
+    }
+
+    .timer {
+      font-family: monospace;
+      font-size: 1.1rem;
+      background: #1e293b;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      color: #2dd4bf;
+      font-weight: 700;
+    }
+
+    .btn {
+      padding: 0.5rem 0.95rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+    .btn-danger:hover {
+      opacity: 0.9;
+    }
+
+    .btn-info {
+      background: #334155;
+      color: #fff;
+    }
+    .btn-info:hover {
+      background: #475569;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    /* Formula Drawer */
+    .formula-drawer {
+      max-width: 1400px;
+      width: calc(100% - 2.5rem);
+      margin: 1rem auto 0;
+      background: #ffffff;
+      border: 1px solid #99f6e4;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .formula-drawer h3 {
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .formula-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .formula-table th, .formula-table td {
+      border: 1px solid #cbd5e1;
+      padding: 0.3rem;
+    }
+
+    .formula-table th {
+      background: #f0fdfa;
+      color: #0f766e;
+    }
+
+    /* Main Layout */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+      max-width: 1400px;
+      width: 100%;
+      margin: 1.25rem auto;
+      padding: 0 1.25rem;
+      flex: 1;
+    }
+
+    /* Question Area */
+    .question-card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .q-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .q-num {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .q-tag {
+      font-size: 0.78rem;
+      background: #f0fdfa;
+      color: #0f766e;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      font-weight: 600;
+      border: 1px solid #99f6e4;
+    }
+
+    .q-body {
+      font-size: 1.05rem;
+      line-height: 1.68;
+      margin-bottom: 1.5rem;
+      white-space: pre-line;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.9rem 1.1rem;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      color: var(--text);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: #5eead4;
+      background: #f0fdfa;
+    }
+
+    .opt-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background: #f0fdfa;
+    }
+    .option-btn.selected .opt-letter {
+      background: var(--primary);
+      color: white;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: #f0fdf4;
+    }
+    .option-btn.correct .opt-letter {
+      background: var(--success);
+      color: white;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+    .option-btn.wrong .opt-letter {
+      background: var(--danger);
+      color: white;
+    }
+
+    .feedback-banner {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .q-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .nav-group {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    /* Sidebar Palette */
+    .sidebar {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: fit-content;
+      max-height: calc(100vh - 95px);
+      position: sticky;
+      top: 75px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .stat-box {
+      padding: 0.5rem 0.65rem;
+      border-radius: 6px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.45rem;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+      max-height: 410px;
+    }
+
+    .p-btn {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-weight: 600;
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s;
+    }
+
+    .p-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .p-btn.current {
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+    }
+
+    .p-btn.answered {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .p-btn.correct {
+      background: var(--success);
+      color: white;
+      border-color: var(--success);
+    }
+
+    .p-btn.wrong {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+
+    .p-btn.review {
+      background: var(--warning);
+      color: white;
+      border-color: var(--warning);
+    }
+
+    /* Result Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+
+    .modal {
+      background: white;
+      max-width: 520px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #f0fdfa;
+      border: 4px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1.25rem auto;
+    }
+
+    .score-circle span {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .result-breakdown {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+      text-align: left;
+    }
+
+    @media (max-width: 950px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+      .palette-grid {
+        grid-template-columns: repeat(8, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+      .palette-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="brand-badge">PARMAR SSC</span>
+      <h1>Alphabet Test Quiz</h1>
+      <select class="set-select" id="setSelector" onchange="switchQuizSet(this.value)">
+        <option value="century">Set 1: Alphabet Century PDF (100 Qs - Bilingual)</option>
+        <option value="sheet">Set 2: Alphabet Practice Sheet PDF (137 Qs - English)</option>
+      </select>
+    </div>
+    <div class="header-controls">
+      <button class="btn btn-info" onclick="toggleFormulaSheet()">📖 Formula Sheet</button>
+      <label class="mode-switch" title="Instant answer check on click">
+        <input type="checkbox" id="practiceModeToggle" checked />
+        <span>Instant Practice Mode</span>
+      </label>
+      <div class="timer" id="timerDisplay">00:00:00</div>
+      <button class="btn btn-danger" onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+  </header>
+
+  <section class="formula-drawer" id="formulaDrawer">
+    <h3>Alphabet Reasoning Quick Reference Formula Sheet (Right Pos = 27 − Left Pos)</h3>
+    <div style="overflow-x:auto;">
+      <table class="formula-table">
+        <tr>
+          <th>Letter</th>
+          <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th><th>K</th><th>L</th><th>M</th>
+          <th>N</th><th>O</th><th>P</th><th>Q</th><th>R</th><th>S</th><th>T</th><th>U</th><th>V</th><th>W</th><th>X</th><th>Y</th><th>Z</th>
+        </tr>
+        <tr>
+          <th>Left Pos</th>
+          <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+          <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
+        </tr>
+        <tr>
+          <th>Right Pos</th>
+          <td>26</td><td>25</td><td>24</td><td>23</td><td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td><td>15</td><td>14</td>
+          <td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td>
+        </tr>
+        <tr>
+          <th>Opposite</th>
+          <td>Z</td><td>Y</td><td>X</td><td>W</td><td>V</td><td>U</td><td>T</td><td>S</td><td>R</td><td>Q</td><td>P</td><td>O</td><td>N</td>
+          <td>M</td><td>L</td><td>K</td><td>J</td><td>I</td><td>H</td><td>G</td><td>F</td><td>E</td><td>D</td><td>C</td><td>B</td><td>A</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="question-card">
+      <div>
+        <div class="q-header">
+          <span class="q-num" id="qNumber">Question 1</span>
+          <span class="q-tag" id="qTag">SSC Reasoning</span>
+        </div>
+        <div class="q-body" id="qText"></div>
+        <div class="options-list" id="optionsContainer"></div>
+        <div class="feedback-banner" id="feedbackBanner"></div>
+      </div>
+
+      <div class="q-footer">
+        <div class="nav-group">
+          <button class="btn btn-outline" onclick="clearResponse()">Clear</button>
+          <button class="btn btn-outline" onclick="toggleReview()">Mark for Review</button>
+        </div>
+        <div class="nav-group">
+          <button class="btn btn-outline" id="prevBtn" onclick="changeQuestion(-1)">← Previous</button>
+          <button class="btn btn-primary" id="nextBtn" onclick="changeQuestion(1)">Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h3 style="font-size: 1rem;" id="paletteTitle">Question Palette</h3>
+      <div class="stats-grid">
+        <div class="stat-box"><span>Answered</span><span id="statAnswered" style="color:var(--primary)">0</span></div>
+        <div class="stat-box"><span>Correct</span><span id="statCorrect" style="color:var(--success)">0</span></div>
+        <div class="stat-box"><span>Wrong</span><span id="statWrong" style="color:var(--danger)">0</span></div>
+        <div class="stat-box"><span>Marked</span><span id="statReview" style="color:var(--warning)">0</span></div>
+      </div>
+      <div class="palette-grid" id="paletteGrid"></div>
+      <button class="btn btn-outline" style="width:100%" onclick="resetQuiz()">Reset Current Set</button>
+    </aside>
+  </main>
+
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal">
+      <h2>Quiz Summary</h2>
+      <p style="color:var(--muted); font-size:0.9rem;" id="modalSetSubtitle"></p>
+      <div class="score-circle">
+        <span id="finalScore">0</span>
+        <small style="color:var(--muted); font-size:0.75rem;" id="maxMarksLabel">/ 200 Marks</small>
+      </div>
+      <div class="result-breakdown">
+        <div class="stat-box"><span>Attempted</span><span id="resAttempted">0</span></div>
+        <div class="stat-box"><span>Correct (+2)</span><span id="resCorrect" style="color:var(--success)">0</span></div>
+        <div class="stat-box"><span>Wrong (-0.5)</span><span id="resWrong" style="color:var(--danger)">0</span></div>
+        <div class="stat-box"><span>Unattempted</span><span id="resSkipped">0</span></div>
+      </div>
+      <div style="display:flex; gap:0.75rem; justify-content:center; margin-top:1rem;">
+        <button class="btn btn-primary" onclick="closeModal()">Review Answers</button>
+        <button class="btn btn-outline" onclick="resetQuiz(); closeModal();">Restart Set</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SET 1: ALPHABET TEST CENTURY PDF (100 Questions)
+    const centuryQuestions = [
+      { id: 1, tag: "SSC Steno Exam 2026 S1", q: "In BUILDER, what is the 2nd to the left of the letter, 3rd from the right?\nBUILDER में, दाएं से तीसरे अक्षर के बाएं से दूसरा अक्षर क्या है?", options: ["I", "U", "L", "D"], ans: "A" },
+      { id: 2, tag: "SSC Steno Exam 2026 S1", q: "In INDUCTION, what letter is third to the left of the second letter from the right?\nINDUCTION में, दाएं से दूसरे अक्षर के बाएं तीसरा अक्षर कौन सा है?", options: ["U", "C", "D", "T"], ans: "B" },
+      { id: 3, tag: "SSC CHSL Tier-01 2025 S3", q: "How many letter pairs are there in the word 'DESTRUCT' which has as many letters in both the forward direction and the backward direction as there are between them as per English alphabetical order?\nशब्द 'DESTRUCT' में अक्षर के ऐसे कितने युग्म हैं जिनके बीच आगे और पीछे दोनों दिशाओं में उतने ही अक्षर हैं जितने अंग्रेजी वर्णमाला क्रम के अनुसार उनके बीच हैं?", options: ["Four (चार)", "One (एक)", "Two (दो)", "Three (तीन)"], ans: "C" },
+      { id: 4, tag: "SSC CGL 2025 Tier-01 S2", q: "Find the letter which is between the 1st and 4th letters of the following word as per the English alphabet series: CUTE\nअंग्रेजी वर्णमाला श्रृंखला के अनुसार निम्नलिखित शब्द (CUTE) के पहले और चौथे अक्षरों के बीच में आने वाला अक्षर ज्ञात कीजिए।", options: ["F", "D", "V", "Z"], ans: "B" },
+      { id: 5, tag: "SSC CGL 2025 Tier-01 S2", q: "Each of the letters in the word DEVELOPMENT is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is third from the left and the one that is fourth from the right in the new letter-cluster formed?\nशब्द DEVELOPMENT के प्रत्येक अक्षर को वर्णानुक्रम में व्यवस्थित किया गया है। नए अक्षर-समूह में बायें से तीसरे अक्षर और दायें से चौथे अक्षर के बीच अंग्रेजी वर्णमाला क्रम में कितने अक्षर हैं?", options: ["7", "9", "6", "8"], ans: "B" },
+      { id: 6, tag: "SSC CGL 2025 Tier-01 S3", q: "The position of how many letters will remain unchanged if each of the letters in the word COMFORT is arranged in alphabetical order?\nयदि शब्द COMFORT के प्रत्येक अक्षर को वर्णानुक्रम में व्यवस्थित किया जाए तो कितने अक्षरों की स्थिति अपरिवर्तित रहेगी?", options: ["Two (दो)", "Four (चार)", "Three (तीन)", "Five (पाँच)"], ans: "D" },
+      { id: 7, tag: "SSC CGL 2025 Tier-01 S3", q: "Each of the letters in the word HARMONIOUS is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is first from the left and the one that is fourth from the right in the new letter-cluster formed?", options: ["12", "13", "15", "11"], ans: "B" },
+      { id: 8, tag: "SSC CGL 2025 Tier-01 S3", q: "Each of the letters in the word LAPTOP is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is fourth from the left and the one that is first from the right in the new letter-cluster formed?", options: ["Two (दो)", "Four (चार)", "Three (तीन)", "One (एक)"], ans: "C" },
+      { id: 9, tag: "SSC CGL 2025 Tier-01 S3", q: "Which letter in the word \"TREATMENT\" is equidistant from both ends?\nशब्द \"TREATMENT\" में कौन-सा अक्षर दोनों सिरों से समान दूरी पर है?", options: ["A", "T", "E", "M"], ans: "B" },
+      { id: 10, tag: "SSC CGL 2025 Tier-01 S2", q: "Each of the letters in the word UNIVERSAL is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is second from the left and the one that is fifth from the right in the new letter-cluster formed?", options: ["7", "8", "6", "9"], ans: "B" },
+      { id: 11, tag: "SSC CGL 2025 Tier-01 S2", q: "The position of how many letters will remain unchanged if each of the letters in the word FRIEND is arranged in alphabetical order?\nयदि शब्द FRIEND के प्रत्येक अक्षर को वर्णानुक्रम में व्यवस्थित किया जाए तो कितने अक्षरों की स्थिति अपरिवर्तित रहेगी?", options: ["One (एक)", "Four (चार)", "Three (तीन)", "Five (पाँच)"], ans: "A" },
+      { id: 12, tag: "SSC CGL 2025 Tier-01 S1", q: "Each of the letters in the word FRIENDLY is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is third from the left and the one that is second from the right in the new letter-cluster formed?", options: ["2", "4", "13", "11"], ans: "D" },
+      { id: 13, tag: "SSC CGL 2025 Tier-01 S1", q: "Each of the letters in the word STUDENT is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is second from the left and the one that is fourth from the right in the new letter-cluster formed?", options: ["17", "13", "11", "15"], ans: "B" },
+      { id: 14, tag: "SSC CGL 2025 Tier-01 S2", q: "Each of the letters in the word CONTRAST is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is first from the left and the one that is fifth from the right in the new letter-cluster formed?", options: ["10", "13", "15", "11"], ans: "B" },
+      { id: 15, tag: "SSC CGL 2025 Tier-01 S1", q: "Each of the letters in the word GARDEN is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is fifth from the left and the one that is third from the right in the new letter-cluster formed?", options: ["Two (दो)", "Four (चार)", "Six (छह)", "One (एक)"], ans: "C" },
+      { id: 16, tag: "SSC CGL 2025 Tier-01 S1", q: "How many letters in \"SIGNATURE\" are between the first vowel and the last consonant?\n\"SIGNATURE\" में पहले स्वर और अंतिम व्यंजन के बीच कितने अक्षर हैं?", options: ["3", "4", "5", "6"], ans: "C" },
+      { id: 17, tag: "SSC CGL 2025 Tier-01 S3", q: "The position of how many letters will remain unchanged if each of the letters in the word DEVELOP is arranged in alphabetical order?", options: ["Two (दो)", "Four (चार)", "Three (तीन)", "Five (पाँच)"], ans: "A" },
+      { id: 18, tag: "SSC CGL 2025 Tier-01 S2", q: "Each of the letters in the word STAMINA is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is first from the left and the one that is fourth from the right in the new letter-cluster formed?", options: ["11", "12", "13", "14"], ans: "A" },
+      { id: 19, tag: "SSC CHSL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word ENGLISH is arranged in alphabetical order?", options: ["Three (तीन)", "Four (चार)", "Two (दो)", "One (एक)"], ans: "D" },
+      { id: 20, tag: "SSC CHSL Tier-01 2024 S4", q: "The position of how many letters will remain unchanged if each of the letters in the word CHEMISTRY is arranged in alphabetical order?", options: ["Three (तीन)", "One (एक)", "Two (दो)", "Four (चार)"], ans: "C" },
+      { id: 21, tag: "SSC CHSL Tier-01 2024 S4", q: "The position of how many letters will remain unchanged if each of the letters in the word PRAISE is arranged in the alphabetical order?", options: ["Two (दो)", "Three (तीन)", "None (कोई नहीं)", "One (एक)"], ans: "C" },
+      { id: 22, tag: "SSC CHSL Tier-01 2024 S3", q: "Each of the letters in the word TRAMPOLINE are arranged from left to right in alphabetical order to form a new word. How many letters are there in the English alphabetical series between the alphabet which is fourth from the left and the one which is first from the right in the newly formed word?", options: ["Six (छह)", "Five (पाँच)", "Four (चार)", "Seven (सात)"], ans: "D" },
+      { id: 23, tag: "SSC CHSL Tier-01 2024 S1", q: "Each of the letters in the word MUSICAL is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is fourth from the left and the one which is second from the right in the new letter cluster thus formed?", options: ["Five (पाँच)", "Seven (सात)", "Eight (आठ)", "Six (छह)"], ans: "D" },
+      { id: 24, tag: "SSC CHSL Tier-01 2024 S4", q: "The position of how many letters will remain unchanged if all the letters in the word HARMONY are arranged in alphabetical order?", options: ["Four (चार)", "One (एक)", "Three (तीन)", "Two (दो)"], ans: "D" },
+      { id: 25, tag: "SSC CHSL Tier-01 2024 S2", q: "The position of how many letters will remain unchanged if all the letters in the word DIALECT are arranged in alphabetical order?", options: ["One (एक)", "Three (तीन)", "Four (चार)", "Two (दो)"], ans: "A" },
+      { id: 26, tag: "SSC CHSL Tier-01 2024 S4", q: "The position of how many letters will remain unchanged if each of the letters in the word 'POWDERS' is arranged in English alphabetical order?", options: ["One (एक)", "Three (तीन)", "More than three (तीन से अधिक)", "None (कोई नहीं)"], ans: "D" },
+      { id: 27, tag: "SSC CHSL Tier-01 2024 S4", q: "The position of how many letters will remain unchanged if each of the letters in the word 'COUNTED' is arranged in English alphabetical order?", options: ["More than three (तीन से अधिक)", "None (कोई नहीं)", "Three (तीन)", "Two (दो)"], ans: "D" },
+      { id: 28, tag: "SSC CHSL Tier-01 2024 S3", q: "The position of how many letters will remain unchanged if each of the letters in the word FLAMINGOES is arranged from left to right in alphabetical order?", options: ["One (एक)", "None (कोई नहीं)", "Three (तीन)", "Two (दो)"], ans: "D" },
+      { id: 29, tag: "SSC CHSL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word SOUNDBAR is arranged in alphabetical order?", options: ["One (एक)", "Two (दो)", "Four (चार)", "Three (तीन)"], ans: "A" },
+      { id: 30, tag: "SSC CHSL Tier-01 2024 S2", q: "The position of how many letters will remain unchanged if each of the letters in the word MENTOR is arranged in the alphabetical order?", options: ["One (एक)", "None (कोई भी नहीं)", "Three (तीन)", "Two (दो)"], ans: "A" },
+      { id: 31, tag: "SSC CHSL Tier-01 2024 S4", q: "Each of the letters in the word JUSTICE are arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is second from the left and the one that is fourth from the right in the new letter cluster thus formed?", options: ["6", "7", "5", "4"], ans: "D" },
+      { id: 32, tag: "SSC CHSL Tier-01 2024 S4", q: "Each of the letters in the word FRAMED is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is second from the left and the one which is second from the right in the new letter cluster thus formed?", options: ["Seven (सात)", "Nine (नौ)", "Eight (आठ)", "Six (छह)"], ans: "C" },
+      { id: 33, tag: "SSC CHSL Tier-01 2024 S3", q: "The position of how many letters will remain unchanged, if each of the letters in the word DICTIONARY is arranged in alphabetical order?", options: ["2", "4", "1", "3"], ans: "A" },
+      { id: 34, tag: "SSC CHSL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'ABDUCTS' is arranged in English alphabetical order?", options: ["Two (दो)", "More than four (चार से अधिक)", "Three (तीन)", "Four (चार)"], ans: "C" },
+      { id: 35, tag: "SSC CHSL Tier-01 2024 S4", q: "The position of how many letters will change if each of the letters in the word TROUBLEMAKING is arranged from left to right in alphabetical order?", options: ["Eleven (ग्यारह)", "All (सभी)", "Twelve (बारह)", "Ten (दस)"], ans: "C" },
+      { id: 36, tag: "SSC CHSL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'VIRTUAL' is arranged in English alphabetical order?", options: ["One (एक)", "Three (तीन)", "None (कोई नहीं)", "More than three (तीन से अधिक)"], ans: "A" },
+      { id: 37, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'DELIGHT' is arranged in the English alphabetical order?", options: ["One (एक)", "None (कोई नहीं)", "Two (दो)", "Three (तीन)"], ans: "D" },
+      { id: 38, tag: "SSC CGL Tier-01 2024 S1", q: "The position(s) of how many letters will remain unchanged if all the letters in the word 'LAUNDER' are arranged in English alphabetical order?", options: ["None (एक भी नहीं)", "One (एक)", "Two (दो)", "Three (तीन)"], ans: "A" },
+      { id: 39, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letter in the word 'IMPROVE' is arranged in English alphabetical order?", options: ["Zero (शून्य)", "One (एक)", "Three (तीन)", "Two (दो)"], ans: "A" },
+      { id: 40, tag: "SSC CGL Tier-01 2024 S1", q: "All the alphabets in the word 'DICTIONARY' are arranged in the alphabetical order. How many alphabets are there in the English alphabetical series between the alphabet which is fourth from the left end and the one which is second from the right end in the newly formed letter-cluster?", options: ["9", "10", "12", "11"], ans: "B" },
+      { id: 41, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if all the letters in the word MOBILE are arranged in English alphabetical order?", options: ["One (एक)", "None (कोई नहीं)", "Three (तीन)", "Two (दो)"], ans: "B" },
+      { id: 42, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'DRAFTING' is arranged in the English alphabetical order?", options: ["One (एक)", "Two (दो)", "Three (तीन)", "None (कोई नहीं)"], ans: "D" },
+      { id: 43, tag: "SSC CGL Tier-01 2024 S1", q: "Each vowel in the word 'ISOLATED' is changed to the following letter in the English alphabetical order and each consonant is changed to the preceding letter in the English alphabetical order. How many letters are there in the English alphabetical order between the letter which is the third from the left end and the second from the left end in the group of letters thus formed?", options: ["Four (चार)", "One (एक)", "Three (तीन)", "Two (दो)"], ans: "B" },
+      { id: 44, tag: "SSC CGL Tier-01 2024 S1", q: "Each of the letters in the word 'KEYBOARD' are arranged in the English alphabetical order. How many letters are in the English alphabetical order between the letter which is the third from the right end and the second from the right end in the group of letters thus formed?", options: ["Four (चार)", "Three (तीन)", "Two (दो)", "One (एक)"], ans: "C" },
+      { id: 45, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letter in the word 'HUSBAND' is arranged in English alphabetical order?", options: ["Three (तीन)", "Zero (शून्य)", "One (एक)", "Two (दो)"], ans: "B" },
+      { id: 46, tag: "SSC CGL Tier-01 2024 S1", q: "Each of the letters in the word 'SLANTED' is arranged in the English alphabetical order. How many letters are there in the English alphabetical series between the letter which is fourth from the left end and the one which is second from the right end in the new letter-cluster thus formed?", options: ["Six (छह)", "Eight (आठ)", "Seven (सात)", "Five (पाँच)"], ans: "A" },
+      { id: 47, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if all the letters in the word MENTOR are arranged in English alphabetical order?", options: ["Two (दो)", "One (एक)", "None (कोई नहीं)", "Three (तीन)"], ans: "B" },
+      { id: 48, tag: "SSC CGL Tier-01 2024 S1", q: "Each of the letters in the word 'MUSICAL' is arranged in the English alphabetical order. How many letters are there in the English alphabetical series between the letter which is third from the left end and the one which is third from the right end in the new letter-cluster thus formed?", options: ["Three (तीन)", "Two (दो)", "Five (पाँच)", "Four (चार)"], ans: "A" },
+      { id: 49, tag: "SSC CGL Tier-01 2024 S1", q: "Each of the letters in the word 'LASTING' is arranged in the English alphabetical order. How many letters are there in the English alphabetical series between the letter which is second from the left end and the one which is fourth from the right end in the new letter-cluster thus formed?", options: ["Five (पाँच)", "Six (छह)", "Three (तीन)", "Four (चार)"], ans: "D" },
+      { id: 50, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letter in the word 'CERTAIN' is arranged in English alphabetical order?", options: ["One (एक)", "Zero (शून्य)", "Two (दो)", "Four (चार)"], ans: "B" },
+      { id: 51, tag: "SSC CGL Tier-01 2024 S1", q: "Each of the letters in the word 'REDUCTION' are arranged in the English alphabetical order. How many letters are there in the English alphabetical order between the letter which is the third from the left end and the fourth from the left end in the group of letters thus formed?", options: ["Two (दो)", "One (एक)", "Three (तीन)", "Four (चार)"], ans: "C" },
+      { id: 52, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'SIGHTED' is arranged in the English alphabetical order?", options: ["None (कोई नहीं)", "One (एक)", "Three (तीन)", "Two (दो)"], ans: "D" },
+      { id: 53, tag: "SSC CGL Tier-01 2024 S1", q: "How many letter pairs are there in the word 'RESTART' that have as many letters (in both the forward as well as the backward direction) as there are between them in the English alphabetical series?", options: ["One (एक)", "Two (दो)", "Three (तीन)", "Four (चार)"], ans: "B" },
+      { id: 54, tag: "SSC CGL Tier-01 2024 S1", q: "The position(s) of how many letters will remain unchanged if all the letters in the word 'GRIMACE' are arranged in English alphabetical order?", options: ["Two (दो)", "Zero (शून्य)", "One (एक)", "Three (तीन)"], ans: "B" },
+      { id: 55, tag: "SSC CGL Tier-01 2024 S1", q: "All of the letters in the word 'FROWNED' are arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is fourth from the left end and the one which is second from the right end in the new letter-cluster thus formed?", options: ["Five (पाँच)", "Two (दो)", "Three (तीन)", "Four (चार)"], ans: "C" },
+      { id: 56, tag: "SSC CGL Tier-01 2024 S1", q: "Each vowel in the word 'STAMINA' is changed to the preceding letter in the English alphabetical order and each consonant is changed to the following letter in the English alphabetical order. How many letters are there in the English alphabetical order between the letter which is the third from the right and the fourth from the left in the group of letters thus formed?", options: ["Five (पाँच)", "Seven (सात)", "Four (चार)", "Six (छह)"], ans: "A" },
+      { id: 57, tag: "SSC CGL Tier-01 2024 S1", q: "The position(s) of how many letters will remain unchanged if all the letters in the word 'ENTOMB' are arranged in English alphabetical order?", options: ["None (कोई नहीं)", "Two (दो)", "One (एक)", "Three (तीन)"], ans: "A" },
+      { id: 58, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if all the letters in the word BINDER are arranged in English alphabetical order?", options: ["None (कोई नहीं)", "One (एक)", "Two (दो)", "Three (तीन)"], ans: "C" },
+      { id: 59, tag: "SSC CGL Tier-01 2024 S1", q: "All of the letters in the word 'JUNGLE' are arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is second from the left end and the one which is third from the right end in the new letter-cluster thus formed?", options: ["Three (तीन)", "Two (दो)", "Five (पाँच)", "Four (चार)"], ans: "D" },
+      { id: 60, tag: "Word Formation", q: "The letters given below, when arranged, form an appropriate (meaningful) word: AVSEBORINTO\nWhat is the position of letter R in the word formed from the left?", options: ["7", "6", "5", "8"], ans: "B" },
+      { id: 61, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'JEALOUS' is arranged in the English alphabetical order?", options: ["Two (दो)", "One (एक)", "Three (तीन)", "Four (चार)"], ans: "C" },
+      { id: 62, tag: "SSC CGL Tier-01 2024 S1", q: "The position(s) of how many letters will remain unchanged if all the letters in the word 'MEADOW' are arranged in English alphabetical order?", options: ["None (कोई नहीं)", "Two (दो)", "One (एक)", "Three (तीन)"], ans: "B" },
+      { id: 63, tag: "SSC CGL Tier-01 2024 S1", q: "All of the letters in the word 'WISDOM' are arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is third from the left end and the one which is second from the right end in the new letter-cluster thus formed?", options: ["Three (तीन)", "Six (छह)", "Five (पाँच)", "Two (दो)"], ans: "C" },
+      { id: 64, tag: "SSC CGL Tier-01 2024 S1", q: "Each vowel in the word 'SIMILAR' is changed to the following letter in the English alphabetical order and each consonant is changed to the preceding letter in the English alphabetical order. How many letters are there in the English alphabetical order between the letter which is the second from the left end and the third from the left end in the group of letters thus formed?", options: ["Three (तीन)", "Two (दो)", "One (एक)", "Four (चार)"], ans: "C" },
+      { id: 65, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'PRANKED' is arranged in the English alphabetical order?", options: ["One (एक)", "Three (तीन)", "None (एक भी नहीं)", "Two (दो)"], ans: "C" },
+      { id: 66, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letter in the word 'JANITOR' is arranged in English alphabetical order?", options: ["Three (तीन)", "Two (दो)", "One (एक)", "Zero (शून्य)"], ans: "D" },
+      { id: 67, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will change, if each of the letters in the word 'SYSTEM' is arranged in the English alphabetical order?", options: ["Five (पाँच)", "Six (छह)", "Three (तीन)", "Four (चार)"], ans: "A" },
+      { id: 68, tag: "SSC CGL Tier-01 2024 S1", q: "The position of how many letters will remain unchanged if each of the letters in the word 'NIGHTMARES' is re-arranged in the English alphabetical order from left to right?", options: ["One (एक)", "Three (तीन)", "Two (दो)", "Four (चार)"], ans: "D" },
+      { id: 69, tag: "SSC STENO Exam 2024 S2", q: "In the word 'AMBIDEXTROUS', if the first letter is interchanged with the last letter, the second letter is interchanged with the eleventh letter, the third letter is interchanged with the tenth letter and so on, then which letter would immediately follow R in the new arrangement when read from left to right?", options: ["T", "E", "O", "X"], ans: "A" },
+      { id: 70, tag: "SSC Steno Exam 2026 S3", q: "If the letters of the word TRIANGLE are rearranged to form a new word starting with G and ending with T, which of the following is a valid option?", options: ["GAINTERT", "GLEANRIT", "GRANLITE", "No such word (ऐसा कोई शब्द नहीं)"], ans: "D" },
+      { id: 71, tag: "SSC CHSL Tier-02 2024", q: "How many meaningful English words can be formed from R, O, W, D and C, using each letter mandatorily but only once in each word?", options: ["None (एक भी नहीं)", "One (एक)", "More than two (दो से अधिक)", "Two (दो)"], ans: "B" },
+      { id: 72, tag: "SSC CGL Tier-02 2023", q: "How many meaningful English words can be formed with the second, fourth, fifth, and sixth letters of the word HOCKEY (when counted from left to right) using each letter only once in each word?", options: ["Three (तीन)", "Two (दो)", "Zero (शून्य)", "One (एक)"], ans: "D" },
+      { id: 73, tag: "SSC CPO Pre 2025 S2", q: "Find the word that CANNOT be formed from the letters in CONGRATULATIONS.", options: ["RATION", "SALT", "GUARD", "COAGULATION"], ans: "C" },
+      { id: 74, tag: "SSC CGL 2025 Tier-01 S1", q: "How many meaningful four-letter English words can be formed using the first, second, third, and fourth letters of the word \"CAMERA\" (when counted from left to right), using each letter only once in each word?", options: ["One (एक)", "Four (चार)", "Two (दो)", "Three (तीन)"], ans: "D" },
+      { id: 75, tag: "SSC CGL 2025 Tier-01 S1", q: "How many meaningful four-letter English words can be formed using the first, second, fourth, and fifth letters of the word \"ELEVATE\" (when counted from left to right), using each letter only once in each word?", options: ["1", "2", "3", "4"], ans: "C" },
+      { id: 76, tag: "SSC Steno Exam 2026 S2", q: "How many meaningful four-letter English words can be formed using the letters of the word 'ITEM'?", options: ["One (एक)", "Two (दो)", "Three or more (तीन या अधिक)", "None (कोई नहीं)"], ans: "C" },
+      { id: 77, tag: "SSC Steno Exam 2026 S1", q: "How many meaningful English words can be formed using all the letters of the word \"SILENT\"?", options: ["1", "2", "3", "More than 3 (इससे अधिक 3)"], ans: "B" },
+      { id: 78, tag: "SSC Steno Exam 2026 S1", q: "How many meaningful four letter English words can be formed using the letters of the word 'SALT'?", options: ["One (एक)", "Two (दो)", "Three or more (तीन या अधिक)", "None (कोई नहीं)"], ans: "C" },
+      { id: 79, tag: "SSC CHSL Tier-02 2023 S1", q: "How many meaningful English words can be formed using B, E, O and R using each letter only once in each word?", options: ["One (एक)", "Two (दो)", "Zero (शून्य)", "Three (तीन)"], ans: "D" },
+      { id: 80, tag: "SSC CGL Tier-02 2024", q: "How many meaningful English words can be formed using first, third, sixth and seventh letters of the word RECOGNIZE (when counted from left to right) using all the letters but each letter only once in each word?", options: ["One (एक)", "Two (दो)", "Three (तीन)", "None (कोई नहीं)"], ans: "A" },
+      { id: 81, tag: "SSC Steno Exam 2026 S2", q: "Arrange the following in a logical sequence:\n1. Seed, 2. Plant, 3. Fruit, 4. Flower, 5. Sapling\nनिम्नलिखित को तार्किक क्रम में व्यवस्थित करें: 1. बीज, 2. पौधा, 3. फल, 4. फूल, 5. अंकुर", options: ["1, 5, 4, 2, 3", "1, 2, 5, 4, 3", "2, 1, 5, 3, 4", "1, 5, 2, 4, 3"], ans: "D" },
+      { id: 82, tag: "SSC Steno Exam 2026 S1", q: "Arrange in a logical sequence:\n1. Phone Call, 2. Idea, 3. Meeting, 4. Execution, 5. Plan\nतार्किक क्रम में व्यवस्थित करें: 1. फ़ोन कॉल, 2. विचार, 3. मीटिंग, 4. कार्यान्वयन, 5. योजना", options: ["1, 2, 3, 5, 4", "2, 1, 3, 5, 4", "2, 5, 3, 1, 4", "2, 3, 5, 1, 4"], ans: "B" },
+      { id: 83, tag: "SSC SP 2024 Matriculation S4", q: "Select the correct option that indicates the arrangement of the following words in a logical and meaningful order.\n1. Rain  2. Sea  3. Evaporation  4. Clouds\n1. वर्षा  2. समुद्र  3. वाष्पीकरण  4. मेघ", options: ["3, 4, 1, 2", "2, 3, 4, 1", "1, 2, 4, 3", "1, 2, 3, 4"], ans: "B" },
+      { id: 84, tag: "SSC SP 2024 Matriculation S4", q: "Select the option that represents the correct order of the given words as they would appear in an English dictionary.\n1. Discover  2. Disperse  3. Disjointed  4. Discard  5. Disposable  6. Discriminate", options: ["4, 1, 6, 2, 3, 5", "4, 1, 6, 5, 3, 2", "4, 6, 1, 3, 2, 5", "4, 1, 6, 3, 2, 5"], ans: "D" },
+      { id: 85, tag: "SSC SP 2024 Matriculation S4", q: "Select the option that indicates the arrangement of the following words in a logical and meaningful order.\n1. Drop  2. Ocean  3. Pond  4. Puddle  5. River\n1. बूंद  2. महासागर  3. तालाब  4. पोखर  5. नदी", options: ["1, 4, 3, 5, 2", "3, 1, 2, 4, 5", "1, 3, 4, 2, 5", "5, 4, 3, 1, 2"], ans: "A" },
+      { id: 86, tag: "SSC SP 2024 Matriculation S1", q: "Which option represents the correct order of the given words as they would appear in an English dictionary?\n1. FEARED  2. FAIRER  3. FIRED  4. FERRIED  5. FARED", options: ["1, 3, 5, 4, 2", "2, 1, 5, 3, 4", "2, 5, 1, 4, 3", "1, 2, 5, 3, 4"], ans: "C" },
+      { id: 87, tag: "SSC SP 2024 Matriculation S1", q: "Which option represents the correct order of the given words as they would appear in an English dictionary?\n1. BRILLIANT  2. BRITTLE  3. BRIGHTON  4. BRITISH  5. BRIDGESTONE", options: ["3, 5, 1, 2, 4", "5, 3, 1, 4, 2", "3, 1, 5, 2, 4", "5, 1, 3, 4, 2"], ans: "B" },
+      { id: 88, tag: "SSC SP 2024 Secondary S2", q: "Select the correct option that indicates the arrangement of the following words in a logical and meaningful order.\n1. Micro  2. Hecto  3. Nano  4. Kilo  5. Mili", options: ["1, 3, 5, 2, 4", "3, 1, 5, 2, 4", "3, 1, 5, 4, 2", "3, 1, 2, 5, 4"], ans: "B" },
+      { id: 89, tag: "SSC SP 2024 Secondary S4", q: "Select the correct option that indicates the arrangement of the following words in a logical and meaningful order.\n1. District  2. Room  3. Village  4. State  5. House", options: ["3, 4, 2, 1, 5", "3, 4, 1, 2, 5", "2, 4, 3, 1, 5", "2, 5, 3, 1, 4"], ans: "D" },
+      { id: 90, tag: "SSC SP 2024 Secondary S2", q: "Select the correct option that indicates the arrangement of the following words in a logical and meaningful order.\n1. Interview  2. Application  3. Selection  4. Examination  5. Appointment", options: ["4, 2, 3, 5, 1", "3, 4, 1, 5, 2", "5, 1, 2, 3, 4", "2, 4, 1, 3, 5"], ans: "D" },
+      { id: 91, tag: "SSC SP 2024 Secondary S2", q: "Select the correct option that indicates the arrangement of the following words in a logical and meaningful order.\n1. Nail  2. Elbow  3. Finger  4. Shoulder  5. Wrist", options: ["3, 1, 2, 5, 4", "3, 5, 1, 2, 4", "1, 3, 5, 2, 4", "1, 5, 3, 2, 4"], ans: "C" },
+      { id: 92, tag: "SSC SP 2024 Graduate S3", q: "Select the option that indicates the correct arrangement of the given words in a logical and meaningful order.\n1. Wool  2. Shops  3. Garments  4. Yarn  5. Sheep", options: ["1, 5, 4, 3, 2", "5, 1, 3, 4, 2", "5, 1, 4, 2, 3", "5, 1, 4, 3, 2"], ans: "D" },
+      { id: 93, tag: "SSC GD Exam 2025-26 S1", q: "Arrange the given words in the sequence in which they occur in the dictionary.\n1. Disclose  2. Disclaim  3. Discolour  4. Discomfit  5. Discomfort", options: ["12345", "21345", "21354", "12354"], ans: "B" },
+      { id: 94, tag: "SSC GD Exam 2025-26 S2", q: "Arrange the given words in the sequence in which they occur in the dictionary.\n1. Inexperience  2. Inexpensive  3. Inexpedient  4. Inexpressible  5. Inexpert", options: ["23145", "32154", "32145", "23154"], ans: "B" },
+      { id: 95, tag: "SSC GD Exam 2025-26 S2", q: "Arrange the given words in the sequence in which they occur in the dictionary.\n1. Irrelevant  2. Irrecoverable  3. Irrational  4. Irradiant  5. Irreligious", options: ["34215", "43125", "34125", "43215"], ans: "D" },
+      { id: 96, tag: "SSC GD Exam 2025-26 S2", q: "Arrange the given words in the sequence in which they occur in the dictionary.\n1. Chin  2. Chink  3. Chip  4. Chime  5. Chill", options: ["54132", "54123", "32541", "32514"], ans: "B" },
+      { id: 97, tag: "SSC GD Exam 2025-26 S2", q: "Arrange the given words in the sequence in which they occur in the dictionary.\n1. Procrastinate  2. Procreate  3. Proclaim  4. Procedure  5. Procession", options: ["45321", "54312", "45312", "54321"], ans: "C" },
+      { id: 98, tag: "SSC SP Matriculation 2025 S1", q: "After arranging the given words according to dictionary order, which word will come at \"First\" position?", options: ["Version", "Versus", "Versicolour", "Verse"], ans: "D" },
+      { id: 99, tag: "SSC CGL 2025 Tier-01 S2", q: "Which of these words will come last in a dictionary?", options: ["bench", "beneath", "bend", "bent"], ans: "D" },
+      { id: 100, tag: "Alphabet Series", q: "In the word 'SUBSTITUTION', what is the third letter to the right of the 2nd letter to the left of the 4th letter from the right?\nशब्द SUBSTITUTION में, दाईं ओर से चौथे अक्षर के बाईं ओर दूसरे अक्षर के दाईं ओर तीसरा अक्षर क्या है?", options: ["U", "T", "I", "O"], ans: "C" }
+    ];
+
+    // SET 2: ALPHABET TEST - ENGLISH PRACTICE SHEET PDF (137 Questions)
+    const sheetQuestions = [
+      { id: 1, tag: "Alphabet Indexing", q: "Which of the following is the first element in the indexing system for the set {A, B, C, D, E}?", options: ["E", "A", "B", "C"], ans: "B" },
+      { id: 2, tag: "Alphabet Indexing", q: "In the word 'PHYSICS', what is the alphabetical index (A=1 to Z=26) of the 2nd letter from the right?", options: ["3", "19", "9", "25"], ans: "A" },
+      { id: 3, tag: "Position Sum", q: "Which group has letters with a position sum = 29?", options: ["P, Q, R", "C, D, Y", "A, B, Z", "M, N, O"], ans: "C" },
+      { id: 4, tag: "Reverse Position", q: "In the English alphabet, find the position of S from right.", options: ["8", "5", "4", "9"], ans: "A" },
+      { id: 5, tag: "Reverse Position", q: "In the English alphabet, which letter is 10th from right?", options: ["P", "Q", "R", "S"], ans: "B" },
+      { id: 6, tag: "Reverse Code", q: "Using the reverse code (Z=1 to A=26), what is the sum of the reverse positions of the first and last letters of 'KNOWLEDGE'?", options: ["25", "30", "38", "32"], ans: "C" },
+      { id: 7, tag: "Reverse Code", q: "If each letter is coded as its position in reverse (Z=1, Y=2 ... A=26), what is ROAD?", options: ["10, 12, 25, 23", "9, 12, 25, 23", "9, 13, 25, 23", "9, 12, 26, 23"], ans: "D" },
+      { id: 8, tag: "Opposite Letters", q: "In the English alphabet, which of the following is opposite letter of T?", options: ["D", "L", "G", "R"], ans: "C" },
+      { id: 9, tag: "Opposite Letters", q: "In the English alphabet, which of the following is opposite letter of the letter which is 5th from the left?", options: ["V", "W", "E", "U"], ans: "A" },
+      { id: 10, tag: "Opposite Letters", q: "Which letter would be opposite to the letter which is 12th from the right end in English Alphabet?", options: ["F", "O", "D", "None of these"], ans: "D" },
+      { id: 11, tag: "Alphabetical Symmetry", q: "'Reflections are clearer in calm waters.'\nIf each letter is mirrored using alphabetical symmetry (A↔Z, B↔Y...), what is the 2nd letter of the 6th word after mirroring?", options: ["d", "x", "y", "z"], ans: "D" },
+      { id: 12, tag: "Letter Pairs", q: "How many letter pairs are there in the word 'DESTRUCT' that have as many letters (in both the forward as well as the backward direction) as there are between them in the English alphabetical series?", options: ["Four", "One", "Two", "Three"], ans: "C" },
+      { id: 13, tag: "Letter Pairs", q: "How many letter pairs are there in the word 'RECREATE' that have as many letters (in both the forward as well as the backward direction) as there are between them in the English alphabetical series?", options: ["One", "Two", "Three", "Four"], ans: "B" },
+      { id: 14, tag: "Letter Pairs", q: "How many letter pairs are there in the word 'PORTRAYAL' that have as many letters (in both the forward as well as the backward direction) as there are between them in the English alphabetical series?", options: ["Zero", "Four", "Three", "Two"], ans: "B" },
+      { id: 15, tag: "Letter Pairs", q: "How many such pairs of letters are there in the word 'SUPERSONIC' each of which has as many letters between them as in the English Alphabet?", options: ["Five", "Six", "Three", "Four"], ans: "A" },
+      { id: 16, tag: "Letter Pairs", q: "How many such pair(s) of letters are there in the word 'MICROSOFT' which have as many letters between them as in the alphabetical series as we move from left to right?", options: ["None", "One", "Two", "Three"], ans: "A" },
+      { id: 17, tag: "Letter Pairs", q: "How many such pairs of letters are there in the word 'ADMISSION', each of which has as many letters between them in the word (only in forward direction) as they have between them in the English alphabetical order?", options: ["None", "One", "Two", "Three"], ans: "C" },
+      { id: 18, tag: "Letter Pairs", q: "How many such pairs of letters are there in the word 'CORPORATE' each of which has as many letters in the same sequence between them in the word as in the English alphabet?", options: ["None", "One", "Two", "Three"], ans: "D" },
+      { id: 19, tag: "Letter Pairs", q: "How many such pairs of letters are there in the word 'CLEARING' each of which has exactly two letters between them in the word as also in the English alphabet?", options: ["One", "Two", "Three", "None"], ans: "D" },
+      { id: 20, tag: "Letter Pairs", q: "How many such pairs of letters are there in the word 'TRANSITION' each of which has exactly three letters between them in the word as also in the English alphabet?", options: ["One", "Two", "Three", "None"], ans: "A" },
+      { id: 21, tag: "Position Match", q: "How many such letters are there in the word 'BACKLASH' each of which is as far away from the beginning of the word as it is from the beginning of the English alphabet?", options: ["None", "One", "Two", "Three"], ans: "C" },
+      { id: 22, tag: "Position Match", q: "How many such letters are there in the word 'EDUCATION' each of which is as far away from the beginning of the word as it is from the beginning of the English alphabet?", options: ["None", "One", "Two", "Three"], ans: "A" },
+      { id: 23, tag: "Middle Letter", q: "Which letter lies exactly between H and P in the English alphabet?", options: ["K", "N", "L", "M"], ans: "C" },
+      { id: 24, tag: "Middle Letter", q: "Find the middle letter between 4th and 16th letters in the English alphabet.", options: ["J", "K", "I", "L"], ans: "A" },
+      { id: 25, tag: "Middle Letter", q: "In the English alphabet, which letter is midway between third from left and sixth from right end?", options: ["J", "L", "K", "I"], ans: "B" },
+      { id: 26, tag: "Middle Letter", q: "Which letter lies exactly in the middle of the letter which is 9th from the right and the one which is 21st from the right in the English alphabet?", options: ["O", "L", "M", "P"], ans: "B" },
+      { id: 27, tag: "Middle Letter", q: "Which is the middle letter between D and U?", options: ["P", "L", "M", "Not possible"], ans: "D" },
+      { id: 28, tag: "Alphabetical Arrangement", q: "When all the letters in the word 'DRAWING' are arranged alphabetically from left to right then which letter would be fifth from the right end?", options: ["G", "I", "W", "N"], ans: "A" },
+      { id: 29, tag: "Alphabetical Arrangement", q: "When all the letters in the word 'CARETAKER' are arranged alphabetically from left to right then which letter would be third to the right of the letter which is in the middle?", options: ["R", "K", "T", "E"], ans: "A" },
+      { id: 30, tag: "Alphabetical Arrangement", q: "When all the letters in the word 'MENTOR' are arranged alphabetically from right to left then which letter would be third from the left end?", options: ["O", "M", "R", "N"], ans: "A" },
+      { id: 31, tag: "Unchanged Positions", q: "The position of how many letters will remain unchanged if each letter in the word 'AMPLIFY' is arranged in alphabetical order?", options: ["Three", "Two", "Four", "One"], ans: "A" },
+      { id: 32, tag: "Unchanged Positions", q: "The position of how many letters will remain unchanged if each of the letters in the word 'VIRTUAL' is arranged in English alphabetical order?", options: ["None", "One", "Three", "More than three"], ans: "B" },
+      { id: 33, tag: "Reverse Order", q: "The position of how many letters will remain unchanged if each of the letters in the word 'ANOTHER' is arranged in reversed alphabetical order, i.e., starting from the last letter (Z)?", options: ["None", "Three", "One", "Two"], ans: "B" },
+      { id: 34, tag: "Changed Positions", q: "The position of how many letters will change if each of the letters in the word 'TROUBLEMAKING' is arranged from left to right in alphabetical order?", options: ["Twelve", "All", "Ten", "Eleven"], ans: "A" },
+      { id: 35, tag: "Center Letter", q: "The position of which letter will be exactly at the center of the arrangement if each of the letters in the word 'TOUCHED' is arranged in reversed alphabetical order, i.e. starting from the last letter (Z)?", options: ["E", "T", "O", "H"], ans: "D" },
+      { id: 36, tag: "Alphabetical Series", q: "Each of the letters in the word 'JOURNAL' are arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is fourth from the left and the one which is second from the right in the new letter-cluster thus formed?", options: ["Six", "Three", "Five", "Four"], ans: "B" },
+      { id: 37, tag: "Alphabetical Series", q: "Each of the letters in the word 'FRAMED' is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter which is second from the left and the one which is second from the right in the new letter cluster thus formed?", options: ["Nine", "Eight", "Six", "Seven"], ans: "B" },
+      { id: 38, tag: "Alphabetical Series", q: "Each of the letters in the word TRAMPOLINE are arranged from left to right in alphabetical order to form a new word. How many letters are there in the English alphabetical series between the alphabet which is fourth from the left and the one which is first from the right in the newly formed word?", options: ["Five", "Four", "Six", "Seven"], ans: "D" },
+      { id: 39, tag: "Alphabetical Series", q: "Each of the letters in the word DEVELOPMENT is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is third from the left and the one that is fourth from the right in the new letter-cluster formed?", options: ["7", "9", "6", "8"], ans: "B" },
+      { id: 40, tag: "Alphabetical Series", q: "Each of the letters in the word UNIVERSAL is arranged in alphabetical order. How many letters are there in the English alphabetical series between the letter that is second from the left and the one that is fifth from the right in the new letter-cluster formed?", options: ["7", "8", "6", "9"], ans: "B" },
+      { id: 41, tag: "Dictionary Order", q: "Which of the following words will come first in the English dictionary?", options: ["Plane", "Urban", "Cloud", "Store"], ans: "C" },
+      { id: 42, tag: "Dictionary Order", q: "After arranging the given words according to dictionary order, which word will come in the third position?", options: ["Sickle", "Sickly", "Sick", "Sicken"], ans: "A" },
+      { id: 43, tag: "Dictionary Order", q: "Which of these words will come last in a dictionary?", options: ["bench", "beneath", "bend", "bent"], ans: "D" },
+      { id: 44, tag: "Dictionary Order", q: "After arranging the given words according to dictionary order, which word will come at first position?", options: ["Version", "Versus", "Versicolour", "Verse"], ans: "D" },
+      { id: 45, tag: "Dictionary Order", q: "What is the position of the word 'PLANK' when the following words are arranged alphabetically?\nPLAN, PLACARD, PLANK, PLAIN, PLANT", options: ["3rd", "4th", "2nd", "5th"], ans: "B" },
+      { id: 46, tag: "Dictionary Order", q: "Arrange the following words according to the English dictionary.\n1. Terrific  2. Admission  3. Polite  4. Twinkle", options: ["2, 3, 1, 4", "2, 1, 4, 3", "2, 4, 3, 1", "2, 3, 4, 1"], ans: "A" },
+      { id: 47, tag: "Dictionary Order", q: "Select the option that represents the correct order of the given words as they would appear in an English dictionary.\n1. Wagnor  2. Wagged  3. Wabash  4. Waggon  5. Wackily", options: ["3, 5, 2, 1, 4", "3, 5, 1, 4, 2", "3, 2, 1, 4, 5", "3, 5, 2, 4, 1"], ans: "D" },
+      { id: 48, tag: "Dictionary Order", q: "Select the option that indicates the correct arrangement of the given words in the order in which they appear in an English dictionary.\n1. Perplex  2. Peroration  3. Perpetrate  4. Perpetuity  5. Perpetual", options: ["3, 2, 4, 5, 1", "2, 3, 5, 4, 1", "1, 2, 4, 3, 5", "4, 2, 5, 3, 1"], ans: "B" },
+      { id: 49, tag: "Dictionary Order", q: "Select the option that represents the correct order of the given words as they would appear in an English dictionary.\n1. Commercial  2. Commission  3. Committee  4. Communication  5. Community", options: ["1, 2, 3, 4, 5", "1, 3, 2, 4, 5", "3, 1, 2, 4, 5", "1, 2, 4, 3, 5"], ans: "A" },
+      { id: 50, tag: "Dictionary Order", q: "Select the option that represents the correct order of the given words as they would appear in an English dictionary.\n1. Archaeology  2. Archeologist  3. Archipelago  4. Architectural  5. Architecture", options: ["1, 2, 3, 4, 5", "2, 1, 3, 4, 5", "1, 3, 2, 4, 5", "3, 1, 2, 4, 5"], ans: "A" },
+      { id: 51, tag: "Dictionary Order", q: "Select the option that represents the correct order of the given words as they would appear in an English dictionary.\n1. Memory  2. Method  3. Middle  4. Modern  5. Moment  6. Monday", options: ["1, 2, 3, 4, 5, 6", "1, 3, 2, 4, 5, 6", "1, 2, 3, 4, 6, 5", "1, 3, 2, 4, 6, 5"], ans: "A" },
+      { id: 52, tag: "Dictionary Order", q: "Select the option that represents the correct order of the given words as they would appear in an English dictionary.\n1. Consistence  2. Conscience  3. Conflagration  4. Consequence  5. Considerable  6. Consignment", options: ["3, 4, 2, 5, 6, 1", "4, 3, 2, 5, 6, 1", "3, 2, 4, 5, 6, 1", "4, 2, 3, 5, 1, 6"], ans: "C" },
+      { id: 53, tag: "Dictionary Order", q: "Choose the correct order of the groups of words that are in correct dictionary order:\n1. LICENCE, LIBRARY, LIBRATION, LIGAMENT\n2. LIBRARY, LICENCE, LIGAMENT, LIBRATION\n3. LIBRARY, LIBRATION, LICENCE, LIGAMENT\n4. LIBRARY, LIBRATION, LIGAMENT, LICENCE", options: ["4", "3", "1", "2"], ans: "B" },
+      { id: 54, tag: "Word Formation", q: "If you pick up from the following alphabet, 5th, 13th, 20th and 21st letters from your left and form a meaningful word, what is the first letter of that word?\nABCDEFGHIJKLMNOPQRSTUVWXYZ", options: ["M", "E", "No word can be formed", "More than one word can be formed"], ans: "A" },
+      { id: 55, tag: "Word Formation", q: "How many meaningful English words can be formed with letters CKIK, using each letter only once in each word?", options: ["1", "4", "2", "3"], ans: "A" },
+      { id: 56, tag: "Word Formation", q: "How many meaningful English words can be formed from Y, P, R and A, using each letter mandatorily but only once in each word?", options: ["None", "One", "Two", "More than two"], ans: "B" },
+      { id: 57, tag: "Word Formation", q: "How many meaningful four-letter English words can be formed using A, E, D and N using all the letters but each letter only once in each word?", options: ["3", "1", "0", "2"], ans: "B" },
+      { id: 58, tag: "Word Formation", q: "How many meaningful four-letter English words can be formed using T, U, K and S using each letter only once in each word?", options: ["Two", "None", "One", "More than two"], ans: "C" },
+      { id: 59, tag: "Word Formation", q: "How many meaningful English words can be formed from R, O, W, D and C, using each letter mandatorily but only once in each word?", options: ["More than two", "None", "One", "Two"], ans: "C" },
+      { id: 60, tag: "Word Formation", q: "The word 'RESAT' is given. Determine how many meaningful English words can be formed using all the letters of the word.", options: ["One", "Two", "Three", "More than three"], ans: "D" },
+      { id: 61, tag: "Word Formation", q: "How many six-lettered meaningful words can be formed using all these letters (R F I G E D) but each letter only once in the word?", options: ["Three", "Two", "One", "Four"], ans: "C" },
+      { id: 62, tag: "Word Formation", q: "The letters given below, when arranged, form an appropriate (meaningful) word: AVSEBORINTO\nWhat is the position of letter R in the word formed from the left?", options: ["7", "6", "5", "8"], ans: "C" },
+      { id: 63, tag: "Word Formation", q: "How many meaningful four-letter English words can be formed using the first, second, third, and fourth letters of the word 'CAMERA' (from left to right), using each letter only once in each word?", options: ["One", "Four", "Two", "Three"], ans: "D" },
+      { id: 64, tag: "Word Formation", q: "How many meaningful four-letter English words can be formed using the first, second, third, and fifth letters of the word 'SCHOOL' (from left to right), using each letter only once in each word?", options: ["1", "2", "3", "4"], ans: "A" },
+      { id: 65, tag: "Word Formation", q: "How many meaningful English words can be formed using first, third, sixth and seventh letters of the word 'RECOGNIZE' (when counted from left to right) using all the letters but each letter only once in each word?", options: ["None", "Two", "Three", "One"], ans: "A" },
+      { id: 66, tag: "Word Formation", q: "How many meaningful four-letter English words can be formed using the second, third, fifth and seventh letters of the word 'TOURIST' (when counted from left to right) using each letter only once in each word?", options: ["None", "Two", "One", "More than two"], ans: "A" },
+      { id: 67, tag: "Word Formation", q: "A number has been denoted to each of the given letters. Select the option from the following four possible arrangements of these numbers that forms a meaningful word.\nE=1, Z=2, L=3, P=4, U=5, Z=6", options: ["4, 5, 6, 2, 3, 1", "4, 5, 1, 6, 2, 3", "1, 5, 3, 4, 2, 6", "6, 1, 4, 3, 5, 2"], ans: "A" },
+      { id: 68, tag: "Word Formation", q: "A number has been denoted to each of the given letters. Select the option from the following four possible arrangements of these numbers that forms a meaningful word.\nE=1, N=2, T=3, S=4, T=5, D=6, U=7", options: ["4, 3, 7, 6, 1, 2, 5", "2, 1, 4, 3, 6, 7, 5", "4, 3, 7, 1, 6, 5, 2", "2, 1, 4, 6, 3, 5, 7"], ans: "A" },
+      { id: 69, tag: "Word Formation", q: "By rearranging the letters of 'AEGORST', we get a meaningful English word of seven letters.\n1:A, 2:E, 3:G, 4:O, 5:R, 6:S, 7:T\nThe combination of the numbers for a meaningful word is:", options: ["5412367", "3245671", "6745132", "5267413"], ans: "C" },
+      { id: 70, tag: "Word Formation", q: "Given in the table are the number codes for the given letters. Select the combination of numbers so that the letters arranged accordingly will form a meaningful word.\nL:1, P:2, C:3, E:4, I:5, N:6", options: ["6, 5, 3, 4, 1, 2", "2, 4, 6, 3, 1, 5", "3, 4, 1, 5, 2, 6", "2, 4, 6, 3, 5, 1"], ans: "D" },
+      { id: 71, tag: "Alphabet Positions", q: "In the alphabet series, which letter is fifth to left of seventeenth from the left end?", options: ["V", "D", "G", "L"], ans: "D" },
+      { id: 72, tag: "Alphabet Positions", q: "In the English alphabet, which letter is 8th to the right of 16th from the left end?", options: ["D", "X", "V", "H"], ans: "B" },
+      { id: 73, tag: "Alphabet Positions", q: "In the alphabet series, which letter is ninth to the right of seventeenth from the right end?", options: ["R", "D", "H", "S"], ans: "D" },
+      { id: 74, tag: "Alphabet Positions", q: "In the alphabet series, which letter would be ninth to the left of fifteenth from the right?", options: ["C", "F", "B", "X"], ans: "A" },
+      { id: 75, tag: "Alphabet Positions", q: "Which letter is 7th to the left of P in the English alphabet?", options: ["H", "I", "W", "M"], ans: "B" },
+      { id: 76, tag: "Alphabet Positions", q: "Find the letter that comes 5th to the left of R in the English alphabet.", options: ["M", "N", "V", "T"], ans: "A" },
+      { id: 77, tag: "Alphabet Positions", q: "In the English alphabet, which letter would be thirteenth to the right of letter which is fifth to the left of letter L?", options: ["R", "U", "S", "T"], ans: "D" },
+      { id: 78, tag: "Alphabet Positions", q: "In the English alphabet, which letter is second to the right of the letter which is ninth letter to the right of G?", options: ["J", "S", "R", "Q"], ans: "C" },
+      { id: 79, tag: "Alphabet Positions", q: "In the English alphabet, which letter is to the immediate right of the letter which is sixth letter to the right of O?", options: ["W", "V", "S", "U"], ans: "B" },
+      { id: 80, tag: "Word Positions", q: "In the word, which letter is 3rd to the left of the 6th letter from the left?", options: ["L", "O", "T", "U"], ans: "A" },
+      { id: 81, tag: "Alphabetical Arrangement", q: "If the word 'EXAMINATION' is written alphabetically then which is the third letter to the left of fifth from left?", options: ["N", "O", "A", "M"], ans: "C" },
+      { id: 82, tag: "Alphabetical Arrangement", q: "If the word 'ELECTRICITY' is written alphabetically then which is the second letter to the right of third letter from left?", options: ["I", "C", "T", "Y"], ans: "A" },
+      { id: 83, tag: "Half Reversal", q: "If first half of the English alphabet is written in the reverse order, then which letter would be 5th to the right of 10th letter from the left?", options: ["N", "H", "L", "O"], ans: "D" },
+      { id: 84, tag: "Half Reversal", q: "If first half of the English alphabet is written in the reverse order, then which letter would be 5th to the left of 12th letter from the left?", options: ["H", "G", "K", "Q"], ans: "B" },
+      { id: 85, tag: "Half Reversal", q: "If the second half of the English alphabet is reversed and the first half remains unchanged then which letter would be 7th to the right of 15th letter from the left end?", options: ["W", "R", "Q", "V"], ans: "B" },
+      { id: 86, tag: "Half Reversal", q: "If the second half of the English alphabet is reversed and the first half remains unchanged then which letter would be 5th to the left of 13th letter from the left end?", options: ["H", "R", "T", "V"], ans: "A" },
+      { id: 87, tag: "Half Reversal", q: "If the second half of the English alphabet is reversed and the first half remains unchanged then which letter would be 10th to the right of 8th letter from the left end?", options: ["Z", "N", "S", "V"], ans: "D" },
+      { id: 88, tag: "Half Interchange", q: "If the first half and the second half of the English alphabet are interchanged then which letter would be 10th to the right of 8th letter from the left end?", options: ["H", "F", "R", "E"], ans: "D" },
+      { id: 89, tag: "Half Interchange", q: "If the first half and the second half of the English alphabet are interchanged then which letter would be 9th to the left of 8th letter from the right end?", options: ["X", "T", "K", "J"], ans: "C" },
+      { id: 90, tag: "Half Interchange", q: "If the first half and the second half of the English alphabet are interchanged then which letter would be 10th to the left of 15th letter from the right end?", options: ["R", "P", "S", "O"], ans: "D" },
+      { id: 91, tag: "Half Interchange", q: "If the first half and the second half of the English alphabet are interchanged then which letter would be 8th to the right of 18th letter from the right end?", options: ["B", "D", "H", "L"], ans: "B" },
+      { id: 92, tag: "Reversal & Interchange", q: "If the first half of the English alphabet is reversed and then first half and the second half are interchanged, which letter would be 6th to the right of 17th letter from the left end?", options: ["L", "J", "D", "F"], ans: "C" },
+      { id: 93, tag: "Reversal & Interchange", q: "If the first half of the English alphabet is reversed and then first half and the second half are interchanged, which letter would be 6th to the right of 13th letter from the right end?", options: ["G", "J", "F", "P"], ans: "A" },
+      { id: 94, tag: "Reversal & Interchange", q: "If the first half of the English alphabet is reversed and then first half and the second half are interchanged, which letter would be 8th to the left of 12th letter from the right end?", options: ["S", "R", "P", "T"], ans: "D" },
+      { id: 95, tag: "Reversal & Interchange", q: "If the second half of the English alphabet is reversed and then first half and the second half are interchanged, which letter would be 8th to the left of 13th letter from the left end?", options: ["U", "S", "V", "H"], ans: "D" },
+      { id: 96, tag: "Reversal & Interchange", q: "If the second half of the English alphabet is reversed and then first half and the second half are interchanged, which letter would be 7th to the left of 14th letter from the right end?", options: ["U", "S", "X", "T"], ans: "A" },
+      { id: 97, tag: "Reversal & Interchange", q: "If the second half of the English alphabet is reversed and then first half and the second half are interchanged, which letter would be 7th to the right of 12th letter from the right end?", options: ["K", "L", "S", "I"], ans: "D" },
+      { id: 98, tag: "Interchange & Reversal", q: "If the first half and the second half of the English alphabet are interchanged and then reversed, which letter would be 10th to the left of 7th letter from the right end?", options: ["P", "J", "Q", "L"], ans: "C" },
+      { id: 99, tag: "Interchange & Reversal", q: "If the first half and the second half of the English alphabet are interchanged and then reversed, which letter would be 10th to the left of 20th letter from the left end?", options: ["Q", "J", "P", "M"], ans: "A" },
+      { id: 100, tag: "Vowels", q: "What is the 5th vowel from the right in the alphabet?", options: ["A", "E", "I", "U"], ans: "A" },
+      { id: 101, tag: "Vowel Values", q: "In the word 'FUNDAMENTAL', if we assign even numbers to vowels (A=2, E=4, I=6, O=8, U=10), what is the sum of all vowel values?", options: ["24", "26", "18", "30"], ans: "C" },
+      { id: 102, tag: "Letter Between", q: "Find the letter which is between the 1st and 4th letters of the following word as per the English alphabet series: CUTE", options: ["F", "D", "V", "Z"], ans: "B" },
+      { id: 103, tag: "Vowel Removal", q: "If in the word 'ELECTRIC', all vowels are removed, which letter will be the 3rd from the left?", options: ["L", "C", "T", "R"], ans: "C" },
+      { id: 104, tag: "Vowel Removal", q: "In the word 'EDUCATION', if vowels are removed, what is the 3rd remaining letter from the left?", options: ["C", "T", "D", "N"], ans: "B" },
+      { id: 105, tag: "Consonant Count", q: "Count consonants between the 2nd and 7th letter of \"TECHNOLOGY\".", options: ["3", "4", "5", "6"], ans: "A" },
+      { id: 106, tag: "Letter Count", q: "How many letters in 'SIGNATURE' are between the first vowel and the last consonant?", options: ["3", "4", "5", "6"], ans: "C" },
+      { id: 107, tag: "Vowels & Positions", q: "In the English alphabet which letter is 7th to the left of second vowel from the right end?", options: ["H", "L", "K", "M"], ans: "A" },
+      { id: 108, tag: "Consonants & Positions", q: "In the English alphabet which letter is 9th to the right of 8th consonant from the left end?", options: ["P", "R", "T", "Q"], ans: "C" },
+      { id: 109, tag: "Half Reversal", q: "If only the first half of the English alphabet is written in the reverse order, how many letters will be there between S and L?", options: ["14", "17", "16", "15"], ans: "C" },
+      { id: 110, tag: "Alternate Deletion", q: "In the English alphabet, if every alternative letter starting from B and onwards is deleted then which letter will be 5th to the right of 4th from the left?", options: ["M", "Q", "L", "S"], ans: "B" },
+      { id: 111, tag: "Anagram", q: "Rearrange the letters given below to form the name of a weapon: REPSA", options: ["parse", "spear", "spare", "asper"], ans: "B" },
+      { id: 112, tag: "Anagram", q: "Rearrange the letters of the word \"LOVE\" to form the name of an animal.", options: ["VOLE", "VEOL", "VLEO", "OLEV"], ans: "A" },
+      { id: 113, tag: "Word Prefix", q: "Which of the following prefixes can complete all three words meaningfully?\n_ABLE, _LIKELY, _BALANCE", options: ["IN", "RE", "UN", "DE"], ans: "C" },
+      { id: 114, tag: "Word Formation", q: "If the 3rd letter of every 2nd word is written in order, what word is formed?", options: ["tufe", "tule", "apf", "apt"], ans: "D" },
+      { id: 115, tag: "Reverse Alphabetical", q: "When all the alphabets of 'IMPLEMENTATION' are arranged in the reverse alphabetical order from left to right, then which alphabet is 6th to the right of 13th alphabet from the right end of the new word formed?", options: ["A", "N", "M", "L"], ans: "C" },
+      { id: 116, tag: "Number Operations", q: "If 2 is added to each odd digit and 1 is subtracted from each even digit in the number '23584617', how many digits will appear more than once in the new number thus formed?", options: ["Three", "None", "One", "Two"], ans: "A" },
+      { id: 117, tag: "Digit Arrangement", q: "Each of the digits in the number '2843715' is arranged in ascending order from left to right. The position(s) of how many digits will remain unchanged as compared to that/those in the original number?", options: ["None", "One", "Two", "Three"], ans: "A" },
+      { id: 118, tag: "Digit Arrangement", q: "Each of the digits in the number '7395426' is arranged in descending order from left to right. The position(s) of how many digits will remain unchanged as compared to those in the original number?", options: ["None", "One", "Two", "Three"], ans: "C" },
+      { id: 119, tag: "Digit Arrangement", q: "In the number '3512648', how many digits will be as far away from the beginning of the number if digits are arranged in ascending order as they are within the number?", options: ["None", "One", "Two", "Three"], ans: "B" },
+      { id: 120, tag: "Number Operations", q: "If 2 is added to each odd digit and 1 is subtracted from each even digit in the number 53372645, how many digits will appear more than once in the new number thus formed?", options: ["5", "2", "4", "3"], ans: "B" },
+      { id: 121, tag: "Number Operations", q: "1 is subtracted from each odd digit and 1 is added to each even digit in the number '4873529'. Which of the following will be the difference between the second digit from the left and the third digit from the right of the new number thus formed?", options: ["4", "3", "5", "2"], ans: "C" },
+      { id: 122, tag: "Letter Substitution", q: "Each vowel in the word 'FRETSAW' is changed to the following letter in the English alphabetical series and each consonant is changed to the previous letter in the English alphabetical series. In the newly formed word, how many alphabets are there in the English alphabetical series between the alphabet which is 3rd from the right and 1st from the right?", options: ["Three", "Four", "One", "Two"], ans: "A" },
+      { id: 123, tag: "Letter Substitution", q: "Each vowel in the word 'PURITAN' is changed to the previous letter in the English alphabetical series and each consonant is changed to the following letter in the English alphabetical series. In the newly formed word, how many alphabets are there in the English alphabetical series between the alphabet which is 1st from the left and 6th from the right?", options: ["One", "Two", "Three", "Four"], ans: "B" },
+      { id: 124, tag: "Letter Substitution", q: "Each vowel of the word 'ADJECTIVE' is substituted with the next letter of the English alphabetical series, and each consonant is substituted with the letter preceding it. How many vowels are present in the new arrangement?", options: ["None", "One", "Two", "Three"], ans: "C" },
+      { id: 125, tag: "Letter Substitution", q: "Each of the letters in the word 'SUPPLY' is changed such that each consonant is replaced by the letter preceding it in the English alphabetical series by two places, and each vowel is replaced by the letter succeeding it in the English alphabetical series by two places. How many vowels are there in the newly formed word?", options: ["None", "Three", "Two", "One"], ans: "A" },
+      { id: 126, tag: "Letter Substitution", q: "Each of the vowel in the word 'PRACTICE' is changed to the letter preceding it in the English alphabetical order and each consonant is changed to the letter following it in the English alphabetical order. How many vowels will be there in the new word thus formed?", options: ["One", "Three", "Two", "None"], ans: "A" },
+      { id: 127, tag: "Letter Substitution", q: "In the word 'DOORSTEP' if all the vowels are replaced with the letter immediate next to it in the English alphabet series and all the consonants are replaced with the letter immediate before it in the English alphabet series, then how many vowels are there in the new word so formed?", options: ["Two", "None", "Three", "One"], ans: "D" },
+      { id: 128, tag: "Vowel-Consonant Sort", q: "If all the letters of the word 'INTROSPECTION' are arranged in a way that all the vowels are arranged in the beginning in alphabetical order and then all the consonants are arranged in the alphabetical order, then position of how many letters remains unchanged?", options: ["None", "One", "Two", "Three"], ans: "B" },
+      { id: 129, tag: "Letter Substitution", q: "If all the consonants of the word 'ADVERTENT' are changed to second succeeding letter as per English alphabet series and all the vowels are changed to their next nearest vowel as per English alphabet series then how many letters in the alphabet series are there between third and seventh letters of the newly formed word?", options: ["13", "10", "14", "8"], ans: "C" },
+      { id: 130, tag: "Letter Substitution", q: "If all the vowels of the word 'FRAGMENT' are changed to the letter immediately succeeding them in the English alphabet series and all the consonants are changed to the letter immediately preceding them in the English alphabet series, then how many letters of the new word are similar to the letters of the old word?", options: ["Two", "Three", "Four", "One"], ans: "B" },
+      { id: 131, tag: "Letter Substitution", q: "If first, third and sixth letters of the word 'LINGUIST' are changed to their immediately preceding letters as per English alphabet series and fourth and seventh letters are changed to their immediately succeeding letters as per English alphabet series, then how many letters (in English alphabet series) are there between the third and fifth letters of the newly formed word?", options: ["5", "6", "7", "8"], ans: "C" },
+      { id: 132, tag: "Pairwise Swap", q: "If the first and second letters in the word 'MISFORTUNE' were interchanged, the third and the fourth letters, the fifth and the sixth letters, and so on, which letter would then be the eighth letter counting to your left?", options: ["O", "F", "S", "T"], ans: "B" },
+      { id: 133, tag: "Pairwise Swap", q: "If the first and second letters in the word 'DEPRESSION' were interchanged, also the third and the fourth letters, the fifth and the sixth letters and so on, which of the following would be the seventh letter from the right?", options: ["R", "O", "S", "P"], ans: "D" },
+      { id: 134, tag: "Half Swap", q: "If the position of the first and the sixth letters in the word 'DISTRIBUTE' are interchanged; similarly, the positions of the second and the seventh, the third and the eighth and so on, which of the following letters will be the fifth from the left after interchanging the positions?", options: ["E", "I", "S", "T"], ans: "A" },
+      { id: 135, tag: "End-to-End Swap", q: "If in the word 'DISTURBANCE', the first letter is interchanged with the last letter, the second letter is interchanged with the tenth letter and so on, which letter would come just after the letter 'T' in the newly formed word?", options: ["I", "U", "S", "T"], ans: "C" },
+      { id: 136, tag: "Word Transformation", q: "Four words are EQUATION, MATHS, WINTER and RAIN. When counted from the left, if every fourth letter in each of the above words is changed to the previous letter in the English alphabetical order, how many words thus formed will have no letter appearing more than once?", options: ["Four", "One", "Three", "Two"], ans: "A" },
+      { id: 137, tag: "Relative Position", q: "In the word 'SUBSTITUTION', what is the third letter to the right of the 2nd letter to the left of the 4th letter from the right?", options: ["U", "T", "I", "O"], ans: "C" }
+    ];
+
+    const state = {
+      century: {
+        questions: centuryQuestions,
+        title: "Alphabet Century PDF (100 Qs)",
+        currentIdx: 0,
+        userAnswers: new Array(centuryQuestions.length).fill(null),
+        reviewMarked: new Array(centuryQuestions.length).fill(false),
+        isSubmitted: false
+      },
+      sheet: {
+        questions: sheetQuestions,
+        title: "Alphabet Practice Sheet PDF (137 Qs)",
+        currentIdx: 0,
+        userAnswers: new Array(sheetQuestions.length).fill(null),
+        reviewMarked: new Array(sheetQuestions.length).fill(false),
+        isSubmitted: false
+      }
+    };
+
+    let activeKey = "century";
+    let secondsElapsed = 0;
+    const letters = ["A", "B", "C", "D"];
+
+    function getActive() {
+      return state[activeKey];
+    }
+
+    function switchQuizSet(key) {
+      activeKey = key;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function toggleFormulaSheet() {
+      const drawer = document.getElementById("formulaDrawer");
+      drawer.style.display = drawer.style.display === "block" ? "none" : "block";
+    }
+
+    function startTimer() {
+      setInterval(() => {
+        if (!getActive().isSubmitted) {
+          secondsElapsed++;
+          const hrs = String(Math.floor(secondsElapsed / 3600)).padStart(2, '0');
+          const mins = String(Math.floor((secondsElapsed % 3600) / 60)).padStart(2, '0');
+          const secs = String(secondsElapsed % 60).padStart(2, '0');
+          document.getElementById("timerDisplay").textContent = `${hrs}:${mins}:${secs}`;
+        }
+      }, 1000);
+    }
+
+    function renderPalette() {
+      const s = getActive();
+      const grid = document.getElementById("paletteGrid");
+      grid.innerHTML = "";
+      const practiceMode = document.getElementById("practiceModeToggle").checked;
+
+      let answered = 0, correct = 0, wrong = 0, review = 0;
+
+      s.questions.forEach((item, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "p-btn";
+        btn.textContent = item.id;
+
+        if (idx === s.currentIdx) btn.classList.add("current");
+
+        const ua = s.userAnswers[idx];
+        if (ua !== null) {
+          answered++;
+          if (practiceMode || s.isSubmitted) {
+            if (ua === item.ans) {
+              btn.classList.add("correct");
+              correct++;
+            } else {
+              btn.classList.add("wrong");
+              wrong++;
+            }
+          } else {
+            btn.classList.add("answered");
+          }
+        } else if (s.reviewMarked[idx]) {
+          btn.classList.add("review");
+        }
+
+        if (s.reviewMarked[idx]) review++;
+
+        btn.onclick = () => {
+          s.currentIdx = idx;
+          renderQuestion();
+          renderPalette();
+        };
+        grid.appendChild(btn);
+      });
+
+      document.getElementById("statAnswered").textContent = answered;
+      document.getElementById("statCorrect").textContent = (practiceMode || s.isSubmitted) ? correct : "-";
+      document.getElementById("statWrong").textContent = (practiceMode || s.isSubmitted) ? wrong : "-";
+      document.getElementById("statReview").textContent = review;
+    }
+
+    function renderQuestion() {
+      const s = getActive();
+      const item = s.questions[s.currentIdx];
+      const practiceMode = document.getElementById("practiceModeToggle").checked;
+      const ua = s.userAnswers[s.currentIdx];
+
+      document.getElementById("qNumber").textContent = `Question ${item.id} of ${s.questions.length}`;
+      document.getElementById("qTag").textContent = item.tag;
+      document.getElementById("qText").textContent = item.q;
+
+      const optsDiv = document.getElementById("optionsContainer");
+      optsDiv.innerHTML = "";
+
+      item.options.forEach((optText, i) => {
+        const letter = letters[i];
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+
+        const showResult = (practiceMode && ua !== null) || s.isSubmitted;
+
+        if (showResult) {
+          if (letter === item.ans) btn.classList.add("correct");
+          else if (ua === letter && ua !== item.ans) btn.classList.add("wrong");
+        } else if (ua === letter) {
+          btn.classList.add("selected");
+        }
+
+        btn.innerHTML = `
+          <span class="opt-letter">${letter}</span>
+          <span>${optText}</span>
+        `;
+
+        btn.onclick = () => selectOption(letter);
+        optsDiv.appendChild(btn);
+      });
+
+      const banner = document.getElementById("feedbackBanner");
+      if ((practiceMode && ua !== null) || s.isSubmitted) {
+        banner.style.display = "block";
+        if (ua === item.ans) {
+          banner.style.background = "#dcfce7";
+          banner.style.color = "#166534";
+          banner.textContent = `✓ Correct! Official Answer Key: Option (${item.ans})`;
+        } else if (ua === null) {
+          banner.style.background = "#fef9c3";
+          banner.style.color = "#854d0e";
+          banner.textContent = `Unattempted. Official Answer Key: Option (${item.ans})`;
+        } else {
+          banner.style.background = "#fee2e2";
+          banner.style.color = "#991b1b";
+          banner.textContent = `✗ Incorrect. You selected (${ua}), Official Answer Key is Option (${item.ans})`;
+        }
+      } else {
+        banner.style.display = "none";
+      }
+
+      document.getElementById("prevBtn").disabled = s.currentIdx === 0;
+      document.getElementById("nextBtn").disabled = s.currentIdx === s.questions.length - 1;
+    }
+
+    function selectOption(letter) {
+      const s = getActive();
+      if (s.isSubmitted) return;
+      s.userAnswers[s.currentIdx] = letter;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function clearResponse() {
+      const s = getActive();
+      if (s.isSubmitted) return;
+      s.userAnswers[s.currentIdx] = null;
+      renderQuestion();
+      renderPalette();
+    }
+
+    function toggleReview() {
+      const s = getActive();
+      s.reviewMarked[s.currentIdx] = !s.reviewMarked[s.currentIdx];
+      renderPalette();
+    }
+
+    function changeQuestion(dir) {
+      const s = getActive();
+      const next = s.currentIdx + dir;
+      if (next >= 0 && next < s.questions.length) {
+        s.currentIdx = next;
+        renderQuestion();
+        renderPalette();
+      }
+    }
+
+    function submitQuiz() {
+      const s = getActive();
+      s.isSubmitted = true;
+      let attempted = 0, correct = 0, wrong = 0;
+
+      s.questions.forEach((q, i) => {
+        if (s.userAnswers[i] !== null) {
+          attempted++;
+          if (s.userAnswers[i] === q.ans) correct++;
+          else wrong++;
+        }
+      });
+
+      const score = (correct * 2) - (wrong * 0.5);
+      document.getElementById("modalSetSubtitle").textContent = s.title;
+      document.getElementById("finalScore").textContent = score.toFixed(1);
+      document.getElementById("maxMarksLabel").textContent = `/ ${s.questions.length * 2} Marks`;
+      document.getElementById("resAttempted").textContent = attempted;
+      document.getElementById("resCorrect").textContent = correct;
+      document.getElementById("resWrong").textContent = wrong;
+      document.getElementById("resSkipped").textContent = s.questions.length - attempted;
+
+      document.getElementById("resultModal").style.display = "flex";
+      renderQuestion();
+      renderPalette();
+    }
+
+    function closeModal() {
+      document.getElementById("resultModal").style.display = "none";
+    }
+
+    function resetQuiz() {
+      const s = getActive();
+      s.userAnswers.fill(null);
+      s.reviewMarked.fill(false);
+      s.isSubmitted = false;
+      s.currentIdx = 0;
+      renderQuestion();
+      renderPalette();
+    }
+
+    document.getElementById("practiceModeToggle").addEventListener("change", () => {
+      renderQuestion();
+      renderPalette();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") changeQuestion(1);
+      else if (e.key === "ArrowLeft") changeQuestion(-1);
+      else if (["1", "a", "A"].includes(e.key)) selectOption("A");
+      else if (["2", "b", "B"].includes(e.key)) selectOption("B");
+      else if (["3", "c", "C"].includes(e.key)) selectOption("C");
+      else if (["4", "d", "D"].includes(e.key)) selectOption("D");
+    });
+
+    startTimer();
+    renderQuestion();
+    renderPalette();
+  </script>
+</body>
+</html>

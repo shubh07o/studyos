@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parmar SSC Percentage Mastery Hub — Interactive Learning & Complete Quiz Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; }
+    .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .opt-btn { transition: all 0.15s ease; }
+    .opt-btn:hover:not(:disabled) { border-color: #4f46e5; background: #eef2ff; }
+    .scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+    .scroll-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-slate-900 text-white border-b border-slate-800 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-black text-xl flex items-center justify-center">%</div>
+        <div>
+          <h1 class="font-extrabold text-base sm:text-lg tracking-tight">PARMAR SSC • PERCENTAGE MASTERY HUB</h1>
+          <p class="text-xs text-slate-400">Interactive Concept Lab • 181 Speed Drills • 194 Practice Sheet MCQs • 100 Century PDF MCQs</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-xs">
+        <div class="bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+          Solved: <span id="hdrSolved" class="font-bold text-emerald-400">0 / 475</span>
+        </div>
+        <div class="bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+          Correct: <span id="hdrAcc" class="font-bold text-amber-400">0%</span>
+        </div>
+        <button onclick="resetAll()" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-500/30 font-semibold">Reset</button>
+      </div>
+    </div>
+    <nav class="bg-slate-950/70 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 flex overflow-x-auto scroll-thin gap-1 py-1.5">
+        <button onclick="setTab('learn')" id="tabBtn-learn" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-indigo-600 text-white whitespace-nowrap">1. Interactive Concept Lab</button>
+        <button onclick="setTab('drills')" id="tabBtn-drills" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-300 hover:bg-slate-800 whitespace-nowrap">2. Speed Drills (Class 1 & 2 • 181 Qs)</button>
+        <button onclick="setTab('sheet')" id="tabBtn-sheet" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-300 hover:bg-slate-800 whitespace-nowrap">3. Practice Sheet (Q16–Q209 • 194 Qs)</button>
+        <button onclick="setTab('century')" id="tabBtn-century" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-300 hover:bg-slate-800 whitespace-nowrap">4. Century PDF Quiz (Q1–Q100 • EN/HI)</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+
+    <!-- TAB 1: INTERACTIVE CONCEPT LAB -->
+    <section id="view-learn" class="space-y-6">
+      <div class="grid lg:grid-cols-2 gap-5">
+        <!-- Tool 1: Fraction & Multiplying Factor Lab -->
+        <div class="card p-5 space-y-4">
+          <div class="flex items-center justify-between border-b pb-2.5">
+            <div>
+              <span class="text-[11px] font-bold uppercase text-indigo-600">Class 1 & 2 Interactive Lab</span>
+              <h2 class="text-base font-extrabold">Fraction ↔ Percentage & Multiplying Factor</h2>
+            </div>
+            <button onclick="randFrac()" class="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-200">Random Fraction</button>
+          </div>
+          <div class="grid grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border">
+            <div>
+              <label class="text-xs font-semibold text-slate-600">Numerator (n)</label>
+              <input id="fNum" type="number" value="3" min="1" max="50" oninput="calcFrac()" class="w-full mt-1 px-3 py-1.5 rounded-lg border font-bold text-sm" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-600">Denominator (d)</label>
+              <input id="fDen" type="number" value="8" min="1" max="50" oninput="calcFrac()" class="w-full mt-1 px-3 py-1.5 rounded-lg border font-bold text-sm" />
+            </div>
+          </div>
+          <div id="fracOut" class="grid grid-cols-3 gap-2 text-center text-xs"></div>
+          <div class="max-h-48 overflow-y-auto scroll-thin border rounded-xl text-xs">
+            <table class="w-full text-left">
+              <thead class="bg-slate-800 text-white sticky top-0">
+                <tr><th class="p-2">Fraction</th><th class="p-2">Exact %</th><th class="p-2">Key Derived Multiples</th></tr>
+              </thead>
+              <tbody class="divide-y">
+                <tr><td class="p-2 font-bold">1/2, 1/3, 1/4</td><td class="p-2">50%, 33.33%, 25%</td><td class="p-2">2/3 = 66.66%, 3/4 = 75%</td></tr>
+                <tr><td class="p-2 font-bold">1/5, 1/6</td><td class="p-2">20%, 16.66%</td><td class="p-2">5/6 = 83.33%</td></tr>
+                <tr><td class="p-2 font-bold">1/7</td><td class="p-2">14.28% (14 2/7%)</td><td class="p-2">2/7 = 28.56%, 3/7 = 42.84%, 4/7 = 57.14%</td></tr>
+                <tr><td class="p-2 font-bold">1/8</td><td class="p-2">12.5% (12 1/2%)</td><td class="p-2">3/8 = 37.5%, 5/8 = 62.5%, 7/8 = 87.5%</td></tr>
+                <tr><td class="p-2 font-bold">1/9, 1/11</td><td class="p-2">11.11%, 9.09%</td><td class="p-2">4/9 = 44.44%, 4/11 = 36.36%, 7/11 = 63.63%</td></tr>
+                <tr><td class="p-2 font-bold">1/12, 1/15, 1/16</td><td class="p-2">8.33%, 6.66%, 6.25%</td><td class="p-2">5/12 = 41.66%, 7/12 = 58.33%, 3/16 = 18.75%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tool 2: Successive % & A = B x C -->
+        <div class="card p-5 space-y-4">
+          <div class="flex items-center justify-between border-b pb-2.5">
+            <div>
+              <span class="text-[11px] font-bold uppercase text-emerald-600">Class 4, 6, 7 & 8 Lab</span>
+              <h2 class="text-base font-extrabold">Successive % Change & A = B × C Simulator</h2>
+            </div>
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">x + y + xy/100</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2.5 bg-slate-50 p-3 rounded-xl border">
+            <div>
+              <label class="text-xs font-semibold text-slate-600">Change 1 (x%)</label>
+              <input id="sX" type="number" value="25" oninput="calcSucc()" class="w-full mt-1 px-2.5 py-1.5 rounded-lg border font-bold text-sm" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-600">Change 2 (y%)</label>
+              <input id="sY" type="number" value="-20" oninput="calcSucc()" class="w-full mt-1 px-2.5 py-1.5 rounded-lg border font-bold text-sm" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-600">Change 3 (z%)</label>
+              <input id="sZ" type="number" value="0" oninput="calcSucc()" class="w-full mt-1 px-2.5 py-1.5 rounded-lg border font-bold text-sm" />
+            </div>
+          </div>
+          <div id="succOut" class="space-y-2 text-xs"></div>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs space-y-1">
+            <div class="font-bold text-amber-900">Constant Product (Expenditure = Price × Consumption):</div>
+            <div id="constProdOut" class="text-amber-800"></div>
+          </div>
+        </div>
+
+        <!-- Tool 3: Fresh/Dry Fruits & Passing Marks -->
+        <div class="card p-5 space-y-4">
+          <div class="border-b pb-2.5">
+            <span class="text-[11px] font-bold uppercase text-amber-600">Class 9 Special Solvers</span>
+            <h2 class="text-base font-extrabold">Fresh/Dry Fruit Pulp & Passing Marks Solvers</h2>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-xl border space-y-2">
+            <div class="text-xs font-bold text-slate-700">1. Fresh vs Dry Fruit (Pulp Wt = Constant)</div>
+            <div class="grid grid-cols-3 gap-2">
+              <div><label class="text-[11px]">Fresh Water %</label><input id="frW1" type="number" value="80" oninput="calcC9()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Dry Water %</label><input id="frW2" type="number" value="10" oninput="calcC9()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Dry Wt (kg)</label><input id="frKg" type="number" value="250" oninput="calcC9()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+            </div>
+            <div id="frOut" class="text-xs font-bold text-indigo-700"></div>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-xl border space-y-2">
+            <div class="text-xs font-bold text-slate-700">2. Passing Marks Equation Builder</div>
+            <div class="grid grid-cols-4 gap-2">
+              <div><label class="text-[11px]">S1 %</label><input id="pmP1" type="number" value="23" oninput="calcC9()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Fails by</label><input id="pmF1" type="number" value="28" oninput="calcC9()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">S2 %</label><input id="pmP2" type="number" value="35" oninput="calcC9()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Passes by</label><input id="pmM2" type="number" value="20" oninput="calcC9()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+            </div>
+            <div id="pmOut" class="text-xs font-bold text-emerald-700"></div>
+          </div>
+        </div>
+
+        <!-- Tool 4: Election Tree & Income-Saving Alligation -->
+        <div class="card p-5 space-y-4">
+          <div class="border-b pb-2.5">
+            <span class="text-[11px] font-bold uppercase text-purple-600">Class 8 & 11 Solvers</span>
+            <h2 class="text-base font-extrabold">Election Tree & Income = Expenditure + Saving</h2>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-xl border space-y-2">
+            <div class="text-xs font-bold text-slate-700">1. Election Voter Breakdown</div>
+            <div class="grid grid-cols-4 gap-2">
+              <div><label class="text-[11px]">Electorate</label><input id="elTot" type="number" value="10000" oninput="calcC11()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">No Vote %</label><input id="elNV" type="number" value="10" oninput="calcC11()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Invalid %</label><input id="elInv" type="number" value="20" oninput="calcC11()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Winner % Valid</label><input id="elWin" type="number" value="60" oninput="calcC11()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+            </div>
+            <div id="elOut" class="grid grid-cols-4 gap-1.5 text-center text-[11px] pt-1"></div>
+          </div>
+          <div class="bg-slate-50 p-3 rounded-xl border space-y-2">
+            <div class="text-xs font-bold text-slate-700">2. Income = Exp + Saving (A = B + C)</div>
+            <div class="grid grid-cols-3 gap-2">
+              <div><label class="text-[11px]">Exp % of Inc</label><input id="inExp" type="number" value="75" oninput="calcC11()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Inc Hike %</label><input id="inHike" type="number" value="20" oninput="calcC11()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+              <div><label class="text-[11px]">Exp Hike %</label><input id="exHike" type="number" value="10" oninput="calcC11()" class="w-full px-2 py-1 border rounded font-bold text-xs" /></div>
+            </div>
+            <div id="inOut" class="text-xs font-bold text-purple-700"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Syllabus Index -->
+      <div class="card p-5 space-y-3">
+        <h3 class="font-extrabold text-base">Complete 11-Class Curriculum Index (Click any Class to Practice)</h3>
+        <div id="syllabusCards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs"></div>
+      </div>
+    </section>
+
+    <!-- TAB 2: SPEED BUILDING DRILLS (181 Qs) -->
+    <section id="view-drills" class="hidden space-y-5">
+      <div class="card p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <span class="text-xs font-bold text-indigo-600 uppercase">Class 1 (33 Qs) & Class 2 Speed Tests 1–5 (Q1–Q15 • 148 Qs)</span>
+          <h2 class="text-lg font-extrabold">Speed Building Mental Math Drills (181 Items)</h2>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <select id="drillSelect" onchange="renderDrills()" class="px-3 py-2 rounded-xl border text-xs font-bold bg-white"></select>
+          <button onclick="checkDrillSet()" class="px-3 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold">Check Answers</button>
+          <button onclick="revealDrillSet()" class="px-3 py-2 rounded-xl bg-amber-500 text-slate-950 text-xs font-bold">Show Answer Key</button>
+        </div>
+      </div>
+      <div id="drillGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+    </section>
+
+    <!-- TAB 3: PRACTICE SHEET MCQs (Q16-Q209) -->
+    <section id="view-sheet" class="hidden space-y-5">
+      <div class="card p-4 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold text-emerald-600 uppercase">Percentage Practice Sheet (English).pdf</span>
+            <h2 class="text-lg font-extrabold">Class 3 to Class 11 MCQs (Q16 – Q209 • All 194 Questions)</h2>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <button onclick="toggleDrawer('sheetDrawer')" class="px-3 py-1.5 rounded-lg bg-slate-800 text-white font-bold">Question Palette (194)</button>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-2.5">
+          <select id="sheetClsFilter" onchange="sheetPage=0;renderSheet()" class="px-3 py-2 rounded-xl border text-xs font-bold bg-white">
+            <option value="0">All Classes (Class 3–11 • 194 Qs)</option>
+            <option value="3">Class 3: Concept Building Test 1 & 2 (Q16–Q47)</option>
+            <option value="4">Class 4: Multiple Successive Changes (Q48–Q61)</option>
+            <option value="5">Class 5: Spending from Remaining & Cube Identities (Q62–Q82)</option>
+            <option value="6">Class 6: Effective / Net % Change (Q83–Q95)</option>
+            <option value="7">Class 7: A = B × C Type 1 Area/Volume (Q96–Q113)</option>
+            <option value="8">Class 8: A = B × C Type 2 & A = B + C (Q114–Q136)</option>
+            <option value="9">Class 9: Fruits, Fixed Money, Passing Marks, Tax (Q137–Q162)</option>
+            <option value="10">Class 10: Basic % Structure & Interchanged Qty (Q163–Q183)</option>
+            <option value="11">Class 11: Election Based Questions (Q184–Q209)</option>
+          </select>
+          <input id="sheetSearch" type="text" placeholder="Search Q number or text..." oninput="sheetPage=0;renderSheet()" class="px-3 py-2 rounded-xl border text-xs" />
+          <div class="flex items-center gap-1.5">
+            <button onclick="sheetPage=Math.max(0,sheetPage-1);renderSheet()" class="px-3 py-2 rounded-xl border bg-white text-xs font-bold">◀ Prev</button>
+            <span id="sheetPager" class="flex-1 text-center text-xs font-bold"></span>
+            <button onclick="sheetPage++;renderSheet()" class="px-3 py-2 rounded-xl border bg-white text-xs font-bold">Next ▶</button>
+          </div>
+        </div>
+      </div>
+      <div id="sheetDrawer" class="hidden card p-4">
+        <div id="sheetPalette" class="flex flex-wrap gap-1.5 max-h-44 overflow-y-auto scroll-thin"></div>
+      </div>
+      <div id="sheetList" class="space-y-4"></div>
+    </section>
+
+    <!-- TAB 4: CENTURY PDF BILINGUAL QUIZ (Q1-Q100) -->
+    <section id="view-century" class="hidden space-y-5">
+      <div class="card p-4 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-bold text-amber-600 uppercase">PERCENTAGE.pdf (Century PDF • Bilingual EN/HI)</span>
+            <h2 class="text-lg font-extrabold">Century PDF Complete Quiz (Q1 – Q100 • All 100 Questions)</h2>
+          </div>
+          <button onclick="toggleDrawer('centuryDrawer')" class="px-3 py-1.5 rounded-lg bg-slate-800 text-white text-xs font-bold">Question Palette (100)</button>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-2.5">
+          <select id="cenFilter" onchange="cenPage=0;renderCentury()" class="px-3 py-2 rounded-xl border text-xs font-bold bg-white">
+            <option value="ALL">All 100 Questions (Q1–Q100)</option>
+            <option value="1-10">Q1–Q10: Multi-Statement Concept Checkers</option>
+            <option value="11-40">Q11–Q40: Core SSC GD/CHSL/CPO PYQs</option>
+            <option value="41-70">Q41–Q70: Intermediate Ratio, Remaining & Population PYQs</option>
+            <option value="71-100">Q71–Q100: Advanced Elections, Marbles, Fruits & Tax PYQs</option>
+          </select>
+          <input id="cenSearch" type="text" placeholder="Search question number, English/Hindi keyword, or exam..." oninput="cenPage=0;renderCentury()" class="px-3 py-2 rounded-xl border text-xs" />
+          <div class="flex items-center gap-1.5">
+            <button onclick="cenPage=Math.max(0,cenPage-1);renderCentury()" class="px-3 py-2 rounded-xl border bg-white text-xs font-bold">◀ Prev</button>
+            <span id="cenPager" class="flex-1 text-center text-xs font-bold"></span>
+            <button onclick="cenPage++;renderCentury()" class="px-3 py-2 rounded-xl border bg-white text-xs font-bold">Next ▶</button>
+          </div>
+        </div>
+      </div>
+      <div id="centuryDrawer" class="hidden card p-4">
+        <div id="centuryPalette" class="flex flex-wrap gap-1.5 max-h-44 overflow-y-auto scroll-thin"></div>
+      </div>
+      <div id="centuryList" class="space-y-4"></div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // DATA PART 1: 181 DRILLS (CLASS 1 & CLASS 2 Q1-Q15)
+    // =========================================================================
+    const DRILLS = [
+      ["Class 1 • Set 1: x% of y (9 Qs)", [
+        ["30% of 420", "126"], ["40% of 385", "154"], ["22% of 480", "105.6"],
+        ["53% of 720", "381.6"], ["38% of 450", "171"], ["47% of 240", "112.8"],
+        ["45% of 1180", "531"], ["77% of 840", "646.8"], ["90% of 350", "315"]
+      ]],
+      ["Class 1 • Set 2: Fraction % of y (10 Qs)", [
+        ["16.66% of 216", "36"], ["37.5% of 640", "240"], ["33.33% of 150", "50"],
+        ["83.33% of 144", "120"], ["66.66% of 270", "180"], ["28.56% of 980", "280"],
+        ["87.5% of 1280", "1120"], ["62.5% of 1360", "850"], ["44.44% of 1350", "600"],
+        ["63.63% of 1320", "840"]
+      ]],
+      ["Class 1 • Set 3 & 4: % More or Less (14 Qs)", [
+        ["30% more than 250", "325"], ["40% less than 480", "288"], ["37.5% more than 960", "1320"],
+        ["16.66% less than 216", "180"], ["16.66% more than 216", "252"], ["37.5% more than 640", "880"],
+        ["33.33% more than 150", "200"], ["83.33% more than 144", "264"], ["66.66% more than 270", "450"],
+        ["28.56% less than 980", "700"], ["87.5% less than 1280", "160"], ["62.5% less than 1360", "510"],
+        ["44.44% less than 1350", "750"], ["36.36% less than 1320", "840"]
+      ]],
+      ["Class 2 • Q.NO. 1: What % of Y is X (10 Qs)", [
+        ["50 is what % of 80?", "62.5%"], ["72 is what % of 90?", "80%"], ["What % of 60 is 24?", "40%"],
+        ["32 is what % of 96?", "33.33%"], ["64 is what % of 96?", "66.66%"], ["What % of 125 is 90?", "72%"],
+        ["120 is what % of 150?", "80%"], ["What % of 250 is 225?", "90%"], ["What % of 160 is 100?", "62.5%"],
+        ["140 is what % of 630?", "22.22%"]
+      ]],
+      ["Class 2 • Q.NO. 2: Fraction % Calculations (10 Qs)", [
+        ["16.66% of 180", "30"], ["25% of 320", "80"], ["44.44% of 360", "160"],
+        ["37.5% of 120", "45"], ["36.36% of 990", "360"], ["66.66% of 240", "160"],
+        ["14.28% of 210", "30"], ["83.33% of 420", "350"], ["35% of 220", "77"], ["52% of 450", "234"]
+      ]],
+      ["Class 2 • Q.NO. 3: Successive % of Value (10 Qs)", [
+        ["20% of 25% of 640", "32"], ["20% of 20% of 525", "21"], ["16.66% of 75% of 160", "20"],
+        ["33.33% of 60% of 275", "55"], ["40% of 80% of 350", "112"], ["20% of 30% of 600", "36"],
+        ["10% of 10% of 200", "2"], ["11.11% of 90% of 450", "45"], ["30% of 40% of 650", "78"],
+        ["80% of 80% of 300", "192"]
+      ]],
+      ["Class 2 • Q.NO. 4: What % More (10 Qs)", [
+        ["70 is what % more than 60?", "16.66%"], ["96 is what % more than 80?", "20%"],
+        ["108 is what % more than 72?", "50%"], ["36 is what % more than 32?", "12.5%"],
+        ["What % more than 120 is 165?", "37.5%"], ["91 is what % more than 84?", "8.33%"],
+        ["What % more than 125 is 130?", "4%"], ["What % more than 80 is 160?", "100%"],
+        ["What % more than 120 is 600?", "400%"], ["252 is what % more than 180?", "40%"]
+      ]],
+      ["Class 2 • Q.NO. 5: What % Less (10 Qs)", [
+        ["320 is what % less than 360?", "11.11%"], ["400 is what % less than 480?", "16.66%"],
+        ["25 is k% less than 125, find k?", "80%"], ["If p% less than 240 is 210, find p?", "12.5%"],
+        ["What % less than 800 is 600?", "25%"], ["What % less than 120 is 80?", "33.33%"],
+        ["60 is what % less than 300?", "80%"], ["15 is what % less than 50?", "70%"],
+        ["What % less than 160 is 120?", "25%"], ["240 is x% less than 250, find x?", "4"]
+      ]],
+      ["Class 2 • Q.NO. 6: Find Ratio A:B (10 Qs)", [
+        ["A is 40% of B", "2:5"], ["B is 75% of A", "4:3"], ["20% of A = 30% of B", "3:2"],
+        ["A is 80% of A + B", "4:1"], ["A is 200% of B", "2:1"], ["B is 33.33% of A", "3:1"],
+        ["A is 20% of B", "1:5"], ["B is 500% of A", "1:5"], ["600% of A = 300% of B", "1:2"],
+        ["A is 100% of B", "1:1"]
+      ]],
+      ["Class 2 • Q.NO. 7: Find Ratio X:Y (10 Qs)", [
+        ["X is 25% more than Y", "5:4"], ["X is 16.66% more than Y", "7:6"], ["X is 20% more than Y", "6:5"],
+        ["X is 50% more than Y", "3:2"], ["Y is 33.33% more than X", "3:4"], ["X is 300% more than Y", "4:1"],
+        ["X is 500% more than Y", "6:1"], ["20% more than X is Y", "5:6"], ["66.66% more than Y is X", "5:3"],
+        ["X is 37.5% more than Y", "11:8"]
+      ]],
+      ["Class 2 • Q.NO. 8: Find Ratio P:Q (8 Qs)", [
+        ["P is 20% less than Q", "4:5"], ["Q is 12.5% less than P", "8:7"], ["P is 66.66% less than Q", "1:3"],
+        ["Q is 62.5% less than P", "8:3"], ["P is 44.44% less than Q", "5:9"], ["16.66% less than Q is P", "5:6"],
+        ["37.5% less than P is 36.36% less than Q", "56:55"], ["14.28% less than P is 60% less than Q", "7:15"]
+      ]],
+      ["Class 2 • Q.NO. 9: X is what % of Y (10 Qs)", [
+        ["X = (3/4)y", "75%"], ["2x = 3y", "150%"], ["X = 0.65y", "65%"], ["3y = 4x", "75%"],
+        ["X = 4y", "400%"], ["Y = 2x", "50%"], ["X = (4/3)y", "133.33%"], ["X = (5/3)y", "166.66%"],
+        ["Y = (1/5)x", "500%"], ["X = 1.02y", "102%"]
+      ]],
+      ["Class 2 • Q.NO. 10: X is what % more than Y (10 Qs)", [
+        ["X = (6/5)y", "20%"], ["3x = 4y", "33.33%"], ["X = 4y", "300%"], ["X = (5/4)y", "25%"],
+        ["Y = (2/3)x", "50%"], ["7y = 6x", "16.66%"], ["Y = (1/6)x", "500%"], ["x² = 4y²", "100%"],
+        ["x³ = 27y³", "200%"], ["x = 1.37y", "37%"]
+      ]],
+      ["Class 2 • Q.NO. 11: P is what % less than Q (10 Qs)", [
+        ["P = 0.82q", "18%"], ["P = (2/3)q", "33.33%"], ["P = (4/5)q", "20%"], ["P = (5/8)q", "37.5%"],
+        ["Q = 3p", "66.66%"], ["3q = 5p", "40%"], ["q = 4p", "75%"], ["q² = 9p²", "66.66%"],
+        ["q = (6/5)p", "16.66%"], ["q = (11/8)p", "27.27%"]
+      ]],
+      ["Class 2 • Q.NO. 12: Calculate % More (10 Qs)", [
+        ["20% more than 70", "84"], ["33.33% more than 120", "160"], ["50% more than 80", "120"],
+        ["25% more than 160", "200"], ["22.22% more than 180", "220"], ["35% more than 220", "297"],
+        ["83.33% more than 240", "440"], ["14.28% more than 210", "240"], ["62.5% more than 320", "520"],
+        ["16.66% more than 360", "420"]
+      ]],
+      ["Class 2 • Q.NO. 13: Calculate % Less (10 Qs)", [
+        ["16.66% less than 720", "600"], ["25% less than 280", "210"], ["40% less than 280", "168"],
+        ["8% less than 320", "294.4"], ["37.5% less than 480", "300"], ["36.36% less than 550", "350"],
+        ["87.5% less than 120", "15"], ["14.28% less than 420", "360"], ["6.66% less than 450", "420"],
+        ["6.25% less than 160", "150"]
+      ]],
+      ["Class 2 • Q.NO. 14: Chained % More/Less (10 Qs)", [
+        ["40% less than 20% more than 150", "108"], ["20% less than 40% more than 250", "280"],
+        ["16.66% less than 20% more than 120", "120"], ["33.33% more than 50% less than 180", "120"],
+        ["20% more than 25% more than 240", "360"], ["10% less than 10% less than 300", "243"],
+        ["40% less than 10% less than 300", "162"], ["22.22% of 12.5% more than 100", "25"],
+        ["20% more than 30% more than 100", "156"], ["20% more than 20% less than 200", "192"]
+      ]],
+      ["Class 2 • Q.NO. 15: % Change from X to Y (10 Qs)", [
+        ["X = 120, y = 150", "+25%"], ["X = 200, y = 240", "+20%"], ["X = 160, y = 480", "+200%"],
+        ["X = 250, y = 300", "+20%"], ["X = 350, y = 400", "+14.28%"], ["X = 400, y = 550", "+37.5%"],
+        ["X = 200, y = 160", "-20%"], ["X = 80, y = 120", "+50%"], ["X = 80, y = 50", "-37.5%"],
+        ["X = 150, y = 120", "-20%"]
+      ]]
+    ];
+
+    // =========================================================================
+    // DATA PART 2: PRACTICE SHEET Q16-Q209 (194 QUESTIONS)
+    // Format: [id, cls, question, [options], ansLetter, explanation]
+    // =========================================================================
+    const SHEET_DATA = [
+      [16,3,"If ‘x’ is 33.3% more than ‘y’, then ‘y’ is what percentage of ‘x’?",["25","33.33","50","75","133.33"],"D","x:y = 4:3 → (3/4)×100 = 75%"],
+      [17,3,"If ‘A’ is 50% more than ‘B’, ‘B’ is what percentage less than ‘A’?",["20","25","33.33","50","66.66"],"C","A:B = 3:2 → 1/3 = 33.33%"],
+      [18,3,"If ‘P’ is 16.66% less than ‘q’, then ‘q’ is what percentage more than ‘p’?",["14.28","16.66","20","25","33.33"],"C","P:q = 5:6 → 1/5 = 20%"],
+      [19,3,"If ‘x + y’ is 25% more than ‘x − y’, then ‘x’ is what percentage more than ‘y’?",["66.66","12.5","300","800","900"],"D","(x+y)/(x-y)=5/4 → x/y=9/1 → +800%"],
+      [20,3,"If ‘x’ is 50% more than ‘y’, then ‘x + y’ is what percentage more or less than ‘x − y’?",["50","100","250","400","500"],"D","x:y=3:2 → x+y=5, x-y=1 → +400%"],
+      [21,3,"If ‘x’ is 80% of ‘y’, then ‘y’ is what percentage of ‘x’?",["25","120","125","133.33","150"],"C","x:y=4:5 → (5/4)×100 = 125%"],
+      [22,3,"If ‘A’ is 25% less than ‘B’, ‘2A’ is what percentage more than ‘B’?",["66.66","50","40","33.33","25"],"B","A:B=3:4 → 2A=6 vs B=4 → +50%"],
+      [23,3,"If ‘p’ is 20% less than ‘q’, then ‘p²’ is what percentage less than ‘q²’?",["25","33.33","36","40","44"],"C","p²:q² = 16:25 → 9/25 = 36%"],
+      [24,3,"‘x²’ is 300% more than ‘y²’, then ‘x³’ is what percentage more than ‘y³’?",["800","700","500","400","100"],"B","x²:y²=4:1 → x:y=2:1 → x³:y³=8:1 → +700%"],
+      [25,3,"If ‘a³’ is 700% more than ‘b³’, then ‘b²’ is what percentage less than ‘a²’?",["20","25","50","60","75"],"E","a:b=2:1 → a²:b²=4:1 → 3/4 = 75%"],
+      [26,3,"If ‘a’ is 50% of ‘b’, then ‘b’ is what percentage more than ‘a²’?",["25","50","100","250","Can’t say"],"E","Different degrees (b vs a²), depends on scale → Can't say"],
+      [27,3,"If ‘x’ is 14.28% more than ‘y’, then ‘y’ is what percentage more/less than ‘x + 70’?",["12.5% less","37.5% less","62.5% less","87.5% less","Can’t say"],"E","Absolute constant +70 with unknown scale → Can't say"],
+      [28,3,"If ‘2x’ is 20% less than ‘3y’, then ‘y’ is what percentage less than ‘x’?",["80","16.66","60","44.44","20"],"B","2x/3y = 4/5 → x/y = 6/5 → y is 1/6 = 16.66% less"],
+      [29,3,"If 50% of ‘p’ is 66.66% of ‘q’, then ‘p’ is what percentage more than ‘q’?",["33.33","40","50","66.66","133.33"],"A","p/2 = 2q/3 → p/q = 4/3 → +33.33%"],
+      [30,3,"20% more than ‘x’ is 25% less than ‘y’. ‘x’ is what percentage less than ‘y’?",["37.5","50","62.5","87.5","NONE"],"A","(6/5)x = (3/4)y → x/y = 5/8 → 3/8 = 37.5% less"],
+      [31,3,"‘x’ is 66.66% of ‘y’ and ‘y’ is 25% of ‘z’, then ‘z’ is what percent more than ‘x’?",["50","83.33","100","500","600"],"D","x:y:z = 2:3:12 → (12-2)/2 = 500%"],
+      [32,3,"‘p’ is 20% less than ‘q’, and ‘q’ is 33.33% more than ‘r’, then ‘p’ is what percentage more than ‘r’?",["6.66","10","12.5","16.66","20"],"A","p/r = (4/5)×(4/3) = 16/15 → +1/15 = 6.66%"],
+      [33,3,"If ‘a’ is 20% less than ‘b’ and 25% more than ‘c’, ‘c’ is what percentage less than ‘b’?",["5","36","45","50","56"],"B","(4/5)b = (5/4)c → c/b = 16/25 → 36% less"],
+      [34,3,"75% of ‘x’ = 50% of y and 33.33% of ‘y’ = 25% of ‘z’, then ‘x’ is what percentage more/less than ‘z’?",["50% less","50% more","75% less","75% more","None"],"A","x/y=2/3, y/z=3/4 → x/z=1/2 → 50% less"],
+      [35,3,"If ‘p’ is 75% of ‘q’ and ‘q’ is 120% of ‘r’, then ‘p’ is what percentage more/less than ‘r’?",["10% less","10% more","11.11% less","11.11% more","None"],"A","p/r = (3/4)×(6/5) = 9/10 → 10% less"],
+      [36,3,"What will be 80% of a number whose 200% is 90? [HP JBT TET 2013]",["40","32","36","35"],"C","(90/200)×80 = 36"],
+      [37,3,"If 55% of the population of a city is male and the number of females is 1350, the number of males is",["1570","1450","1550","1650"],"D","45% = 1350 → 55% = 1650"],
+      [38,3,"If 75% of the students in a school are boys and the number of girls is 420, the number of boys is [WBPSC PRE 2018]",["1176","1350","1260","1125"],"C","25% = 420 → 75% = 1260"],
+      [39,3,"The difference between 40% of a number and 25% of the same number is 75. What is 30% of the number? [SSC CPO Pre 09 Dec 2025 S1]",["120","125","150","135"],"C","15% = 75 → 30% = 150"],
+      [40,3,"Two candidates fought an election. One got 65% of the votes and won by 300 votes. The total number of votes polled is [ACC 122 GMAT Feb 2020]",["600","800","1000","1200"],"C","30% = 300 → 100% = 1000"],
+      [41,3,"Two numbers are less than a third number by 30% and 37% respectively. How much percent is the second number less than the first? [Territorial Army 28 Jul 2019]",["7%","9.09%","11.11%","10%"],"D","(70 - 63)/70 = 10%"],
+      [42,3,"If 80% of A=50% of B and B=x% of A, then the value of x is",["400","300","160","150"],"C","B/A = 80/50 = 160%"],
+      [43,3,"When 40% of a number is added to 42, the result is the number itself. The number is [Territorial Army 31 Jul 2016]",["82","105","70","72"],"C","60% = 42 → 100% = 70"],
+      [44,3,"If 30% of A is added to 40% of B, the answer is 80% of B. What percent of A is B? [WB Group D 2017]",["30%","40%","70%","75%"],"D","30% of A = 40% of B → B/A = 75%"],
+      [45,3,"If 20% of a number is subtracted from a second number and the second number decreases to its 70%, then what is the ratio of the first number to the second number? [SP Phase XI, 27 Jun 2023 S1]",["3:4","4:3","3:2","2:3"],"C","20% of A = 30% of B → A:B = 3:2"],
+      [46,3,"If 30% of (x-y)=20% of (x+y), then what percent of x is y? [DDA Patwari 12 Nov 2020 S2]",["25","20","30","500"],"B","(x+y)/(x-y)=3/2 → x/y=5/1 → 20%"],
+      [47,3,"The difference of two numbers is 45% of their sum. The ratio of the larger number to the smaller number is [DFCCIL EXE CBT1 2023]",["20:9","9:20","29:11","11:29"],"C","(20+9)/(20-9) = 29:11"],
+      [48,4,"A and B spend 60% and 75% of their incomes, respectively. If the savings of A are 20% more than that of B, then by what percentage is the income of A less than the income of B? [SSC CGL 5 March 2020 S2]",["15","20","10","25"],"D","0.4A / 0.25B = 6/5 → A/B = 3/4 → 25% less"],
+      [49,4,"If the population of a town is 64,000 and its annual increase is 10%, then its correct population after 3 years will be:",["80,000","85,184","85,000","85,100"],"B","64000 × (1.1)³ = 85,184"],
+      [50,4,"A bacteria culture increases by 20% every hour for 3 hours, then decreases by 10% in the 4th hour, and finally increases by 25% in the 5th hour. If the initial count was 5,000, what will be the approximate count after 5 hours? [SSC CHSL T1, 30 Nov 2025 S3]",["8,900","9,830","9,650","9,720"],"D","5000 × (6/5)³ × (9/10) × (5/4) = 9,720"],
+      [51,4,"The number of colleges in a town increased by 5% during first year, by 11.11% during second year and decreased by 16.66% during third year and again increased by 14.28% during fourth year. If it is 21,000 at the end of fourth year, then the number of colleges 4 years ago was:",["22,300","13,930","18,900","19,800"],"C","N × (21/20)×(10/9)×(5/6)×(8/7) = 21000 → N = 18,900"],
+      [52,4,"A town has a present population of 2,40,000. Every year the population increases by a birth rate of 12% and decreases by a death rate of 7%. Find the population of the town at the end of 3 years. [SSC CHSL T1, 19 Nov 2025 S2]",["2,92,500","2,98,000","2,77,830","3,27,830"],"C","2,40,000 × (1.05)³ = 2,77,830"],
+      [53,4,"After increasing the numerator of a fraction by 20% and decreasing the denominator by 30% we got 4/5. What is the original fraction?",["7/13","7/15","4/13","4/15"],"B","(4/5)×(0.7/1.2) = 7/15"],
+      [54,4,"If the numerator of a fraction is increased by 140% and the denominator of the fraction is decreased by 20%, the resultant fraction is 12/7. Find the original fraction. [SSC CHSL T1 17 Mar 2023 S1]",["4/9","4/7","7/6","8/9"],"B","(12/7)×(0.8/2.4) = 4/7"],
+      [55,4,"The price of an article was increased by r%. Later the new price was decreased by r%. If the latest price was Rs.1, then the original price was: [SSC CGL T-1, 8 Feb 2004]",["Rs.1","Rs.(1-r²)/100","Rs.√(1-r²)/100","Rs.[10000/(10000-r²)]"],"D","1 / (1 - r²/10000) = 10000/(10000-r²)"],
+      [56,4,"The population of town B is 56.25% more than that of town A. For the next two years, the population of A increases by x% per year and that of B decreases by the same percentage per year. After 2 years, the population of A and B become equal, then the value of x is",["8.33","11.11","9.09","10"],"B","((100+x)/(100-x))² = 25/16 → (100+x)/(100-x)=5/4 → x=11.11%"],
+      [57,4,"A train starts from station P with ‘n’ number of passengers. At station Q, 20% of the passengers get down and 50 passengers get in. At station R, 40% of the passengers get down and 10 passengers get in. If a total of 520 passengers are left on the train, find the value of ‘n’. [SP P XII 21 Jun 2024 S4]",["750","1000","975","855"],"B","0.6(0.8n + 50) + 10 = 520 → n = 1000"],
+      [58,4,"A fruit seller sells 45% of the oranges that he has along with one more orange to a customer. He then sells 20% of the remaining oranges and 2 more oranges to a second customer. He then sells 90% of the now remaining oranges to a third customer and is still left with 5 oranges. How many oranges did the fruit seller have initially? [SSC CGL T1, 19 Apr 2022 S3]",["100","111","121","120"],"D","Reverse: 5/0.1=50; (50+2)/0.8=65; (65+1)/0.55=120"],
+      [59,4,"At the beginning of day 1 of a month, Rajesh has 500 eggs. He sells 20% of the eggs by the end of the day and added b% of the eggs at the beginning of the next day and sold 20% of the eggs at the end of the next day. This pattern continued up to the end of the third day of the month when he is left with 1024 eggs. The value of b is equal to: [SSC CHSL 2 Jul 2024 S4]",["20","10","500","100"],"D","500×(0.8)³×(1+b/100)² = 1024 → (1+b/100)²=4 → b=100"],
+      [60,4,"The number of bacteria in a petri dish was 1,20,000. It increased by 10% in the first hour and changed by x in the second hour. In the third hour, it increases by 10%. If the current number is 1,16,160, then determine the change in population in the second hour. [IB ACIO 29 Sep 2025 S1]",["The population decreased by 20%.","The population decreased by 26,000.","The population decreased by 29,040.","The population decreased by 22%."],"A","1,20,000×1.21×MF = 1,16,160 → MF = 0.8 (20% decrease)"],
+      [61,4,"The production of bottles rose to 26,000 from 16,000 in 2 years. Find the rate of growth per annum. [SSC CGL T1 26 Sep 2025 S3]",["26.47%","37.47%","28.47%","27.47%"],"D","√(26/16) - 1 = √1.625 - 1 ≈ 27.47%"],
+      [62,5,"The population of a town increases annually by 20%. If the present population is 80 lakh, then what is the difference between the population three years ago and 2 years ago? [SSC CPO 29 Jun 2024 S2]",["75,592.6","85,592.6","65,592.6","9,25,925.93"],"D","80,00,000 × (5/6)³ × (1/5) = 9,25,925.93"],
+      [63,5,"The price of an article increases by 20% every year. If the difference between the price of the article at the end of the third year and at the end of the fourth year is ₹324, what is the price of the article at the end of the first year? [SSC MTS, 8 Oct 2021 S2]",["₹1,350","₹1,180","₹1,125","₹1,250"],"C","P₁ × (6/5)² × (1/5) = 324 → P₁ = ₹1,125"],
+      [64,5,"After spending 40% on machinery, 25% on building, 15% on raw material and 5% on furniture, a small scale industry owner had a balance of Rs.1,30,500. Find: a) total money, b) furniture exp, c) diff between machinery & building, d) raw material + furniture exp.",["a) ₹8,70,000 | b) ₹43,500 | c) ₹1,30,500 | d) ₹1,74,000","a) ₹8,00,000 | b) ₹40,000 | c) ₹1,20,000 | d) ₹1,60,000","a) ₹8,70,000 | b) ₹43,500 | c) ₹1,30,500 | d) ₹1,80,000","a) ₹9,00,000 | b) ₹45,000 | c) ₹1,35,000 | d) ₹1,80,000"],"A","15% = 1,30,500 → 1% = 8,700 → Total=8.7L, Furn=43.5k, Diff=130.5k, RM+Furn=1.74L"],
+      [65,5,"From the salary of a software engineer, if 15% is used as house rent, 25% of the remaining is spent on household items, 25% of the remaining as income tax, and 15% of the remaining on clothing, then he is left with ₹10,404. Find his total salary. [SSC CHSL 2 Jul 2024 S2]",["₹22,600","₹24,600","₹25,600","₹23,600"],"C","S × (17/20)×(3/4)×(3/4)×(17/20) = 10404 → S = ₹25,600"],
+      [66,5,"A man spent 16.66% of his monthly earning on house rent. Out of the balance, he spent 12.5% on clothes, out of remaining 25% on travelling, out of the balance 22.22% on education, from remaining 27.27% on food. If he had a balance of Rs.1225 at the end of the month, the monthly earning of the man (in rupees) is:",["3960","3690","3500","3900"],"A","E × (5/6)×(7/8)×(3/4)×(7/9)×(8/11) = 1225 → E = 3960"],
+      [67,5,"A man donates 30% of his wealth to charity. 30% and 25% of the remaining wealth to his wife and son respectively. The rest he divides equally between his three daughters. One of his daughter gets Rs.42 lakh as her share. What was the man’s wealth (in Rs lakhs)?",["280","400","500","350"],"B","W × 0.7 × (0.45 / 3) = 42 → W = 400"],
+      [68,5,"An employee contributes 20% of their salary to charity. From the remaining amount, 40% is allocated to investments. The rest is divided for education and travel in the ratio 7 : 5. If the expense on travel is ₹6000, what is the employee’s total salary? [SSC CGL 20 Sep 2025 S2]",["₹28,000","₹30,000","₹32,000","₹35,000"],"B","S × 0.8 × 0.6 × (5/12) = 6000 → 0.2S = 6000 → S = ₹30,000"],
+      [69,5,"A man spends 35% of his monthly income on food and four-thirteenths of the remaining income on transport. He incurs some other expenses, but also saves Rs.6,300 per month, the latter being equal to 20% of the balance remaining just after spending on food and transport. What is his monthly income (in Rs.)? [SSC CHSL 2 Jul 2024 S4]",["67,500","72,000","70,000","63,000"],"C","I × (13/20)×(9/13)×(1/5) = 6300 → I = 70,000"],
+      [70,5,"Savita spends 20% of her monthly income on groceries, 15% of the remaining on rent and then 60% of the left over on children's education and others. If she saves ₹ 9,792 a month, then how much (in ₹) does she spend on rent? [SSC CHSL 19 Apr 2021 S2]",["3,960","4,450","4,200","4,320"],"D","I × 0.8 × 0.85 × 0.4 = 9792 → I = 36000; Rent = 12% of 36000 = 4,320"],
+      [71,5,"A man spends 20% of his income on food. 20% of the remaining he spends on clothes and 10% of the remaining he spends on education. If he saves Rs. 17,280. Find the difference between the amount spent on clothes and amount spent on education. [SSC CHSL 10 June 2022 S1]",["Rs. 2,880","Rs. 3,000","Rs. 3,600","Rs. 2,520"],"A","57.6% = 17280 → 1% = 300; (16% - 6.4%) × 300 = Rs. 2,880"],
+      [72,5,"An employee spends 20% of his salary on rent, 20% of the remaining on food and 20% of the remaining on children education. If he spends Rs. 5120 on children education, how much does he spend on food?",["Rs.1,600","Rs.6,400","Rs. 6,000","Rs.10,000"],"B","Food = 5120 / 0.8 = Rs. 6,400"],
+      [73,5,"Lakshmi bought some chocolates. She ate 20% of those and gave 30% of the remaining chocolates to her friend krishna. From the remaining chocolates she gave 50% to her sister dhana. If dhana gets 6 chocolates more than krishna, how many chocolates did lakshmi bought?",["100","120","150","160"],"C","(28% - 24%) = 4% = 6 → 100% = 150"],
+      [74,5,"In a school, 4% of the students did not appear for the annual exams. 10% of the students who appeared for the exams could not pass the exam. Out of the remaining students, 50% got distinction marks and 432 students passed the exam but could not get distinction marks. The total number of students in school is : [SSC CGL 6 Mar 2020 S2]",["878","1000","1200","960"],"B","N × 0.96 × 0.9 × 0.5 = 432 → N = 1000"],
+      [75,5,"55³ + 17³ - 72³ + 201960 is equal to: [SSC CPO Pre 09 Dec 2025 S2]",["0","1","2","3"],"A","55+17-72=0 → a³+b³+c³ = 3(55)(17)(-72) = -201960 → sum = 0"],
+      [76,5,"19³ + 20³ - 39³ + 118 is equal to: [SSC CGL 17 Sep 2025 S3]",["-44342","-6789","0","1"],"A","-3(19)(20)(39) + 118 = -44460 + 118 = -44342"],
+      [77,5,"44³ + 35³ - 53³ + 159 is equal to: [SSC CGL 17 Sep 2025 S1]",["−20659","0","−18659","1"],"A","85184 + 42875 - 148877 + 159 = -20659"],
+      [78,5,"27³ + 10³ - 29³ + 246 is equal to: [SSC CGL 19 Sep 2025 S1]",["0","−3460","−2860","1"],"B","19683 + 1000 - 24389 + 246 = -3460"],
+      [79,5,"31³ + 18³ - 37³ + 210 is equal to: [SSC CGL 12 Sep 2025 S1]",["-36810","-14820","-45670","-23450"],"B","29791 + 5832 - 50653 + 210 = -14820"],
+      [80,5,"Simplify: (2.4 + 3.125) × 0.25 - (0.75 ÷ 0.3) [SSC CGL 17 Sep 2025 S2]",["−1.11875","1.11875","2.8756","−2.8756"],"A","1.38125 - 2.5 = -1.11875"],
+      [81,5,"Find the value of (a³+b³+c³-3abc), where a=335, b=215 and c=180. [CHSL 2023 T1]",["14502230","14472250","15421320","15452630"],"B","0.5×730×(14400+1225+24025) = 14472250"],
+      [82,5,"If x=32.5, y=34.6 and z=30.9, then the value of x³+y³+z³-3xyz is 0.98k, where K is equal to: [SSC CGL T-2 2020]",["1033","933","1026","921"],"A","0.5×98×20.66 = 0.98 × 1033 → K = 1033"],
+      [83,6,"Two years ago, the population of a town was 94,87,500. Due to migration to big cities, it decreases every year at the rate of 8%. The present population of the town is: [SSC CGL 20 Jan 2025 T2]",["90,60,110","80,30,220","80,70,120","70,60,320"],"B","94,87,500 × (0.92)² = 80,30,220"],
+      [84,6,"The population of a city was 50,00,000 in 2020. The population grows 7.5% annually. The population in 2022 is ______. [SSC CHSL 1 Jul 2024 S4]",["57,78,125","58,75,215","55,58,875","58,87,125"],"A","50,00,000 × (1.075)² = 57,78,125"],
+      [85,6,"The population of a town is 15,000. If the population increases by 15% in the first year, by 25% in the second year and due to pollution it decreases by 6% in the third year, what will be its population after 3 years? [SSC CPO 29 Jun 2024 S3]",["20,269","15,269","25,269","28,269"],"A","15000 × 1.15 × 1.25 × 0.94 ≈ 20,269"],
+      [86,6,"If the price of a book is first increased by 25% and then increased by 20%, the net % change in the price of the book will be",["45% increase","22.5% increase","50% increase","55% increase"],"C","25 + 20 + 5 = 50% increase"],
+      [87,6,"If the price of a fan is first decreased by 25% and then increased by 20%, the net change in the price of the fan will be:",["10% decrease","5% decrease","no change","5% increase"],"A","-25 + 20 - 5 = -10% (10% decrease)"],
+      [88,6,"Due to heavy eating the weight of Shilpa increased by 10% during first month and by 20% in the next month, the net change in the weight of Shilpa will be",["30% increase","15% increase","10% increase","32% increase"],"D","10 + 20 + 2 = 32% increase"],
+      [89,6,"A number is first decreased by 10%, then increased by 30% and then further it is decreased by 20%. What is the net decrease percentage in the number? [SSC CPO 28 Jun 2024 S1]",["4 1/5%","6 2/5%","5 3/5%","3 4/5%"],"B","0.9 × 1.3 × 0.8 = 0.936 → 6.4% = 6 2/5% decrease"],
+      [90,6,"If the price of an article rose by 25% every odd year and fell by 20% every even year, then what would be the percentage change after 1900 years?",["10% increase","25% increase","No change","20% decrease"],"C","1.25 × 0.80 = 1 every 2 years → No change"],
+      [91,6,"Mr. x and Mr. y each bought the same motorcycle using a 10% off coupon. Mr. x’s cashier took 10% off the price and then added 8.5% sales tax whereas Mr. y’s cashier first added the sales tax and then took 10% off the total price. The amount of Mr. x paid is: [SSC CGL 2014 T-2]",["less by Rs. 550 as the amount Mr. y paid","same as the amount Mr. y paid","greater by Rs. 85 as the amount Mr. y paid","greater by Rs. 850 as the amount Mr. y paid"],"B","Order of multiplication does not change the product"],
+      [92,6,"The strength of a school increases and decreases every alternate year by 15%. If it started with an increase in 2012, then the strength of the school in the beginning of 2015, as compared to that in 2012, had: [SSC CPO 27 Jun 2024 S2]",["Decreased by 12.41%","Increased by 12.41%","Decreased by 13.85%","Increased by 13.85%"],"B","1.15 × 0.85 × 1.15 = 1.124125 → Increased by 12.41%"],
+      [93,6,"An investor, invested ₹2,00,000 in shares. The shares rose by 18% on the first day, fell by 15% on the second day, and then fell by 3% on the third day. What is the net percentage increase or decrease in the value of the investor’s shares? [SSC CGL 18 Sep 2024 S3]",["increase by 2.2%","increase by 2.7%","decrease by 2.7%","decrease by 2.2%"],"C","1.18 × 0.85 × 0.97 = 0.97291 → decrease by 2.7%"],
+      [94,6,"A number is first increased by 12% and then increased by 23%. The number, so obtained, is now decreased by 34%. What is the net increase or decrease percent in the original number (nearest to an integer)? [SSC CGL 9 Sep 2024 S3]",["10% increase","9% decrease","10% decrease","9% increase"],"B","1.12 × 1.23 × 0.66 = 0.9092 → 9% decrease"],
+      [95,6,"The strength of SSC Aspirants increases and decreases every alternate year. It starts with increase by 20% and thereafter the percentage of increase/decrease is the same. Which of the following is definitely true about the strength of SSC Aspirants in 2000 as compared to that in 1996?",["Increase by 6.4%","Decrease by 6.4%","Increase by 7.84%","Decrease by 7.84%"],"D","(0.96)² = 0.9216 → Decrease by 7.84%"],
+      [96,7,"The price of a product is decreased by x% and then increased by x%. The final price becomes 10% less than the original. What is the value of x (approximately)? [SSC CGL T1 23 Sep 2025 S3]",["31.6","33.6","30.6","39.6"],"A","x = √1000 ≈ 31.6"],
+      [97,7,"A company's stock price increases by x% in the first quarter and decreases by the same x% in the second quarter. If the final stock price is 14% lower than the initial price, what is the value of x? [IB ACIO T1, 30 Sep 2025 S1]",["37.69","37.27","37.42","37.98"],"C","x = √1400 ≈ 37.42"],
+      [98,7,"Two successive increments of 30% each is by what percentage more than two successive decrements of 30% each? [SSC CGL T1, 20 July 2023 S2]",["32.54%","28.15%","25.25%","35.29%"],"D","(69 - 51)/51 × 100 = 35.29%"],
+      [99,7,"Two successive percentage decrease of 25% each is by what percentage less than two successive percentage increase of 25% each? [SSC CGL 26 Sep 2024 S1]",["50%","43.75%","22.22%","56.25%"],"C","(56.25 - 43.75)/56.25 × 100 = 22.22%"],
+      [100,7,"A mutual fund’s value increases by 20% in the first year, remains unchanged in the second year and then increases by 25% in the third year. In the fourth year, its value declines by an unknown percentage such that the final value is exactly 12.5% above the initial investment. Calculate the unknown percentage decrease in the fourth year. [IB ACIO 29 Sep 2025 S4]",["24%","28%","20%","25%"],"D","From 150 to 112.5 → (37.5/150)×100 = 25%"],
+      [101,7,"The value of a washing machine depreciated from ₹40,960 to ₹21,970 in 3 years. Find the yearly rate of depreciation. [SI CPO Paper I 2023]",["20%","18.75%","25%","16.25%"],"B","∛(2197/4096) = 13/16 → 3/16 = 18.75%"],
+      [102,7,"The price of an item is increased twice successively. The final price is ₹2,295 and initial price was ₹1,000. The percentage increment the second time was twice the percentage increment the first time. By what percentage was the price increased the second time? [SSC CGL 19 Sep 2024 S2]",["35%","65%","70%","25%"],"C","1000 × 1.35 × 1.70 = 2295 → 2nd increment = 70%"],
+      [103,7,"The length of a rectangle is increased by 30% and breadth decreased by 20%. The % change in area of rectangle is:",["56%","4%","16%","104%"],"B","30 - 20 - 6 = 4%"],
+      [104,7,"The number of seats in a cinema hall is increased by 25%. The cost of each ticket is also increased by 10%. The effect of these changes on the revenue collection will be an increase of:",["37.5%","45.5%","47.5%","49.5%"],"A","25 + 10 + 2.5 = 37.5%"],
+      [105,7,"On decreasing the price of fans by 30%, the sale is increased by 20%. What is the effect on the income of shopkeeper? [UPSSC PET 24 Aug 2021 S1]",["10% increase","10% decrease","16% increase","16% decrease"],"D","-30 + 20 - 6 = -16% (16% decrease)"],
+      [106,7,"The length, Breadth and height of a cuboid increases by 20%, 10% and 30% respectively. What is the percentage increases in the volume of that cuboid?",["20%","30%","43%","71.6%"],"D","1.2 × 1.1 × 1.3 = 1.716 → 71.6%"],
+      [107,7,"The total percentage change in the volume of a cuboid if its length and breadth are decreased by 15% and 25% respectively, while its height is increased by 60% is: [SSC CPO 29 Jun 2024 S2]",["5% decrease","2% decrease","5% increase","2% increase"],"D","0.85 × 0.75 × 1.60 = 1.02 → 2% increase"],
+      [108,7,"If the side of a square increases by 30%, what is the percentage increases in its area? [RRC Group D 22 Sept 2018 S3]",["30","69","60","66"],"B","30 + 30 + 9 = 69%"],
+      [109,7,"If each edge of a cube is increased by 50%, find the percentage increase in its volume.",["125%","137.5%","237.5%","225%"],"C","(1.5)³ - 1 = 2.375 = 237.5%"],
+      [110,7,"The radius of a circle is increased by 1%. What is the increase per cent in its area?",["1%","1.1%","2%","2.01%"],"D","1 + 1 + 0.01 = 2.01%"],
+      [111,7,"A right circular cylinder's height increases by 96% while its radius decreases by 25%. What is the approximate percentage change in its volume? [SSC CHSL T1, 29 Nov 2025 S1]",["8% decrease","10% increase","12% increase","15% increase"],"B","(0.75)² × 1.96 = 1.1025 → 10% increase"],
+      [112,7,"The diameter of a sphere is increased by 30%. What is the percentage increases in its volume? [SSC CHSL 2 Nov 2023 S1]",["69%","119.7%","41.7%","90.5%"],"B","(1.3)³ - 1 = 119.7%"],
+      [113,7,"If the radius of a right circular cylinder open at both the ends, is decreased by 25% and the height of the cylinder is increased by 25%. Then the curved surface area of the cylinder thus formed: [CGL 2016 T-2]",["remains unaltered","is increased by 25%","is increased by 625%","is decreased by 6.25%"],"D","0.75 × 1.25 = 0.9375 → decreased by 6.25%"],
+      [114,8,"The price of a commodity has increased by 60%. In order to restore to the original price, the new price must be reduced by",["33%","37.5%","40%","45%"],"B","60/160 = 3/8 = 37.5%"],
+      [115,8,"The price of sugar is increased by 20% and again increased by 25%. By what percentage it has to be decreased now to get back to the original price?",["25","33.33","45","50"],"B","Net +50% → reduce by 50/150 = 33.33%"],
+      [116,8,"The length of a rectangle is increased by 20% then by how much the breadth should be decreased so that the area remains the same?",["20%","10%","16.66%","33.33%"],"C","20/120 = 1/6 = 16.66%"],
+      [117,8,"The price of cooking oil has increased by 25%. The percentage of reduction that a family should affect in the use of cooking oil so as not to increase the expenditure on cooking oil is",["15%","20%","25%","33.33%"],"B","25/125 = 20%"],
+      [118,8,"The radius of a cylindrical jar is increased by 25%. By what % the height must be decreased so that there is no change in its volume? [SSC CGL 10 Aug 2017 S3]",["36%","50%","56.25%","64%"],"A","r² becomes 25/16 → reduce h by 9/25 = 36%"],
+      [119,8,"If the price of an article is increased by 40%, by how much percent must its consumption be decreased so that the expenditure increases only by 20%?",["28.56%","14.28%","20%","66.66%"],"B","(140 - 120)/140 = 1/7 = 14.28%"],
+      [120,8,"The price of a commodity increases by 28%. However, the expenditure on it increases by 12%. What is the percentage increase or decrease in its consumption? [SSC CHSL 2020]",["16% Increase","12.5% Decrease","12.5% Increase","16% Decrease"],"B","(128 - 112)/128 = 1/8 = 12.5% Decrease"],
+      [121,8,"The radius of a cylindrical jar is increased by 25%. By what % the height must be decreased so that the volume just increases by 12.5%?",["38.88%","28%","56.25%","37.5%"],"B","h₂/h₁ = (9/8)/(25/16) = 18/25 → 28% decrease"],
+      [122,8,"Price of petrol increased from Rs.60/liter to Rs.75/liter. How much should the consumption of petrol be reduced (in %) so as to increase expenditure by only 10%?",["12","20","15","18"],"A","(125 - 110)/125 = 12%"],
+      [123,8,"Because of the budget presented by finance minister, the price of sugar increased by 40%. Sharma family reduced its consumption so that expenditure on sugar is up by 12%. If the total consumption of sugar before the rise in price was 50 kg. What is the present consumption of sugar?",["48 kg","40 kg","36 kg","32 kg"],"B","50 × (112/140) = 40 kg"],
+      [124,8,"If the curved surface area of a cylinder is increased by 20%, and height is decreased by 4%, then the net decrease or increase in the volume will be: [CHSL 2023 T1]",["20% increase","33% decrease","36% decrease","50% increase"],"D","r₂ = 1.2/0.96 = 1.25 → V₂ = (1.25)² × 0.96 = 1.50 → 50% increase"],
+      [125,8,"A triangular sail has base 10 m and height 8 m. To increase its area by 25% without changing the base, by what percent must the height increase? [SSC CPO Pre 13 Dec 2025 S1]",["25%","20%","22.47%","16.67%"],"A","Base is constant → height must increase by 25%"],
+      [126,8,"In a village, 60% of the adults were males and the rest were females. Due to demographic changes the number of males increased by 15% and number of females increased by 10%. Find the % increase in the population of the village.",["12%","13%","25%","12.5%"],"B","0.6(15) + 0.4(10) = 13%"],
+      [127,8,"Sudha saves 15% of her income. If her expenditure increased by 20% and savings increased by 60%, then by what percent is her income increased?",["26","35","24","30"],"A","0.85(20) + 0.15(60) = 26%"],
+      [128,8,"An employee used to save 40% of his salary. If his salary increases by 30% and his expenses increases by 20%, what is the percentage increases in his savings?",["20%","30%","40%","45%"],"D","(30 - 0.6×20)/0.4 = 45%"],
+      [129,8,"Arvind spends 75% of his income and saves the rest. His income is increased by 20% and he increased his expenditure by 10%. Then the increase in his savings in percentage is-",["10%","17.5%","37.5%","50%"],"D","(20 - 0.75×10)/0.25 = 50%"],
+      [130,8,"Sonu saves 15% of her income. Her income increased by 20% and she still saves the same amount as before, then what is the percentage increase in her expenditure? [SSC CGL 4 March 2020 S1]",["23.5%","22.5%","21.5%","24%"],"A","(20/85)×100 = 23.5%"],
+      [131,8,"The monthly expenses of a person are 66 2/3% more than her monthly savings. If her monthly income increases by 44% and her monthly expenses increase by 60%, then there is an increase of ₹1,040 in her monthly savings. What is the initial expenditure (in ₹)? [SSC CGL T-2 2020]",["9,000","10,000","12,000","13,000"],"D","Answer Key: D (13,000)"],
+      [132,8,"Raju's income is 44.44% more than his expenditure. If his income increases by 60% and his expenditure increases by 70%, his savings increase by ₹12,000. Find the difference between his initial expenditure and initial savings.",["₹32,000","₹48,000","₹40,000","₹72,000"],"C","Inc=13, Exp=9, Sav=4 → 1.5u = 12000 → 5u = ₹40,000"],
+      [133,8,"A person invests 35% of his income in mutual funds, 25% in fixed deposits, and the rest in recurring deposits. After 2 years, the mutual funds grow by 20%, fixed deposits by 10%, and recurring deposits by 15%. If his total income is ₹1,60,000, what is the total percentage return on his entire investment portfolio after 2 years? [SSC CHSL T1, 17 Nov 2025 S3]",["15.5%","15.25%","14.75%","16%"],"A","0.35(20)+0.25(10)+0.40(15) = 15.5%"],
+      [134,8,"Radha has a monthly income of ₹80,000. She spends 40% of her income on household expenses, 20% on entertainment and 20% on education. The remaining amount is saved. Due to a 20% salary hike, her income increases. However, her household expenses also rise by 10%, her entertainment costs increase by 12% while her expenses on education remain unchanged. What is the percentage increase in Radha’s savings? [IB ACIO 30 Sep 2025 S2]",["62%","68%","66%","53%"],"B","(20 - 6.4)/20 × 100 = 68%"],
+      [135,8,"The expenditure of a household on food, clothing, and entertainment is in the ratio 2:4:4. In the coming year, the cost of food is expected to fall by 10%, clothing to rise by 5%, and entertainment to fall by 15%. What is the percent change (increase or decrease) in the total household expenditure? [SSC CGL 12 Sep 2025 S3]",["5% decrease","6% increase","6% decrease","5% increase"],"C","(-20 + 20 - 60)/10 = -6% (6% decrease)"],
+      [136,8,"The length, breath and height of a cuboid increase by 20%, 10% and 30% respectively. What is the percentage increase in the Total Surface Area of the Cuboid?",["32%","56%","43%","Can’t say"],"D","TSA depends on initial l:b:h ratio → Can't say"],
+      [137,9,"Fresh cherries contain 99% water. Suppose you have one kg of fresh cherries. After a few hours in sun, some water evaporates and the percentage of water in the cherries became 98%. The new weight of cherries (in grams) is",["750","700","600","500"],"D","1000 × 1% = W × 2% → W = 500 g"],
+      [138,9,"Fresh grapes contain 80% water while dry grapes contain 10% water. If the weight of dry grapes is 250 kg, what was its total weight when it was fresh?",["1000 kg","1100 kg","1125 kg","1225 kg"],"C","F × 20% = 250 × 90% → F = 1125 kg"],
+      [139,9,"Fresh grapes contains 80% water and dried grapes contains 25% water. A grape merchant buys fresh grapes at Rs 30/kg, dry them and sell at Rs 150/kg. what is his profit percentage?",["33.33%","35%","40%","45%"],"A","1 kg fresh (CP=30) gives 4/15 kg dry (SP=40) → Profit = 10/30 = 33.33%"],
+      [140,9,"Fresh grapes contain 80% water. If 50kg of these grapes are dried till the weight becomes 40kg, what percentage of these grapes are water?",["25%","75%","60%","50%"],"B","Pulp = 10 kg → Water = 30/40 = 75%"],
+      [141,9,"A reduction of 20% in the price of sugar enables a person to buy 5 kg more for Rs. 200. What is the original price of sugar per kg? [SSC CGL 26 Sept 2025 S2]",["Rs. 8","Rs. 10","Rs. 12","Rs. 15"],"B","Original qty = 4 × 5 = 20 kg → 200/20 = Rs. 10/kg"],
+      [142,9,"An increase of 25 percent in the price of onions enables a woman to buy 5 kg less for Rs. 200. The increased price of onions per kg is: [SSC GD 11 Jan 2023 S1]",["Rs. 5 per kg","Rs. 8 per kg","Rs. 10 per kg","Rs. 15 per kg"],"C","(25% of 200)/5 = Rs. 10/kg"],
+      [143,9,"A reduction of 10% in the price of sugar enables a person to buy 6.2 kg more for ₹2790. What is the reduced price per kilogram? [CDS-1 elementary math 2026]",["₹50","₹45","₹90","₹42"],"B","(10% of 2790)/6.2 = ₹45"],
+      [144,9,"A reduction of 12 1/2% in the price of an item enables a person to buy 2.5 kg more for Rs. 280. The reduced price of the item per kg is: [SSC MTS 26 OCT 2021 S3]",["Rs. 15","Rs. 13","Rs. 14","Rs. 12"],"C","(280/8)/2.5 = Rs. 14"],
+      [145,9,"The reduction of 15% in the price of salt enables a person to buy 2 kg more for ₹272. The reduced price of salt per kg (in ₹) is: [SSC CGL 11 April 2022 S3]",["22.16","24.25","20.40","25.00"],"C","(15% of 272)/2 = ₹20.40"],
+      [146,9,"A reduction of 15% in the price of washing powder enables a purchaser to obtain 5 kg more for Rs.1,275. The original price of the washing powder per kg is: [SP Phase XI, 30 Jun 2023 S3]",["Rs.50","Rs.45","Rs.35","Rs.40"],"B","Original price = 1275 / (85/3) = Rs. 45"],
+      [147,9,"Pass percentage of an examination is 35%. If a student who gets 210 marks fails by 14 marks, then what are the maximum marks of the examination? [SSC CGL 20 July 2023 S4]",["600","660","620","640"],"D","35% = 224 → 100% = 640"],
+      [148,9,"A student got 23% marks and failed by 28 marks, another student got 35% marks and passed by 20 marks. Find the sum of numerical values of maximum marks, passing marks and passing percentage.",["480","520","530","550"],"D","Max=400, Pass=120, Pass%=30 → Sum=550"],
+      [149,9,"A student got 240 marks in a test and he failed by 6%, another student got 320 marks and passed by 4%. Find the sum of numerical values of maximum marks, passing marks and passing percentage.",["1128","1088","1124","1092"],"C","Max=800, Pass=288, Pass%=36 → Sum=1124"],
+      [150,9,"The income of A is 30% less than the income of B and the income of B is 137.5% more than that of C. If the income of A is ₹28500 less than that of B, then the income (in ₹) of C is: [SSC CGL 2020 Tier 1]",["36,000","48,000","40,000","50,000"],"C","B = 95,000 → C = 95,000 × (8/19) = 40,000"],
+      [151,9,"A is 25% less than B, B is 30% less than C, and C is 50% more than D. If the difference between A and C is 285, then 33 1/3% of B is equal to: [SSC MTS, 14 Oct 2021 S2]",["140","150","120","105"],"A","A:B:C = 21:28:40 → 19u=285 → u=15 → B/3 = 140"],
+      [152,9,"In an examination, B obtained 20% more marks than those obtained by A, and A obtained 10% less marks than those obtained by C. D obtained 20% more marks than those obtained by C. By what percentage are the marks obtained by D more than those obtained by A? [SSC CGL T-2 2020]",["33 1/3 %","13 1/3 %","43 1/3 %","23 1/3 %"],"A","A=90, D=120 → (30/90)×100 = 33 1/3%"],
+      [153,9,"A is 20% more than B, B is 25% more than C, C is 60% less than D and D is 20% more than E. Based on the above information, which of the following is true? [SSC CHSL 2 Jul 2019 S1]",["D is 60% less than B","E is 28% more than A","A is 40% less than D","C is 24% less than A"],"C","D=100 → C=40 → B=50 → A=60 (40% less than D)"],
+      [154,9,"40% of the employees of a company are male. 20% of the male employees are temporary. 74% of total employees are permanent. What percentage of female employees of that company is permanent?",["60","68","70","72"],"C","(74 - 32)/60 × 100 = 70%"],
+      [155,9,"In a class, 60% of the students are girls and the rest are boys. 45% of the girls pass an examination and 40% of the boys failed. If the number of girls who failed is 66, the number of boys who passed the examination is: [SSC CHSL 15 Apr 2021 S1]",["36","48","54","60"],"B","33% = 66 → 24% = 48"],
+      [156,9,"In a constituency, 45% of the total number of voters are males and the rest are females. If 60% of the males are illiterate and 60% of the females are literate, then by what per cent is the number of illiterate females more than that of literate males? [SSC CGL 18 Sep 2024 S1]",["19.11%","27.23%","30.24%","22.22%"],"D","(22 - 18)/18 × 100 = 22.22%"],
+      [157,9,"5/9 th part of the population in a village are males. If 30% of the males are married, the percentage of unmarried females in the total population is. [CDS 2017, PAPER 1]",["20 2/9","27 7/9","27 2/9","29 2/9"],"B","(400 - 150)/900 × 100 = 27 7/9%"],
+      [158,9,"A’s salary is 40% more than B’s. If B’s salary increases by 20% and A’s increases by x%, then A’s new salary becomes 25% more than B’s new salary. What is the value of x? [SSC CGL T1 25 Sep 2025 S1]",["2.5%","7.14%","10.63%","15.6%"],"B","(150 - 140)/140 × 100 = 7.14%"],
+      [159,9,"A man's annual income has increased by Rs. 2 lakhs but the tax on income that he has to pay has reduced from 20% to 16%. He now pays the same amount of tax as before. What is his increased income (in Rs. lakhs)? [SSC CGL 09 March 2018 T2]",["8","10","12","6"],"B","I₁:I₂ = 4:5 → I₂ = 5 × 2 = 10 lakhs"],
+      [160,9,"A man’s annual income has increased by Rs 1.2 lakhs but the tax on income that he has to pay has reduced from 12% to 10%. He now pays the same amount of tax as before. What is his increased income (in Rs lakhs)? [SSC CGL, 19 Feb 2018 T2]",["8.4","7.2","9.6","6"],"B","I₁:I₂ = 5:6 → I₂ = 6 × 1.2 = 7.2 lakhs"],
+      [161,9,"Aman’s annual income has increased by Rs. 20 lakhs but the tax on income that he has to pay has reduced from 20% to 16%. He now pays the same amount of tax as earlier. What is his new total income (in Rs. lakhs)? [SSC MTS 09 Aug 2019 S1]",["120","60","100","80"],"C","I₁:I₂ = 4:5 → I₂ = 5 × 20 = 100 lakhs"],
+      [162,9,"A man’s annual income has increased by Rs 5 lakhs but the tax on income that he has to pay has reduced from 12% to 10%. He now pay Rs 10,000 more income tax. What is his increased income (in Rs lakhs)? [SSC CGL, 17 Feb 2018 T2]",["20","25","15","10"],"B","0.10(I+5) - 0.12I = 0.1 → I=20 → I+5 = 25 lakhs"],
+      [163,10,"Convert 28% into the form of ratio. [SSC CHSL 4 Jul 2024 S1]",["25 : 7","18 : 7","7 : 25","7 : 18"],"C","28/100 = 7 : 25"],
+      [164,10,"Express the following as decimals respectively: 20%, 0.5%, 0.03% [SSC CHSL 4 Jul 2024 S3]",["0.02,0.005,0.0003","0.02,0.005,0.003","0.2,0.005,0.0003","0.2,0.0005,0.0003"],"C","0.2, 0.005, 0.0003"],
+      [165,10,"If p% of p is 36, then p is equal to: [UPTET 2018]",["3600","600","60","15"],"C","p² = 3600 → p = 60"],
+      [166,10,"(x% of y+y% of x) is not equal to:",["x% of 2y","1/2 % of 4xy","2% of xy","xy% of 3"],"D","xy% of 3 = 3xy/100 ≠ 2xy/100"],
+      [167,10,"5% of a=b, then b% of 20 is the same as……………..",["20% of A/2","50% of A/20","50% of A/2","20% of A/20"],"D","20% of 5% of A = 20% of A/20"],
+      [168,10,"If 20% of x = y, then y% of 20 is the same as: [SP P XIII 01 Aug 2025 S2]",["5% of x","4% of x","10% of x","7% of x"],"B","20% of 20% of x = 4% of x"],
+      [169,10,"2% of a=b, then b% of the 10 is the same as: [SSC CGL T-2 19 feb 2018]",["200% of a","20% of a/100","20% of a/10","200% of a/10"],"B","10% of 2% of a = 20% of a/100"],
+      [170,10,"[25% of (50% of 30% of 150)] / [40% of 2250] is equal to : [SSC CGL 16 Nov 2020 T2]",["0.625%","0.225%","0.25%","0.825%"],"A","5.625 / 900 = 0.625%"],
+      [171,10,"A baker ordered 10 kg of premium flour and some additional kg of standard flour. The price of premium flour per kg was twice that of the standard flour. Due to an ordering error, the quantities of the two types of flour were interchanged. This decreased the total cost by 25%. Find the ratio of the quantity of premium flour to standard flour in the original order? [SSC CGL 13 Sep 2025 S1]",["1:2","5:2","3:4","4:5"],"B","(x+2y)/(2x+y) = 3/4 → x:y = 5:2"],
+      [172,10,"A stationery shop ordered 6 dozen red pens and some additional dozen blue pens. The price of the red pens per dozen was three times that of the blue ones. When the order was delivered, it was found that the number of dozens of the two colours had been interchanged. This increased the bill by 40%. Find the ratio of the number of dozens of red pens to the number of dozens of blue pens in the original order. [SSC CGL 14 Sep 2025 S3]",["1:1","1:2","2:3","3:4"],"B","(x+3y)/(3x+y) = 7/5 → x:y = 1:2"],
+      [173,10,"A stationery supplier ordered 8 boxes of premium pens and some boxes of standard pens. The price of premium pens per box was twice that of standard pens. When the order was delivered, the number of boxes of premium and standard pens had been accidentally interchanged. This increased the total bill by 25%. What was the ratio of the original number of boxes of premium pens to the original number of boxes of standard pens? [SSC CGL 13 Sep 2025 S3]",["2 : 1","1 : 3","1 : 2","3 : 1"],"C","(x+2y)/(2x+y) = 5/4 → x:y = 1:2"],
+      [174,10,"The monthly salaries of A and B are the same. A, B and C donate 10%, 8% and 9% respectively, of their monthly salaries to a charitable trust. The difference between the donations of A and B is ₹400. The total donation by A and B is ₹900 more than that of C. What is the monthly salary of C? [SSC CGL 16 Nov 2020 T2]",["₹ 27,000","₹ 36,000","₹ 25,000","₹ 30,000"],"D","9% of C = 3600 - 900 = 2700 → C = ₹30,000"],
+      [175,10,"A sum of ₹1,50,000 is distributed among three persons – A, B and C – so that they receive 20%, 30% and 50% of the total sum respectively. A receives the same amount from another sum of money which is distributed among them so that they receive 50%, 30% and 20% of the another sum respectively. Find the total amount received by B from both sums of money. [SSC CGL 18 Nov 2020 T2]",["₹58,000","₹60,000","₹63,000","₹55,000"],"C","45,000 + 18,000 = ₹63,000"],
+      [176,10,"Deepak spends 75% of his income, whereas Karan spends 80% of his income. Both of them save ₹7,500 each. The income of Sanjay is one-third of the sum of the income of Deepak and Karan. If Sanjay spends (7/9) of his income, then find his savings. [SSC CHSL T1, 18 Nov 2025 S1]",["₹5,500","₹5,900","₹5,000","₹5,700"],"C","(2/9) × 22,500 = ₹5,000"],
+      [177,10,"The salaries of P and Q together amount to ₹9,60,000. P and Q save 64% and 44% respectively of their individual salaries. If P’s expenditure is 1.5 times Q’s expenditure, then what is the ratio of P’s salary to Q’s salary? [SSC CGL 25 Sep 2024 S1]",["2 : 3","7 : 3","3 : 7","3 : 2"],"B","36% of P = 84% of Q → P:Q = 7:3"],
+      [178,10,"A number is mistakenly multiplied by 7/5 instead of being multiplied by 3/2. What is the percentage change in the result due to this mistake? [SSC CHSL 2020]",["6 2/3%","7 2/3%","3 2/3%","5 2/3%"],"A","(15 - 14)/15 × 100 = 6 2/3%"],
+      [179,10,"By mistake, the reciprocal of a positive fraction got typed in place of itself, and thereby its value got reduced by 175/4 %. What was the value of the fraction? [SSC CGL 2020 Tier 1]",["1/4","1/2","4/3","3/4"],"C","1 - 1/f² = 7/16 → f = 4/3"],
+      [180,10,"P and Q are two fixed points 10 cm apart, and R is a point on PQ such that PR = 6 cm. By what percentage is the length of QR decreased when the length of PR is increased by 5%? [SSC CGL 13 Sep 2024 S2]",["8.5%","7.5%","7%","8%"],"B","0.3 / 4 × 100 = 7.5%"],
+      [181,10,"If (x+20)% of 250 is 25% more than x% of 220, then 10% of (x+50) is what percent less than 15% of x? [SSC CGL 2019 T-2]",["13 1/3%","8 1/3%","16 2/3%","33 1/3%"],"C","x=200 → (30-25)/30 = 16 2/3%"],
+      [182,10,"If decreasing 180 by x% gives the same result as increasing 60 by x%, then x% of 410 will be more than (x + 20)% of 210 (correct to two decimal places): [SSC CHSL 16 Apr 2021 S2]",["36.57%","37.57%","31.67%","39.46%"],"D","x=50 → (205 - 147)/147 × 100 = 39.46%"],
+      [183,10,"With reference to a number greater than one, the difference between itself and its reciprocal is 25% of the sum of itself and its reciprocal. By how much percentage (correct one decimal place) is the fourth power of the number greater than its square? [SSC CHSL 2018]",["57.8","62.5","64.5","66.7"],"D","x² = 5/3 → (5/3 - 1)×100 = 66.7%"],
+      [184,11,"In a constituency, the total number of people on the electoral roll was 2,75,000. Out of them, 90% cast their votes in an election and 15% of the votes cast were declared invalid. What was the number of valid votes cast? [SP P XII 24 Jun 2024 S4]",["2,10,375","2,10,425","2,10,275","2,10,325"],"A","2,75,000 × 0.9 × 0.85 = 2,10,375"],
+      [185,11,"In an election between two candidates, A gets 63% of the total valid votes. If the total votes polled were 8,750, what is the number of valid votes that the other candidate B gets, if 20% of the total votes were declared invalid? [SSC CHSL 10 Jul 2024 S1]",["2,590","3,560","4,410","6,450"],"A","8750 × 0.8 × 0.37 = 2,590"],
+      [186,11,"In an election between two candidates, one got 65% of the total valid votes. 20% of the votes were invalid. If the total number of votes was 7,500, the number of valid votes that the other candidate got was: [SSC CHSL 2 Jul 2024 S4]",["1,700","2,100","4,300","1,900"],"B","7500 × 0.8 × 0.35 = 2,100"],
+      [187,11,"In an election between two candidates P and Q, P got 78% of the total valid votes. If the total votes of the electorate were 75,60,000, then what was the number of valid votes that Q got if 10% of the voters did not cast their vote and 15% of the votes polled were declared invalid? [SSC CGL 11 Sep 2024 S1]",["1,41,372","1,41,732","12,72,348","1,47,312"],"C","75,60,000 × 0.9 × 0.85 × 0.22 = 12,72,348"],
+      [188,11,"In an election between two candidates, 75% of the voters cast their votes, out of which 4% of the votes were declared invalid. A candidate got 9504 votes, which were 80% of the valid votes. Find the total number of votes enrolled in that election. [SP P XII 20 Jun 2024 S4]",["12,375","12,672","13,200","16,500"],"D","9504 / (0.75 × 0.96 × 0.80) = 16,500"],
+      [189,11,"In an election between two candidates, 10% of the voters did not cast their votes and 5% of the votes polled were found invalid. The successful candidate got 52.5% of the valid votes and won by a majority of 1710 votes. The number of voters enrolled on the voters list was: [SSC CHSL 9 Jul 2024 S1]",["36000","40000","42000","48000"],"B","1710 / (0.9 × 0.95 × 0.05) = 40,000"],
+      [190,11,"In an election between two candidates, 30% of the electorate did not cast their votes. 20% of the votes polled were found invalid. The winning candidate got 64% of the valid votes and won by a majority of 3136 votes. Find the number of voters enrolled in the voter list. [SI CPO Paper I 2023]",["24000","20000","30000","25000"],"B","3136 / (0.7 × 0.8 × 0.28) = 20,000"],
+      [191,11,"The number of voters enrolled in the voter list are 17,000. In an election between two candidates, 30% of the electorate did not cast their votes. x% of the votes polled were found invalid. The winning candidate got 58% of the valid votes and won by a majority of 1666 votes. Find the value of x.",["10%","37.5%","15%","12.5%"],"D","Valid = 1666/0.16 = 10412.5; Polled = 11900 → x = 12.5%"],
+      [192,11,"In an election between two candidates, y% of the voters did not vote. 10% of the votes cast were declared invalid, while all the valid votes were cast in favour of either of the two candidates. The candidate who got 59.375% of the valid votes cast was declared elected by 2484 votes. If the number of people eligible to vote in that election was 16,000, what is the value of y? [SSC CGL 9 Sep 2024 S1]",["7.2","8.4","8","7.5"],"C","Valid = 2484 × (16/3) = 13248 → Polled = 14720 → y = 8%"],
+      [193,11,"In an election between Sunita and Mamata, 85% of voters cast their votes but 2% of votes were invalid. If Sunita got 64,974 votes which is 78% of valid votes, then the total number of voters enrolled in the election was: [SSC CGL 10 Sep 2024 S3]",["1,25,000","1,00,000","1,65,000","1,80,000"],"B","64974 / (0.85 × 0.98 × 0.78) = 1,00,000"],
+      [194,11,"In an election between two candidates, P received 42% of the valid votes and Q won by 45,360 votes. 20% people did not cast their vote. If 10% of the votes cast were found invalid, what is the total number of votes registered in the poll booth? [SSC CGL 23 Sep 2024 S2]",["3,93,750","3,59,000","3,93,600","3,53,790"],"A","45360 / (0.8 × 0.9 × 0.16) = 3,93,750"],
+      [195,11,"In a village election between three candidates, 80% of the voters cast their votes, out of which 3% votes were declared invalid. The winning candidate got 42,680 votes which were 55% of the total valid votes. Find the number of valid votes received by the candidate who stood third, given that he received only 10% of the total valid votes. [SSC CHSL 2023 T1]",["7700","7680","7760","7670"],"C","(42680 / 55) × 10 = 7,760"],
+      [196,11,"In an election, 12% of the voters in the voter list did not cast their votes, whereas 84 voters cast their ballot papers blank. There were only two candidates: Ramagya and Shravan. The winner, Ramagya, was supported by 54% of all the voters in the list. He got 1456 more votes than his rival, Shravan. Find the total number of voters in the list. [SSC CPO 27 Jun 2024 S1]",["5690","6670","7860","6860"],"D","0.20V + 84 = 1456 → V = 6,860"],
+      [197,11,"In an election, 2% persons enrolled in the voter list did not participate and 500 votes were invalid. Two candidates A and B fought the election, and A defeated B by 200 votes, if 43% of the persons enrolled in the voter list casted their votes in favour of A, then what is the number of the total casted votes? [SSC CGL T1, 14 Jul 2023 S2]",["2450","2500","3000","3250"],"A","V = 2500 → Casted = 98% of 2500 = 2450"],
+      [198,11,"In an election, the winner was supported by 46% of all the voters in the list, and he got 410 votes more than his only rival. 10% of the voters on the voters’ list did not cast their votes, and 60 voters cast their ballot papers blank. How many voters were on the list? [SSC CPO 27 Jun 2024 S2]",["17445","16550","17500","15750"],"C","0.02V + 60 = 410 → V = 17,500"],
+      [199,11,"In an election, Ajay and Mohan are contesting for the Secretary post in a trade union of 9000 workers. 80% of the workers cast their votes, out of which 20% votes were found invalid. Ajay defeated Mohan by 1152 votes. How many votes did Ajay get? [SSC CPO Pre, 3 Oct 2023 S3]",["3456","2304","4480","3546"],"A","Valid = 5760 → Ajay = (5760 + 1152)/2 = 3456"],
+      [200,11,"In an election between two candidates, 30% voters did not cast their votes and 200 votes were declared invalid. The winner got 65% of the valid votes. If he won by 1200 votes, then find the total votes. [SSC CHSL 11 Jul 2024 S2]",["9000","6000","7000","8000"],"B","Valid = 4000 → Polled = 4200 = 70% → Total = 6000"],
+      [201,11,"An election was held between two candidates. The winning candidate scored 54% of the valid votes and won by 88 votes. If 58 votes were declared invalid, then find the total number of votes polled in the election. [SSC CHSL 11 Jul 2024 S4]",["1850","1158","1156","2000"],"B","Valid = 88/0.08 = 1100 → Polled = 1158"],
+      [202,11,"Vinod and Sanjay were fighting against each other for the post of a village Pradhan. Sanjay got 47.5% votes and lost the election by 270 votes. How many votes did Vinod get (assuming that all the villagers participated in the voting)? [SP P XII 26 Jun 2024 S3]",["2385","2835","2565","2655"],"B","(270/5) × 52.5 = 2835"],
+      [203,11,"In a Panchayat election, three contestants - A, B, and C - are contesting. 75% of the total population of 8000 cast their votes. There were no invalid or NOTA votes in the election. A got the least votes, with only 300 votes. B got 66% of the total votes and won the election. How many votes did C get? [SP P XII 20 Jun 2024 S1]",["1640","1740","2040","3960"],"B","6000 - 3960 - 300 = 1740"],
+      [204,11,"Hari, Kamal and Lalit contested an election in which 6050 votes were polled and none of the votes were invalid. Kamal got 42% more votes than the total votes obtained by Hari and Lalit together. If Lalit obtained only 8% of the total polled votes, find the number of votes obtained by Hari. [SSC CGL T2 26 Oct 2023 S1]",["1556","2016","1668","1912"],"B","Hari+Lalit = 2500; Lalit = 484 → Hari = 2016"],
+      [205,11,"In an election between A and B, every fifth vote polled was marked as invalid by the machine. In the remaining votes, A wins the election with a margin of 2500 votes or 10% of the total votes polled, over B. If 90% of the invalid votes would have been in favour of B, then which of the following would have been the result of the election? [SSC CPO 28 Jun 2024 S2]",["B would have won by 8%","B would have won by 3%","A would have won by 3%","A would have won by 8%"],"A","A=45%, B=35%+18%=53% → B would have won by 8%"],
+      [206,11,"In an election between P, R and S, 1/10 of the total votes polled are invalid. Votes polled in favour of R and S are half of the total votes polled, and they get equal votes. Due to a fault in the machine, half of the votes of S and half of the invalid votes are counted additionally in favour of R. What is the overall percentage of votes secured by R due to the fault? [SSC CPO 28 Jun 2024 S3]",["37.55%","41.55%","38.5%","42.5%"],"D","25% + 12.5% + 5% = 42.5%"],
+      [207,11,"In an election, 95% of the total voters cast their votes. In this election, there were only two candidates A and B. The winner A, by obtaining 75% of the total votes, defeated his contestant B by 5500 votes. Find the total number of voters in the election. [SSC CPO 29 Jun 2024 S3]",["11,000","10,000","13,000","12,000"],"B","(75% - 20%) = 55% = 5500 → Total = 10,000"],
+      [208,11,"In an election, A received 27% of the votes and B received 125,982 votes. 19% did not cast their votes. Find the number of votes received by A. [SSC CPO 27 Jun 2024 S3]",["44,327","1,88,973","57,827","62,991"],"D","54% = 125,982 → 27% = 62,991"],
+      [209,11,"In an election, a voter has choices to vote for one candidate out of three candidates. There is also an option ‘None Of The Above’ (NOTA) to reject all candidates. The three candidates get votes that are 6 times NOTA. The winner gets votes that are twice the second runner-up’s votes. The first runner-up gets 900 votes more than NOTA and defeats the second runner-up by 150 votes. What is the total number of votes polled? [SSC CHSL 5 Jul 2024 S4]",["17715","15177","11025","11577"],"C","4n + 3150 = 6n → n = 1575 → 7n = 11,025"]
+    ];
+
+    // =========================================================================
+    // DATA PART 3: CENTURY PDF Q1-Q100 (ALL 100 BILINGUAL QUESTIONS)
+    // Format: [id, question_en_hi, [options], ansLetter, explanation]
+    // =========================================================================
+    const CENTURY_DATA = [
+      [1,"Which of the below statements is/are correct? / निम्नलिखित में से कौन-सा/से कथन सही है/हैं?\n(1) 1/8 = 12.5%   (2) 2/3 ≈ 66.66%   (3) 1/7 ≈ 14.28%   (4) 4/5 = 75%",["1, 2 and 3 only","2, 3 and 4 only","1, 3 and 4 only","1, 2, 3 and 4"],"A","4/5 = 80%, so only 1, 2 and 3 are correct"],
+      [2,"Which of the following multiplying factor statements for percentage change are correct? / प्रतिशत परिवर्तन के लिए गुणा कारक कथन सही हैं?\n(1) 16.66% inc = 7/6   (2) 12.5% inc = 9/8   (3) 37.5% inc = 11/8   (4) 20% dec = 5/4",["1 and 2 only","1, 2 and 3 only","3 and 4 only","1, 2, 3 and 4"],"B","20% decrease = 4/5, so 1, 2 and 3 are correct"],
+      [3,"Consider the following calculation statements based on percentage pyramids and fractions:\n(1) 16.66% of 216 = 36   (2) 37.5% of 640 = 240   (3) 83.33% of 144 = 120   (4) 66.66% of 270 = 190",["1 and 3 only","2 and 4 only","1, 2 and 3 only","1, 2, 3 and 4"],"C","66.66% of 270 = 180, so 1, 2 and 3 are correct"],
+      [4,"Which of the following statements regarding percentage more or less are correct?\n(1) 70 is 16.66% more than 60   (2) 96 is 20% more than 80   (3) 320 is 11.11% less than 360   (4) 400 is 16.66% less than 480",["1 and 4 only","2 and 3 only","1, 2 and 3 only","1, 2, 3 and 4"],"D","All 4 statements are correct"],
+      [5,"Which of the following decimal pattern fractions used in exams are correct?\n(1) 1/12 ≈ 9.33%   (2) 1/16 = 6.52%   (3) 1/15 ≈ 6.67%   (4) 5/6 ≈ 83.33%",["1 and 2 only","3 and 4 only","1, 2 and 3 only","1, 2, 3 and 4"],"B","1/12 = 8.33% and 1/16 = 6.25%, so only 3 and 4 are correct"],
+      [6,"Consider the following ratio statements derived from percentage relations:\n(1) If A is 40% of B, A:B = 2:5   (2) If 20% of A = 30% of B, A:B = 2:3   (3) If A is 200% of B, A:B = 2:1   (4) If B is 33.33% of A, B:A = 1:4",["1 and 3 only","2 and 4 only","1, 3 and 4 only","1, 2, 3 and 4"],"A","Only 1 and 3 are correct"],
+      [7,"Which of the following successive percentage calculation statements are correct?\n(1) 20% of 25% of 640 = 32   (2) 20% of 20% of 525 = 21   (3) 33.33% of 60% of 275 = 55   (4) 10% of 10% of 200 = 20",["1 and 2 only","3 and 4 only","1, 2 and 3 only","1, 2, 3 and 4"],"C","10% of 10% of 200 = 2, so 1, 2 and 3 are correct"],
+      [8,"Check the correctness of the following increased/decreased value statements:\n(1) 20% more than 70 is 86   (2) 33.33% more than 120 is 160   (3) 16.66% less than 720 is 620   (4) 25% less than 280 is 210",["1 and 3 only","2 and 4 only","1, 2 and 3 only","1, 2, 3 and 4"],"B","Only 2 and 4 are correct"],
+      [9,"Which of the following advanced fraction-to-percentage relations are correct?\n(1) 5/12 ≈ 41.66%   (2) 7/12 ≈ 58.33%   (3) 11/12 ≈ 81.66%   (4) 3/8 = 35.5%",["1 and 2 only","3 and 4 only","1, 2 and 3 only","1, 2, 3 and 4"],"A","11/12 = 91.66% and 3/8 = 37.5%, so 1 and 2 are correct"],
+      [10,"Consider the following percentage change statements from X to Y:\n(1) X=120, Y=150: 25% inc   (2) X=200, Y=240: 20% inc   (3) X=400, Y=300: 25% dec   (4) X=150, Y=120: 20% dec",["1 and 2 only","3 and 4 only","1, 2 and 3 only","1, 2, 3 and 4"],"D","All 4 statements are correct"],
+      [11,"The number of students in a school increased from 800 to 920 in one year. By what percent did it increase? / एक स्कूल में छात्रों की संख्या एक वर्ष में 800 से बढ़कर 920 हो गई। यह कितने प्रतिशत की वृद्धि है? [SSC Phase-14 17 Sept 2026 S3]",["12%","14%","15%","16%"],"C","(120/800)×100 = 15%"],
+      [12,"In a class of 200 students, 35% are girls. How many boys are there? / 200 छात्रों की कक्षा में 35% लड़कियाँ हैं। लड़कों की संख्या कितनी है? [SSC Phase-14 17 Sept 2026 S3]",["120","125","130","135"],"C","65% of 200 = 130"],
+      [13,"If P is 25% more than Q and R is 40% less than the sum of P and Q, then by what percentage is R more than P? / यदि P, Q से 25% अधिक है और R, P और Q के योग से 40% कम है, तो R, P से कितने प्रतिशत अधिक है? [SSC Phase-14 22 Sept 2026 S1]",["6%","12%","8%","14%"],"C","Q=100, P=125, R=0.6(225)=135 → (10/125)×100 = 8%"],
+      [14,"Antara's monthly income is ₹96,000, while Barnali's monthly income is ₹1,10,000. If y% of Barnali's income is equal to 55% of Antara's monthly income, find the value of y. [SSC SP 2024 21 Jun 2024 S4]",["48","44","52","45"],"A","y = (55 × 96) / 110 = 48"],
+      [15,"If A percent of A is 729, then what is the value of A²? / यदि A का A प्रतिशत 729 है, तो A² का मान क्या है? [SSC GD 25 May 2026 S3]",["71400","72900","76400","73200"],"B","A²/100 = 729 → A² = 72900"],
+      [16,"8 kg of water is mixed in 17 kg of milk. What is the percentage of water in the mixture? / 17 किग्रा दूध में 8 किग्रा पानी मिलाया जाता है। मिश्रण में पानी का प्रतिशत क्या है? [SSC GD 29 May 2026 S3]",["35 percent","32 percent","28 percent","30 percent"],"B","(8/25)×100 = 32%"],
+      [17,"When 10 percent of a number is added to 15 percent of the same number, then the result is 3375. What is the value of the number? [SSC GD 31 May 2026 S1]",["13500","14200","15600","14800"],"A","25% = 3375 → 100% = 13500"],
+      [18,"What should be subtracted from 540 so that the number obtained will become equal to 190 percent of 110? [SSC GD 21 May 2026 S3]",["340","331","348","351"],"B","540 - 209 = 331"],
+      [19,"When 11 percent of a number is added to 117, then the result is 24 percent of that number. What is the value of the number? [SSC GD 21 May 2026 S1]",["800","900","450","850"],"B","13% = 117 → 100% = 900"],
+      [20,"A is 25 percent less than B. If value of A is 270, then what is the value of B? [SSC GD 20 May 2026 S1]",["350","360","380","400"],"B","270 / 0.75 = 360"],
+      [21,"If A = 4X and B = 9X, then B is what percent of A? [SSC GD 09 May 2026 S1]",["250 percent","225 percent","200 percent","150 percent"],"B","(9/4)×100 = 225%"],
+      [22,"A student scores total 60 percent marks in 5 subjects of 200 marks each. He scored 25 percent of total marks obtained by him, in subject 1. What is the score in subject 1? [SSC GD 08 May 2026 S2]",["70","150","120","90"],"B","25% of 600 = 150"],
+      [23,"X = 40 percent of 60 and Y = 50 percent of 40. What is the sum of X and Y? [SSC GD 06 May 2026 S2]",["40","42","44","48"],"C","24 + 20 = 44"],
+      [24,"Out of two numbers, 40 percent of the smaller number is equal to 20 percent of the larger number. If the sum of both the numbers is 750, then what is the value of the larger number? [SSC GD 27 Apr 2026 S2]",["450","500","550","600"],"B","(2/3)×750 = 500"],
+      [25,"P got 25 percent less marks than Q. R got 40 percent less marks than Q. If sum of P, R and Q marks is 1410, then what is the difference between the marks of Q and R? [SSC GD 28 Apr 2026 S3]",["250","240","200","275"],"B","47u = 1410 → 8u = 240"],
+      [26,"A number is increased by 25% and then decreased by 16%, the final value of the number: [SSC CHSL T2 02 Nov 2023 S1]",["decreases by 5%","increases by 5%","decreases by 13%","does not change"],"B","1.25 × 0.84 = 1.05 (+5%)"],
+      [27,"The population of the city was 1,75,000 two years ago. If it had increased by 4% and 5% in the last two years, find the present population of the city. [SSC CHSL T2 02 Nov 2023 S1]",["1,89,200","1,91,100","1,92,100","1,93,200"],"B","1,75,000 × 1.04 × 1.05 = 1,91,100"],
+      [28,"If a product price is decreased by 12% and then increased by 15%, what is the net percentage change in price? [SSC CPO Pre 12 Dec 2025 S1]",["2.8% increase","1.2% increase","1.5% increase","2.5% increase"],"B","-12 + 15 - 1.8 = 1.2% increase"],
+      [29,"In an election, candidate A got 45% of the votes and candidate B got 30%. What percentage of votes did others get? [SSC CPO Pre 12 Dec 2025 S1]",["15%","35%","20%","25%"],"D","100% - 75% = 25%"],
+      [30,"In a town, 20% of the population migrated to another city. Later, 25% of the remaining population left due to lack of jobs. If the final population is 48,000, what was the original population? [SSC CPO Pre 10 Dec 2025 S2]",["80,000","75,000","70,000","72,000"],"A","48000 / 0.6 = 80,000"],
+      [31,"Income of A is 20 percent more than income of B and the income of B is 25 percent more than income of C. A's income is how much percentage more than C's income? [SSC CHSL 29 Nov 2025 S2]",["60 percent","70 percent","50 percent","75 percent"],"C","1.2 × 1.25 = 1.50 (+50%)"],
+      [32,"A is 20 percent more than B. B is 30 percent more than C. C is 10 percent less than D. D is 30 percent less than E. By how much percentage is A more/less than E? [SSC CHSL 25 Nov 2025 S3]",["1.72 percent less","1.72 percent more","1.86 percent less","1.86 percent more"],"A","1.2×1.3×0.9×0.7 = 0.9828 (1.72% less)"],
+      [33,"After two successive increments, a person's salary became 156.25% of the original salary. If the percentage increase in the second increment was equal to that in the first increment, then what was the percentage of each increment? [SSC CHSL 19 Nov 2025 S2]",["20%","22%","25%","30%"],"C","√1.5625 = 1.25 (25%)"],
+      [34,"A train starts from station P with 'n' number of passengers. At station Q, 20% of the passengers get down and 50 passengers get in. At station R, 40% of the passengers get down and 10 passengers get in. If a total of 520 passengers are left on the train, find the value of 'n'. [SSC SP 21 Jun 2024 S4]",["855","1000","750","975"],"B","0.6(0.8n+50)+10 = 520 → n = 1000"],
+      [35,"The number of toys manufactured by a machine in 2018 was 25,000, which increased by 20% in 2019. In 2020, the production was hindered by strike and it fell by 15%. How many total toys were manufactured in three years by the machine? [SSC SP 26 Jun 2024 S4]",["80000","89500","25500","80500"],"D","25000 + 30000 + 25500 = 80,500"],
+      [36,"Every day a person sells 60 percent of his fruits and 30 percent of the remaining fruits get spoilt during the night. If total 48 fruits got spoil on the first night, then how many fruits did he sell on the first day? [SSC GD 07 May 2026 S3]",["300","240","250","310"],"B","12% = 48 → 60% = 240"],
+      [37,"The strength of a school increases and decreases every alternate year by 20%. It started with an increase in the year 2015 and the initial strength was 3000. Find the strength of the school in the year 2017 and also the percentage of increase in strength, respectively. [SSC MTS 05 Sept 2023 S2]",["3456, 15.2%","4456, 14.2%","4556, 17.2%","3556, 16.2%"],"A","3000 × 1.2 × 0.8 × 1.2 = 3456 (+15.2%)"],
+      [38,"In university exams where the total maximum marks were 500, Mohit gets 20% more than Surendra, Surendra gets 20% more than Lalit, and Lalit gets 15% less than Darshan. If Mohit gets 366 marks, what percentage of the full marks does Darshan get? [SSC MTS 14 Jul 2022 S2]",["82.50%","59.80%","58.02%","80.50%"],"B","Darshan = 366 / (1.2 × 1.2 × 0.85) = 299 → 299/500 = 59.80%"],
+      [39,"A dairy owner sells 528 litres of milk daily in one litre packets of 3 varieties – full cream, toned and double toned. Sales of toned milk packets are 80% higher than those of full cream milk packets, and sales of double toned milk packets are 60% lower than those of toned milk packets. How many packets of double toned milk does he sell per day? [SSC GD 25 Nov 2021 S3]",["100","112","108","110"],"C","Ratio FC : T : DT = 25 : 45 : 18 (Sum = 88u = 528 → u = 6). DT = 18 × 6 = 108"],
+      [40,"Sushant gave 30% of the money he had to his wife. He also gave 18% of the remaining amount to each of his two sons. Three-fourth of the amount now left was spend on miscellaneous items and the remaining amount of Rs. 19,600 was deposited in the bank. How much money did Sushant have originally? [SSC GD 9 Dec 2021 S3]",["Rs. 1,65,000","Rs. 1,75,000","Rs. 1,70,000","Rs. 1,80,000"],"B","M × 0.7 × 0.64 × 0.25 = 19,600 → M = Rs. 1,75,000"],
+      [41,"A is 120% of B and B is 85% of C. If the sum of A, B and C is 143 1/2, then the value of C - 4B + 2A is: [SSC GD 8 Dec 2021 S3]",["-18","15","20","-10"],"A","A:B:C = 51:42.5:50 = 102:85:100 (Sum=287u=143.5 → u=0.5). C-4B+2A = (100-340+204)×0.5 = -18"],
+      [42,"Mr. Ram gave 60% of the money he had to his wife. He also gave equal amounts to his three children, that is, each one got 20% of the remaining amount after giving to his wife. Three-fifths of the amount now left was spent on miscellaneous items and the remaining amount of ₹9,600 was deposited in the bank. How much money (in ₹) did Mr. Ram gave to his wife? [SSC GD 6 Dec 2021 S1]",["90,000","80,000","1,20,000","1,50,000"],"A","M × 0.4 × 0.4 × 0.4 = 9600 → M = 1,50,000; Wife = 60% = ₹90,000"],
+      [43,"In an election between two candidates, 20% of the registered voters did not cast their vote and 40 votes were declared invalid. The winner got 42% of the total votes and was declared the winner by 112 votes. The number of registered voters was: [SSC CHSL T2 26 Jun 2023 S1]",["1500","1200","1800","3800"],"C","0.04V + 40 = 112 → 0.04V = 72 → V = 1800"],
+      [44,"Gita purchases an apartment and pays EMI for that. Her monthly income is ₹80,000. She spends 15% on the education of her children, 40% on household affairs, sends 10% to GPF, saves 15% in a savings bank account and pays the rest of the amount as EMI. How much EMI does she pay? [SSC CHSL T2 26 Jun 2023 S1]",["₹14,000","₹18,000","₹16,000","₹20,000"],"C","Remaining = 20% of 80,000 = ₹16,000"],
+      [45,"Deepak spends 75% of his income, whereas Karan spends 80% of his income. Both of them save Rs. 7,500 each. The income of Sanjay is one-third of the sum of the income of Deepak and Karan. If Sanjay spends (7/9)th of his income, then find his savings. [SSC CHSL 18 Nov 2025 S1]",["Rs. 5,500","Rs. 5,900","Rs. 5,000","Rs. 5,700"],"C","(2/9) × 22,500 = Rs. 5,000"],
+      [46,"In a cricket series, Team A had a winning rate of 70% after playing x matches. Then they lost 20 matches consecutively, and their winning rate fell to 50%. Find the total matches played by Team A before the losing streak. [SSC CHSL 18 Nov 2025 S2]",["40","50","60","80"],"B","0.7x = 0.5(x + 20) → 0.2x = 10 → x = 50"],
+      [47,"A population falls by 12% in the first year. By what percentage must it increase in the second year so that at the end of the second year the population is exactly the same as the original? [SSC CHSL 18 Nov 2025 S2]",["10.6%","11.6%","13.6%","14.6%"],"C","(12/88)×100 = 13.64% ≈ 13.6%"],
+      [48,"A person invests 35% of his income in mutual funds, 25% in fixed deposits, and the rest in recurring deposits. After 2 years, the mutual funds grow by 20%, fixed deposits by 10%, and recurring deposits by 15%. If his total income is ₹1,60,000, what is the total percentage return on his entire investment portfolio after 2 years? [SSC CHSL 17 Nov 2025 S3]",["15.5%","15.25%","14.75%","16%"],"A","0.35(20)+0.25(10)+0.40(15) = 15.5%"],
+      [49,"The population of a town increases by 20% in the first year, decreases by 10% in the second year, and again increases by 25% in the third year. If the population at the beginning was 40,000, what will it be after 3 years? [SSC CHSL 13 Nov 2025 S2]",["24,000","43,200","48,000","54,000"],"D","40,000 × 1.2 × 0.9 × 1.25 = 54,000"],
+      [50,"A quality control officer tracks the defect rates in 4 different machines in a textile factory. The first machine produces fabrics with an average defect rate of 1.8%, the second with 2.4%, and the third with 1.6%. The fourth machine operated for 5 fewer hours than the average runtime of the first three, yet its total defective output was 0.92 units. If the total number of defective units from all four machines is 4.12, and each machine's total production was identical, find the defect percentage of the fourth machine. [SSC CHSL 21 Nov 2025 S1]",["1.52%","1.58%","1.67%","1.73%"],"C","First 3 defects = 4.12 - 0.92 = 3.20 units = (1.8+2.4+1.6)% = 5.8% of P → P = 320/5.8. Defect % of 4th = (0.92 / P) × 100 = (0.92 / 3.20) × 5.8% = 1.6675% ≈ 1.67%"],
+      [51,"A man spends 70% of his income. His income increases by 10% and his expenditure by 5%. What is the percentage increase in his savings? [SSC CGL 25 Sept 2025 S2]",["21.67%","31.67%","41.67%","51.67%"],"A","(10 - 3.5)/0.3 = 6.5/0.3 = 21.67%"],
+      [52,"A stationery shop ordered 6 dozen red pens and some additional dozen blue pens. The price of the red pens per dozen was three times that of the blue ones. When the order was delivered, it was found that the number of dozens of the two colours had been interchanged. This increased the bill by 40%. Find the ratio of the number of dozens of red pens to the number of dozens of blue pens in the original order. [SSC CGL 14 Sept 2025 S3]",["1:1","1:2","2:3","3:4"],"B","(x+3y)/(3x+y) = 7/5 → x:y = 1:2"],
+      [53,"In a competitive exam with 120 questions, there are three sections: General Knowledge (20 questions), Reasoning (50 questions), and English (50 questions). A candidate answered 70% of General Knowledge, 50% of Reasoning, and 30% of English questions correctly. If the minimum passing score is 60%, how many more questions did the candidate need to answer correctly to pass? [SSC CGL 15 Sept 2025 S3]",["2","15","18","20"],"C","Got: 14 + 25 + 15 = 54. Pass = 60% of 120 = 72. Needed = 72 - 54 = 18"],
+      [54,"A baker ordered 10 kg of premium flour and some additional kg of standard flour. The price of premium flour per kg was twice that of the standard flour. Due to an ordering error, the quantities of the two types of flour were interchanged. This decreased the total cost by 25%. Find the ratio of the quantity of premium flour to standard flour in the original order. [SSC CGL 13 Sept 2025 S1]",["1:2","5:2","3:4","4:5"],"B","(x+2y)/(2x+y) = 3/4 → x:y = 5:2"],
+      [55,"In a city, the current number of literate people is 25,000. If the number of literate males decreases by 5% and the number of literate females increases by 10%, the total literate population becomes 25,250. What is the present number of literate males in the city? [SSC CGL 13 Sept 2025 S1]",["12,500","14,000","15,000","16,500"],"C","Overall change = +1%. By alligation (-5% and +10% around +1%), M:F = 9:6 = 3:2 → Males = 15,000"],
+      [56,"The numerator of a fraction is decreased by 25% and the denominator is increased by 25%. New fraction is how much percentage less than the original fraction? [SSC GD 13 Feb 2023 S1]",["45%","25%","40%","50%"],"C","0.75 / 1.25 = 3/5 → 2/5 = 40% less"],
+      [57,"Last year, Geeta's monthly salary was ₹12,000 and Seeta's monthly salary was ₹10,000. This year, Geeta's monthly salary is ₹14,400, while Seeta's monthly salary is ₹12,500. If the percentage increase in Seeta's monthly salary is x%, and Geeta's is y%, find ((x-y)/y × 100)%. [SSC CHSL 04 Jul 2024 S3]",["20","22","24","25"],"D","x = 25%, y = 20% → (25-20)/20 × 100 = 25"],
+      [58,"A person spends 10% of his income on groceries, 10% on medicines, 20% on children's education, 15% on house rent, and he saves the remaining amount. If his monthly income is ₹30,000, find his savings. [SSC CHSL 04 Jul 2024 S1]",["₹12,500","₹15,500","₹13,500","₹16,500"],"C","45% of 30,000 = ₹13,500"],
+      [59,"The price of an article is reduced by 30% but the daily sale of the article increased by 35%. The net percentage effect on the daily sale receipts is: [SSC CHSL 03 Jun 2022 S2]",["6 1/2% increase","5 1/2% increase","5 1/2% decrease","6 1/2% decrease"],"C","-30 + 35 - 10.5 = -5.5% (5 1/2% decrease)"],
+      [60,"When the price of an article was reduced by 25%, its sale was increased by 75%. Calculate the net effect on revenue. [SSC CHSL 03 Jun 2022 S3]",["31.25% decrease","31.25% increase","39.75% increase","39.75% decrease"],"B","-25 + 75 - 18.75 = +31.25% increase"],
+      [61,"15 kg of grapes, in which 90% of the content was water, were kept in sunlight. In presence of sunlight, the water content reduced to such an extent that now only 85% of the total weight of the grapes was water. Find the total reduced weight of the grapes. [SSC MTS 19 Jul 2022 S3]",["10 kg","14 kg","13 kg","12 kg"],"A","15 × 10% = W × 15% → W = 10 kg"],
+      [62,"If the price of rice is increased by 20%, then by what percent should a person decrease the consumption of rice so that his expenditure remains the same? [SSC CHSL 26 May 2022 S3]",["14.7%","18.7%","16.7%","12.7%"],"C","(20/120)×100 = 16.7%"],
+      [63,"A family spends ₹240 per month to buy sugar. A rise of 25% in the price of sugar compels the family to reduce the monthly consumption of sugar by 1.5 kg as it decides to spend the same amount of money on purchase of the commodity. What is the increased price per kg of sugar? [SSC CHSL 25 May 2022 S1]",["₹32","₹35","₹40","₹38"],"C","(20% of 240) / 1.5 = 48 / 1.5 = ₹32? Wait: Price +25% (4→5), Qty 5→4 (-1u = 1.5kg → new qty = 6kg). Increased price = 240/6 = ₹40/kg"],
+      [64,"The value of a machine depreciates 10% in the first year, 20% in the second year, and 30% in the third year. If the initial value was Rs. 10,000, what is its value at the end of 3 years? [SSC CGL 22 Sept 2025 S2]",["Rs. 5040","Rs. 5600","Rs. 5800","Rs. 6200"],"A","10000 × 0.9 × 0.8 × 0.7 = Rs. 5040"],
+      [65,"The price of a product increases by 10% in the first year and 20% in the second year. What is the overall percentage increase in the price of the product over the two years? [SSC CHSL 11 Jul 2024 S3]",["28%","36%","30%","32%"],"D","10 + 20 + 2 = 32%"],
+      [66,"The population of a town first decreased by 16% due to migration to a big city for better job opportunities. The next year, the population of the town increased by 21% as there were better facilities for jobs. What is the net percentage change in the population? [SSC CHSL 05 Jul 2024 S1]",["Decrease by 2.54%","Increase by 1.64%","Increase by 2.54%","Decrease by 1.64%"],"B","-16 + 21 - 3.36 = +1.64% (Increase by 1.64%)"],
+      [67,"A person wants to buy 10 chairs. The total cost of 10 chairs is ₹4,500. After bargaining, the shopkeeper agrees to decrease the cost of each chair by 20%. Then the person purchased 10% more chairs. What will be the cost of the chairs that he purchased? [SSC CHSL 03 Jul 2024 S2]",["₹4,100","₹3,260","₹3,960","₹3,900"],"C","4500 × 0.8 × 1.1 = ₹3,960"],
+      [68,"At the beginning of day 1 of a month, Rajesh has 500 eggs. He sells 20% of the eggs by the end of the day and added b% of the eggs at the beginning of the next day and sold 20% of the eggs at the end of the next day. This pattern continued up to the end of the third day of the month when he is left with 1024 eggs. The value of b is equal to: [SSC CHSL 02 Jul 2024 S4]",["20","500","100","10"],"C","500 × (0.8)³ × (1+b/100)² = 1024 → b = 100"],
+      [69,"In a group of 250 persons, 40% are males and 60% are females. If 30 more females join the group, then what will be the percentage of females in the new group? [SSC CHSL 02 Jul 2024 S1]",["90.25%","72.25%","62.58%","64.29%"],"D","(150 + 30)/280 × 100 = 64.29%"],
+      [70,"The population of a city increased by 5%, 2% and 6% in the first, second and third year, respectively. At the end of the third year, the population became 56,763. Find the initial population of the city. [SSC CHSL 07 Jun 2022 S1]",["53000","51000","52000","50000"],"D","56763 / (1.05 × 1.02 × 1.06) = 50,000"],
+      [71,"In an examination it is required to get a minimum of 340 marks in aggregate to pass. A student gets 244 marks and is declared failed by 12% of the total marks. What are the maximum aggregate marks a student can get? [SSC CHSL 06 Jun 2022 S3]",["1000","800","960","720"],"B","12% = 340 - 244 = 96 → 100% = 800"],
+      [72,"Two numbers X and Y are such that the sum of 18% of X and 8% of Y is one-third of the sum of 22% of X and 36% of Y. Find the ratio of X and Y. [SSC CHSL 02 Jun 2022 S2]",["2 : 5","3 : 11","3 : 8","8 : 3"],"C","54X + 24Y = 22X + 36Y → 32X = 12Y → X:Y = 3:8"],
+      [73,"Sonam is a cab driver, who plies within a city. The number of kilometres that she drives on a Tuesday was 12.5% less than the number of kilometres that she drives on the day before. On the other hand, the number of kilometres that she drives on Wednesday was 20% more than the number of kilometres that she drives on Tuesday. If Sonam drives a total of 336 km on Wednesday, how many kilometres did she drive on Monday? [SSC CHSL 02 Jun 2022 S1]",["315 km","318 km","320 km","324 km"],"C","M × (7/8) × (6/5) = 336 → M = 320 km"],
+      [74,"The length and the breadth of a rectangle are increased by 15% and 10%, respectively. What is the percentage increase in the area of the rectangle? [SSC MTS 13 Jul 2022 S3]",["25%","26.5%","27.5%","26%"],"B","15 + 10 + 1.5 = 26.5%"],
+      [75,"In a government scheme, if an electricity bill is paid before the due date, one gets a reduction of 5% on the amount of the bill. By paying the bill before the due date, a person got a reduction of ₹20. The amount of his electricity bill was: [SSC CHSL 24 May 2022 S3]",["₹ 440","₹ 400","₹ 520","₹ 420"],"B","5% = 20 → 100% = ₹400"],
+      [76,"Three candidates X, Y and Z participated in an election. X got 30% more votes than Y, whereas Z got 25% more votes than Y. X also overtook Z by 5000 votes. If 71% of the voters voted and no invalid votes were cast, then what was the total number of voters in the voting list? [SSC CGL 09 Mar 2024 S1]",["5,00,000","4,05,000","3,55,000","4,50,000"],"A","Y=100u, Z=125u, X=130u → 5u=5000 → Total polled = 355u = 3,55,000 = 71% of List → List = 5,00,000"],
+      [77,"An investor, invested ₹2,00,000 in shares. The shares rose by 18% on the first day, fell by 15% on the second day, and then fell by 3% on the third day. What is the net percentage increase or decrease in the value of the investor's shares? [SSC CGL 09 Mar 2024 S1]",["increase by 2.2%","increase by 2.7%","decrease by 2.7%","decrease by 2.2%"],"C","1.18 × 0.85 × 0.97 = 0.97291 → decrease by 2.7%"],
+      [78,"There are y yellow marbles and b blue marbles in a box. 18% of the yellow marbles were added to 24% of the blue marbles, and the total was 30. Three times the number of yellow marbles exceeds two times the number of blue marbles by 200. What is the ratio of y² to b²? [SSC CGL 09 Mar 2024 S1]",["6 : 5","4 : 1","2 : 1","5 : 2"],"B","0.18y + 0.24b = 30 and 3y - 2b = 200 → y=100, b=50 → y²:b² = 4:1"],
+      [79,"In an examination a candidate had to sit for three papers A, B, and C. The candidate secured 75% marks in Paper A, 80% marks in Paper B, and 60% marks in Paper C. If the weightage assigned to Papers A, B, and C were 40%, 50% and 10%, respectively, then find the weighted percentage of marks obtained by the candidate. [SSC CGL 24 Jul 2023 S4]",["77%","74%","72%","76%"],"D","0.4(75) + 0.5(80) + 0.1(60) = 30 + 40 + 6 = 76%"],
+      [80,"Out of the total toffees, 1/10 are wasted. 35% of the rest are given to S and 1/8 of the total are given to N. If the toffees with N are 10 more than the wasted toffees, then how many toffees were given to S? [SSC CGL 25 Jul 2023 S1]",["126","150","110","135"],"A","(1/8 - 1/10)T = 10 → T = 400. S = 35% of 360 = 126"],
+      [81,"Fresh watermelons contain 85% water by weight, whereas dried watermelons contain 20% water by weight. How many kilograms of fresh watermelons are required to obtain 30 kg of dried watermelons?",["160 kg","180 kg","200 kg","220 kg"],"A","F × 15% = 30 × 80% → F = 160 kg"],
+      [82,"Fresh plums contain 96% water. After being kept under the sun for a few hours, some water evaporates and the percentage of water drops to 90%. If the initial weight of the fresh plums was 2.5 kg, what is the new weight in grams?",["800 g","1000 g","1200 g","1250 g"],"B","2500 × 4% = W × 10% → W = 1000 g"],
+      [83,"Fresh dates contain 75% water and dry dates contain 15% water. A fruit vendor purchases fresh dates at Rs. 40/kg, dries them, and sells them. At what price per kg should he sell the dry dates to make a 25% profit?",["Rs. 150/kg","Rs. 160/kg","Rs. 170/kg","Rs. 180/kg"],"C","17 kg fresh (CP=680) gives 5 kg dry. Target SP = 680 × 1.25 = 850 → 850/5 = Rs. 170/kg"],
+      [84,"A reduction of 16 2/3% in the price of rice enables a shopper to purchase 4 kg more rice for Rs. 600. Find the original price of rice per kg.",["Rs. 20","Rs. 24","Rs. 25","Rs. 30"],"D","Original qty = 5 × 4 = 20 kg → 600/20 = Rs. 30/kg"],
+      [85,"An increase of 20% in the price of petrol causes a driver to reduce consumption such that petrol expenditure increases by only 8%. By what percentage did the driver reduce petrol consumption?",["10%","12%","15%","20%"],"A","(120 - 108)/120 × 100 = 10%"],
+      [86,"The price of tea decreases by 10%. A family consumes 18 kg of tea per month and spends Rs. 810 on it. By how many kilograms can the family increase its monthly consumption if its total expenditure remains unchanged at Rs. 810?",["1.0 kg","1.5 kg","2.0 kg","2.5 kg"],"C","Price 10→9, Qty 9→10 (+1/9 of 18 kg = 2.0 kg)"],
+      [87,"The passing percentage in an examination is 40%. Candidate A scores 185 marks and fails by 15 marks. What are the maximum marks of the examination?",["400","425","450","500"],"D","40% = 200 → 100% = 500"],
+      [88,"Student X scored 28% marks in a test and failed by 18 marks. Student Y scored 42% marks in the same test and got 24 marks more than the passing score. Find the passing percentage of the examination.",["32%","34%","35%","36%"],"B","14% = 42 → 1% = 3 marks → 18 marks = 6% → Pass % = 28% + 6% = 34%"],
+      [89,"Ramesh spends 80% of his monthly income and saves the rest. If his monthly income increases by 25% and his expenditure increases by 15%, by what percentage do his savings increase?",["50%","60%","65%","75%"],"C","(25 - 0.8×15)/0.2 = 13/0.2 = 65%"],
+      [90,"Priya saves 20% of her income. When her income increases by Rs. 10,400, her expenditure increases by 20% and her savings increase by 50%. Find her initial monthly income.",["Rs. 36,000","Rs. 40,000","Rs. 45,000","Rs. 50,000"],"B","Income % hike = 0.8(20%) + 0.2(50%) = 26% = 10,400 → 100% = Rs. 40,000"],
+      [91,"A person's annual income increases by Rs. 4 lakhs, but the income tax rate applicable reduces from 15% to 12%. If the amount of income tax paid remains the same, what is his new increased annual income?",["Rs. 16 lakhs","Rs. 18 lakhs","Rs. 20 lakhs","Rs. 24 lakhs"],"C","I₁:I₂ = 4:5 → I₂ = 5 × 4 = Rs. 20 lakhs"],
+      [92,"The length of a rectangular plot is increased by 25% and its width is decreased by 12%. What is the net percentage change in the area of the plot?",["6% increase","8% increase","9% increase","10% increase"],"D","25 - 12 - 3 = 10% increase"],
+      [93,"The entry ticket price of an amusement park is decreased by 20%, resulting in a 40% increase in daily visitors. What is the net percentage impact on daily revenue collection?",["12% increase","16% increase","20% increase","8% decrease"],"A","-20 + 40 - 8 = 12% increase"],
+      [94,"The radius of a cylinder is decreased by 20% while its height is increased by 50%. Find the percentage change in its volume.",["4% increase","10% increase","10% decrease","4% decrease"],"D","(0.8)² × 1.5 = 0.96 → 4% decrease"],
+      [95,"If the edge of a cube is increased by 20%, what is the percentage increase in its total surface area?",["44%","50%","60%","72.8%"],"A","20 + 20 + 4 = 44%"],
+      [96,"A trader ordered 12 boxes of dark chocolate and some boxes of milk chocolate. The price of dark chocolate per box is twice that of milk chocolate. At delivery, the quantities were mistakenly interchanged, increasing the total bill by 40%. Find the original ratio of dark chocolate boxes to milk chocolate boxes.",["1 : 2","1 : 3","2 : 3","3 : 4"],"B","(x+2y)/(2x+y) = 7/5 → 9x = 3y → x:y = 1:3"],
+      [97,"A student was asked to multiply a number by 4/5, but by mistake, he divided the number by 4/5. What is the percentage error in the calculated result?",["36%","43.75%","56.25%","64%"],"C","True : Wrong = 16 : 25 → (9/16)×100 = 56.25%"],
+      [98,"Q.88 If x% of y is equal to 120 and y% of z is equal to 240, then what is the relation between x and z?",["z = 2x","z = x","x = 2z","z = 4x"],"A","(zy)/(xy) = 240/120 → z = 2x"],
+      [99,"Point C divides line segment AB = 15 cm such that AC = 9 cm. If the length of AC is increased by 10%, by what percentage does the length of CB decrease?",["9%","10%","12%","15%"],"D","ΔAC = +0.9 cm → CB (6 cm) decreases by 0.9/6 × 100 = 15%"],
+      [100,"A single discount of x% is equivalent to two successive discounts of 20% and 15%. What is the value of x?",["30%","32%","34%","35%"],"B","20 + 15 - (20×15)/100 = 32%"]
+    ];
+
+    // =========================================================================
+    // APP STATE & LOGIC
+    // =========================================================================
+    let state = { drills: {}, sheet: {}, century: {} };
+    try {
+      const saved = localStorage.getItem("parmar_pct_state_v1");
+      if (saved) state = JSON.parse(saved);
+    } catch (e) {}
+
+    function saveState() {
+      try { localStorage.setItem("parmar_pct_state_v1", JSON.stringify(state)); } catch (e) {}
+      updateHeaderStats();
+    }
+
+    function updateHeaderStats() {
+      const dKeys = Object.keys(state.drills);
+      const sKeys = Object.keys(state.sheet);
+      const cKeys = Object.keys(state.century);
+      const totalAttempted = dKeys.length + sKeys.length + cKeys.length;
+      const totalCorrect =
+        dKeys.filter(k => state.drills[k] === true).length +
+        sKeys.filter(k => state.sheet[k]?.ok).length +
+        cKeys.filter(k => state.century[k]?.ok).length;
+      document.getElementById("hdrSolved").textContent = `${totalAttempted} / 475`;
+      document.getElementById("hdrAcc").textContent = totalAttempted ? `${Math.round((totalCorrect / totalAttempted) * 100)}%` : "0%";
+    }
+
+    function resetAll() {
+      state = { drills: {}, sheet: {}, century: {} };
+      saveState();
+      renderDrills();
+      renderSheet();
+      renderCentury();
+    }
+
+    function setTab(t) {
+      ["learn", "drills", "sheet", "century"].forEach(id => {
+        document.getElementById(`view-${id}`).classList.toggle("hidden", id !== t);
+        const btn = document.getElementById(`tabBtn-${id}`);
+        btn.className = id === t
+          ? "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-indigo-600 text-white whitespace-nowrap"
+          : "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-300 hover:bg-slate-800 whitespace-nowrap";
+      });
+    }
+
+    function toggleDrawer(id) {
+      document.getElementById(id).classList.toggle("hidden");
+    }
+
+    // --- Interactive Lab Calculators ---
+    function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+    function calcFrac() {
+      const n = Math.max(1, parseFloat(document.getElementById("fNum").value) || 1);
+      const d = Math.max(1, parseFloat(document.getElementById("fDen").value) || 1);
+      const pct = (n / d) * 100;
+      document.getElementById("fracOut").innerHTML = `
+        <div class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200"><div class="text-slate-500">Exact %</div><div class="text-base font-extrabold text-indigo-700">${pct.toFixed(2)}%</div></div>
+        <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200"><div class="text-slate-500">+${pct.toFixed(2)}% MF</div><div class="text-base font-extrabold text-emerald-700">${d+n}/${d}</div></div>
+        <div class="p-2.5 rounded-xl bg-rose-50 border border-rose-200"><div class="text-slate-500">-${pct.toFixed(2)}% MF</div><div class="text-base font-extrabold text-rose-700">${d-n}/${d}</div></div>
+      `;
+    }
+    function randFrac() {
+      const pairs = [[1,6],[5,6],[1,7],[2,7],[3,8],[5,8],[7,8],[4,9],[4,11],[7,11],[5,12],[7,12],[3,16]];
+      const [n, d] = pairs[Math.floor(Math.random() * pairs.length)];
+      document.getElementById("fNum").value = n;
+      document.getElementById("fDen").value = d;
+      calcFrac();
+    }
+    function calcSucc() {
+      const x = parseFloat(document.getElementById("sX").value) || 0;
+      const y = parseFloat(document.getElementById("sY").value) || 0;
+      const z = parseFloat(document.getElementById("sZ").value) || 0;
+      const net2 = x + y + (x * y) / 100;
+      const net3 = net2 + z + (net2 * z) / 100;
+      document.getElementById("succOut").innerHTML = `
+        <div class="grid grid-cols-2 gap-2">
+          <div class="p-2.5 rounded-xl bg-slate-100 border">2-Step Net (x & y): <strong class="text-indigo-700">${net2 >= 0 ? '+' : ''}${net2.toFixed(2)}%</strong></div>
+          <div class="p-2.5 rounded-xl bg-slate-100 border">3-Step Net (x, y, z): <strong class="text-emerald-700">${net3 >= 0 ? '+' : ''}${net3.toFixed(2)}%</strong></div>
+        </div>
+      `;
+      const offset = (-x / (100 + x)) * 100;
+      document.getElementById("constProdOut").innerHTML = `If 1st factor changes by <strong>${x>=0?'+':''}${x}%</strong>, 2nd factor must change by <strong>${offset>=0?'+':''}${offset.toFixed(2)}%</strong> to keep product constant.`;
+    }
+    function calcC9() {
+      const w1 = parseFloat(document.getElementById("frW1").value) || 80;
+      const w2 = parseFloat(document.getElementById("frW2").value) || 10;
+      const kg = parseFloat(document.getElementById("frKg").value) || 250;
+      const fresh = (kg * (100 - w2)) / Math.max(1, 100 - w1);
+      document.getElementById("frOut").textContent = `Required Fresh Weight = ${fresh.toFixed(2)} kg (Pulp = ${(kg*(100-w2)/100).toFixed(1)} kg)`;
+
+      const p1 = parseFloat(document.getElementById("pmP1").value) || 23;
+      const f1 = parseFloat(document.getElementById("pmF1").value) || 28;
+      const p2 = parseFloat(document.getElementById("pmP2").value) || 35;
+      const m2 = parseFloat(document.getElementById("pmM2").value) || 20;
+      const diffPct = Math.max(1, p2 - p1);
+      const maxM = ((f1 + m2) / diffPct) * 100;
+      const passM = (p1 / 100) * maxM + f1;
+      const passP = (passM / maxM) * 100;
+      document.getElementById("pmOut").textContent = `Max Marks = ${maxM.toFixed(0)} | Passing Marks = ${passM.toFixed(0)} | Passing % = ${passP.toFixed(1)}% | Sum = ${(maxM+passM+passP).toFixed(0)}`;
+    }
+    function calcC11() {
+      const tot = parseFloat(document.getElementById("elTot").value) || 10000;
+      const nv = parseFloat(document.getElementById("elNV").value) || 10;
+      const inv = parseFloat(document.getElementById("elInv").value) || 20;
+      const win = parseFloat(document.getElementById("elWin").value) || 60;
+      const polled = tot * (1 - nv / 100);
+      const valid = polled * (1 - inv / 100);
+      const margin = valid * ((2 * win - 100) / 100);
+      document.getElementById("elOut").innerHTML = `
+        <div class="p-1.5 bg-white rounded border"><div class="text-slate-400">Polled</div><div class="font-bold">${Math.round(polled)}</div></div>
+        <div class="p-1.5 bg-white rounded border"><div class="text-slate-400">Valid</div><div class="font-bold">${Math.round(valid)}</div></div>
+        <div class="p-1.5 bg-white rounded border"><div class="text-slate-400">Winner</div><div class="font-bold text-emerald-700">${Math.round(valid*win/100)}</div></div>
+        <div class="p-1.5 bg-white rounded border"><div class="text-slate-400">Margin</div><div class="font-bold text-indigo-700">${Math.round(margin)}</div></div>
+      `;
+      const expPct = parseFloat(document.getElementById("inExp").value) || 75;
+      const inH = parseFloat(document.getElementById("inHike").value) || 20;
+      const exH = parseFloat(document.getElementById("exHike").value) || 10;
+      const savPct = Math.max(1, 100 - expPct);
+      const savH = (100 * inH - expPct * exH) / savPct;
+      document.getElementById("inOut").textContent = `Savings Change = ${savH >= 0 ? '+' : ''}${savH.toFixed(2)}%`;
+    }
+
+    // --- Render Drills (Tab 2) ---
+    function initDrills() {
+      const sel = document.getElementById("drillSelect");
+      sel.innerHTML = DRILLS.map((d, i) => `<option value="${i}">${d[0]}</option>`).join("");
+      renderDrills();
+    }
+    function normAns(s) {
+      return String(s).trim().toLowerCase().replace(/[%₹,\s+]/g, "");
+    }
+    function renderDrills() {
+      const setIdx = parseInt(document.getElementById("drillSelect").value) || 0;
+      const items = DRILLS[setIdx][1];
+      document.getElementById("drillGrid").innerHTML = items.map(([q, a], idx) => {
+        const key = `${setIdx}_${idx}`;
+        const st = state.drills[key];
+        const border = st === true ? "border-emerald-500 bg-emerald-50/40" : st === false ? "border-rose-400 bg-rose-50/40" : "";
+        return `
+          <div class="card p-3.5 flex flex-col justify-between gap-2 ${border}">
+            <div class="text-xs font-bold text-slate-800">${idx + 1}. ${q}</div>
+            <div class="flex items-center gap-2">
+              <input id="dIn_${key}" type="text" placeholder="Answer..." onkeydown="if(event.key==='Enter')checkOneDrill(${setIdx},${idx})" class="flex-1 px-2.5 py-1.5 rounded-lg border text-xs font-bold" />
+              <button onclick="checkOneDrill(${setIdx},${idx})" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-white text-xs font-bold">Check</button>
+            </div>
+            <div id="dFb_${key}" class="text-[11px] font-bold ${st === true ? 'text-emerald-700' : st === false ? 'text-rose-600' : 'text-slate-400'}">
+              ${st === true ? `✓ Correct (${a})` : st === false ? `✗ Official Key: ${a}` : 'Press Enter to verify'}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+    function checkOneDrill(setIdx, idx) {
+      const key = `${setIdx}_${idx}`;
+      const val = document.getElementById(`dIn_${key}`).value;
+      const ans = DRILLS[setIdx][1][idx][1];
+      state.drills[key] = normAns(val) === normAns(ans);
+      saveState();
+      renderDrills();
+    }
+    function checkDrillSet() {
+      const setIdx = parseInt(document.getElementById("drillSelect").value) || 0;
+      DRILLS[setIdx][1].forEach(([_, ans], idx) => {
+        const key = `${setIdx}_${idx}`;
+        const el = document.getElementById(`dIn_${key}`);
+        if (el && el.value.trim()) state.drills[key] = normAns(el.value) === normAns(ans);
+      });
+      saveState();
+      renderDrills();
+    }
+    function revealDrillSet() {
+      const setIdx = parseInt(document.getElementById("drillSelect").value) || 0;
+      DRILLS[setIdx][1].forEach(([_, ans], idx) => {
+        const key = `${setIdx}_${idx}`;
+        const el = document.getElementById(`dIn_${key}`);
+        if (el) el.value = ans;
+        state.drills[key] = true;
+      });
+      saveState();
+      renderDrills();
+    }
+
+    // --- Render Practice Sheet MCQs (Tab 3) ---
+    let sheetPage = 0;
+    const PAGE_SIZE = 15;
+    function getFilteredSheet() {
+      const cls = parseInt(document.getElementById("sheetClsFilter").value) || 0;
+      const q = (document.getElementById("sheetSearch").value || "").toLowerCase().trim();
+      return SHEET_DATA.filter(item => {
+        if (cls && item[1] !== cls) return false;
+        if (q && !`${item[0]} ${item[2]}`.toLowerCase().includes(q)) return false;
+        return true;
+      });
+    }
+    function renderSheet() {
+      const list = getFilteredSheet();
+      const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+      sheetPage = Math.min(sheetPage, totalPages - 1);
+      document.getElementById("sheetPager").textContent = `${sheetPage + 1} / ${totalPages} (${list.length} Qs)`;
+
+      const slice = list.slice(sheetPage * PAGE_SIZE, (sheetPage + 1) * PAGE_SIZE);
+      const letters = ["A", "B", "C", "D", "E"];
+      document.getElementById("sheetList").innerHTML = slice.map(([id, cls, qText, opts, ans, exp]) => {
+        const st = state.sheet[id];
+        return `
+          <div id="sheetQ_${id}" class="card p-5 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 font-bold">Q.${id} • Class ${cls}</span>
+              ${st ? `<span class="font-bold ${st.ok ? 'text-emerald-600' : 'text-rose-600'}">${st.ok ? '✓ Correct' : '✗ Incorrect (Key: ' + ans + ')'}</span>` : ''}
+            </div>
+            <p class="text-sm sm:text-base font-semibold text-slate-900 leading-relaxed">${qText}</p>
+            <div class="grid sm:grid-cols-2 gap-2">
+              ${opts.map((opt, i) => {
+                const L = letters[i];
+                let clsBtn = "border-slate-200 bg-slate-50/70 text-slate-800";
+                if (st) {
+                  if (L === ans) clsBtn = "border-emerald-500 bg-emerald-50 text-emerald-900 font-bold";
+                  else if (st.pick === L) clsBtn = "border-rose-500 bg-rose-50 text-rose-900 font-bold";
+                }
+                return `<button onclick="pickSheet(${id},'${L}')" class="opt-btn text-left px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm flex items-center gap-2.5 ${clsBtn}">
+                  <span class="w-6 h-6 rounded-lg bg-white border flex items-center justify-center font-bold text-xs shrink-0">${L}</span>
+                  <span>${opt}</span>
+                </button>`;
+              }).join("")}
+            </div>
+            <div class="${st ? '' : 'hidden'} bg-slate-900 text-slate-100 rounded-xl p-3.5 text-xs space-y-1">
+              <div class="font-bold text-amber-400">Official Answer Key: Option (${ans})</div>
+              <div class="text-slate-300"><strong>Method:</strong> ${exp}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("sheetPalette").innerHTML = SHEET_DATA.map(([id]) => {
+        const st = state.sheet[id];
+        const c = st ? (st.ok ? "bg-emerald-500 text-white" : "bg-rose-500 text-white") : "bg-slate-100 text-slate-700 hover:bg-indigo-100";
+        return `<button onclick="jumpSheet(${id})" class="w-9 h-7 rounded text-[11px] font-bold ${c}">${id}</button>`;
+      }).join("");
+    }
+    function pickSheet(id, L) {
+      const item = SHEET_DATA.find(x => x[0] === id);
+      state.sheet[id] = { pick: L, ok: L === item[4] };
+      saveState();
+      renderSheet();
+    }
+    function jumpSheet(id) {
+      document.getElementById("sheetClsFilter").value = "0";
+      document.getElementById("sheetSearch").value = "";
+      const idx = SHEET_DATA.findIndex(x => x[0] === id);
+      sheetPage = Math.floor(idx / PAGE_SIZE);
+      renderSheet();
+      const el = document.getElementById(`sheetQ_${id}`);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    // --- Render Century PDF Bilingual Quiz (Tab 4) ---
+    let cenPage = 0;
+    function getFilteredCentury() {
+      const f = document.getElementById("cenFilter").value;
+      const q = (document.getElementById("cenSearch").value || "").toLowerCase().trim();
+      return CENTURY_DATA.filter(([id, text]) => {
+        if (f !== "ALL") {
+          const [lo, hi] = f.split("-").map(Number);
+          if (id < lo || id > hi) return false;
+        }
+        if (q && !`${id} ${text}`.toLowerCase().includes(q)) return false;
+        return true;
+      });
+    }
+    function renderCentury() {
+      const list = getFilteredCentury();
+      const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+      cenPage = Math.min(cenPage, totalPages - 1);
+      document.getElementById("cenPager").textContent = `${cenPage + 1} / ${totalPages} (${list.length} Qs)`;
+
+      const slice = list.slice(cenPage * PAGE_SIZE, (cenPage + 1) * PAGE_SIZE);
+      const letters = ["A", "B", "C", "D"];
+      document.getElementById("centuryList").innerHTML = slice.map(([id, qText, opts, ans, exp]) => {
+        const st = state.century[id];
+        return `
+          <div id="cenQ_${id}" class="card p-5 space-y-3">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold">Century PDF • Q.${id}</span>
+              ${st ? `<span class="font-bold ${st.ok ? 'text-emerald-600' : 'text-rose-600'}">${st.ok ? '✓ Correct' : '✗ Incorrect (Key: ' + ans + ')'}</span>` : ''}
+            </div>
+            <p class="text-sm sm:text-base font-semibold text-slate-900 whitespace-pre-line leading-relaxed">${qText}</p>
+            <div class="grid sm:grid-cols-2 gap-2">
+              ${opts.map((opt, i) => {
+                const L = letters[i];
+                let clsBtn = "border-slate-200 bg-slate-50/70 text-slate-800";
+                if (st) {
+                  if (L === ans) clsBtn = "border-emerald-500 bg-emerald-50 text-emerald-900 font-bold";
+                  else if (st.pick === L) clsBtn = "border-rose-500 bg-rose-50 text-rose-900 font-bold";
+                }
+                return `<button onclick="pickCentury(${id},'${L}')" class="opt-btn text-left px-3.5 py-2.5 rounded-xl border text-xs sm:text-sm flex items-center gap-2.5 ${clsBtn}">
+                  <span class="w-6 h-6 rounded-lg bg-white border flex items-center justify-center font-bold text-xs shrink-0">${L}</span>
+                  <span>${opt}</span>
+                </button>`;
+              }).join("")}
+            </div>
+            <div class="${st ? '' : 'hidden'} bg-slate-900 text-slate-100 rounded-xl p-3.5 text-xs space-y-1">
+              <div class="font-bold text-amber-400">Official Answer Key: Option (${ans})</div>
+              <div class="text-slate-300"><strong>Shortcut Solution:</strong> ${exp}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("centuryPalette").innerHTML = CENTURY_DATA.map(([id]) => {
+        const st = state.century[id];
+        const c = st ? (st.ok ? "bg-emerald-500 text-white" : "bg-rose-500 text-white") : "bg-slate-100 text-slate-700 hover:bg-amber-100";
+        return `<button onclick="jumpCentury(${id})" class="w-8 h-7 rounded text-[11px] font-bold ${c}">${id}</button>`;
+      }).join("");
+    }
+    function pickCentury(id, L) {
+      const item = CENTURY_DATA.find(x => x[0] === id);
+      state.century[id] = { pick: L, ok: L === item[3] };
+      saveState();
+      renderCentury();
+    }
+    function jumpCentury(id) {
+      document.getElementById("cenFilter").value = "ALL";
+      document.getElementById("cenSearch").value = "";
+      const idx = CENTURY_DATA.findIndex(x => x[0] === id);
+      cenPage = Math.floor(idx / PAGE_SIZE);
+      renderCentury();
+      const el = document.getElementById(`cenQ_${id}`);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    // --- Init Syllabus Grid ---
+    const SYLLABUS = [
+      ["Class 1: Basic % & Fraction Equivalents", "33 Drills", () => { setTab('drills'); document.getElementById('drillSelect').value=0; renderDrills(); }],
+      ["Class 2: Speed Building Tests 1–5 (Q1–Q15)", "148 Drills", () => { setTab('drills'); document.getElementById('drillSelect').value=3; renderDrills(); }],
+      ["Class 3: Concept Building & Componendo-Dividendo", "Q16–Q47 (32 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=3; sheetPage=0; renderSheet(); }],
+      ["Class 4: Multiple Successive % Changes", "Q48–Q61 (14 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=4; sheetPage=0; renderSheet(); }],
+      ["Class 5: Spending from Remaining & Cube Identities", "Q62–Q82 (21 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=5; sheetPage=0; renderSheet(); }],
+      ["Class 6: Effective / Net % Change", "Q83–Q95 (13 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=6; sheetPage=0; renderSheet(); }],
+      ["Class 7: A = B × C (Type 1) Area, Volume & Revenue", "Q96–Q113 (18 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=7; sheetPage=0; renderSheet(); }],
+      ["Class 8: A = B × C (Type 2) & A = B + C Alligation", "Q114–Q136 (23 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=8; sheetPage=0; renderSheet(); }],
+      ["Class 9: Fresh/Dry Fruits, Fixed Money, Passing & Tax", "Q137–Q162 (26 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=9; sheetPage=0; renderSheet(); }],
+      ["Class 10: Basic % Structure & Interchanged Quantities", "Q163–Q183 (21 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=10; sheetPage=0; renderSheet(); }],
+      ["Class 11: Election Based Questions", "Q184–Q209 (26 Qs)", () => { setTab('sheet'); document.getElementById('sheetClsFilter').value=11; sheetPage=0; renderSheet(); }],
+      ["Century PDF: 100 Bilingual PYQs & Statement Questions", "Q1–Q100 (100 Qs)", () => { setTab('century'); renderCentury(); }]
+    ];
+    document.getElementById("syllabusCards").innerHTML = SYLLABUS.map(([title, badge], i) => `
+      <button onclick="SYLLABUS[${i}][2]()" class="p-3.5 rounded-xl border bg-slate-50 hover:bg-indigo-50 hover:border-indigo-300 text-left transition flex items-center justify-between gap-2">
+        <span class="font-bold text-slate-800">${title}</span>
+        <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-bold whitespace-nowrap">${badge}</span>
+      </button>
+    `).join("");
+
+    // Boot
+    calcFrac();
+    calcSucc();
+    calcC9();
+    calcC11();
+    initDrills();
+    renderSheet();
+    renderCentury();
+    updateHeaderStats();
+  </script>
+</body>
+</html>

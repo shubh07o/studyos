@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 Blackbook SSC Vocab — OWS (1–69) & Idioms (1–63)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* 3D Flashcard Flip Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        /* Blur effect for quick revision table */
+        .blur-secret {
+            filter: blur(6px);
+            user-select: none;
+            transition: filter 0.2s ease;
+            cursor: pointer;
+        }
+        .blur-secret:hover, .blur-secret.revealed {
+            filter: blur(0);
+            user-select: auto;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.3);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.5);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Header & Stats Bar -->
+    <header class="sticky top-0 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- Brand Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md shadow-indigo-500/20">
+                    <i class="ph-fill ph-book-open-text text-xl text-white"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-extrabold text-base sm:text-lg tracking-tight text-white">Blackbook Day 1 Vocab</h1>
+                        <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">SSC Exams</span>
+                    </div>
+                    <p class="text-xs text-slate-400">OWS (1–69) & Idioms/Phrases (1–63) • 132 Total Items</p>
+                </div>
+            </div>
+
+            <!-- Live Progress Pills -->
+            <div class="flex items-center gap-2 sm:gap-3 text-xs font-medium">
+                <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl px-3 py-1.5 flex items-center gap-1.5" title="Items Marked as Learned">
+                    <i class="ph-fill ph-check-circle text-emerald-400 text-base"></i>
+                    <span class="text-slate-300">Learned:</span>
+                    <span id="stat-learned" class="font-bold text-emerald-400">0/132</span>
+                </div>
+                <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl px-3 py-1.5 flex items-center gap-1.5" title="Bookmarked / Starred Items">
+                    <i class="ph-fill ph-star text-amber-400 text-base"></i>
+                    <span class="text-slate-300 hidden sm:inline">Starred:</span>
+                    <span id="stat-starred" class="font-bold text-amber-400">0</span>
+                </div>
+                <div class="bg-slate-800/90 border border-slate-700/80 rounded-xl px-3 py-1.5 flex items-center gap-1.5" title="Incorrectly Answered in Quiz">
+                    <i class="ph-fill ph-warning-circle text-rose-400 text-base"></i>
+                    <span class="text-slate-300 hidden sm:inline">Weak:</span>
+                    <span id="stat-weak" class="font-bold text-rose-400">0</span>
+                </div>
+                <button onclick="openResetModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-950/60 text-slate-400 hover:text-rose-300 border border-slate-700 transition" title="Reset Saved Progress">
+                    <i class="ph ph-arrow-counter-clockwise text-base"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mode Navigation Tabs -->
+        <div class="max-w-6xl mx-auto px-4 flex gap-2 overflow-x-auto pb-2 pt-1">
+            <button onclick="switchTab('flashcards')" id="tab-flashcards" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-indigo-600 text-white shadow-md shadow-indigo-600/25">
+                <i class="ph-fill ph-cards text-base"></i>
+                <span>1. Study Flashcards</span>
+            </button>
+            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-800/80 text-slate-300 hover:bg-slate-800">
+                <i class="ph-fill ph-lightning text-base text-amber-400"></i>
+                <span>2. Interactive MCQ Quiz</span>
+            </button>
+            <button onclick="switchTab('table')" id="tab-table" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-800/80 text-slate-300 hover:bg-slate-800">
+                <i class="ph-fill ph-table text-base text-emerald-400"></i>
+                <span>3. Quick Revision Table</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
+
+        <!-- ==========================================
+             VIEW 1: FLASHCARDS STUDY MODE
+        =========================================== -->
+        <section id="view-flashcards" class="space-y-5">
+            <!-- Filter & Search Controls -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between shadow-md">
+                <!-- Category Filter Pills -->
+                <div class="flex flex-wrap gap-1.5" id="fc-category-buttons">
+                    <button onclick="setFlashcardFilter('all')" data-filter="all" class="fc-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition">All (132)</button>
+                    <button onclick="setFlashcardFilter('ows')" data-filter="ows" class="fc-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">OWS 1–69 (69)</button>
+                    <button onclick="setFlashcardFilter('idiom')" data-filter="idiom" class="fc-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Idioms 1–63 (63)</button>
+                    <button onclick="setFlashcardFilter('starred')" data-filter="starred" class="fc-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-amber-300 hover:bg-slate-700 transition flex items-center gap-1">
+                        <i class="ph-fill ph-star"></i> Starred
+                    </button>
+                    <button onclick="setFlashcardFilter('weak')" data-filter="weak" class="fc-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-rose-300 hover:bg-slate-700 transition flex items-center gap-1">
+                        <i class="ph-fill ph-warning-circle"></i> Weak
+                    </button>
+                    <button onclick="setFlashcardFilter('unlearned')" data-filter="unlearned" class="fc-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-emerald-300 hover:bg-slate-700 transition">Unlearned</button>
+                </div>
+
+                <!-- Search & Shuffle -->
+                <div class="flex items-center gap-2">
+                    <div class="relative flex-1 sm:w-60">
+                        <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input id="fc-search" type="text" oninput="handleFlashcardSearch()" placeholder="Search word, meaning, SN..." class="w-full pl-9 pr-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <button onclick="shuffleFlashcards()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition" title="Shuffle Deck">
+                        <i class="ph ph-shuffle text-sm"></i>
+                        <span class="hidden sm:inline">Shuffle</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flashcard Display Container -->
+            <div id="fc-empty-state" class="hidden bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center space-y-3">
+                <i class="ph ph-magnifying-glass text-4xl text-slate-500 mx-auto"></i>
+                <h3 class="text-lg font-bold text-white">No vocabulary items match this filter</h3>
+                <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto">Try switching back to "All (132)" or clearing your search query above.</p>
+                <button onclick="setFlashcardFilter('all')" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-500 transition">Show All 132 Items</button>
+            </div>
+
+            <div id="fc-card-wrapper" class="max-w-2xl mx-auto space-y-4">
+                <!-- Card Counter & Quick Jump -->
+                <div class="flex items-center justify-between text-xs text-slate-400 px-1">
+                    <span id="fc-counter-text" class="font-semibold text-slate-300">Card 1 of 132</span>
+                    <div class="flex items-center gap-2">
+                        <span>Jump to:</span>
+                        <select id="fc-jump-select" onchange="jumpToFlashcard(this.value)" class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 max-w-[180px] truncate"></select>
+                    </div>
+                </div>
+
+                <!-- 3D Flip Card -->
+                <div class="perspective-1000 w-full h-80 sm:h-96 cursor-pointer select-none" onclick="flipFlashcard()">
+                    <div id="fc-inner" class="transform-style-3d relative w-full h-full rounded-3xl shadow-2xl">
+                        
+                        <!-- FRONT OF CARD -->
+                        <div class="backface-hidden absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/60 border-2 border-slate-800 hover:border-indigo-500/50 rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition">
+                            <!-- Card Top Header -->
+                            <div class="flex items-center justify-between gap-2" onclick="event.stopPropagation()">
+                                <div class="flex items-center gap-2">
+                                    <span id="fc-badge-type" class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">OWS #1</span>
+                                    <span id="fc-badge-pos" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">(V.)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="speakCurrentWord()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition" title="Pronounce Term">
+                                        <i class="ph-fill ph-speaker-high text-lg"></i>
+                                    </button>
+                                    <button onclick="toggleStarCurrent()" id="fc-btn-star" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 transition" title="Bookmark / Star">
+                                        <i class="ph-fill ph-star text-lg"></i>
+                                    </button>
+                                    <button onclick="toggleLearnedCurrent()" id="fc-btn-learned" class="px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 text-xs font-semibold flex items-center gap-1 transition" title="Mark as Learned">
+                                        <i class="ph-fill ph-check-circle text-base"></i>
+                                        <span>Learned</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Center Term -->
+                            <div class="my-auto text-center space-y-3 px-2">
+                                <p class="text-[11px] uppercase tracking-widest text-indigo-400 font-semibold">Term / Idiom</p>
+                                <h2 id="fc-front-term" class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-snug">Abate</h2>
+                            </div>
+
+                            <!-- Footer Hint -->
+                            <div class="flex items-center justify-center gap-2 text-xs text-slate-400">
+                                <i class="ph ph-hand-tap text-base text-indigo-400 animate-pulse"></i>
+                                <span>Click or press <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300">Space</kbd> to flip for Meaning & Example</span>
+                            </div>
+                        </div>
+
+                        <!-- BACK OF CARD -->
+                        <div class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950/40 to-slate-900 border-2 border-indigo-500/60 rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+                            <!-- Top bar -->
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                <div>
+                                    <span id="fc-back-sn" class="text-xs font-bold text-indigo-400 uppercase">OWS #1</span>
+                                    <h3 id="fc-back-term" class="text-lg sm:text-xl font-bold text-white">Abate <span class="text-xs font-normal text-slate-400">(V.)</span></h3>
+                                </div>
+                                <span class="text-xs text-slate-400 flex items-center gap-1">
+                                    <i class="ph ph-arrows-clockwise"></i> Flip Back
+                                </span>
+                            </div>
+
+                            <!-- Meaning & Example -->
+                            <div class="my-auto space-y-4 py-2">
+                                <div class="bg-slate-950/70 border border-slate-800/90 rounded-2xl p-4">
+                                    <p class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 mb-1 flex items-center gap-1.5">
+                                        <i class="ph-fill ph-book-bookmark"></i> English Meaning
+                                    </p>
+                                    <p id="fc-back-meaning" class="text-base sm:text-lg font-semibold text-slate-100 leading-relaxed">
+                                        To become less intense or widespread
+                                    </p>
+                                </div>
+
+                                <div class="bg-indigo-950/30 border border-indigo-500/20 rounded-2xl p-4">
+                                    <p class="text-[11px] font-bold uppercase tracking-wider text-indigo-300 mb-1 flex items-center gap-1.5">
+                                        <i class="ph-fill ph-quotes"></i> Blackbook Example Sentence
+                                    </p>
+                                    <p id="fc-back-example" class="text-xs sm:text-sm text-slate-300 italic leading-relaxed">
+                                        "The heavy rain began to abate in the evening."
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Bottom status -->
+                            <div class="text-center text-xs text-slate-400">
+                                Use <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300">←</kbd> <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-slate-300">→</kbd> arrow keys to navigate cards
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex items-center justify-between gap-3 pt-2">
+                    <button onclick="prevFlashcard()" class="flex-1 py-3 px-4 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-800 font-semibold text-sm text-slate-200 flex items-center justify-center gap-2 transition active:scale-95">
+                        <i class="ph-bold ph-caret-left"></i> Previous
+                    </button>
+                    <button onclick="flipFlashcard()" class="py-3 px-6 rounded-2xl bg-indigo-600/20 hover:bg-indigo-600/30 border border-indigo-500/30 font-semibold text-sm text-indigo-300 flex items-center justify-center gap-2 transition">
+                        <i class="ph-bold ph-arrows-left-right"></i> Flip
+                    </button>
+                    <button onclick="nextFlashcard()" class="flex-1 py-3 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 font-semibold text-sm text-white flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/25 transition active:scale-95">
+                        Next <i class="ph-bold ph-caret-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 2: INTERACTIVE MCQ QUIZ MODE
+        =========================================== -->
+        <section id="view-quiz" class="hidden space-y-6">
+            
+            <!-- QUIZ SETUP SCREEN -->
+            <div id="quiz-setup" class="max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+                <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                        <i class="ph-fill ph-trophy text-2xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-extrabold text-white">Configure Your Day 1 SSC Quiz</h2>
+                        <p class="text-xs sm:text-sm text-slate-400">Test your mastery of OWS (1–69) and Idioms & Phrases (1–63)</p>
+                    </div>
+                </div>
+
+                <!-- Option 1: Category -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-slate-400">1. Select Topic Category</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <button onclick="setQuizConfig('category', 'both')" data-qcat="both" class="qcat-btn p-3.5 rounded-2xl border text-left transition flex items-center justify-between bg-indigo-600/20 border-indigo-500 text-white">
+                            <div>
+                                <div class="font-bold text-sm">Mixed Both (Full Day 1)</div>
+                                <div class="text-xs text-slate-400">OWS 1–69 + Idioms 1–63 (132 items)</div>
+                            </div>
+                            <i class="ph-fill ph-check-circle text-indigo-400 text-lg"></i>
+                        </button>
+                        <button onclick="setQuizConfig('category', 'ows')" data-qcat="ows" class="qcat-btn p-3.5 rounded-2xl border text-left transition flex items-center justify-between bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">
+                            <div>
+                                <div class="font-bold text-sm">One Word Substitutions</div>
+                                <div class="text-xs text-slate-400">Only OWS 1 to 69 (69 items)</div>
+                            </div>
+                        </button>
+                        <button onclick="setQuizConfig('category', 'idiom')" data-qcat="idiom" class="qcat-btn p-3.5 rounded-2xl border text-left transition flex items-center justify-between bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">
+                            <div>
+                                <div class="font-bold text-sm">Idioms & Phrases</div>
+                                <div class="text-xs text-slate-400">Only Idioms 1 to 63 (63 items)</div>
+                            </div>
+                        </button>
+                        <button onclick="setQuizConfig('category', 'starred_weak')" data-qcat="starred_weak" class="qcat-btn p-3.5 rounded-2xl border text-left transition flex items-center justify-between bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">
+                            <div>
+                                <div class="font-bold text-sm text-amber-300">Starred & Weak Words</div>
+                                <div class="text-xs text-slate-400">Focus on bookmarked/missed items</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Option 2: Question Mode -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-slate-400">2. Question Style (SSC Exam Pattern)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <button onclick="setQuizConfig('direction', 'meaning_to_word')" data-qdir="meaning_to_word" class="qdir-btn p-3 rounded-2xl border text-left transition bg-indigo-600/20 border-indigo-500 text-white">
+                            <div class="font-bold text-xs sm:text-sm">Meaning → Word/Idiom</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">Given definition, pick the right OWS/Idiom</div>
+                        </button>
+                        <button onclick="setQuizConfig('direction', 'word_to_meaning')" data-qdir="word_to_meaning" class="qdir-btn p-3 rounded-2xl border text-left transition bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">
+                            <div class="font-bold text-xs sm:text-sm">Word/Idiom → Meaning</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">Given OWS/Idiom, pick the exact meaning</div>
+                        </button>
+                        <button onclick="setQuizConfig('direction', 'mixed')" data-qdir="mixed" class="qdir-btn p-3 rounded-2xl border text-left transition bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">
+                            <div class="font-bold text-xs sm:text-sm">Mixed Direction</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">Randomly alternates both patterns</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Option 3: Number of Questions -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-slate-400">3. Number of Questions</label>
+                    <div class="grid grid-cols-4 gap-2.5">
+                        <button onclick="setQuizConfig('count', 10)" data-qcnt="10" class="qcnt-btn py-2.5 rounded-xl border font-bold text-sm transition bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">10 Qs</button>
+                        <button onclick="setQuizConfig('count', 25)" data-qcnt="25" class="qcnt-btn py-2.5 rounded-xl border font-bold text-sm transition bg-indigo-600/20 border-indigo-500 text-white">25 Qs</button>
+                        <button onclick="setQuizConfig('count', 50)" data-qcnt="50" class="qcnt-btn py-2.5 rounded-xl border font-bold text-sm transition bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">50 Qs</button>
+                        <button onclick="setQuizConfig('count', 132)" data-qcnt="132" class="qcnt-btn py-2.5 rounded-xl border font-bold text-sm transition bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700">All (Max)</button>
+                    </div>
+                </div>
+
+                <div id="quiz-setup-error" class="hidden p-3 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs font-medium"></div>
+
+                <!-- Start Button -->
+                <button onclick="startQuiz()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-extrabold text-base shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 transition active:scale-98">
+                    <i class="ph-fill ph-play-circle text-xl"></i>
+                    <span>Start Interactive Quiz Now</span>
+                </button>
+            </div>
+
+            <!-- ACTIVE QUIZ PLAYAREA -->
+            <div id="quiz-active" class="hidden max-w-2xl mx-auto space-y-4">
+                <!-- Quiz Top Status Bar -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-3">
+                        <span id="q-progress-text" class="text-xs sm:text-sm font-extrabold text-white bg-slate-800 px-3 py-1 rounded-xl">Q 1 / 25</span>
+                        <span id="q-streak-badge" class="px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center gap-1">
+                            <i class="ph-fill ph-fire"></i> <span id="q-streak">0</span>
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <div class="text-xs font-semibold text-slate-400 flex items-center gap-1">
+                            <i class="ph ph-timer text-sm text-indigo-400"></i>
+                            <span id="q-timer">00:00</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-bold">
+                            <span class="px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400" id="q-score-right">✓ 0</span>
+                            <span class="px-2 py-0.5 rounded-lg bg-rose-500/20 text-rose-400" id="q-score-wrong">✗ 0</span>
+                        </div>
+                        <button onclick="quitQuiz()" class="text-xs text-slate-400 hover:text-rose-400 px-2 py-1 rounded-lg bg-slate-800 transition" title="End Quiz Early">
+                            Quit
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800">
+                    <div id="q-progress-bar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full transition-all duration-300" style="width: 4%"></div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span id="q-item-badge" class="px-2.5 py-1 rounded-lg text-xs font-bold uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">OWS #12</span>
+                        <button onclick="toggleStarQuizItem()" id="q-star-btn" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-amber-400 transition" title="Bookmark this item">
+                            <i class="ph-fill ph-star text-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p id="q-prompt-label" class="text-xs font-semibold uppercase tracking-wider text-slate-400">Select the One Word Substitution for:</p>
+                        <h3 id="q-question-text" class="text-lg sm:text-2xl font-extrabold text-white leading-snug">
+                            "To formally put an end to a system, practice, or institution"
+                        </h3>
+                    </div>
+
+                    <!-- 4 Options Grid -->
+                    <div id="q-options" class="grid grid-cols-1 gap-3"></div>
+
+                    <!-- Explanation Box (Revealed on Answer) -->
+                    <div id="q-feedback" class="hidden rounded-2xl p-4 border space-y-2 transition">
+                        <div class="flex items-center justify-between">
+                            <span id="q-feedback-title" class="text-xs font-extrabold uppercase tracking-wider">Correct Answer!</span>
+                            <span id="q-feedback-sn" class="text-xs text-slate-400 font-semibold"></span>
+                        </div>
+                        <p id="q-feedback-detail" class="text-sm font-semibold text-white"></p>
+                        <p id="q-feedback-example" class="text-xs text-slate-300 italic"></p>
+                    </div>
+
+                    <!-- Next Question Button -->
+                    <button id="q-next-btn" onclick="nextQuizQuestion()" class="hidden w-full py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 flex items-center justify-center gap-2 transition">
+                        <span>Next Question</span>
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- QUIZ RESULTS SCORECARD -->
+            <div id="quiz-results" class="hidden max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+                <div class="text-center space-y-2">
+                    <div class="w-16 h-16 rounded-3xl bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 flex items-center justify-center mx-auto mb-2">
+                        <i class="ph-fill ph-medal text-4xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-white">Quiz Complete!</h2>
+                    <p id="res-subtitle" class="text-sm text-slate-400">Great effort on your Day 1 Blackbook Vocabulary!</p>
+                </div>
+
+                <!-- Score Stats Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl">
+                        <div class="text-2xl font-extrabold text-indigo-400" id="res-accuracy">0%</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Accuracy</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl">
+                        <div class="text-2xl font-extrabold text-emerald-400" id="res-correct">0</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Correct</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl">
+                        <div class="text-2xl font-extrabold text-rose-400" id="res-wrong">0</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Incorrect</div>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl">
+                        <div class="text-2xl font-extrabold text-amber-400" id="res-time">00:00</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Time Taken</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-3">
+                    <button id="res-retry-wrong-btn" onclick="retryWrongQuestions()" class="hidden flex-1 py-3 px-4 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                        <i class="ph-bold ph-arrow-counter-clockwise"></i>
+                        <span>Retry Incorrect Questions</span>
+                    </button>
+                    <button onclick="resetQuizToSetup()" class="flex-1 py-3 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition">
+                        <i class="ph-bold ph-sliders"></i>
+                        <span>New Quiz Setup</span>
+                    </button>
+                </div>
+
+                <!-- Review Questions List -->
+                <div class="space-y-3 pt-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Detailed Question Review</h3>
+                    <div id="res-review-list" class="space-y-2.5 max-h-96 overflow-y-auto pr-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 3: QUICK REVISION TABLE MODE
+        =========================================== -->
+        <section id="view-table" class="hidden space-y-4">
+            <!-- Controls Bar -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center gap-1.5">
+                    <button onclick="setTableFilter('all')" data-tfilter="all" class="tfilter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white transition">All (132)</button>
+                    <button onclick="setTableFilter('ows')" data-tfilter="ows" class="tfilter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">OWS 1–69</button>
+                    <button onclick="setTableFilter('idiom')" data-tfilter="idiom" class="tfilter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Idioms 1–63</button>
+                    <button onclick="setTableFilter('starred')" data-tfilter="starred" class="tfilter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-amber-300 hover:bg-slate-700 transition">★ Starred</button>
+                    <button onclick="setTableFilter('weak')" data-tfilter="weak" class="tfilter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-rose-300 hover:bg-slate-700 transition">Weak Words</button>
+                </div>
+
+                <!-- Self-Test Blur Toggles & Search -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="toggleTableBlur('term')" id="blur-term-btn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
+                        <i class="ph ph-eye-slash"></i> Hide Terms
+                    </button>
+                    <button onclick="toggleTableBlur('meaning')" id="blur-meaning-btn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
+                        <i class="ph ph-eye-slash"></i> Hide Meanings
+                    </button>
+                    <div class="relative flex-1 sm:w-56">
+                        <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input id="table-search" type="text" oninput="renderRevisionTable()" placeholder="Filter table..." class="w-full pl-9 pr-3 py-1.5 bg-slate-950 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-400 px-1">
+                <i class="ph-fill ph-lightbulb text-amber-400"></i> <strong>Tip:</strong> Use "Hide Terms" or "Hide Meanings" above for active recall self-testing! Tap any blurred text to reveal it.
+            </p>
+
+            <!-- Table Container -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-950/80 border-b border-slate-800 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                                <th class="py-3.5 px-4 w-16">SN</th>
+                                <th class="py-3.5 px-4 w-56">Word / Idiom</th>
+                                <th class="py-3.5 px-4">English Meaning</th>
+                                <th class="py-3.5 px-4 hidden md:table-cell">Example Sentence</th>
+                                <th class="py-3.5 px-4 w-24 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="revision-table-body" class="divide-y divide-slate-800/70 text-xs sm:text-sm"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Reset Confirmation Modal -->
+    <div id="reset-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center gap-3 text-rose-400">
+                <i class="ph-fill ph-warning-octagon text-3xl"></i>
+                <h3 class="text-lg font-bold text-white">Reset All Saved Progress?</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                This will clear your Marked as Learned items, Starred bookmarks, and Weak words list from your browser's storage.
+            </p>
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition">Cancel</button>
+                <button onclick="confirmResetProgress()" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold transition">Yes, Reset Everything</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic & Complete 132-Item Dataset -->
+    <script>
+        // =========================================================================
+        // 1. COMPLETE BLACKBOOK DAY 1 DATASET: OWS (1 to 69) & IDIOMS (1 to 63)
+        // =========================================================================
+        const rawOWS = [
+            [1, "Abate", "V.", "To become less intense or widespread", "The heavy rain began to abate in the evening."],
+            [2, "Abattoir", "N.", "A place where animals are slaughtered for consumption as food", "The government shut down the illegal abattoir near the river."],
+            [3, "Abbot", "N.", "The head of a monastery", "The abbot guided the monks in their daily prayer."],
+            [4, "Abbreviation", "N.", "A shortened form of a word or phrase", "Dr. is an abbreviation for Doctor."],
+            [5, "Abdicate", "V.", "To give up one's authority or throne", "The old king abdicated the throne in favour of his young son."],
+            [6, "Abdication", "N.", "The act of giving up the throne or authority", "The king's abdication left the entire kingdom in shock."],
+            [7, "Aberration", "N.", "A departure from what is normal or expected", "Cheating in the exam was an aberration in his otherwise good behaviour."],
+            [8, "Abeyance", "N.", "A state of temporary suspension or inactivity", "The decision was held in abeyance until further notice."],
+            [9, "Ablution", "N.", "The act of washing oneself, especially as a religious rite", "Devotees performed ablutions before entering the temple."],
+            [10, "Abnegate", "V.", "To renounce or give up a right or belief", "The saint abnegated all worldly comforts and lived simply."],
+            [11, "Abolish", "V.", "To formally put an end to a system, practice, or institution", "India abolished the zamindari system after independence."],
+            [12, "Aboriginal", "Adj.", "Relating to the original inhabitants of a place", "The aboriginal tribes of Andaman have unique cultures and traditions."],
+            [13, "Aborigine", "N.", "The original inhabitant or native of a country", "The aborigine shared ancient stories about his homeland with visitors."],
+            [14, "Abridge", "V.", "To shorten a piece of writing without losing the sense", "The teacher abridged the Ramayana for young students."],
+            [15, "Abridgement", "N.", "A shortened version of a larger work", "Students read an abridgement of the Mahabharata in class."],
+            [16, "Abrogate", "V.", "To cancel or do away with a law or agreement", "The government abrogated the outdated law last year."],
+            [17, "Abscond", "V.", "To go away suddenly and secretly in order to escape from somewhere", "The cashier absconded with the school's fee collection money."],
+            [18, "Absolution", "N.", "The formal forgiveness of a person's sins", "The priest granted absolution to the man who confessed his sins."],
+            [19, "Absurd", "Adj.", "Wildly unreasonable, illogical or ridiculous", "It is absurd to wear a sweater in Chennai's summer heat."],
+            [20, "Abyss", "N.", "A deep and seemingly bottomless pit or hole", "The trekker looked into the dark abyss below the cliff."],
+            [21, "Accelerate", "V.", "To increase the speed", "The train accelerated as it left the station."],
+            [22, "Accident", "N.", "An unexpected event that causes injury or death", "A terrible accident blocked the highway near Pune for hours."],
+            [23, "Accolade", "N.", "An award, honour, or laudatory notice granted as special recognition", "The young scientist received accolades for her groundbreaking research."],
+            [24, "Accomplice", "N.", "A person who helps another commit a crime; A partner in crime", "The police arrested the thief and his accomplice."],
+            [25, "Accomplishment", "N.", "The successful completion of a task or goal", "Winning the national quiz was a proud accomplishment for our school."],
+            [26, "Accord", "V.", "To be harmonious or consistent with", "Rahul's actions did not accord with his promises."],
+            [27, "Accountant", "N.", "A person whose profession is to keep and inspect financial records", "My uncle works as as an accountant in a Mumbai company."],
+            [28, "Acerbic", "Adj.", "Sharp and bitter in speech or temperament", "The critic's acerbic remarks hurt the young singer deeply."],
+            [29, "Acoustics", "N.", "The scientific study of sound", "Ankit studies acoustics to understand how sound travels."],
+            [30, "Acquit", "V.", "To decide and state officially in court that somebody is not guilty of a crime", "The court acquitted the man due to lack of evidence."],
+            [31, "Acquittal", "N.", "A judgement that a person is not guilty of the crime they were charged with", "The family celebrated his acquittal after the long court trial."],
+            [32, "Acrobat", "N.", "A person who performs difficult gymnastic feats for entertainment", "The acrobat performed amazing flips in the circus."],
+            [33, "Acronym", "N.", "A word formed from the initial letters of other words and pronounced as a word", "'ISRO' is an acronym for Indian Space Research Organisation."],
+            [34, "Acrophobia", "N.", "An extreme fear of heights", "People with acrophobia often avoid high places."],
+            [35, "Actionable", "Adj.", "Giving cause for legal proceedings", "Spreading false rumours about someone is an actionable offence."],
+            [36, "Acumen", "N.", "The ability to make good judgements and take quick decisions", "The young businessman showed great acumen in expanding his business."],
+            [37, "Addict", "N.", "A person who is unable to stop using a harmful substance", "The doctor helped the addict quit tobacco."],
+            [38, "Address", "V./N.", "To speak formally; to deliver a speech (V.); Details of a person's location or contact place (N.)", "The minister addressed the public meeting. (V.); She wrote her new address on the form. (N.)"],
+            [39, "Adhere", "V.", "To believe in and follow a rule, belief, or plan", "All students must adhere to the school's uniform rules."],
+            [40, "Adolescence", "N.", "The period between the beginning of puberty and adulthood", "Adolescence is a time of many changes in body and mind."],
+            [41, "Adonis", "N.", "An extremely handsome young man", "The tall actor looked like an Adonis on the stage."],
+            [42, "Adorable", "Adj.", "Extremely attractive and lovable", "The adorable baby elephant charmed all the visitors."],
+            [43, "Adulterate", "V.", "To make impure by adding inferior substances", "The shopkeeper was punished for adulterating milk with water."],
+            [44, "Adventurous", "Adj.", "Willing to take risks and try new ideas", "The adventurous girl went trekking alone in the Himalayas."],
+            [45, "Advocate", "N.", "A person who publicly supports or speaks in favour of a cause; A lawyer", "The advocate argued the poor farmer's case in the high court."],
+            [46, "Aerial", "Adj.", "Existing or living in the air", "The drone captured aerial images of the city."],
+            [47, "Aerophobia", "N.", "An irrational and intense fear of flying", "Due to aerophobia, my grandmother always travels by train."],
+            [48, "Aesthete", "N.", "A person who has a strong appreciation for beauty and art", "The aesthete admired the beautiful paintings at the gallery."],
+            [49, "Aesthetic", "Adj.", "Concerned with beauty or the appreciation of beauty", "The Taj Mahal has great aesthetic appeal that attracts millions."],
+            [50, "Aesthetics", "N.", "The study of beauty and art", "The course on aesthetics explores how people appreciate art and beauty."],
+            [51, "Affidavit", "N.", "A written statement confirmed by oath, for use as evidence in court", "Every election candidate must submit an affidavit declaring their assets."],
+            [52, "Agenda", "N.", "A list of items to be discussed at a meeting", "The manager shared the agenda before the meeting began."],
+            [53, "Aggrandise", "V.", "To increase the importance, position or wealth", "The king tried to aggrandise his power by conquering nearby lands."],
+            [54, "Aggressive", "Adj.", "Hostile and ready to attack or quarrel", "The aggressive stray dog near the school gate scared the children."],
+            [55, "Agnostic", "N.", "One who is not sure about God's existence", "An agnostic believes we cannot know if God truly exists."],
+            [56, "Agony", "N.", "Extreme mental or physical suffering", "The injured player screamed in agony on the cricket field."],
+            [57, "Agoraphobia", "N.", "An extreme fear of open or public places", "Pooja's agoraphobia made it difficult to visit crowded markets."],
+            [58, "Album", "N.", "A blank book for keeping a collection of photographs, stamps, or pictures", "My grandmother keeps old family photos in a beautiful album."],
+            [59, "Alchemy", "N.", "A medieval practice aimed at transforming base metals into gold", "Ancient scholars practised alchemy hoping to turn base metals into gold."],
+            [60, "Algaecide", "N.", "A substance for killing algae", "The farmer added algaecide to clean his green fish pond."],
+            [61, "Algophobia", "N.", "An extreme fear of pain", "The child's algophobia made him cry before every injection."],
+            [62, "Alien", "N.", "A person from a foreign country; A fictional being from another world", "An alien must report to the local police.; The film was about an alien from space."],
+            [63, "Alimony", "N.", "The money paid regularly to a former spouse after divorce", "The court ordered him to pay monthly alimony after the divorce."],
+            [64, "Allegory", "N.", "A story with a hidden moral or symbolic meaning", "The writer used an allegory to convey a moral lesson."],
+            [65, "Alliteration", "N.", "The repetition of the same initial sound in nearby words", "\"She sells seashells\" is a famous example of alliteration."],
+            [66, "Alloy", "N.", "A combination of two or more metals mixed together", "Bronze is an alloy made by mixing copper and tin."],
+            [67, "Alluvium", "N.", "The soil deposited by flowing water", "The Ganga deposits rich alluvium across the plains of Bihar."],
+            [68, "Alma Mater", "N.", "The school or college in which one has been educated", "Gaurav proudly visited his alma mater after twenty years."],
+            [69, "Almanac", "N.", "An annual calendar containing astronomical data and important dates", "My grandmother checks the almanac before choosing any wedding date."]
+        ];
+
+        const rawIdioms = [
+            [1, "A babe in the woods", "An inexperienced and naive person", "The intern looked like a babe in the woods in the busy office."],
+            [2, "A backseat driver", "A person who gives unwanted advice, especially about driving", "I don't like a backseat driver telling me how to do my job."],
+            [3, "A bad egg", "A dishonest or unreliable person", "Rahul is a bad egg, so no one trusts him."],
+            [4, "A bad hair day", "A day when everything seems to go wrong", "I lost my keys and missed the bus, so it was truly a bad hair day."],
+            [5, "A bad hat", "A person of bad character", "Everyone in the village knows he is a bad hat."],
+            [6, "A bad patch", "A difficult or unhappy period of time", "The family went through a bad patch after the floods."],
+            [7, "A baker's dozen", "A group of thirteen", "The shopkeeper gave us a baker's dozen of bananas."],
+            [8, "A ball of fire", "A very energetic and enthusiastic person", "Our new captain is a real ball of fire."],
+            [9, "A ballpark figure", "A rough estimate or approximation", "Give me a ballpark figure for the cost of repairs."],
+            [10, "A baptism of fire", "A difficult first experience of something", "Teaching thirty students on his first day was a baptism of fire for the new teacher."],
+            [11, "A bear garden", "A noisy and chaotic scene or place", "The classroom became a bear garden when the teacher left."],
+            [12, "A beast of burden", "An animal used for carrying heavy loads", "In the hills, the mule serves as a beast of burden."],
+            [13, "A bed of nails", "A very difficult or unpleasant situation", "Preparing for three exams at once is a bed of nails."],
+            [14, "A bed of roses", "A pleasant, comfortable, or easy situation", "Life as a farmer is not a bed of roses."],
+            [15, "A bee in one's bonnet", "An obsessive idea or preoccupation", "Aarti has a bee in her bonnet about cleaning the house."],
+            [16, "A beehive of activity", "A place full of busy activity", "Before Diwali, the market becomes a beehive of activity."],
+            [17, "A belly laugh", "A loud, deep, hearty laugh", "The comedian's joke gave the whole audience a belly laugh."],
+            [18, "A bird's-eye view", "A view from a high position; a general overview", "From the hilltop, we got a bird's-eye view of the valley; the report gives a bird's-eye view of India's education system."],
+            [19, "A bite at the cherry", "An attempt or opportunity to do something", "Amit failed once but wants another bite at the cherry."],
+            [20, "A bitter pill to swallow", "An unpleasant fact that one must accept", "Losing the final match was a bitter pill to swallow."],
+            [21, "A blessing (or boon) in disguise", "Something that seems bad at first but turns out to be good", "Missing the train turned out to be a blessing in disguise, as he got a better one later."],
+            [22, "A blind alley", "A course of action that leads nowhere", "The police investigation turned out to be a blind alley."],
+            [23, "A blind spot", "A portion of a field that cannot be seen", "The tall building created a blind spot on the road."],
+            [24, "A bolt from the blue", "A sudden and unexpected event", "Amit's sudden transfer to Pune was a bolt from the blue."],
+            [25, "A bone of contention", "A subject that causes disagreement", "The property has been a bone of contention between the brothers."],
+            [26, "A bone to pick", "A matter of complaint or disagreement that one wants to discuss", "I have a bone to pick with you about yesterday."],
+            [27, "A bosom friend", "A very close and dear friend", "Meera has been a bosom friend of Sita since childhood."],
+            [28, "A bowl of cherries", "A very pleasant or enjoyable situation", "With good friends around, college life is a bowl of cherries."],
+            [29, "A breach of confidence", "The breaking of trust by revealing confidential information", "Sharing her secret with others was a breach of confidence."],
+            [30, "A breath of fresh air", "A refreshing or welcome change", "The new teacher's methods were a breath of fresh air."],
+            [31, "A broken reed", "A weak or unreliable person", "Do not depend on him because he is a broken reed."],
+            [32, "A brown study", "A state of deep thought or daydreaming", "Vikram sat in a brown study, staring out the window."],
+            [33, "A bull in a China shop", "A clumsy person in a situation requiring care", "Rohit acts like a bull in a China shop wherever he goes."],
+            [34, "A bun in the oven", "Pregnant", "The couple announced they have a bun in the oven."],
+            [35, "A burning question", "An important question that needs to be answered urgently", "Water scarcity remains a burning question in many villages today."],
+            [36, "A cakewalk", "An easy task", "The math test was a cakewalk for the bright students."],
+            [37, "A can of worms", "A complex situation that causes problems", "Asking about his past opened a whole can of worms."],
+            [38, "A cash cow", "A business or product that provides a steady source of income", "The sweet shop on the corner is their cash cow."],
+            [39, "A catnap", "A short sleep, especially during the day", "Grandfather always takes a catnap after lunch."],
+            [40, "A cat's paw", "A person used by another to do unpleasant work", "The clever boy used his friend as a cat's paw."],
+            [41, "A change of heart", "A change in one's attitude or feelings", "Meena had a change of heart and forgave her friend."],
+            [42, "A charley horse", "A painful muscle cramp", "Ankit got a charley horse while running the race."],
+            [43, "A chink in someone's armour", "A weakness that can be exploited", "The rival team found a chink in our captain's armour."],
+            [44, "A chip off the old block", "A person who resembles their parent in character", "Amit is a chip off the old block, singing just like his father."],
+            [45, "A chip on one's shoulder", "A persistent feeling of resentment", "Rahul carries a chip on his shoulder about not being selected."],
+            [46, "A clarion call", "A strong and clear call to action", "The principal's speech was a clarion call for better discipline."],
+            [47, "A clean slate", "A situation where past mistakes are forgotten", "The judge gave the young offender a clean slate to rebuild his life."],
+            [48, "A close shave", "A situation where you only just avoid an accident or disaster", "The cyclist had a close shave with the speeding truck."],
+            [49, "A closed book", "Something or someone completely unknown or not understood at all", "Advanced physics is still a closed book to most of us."],
+            [50, "A cock and bull story", "An absurd and untrue story", "Nobody believed his cock and bull story about meeting aliens."],
+            [51, "A cog in the machine", "A small or unimportant part of a larger system", "Deepak felt like just a cog in the machine at his large company."],
+            [52, "A cold fish", "A person who seems unfriendly and unemotional", "Kavita is a cold fish who rarely shows any emotion."],
+            [53, "A copycat", "A person who copies another's behaviour or work", "Stop being a copycat and think of your own ideas."],
+            [54, "A couch potato", "A lazy person who watches a lot of TV", "My brother has become a couch potato during the holidays."],
+            [55, "A creature of habit", "A person who always does the same things", "Grandpa is a creature of habit who walks at six daily."],
+            [56, "A cuckoo in the nest", "An unwanted person in a group or place", "The stranger at the family gathering felt like a cuckoo in the nest."],
+            [57, "A cut above", "Better than other similar things or people", "Sneha's painting was a cut above everyone else's in the class."],
+            [58, "A dab hand at something", "Very skilled at something", "My mother is a dab hand at making sweets."],
+            [59, "A damp squib", "Something that fails to meet expectations", "The grand opening turned out to be a damp squib."],
+            [60, "A damsel in distress", "A young woman in need of rescue", "Sonia refused to play the damsel in distress and helped herself."],
+            [61, "A daredevil", "A reckless person who enjoys taking risks", "That daredevil rode his bike down the steep hill at full speed."],
+            [62, "A dark horse", "An unexpectedly successful person or competitor", "Anuj was a dark horse who surprised everyone by winning."],
+            [63, "A dead duck", "Someone or something destined to fail", "Without funding, the project is a dead duck."]
+        ];
+
+        // Build unified vocabulary list
+        const allVocab = [
+            ...rawOWS.map(item => ({
+                id: `ows_${item[0]}`,
+                type: 'ows',
+                typeLabel: 'OWS',
+                sn: item[0],
+                term: item[1],
+                pos: item[2],
+                meaning: item[3],
+                example: item[4]
+            })),
+            ...rawIdioms.map(item => ({
+                id: `idiom_${item[0]}`,
+                type: 'idiom',
+                typeLabel: 'Idiom',
+                sn: item[0],
+                term: item[1],
+                pos: 'Idiom/Phrase',
+                meaning: item[2],
+                example: item[3]
+            }))
+        ];
+
+        // =========================================================================
+        // 2. STATE & LOCAL STORAGE MANAGEMENT
+        // =========================================================================
+        const STORAGE_KEY = 'blackbook_day1_progress_v1';
+        let userProgress = {
+            learned: {},
+            starred: {},
+            weak: {}
+        };
+
+        function loadProgress() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    userProgress = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error("Failed to load localStorage", e);
+            }
+            updateTopStats();
+        }
+
+        function saveProgress() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
+            } catch (e) {
+                console.error("Failed to save localStorage", e);
+            }
+            updateTopStats();
+        }
+
+        function updateTopStats() {
+            const learnedCount = Object.keys(userProgress.learned).filter(k => userProgress.learned[k]).length;
+            const starredCount = Object.keys(userProgress.starred).filter(k => userProgress.starred[k]).length;
+            const weakCount = Object.keys(userProgress.weak).filter(k => userProgress.weak[k]).length;
+
+            document.getElementById('stat-learned').textContent = `${learnedCount}/${allVocab.length}`;
+            document.getElementById('stat-starred').textContent = starredCount;
+            document.getElementById('stat-weak').textContent = weakCount;
+        }
+
+        // =========================================================================
+        // 3. TAB SWITCHING
+        // =========================================================================
+        let currentTab = 'flashcards';
+        function switchTab(tabName) {
+            currentTab = tabName;
+            ['flashcards', 'quiz', 'table'].forEach(t => {
+                const view = document.getElementById(`view-${t}`);
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === tabName) {
+                    view.classList.remove('hidden');
+                    btn.className = "tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-indigo-600 text-white shadow-md shadow-indigo-600/25";
+                } else {
+                    view.classList.add('hidden');
+                    btn.className = "tab-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap bg-slate-800/80 text-slate-300 hover:bg-slate-800";
+                }
+            });
+
+            if (tabName === 'flashcards') renderFlashcard();
+            if (tabName === 'table') renderRevisionTable();
+        }
+
+        // =========================================================================
+        // 4. FLASHCARDS MODE LOGIC
+        // =========================================================================
+        let fcDeck = [...allVocab];
+        let fcIndex = 0;
+        let fcFilter = 'all';
+        let isFlipped = false;
+
+        function filterDeck() {
+            const query = document.getElementById('fc-search').value.trim().toLowerCase();
+            fcDeck = allVocab.filter(item => {
+                if (fcFilter === 'ows' && item.type !== 'ows') return false;
+                if (fcFilter === 'idiom' && item.type !== 'idiom') return false;
+                if (fcFilter === 'starred' && !userProgress.starred[item.id]) return false;
+                if (fcFilter === 'weak' && !userProgress.weak[item.id]) return false;
+                if (fcFilter === 'unlearned' && userProgress.learned[item.id]) return false;
+
+                if (query) {
+                    const matchTerm = item.term.toLowerCase().includes(query);
+                    const matchMeaning = item.meaning.toLowerCase().includes(query);
+                    const matchSN = String(item.sn) === query;
+                    return matchTerm || matchMeaning || matchSN;
+                }
+                return true;
+            });
+            fcIndex = 0;
+            populateJumpSelect();
+            renderFlashcard();
+        }
+
+        function setFlashcardFilter(filter) {
+            fcFilter = filter;
+            document.querySelectorAll('.fc-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('bg-indigo-600', 'text-white');
+                    btn.classList.remove('bg-slate-800', 'text-slate-300');
+                } else {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-slate-800', 'text-slate-300');
+                }
+            });
+            filterDeck();
+        }
+
+        function handleFlashcardSearch() {
+            filterDeck();
+        }
+
+        function shuffleFlashcards() {
+            for (let i = fcDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [fcDeck[i], fcDeck[j]] = [fcDeck[j], fcDeck[i]];
+            }
+            fcIndex = 0;
+            populateJumpSelect();
+            renderFlashcard();
+        }
+
+        function populateJumpSelect() {
+            const select = document.getElementById('fc-jump-select');
+            select.innerHTML = fcDeck.map((item, idx) =>
+                `<option value="${idx}">${item.typeLabel} #${item.sn}: ${item.term}</option>`
+            ).join('');
+        }
+
+        function jumpToFlashcard(idx) {
+            fcIndex = parseInt(idx, 10) || 0;
+            isFlipped = false;
+            renderFlashcard();
+        }
+
+        function renderFlashcard() {
+            const emptyEl = document.getElementById('fc-empty-state');
+            const wrapperEl = document.getElementById('fc-card-wrapper');
+
+            if (fcDeck.length === 0) {
+                emptyEl.classList.remove('hidden');
+                wrapperEl.classList.add('hidden');
+                return;
+            }
+            emptyEl.classList.add('hidden');
+            wrapperEl.classList.remove('hidden');
+
+            const item = fcDeck[fcIndex];
+            const inner = document.getElementById('fc-inner');
+            if (isFlipped) {
+                inner.classList.add('rotate-y-180');
+            } else {
+                inner.classList.remove('rotate-y-180');
+            }
+
+            document.getElementById('fc-counter-text').textContent = `Card ${fcIndex + 1} of ${fcDeck.length}`;
+            document.getElementById('fc-jump-select').value = fcIndex;
+
+            // Badges
+            const badgeType = document.getElementById('fc-badge-type');
+            badgeType.textContent = `${item.typeLabel} #${item.sn}`;
+            badgeType.className = item.type === 'ows'
+                ? "px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
+                : "px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30";
+
+            document.getElementById('fc-badge-pos').textContent = item.type === 'ows' ? `(${item.pos})` : 'Idiom & Phrase';
+            document.getElementById('fc-front-term').textContent = item.term;
+
+            // Back content
+            document.getElementById('fc-back-sn').textContent = `${item.typeLabel} #${item.sn}`;
+            document.getElementById('fc-back-term').innerHTML = `${item.term} <span class="text-xs font-normal text-slate-400">(${item.pos})</span>`;
+            document.getElementById('fc-back-meaning').textContent = item.meaning;
+            document.getElementById('fc-back-example').textContent = `"${item.example}"`;
+
+            // Star & Learned state
+            const starBtn = document.getElementById('fc-btn-star');
+            if (userProgress.starred[item.id]) {
+                starBtn.className = "p-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 transition";
+            } else {
+                starBtn.className = "p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 transition";
+            }
+
+            const learnedBtn = document.getElementById('fc-btn-learned');
+            if (userProgress.learned[item.id]) {
+                learnedBtn.className = "px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold flex items-center gap-1 transition";
+                learnedBtn.innerHTML = `<i class="ph-fill ph-check-circle text-base"></i><span>Learned ✓</span>`;
+            } else {
+                learnedBtn.className = "px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 text-xs font-semibold flex items-center gap-1 transition";
+                learnedBtn.innerHTML = `<i class="ph-fill ph-check-circle text-base"></i><span>Mark Learned</span>`;
+            }
+        }
+
+        function flipFlashcard() {
+            isFlipped = !isFlipped;
+            const inner = document.getElementById('fc-inner');
+            inner.classList.toggle('rotate-y-180', isFlipped);
+        }
+
+        function nextFlashcard() {
+            if (fcDeck.length === 0) return;
+            isFlipped = false;
+            fcIndex = (fcIndex + 1) % fcDeck.length;
+            renderFlashcard();
+        }
+
+        function prevFlashcard() {
+            if (fcDeck.length === 0) return;
+            isFlipped = false;
+            fcIndex = (fcIndex - 1 + fcDeck.length) % fcDeck.length;
+            renderFlashcard();
+        }
+
+        function toggleStarCurrent() {
+            if (fcDeck.length === 0) return;
+            const id = fcDeck[fcIndex].id;
+            userProgress.starred[id] = !userProgress.starred[id];
+            saveProgress();
+            renderFlashcard();
+        }
+
+        function toggleLearnedCurrent() {
+            if (fcDeck.length === 0) return;
+            const id = fcDeck[fcIndex].id;
+            userProgress.learned[id] = !userProgress.learned[id];
+            saveProgress();
+            renderFlashcard();
+        }
+
+        function speakCurrentWord() {
+            if (fcDeck.length === 0 || !('speechSynthesis' in window)) return;
+            const utter = new SpeechSynthesisUtterance(fcDeck[fcIndex].term);
+            utter.lang = 'en-IN';
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utter);
+        }
+
+        // Keyboard navigation for flashcards
+        document.addEventListener('keydown', (e) => {
+            if (currentTab !== 'flashcards') return;
+            if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+            if (e.code === 'Space') {
+                e.preventDefault();
+                flipFlashcard();
+            } else if (e.code === 'ArrowRight') {
+                e.preventDefault();
+                nextFlashcard();
+            } else if (e.code === 'ArrowLeft') {
+                e.preventDefault();
+                prevFlashcard();
+            }
+        });
+
+        // =========================================================================
+        // 5. INTERACTIVE MCQ QUIZ ENGINE
+        // =========================================================================
+        let quizConfig = {
+            category: 'both',
+            direction: 'meaning_to_word',
+            count: 25
+        };
+
+        let quizQuestions = [];
+        let qCurrentIndex = 0;
+        let qCorrectCount = 0;
+        let qWrongCount = 0;
+        let qStreak = 0;
+        let qAnswered = false;
+        let qTimerInterval = null;
+        let qSecondsElapsed = 0;
+        let qWrongItemsPool = [];
+        let qHistory = [];
+
+        function setQuizConfig(key, val) {
+            quizConfig[key] = val;
+            document.getElementById('quiz-setup-error').classList.add('hidden');
+
+            if (key === 'category') {
+                document.querySelectorAll('.qcat-btn').forEach(b => {
+                    const active = b.dataset.qcat === val;
+                    b.className = active
+                        ? "qcat-btn p-3.5 rounded-2xl border text-left transition flex items-center justify-between bg-indigo-600/20 border-indigo-500 text-white"
+                        : "qcat-btn p-3.5 rounded-2xl border text-left transition flex items-center justify-between bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700";
+                });
+            } else if (key === 'direction') {
+                document.querySelectorAll('.qdir-btn').forEach(b => {
+                    const active = b.dataset.qdir === val;
+                    b.className = active
+                        ? "qdir-btn p-3 rounded-2xl border text-left transition bg-indigo-600/20 border-indigo-500 text-white"
+                        : "qdir-btn p-3 rounded-2xl border text-left transition bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700";
+                });
+            } else if (key === 'count') {
+                document.querySelectorAll('.qcnt-btn').forEach(b => {
+                    const active = parseInt(b.dataset.qcnt, 10) === val;
+                    b.className = active
+                        ? "qcnt-btn py-2.5 rounded-xl border font-bold text-sm transition bg-indigo-600/20 border-indigo-500 text-white"
+                        : "qcnt-btn py-2.5 rounded-xl border font-bold text-sm transition bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700";
+                });
+            }
+        }
+
+        function startQuiz(customPool = null) {
+            let pool = [];
+            if (customPool) {
+                pool = [...customPool];
+            } else if (quizConfig.category === 'ows') {
+                pool = allVocab.filter(i => i.type === 'ows');
+            } else if (quizConfig.category === 'idiom') {
+                pool = allVocab.filter(i => i.type === 'idiom');
+            } else if (quizConfig.category === 'starred_weak') {
+                pool = allVocab.filter(i => userProgress.starred[i.id] || userProgress.weak[i.id]);
+            } else {
+                pool = [...allVocab];
+            }
+
+            if (pool.length < 4) {
+                const err = document.getElementById('quiz-setup-error');
+                err.textContent = "Need at least 4 Starred or Weak items to generate a quiz in this mode. Star a few flashcards first or pick 'Mixed Both'!";
+                err.classList.remove('hidden');
+                return;
+            }
+
+            // Shuffle pool
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+
+            const selectedItems = customPool ? pool : pool.slice(0, Math.min(quizConfig.count, pool.length));
+
+            // Generate questions with 4 options each
+            quizQuestions = selectedItems.map(item => {
+                let dir = quizConfig.direction;
+                if (dir === 'mixed') {
+                    dir = Math.random() < 0.5 ? 'meaning_to_word' : 'word_to_meaning';
+                }
+
+                // Pick 3 distractors from the same type (OWS or Idiom) for realistic SSC exam feel
+                const sameTypePool = allVocab.filter(x => x.type === item.type && x.id !== item.id);
+                for (let i = sameTypePool.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [sameTypePool[i], sameTypePool[j]] = [sameTypePool[j], sameTypePool[i]];
+                }
+                const distractors = sameTypePool.slice(0, 3);
+                const options = [item, ...distractors];
+                for (let i = options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+
+                return {
+                    item,
+                    dir,
+                    options
+                };
+            });
+
+            // Reset Quiz State
+            qCurrentIndex = 0;
+            qCorrectCount = 0;
+            qWrongCount = 0;
+            qStreak = 0;
+            qSecondsElapsed = 0;
+            qWrongItemsPool = [];
+            qHistory = [];
+
+            document.getElementById('quiz-setup').classList.add('hidden');
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-active').classList.remove('hidden');
+
+            startQuizTimer();
+            renderQuizQuestion();
+        }
+
+        function startQuizTimer() {
+            clearInterval(qTimerInterval);
+            qTimerInterval = setInterval(() => {
+                qSecondsElapsed++;
+                document.getElementById('q-timer').textContent = formatTime(qSecondsElapsed);
+            }, 1000);
+        }
+
+        function formatTime(sec) {
+            const m = String(Math.floor(sec / 60)).padStart(2, '0');
+            const s = String(sec % 60).padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function renderQuizQuestion() {
+            qAnswered = false;
+            const qObj = quizQuestions[qCurrentIndex];
+            const item = qObj.item;
+
+            document.getElementById('q-progress-text').textContent = `Q ${qCurrentIndex + 1} / ${quizQuestions.length}`;
+            document.getElementById('q-streak').textContent = qStreak;
+            document.getElementById('q-score-right').textContent = `✓ ${qCorrectCount}`;
+            document.getElementById('q-score-wrong').textContent = `✗ ${qWrongCount}`;
+
+            const pct = ((qCurrentIndex + 1) / quizQuestions.length) * 100;
+            document.getElementById('q-progress-bar').style.width = `${pct}%`;
+
+            // Item badge
+            const badge = document.getElementById('q-item-badge');
+            badge.textContent = `${item.typeLabel} #${item.sn}`;
+            badge.className = item.type === 'ows'
+                ? "px-2.5 py-1 rounded-lg text-xs font-bold uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30"
+                : "px-2.5 py-1 rounded-lg text-xs font-bold uppercase bg-purple-500/20 text-purple-300 border border-purple-500/30";
+
+            updateQuizStarButton();
+
+            // Prompt & Question
+            const promptEl = document.getElementById('q-prompt-label');
+            const questionEl = document.getElementById('q-question-text');
+
+            if (qObj.dir === 'meaning_to_word') {
+                promptEl.textContent = item.type === 'ows'
+                    ? "Select the correct One Word Substitution (OWS) for:"
+                    : "Select the correct Idiom / Phrase for the meaning:";
+                questionEl.textContent = `"${item.meaning}"`;
+            } else {
+                promptEl.textContent = item.type === 'ows'
+                    ? `Select the exact English Meaning of the OWS (${item.pos}):`
+                    : "Select the exact English Meaning of the Idiom / Phrase:";
+                questionEl.textContent = item.term;
+            }
+
+            // Render Options
+            const optionsContainer = document.getElementById('q-options');
+            const letters = ['A', 'B', 'C', 'D'];
+            optionsContainer.innerHTML = qObj.options.map((opt, idx) => {
+                const label = qObj.dir === 'meaning_to_word' ? opt.term : opt.meaning;
+                return `
+                    <button onclick="selectQuizOption(${idx})" id="q-opt-${idx}" class="w-full p-4 rounded-2xl bg-slate-950 hover:bg-slate-800/90 border border-slate-800 hover:border-indigo-500/50 text-left transition flex items-center gap-3.5 group">
+                        <span class="w-8 h-8 rounded-xl bg-slate-800 group-hover:bg-indigo-600/30 text-slate-300 font-bold text-xs flex items-center justify-center shrink-0">${letters[idx]}</span>
+                        <span class="text-sm sm:text-base font-semibold text-slate-200 leading-snug">${label}</span>
+                    </button>
+                `;
+            }).join('');
+
+            document.getElementById('q-feedback').classList.add('hidden');
+            document.getElementById('q-next-btn').classList.add('hidden');
+        }
+
+        function selectQuizOption(selectedIndex) {
+            if (qAnswered) return;
+            qAnswered = true;
+
+            const qObj = quizQuestions[qCurrentIndex];
+            const correctItem = qObj.item;
+            const chosenItem = qObj.options[selectedIndex];
+            const isCorrect = chosenItem.id === correctItem.id;
+
+            if (isCorrect) {
+                qCorrectCount++;
+                qStreak++;
+                userProgress.learned[correctItem.id] = true;
+                delete userProgress.weak[correctItem.id];
+            } else {
+                qWrongCount++;
+                qStreak = 0;
+                userProgress.weak[correctItem.id] = true;
+                qWrongItemsPool.push(correctItem);
+            }
+            saveProgress();
+
+            qHistory.push({
+                item: correctItem,
+                chosen: chosenItem,
+                isCorrect
+            });
+
+            // Highlight option buttons
+            qObj.options.forEach((opt, idx) => {
+                const btn = document.getElementById(`q-opt-${idx}`);
+                btn.disabled = true;
+                if (opt.id === correctItem.id) {
+                    btn.className = "w-full p-4 rounded-2xl bg-emerald-950/60 border-2 border-emerald-500 text-left flex items-center gap-3.5";
+                } else if (idx === selectedIndex && !isCorrect) {
+                    btn.className = "w-full p-4 rounded-2xl bg-rose-950/60 border-2 border-rose-500 text-left flex items-center gap-3.5";
+                } else {
+                    btn.className = "w-full p-4 rounded-2xl bg-slate-950/40 border border-slate-800/60 opacity-50 text-left flex items-center gap-3.5";
+                }
+            });
+
+            // Show Explanation Box
+            const fb = document.getElementById('q-feedback');
+            const fbTitle = document.getElementById('q-feedback-title');
+            fb.classList.remove('hidden');
+
+            if (isCorrect) {
+                fb.className = "rounded-2xl p-4 border bg-emerald-950/30 border-emerald-500/40 space-y-1.5";
+                fbTitle.className = "text-xs font-extrabold uppercase tracking-wider text-emerald-400";
+                fbTitle.textContent = "✓ Correct Answer! (+Marked Learned)";
+            } else {
+                fb.className = "rounded-2xl p-4 border bg-rose-950/30 border-rose-500/40 space-y-1.5";
+                fbTitle.className = "text-xs font-extrabold uppercase tracking-wider text-rose-400";
+                fbTitle.textContent = "✗ Incorrect — Added to Weak Words";
+            }
+
+            document.getElementById('q-feedback-sn').textContent = `${correctItem.typeLabel} #${correctItem.sn}`;
+            document.getElementById('q-feedback-detail').textContent = `${correctItem.term} (${correctItem.pos}): ${correctItem.meaning}`;
+            document.getElementById('q-feedback-example').textContent = `Example: "${correctItem.example}"`;
+
+            // Update top counters
+            document.getElementById('q-streak').textContent = qStreak;
+            document.getElementById('q-score-right').textContent = `✓ ${qCorrectCount}`;
+            document.getElementById('q-score-wrong').textContent = `✗ ${qWrongCount}`;
+
+            const nextBtn = document.getElementById('q-next-btn');
+            nextBtn.classList.remove('hidden');
+            nextBtn.querySelector('span').textContent = (qCurrentIndex + 1 === quizQuestions.length) ? "View Final Scorecard" : "Next Question";
+        }
+
+        function nextQuizQuestion() {
+            if (qCurrentIndex + 1 < quizQuestions.length) {
+                qCurrentIndex++;
+                renderQuizQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function quitQuiz() {
+            clearInterval(qTimerInterval);
+            if (qHistory.length > 0) {
+                finishQuiz();
+            } else {
+                resetQuizToSetup();
+            }
+        }
+
+        function finishQuiz() {
+            clearInterval(qTimerInterval);
+            document.getElementById('quiz-active').classList.add('hidden');
+            document.getElementById('quiz-results').classList.remove('hidden');
+
+            const totalAnswered = qCorrectCount + qWrongCount;
+            const accuracy = totalAnswered > 0 ? Math.round((qCorrectCount / totalAnswered) * 100) : 0;
+
+            document.getElementById('res-accuracy').textContent = `${accuracy}%`;
+            document.getElementById('res-correct').textContent = qCorrectCount;
+            document.getElementById('res-wrong').textContent = qWrongCount;
+            document.getElementById('res-time').textContent = formatTime(qSecondsElapsed);
+
+            const retryBtn = document.getElementById('res-retry-wrong-btn');
+            if (qWrongItemsPool.length > 0) {
+                retryBtn.classList.remove('hidden');
+                retryBtn.querySelector('span').textContent = `Retry ${qWrongItemsPool.length} Incorrect Qs`;
+            } else {
+                retryBtn.classList.add('hidden');
+            }
+
+            // Populate review list
+            const listEl = document.getElementById('res-review-list');
+            listEl.innerHTML = qHistory.map((h, i) => `
+                <div class="p-3.5 rounded-2xl bg-slate-950 border ${h.isCorrect ? 'border-emerald-500/30' : 'border-rose-500/40'} flex flex-col gap-1">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold ${h.isCorrect ? 'text-emerald-400' : 'text-rose-400'}">
+                            ${h.isCorrect ? '✓ Correct' : '✗ Missed'} • ${h.item.typeLabel} #${h.item.sn}
+                        </span>
+                        ${!h.isCorrect ? `<span class="text-[11px] text-rose-300">You picked: ${h.chosen.term}</span>` : ''}
+                    </div>
+                    <div class="text-sm font-bold text-white">${h.item.term} <span class="text-xs font-normal text-slate-400">(${h.item.pos})</span></div>
+                    <div class="text-xs text-slate-300">${h.item.meaning}</div>
+                </div>
+            `).join('');
+        }
+
+        function retryWrongQuestions() {
+            if (qWrongItemsPool.length === 0) return;
+            startQuiz(qWrongItemsPool);
+        }
+
+        function resetQuizToSetup() {
+            clearInterval(qTimerInterval);
+            document.getElementById('quiz-active').classList.add('hidden');
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-setup').classList.remove('hidden');
+        }
+
+        function toggleStarQuizItem() {
+            const item = quizQuestions[qCurrentIndex].item;
+            userProgress.starred[item.id] = !userProgress.starred[item.id];
+            saveProgress();
+            updateQuizStarButton();
+        }
+
+        function updateQuizStarButton() {
+            const item = quizQuestions[qCurrentIndex].item;
+            const btn = document.getElementById('q-star-btn');
+            if (userProgress.starred[item.id]) {
+                btn.className = "p-2 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/40 transition";
+            } else {
+                btn.className = "p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-amber-400 transition";
+            }
+        }
+
+        // =========================================================================
+        // 6. QUICK REVISION TABLE LOGIC
+        // =========================================================================
+        let tableFilter = 'all';
+        let blurTerm = false;
+        let blurMeaning = false;
+
+        function setTableFilter(f) {
+            tableFilter = f;
+            document.querySelectorAll('.tfilter-btn').forEach(btn => {
+                if (btn.dataset.tfilter === f) {
+                    btn.classList.add('bg-indigo-600', 'text-white');
+                    btn.classList.remove('bg-slate-800', 'text-slate-300');
+                } else {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-slate-800', 'text-slate-300');
+                }
+            });
+            renderRevisionTable();
+        }
+
+        function toggleTableBlur(target) {
+            if (target === 'term') {
+                blurTerm = !blurTerm;
+                const btn = document.getElementById('blur-term-btn');
+                btn.className = blurTerm
+                    ? "px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold flex items-center gap-1.5 transition"
+                    : "px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition";
+            } else {
+                blurMeaning = !blurMeaning;
+                const btn = document.getElementById('blur-meaning-btn');
+                btn.className = blurMeaning
+                    ? "px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold flex items-center gap-1.5 transition"
+                    : "px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition";
+            }
+            renderRevisionTable();
+        }
+
+        function renderRevisionTable() {
+            const q = document.getElementById('table-search').value.trim().toLowerCase();
+            const rows = allVocab.filter(item => {
+                if (tableFilter === 'ows' && item.type !== 'ows') return false;
+                if (tableFilter === 'idiom' && item.type !== 'idiom') return false;
+                if (tableFilter === 'starred' && !userProgress.starred[item.id]) return false;
+                if (tableFilter === 'weak' && !userProgress.weak[item.id]) return false;
+
+                if (q) {
+                    return item.term.toLowerCase().includes(q) ||
+                           item.meaning.toLowerCase().includes(q) ||
+                           String(item.sn) === q;
+                }
+                return true;
+            });
+
+            const tbody = document.getElementById('revision-table-body');
+            tbody.innerHTML = rows.map(item => {
+                const isStar = !!userProgress.starred[item.id];
+                const isLearn = !!userProgress.learned[item.id];
+                return `
+                    <tr class="hover:bg-slate-800/40 transition">
+                        <td class="py-3 px-4 font-bold whitespace-nowrap">
+                            <span class="px-2 py-0.5 rounded text-[11px] ${item.type === 'ows' ? 'bg-indigo-500/20 text-indigo-300' : 'bg-purple-500/20 text-purple-300'}">
+                                ${item.typeLabel} #${item.sn}
+                            </span>
+                        </td>
+                        <td class="py-3 px-4 font-bold text-white ${blurTerm ? 'blur-secret' : ''}" onclick="this.classList.toggle('revealed')">
+                            ${item.term}
+                            ${item.type === 'ows' ? `<span class="text-xs font-normal text-slate-400">(${item.pos})</span>` : ''}
+                        </td>
+                        <td class="py-3 px-4 text-slate-200 ${blurMeaning ? 'blur-secret' : ''}" onclick="this.classList.toggle('revealed')">
+                            ${item.meaning}
+                        </td>
+                        <td class="py-3 px-4 text-slate-400 italic hidden md:table-cell">
+                            "${item.example}"
+                        </td>
+                        <td class="py-3 px-4 text-center whitespace-nowrap">
+                            <button onclick="toggleTableStar('${item.id}')" class="p-1.5 rounded-lg ${isStar ? 'text-amber-400' : 'text-slate-600 hover:text-slate-400'} transition" title="Star">
+                                <i class="ph-fill ph-star text-base"></i>
+                            </button>
+                            <button onclick="toggleTableLearned('${item.id}')" class="p-1.5 rounded-lg ${isLearn ? 'text-emerald-400' : 'text-slate-600 hover:text-slate-400'} transition" title="Learned">
+                                <i class="ph-fill ph-check-circle text-base"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function toggleTableStar(id) {
+            userProgress.starred[id] = !userProgress.starred[id];
+            saveProgress();
+            renderRevisionTable();
+        }
+
+        function toggleTableLearned(id) {
+            userProgress.learned[id] = !userProgress.learned[id];
+            saveProgress();
+            renderRevisionTable();
+        }
+
+        // =========================================================================
+        // 7. RESET MODAL CONTROLS
+        // =========================================================================
+        function openResetModal() {
+            document.getElementById('reset-modal').classList.remove('hidden');
+        }
+        function closeResetModal() {
+            document.getElementById('reset-modal').classList.add('hidden');
+        }
+        function confirmResetProgress() {
+            userProgress = { learned: {}, starred: {}, weak: {} };
+            saveProgress();
+            closeResetModal();
+            renderFlashcard();
+            renderRevisionTable();
+        }
+
+        // Initialize App on Load
+        window.onload = function () {
+            loadProgress();
+            populateJumpSelect();
+            renderFlashcard();
+        };
+    </script>
+</body>
+</html>

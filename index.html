@@ -259,7 +259,7 @@
       border-color: var(--brand-gold);
     }
 
-    /* HERO BANNER (PARMAR ACADEMY STYLE) */
+    /* HERO BANNER */
     .portal-hero {
       background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.25), transparent 60%),
                   radial-gradient(circle at bottom left, rgba(239, 68, 68, 0.15), transparent 50%),
@@ -394,7 +394,7 @@
       gap: 1.5rem;
     }
 
-    /* PARMAR ACADEMY COURSE CARD */
+    /* COURSE CARD */
     .course-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -417,7 +417,6 @@
 
     .card-banner {
       height: 110px;
-      background: linear-gradient(135deg, #0f274a, #1e3a6a);
       position: relative;
       display: flex;
       align-items: flex-end;
@@ -429,6 +428,7 @@
     .banner-subject-reasoning { background: linear-gradient(135deg, #581c87, #6d28d9); }
     .banner-subject-english { background: linear-gradient(135deg, #7c2d12, #c2410c); }
     .banner-subject-computer { background: linear-gradient(135deg, #164e63, #0e7490); }
+    .banner-subject-special { background: linear-gradient(135deg, #831843, #be185d); }
 
     .card-icon-badge {
       width: 46px;
@@ -750,20 +750,20 @@
       </div>
       <div class="stats-pills">
         <div class="stat-pill-box">
-          <div class="stat-pill-num">5</div>
-          <div class="stat-pill-label">Core Subjects</div>
+          <div class="stat-pill-num">6</div>
+          <div class="stat-pill-label">Active Streams</div>
         </div>
         <div class="stat-pill-box">
-          <div class="stat-pill-num">2</div>
-          <div class="stat-pill-label">Live Modules</div>
+          <div class="stat-pill-num">33</div>
+          <div class="stat-pill-label">Ready Modules</div>
         </div>
         <div class="stat-pill-box">
-          <div class="stat-pill-num">40+</div>
+          <div class="stat-pill-num">1,800+</div>
           <div class="stat-pill-label">Practice MCQs</div>
         </div>
         <div class="stat-pill-box">
-          <div class="stat-pill-num">42+</div>
-          <div class="stat-pill-label">3D Flashcards</div>
+          <div class="stat-pill-num">100%</div>
+          <div class="stat-pill-label">Interactive</div>
         </div>
       </div>
     </div>
@@ -784,11 +784,7 @@
 
   <script>
     /* ==========================================================
-       PARMAR ACADEMY CURRICULUM DATABASE (4-TIER HIERARCHY)
-       Level 1: Subject
-       Level 2: Section / Stream
-       Level 3: Chapter / Unit
-       Level 4: Interactive Lectures
+       PARMAR ACADEMY COMPLETE CURRICULUM DATABASE (ALL 33 MODULES)
     ========================================================== */
     const parmarCurriculum = [
       {
@@ -813,7 +809,7 @@
                 desc: "Demands, British proposals, Cabinet Mission Plan 1946, Assembly committees, drafting, and 12 schedules.",
                 lectures: [
                   {
-                    id: "LEC-01",
+                    id: "POL-01",
                     title: "Lecture 01: Making of the Indian Constitution",
                     desc: "Demand timeline (1928-1938), Cabinet Mission 389 seats, Interim Government 1946, 8 Major & 13 Minor Committees, Drafting Committee (Ambedkar), 3 readings, and vital adoption stats.",
                     url: "lectures/Lecture-01-Polity-Making-of-Constitution.html",
@@ -823,7 +819,7 @@
                     tags: ["Cabinet Mission", "Drafting Committee", "Interim Govt", "389 Seats", "Adoption 1949"]
                   },
                   {
-                    id: "LEC-02",
+                    id: "POL-02",
                     title: "Lecture 02: Salient Features & The 12 Schedules",
                     desc: "Lengthiest constitution, federalism debate (Wheare, Austin, Jennings), Federal vs Unitary traits, master mnemonic TEARS OF OLD PM, Schedule 5 vs 6 deep dive, 3 lists, and language amendments.",
                     url: "lectures/Lecture-02-Polity-Salient-Features-of-Constitution.html",
@@ -847,13 +843,6 @@
                 title: "Fundamental Rights, DPSP & Fundamental Duties",
                 desc: "Articles 12-35 (Writs, 6 basic rights), Directive Principles (Part IV), and Fundamental Duties (Part IV-A).",
                 lectures: []
-              },
-              {
-                id: "polity-ch4",
-                code: "UNIT 04",
-                title: "Union Executive & Parliament",
-                desc: "President, Vice-President, Prime Minister, Council of Ministers, Lok Sabha, Rajya Sabha, and Parliamentary committees.",
-                lectures: []
               }
             ]
           },
@@ -867,22 +856,8 @@
               {
                 id: "hist-ch1",
                 code: "UNIT 01",
-                title: "Advent of Europeans & British Expansion",
-                desc: "Carnatic wars, Battle of Plassey (1757), Buxar (1764), and Subsidiary Alliance.",
-                lectures: []
-              },
-              {
-                id: "hist-ch2",
-                code: "UNIT 02",
-                title: "Revolt of 1857 & Early Resistance",
-                desc: "Causes, key leaders, centers of uprising, and Government of India Act 1858.",
-                lectures: []
-              },
-              {
-                id: "hist-ch3",
-                code: "UNIT 03",
-                title: "Indian National Movement (1885–1947)",
-                desc: "Moderate, Extremist, and Gandhian phases (Non-Cooperation, Civil Disobedience, Quit India).",
+                title: "Advent of Europeans & Freedom Struggle",
+                desc: "British conquests, 1857 Revolt, Swadeshi, and Gandhian mass movements.",
                 lectures: []
               }
             ]
@@ -892,129 +867,13 @@
             code: "GEOGRAPHY",
             name: "Geography (Physical & Indian)",
             icon: "🌍",
-            desc: "Geomorphology, climate zones, Indian drainage systems, physiography, and mineral resources.",
+            desc: "Physiographic divisions of India, river drainage systems, climate, and soils.",
             chapters: [
               {
                 id: "geo-ch1",
                 code: "UNIT 01",
-                title: "Physiographic Divisions of India",
-                desc: "Himalayas, Indo-Gangetic Plains, Peninsular Plateau, and Coastal Plains.",
-                lectures: []
-              },
-              {
-                id: "geo-ch2",
-                code: "UNIT 02",
-                title: "Indian River Systems & Multipurpose Projects",
-                desc: "Himalayan drainage vs Peninsular rivers, tributaries, and multipurpose dams.",
-                lectures: []
-              }
-            ]
-          },
-          {
-            id: "economics",
-            code: "ECONOMICS",
-            name: "Indian Economy & Financial System",
-            icon: "💰",
-            desc: "National income concepts, inflation, monetary policy, banking, budget, and public finance.",
-            chapters: [
-              {
-                id: "eco-ch1",
-                code: "UNIT 01",
-                title: "National Income & Macro Fundamentals",
-                desc: "GDP, GNP, NNP, factor cost vs market price, and macro growth indicators.",
-                lectures: []
-              },
-              {
-                id: "eco-ch2",
-                code: "UNIT 02",
-                title: "Banking System & Monetary Policy",
-                desc: "RBI tools, repo, reverse repo, CRR, SLR, and money supply aggregates.",
-                lectures: []
-              }
-            ]
-          },
-          {
-            id: "science",
-            code: "SCIENCE",
-            name: "General Science (Physics, Chem, Bio)",
-            icon: "🔬",
-            desc: "Applied scientific concepts frequently tested in SSC and state competitive examinations.",
-            chapters: [
-              {
-                id: "sci-ch1",
-                code: "UNIT 01",
-                title: "Human Physiology & Diseases (Biology)",
-                desc: "Organ systems, nutrition, vitamins, viral and bacterial pathogens.",
-                lectures: []
-              },
-              {
-                id: "sci-ch2",
-                code: "UNIT 02",
-                title: "Mechanics, Optics & Energy (Physics)",
-                desc: "Newton's laws, gravitation, reflection, refraction, lenses, and electric circuits.",
-                lectures: []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id: "quant",
-        code: "MATHS SPECIAL",
-        name: "Quantitative Aptitude (Maths)",
-        bannerClass: "banner-subject-quant",
-        icon: "📐",
-        desc: "Complete Arithmetic and Advanced Mathematics with conceptual clarity and calculation shortcuts.",
-        sections: [
-          {
-            id: "arithmetic",
-            code: "ARITHMETIC",
-            name: "Arithmetic Mathematics",
-            icon: "➕",
-            desc: "Percentage, Profit & Loss, Simple & Compound Interest, Ratio, Time & Work, Speed & Distance.",
-            chapters: [
-              {
-                id: "quant-ch1",
-                code: "UNIT 01",
-                title: "Percentage, Ratio & Proportion",
-                desc: "Base percentage fractions, successive change, proportion scaling.",
-                lectures: []
-              },
-              {
-                id: "quant-ch2",
-                code: "UNIT 02",
-                title: "Profit, Loss & Discount",
-                desc: "Cost price, marked price, false weights, and discount series.",
-                lectures: []
-              },
-              {
-                id: "quant-ch3",
-                code: "UNIT 03",
-                title: "Time, Speed, Distance & Trains",
-                desc: "Relative speed principles, platform crossings, circular tracks, boats & streams.",
-                lectures: []
-              }
-            ]
-          },
-          {
-            id: "adv-math",
-            code: "ADVANCED",
-            name: "Advanced Mathematics",
-            icon: "📐",
-            desc: "Geometry theorems, Mensuration 2D/3D, Trigonometry, and Algebra identities.",
-            chapters: [
-              {
-                id: "quant-ch4",
-                code: "UNIT 01",
-                title: "Geometry & Mensuration (2D & 3D)",
-                desc: "Triangle theorems, circles, tangents, cyclic quadrilaterals, 3D surface areas.",
-                lectures: []
-              },
-              {
-                id: "quant-ch5",
-                code: "UNIT 02",
-                title: "Algebra & Trigonometric Identities",
-                desc: "Symmetric expressions, algebraic identities, value-putting, heights and distances.",
+                title: "Physiography & Indian River Systems",
+                desc: "Himalayas, Deccan plateau, Indus, Ganga, Brahmaputra, and Peninsular river basins.",
                 lectures: []
               }
             ]
@@ -1027,44 +886,88 @@
         name: "Reasoning & Mental Ability",
         bannerClass: "banner-subject-reasoning",
         icon: "🧠",
-        desc: "Verbal and Non-verbal reasoning, syllogisms, circular/linear seating arrangements, and puzzles.",
+        desc: "Verbal and Non-verbal reasoning, letter patterns, coding-decoding, series, and logic sets.",
         sections: [
           {
             id: "verbal-reas",
             code: "VERBAL",
-            name: "Verbal Reasoning",
+            name: "Verbal & Analytical Reasoning",
             icon: "🔤",
-            desc: "Coding-decoding, blood relations, direction sense, syllogisms, and analogies.",
+            desc: "Alphabet tests, letter shifting rules, coding-decoding, number & letter series drills.",
             chapters: [
               {
                 id: "reas-ch1",
-                code: "UNIT 01",
-                title: "Coding-Decoding & Letter Shift Patterns",
-                desc: "Direct letter coding, opposite letter pairs, matrix substitution, numerical decoding.",
-                lectures: []
+                code: "CH 01",
+                title: "Alphabet Test & Positional Value Drills",
+                desc: "Left-to-right shifts, opposite letter pairs, vowel-consonant rules, and ranking patterns.",
+                lectures: [
+                  {
+                    id: "REAS-01A",
+                    title: "Chapter 1: ALPHABETS — Interactive Notes & 148 Quizzes",
+                    desc: "Comprehensive digital notes, forward/backward rankings, letter pairs, and 148 interactive quiz drills.",
+                    url: "lectures/Reasoning-Ch01-Alphabet-Test-Interactive-Notes.html",
+                    stages: 5,
+                    mcqs: 148,
+                    flashcards: 25,
+                    tags: ["Alphabet Test", "Letter Pairs", "148 Quizzes", "Parmar SSC"]
+                  },
+                  {
+                    id: "REAS-01B",
+                    title: "Alphabet Test Mega Century Practice Quiz (237 Qs)",
+                    desc: "Massive speed drill of 237 curated questions covering every letter shift pattern asked in SSC exams.",
+                    url: "lectures/Reasoning-Ch01-Alphabet-Test-237Q-Quiz.html",
+                    stages: 4,
+                    mcqs: 237,
+                    flashcards: 10,
+                    tags: ["Mega Quiz", "237 Questions", "Speed Booster"]
+                  }
+                ]
               },
               {
                 id: "reas-ch2",
-                code: "UNIT 02",
-                title: "Syllogisms & Logical Venn Diagrams",
-                desc: "Venn diagram method, statement-conclusion deductions, either-or possibilities.",
-                lectures: []
-              }
-            ]
-          },
-          {
-            id: "analytical-reas",
-            code: "NON-VERBAL",
-            name: "Analytical & Non-Verbal Reasoning",
-            icon: "🧩",
-            desc: "Seating arrangements, matrix puzzles, paper folding, mirror images, and cube cuts.",
-            chapters: [
+                code: "CH 02",
+                title: "Coding & Decoding Mastery",
+                desc: "Direct letter coding, pattern reversals, matrix substitution, and numerical operations.",
+                lectures: [
+                  {
+                    id: "REAS-02A",
+                    title: "Chapter 2: CODING DECODING — Interactive Notes & 145 Quizzes",
+                    desc: "Complete concept breakdowns, pattern tables, cross-coding rules, and 145 targeted practice questions.",
+                    url: "lectures/Reasoning-Ch02-Coding-Decoding-Interactive-Notes.html",
+                    stages: 5,
+                    mcqs: 145,
+                    flashcards: 30,
+                    tags: ["Coding Decoding", "145 Quizzes", "Interactive Notes"]
+                  },
+                  {
+                    id: "REAS-02B",
+                    title: "Coding & Decoding Century Practice Quiz (100 Qs)",
+                    desc: "High-speed 100 question mock test to build accuracy under time pressure.",
+                    url: "lectures/Reasoning-Ch02-Coding-Decoding-100Q-Quiz.html",
+                    stages: 3,
+                    mcqs: 100,
+                    flashcards: 10,
+                    tags: ["Century Quiz", "100 Qs", "Exam Pattern"]
+                  }
+                ]
+              },
               {
                 id: "reas-ch3",
-                code: "UNIT 01",
-                title: "Linear & Circular Seating Arrangement",
-                desc: "Inward/outward facing circles, parallel rows, blood-relation integrated arrangements.",
-                lectures: []
+                code: "CH 03",
+                title: "Series (श्रृंखला) — Numbers & Letters",
+                desc: "Arithmetic, geometric, alternating, square/cube, and alphanumeric series patterns.",
+                lectures: [
+                  {
+                    id: "REAS-03",
+                    title: "SERIES (श्रृंखला) — Interactive Digital Notes & Quiz Suite",
+                    desc: "Master step-difference, double difference, prime gap series, and complete quiz challenges.",
+                    url: "lectures/Reasoning-Ch03-Series-Interactive-Notes-and-Quiz.html",
+                    stages: 5,
+                    mcqs: 85,
+                    flashcards: 20,
+                    tags: ["Series", "Number Series", "Missing Terms"]
+                  }
+                ]
               }
             ]
           }
@@ -1073,89 +976,457 @@
       {
         id: "english",
         code: "ENGLISH SPECIAL",
-        name: "English Language & Vocab",
+        name: "English Language & Grammar",
         bannerClass: "banner-subject-english",
         icon: "📖",
-        desc: "Grammar rules with exceptions, vocabulary root words, cloze tests, and reading comprehension.",
+        desc: "Grammar rules with exceptions, vocabulary root words, one-word substitution, and idioms.",
         sections: [
           {
-            id: "grammar-sec",
+            id: "grammar",
             code: "GRAMMAR",
             name: "Grammar & Error Detection",
             icon: "✍️",
-            desc: "Parts of speech, subject-verb agreement, voice, narration, and conditional clauses.",
+            desc: "Nouns, Pronouns, Determiners, Subject-Verb Agreement, and Tenses.",
             chapters: [
               {
-                id: "eng-ch1",
-                code: "UNIT 01",
-                title: "Subject-Verb Agreement & Nouns",
-                desc: "Rules of concord, collective nouns, singular-plural confusions, and prepositional traps.",
-                lectures: []
+                id: "eng-noun",
+                code: "CH 01",
+                title: "Noun — Rules, Errors & Exceptions",
+                desc: "Uncountable nouns, collective nouns taking singular/plural verbs, hyphenated nouns, and apostrophe rules.",
+                lectures: [
+                  {
+                    id: "ENG-01A",
+                    title: "Chapter 1: NOUN — Interactive Digital Notes & Quizzes",
+                    desc: "Deep conceptual coverage of noun cases, confusing pairs, irregular plurals, and practice tests.",
+                    url: "lectures/English-Ch01-Noun-Digital-Notes-and-Quizzes.html",
+                    stages: 5,
+                    mcqs: 95,
+                    flashcards: 30,
+                    tags: ["Noun Rules", "Error Spotting", "Parmar SSC"]
+                  },
+                  {
+                    id: "ENG-01B",
+                    title: "English Noun Century Practice Quiz (100 Qs)",
+                    desc: "100 authentic SSC PYQs focused strictly on noun error detection and sentence improvements.",
+                    url: "lectures/English-Ch01-Noun-100Q-Practice-Quiz.html",
+                    stages: 3,
+                    mcqs: 100,
+                    flashcards: 15,
+                    tags: ["100 Qs", "Noun Quiz", "Century Drill"]
+                  }
+                ]
               },
               {
-                id: "eng-ch2",
-                code: "UNIT 02",
-                title: "Tenses & Conditionals",
-                desc: "Past perfect vs simple past, zero, 1st, 2nd, and 3rd conditionals, hypothetical clauses.",
-                lectures: []
+                id: "eng-pronoun",
+                code: "CH 02",
+                title: "Pronoun — Complete Framework (By PSP Sir)",
+                desc: "Personal, relative (who/whom/that), reflexive, distributive pronouns, and rule of 231 vs 123.",
+                lectures: [
+                  {
+                    id: "ENG-02A",
+                    title: "Chapter 2: PRONOUN Digital Notes & Complete Quiz",
+                    desc: "Full lecture notes by PSP Sir: relative pronouns, reciprocal pronouns, and comprehensive quiz.",
+                    url: "lectures/English-Ch02-Pronoun-Digital-Notes-and-Quiz.html",
+                    stages: 5,
+                    mcqs: 80,
+                    flashcards: 25,
+                    tags: ["Pronoun Rules", "PSP Sir", "Comprehensive Notes"]
+                  },
+                  {
+                    id: "ENG-02B",
+                    title: "SSC English Pronoun Century Quiz (100 Questions)",
+                    desc: "100 rigorous questions specifically testing pronoun agreement and case errors.",
+                    url: "lectures/English-Ch02-Pronoun-100Q-Century-Quiz.html",
+                    stages: 3,
+                    mcqs: 100,
+                    flashcards: 10,
+                    tags: ["Pronoun 100Q", "Century Mock", "PYQs"]
+                  }
+                ]
+              },
+              {
+                id: "eng-determiners",
+                code: "CH 03",
+                title: "Determiners & Articles Mastery",
+                desc: "Few/A few/The few, Little/A little/The little, Each, Every, Either, Neither, and quantifier rules.",
+                lectures: [
+                  {
+                    id: "ENG-03",
+                    title: "Determiners Mastery — Interactive Notes & 100 PYQ Quiz",
+                    desc: "Complete matrix of determiners, usage rules, and 100 previous-year practice questions.",
+                    url: "lectures/English-Ch03-Determiners-Mastery-Notes-and-Quiz.html",
+                    stages: 5,
+                    mcqs: 100,
+                    flashcards: 20,
+                    tags: ["Determiners", "Quantifiers", "100 PYQs"]
+                  }
+                ]
               }
             ]
           },
           {
-            id: "vocab-sec",
+            id: "vocab",
             code: "VOCABULARY",
-            name: "Vocabulary & Comprehension",
+            name: "Vocabulary & Idioms Powerhouse",
             icon: "📚",
-            desc: "Root words, idioms, phrasal verbs, one-word substitutions, and cloze tests.",
+            desc: "Root words, One Word Substitution (OWS), idioms, and Blackbook SSC vocabulary.",
             chapters: [
               {
-                id: "eng-ch3",
-                code: "UNIT 01",
-                title: "Root Words & High-Frequency Idioms",
-                desc: "Etymology-based vocabulary retention, exam-frequent phrasal verbs and idioms.",
-                lectures: []
+                id: "eng-vocab-ch",
+                code: "VOCAB 01",
+                title: "Blackbook & Core Vocabulary Suites",
+                desc: "Root-word based memorization, OWS mastery, and high-frequency idioms.",
+                lectures: [
+                  {
+                    id: "VOC-01",
+                    title: "VocabMaster Pro (English Edition) | Lectures 1–5 Portal",
+                    desc: "High-yield vocabulary foundation covering Lectures 1 to 5 with mnemonic memory hooks.",
+                    url: "lectures/English-Vocab-VocabMaster-Pro-Lec1-5.html",
+                    stages: 5,
+                    mcqs: 75,
+                    flashcards: 40,
+                    tags: ["VocabMaster", "Lectures 1-5", "Root Words"]
+                  },
+                  {
+                    id: "VOC-02",
+                    title: "One Word Substitution (OWS) Mastery — Lectures 6–8",
+                    desc: "Exam-oriented OWS sets covering government, phobias, manias, and personality types.",
+                    url: "lectures/English-Vocab-OWS-Mastery-Lec6-8.html",
+                    stages: 5,
+                    mcqs: 90,
+                    flashcards: 50,
+                    tags: ["OWS", "Lectures 6-8", "Blackbook"]
+                  },
+                  {
+                    id: "VOC-03",
+                    title: "Day 1 Blackbook SSC Vocab — OWS (1–69) & Idioms (1–63)",
+                    desc: "Exact Blackbook SSC Day 1 target: 69 One Word Substitutions and 63 Idioms & Phrases with quizzes.",
+                    url: "lectures/English-Vocab-Blackbook-Day1-OWS-and-Idioms.html",
+                    stages: 4,
+                    mcqs: 132,
+                    flashcards: 65,
+                    tags: ["Blackbook", "Day 1", "OWS & Idioms"]
+                  }
+                ]
               }
             ]
           }
         ]
       },
       {
-        id: "computer",
-        code: "COMPUTER TECH",
-        name: "Computer Knowledge & IT",
-        bannerClass: "banner-subject-computer",
-        icon: "💻",
-        desc: "Computer hardware architecture, memory hierarchies, OS, MS Office, and networking protocols.",
+        id: "quant",
+        code: "MATHS SPECIAL",
+        name: "Quantitative Aptitude (Maths)",
+        bannerClass: "banner-subject-quant",
+        icon: "📐",
+        desc: "Calculation boosters, arithmetic percentage mastery, algebra, and advanced calculus.",
         sections: [
           {
-            id: "comp-hardware",
-            code: "HARDWARE",
-            name: "Hardware, Memory & OS",
-            icon: "🖥️",
-            desc: "CPU internal architecture, memory hierarchies (RAM/ROM/Cache), and OS fundamentals.",
+            id: "arithmetic",
+            code: "ARITHMETIC",
+            name: "Arithmetic & Speed Calculation",
+            icon: "➕",
+            desc: "Mental arithmetic, speed drills, percentages, profit & loss, and ratios.",
             chapters: [
               {
-                id: "comp-ch1",
-                code: "UNIT 01",
-                title: "CPU Architecture & Memory Hierarchy",
-                desc: "ALU, Control Unit, primary vs secondary memory, cache levels, and storage buses.",
-                lectures: []
+                id: "math-speed",
+                code: "SPEED MATH",
+                title: "Calculation Booster & Mental Math Drills",
+                desc: "Vedic speed multiplication, base method, fractions to percentage chart, square/cube shortcuts.",
+                lectures: [
+                  {
+                    id: "MATH-01",
+                    title: "Calculation Booster — Interactive Notes, Drills & Quizzes",
+                    desc: "Essential speed calculations, table mastery, split & merge techniques, and daily speed drills.",
+                    url: "lectures/Maths-Calculation-Booster-Speed-Drills.html",
+                    stages: 5,
+                    mcqs: 60,
+                    flashcards: 30,
+                    tags: ["Speed Math", "Calculation Booster", "Vedic Tricks"]
+                  }
+                ]
+              },
+              {
+                id: "math-percent",
+                code: "PERCENTAGE",
+                title: "Percentage Mastery Hub",
+                desc: "Fraction conversions, successive percentage change, price-consumption-expenditure, voting & population.",
+                lectures: [
+                  {
+                    id: "MATH-02",
+                    title: "Parmar SSC Percentage Mastery Hub & Complete Quiz Suite",
+                    desc: "Complete percentage lecture suite: all formula variations, typewise practice problems, and quiz.",
+                    url: "lectures/Maths-Arithmetic-Percentage-Mastery-Hub.html",
+                    stages: 6,
+                    mcqs: 110,
+                    flashcards: 25,
+                    tags: ["Percentage", "Typewise Problems", "Parmar SSC"]
+                  }
+                ]
               }
             ]
           },
           {
-            id: "comp-networks",
-            code: "NETWORKING",
-            name: "Networking, Protocols & Security",
-            icon: "🌐",
-            desc: "OSI 7-layer model, TCP/IP, IP addressing, cyber security protocols, and shortcuts.",
+            id: "higher-math",
+            code: "HIGHER MATH",
+            name: "Advanced & Higher Mathematics",
+            icon: "∫dx",
+            desc: "Differential equations, calculus, coordinate geometry, and advanced algebra.",
             chapters: [
               {
-                id: "comp-ch2",
-                code: "UNIT 01",
-                title: "Networking Models & Internet Protocols",
-                desc: "HTTP, HTTPS, FTP, DNS, SMTP, IPv4 vs IPv6, and firewall architectures.",
-                lectures: []
+                id: "diff-eq",
+                code: "CALCULUS",
+                title: "Differential Equations",
+                desc: "Order and degree, variable separable, homogeneous equations, and integrating factor methods.",
+                lectures: [
+                  {
+                    id: "MATH-03",
+                    title: "Differential Equations — 50 Questions Practice Quiz",
+                    desc: "Rigorous 50-question mock on forming and solving first and second order differential equations.",
+                    url: "lectures/Maths-Advanced-Differential-Equations-50Q.html",
+                    stages: 3,
+                    mcqs: 50,
+                    flashcards: 15,
+                    tags: ["Differential Equations", "Calculus", "50 Qs"]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "entrance",
+        code: "MARITIME & ENTRANCE",
+        name: "Sponsorship & Entrance Exams",
+        bannerClass: "banner-subject-special",
+        icon: "⚓",
+        desc: "Dedicated preparation for IMU CET, Agniveer Vayu, and Anglo-Eastern Merchant Navy Sponsorship Exams.",
+        sections: [
+          {
+            id: "imu-cet",
+            code: "IMU CET",
+            name: "IMU CET & Agniveer Vayu Portal",
+            icon: "🚢",
+            desc: "Indian Maritime University Common Entrance Test blueprint, vocabulary, and subject mocks.",
+            chapters: [
+              {
+                id: "imu-prep",
+                code: "IMU 01",
+                title: "IMU CET Master Preparation & Vocab",
+                desc: "Exam pattern, high-yield English, physics and maritime terminology.",
+                lectures: [
+                  {
+                    id: "IMU-01",
+                    title: "IMU CET Master Prep Hub — Vocabulary, Quizzes & Blueprint",
+                    desc: "Complete entrance blueprint, syllabus breakdown, high-yield vocabulary, and practice mocks.",
+                    url: "lectures/Entrance-IMU-CET-Master-Prep-Hub.html",
+                    stages: 5,
+                    mcqs: 85,
+                    flashcards: 35,
+                    tags: ["IMU CET", "Maritime", "Exam Blueprint"]
+                  },
+                  {
+                    id: "IMU-02",
+                    title: "IMU CET & Agniveer Vayu — Top 100 Expected Vocabulary Hub",
+                    desc: "100 most anticipated vocabulary words with contextual examples, antonyms, and quizzes.",
+                    url: "lectures/Entrance-IMU-CET-Agniveer-100-Vocab.html",
+                    stages: 4,
+                    mcqs: 100,
+                    flashcards: 50,
+                    tags: ["Top 100 Vocab", "Agniveer Vayu", "IMU CET"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "anglo-eastern",
+            code: "AEMA SPONSOR",
+            name: "Anglo-Eastern Sponsorship Written Exam",
+            icon: "🎖️",
+            desc: "Complete subject-wise PYQ suites for Anglo-Eastern Maritime Academy deck/engine cadet sponsorship.",
+            chapters: [
+              {
+                id: "ae-science",
+                code: "SCI PYQs",
+                title: "Physics & Chemistry PYQ Hubs",
+                desc: "Previous year questions in Physics and Chemistry formulated by expert faculty.",
+                lectures: [
+                  {
+                    id: "AE-PHY-01",
+                    title: "Anglo-Eastern Written PYQs — Physics Complete 80 Questions Hub",
+                    desc: "Complete 80 Physics questions covering mechanics, thermodynamics, electricity, and optics.",
+                    url: "lectures/Entrance-Anglo-Eastern-Physics-80-PYQs.html",
+                    stages: 4,
+                    mcqs: 80,
+                    flashcards: 20,
+                    tags: ["Physics PYQs", "80 Questions", "AEMA"]
+                  },
+                  {
+                    id: "AE-CHM-01",
+                    title: "Anglo-Eastern Sponsorship Exam — 50 Chemistry PYQs Hub",
+                    desc: "50 essential Chemistry questions covering stoichiometry, atomic structure, and bonding.",
+                    url: "lectures/Entrance-Anglo-Eastern-Chemistry-50-PYQs.html",
+                    stages: 3,
+                    mcqs: 50,
+                    flashcards: 15,
+                    tags: ["Chemistry", "50 PYQs", "AEMA"]
+                  },
+                  {
+                    id: "AE-CHM-02",
+                    title: "Anglo-Eastern Written PYQs — Chemistry Hub (Rohit Jha Sir)",
+                    desc: "Special chemistry problem-solving session and PYQ bank compiled by Rohit Jha Sir.",
+                    url: "lectures/Entrance-Anglo-Eastern-Chemistry-Rohit-Sir-PYQs.html",
+                    stages: 4,
+                    mcqs: 45,
+                    flashcards: 15,
+                    tags: ["Rohit Sir", "Chemistry PYQ", "Merchant Navy"]
+                  }
+                ]
+              },
+              {
+                id: "ae-maths",
+                code: "MATH PYQs",
+                title: "Mathematics & Quantitative PYQ Hubs",
+                desc: "Previous year calculus, algebra, trigonometry, and arithmetic questions.",
+                lectures: [
+                  {
+                    id: "AE-MTH-01",
+                    title: "Anglo-Eastern Exam — Maths & Quant 52 PYQs Interactive Hub",
+                    desc: "52 authentic questions with complete stepwise interactive derivations.",
+                    url: "lectures/Entrance-Anglo-Eastern-Maths-Quant-52-PYQs.html",
+                    stages: 4,
+                    mcqs: 52,
+                    flashcards: 15,
+                    tags: ["Maths PYQ", "52 Qs", "Quant"]
+                  },
+                  {
+                    id: "AE-MTH-02",
+                    title: "Anglo-Eastern Written PYQs — Mathematics 75 Questions (Neha Ma'am)",
+                    desc: "75 essential math questions curated by Neha Gupta Ma'am for AEMA entrance.",
+                    url: "lectures/Entrance-Anglo-Eastern-Maths-75-PYQs.html",
+                    stages: 4,
+                    mcqs: 75,
+                    flashcards: 20,
+                    tags: ["Neha Ma'am", "75 Questions", "Maths"]
+                  }
+                ]
+              },
+              {
+                id: "ae-aptitude",
+                code: "APTITUDE",
+                title: "English, Reasoning & Maritime GK",
+                desc: "English grammar, reasoning aptitude, maritime awareness, and interview guidelines.",
+                lectures: [
+                  {
+                    id: "AE-ENG-01",
+                    title: "Anglo-Eastern Sponsorship Exam — 30 English PYQs Hub",
+                    desc: "30 grammar, comprehension, and error identification questions.",
+                    url: "lectures/Entrance-Anglo-Eastern-English-30-PYQs.html",
+                    stages: 3,
+                    mcqs: 30,
+                    flashcards: 15,
+                    tags: ["English PYQ", "30 Qs"]
+                  },
+                  {
+                    id: "AE-ENG-02",
+                    title: "Anglo-Eastern Written PYQs — English Master Hub",
+                    desc: "Comprehensive English preparation hub with vocabulary and sentence structuring drills.",
+                    url: "lectures/Entrance-Anglo-Eastern-English-Master-Hub.html",
+                    stages: 4,
+                    mcqs: 50,
+                    flashcards: 20,
+                    tags: ["English Master", "AEMA"]
+                  },
+                  {
+                    id: "AE-REA-01",
+                    title: "Anglo-Eastern Exam — General Aptitude & Reasoning (88 PYQs Mock)",
+                    desc: "88-question mock test testing speed, spatial aptitude, and logical deductions.",
+                    url: "lectures/Entrance-Anglo-Eastern-Reasoning-88-PYQs.html",
+                    stages: 4,
+                    mcqs: 88,
+                    flashcards: 15,
+                    tags: ["Reasoning 88Q", "Aptitude Mock"]
+                  },
+                  {
+                    id: "AE-REA-02",
+                    title: "Anglo-Eastern Written PYQs — Reasoning & Aptitude Hub",
+                    desc: "Targeted reasoning practice module covering analytical patterns and clocks-calendars.",
+                    url: "lectures/Entrance-Anglo-Eastern-Reasoning-Aptitude-Hub.html",
+                    stages: 4,
+                    mcqs: 60,
+                    flashcards: 15,
+                    tags: ["Reasoning Hub", "Aptitude"]
+                  },
+                  {
+                    id: "AE-GK-01",
+                    title: "Anglo-Eastern Written PYQs — GK & Maritime Awareness Hub",
+                    desc: "General knowledge, ocean geography, shipping terminology, and maritime safety.",
+                    url: "lectures/Entrance-Anglo-Eastern-GK-Maritime-Awareness.html",
+                    stages: 4,
+                    mcqs: 55,
+                    flashcards: 25,
+                    tags: ["Maritime GK", "Shipping Awareness"]
+                  },
+                  {
+                    id: "AE-INT-01",
+                    title: "Master Study Guide: Anglo-Eastern Sponsorship & Interview",
+                    desc: "Complete blueprint for clearing the psychometric test, medicals, and personal interview.",
+                    url: "lectures/Entrance-Anglo-Eastern-Study-Guide-and-Interview.html",
+                    stages: 5,
+                    mcqs: 40,
+                    flashcards: 30,
+                    tags: ["Interview Guide", "Psychometric", "Cadetship"]
+                  },
+                  {
+                    id: "AE-INT-02",
+                    title: "Anglo-Eastern Deck Entrance Test — Syllabus & Progress Tracker",
+                    desc: "Interactive syllabus checklist and progress tracker for cadet sponsorship aspirants.",
+                    url: "lectures/Entrance-Anglo-Eastern-Deck-Entrance-Tracker.html",
+                    stages: 3,
+                    mcqs: 25,
+                    flashcards: 10,
+                    tags: ["Syllabus Tracker", "Deck Cadet"]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "games",
+        code: "STRATEGY LAB",
+        name: "Brain Games & Logic Lab",
+        bannerClass: "banner-subject-computer",
+        icon: "♟️",
+        desc: "Cognitive enhancements, logical thinking, and chess strategy for competitive aptitude.",
+        sections: [
+          {
+            id: "chess",
+            code: "CHESS",
+            name: "Chess Strategy & Logic",
+            icon: "🏰",
+            desc: "Tactical positioning, pattern analysis, and strategic vision.",
+            chapters: [
+              {
+                id: "wizards-chess",
+                code: "GAME 01",
+                title: "Wizard's Chess — Gothic Cathedral Edition",
+                desc: "Play and analyze tactical chess inside an atmospheric gothic cathedral engine.",
+                lectures: [
+                  {
+                    id: "CHESS-01",
+                    title: "Wizard's Chess — Gothic Cathedral Interactive Game",
+                    desc: "Immersive chess arena with move validation, engine evaluation, and gothic styling.",
+                    url: "lectures/Special-Wizards-Chess-Gothic-Edition.html",
+                    stages: 2,
+                    mcqs: 0,
+                    flashcards: 0,
+                    tags: ["Chess", "Cognitive Drill", "Strategy"]
+                  }
+                ]
               }
             ]
           }
@@ -1163,7 +1434,9 @@
       }
     ];
 
-    /* NAVIGATION STATE */
+    /* ==========================================================
+       ROUTER / NAVIGATION STATE CONTROLLER
+    ========================================================== */
     let navState = {
       level: 'home',
       subjectId: null,
@@ -1220,7 +1493,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // ==========================================
-      // LEVEL 1: HOME (SUBJECTS ONLY)
+      // LEVEL 1: HOME (ALL SUBJECTS)
       // ==========================================
       if (navState.level === 'home') {
         hero.style.display = 'block';
@@ -1231,7 +1504,7 @@
           <div class="view-header">
             <span class="view-step-badge">Level 1 • Select Subject</span>
             <h1 class="view-title">Available Toppers Batches</h1>
-            <p class="view-subtext">Click on any subject to enter its dedicated academic sections and chapters.</p>
+            <p class="view-subtext">Click on any subject to explore its academic sections, chapters, and live modules.</p>
           </div>
 
           <div class="portal-grid">
@@ -1250,7 +1523,7 @@
                     <p class="card-desc-paragraph">${sub.desc}</p>
                     <div class="card-features-row">
                       <span class="feature-chip">${sub.sections.length} Sections</span>
-                      ${totalLecs > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:700;">${totalLecs} Active Modules</span>` : `<span class="feature-chip">All Chapters</span>`}
+                      ${totalLecs > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:800;">${totalLecs} Active Modules</span>` : `<span class="feature-chip">Curriculum Ready</span>`}
                       <span class="feature-chip">Bilingual</span>
                     </div>
                   </div>
@@ -1285,7 +1558,7 @@
         appView.innerHTML = `
           <div class="view-header">
             <span class="view-step-badge">Level 2 • Sections in ${currentSub.name}</span>
-            <h1 class="view-title">${currentSub.name} Sections</h1>
+            <h1 class="view-title">${currentSub.name}</h1>
             <p class="view-subtext">${currentSub.desc}</p>
           </div>
 
@@ -1305,7 +1578,7 @@
                     <p class="card-desc-paragraph">${sec.desc}</p>
                     <div class="card-features-row">
                       <span class="feature-chip">${sec.chapters.length} Units/Chapters</span>
-                      ${secLecs > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:700;">${secLecs} Ready Lectures</span>` : `<span class="feature-chip">Curriculum Ready</span>`}
+                      ${secLecs > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:800;">${secLecs} Active Modules</span>` : `<span class="feature-chip">Curriculum Ready</span>`}
                     </div>
                   </div>
                   <div class="card-footer-action">
@@ -1356,13 +1629,13 @@
                     <h3 class="card-title-heading">${ch.title}</h3>
                     <p class="card-desc-paragraph">${ch.desc}</p>
                     <div class="card-features-row">
-                      ${count > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:800;">${count} Live Lectures</span>` : `<span class="feature-chip">Upcoming</span>`}
+                      ${count > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:800;">${count} Live Modules</span>` : `<span class="feature-chip">Upcoming</span>`}
                       <span class="feature-chip">Active Recall</span>
-                      <span class="feature-chip">Flashcards</span>
+                      <span class="feature-chip">Quizzes</span>
                     </div>
                   </div>
                   <div class="card-footer-action">
-                    <span class="card-meta-text">${count} Interactive Lectures</span>
+                    <span class="card-meta-text">${count} Interactive Modules</span>
                     <button class="btn-card-cta">Open Chapter ➔</button>
                   </div>
                 </div>
@@ -1393,7 +1666,7 @@
 
         appView.innerHTML = `
           <div class="view-header">
-            <span class="view-step-badge">Level 4 • Interactive Lectures in ${currentCh.code}</span>
+            <span class="view-step-badge">Level 4 • Modules in ${currentCh.code}</span>
             <h1 class="view-title">${currentCh.title}</h1>
             <p class="view-subtext">${currentCh.desc}</p>
           </div>
@@ -1404,7 +1677,7 @@
                 <div class="lec-left-info">
                   <div class="lec-badge-strip">
                     <span class="lec-num-pill">${lec.id}</span>
-                    <span class="lec-format-pill">6-Stage Digital Classroom</span>
+                    <span class="lec-format-pill">Interactive Learning Module</span>
                   </div>
                   <h2 class="lec-main-title">${lec.title}</h2>
                   <p class="lec-main-desc">${lec.desc}</p>
@@ -1414,8 +1687,8 @@
                 </div>
                 <div class="lec-right-action">
                   <div class="lec-stages-summary">
-                    <div>6 Stages • ${lec.mcqs} Practice MCQs</div>
-                    <div style="color:var(--brand-gold); font-weight:700;">${lec.flashcards} 3D Flashcards</div>
+                    <div>${lec.stages} Stages • ${lec.mcqs} Practice MCQs</div>
+                    <div style="color:var(--brand-gold); font-weight:700;">${lec.flashcards} Flashcards</div>
                   </div>
                   <a href="${lec.url}" class="btn-start-learning">Start Interactive Learning ➔</a>
                 </div>
@@ -1423,7 +1696,7 @@
             `).join('') : `
               <div class="empty-state-box">
                 <div class="empty-icon">📂</div>
-                <h3 style="font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:0.5rem;">No Lectures Added to this Chapter Yet</h3>
+                <h3 style="font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:0.5rem;">No Modules Added to this Chapter Yet</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted); max-width:550px; margin:0 auto;">
                   Whenever you upload PDF notes or study material for this unit, our automated pipeline will instantly create the interactive learning module and link it right here.
                 </p>
