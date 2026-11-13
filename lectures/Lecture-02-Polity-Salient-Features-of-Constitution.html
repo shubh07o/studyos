@@ -1,0 +1,2834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polity: Salient Features of the Constitution | Interactive Learning Module</title>
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121826;
+      --bg-card: #182234;
+      --bg-card-hover: #1f2c42;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --accent-gold: #fbbf24;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --border: #243247;
+      --nav-active: #0284c7;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.15);
+      --accent-gold: #d97706;
+      --success: #059669;
+      --error: #dc2626;
+      --warning: #d97706;
+      --border: #e2e8f0;
+      --nav-active: #0284c7;
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .emblem-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-title h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-title p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .progress-widget {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--bg-card);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+
+    .progress-bar-mini {
+      width: 70px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--success));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .btn-icon {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1.05rem;
+    }
+
+    .btn-icon:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* NAVIGATION TABS */
+    nav.stage-nav {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    nav.stage-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tabs {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .tab-btn {
+      padding: 0.85rem 1.15rem;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .stage-badge {
+      font-size: 0.7rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .stage-section {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .stage-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION HEADER */
+    .section-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .section-banner h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-banner p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+
+    /* CARDS & GRIDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .bookmark-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: color 0.2s ease;
+    }
+
+    .bookmark-btn.bookmarked {
+      color: var(--accent-gold);
+    }
+
+    /* BADGES & HIGHLIGHTS */
+    .badge-exam {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-gold);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1.15rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.92rem;
+    }
+
+    .mnemonic-box {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.04));
+      border: 1px dashed var(--accent-gold);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .mnemonic-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* TABLES */
+    .custom-table-wrapper {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 1.25rem 0;
+    }
+
+    table.custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    table.custom-table th {
+      background: var(--bg-secondary);
+      color: var(--accent);
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    table.custom-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-main);
+    }
+
+    table.custom-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.custom-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* RECALL CARDS */
+    .recall-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .recall-question {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .reveal-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .reveal-btn:hover {
+      background: var(--accent);
+      color: #0f172a;
+    }
+
+    .revealed-content {
+      display: none;
+      margin-top: 0.85rem;
+      padding: 0.85rem;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid var(--success);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .revealed-content.show {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    /* MATCHING EXERCISE */
+    .matching-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .matching-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .match-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .match-select {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    /* FILL IN THE BLANK */
+    .fitb-input {
+      background: var(--bg-secondary);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      width: 140px;
+      text-align: center;
+    }
+
+    .fitb-check-btn {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    /* FLASHCARD COMPONENT */
+    .flashcard-arena {
+      max-width: 650px;
+      margin: 2rem auto;
+      perspective: 1200px;
+    }
+
+    .flashcard-wrapper {
+      width: 100%;
+      height: 350px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .flashcard-wrapper.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      border: 2px solid var(--border);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem;
+      background: var(--bg-card);
+    }
+
+    .flashcard-front {
+      border-top: 5px solid var(--accent);
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+      border-top: 5px solid var(--success);
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+    }
+
+    .fc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .fc-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex: 1;
+      padding: 1rem 0;
+    }
+
+    .fc-prompt {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .fc-answer {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--success);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .fc-explanation {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 90%;
+    }
+
+    .fc-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    .fc-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-fc-nav {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-fc-nav:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+
+    .fc-status-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-fc-status {
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-remembered {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-difficult {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--error);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    /* QUIZ COMPONENT */
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quiz-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .q-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .q-basic { background: rgba(56, 189, 248, 0.2); color: var(--accent); }
+    .q-moderate { background: rgba(251, 191, 36, 0.2); color: var(--accent-gold); }
+    .q-difficult { background: rgba(239, 68, 68, 0.2); color: var(--error); }
+
+    .q-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(.locked) {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+
+    .option-btn.selected {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: var(--success) !important;
+    }
+
+    .option-btn.incorrect {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--error) !important;
+      color: var(--error) !important;
+    }
+
+    .option-letter {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .q-explanation {
+      display: none;
+      padding: 1.25rem;
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      margin-top: 1.25rem;
+      font-size: 0.92rem;
+    }
+
+    .q-explanation.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .quiz-footer-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* SCORECARD */
+    .scorecard {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      max-width: 600px;
+      margin: 2rem auto;
+      display: none;
+    }
+
+    .scorecard.show {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .score-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: conic-gradient(var(--success) calc(var(--percent) * 1%), var(--border) 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.5rem auto;
+      position: relative;
+    }
+
+    .score-circle-inner {
+      width: 106px;
+      height: 106px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    /* REVISION PILLS */
+    .oneliner-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .oneliner-pill:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .oneliner-icon {
+      color: var(--accent-gold);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .confusing-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .confusing-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .confuse-side {
+      padding: 0.5rem;
+    }
+
+    .confuse-side h4 {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    /* TEARS OF OLD PM INTERACTIVE MATRIX */
+    .tears-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .tears-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: all 0.2s ease;
+    }
+
+    .tears-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .tears-letter {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--accent), #6366f1);
+      color: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- TOP APP BAR -->
+  <header>
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="emblem-icon">⚖️</div>
+        <div class="brand-title">
+          <h1>INDIAN POLITY • LECTURE 02</h1>
+          <p>Salient Features of the Constitution & The 12 Schedules | Parmar SSC Master Module</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="progress-widget" title="Overall Module Completion">
+          <span>Progress</span>
+          <div class="progress-bar-mini">
+            <div class="progress-bar-fill" id="overallProgress"></div>
+          </div>
+          <strong id="progressPercent">0%</strong>
+        </div>
+        <button class="btn-icon" id="bookmarksBtn" title="View Saved Bookmarks">⭐</button>
+        <button class="btn-icon" id="themeToggleBtn" title="Toggle Dark/Light Mode">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STAGE NAVIGATION TABS -->
+  <nav class="stage-nav">
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-stage="stageA">
+        <span class="stage-badge">Stage A</span> 📖 Understand
+      </button>
+      <button class="tab-btn" data-stage="stageB">
+        <span class="stage-badge">Stage B</span> ⚡ Active Recall
+      </button>
+      <button class="tab-btn" data-stage="stageC">
+        <span class="stage-badge">Stage C</span> 🎴 Flashcards (<span id="fcCount">22</span>)
+      </button>
+      <button class="tab-btn" data-stage="stageD">
+        <span class="stage-badge">Stage D</span> 📝 Exam Quiz (20 MCQs)
+      </button>
+      <button class="tab-btn" data-stage="stageE">
+        <span class="stage-badge">Stage E</span> 🚀 Quick Revision
+      </button>
+      <button class="tab-btn" data-stage="stageF">
+        <span class="stage-badge">Stage F</span> 🏆 Final Memory Test
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main>
+
+    <!-- ========================================== -->
+    <!-- STAGE A: UNDERSTAND -->
+    <!-- ========================================== -->
+    <section id="stageA" class="stage-section active">
+      <div class="section-banner">
+        <div>
+          <h2>📖 Visual Deep-Dive Lessons</h2>
+          <p>Master India's unique constitutional features, federalism debates, 3 legislative lists, and all 12 schedules (TEARS OF OLD PM).</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageA')">✓ Mark Stage A Complete</button>
+      </div>
+
+      <!-- ROW 1: CONSTITUTIONAL SIZE & ADDED PARTS -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📜 Lengthiest Written Constitution</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Lengthiest Constitution Stats', this)">★</button>
+          </div>
+          <div class="badge-exam">ORIGINAL VS PRESENT ARCHITECTURE</div>
+          <div class="custom-table-wrapper" style="margin-top:0.5rem;">
+            <table class="custom-table">
+              <thead><tr><th>Dimension</th><th>Originally (1949/50)</th><th>Presently (2024+)</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Articles</strong></td><td>395 Articles</td><td><strong style="color:var(--accent);">448+ Articles</strong></td></tr>
+                <tr><td><strong>Parts</strong></td><td>22 Parts</td><td><strong style="color:var(--accent-gold);">25 Parts</strong></td></tr>
+                <tr><td><strong>Schedules</strong></td><td>8 Schedules</td><td><strong style="color:var(--success);">12 Schedules</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="highlight-box">
+            🔄 <strong>4 Added Parts via Constitutional Amendments:</strong><br>
+            • <strong>Part IV-A:</strong> Fundamental Duties (42nd CAA, 1976)<br>
+            • <strong>Part IX-A:</strong> Municipalities (74th CAA, 1992)<br>
+            • <strong>Part IX-B:</strong> Co-operative Societies (97th CAA, 2011)<br>
+            • <strong>Part XIV-A:</strong> Tribunals (42nd CAA, 1976)<br>
+            ⚠️ <em>Note:</em> <strong>Part VII</strong> was repealed by the <strong>7th CAA 1956</strong>.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">⚖️ Written vs Unwritten & Rigidity/Flexibility</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Written vs Unwritten Constitution', this)">★</button>
+          </div>
+          <div class="custom-table-wrapper" style="margin-top:0.5rem;">
+            <table class="custom-table" style="font-size:0.84rem;">
+              <thead><tr><th>Feature</th><th>Written Constitution</th><th>Unwritten Constitution</th></tr></thead>
+              <tbody>
+                <tr><td>Structure</td><td>Compiled in systematic form</td><td>Not structured</td></tr>
+                <tr><td>Enactment</td><td>Formally constituted assembly</td><td>Evolved over time</td></tr>
+                <tr><td>Amendment</td><td>Not easy to amend (Rigid/Special)</td><td>Easy to amend (Simple laws)</td></tr>
+                <tr><td>Examples</td><td><strong>India, USA</strong></td><td><strong>UK, Israel</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="highlight-box">
+            🇮🇱 <strong>Exam Trivia:</strong> <em>Knesset</em> is the unicameral parliament of <strong>Israel</strong>.<br>
+            ⚖️ <strong>Blend of Rigidity & Flexibility:</strong> Some provisions can be amended by a <strong>simple majority</strong> (flexible), while others require a <strong>special majority</strong> of Parliament ± ratification by 50% state legislatures (rigid).
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 2: FEDERALISM & COMMENTS -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">🌐 Indian Federalism: Three-Tier Structure & Canadian Model</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('Indian Federalism Structure', this)">★</button>
+        </div>
+        <p style="font-size:0.92rem;">
+          Federalism refers to the existence of <strong>more than one level of government</strong>. States are <em>not merely agents</em> of the Centre; they derive their constitutional authority directly from the Constitution itself.
+        </p>
+
+        <!-- 3 TIER DIAGRAM -->
+        <div class="grid-3" style="margin:1.25rem 0 0.5rem;">
+          <div style="background:var(--bg-secondary); border:1px solid var(--accent); border-radius:10px; padding:1rem; text-align:center;">
+            <div style="font-size:1.75rem;">🏛️ Tier 1</div>
+            <strong style="color:var(--accent);">Union / Central Government</strong>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">National affairs, defence, foreign relations</p>
+          </div>
+          <div style="background:var(--bg-secondary); border:1px solid var(--accent-gold); border-radius:10px; padding:1rem; text-align:center;">
+            <div style="font-size:1.75rem;">🏢 Tier 2</div>
+            <strong style="color:var(--accent-gold);">State Governments</strong>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">State-level governance, police, agriculture</p>
+          </div>
+          <div style="background:var(--bg-secondary); border:1px solid var(--success); border-radius:10px; padding:1rem; text-align:center;">
+            <div style="font-size:1.75rem;">🏡 Tier 3</div>
+            <strong style="color:var(--success);">Local Bodies</strong>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Panchayats (Rural) & Municipalities (Urban)</p>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          🍁 <strong>Borrowed from Canada:</strong> India is described as a <em>"Federation with a unitary bias"</em> or a <em>"Federation with a Strong Centre"</em>.
+        </div>
+
+        <h4 style="color:var(--accent-gold); margin:1.5rem 0 0.75rem;">🗣️ Famous Scholar Comments on Indian Federalism (Direct SSC Questions)</h4>
+        <div class="grid-4" style="margin-bottom:0;">
+          <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:0.85rem;">
+            <div style="font-size:0.8rem; color:var(--accent); font-weight:700;">K. C. Wheare</div>
+            <strong style="font-size:0.95rem;">"Quasi-Federal"</strong>
+          </div>
+          <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:0.85rem;">
+            <div style="font-size:0.8rem; color:var(--accent); font-weight:700;">Granville Austin</div>
+            <strong style="font-size:0.95rem;">"Cooperative Federalism"</strong>
+          </div>
+          <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:0.85rem;">
+            <div style="font-size:0.8rem; color:var(--accent); font-weight:700;">Morris Jones</div>
+            <strong style="font-size:0.95rem;">"Bargaining Federalism"</strong>
+          </div>
+          <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:0.85rem;">
+            <div style="font-size:0.8rem; color:var(--accent); font-weight:700;">Sir Ivor Jennings</div>
+            <strong style="font-size:0.95rem;">"Federalism with Centralising Tendency"</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 3: FEDERAL VS UNITARY & 3 ORGANS -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">⚖️ Federal Features vs Unitary Features</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Federal vs Unitary Features', this)">★</button>
+          </div>
+          <div class="custom-table-wrapper" style="margin-top:0.5rem;">
+            <table class="custom-table" style="font-size:0.84rem;">
+              <thead><tr><th>Federal Features (States Protect)</th><th>Unitary Features (Centre Dominates)</th></tr></thead>
+              <tbody>
+                <tr><td>• Written Constitution</td><td>• Single Constitution</td></tr>
+                <tr><td>• Supremacy of the Constitution</td><td>• Single Citizenship</td></tr>
+                <tr><td>• Rigidity of the Constitution</td><td>• Flexibility of Constitution</td></tr>
+                <tr><td>• Separate State Services</td><td>• All India Services (IAS, IPS, IFS)</td></tr>
+                <tr><td>• Bicameralism (RS & LS)</td><td>• Emergency Provisions (Part XVIII)</td></tr>
+                <tr><td>• Dual Government (Centre + State)</td><td>• Integrated Judiciary (Single pyramid)</td></tr>
+                <tr><td>• Independent Judiciary</td><td>• Appointment of Governors by Centre</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🏛️ Parliamentary System & Organs of Government</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Parliamentary Form vs Presidential', this)">★</button>
+          </div>
+          <p style="font-size:0.92rem;">
+            India adopted the <strong>Parliamentary Form of Government (Westminster model)</strong> borrowed from the <strong>UK</strong>.
+          </p>
+          <div class="highlight-box">
+            ⚠️ <strong>Crucial Nuance:</strong><br>
+            • In <strong>India (Parliamentary)</strong>: There is <em>NO strict separation of power</em>. The Executive is drawn from the Legislative branch (Ministers are MPs).<br>
+            • In <strong>USA (Presidential)</strong>: There is a <em>strict separation of powers</em> between Executive, Legislature, and Judiciary.
+          </div>
+          <div class="grid-3" style="margin-bottom:0; gap:0.5rem; text-align:center;">
+            <div style="background:var(--bg-secondary); padding:0.6rem; border-radius:6px; border:1px solid var(--border);">
+              <strong>Legislative</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">Makes Laws</span>
+            </div>
+            <div style="background:var(--bg-secondary); padding:0.6rem; border-radius:6px; border:1px solid var(--border);">
+              <strong>Executive</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">Carries out Laws</span>
+            </div>
+            <div style="background:var(--bg-secondary); padding:0.6rem; border-radius:6px; border:1px solid var(--border);">
+              <strong>Judiciary</strong><br><span style="font-size:0.8rem; color:var(--text-muted);">Evaluates Laws</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 4: MASTER SCHEDULES - TEARS OF OLD PM -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">📜 Master Mnemonic: "TEARS OF OLD PM" (All 12 Schedules)</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('12 Schedules TEARS OF OLD PM', this)">★</button>
+        </div>
+        <div class="badge-exam">COMPREHENSIVE OVERVIEW OF ALL 12 SCHEDULES</div>
+
+        <div class="tears-grid">
+          <div class="tears-card">
+            <div class="tears-letter">T</div>
+            <div>
+              <strong>1st Schedule: Territories</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Names of States, Union Territories and their territorial boundaries.</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">E</div>
+            <div>
+              <strong>2nd Schedule: Emoluments</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Salaries, allowances & privileges of President, Governors, Speakers, Judges, CAG.</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">A</div>
+            <div>
+              <strong>3rd Schedule: Affirmations</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Forms of Oaths and Affirmations for Union/State Ministers, MPs, MLAs, Judges, CAG.</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">R</div>
+            <div>
+              <strong>4th Schedule: Rajya Sabha</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Allocation of seats in Council of States (Rajya Sabha) to States and UTs.</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">S</div>
+            <div>
+              <strong>5th Schedule: Scheduled Areas</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Administration & control of Scheduled Areas and STs in 10 States. (TAC up to 20 members).</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">O</div>
+            <div>
+              <strong>6th Schedule: Other Tribal Areas</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Tribal administration in 4 NE states: Assam, Meghalaya, Tripura, Mizoram (ATM without Money).</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">F</div>
+            <div>
+              <strong>7th Schedule: Federal Lists</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Division of legislative powers: Union List (100), State List (61), Concurrent List (52).</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">O</div>
+            <div>
+              <strong>8th Schedule: Official Languages</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">22 recognized languages (originally 14). Amended via 21st, 71st, 92nd, 96th CAAs.</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">L</div>
+            <div>
+              <strong>9th Schedule: Land Reforms</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Added by 1st CAA 1951. Protected from judicial scrutiny; subject to judicial review post-1973 (I.R. Coelho).</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">D</div>
+            <div>
+              <strong>10th Schedule: Defection</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Anti-Defection Law added by 52nd CAA, 1985. Disqualification of MPs and MLAs.</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">P</div>
+            <div>
+              <strong>11th Schedule: Panchayats</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Panchayati Raj powers & responsibilities added by 73rd CAA 1992. (29 Functional Matters).</p>
+            </div>
+          </div>
+
+          <div class="tears-card">
+            <div class="tears-letter">M</div>
+            <div>
+              <strong>12th Schedule: Municipalities</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted);">Urban Local Bodies added by 74th CAA 1992. (18 Functional Matters).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 5: DEEP DIVE INTO SCHEDULE 5 & 6 -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🏞️ Schedule 5: Scheduled Areas (10 States)</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Schedule 5 Details', this)">★</button>
+          </div>
+          <ul style="font-size:0.9rem; padding-left:1.25rem; margin-bottom:1rem;">
+            <li><strong>Constitutional Basis:</strong> Article 244(1). The <strong>President of India</strong> has the sole authority to declare areas as "Scheduled Areas".</li>
+            <li><strong>Tribal Advisory Council (TAC):</strong> Can have up to <strong>20 members</strong>, of which <strong>3/4th</strong> must be representatives of Scheduled Tribes in the State Legislative Assembly (ST MLAs).</li>
+            <li><strong>Role of TAC:</strong> Exclusively advises the <strong>Governor</strong> of the respective state.</li>
+          </ul>
+          <div class="highlight-box">
+            📍 <strong>10 States with 5th Schedule Areas:</strong><br>
+            Andhra Pradesh, Chhattisgarh, Gujarat, Himachal Pradesh, Jharkhand, Madhya Pradesh, Maharashtra, Odisha, Rajasthan, Telangana.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🌲 Schedule 6: Autonomous Districts (4 States)</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Schedule 6 Details', this)">★</button>
+          </div>
+          <div class="mnemonic-box">
+            <div class="mnemonic-title">🧠 MEMORY TRICK: "ATM without Money"</div>
+            <strong>A</strong>ssam, <strong>T</strong>ripura, <strong>M</strong>eghalaya, <strong>M</strong>izoram.<br>
+            ⚠️ <em>Remember: Manipur is NOT included!</em>
+          </div>
+          <ul style="font-size:0.88rem; padding-left:1.25rem;">
+            <li><strong>Autonomous District Councils (ADCs):</strong> Constituted for 5 years by the <strong>Governor</strong>.</li>
+            <li><strong>Powers of ADCs:</strong> Vested with Legislative, Judicial, Financial, and Executive powers to manage land, forests, and village administration.</li>
+            <li><strong>Council Membership:</strong> Up to <strong>30 members</strong> (26 elected by adult suffrage + 4 nominated by Governor).</li>
+            <li><strong>Special Exception:</strong> <strong>Bodo Territorial Council (BTC)</strong> consists of <strong>46 members</strong> (40 elected + 6 nominated by Governor).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ROW 6: SCHEDULE 7 (LISTS & 5 EMERGENCIES) -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">📑 Schedule 7: Legislative Power Distribution & State List Overrides</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('Schedule 7 Lists', this)">★</button>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:1.5rem;">
+          <div class="card" style="margin-bottom:0; background:var(--bg-secondary);">
+            <h4 style="color:var(--accent);">1. Union List</h4>
+            <div style="font-size:0.85rem; margin:0.5rem 0;">Initially <strong>97</strong> ➔ Presently <strong>100</strong></div>
+            <p style="font-size:0.82rem; color:var(--text-muted);">
+              Defence, Arms & ammunition, Atomic energy, Citizenship, Airways, Inter-state trade, Banking, Foreign affairs, Labour & mines, Census.
+            </p>
+          </div>
+
+          <div class="card" style="margin-bottom:0; background:var(--bg-secondary);">
+            <h4 style="color:var(--accent-gold);">2. State List</h4>
+            <div style="font-size:0.85rem; margin:0.5rem 0;">Initially <strong>66</strong> ➔ Presently <strong>61</strong></div>
+            <p style="font-size:0.82rem; color:var(--text-muted);">
+              Public order, Local government, Health & sanitation, Pilgrimages, Intoxicating liquors, Agriculture, Fisheries, Betting/gambling, Co-operative societies, Land, Lotteries.
+            </p>
+          </div>
+
+          <div class="card" style="margin-bottom:0; background:var(--bg-secondary);">
+            <h4 style="color:var(--success);">3. Concurrent List</h4>
+            <div style="font-size:0.85rem; margin:0.5rem 0;">Initially <strong>47</strong> ➔ Presently <strong>52</strong></div>
+            <p style="font-size:0.82rem; color:var(--text-muted);">
+              Marriage & divorce, Criminal laws & CrPC, Insolvency & bankruptcy, Trade & labour disputes, Electricity, Education, Weights & measures.
+            </p>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          ⚡ <strong>Doctrine of Repugnancy [Article 254(1)]:</strong><br>
+          If a conflict arises between Central law and State law on a Concurrent List item, <strong>Central law prevails</strong>.<br>
+          <em>Exception:</em> A State law prevails only if it was reserved for the President's consideration and received <strong>President's Assent</strong>. (However, Parliament can still override it later with a new enactment!).<br>
+          🌟 <strong>Residuary Powers:</strong> Any matter not enumerated in the three lists belongs exclusively to the <strong>Parliament</strong> (borrowed from Canada).
+        </div>
+
+        <h4 style="color:var(--error); margin:1.5rem 0 0.75rem;">🚨 5 Scenarios Where Parliament Can Legislate on State List Subjects:</h4>
+        <div class="custom-table-wrapper">
+          <table class="custom-table" style="font-size:0.85rem;">
+            <thead><tr><th>Article</th><th>Scenario / Ground</th><th>Validity Period of Law</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Article 249</strong></td><td>Rajya Sabha passes a resolution in <strong>National Interest</strong> (by 2/3rd special majority)</td><td>Valid for <strong>1 year</strong> (+ remains in force up to 6 months after expiry)</td></tr>
+              <tr><td><strong>Article 250</strong></td><td>During operation of a <strong>National Emergency</strong></td><td>Ceases to have effect <strong>6 months</strong> after emergency ceases</td></tr>
+              <tr><td><strong>Article 252</strong></td><td>Request by <strong>two or more State Legislatures</strong> passing resolutions</td><td>Applies only to requesting states; can be amended/repealed only by Parliament</td></tr>
+              <tr><td><strong>Article 253</strong></td><td>To implement <strong>International Treaties, Agreements & Conventions</strong></td><td>Permanent unless amended by Parliament</td></tr>
+              <tr><td><strong>Article 356</strong></td><td>During <strong>President's Rule</strong> in a State</td><td>Continues in force even after proclamation until altered or repealed by competent state legislature</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ROW 7: 42ND AMENDMENT & SCHEDULE 8 LANGUAGES -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🔄 42nd CAA, 1976: 5 Transferred Subjects</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('42nd Amendment Transferred Subjects', this)">★</button>
+          </div>
+          <div class="badge-exam">MOVED FROM STATE LIST ➔ CONCURRENT LIST</div>
+          <ol style="font-size:0.9rem; padding-left:1.25rem; margin:0.75rem 0;">
+            <li><strong>Education</strong> (including university, technical, and vocational education)</li>
+            <li><strong>Forests</strong></li>
+            <li><strong>Weights and Measures</strong></li>
+            <li><strong>Protection of Wild Animals and Birds</strong></li>
+            <li><strong>Administration of Justice</strong> (constitution and organization of all courts except the Supreme Court and High Courts)</li>
+          </ol>
+          <div class="highlight-box">
+            This historic transfer reduced the State List from <strong>66 to 61</strong> and increased the Concurrent List from <strong>47 to 52</strong> subjects.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🗣️ Schedule 8: Official Languages Evolution</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Schedule 8 Languages', this)">★</button>
+          </div>
+          <p style="font-size:0.92rem;">
+            Originally <strong>14 languages</strong> ➔ Presently <strong>22 languages</strong>.
+          </p>
+          <div class="custom-table-wrapper" style="margin-top:0.75rem;">
+            <table class="custom-table" style="font-size:0.83rem;">
+              <thead><tr><th>Amendment</th><th>Language(s) Added</th><th>Mnemonic Trick</th></tr></thead>
+              <tbody>
+                <tr><td><strong>21st CAA, 1967</strong></td><td><strong>Sindhi</strong> (15th language)</td><td>Single Language</td></tr>
+                <tr><td><strong>71st CAA, 1992</strong></td><td><strong>Konkani, Manipuri, Nepali</strong></td><td><strong>"KMN"</strong></td></tr>
+                <tr><td><strong>92nd CAA, 2003</strong></td><td><strong>Bodo, Dogri, Maithili, Santhali</strong></td><td><strong>"BDSM"</strong></td></tr>
+                <tr><td><strong>96th CAA, 2011</strong></td><td>Changed name <strong>'Oriya' to 'Odia'</strong></td><td>Name Change</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mnemonic-box">
+            <div class="mnemonic-title">🧠 MATHEMATICAL TRICK TO REMEMBER AMENDMENTS</div>
+            Notice the math: <strong>21 + 71 = 92</strong>! (21st CAA + 71st CAA = 92nd CAA!).
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 8: SCHEDULES 9, 10, 11, 12 & I.R. COELHO -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">📜 Schedules 9, 10, 11, 12 & Key Judicial Rulings</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('Schedules 9 to 12 Details', this)">★</button>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h4 style="color:var(--accent); margin-bottom:0.5rem;">Schedule 9: Land Reforms (1st CAA, 1951)</h4>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:0.75rem;">
+              Introduced to protect agrarian land reform and abolition of Zamindari laws from fundamental rights challenge in courts.
+            </p>
+            <div class="highlight-box" style="border-left-color:var(--error);">
+              ⚖️ <strong>I.R. Coelho Case (2007) Landmark Ruling:</strong><br>
+              The Supreme Court held that laws placed in the 9th Schedule <strong>after April 24, 1973</strong> (the date of Kesavananda Bharati judgment) are <strong>open to Judicial Review</strong> if they violate the <em>Basic Structure</em> of the Constitution!
+            </div>
+            <h4 style="color:var(--accent-gold); margin:1rem 0 0.5rem;">Schedule 10: Anti-Defection Law (52nd CAA, 1985)</h4>
+            <p style="font-size:0.88rem; color:var(--text-muted);">
+              Provides for disqualification of MPs and MLAs on grounds of political defection. Enacted under Rajiv Gandhi government.
+            </p>
+          </div>
+
+          <div>
+            <h4 style="color:var(--success); margin-bottom:0.5rem;">Schedule 11: Panchayats (73rd CAA, 1992)</h4>
+            <ul style="font-size:0.88rem; padding-left:1.25rem; margin-bottom:1rem;">
+              <li>Added by 73rd Amendment Act, 1992.</li>
+              <li>Contains <strong>29 functional matters</strong> (e.g., agriculture, drinking water, minor irrigation).</li>
+              <li>Part IX added to the Constitution.</li>
+            </ul>
+
+            <h4 style="color:var(--warning); margin-bottom:0.5rem;">Schedule 12: Municipalities (74th CAA, 1992)</h4>
+            <ul style="font-size:0.88rem; padding-left:1.25rem;">
+              <li>Added by 74th Amendment Act, 1992.</li>
+              <li>Contains <strong>18 functional matters</strong> (e.g., urban planning, roads, public health).</li>
+              <li>Part IX-A added to the Constitution.</li>
+            </ul>
+
+            <div class="mnemonic-box">
+              <div class="mnemonic-title">🧠 MEMORY TRICK: 29 vs 18 Functional Matters</div>
+              • For <strong>Panchayats</strong>: <strong>2 + 9 = 11</strong> (Matches 11th Schedule!)<br>
+              • For <strong>Municipalities</strong>: 18 matters (18 + 11 = 29!).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE B: ACTIVE RECALL -->
+    <!-- ========================================== -->
+    <section id="stageB" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>⚡ Active Recall Laboratory</h2>
+          <p>Don't look at the answers! Force your brain to recall schedules, articles, and federal comments.</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageB')">✓ Mark Stage B Complete</button>
+      </div>
+
+      <div class="grid-2">
+        <!-- ACTIVITY 1: CLICK TO REVEAL -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🔍 Click-to-Reveal Challenge Cards</h3>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">1. Which scholar described the Indian federal model as "Quasi-Federal"?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>K. C. Wheare</strong>.
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">2. Which part of the Indian Constitution was repealed by the 7th Constitutional Amendment Act 1956?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>Part VII (Part 7)</strong>.
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">3. What is the maximum number of members in a Tribal Advisory Council under the 5th Schedule, and what proportion must be ST MLAs?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> Up to <strong>20 members</strong>, of which <strong>3/4th</strong> must be representatives of Scheduled Tribes in the State Legislative Assembly.
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">4. Which 4 states are covered under the 6th Schedule? (Hint: ATM without Money)</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>Assam, Tripura, Meghalaya, and Mizoram</strong>. (Manipur is NOT included!).
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">5. Under which landmark Supreme Court judgment are laws placed in the 9th Schedule after 24 April 1973 open to judicial review?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>I. R. Coelho Case (2007)</strong>.
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">6. How many functional matters are assigned to Panchayats in the 11th Schedule and Municipalities in the 12th Schedule?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>29 matters</strong> for Panchayats (11th Schedule) and <strong>18 matters</strong> for Municipalities (12th Schedule).
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY 2: FILL IN THE BLANKS -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">✍️ Fill In The Blanks Challenge</h3>
+          </div>
+
+          <div class="recall-card">
+            <p>1. The unicameral parliament of Israel is known as the <input type="text" id="fitb1" class="fitb-input" placeholder="Name">.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb1', ['knesset', 'the knesset'])">Check</button>
+            <span id="fitb1-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>2. Under Article <input type="text" id="fitb2" class="fitb-input" placeholder="Article #">, Rajya Sabha can authorize Parliament to make laws on a State List subject in national interest.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb2', ['249', 'article 249', 'art 249'])">Check</button>
+            <span id="fitb2-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>3. Sindhi was added as the 15th official language by the <input type="text" id="fitb3" class="fitb-input" placeholder="e.g. 21st"> Amendment Act, 1967.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb3', ['21st', '21', '21st caa', '21st amendment'])">Check</button>
+            <span id="fitb3-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>4. The Bodo Territorial Council (BTC) under Schedule 6 consists of an exceptional <input type="text" id="fitb4" class="fitb-input" placeholder="# members"> members.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb4', ['46', '46 members'])">Check</button>
+            <span id="fitb4-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>5. The Doctrine of Repugnancy on Concurrent List subjects is enshrined under Article <input type="text" id="fitb5" class="fitb-input" placeholder="e.g. 254(1)">.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb5', ['254', '254(1)', 'art 254', 'article 254'])">Check</button>
+            <span id="fitb5-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVITY 3: MATCH THE SCHOLARS -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">🔗 Match the Scholar with Their Comment on Indian Federalism</h3>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem;">Match each constitutional scholar with their precise characterization of Indian federalism.</p>
+
+        <div class="matching-box">
+          <div>
+            <div class="match-item">
+              <span>1. Granville Austin</span>
+              <select id="m1" class="match-select">
+                <option value="">Select term...</option>
+                <option value="quasi">Quasi-Federal</option>
+                <option value="cooperative">Cooperative Federalism</option>
+                <option value="bargaining">Bargaining Federalism</option>
+                <option value="centralising">Centralising Tendency</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>2. K. C. Wheare</span>
+              <select id="m2" class="match-select">
+                <option value="">Select term...</option>
+                <option value="quasi">Quasi-Federal</option>
+                <option value="cooperative">Cooperative Federalism</option>
+                <option value="bargaining">Bargaining Federalism</option>
+                <option value="centralising">Centralising Tendency</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="match-item">
+              <span>3. Morris Jones</span>
+              <select id="m3" class="match-select">
+                <option value="">Select term...</option>
+                <option value="quasi">Quasi-Federal</option>
+                <option value="cooperative">Cooperative Federalism</option>
+                <option value="bargaining">Bargaining Federalism</option>
+                <option value="centralising">Centralising Tendency</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>4. Sir Ivor Jennings</span>
+              <select id="m4" class="match-select">
+                <option value="">Select term...</option>
+                <option value="quasi">Quasi-Federal</option>
+                <option value="cooperative">Cooperative Federalism</option>
+                <option value="bargaining">Bargaining Federalism</option>
+                <option value="centralising">Centralising Tendency</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <button class="btn-primary" onclick="verifyMatching()">Verify Match</button>
+          <span id="match-feedback" style="font-weight:700;"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE C: FLASHCARDS -->
+    <!-- ========================================== -->
+    <section id="stageC" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>🎴 3D Smart Flip Flashcards</h2>
+          <p>Flip, test, mark mastery, or shuffle. Press <strong>Spacebar</strong> to flip and <strong>Arrow Keys</strong> to navigate.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn-secondary" onclick="shuffleFlashcards()">🔀 Shuffle</button>
+          <button class="btn-secondary" onclick="markSectionComplete('stageC')">✓ Complete Stage C</button>
+        </div>
+      </div>
+
+      <div class="flashcard-arena">
+        <div class="flashcard-wrapper" id="flashcard" onclick="flipCard()">
+          <!-- FRONT FACE -->
+          <div class="flashcard-face flashcard-front">
+            <div class="fc-header">
+              <span id="fcCategory">Category: Constitutional Facts</span>
+              <span id="fcNumber">Card 1 / 22</span>
+            </div>
+            <div class="fc-body">
+              <div class="fc-prompt" id="fcQuestion">Loading Flashcard...</div>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:1rem;">(Click card or press Space to reveal answer)</p>
+            </div>
+            <div class="fc-footer">
+              <span>Status: <strong id="fcStatus">New</strong></span>
+              <span>Flip ↺</span>
+            </div>
+          </div>
+
+          <!-- BACK FACE -->
+          <div class="flashcard-face flashcard-back">
+            <div class="fc-header">
+              <span>Key Answer</span>
+              <span>Solution</span>
+            </div>
+            <div class="fc-body">
+              <div class="fc-answer" id="fcAnswer">Answer</div>
+              <div class="fc-explanation" id="fcExplanation">Explanation details</div>
+            </div>
+            <div class="fc-footer">
+              <span>Target: Competitive Exams</span>
+              <span>Next Card ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="fc-controls">
+          <button class="btn-fc-nav" onclick="prevCard()">◀ Prev</button>
+          <div class="fc-status-group">
+            <button class="btn-fc-status btn-difficult" onclick="markCardStatus('difficult')">🚩 Difficult</button>
+            <button class="btn-fc-status btn-remembered" onclick="markCardStatus('mastered')">✅ Mastered</button>
+          </div>
+          <button class="btn-fc-nav" onclick="nextCard()">Next ▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE D: QUIZ & PRACTICE -->
+    <!-- ========================================== -->
+    <section id="stageD" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>📝 Exam-Oriented Practice Bank</h2>
+          <p>Curated strictly from Parmar Sir's Lecture 02 notes. Answer all 20 MCQs to assess your conceptual clarity.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn-secondary" onclick="restartQuiz()">🔄 Retake All</button>
+          <button class="btn-secondary" onclick="filterIncorrect()">❌ Review Mistakes</button>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <!-- QUIZ HEADER STATS -->
+        <div class="quiz-header-bar">
+          <div>Question <strong id="currentQNum">1</strong> of <strong id="totalQNum">20</strong></div>
+          <div style="display:flex; gap:1rem;">
+            <span>Score: <strong id="liveScore" style="color:var(--success);">0</strong></span>
+            <span>Accuracy: <strong id="liveAccuracy">0%</strong></span>
+          </div>
+        </div>
+
+        <!-- ACTIVE QUESTION CARD -->
+        <div class="quiz-card" id="quizCard">
+          <span class="q-badge q-basic" id="qDifficulty">Basic</span>
+          <div class="q-text" id="qQuestionText">Loading Question...</div>
+
+          <div class="options-grid" id="optionsContainer">
+            <!-- Dynamically populated options -->
+          </div>
+
+          <div class="q-explanation" id="qExplanationBox">
+            <strong style="color:var(--accent);">💡 Detailed Solution:</strong>
+            <p id="qExplanationText" style="margin-top:0.35rem;"></p>
+          </div>
+
+          <div class="quiz-footer-actions">
+            <button class="btn-secondary" id="btnPrevQ" onclick="prevQuestion()">◀ Previous</button>
+            <button class="btn-primary" id="btnNextQ" onclick="nextQuestion()">Next Question ▶</button>
+          </div>
+        </div>
+
+        <!-- SCORECARD -->
+        <div class="scorecard" id="quizScorecard">
+          <h2>🎉 Quiz Completed!</h2>
+          <p style="color:var(--text-muted); margin-top:0.4rem;">Performance Summary on Salient Features & Schedules:</p>
+
+          <div class="score-circle" id="scoreCircle">
+            <div class="score-circle-inner" id="scorePercentInner">0%</div>
+          </div>
+
+          <div class="grid-3" style="margin:1.5rem 0; gap:0.75rem;">
+            <div class="highlight-box">Attempted: <strong id="resAttempted">20</strong></div>
+            <div class="highlight-box" style="border-left-color:var(--success);">Correct: <strong id="resCorrect" style="color:var(--success);">0</strong></div>
+            <div class="highlight-box" style="border-left-color:var(--error);">Incorrect: <strong id="resIncorrect" style="color:var(--error);">0</strong></div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:1rem;">
+            <button class="btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+            <button class="btn-secondary" onclick="markSectionComplete('stageD')">Mark Stage D Complete</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE E: QUICK REVISION -->
+    <!-- ========================================== -->
+    <section id="stageE" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>🚀 Quick Revision & High-Yield Cheat Sheet</h2>
+          <p>Rapid recall sheet: confusing pairs, numbers to memorize, and the TEARS OF OLD PM formula.</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageE')">✓ Complete Stage E</button>
+      </div>
+
+      <!-- CONFUSING PAIRS -->
+      <h3 style="margin-bottom:1rem; color:var(--accent-gold);">⚡ Commonly Confused Concepts</h3>
+      <div class="confusing-pair">
+        <div class="confuse-side">
+          <h4>5th Schedule vs 6th Schedule</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            <strong>5th Schedule:</strong> Administration of Scheduled Areas in <strong>10 States</strong>. Governed with Tribal Advisory Council (up to 20 members, 3/4th ST MLAs).<br>
+            <strong>6th Schedule:</strong> Administration of Tribal Areas in ONLY <strong>4 States (Assam, Meghalaya, Tripura, Mizoram)</strong> with Autonomous District Councils (ADCs).
+          </p>
+        </div>
+        <div class="confuse-side" style="border-left:1px solid var(--border);">
+          <h4>Article 249 vs Article 250</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            <strong>Article 249:</strong> Rajya Sabha resolution in <strong>National Interest</strong> (valid for 1 year).<br>
+            <strong>Article 250:</strong> Parliament legislating during a <strong>National Emergency</strong> (valid until 6 months after emergency ceases).
+          </p>
+        </div>
+      </div>
+
+      <div class="confusing-pair">
+        <div class="confuse-side">
+          <h4>Integrated Judiciary vs Independent Judiciary</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            <strong>Integrated Judiciary (Unitary):</strong> A single pyramidal hierarchy of courts enforcing both central and state laws.<br>
+            <strong>Independent Judiciary (Federal):</strong> Judiciary is free from executive and legislative interference to protect the Constitution and federal balance.
+          </p>
+        </div>
+        <div class="confuse-side" style="border-left:1px solid var(--border);">
+          <h4>Schedule 2 vs Schedule 3</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            <strong>Schedule 2 (E - Emoluments):</strong> Salaries and allowances (President, Judges, CAG, etc.).<br>
+            <strong>Schedule 3 (A - Affirmations):</strong> Oaths and affirmations forms (Ministers, MPs, Judges, CAG).
+          </p>
+        </div>
+      </div>
+
+      <!-- ONE LINERS -->
+      <h3 style="margin:2rem 0 1rem; color:var(--accent);">🔥 15 High-Yield Exam One-Liners</h3>
+      <div id="onelinersContainer">
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Lengthiest Constitution:</strong> India holds the world record for the lengthiest written constitution.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Repealed Part:</strong> <strong>Part VII (Part 7)</strong> was repealed by the 7th Amendment Act, 1956.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Unwritten Constitutions:</strong> Found in the <strong>UK and Israel</strong>. (Israel's parliament is the <em>Knesset</em>).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Strong Centre Model:</strong> Borrowed from <strong>Canada</strong> (Federation with a unitary bias).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Quasi-Federal:</strong> Famously coined by constitutional scholar <strong>K. C. Wheare</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Cooperative Federalism:</strong> Coined by historian <strong>Granville Austin</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Separation of Powers:</strong> <em>Strict</em> in USA (Presidential); <em>No strict separation</em> in India/UK (Parliamentary).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Authority to declare Scheduled Areas:</strong> Vested strictly in the <strong>President of India</strong> [Art. 244(1)].</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>6th Schedule States Trick:</strong> <strong>"ATM without Money"</strong> = Assam, Tripura, Meghalaya, Mizoram (Manipur excluded).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Bodo Territorial Council:</strong> Has <strong>46 members</strong> (40 elected + 6 nominated by Governor).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Residuary Powers:</strong> Vested solely in <strong>Parliament</strong> (borrowed from Canada).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Doctrine of Repugnancy [Art. 254(1)]:</strong> Central law prevails over State law in the Concurrent List.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>42nd Amendment Shift:</strong> Transferred <strong>5 subjects</strong> from State List to Concurrent List.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>I.R. Coelho Case (2007):</strong> Laws in 9th Schedule added post-24 April 1973 are subject to judicial review.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Language Amendments Formula:</strong> <strong>21st + 71st = 92nd CAA</strong> (Sindhi, KMN, BDSM).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE F: FINAL MEMORY TEST -->
+    <!-- ========================================== -->
+    <section id="stageF" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>🏆 Final Memory & Retrieval Test</h2>
+          <p>Strict evaluation without notes. Pinpoint your weak areas across Salient Features & Schedules.</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageF')">✓ Complete Stage F</button>
+      </div>
+
+      <div class="card" id="finalTestIntro" style="max-width:700px; margin:0 auto; text-align:center; padding:3rem 2rem;">
+        <div style="font-size:3rem; margin-bottom:1rem;">🎯</div>
+        <h3>Comprehensive Final Test (10 High-Yield Questions)</h3>
+        <p style="color:var(--text-muted); margin:1rem 0 2rem;">
+          This assessment evaluates your retention of Lecture 02. At the end, a diagnostic report will identify which specific topics require revision.
+        </p>
+        <button class="btn-primary" onclick="startFinalTest()">Begin Final Assessment</button>
+      </div>
+
+      <div class="quiz-container" id="finalTestArea" style="display:none;">
+        <div class="quiz-header-bar">
+          <div>Assessment Question <strong id="ftCurrentQ">1</strong> of 10</div>
+          <div>Mode: <strong style="color:var(--accent-gold);">Exam Simulation</strong></div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="q-text" id="ftQuestionText">Question text here</div>
+          <div class="options-grid" id="ftOptionsContainer"></div>
+          <div class="quiz-footer-actions">
+            <div></div>
+            <button class="btn-primary" id="ftSubmitBtn" onclick="submitFinalTestAnswer()">Submit & Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINAL DIAGNOSTIC REPORT -->
+      <div class="scorecard" id="finalReportCard">
+        <h2>📊 Final Performance & Diagnostic Report</h2>
+        <div class="score-circle" id="ftScoreCircle">
+          <div class="score-circle-inner" id="ftPercentText">0%</div>
+        </div>
+        <h3 id="ftVerdict" style="margin-bottom:1rem;">Good Effort!</h3>
+        <p id="ftFeedback" style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem;"></p>
+
+        <div style="text-align:left; background:var(--bg-secondary); padding:1.25rem; border-radius:12px; margin-bottom:1.5rem; border:1px solid var(--border);">
+          <h4 style="color:var(--accent); margin-bottom:0.5rem;">🔍 Recommended Revision Focus:</h4>
+          <ul id="ftRecommendations" style="font-size:0.9rem; padding-left:1.25rem; color:var(--text-main);">
+          </ul>
+        </div>
+
+        <button class="btn-primary" onclick="location.reload()">🔄 Restart Complete Learning Module</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SAVED BOOKMARKS MODAL -->
+  <div class="modal-overlay" id="bookmarksModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="display:flex; align-items:center; gap:0.5rem;">⭐ Saved Bookmarks</h3>
+        <button class="btn-icon" onclick="closeBookmarksModal()">✕</button>
+      </div>
+      <div class="modal-body" id="bookmarksList">
+        <p style="color:var(--text-muted);">No bookmarks saved yet. Click the star icon on any card to save it for quick review!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Parmar SSC GK/GS 5.0 • Lecture 02: Salient Features of the Constitution & Schedules</p>
+    <p style="margin-top:0.35rem; font-size:0.75rem;">Self-Contained Offline Interactive Learning System • LocalStorage Powered</p>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <!-- ========================================== -->
+  <script>
+    /* STORAGE KEYS */
+    const STORAGE_KEY_PROGRESS = 'gk_polity_lec02_progress';
+    const STORAGE_KEY_BOOKMARKS = 'gk_polity_lec02_bookmarks';
+
+    /* STATE */
+    let bookmarks = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKMARKS) || '[]');
+    let completedStages = JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || '[]');
+
+    /* -------------------------------------------
+       STAGE NAVIGATION
+    ------------------------------------------- */
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const sections = document.querySelectorAll('.stage-section');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const stageId = btn.getAttribute('data-stage');
+        tabBtns.forEach(b => b.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(stageId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    /* THEME TOGGLE */
+    const themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', newTheme);
+      themeBtn.textContent = newTheme === 'dark' ? '🌓' : '☀️';
+    });
+
+    /* PROGRESS TRACKING */
+    function markSectionComplete(stageId) {
+      if (!completedStages.includes(stageId)) {
+        completedStages.push(stageId);
+        localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(completedStages));
+        updateOverallProgress();
+        alert(`Stage ${stageId.replace('stage', '')} marked as complete!`);
+      } else {
+        alert(`Stage ${stageId.replace('stage', '')} is already marked complete.`);
+      }
+    }
+
+    function updateOverallProgress() {
+      const totalStages = 6;
+      const completedCount = completedStages.length;
+      const percent = Math.round((completedCount / totalStages) * 100);
+      document.getElementById('overallProgress').style.width = percent + '%';
+      document.getElementById('progressPercent').textContent = percent + '%';
+    }
+
+    /* BOOKMARKS LOGIC */
+    function toggleBookmark(title, btn) {
+      if (bookmarks.includes(title)) {
+        bookmarks = bookmarks.filter(b => b !== title);
+        btn.classList.remove('bookmarked');
+      } else {
+        bookmarks.push(title);
+        btn.classList.add('bookmarked');
+      }
+      localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
+      renderBookmarksModal();
+    }
+
+    document.getElementById('bookmarksBtn').addEventListener('click', () => {
+      renderBookmarksModal();
+      document.getElementById('bookmarksModal').classList.add('open');
+    });
+
+    function closeBookmarksModal() {
+      document.getElementById('bookmarksModal').classList.remove('open');
+    }
+
+    function renderBookmarksModal() {
+      const container = document.getElementById('bookmarksList');
+      if (bookmarks.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted);">No bookmarks saved yet. Click the star icon on any card to save it for quick review!</p>';
+        return;
+      }
+      container.innerHTML = bookmarks.map(b => `
+        <div style="background:var(--bg-secondary); padding:0.75rem 1rem; border-radius:8px; margin-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
+          <span>⭐ ${b}</span>
+          <button style="background:none; border:none; color:var(--error); cursor:pointer;" onclick="removeBookmark('${b}')">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function removeBookmark(title) {
+      bookmarks = bookmarks.filter(b => b !== title);
+      localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
+      renderBookmarksModal();
+      document.querySelectorAll('.bookmark-btn').forEach(btn => {
+        btn.classList.remove('bookmarked');
+      });
+    }
+
+    /* -------------------------------------------
+       STAGE B: REVEAL & FITB & MATCHING
+    ------------------------------------------- */
+    function toggleReveal(btn) {
+      const content = btn.nextElementSibling;
+      if (content.classList.contains('show')) {
+        content.classList.remove('show');
+        btn.textContent = '👁️ Think & Reveal';
+      } else {
+        content.classList.add('show');
+        btn.textContent = '🙈 Hide Solution';
+      }
+    }
+
+    function checkFitb(inputId, validAnswers) {
+      const input = document.getElementById(inputId);
+      const resSpan = document.getElementById(inputId + '-res');
+      const val = input.value.trim().toLowerCase();
+
+      if (validAnswers.includes(val)) {
+        resSpan.textContent = '✅ Correct!';
+        resSpan.style.color = 'var(--success)';
+      } else {
+        resSpan.textContent = `❌ Try again!`;
+        resSpan.style.color = 'var(--error)';
+      }
+    }
+
+    function verifyMatching() {
+      const m1 = document.getElementById('m1').value;
+      const m2 = document.getElementById('m2').value;
+      const m3 = document.getElementById('m3').value;
+      const m4 = document.getElementById('m4').value;
+      const feedback = document.getElementById('match-feedback');
+
+      if (m1 === 'cooperative' && m2 === 'quasi' && m3 === 'bargaining' && m4 === 'centralising') {
+        feedback.textContent = '🎉 All Matches are 100% Correct!';
+        feedback.style.color = 'var(--success)';
+      } else {
+        feedback.textContent = '❌ Some matches are incorrect. Hints: Austin=Cooperative, Wheare=Quasi, Jones=Bargaining, Jennings=Centralising.';
+        feedback.style.color = 'var(--error)';
+      }
+    }
+
+    /* -------------------------------------------
+       STAGE C: FLASHCARDS DATA & CONTROLS
+    ------------------------------------------- */
+    const flashcardsData = [
+      {
+        q: "How many Articles, Parts, and Schedules did the Indian Constitution contain originally?",
+        a: "395 Articles, 22 Parts, 8 Schedules",
+        exp: "Presently, it contains over 448 Articles, 25 Parts, and 12 Schedules.",
+        category: "Constitutional Dimensions"
+      },
+      {
+        q: "Which Constitutional Amendment Act repealed Part VII of the Constitution?",
+        a: "7th Constitutional Amendment Act, 1956",
+        exp: "Part VII dealt with Part B states and was abolished following the Reorganisation of States.",
+        category: "Amendments"
+      },
+      {
+        q: "What four parts were added to the Constitution through later amendments?",
+        a: "Part IV-A, Part IX-A, Part IX-B, and Part XIV-A",
+        exp: "IV-A (Duties - 42nd), IX-A (Municipalities - 74th), IX-B (Cooperatives - 97th), XIV-A (Tribunals - 42nd).",
+        category: "Constitutional Parts"
+      },
+      {
+        q: "Name two democratic countries that have an unwritten constitution.",
+        a: "United Kingdom (UK) and Israel",
+        exp: "Their constitutions are not codified in a single legal document.",
+        category: "Comparative Systems"
+      },
+      {
+        q: "What is the name of Israel's unicameral parliament?",
+        a: "Knesset",
+        exp: "Knesset is the 120-member unicameral national legislature of Israel.",
+        category: "World Parliaments"
+      },
+      {
+        q: "From which country's constitution did India borrow the concept of 'Federation with a Strong Centre'?",
+        a: "Canada",
+        exp: "Vesting residuary powers in the Centre and appointment of Governors by the Centre are also borrowed from Canada.",
+        category: "Borrowed Features"
+      },
+      {
+        q: "Who characterized the Indian federal model as 'Cooperative Federalism'?",
+        a: "Granville Austin",
+        exp: "Austin emphasized that the Indian Constitution created a cooperative commonwealth rather than competing authorities.",
+        category: "Scholars on Federalism"
+      },
+      {
+        q: "What did Sir Ivor Jennings call the Indian Constitution regarding federalism?",
+        a: '"A Federation with a strong centralising tendency"',
+        exp: "Due to emergency powers, All India Services, and single citizenship.",
+        category: "Scholars on Federalism"
+      },
+      {
+        q: "Are All India Services (IAS, IPS, IFS) a Federal or Unitary feature?",
+        a: "Unitary Feature",
+        exp: "Though officers serve in states, they are recruited and controlled fundamentally by the Union government.",
+        category: "Federal vs Unitary"
+      },
+      {
+        q: "Is an 'Integrated Judiciary' a Federal or Unitary feature in India?",
+        a: "Unitary Feature",
+        exp: "Unlike USA where federal courts and state courts are distinct, India has a single integrated hierarchy of courts.",
+        category: "Federal vs Unitary"
+      },
+      {
+        q: "What does Schedule 2 of the Indian Constitution deal with?",
+        a: "Emoluments, allowances, and privileges",
+        exp: "Covers President, Governors, Speaker/Deputy Speakers, Judges of SC/HC, and CAG.",
+        category: "Schedules"
+      },
+      {
+        q: "What does Schedule 4 of the Constitution govern?",
+        a: "Allocation of seats in the Rajya Sabha",
+        exp: "Allocates Council of States seats to States and Union Territories based on population.",
+        category: "Schedules"
+      },
+      {
+        q: "Under which Article does the President declare an area as a 'Scheduled Area'?",
+        a: "Article 244(1)",
+        exp: "Pertains to the 5th Schedule for 10 designated states.",
+        category: "Articles & Schedules"
+      },
+      {
+        q: "What states are governed under the 6th Schedule? Remember the trick!",
+        a: "Assam, Tripura, Meghalaya, Mizoram",
+        exp: "Trick: 'ATM without Money' — Manipur is NOT part of the 6th Schedule.",
+        category: "6th Schedule"
+      },
+      {
+        q: "What is the normal membership of an Autonomous District Council (ADC) in Schedule 6?",
+        a: "Up to 30 members (26 elected, 4 nominated by Governor)",
+        exp: "Exception: Bodo Territorial Council consists of 46 members (40 elected, 6 nominated).",
+        category: "6th Schedule"
+      },
+      {
+        q: "How many subjects are currently in the Union, State, and Concurrent Lists?",
+        a: "Union: 100 | State: 61 | Concurrent: 52",
+        exp: "Originally, they contained 97, 66, and 47 subjects respectively.",
+        category: "Schedule 7"
+      },
+      {
+        q: "What is the Doctrine of Repugnancy and in which Article is it stated?",
+        a: "Article 254(1) • Central law prevails over State law in Concurrent List",
+        exp: "If a conflict arises between Centre and State on a concurrent subject, the Central law prevails.",
+        category: "Legislative Relations"
+      },
+      {
+        q: "Under Article 249, which body can authorize Parliament to make laws on the State List in national interest?",
+        a: "Rajya Sabha (by 2/3rd special majority)",
+        exp: "Such a law remains valid for 1 year and ceases 6 months after expiry.",
+        category: "Parliamentary Powers"
+      },
+      {
+        q: "Which 5 subjects were shifted from State List to Concurrent List by the 42nd Amendment (1976)?",
+        a: "Education, Forests, Weights & Measures, Protection of Wild Animals, Administration of Justice",
+        exp: "This reduced the State List from 66 to 61 and raised Concurrent List from 47 to 52.",
+        category: "Amendments"
+      },
+      {
+        q: "Which three languages were added to the 8th Schedule by the 71st Amendment (1992)?",
+        a: "Konkani, Manipuri, Nepali (Trick: KMN)",
+        exp: "Remember the mnemonic KMN for the 71st Amendment.",
+        category: "Languages"
+      },
+      {
+        q: "Which four languages were added by the 92nd Constitutional Amendment Act, 2003?",
+        a: "Bodo, Dogri, Maithili, Santhali (Trick: BDSM)",
+        exp: "Notice the mathematical mnemonic: 21st + 71st = 92nd Amendment!",
+        category: "Languages"
+      },
+      {
+        q: "What did the Supreme Court rule in the I.R. Coelho Case (2007) regarding the 9th Schedule?",
+        a: "Laws added after 24 April 1973 are open to Judicial Review",
+        exp: "If they violate the Basic Structure of the Constitution, they can be struck down.",
+        category: "Judicial Precedents"
+      }
+    ];
+
+    let currentFcIndex = 0;
+    let cardFlipped = false;
+
+    function renderFlashcard() {
+      const card = flashcardsData[currentFcIndex];
+      document.getElementById('fcCategory').textContent = `Category: ${card.category}`;
+      document.getElementById('fcNumber').textContent = `Card ${currentFcIndex + 1} / ${flashcardsData.length}`;
+      document.getElementById('fcQuestion').textContent = card.q;
+      document.getElementById('fcAnswer').textContent = card.a;
+      document.getElementById('fcExplanation').textContent = card.exp;
+
+      const wrapper = document.getElementById('flashcard');
+      wrapper.classList.remove('flipped');
+      cardFlipped = false;
+
+      const savedStatus = localStorage.getItem(`fc_lec02_${currentFcIndex}`) || 'New';
+      document.getElementById('fcStatus').textContent = savedStatus;
+    }
+
+    function flipCard() {
+      const wrapper = document.getElementById('flashcard');
+      cardFlipped = !cardFlipped;
+      wrapper.classList.toggle('flipped', cardFlipped);
+    }
+
+    function nextCard() {
+      if (currentFcIndex < flashcardsData.length - 1) {
+        currentFcIndex++;
+      } else {
+        currentFcIndex = 0;
+      }
+      renderFlashcard();
+    }
+
+    function prevCard() {
+      if (currentFcIndex > 0) {
+        currentFcIndex--;
+      } else {
+        currentFcIndex = flashcardsData.length - 1;
+      }
+      renderFlashcard();
+    }
+
+    function shuffleFlashcards() {
+      flashcardsData.sort(() => Math.random() - 0.5);
+      currentFcIndex = 0;
+      renderFlashcard();
+    }
+
+    function markCardStatus(status) {
+      localStorage.setItem(`fc_lec02_${currentFcIndex}`, status);
+      document.getElementById('fcStatus').textContent = status === 'mastered' ? 'Mastered ✅' : 'Difficult 🚩';
+      setTimeout(nextCard, 300);
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      const stageCActive = document.getElementById('stageC').classList.contains('active');
+      if (!stageCActive) return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        flipCard();
+      } else if (e.code === 'ArrowRight') {
+        nextCard();
+      } else if (e.code === 'ArrowLeft') {
+        prevCard();
+      }
+    });
+
+    /* -------------------------------------------
+       STAGE D: EXAM QUIZ (20 MCQS)
+    ------------------------------------------- */
+    const quizQuestions = [
+      {
+        q: "Originally, the Indian Constitution contained how many Articles, Parts, and Schedules?",
+        options: ["395 Articles, 22 Parts, 8 Schedules", "448 Articles, 25 Parts, 12 Schedules", "390 Articles, 20 Parts, 8 Schedules", "395 Articles, 24 Parts, 10 Schedules"],
+        answer: 0,
+        difficulty: "Basic",
+        explanation: "Originally in 1949, the Constitution had 395 Articles arranged in 22 Parts and 8 Schedules."
+      },
+      {
+        q: "Which Part was added to the Constitution by the 74th Constitutional Amendment Act, 1992?",
+        options: ["Part IV-A", "Part IX-A", "Part IX-B", "Part XIV-A"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "Part IX-A (Municipalities) was added by the 74th Amendment Act, 1992."
+      },
+      {
+        q: "Part VII of the Constitution was repealed by which Constitutional Amendment Act?",
+        options: ["1st CAA, 1951", "7th CAA, 1956", "42nd CAA, 1976", "44th CAA, 1978"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "Part VII (dealing with Part B States) was repealed by the 7th Constitutional Amendment Act, 1956."
+      },
+      {
+        q: "Which constitutional scholar described Indian federalism as 'Bargaining Federalism'?",
+        options: ["K. C. Wheare", "Granville Austin", "Morris Jones", "Sir Ivor Jennings"],
+        answer: 2,
+        difficulty: "Moderate",
+        explanation: "Morris Jones characterized Indian federalism as 'Bargaining Federalism'."
+      },
+      {
+        q: "India's system of a 'Federation with a Strong Centre' was borrowed from the constitution of:",
+        options: ["USA", "Australia", "Canada", "USSR"],
+        answer: 2,
+        difficulty: "Basic",
+        explanation: "The Canadian model inspired India's federal structure with a strong central bias and vesting of residuary powers in the Centre."
+      },
+      {
+        q: "Which among the following is a UNITARY feature of the Indian Constitution?",
+        options: ["Bicameralism", "Written Constitution", "All India Services", "Dual Government"],
+        answer: 2,
+        difficulty: "Moderate",
+        explanation: "All India Services (IAS, IPS, IFS) are recruited by the Centre and violate strict federal dualism, making them a unitary feature."
+      },
+      {
+        q: "In the mnemonic 'TEARS OF OLD PM', what does the letter 'A' represent in the 3rd Schedule?",
+        options: ["Allocation of Rajya Sabha seats", "Affirmations and Oaths", "Autonomous District Councils", "Articles on Union"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "'A' stands for Affirmations and Oaths forms for ministers, MPs, judges, and CAG."
+      },
+      {
+        q: "Under Article 244(1), who has the constitutional authority to declare an area as a 'Scheduled Area'?",
+        options: ["Governor of the respective state", "President of India", "Parliament by simple majority", "Ministry of Tribal Affairs"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "Under Article 244(1), only the President of India has the power to declare an area as a Scheduled Area."
+      },
+      {
+        q: "Which state is NOT included under the 6th Schedule of the Indian Constitution?",
+        options: ["Assam", "Meghalaya", "Manipur", "Mizoram"],
+        answer: 2,
+        difficulty: "Basic",
+        explanation: "The 6th Schedule applies to Assam, Tripura, Meghalaya, and Mizoram (Trick: ATM without Money). Manipur is NOT included."
+      },
+      {
+        q: "The Bodo Territorial Council (BTC) under the 6th Schedule consists of how many total members?",
+        options: ["30 members", "40 members", "46 members", "50 members"],
+        answer: 2,
+        difficulty: "Difficult",
+        explanation: "As an exception to normal 30-member ADCs, the Bodo Territorial Council consists of 46 members (40 elected + 6 nominated by Governor)."
+      },
+      {
+        q: "How many subjects were originally and are presently in the State List?",
+        options: ["66 originally, 61 presently", "97 originally, 100 presently", "47 originally, 52 presently", "66 originally, 59 presently"],
+        answer: 0,
+        difficulty: "Moderate",
+        explanation: "The State List had 66 subjects originally and has 61 subjects presently (after 5 subjects moved to Concurrent List via 42nd CAA)."
+      },
+      {
+        q: "Under which Article can Rajya Sabha pass a resolution by 2/3rd majority empowering Parliament to legislate on a State List subject in National Interest?",
+        options: ["Article 248", "Article 249", "Article 250", "Article 252"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "Article 249 empowers Rajya Sabha to pass a resolution in National Interest, valid for 1 year."
+      },
+      {
+        q: "When a National Emergency is declared, Parliament gains power to make laws on State List subjects under which Article?",
+        options: ["Article 249", "Article 250", "Article 252", "Article 356"],
+        answer: 1,
+        difficulty: "Difficult",
+        explanation: "Article 250 empowers Parliament to legislate on any State List matter during the operation of a National Emergency."
+      },
+      {
+        q: "The Doctrine of Repugnancy on Concurrent List subjects is enshrined in:",
+        options: ["Article 246", "Article 254(1)", "Article 248", "Article 256"],
+        answer: 1,
+        difficulty: "Difficult",
+        explanation: "Article 254(1) states that when there is a direct conflict between a Central law and a State law on a Concurrent subject, the Central law prevails."
+      },
+      {
+        q: "Which of the following subjects was NOT transferred from State List to Concurrent List by the 42nd Amendment Act, 1976?",
+        options: ["Education", "Forests", "Public Health", "Protection of Wild Animals and Birds"],
+        answer: 2,
+        difficulty: "Moderate",
+        explanation: "Public Health remains firmly in the State List. The 5 transferred subjects were: Education, Forests, Weights & Measures, Protection of Wild Animals/Birds, and Administration of Justice."
+      },
+      {
+        q: "Which language was added to the 8th Schedule by the 21st Constitutional Amendment Act, 1967?",
+        options: ["Konkani", "Sindhi", "Manipuri", "Nepali"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "Sindhi was added as the 15th official language by the 21st Amendment Act, 1967."
+      },
+      {
+        q: "By which Constitutional Amendment Act were Bodo, Dogri, Maithili, and Santhali added to the 8th Schedule?",
+        options: ["71st CAA, 1992", "91st CAA, 2003", "92nd CAA, 2003", "96th CAA, 2011"],
+        answer: 2,
+        difficulty: "Moderate",
+        explanation: "92nd Constitutional Amendment Act, 2003 added Bodo, Dogri, Maithili, and Santhali (Trick: BDSM)."
+      },
+      {
+        q: "The landmark I.R. Coelho Case (2007) of the Supreme Court is related to which Schedule?",
+        options: ["7th Schedule", "8th Schedule", "9th Schedule", "10th Schedule"],
+        answer: 2,
+        difficulty: "Moderate",
+        explanation: "It ruled that laws inserted into the 9th Schedule after 24 April 1973 (Kesavananda Bharati date) are subject to judicial review."
+      },
+      {
+        q: "The 10th Schedule (Anti-Defection Law) was added to the Constitution by which Amendment?",
+        options: ["44th CAA, 1978", "52nd CAA, 1985", "61st CAA, 1988", "73rd CAA, 1992"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "The 52nd Constitutional Amendment Act, 1985 introduced the 10th Schedule on disqualification due to defection."
+      },
+      {
+        q: "How many functional items are contained in the 11th Schedule (Panchayats)?",
+        options: ["18", "21", "29", "33"],
+        answer: 2,
+        difficulty: "Basic",
+        explanation: "The 11th Schedule contains 29 functional matters. (Remember: 2 + 9 = 11th Schedule!)."
+      }
+    ];
+
+    let currentQ = 0;
+    let userAnswers = {};
+
+    function renderQuestion() {
+      const q = quizQuestions[currentQ];
+      document.getElementById('currentQNum').textContent = currentQ + 1;
+      document.getElementById('totalQNum').textContent = quizQuestions.length;
+      document.getElementById('qQuestionText').textContent = q.q;
+
+      const diffBadge = document.getElementById('qDifficulty');
+      diffBadge.textContent = q.difficulty;
+      diffBadge.className = `q-badge q-${q.difficulty.toLowerCase()}`;
+
+      const optContainer = document.getElementById('optionsContainer');
+      const letters = ['A', 'B', 'C', 'D'];
+      const selectedAns = userAnswers[currentQ];
+
+      optContainer.innerHTML = q.options.map((opt, idx) => {
+        let classes = 'option-btn';
+        if (selectedAns !== undefined) {
+          classes += ' locked';
+          if (idx === q.answer) classes += ' correct';
+          else if (idx === selectedAns) classes += ' incorrect';
+        }
+        return `
+          <button class="${classes}" onclick="selectOption(${idx})" ${selectedAns !== undefined ? 'disabled' : ''}>
+            <span class="option-letter">${letters[idx]}</span>
+            <span>${opt}</span>
+          </button>
+        `;
+      }).join('');
+
+      const expBox = document.getElementById('qExplanationBox');
+      if (selectedAns !== undefined) {
+        document.getElementById('qExplanationText').textContent = q.explanation;
+        expBox.classList.add('show');
+      } else {
+        expBox.classList.remove('show');
+      }
+
+      document.getElementById('btnPrevQ').disabled = currentQ === 0;
+      document.getElementById('btnNextQ').textContent = (currentQ === quizQuestions.length - 1) ? 'Finish Quiz 🏁' : 'Next Question ▶';
+
+      updateQuizStats();
+    }
+
+    function selectOption(idx) {
+      if (userAnswers[currentQ] !== undefined) return;
+      userAnswers[currentQ] = idx;
+      renderQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentQ < quizQuestions.length - 1) {
+        currentQ++;
+        renderQuestion();
+      } else {
+        showScorecard();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) {
+        currentQ--;
+        renderQuestion();
+      }
+    }
+
+    function updateQuizStats() {
+      let correct = 0;
+      let attempted = Object.keys(userAnswers).length;
+
+      Object.keys(userAnswers).forEach(qIdx => {
+        if (userAnswers[qIdx] === quizQuestions[qIdx].answer) {
+          correct++;
+        }
+      });
+
+      document.getElementById('liveScore').textContent = correct;
+      const acc = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      document.getElementById('liveAccuracy').textContent = acc + '%';
+    }
+
+    function showScorecard() {
+      document.getElementById('quizCard').style.display = 'none';
+      const scorecard = document.getElementById('quizScorecard');
+      scorecard.classList.add('show');
+
+      let correct = 0;
+      quizQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.answer) correct++;
+      });
+
+      const total = quizQuestions.length;
+      const pct = Math.round((correct / total) * 100);
+
+      document.getElementById('resAttempted').textContent = total;
+      document.getElementById('resCorrect').textContent = correct;
+      document.getElementById('resIncorrect').textContent = total - correct;
+      document.getElementById('scorePercentInner').textContent = pct + '%';
+      document.getElementById('scoreCircle').style.setProperty('--percent', pct);
+    }
+
+    function restartQuiz() {
+      userAnswers = {};
+      currentQ = 0;
+      document.getElementById('quizCard').style.display = 'block';
+      document.getElementById('quizScorecard').classList.remove('show');
+      renderQuestion();
+    }
+
+    function filterIncorrect() {
+      const incorrectIdx = quizQuestions.findIndex((q, i) => userAnswers[i] !== undefined && userAnswers[i] !== q.answer);
+      if (incorrectIdx !== -1) {
+        currentQ = incorrectIdx;
+        document.getElementById('quizCard').style.display = 'block';
+        document.getElementById('quizScorecard').classList.remove('show');
+        renderQuestion();
+      } else {
+        alert('Splendid! You have answered all attempted questions correctly.');
+      }
+    }
+
+    /* -------------------------------------------
+       STAGE F: FINAL MEMORY TEST
+    ------------------------------------------- */
+    const finalTestQuestions = [
+      {
+        q: "How many functional matters are assigned to Municipalities in the 12th Schedule?",
+        options: ["18", "21", "29", "24"],
+        ans: 0,
+        topic: "12th Schedule"
+      },
+      {
+        q: "Which scholar referred to Indian federalism as 'Quasi-Federal'?",
+        options: ["Granville Austin", "K. C. Wheare", "Morris Jones", "Ivor Jennings"],
+        ans: 1,
+        topic: "Scholars on Federalism"
+      },
+      {
+        q: "Under which Article can Parliament make laws on the State List during a National Emergency?",
+        options: ["Article 249", "Article 250", "Article 252", "Article 253"],
+        ans: 1,
+        topic: "Emergency Legislative Powers"
+      },
+      {
+        q: "Which state is an exception in the 6th Schedule by NOT being included?",
+        options: ["Assam", "Meghalaya", "Manipur", "Mizoram"],
+        ans: 2,
+        topic: "6th Schedule"
+      },
+      {
+        q: "What is the cut-off date decided in the I.R. Coelho case after which 9th Schedule laws can be reviewed?",
+        options: ["26 January 1950", "24 April 1973", "42nd Amendment 1976", "1 January 2000"],
+        ans: 1,
+        topic: "9th Schedule & Judiciary"
+      },
+      {
+        q: "The 97th Constitutional Amendment Act, 2011 added which Part to the Constitution?",
+        options: ["Part IV-A", "Part IX-A", "Part IX-B", "Part XIV-A"],
+        ans: 2,
+        topic: "Added Parts"
+      },
+      {
+        q: "Which Amendment added Konkani, Manipuri, and Nepali to the 8th Schedule?",
+        options: ["21st CAA", "71st CAA", "92nd CAA", "96th CAA"],
+        ans: 1,
+        topic: "Official Languages"
+      },
+      {
+        q: "Which body exclusively advises the Governor on Scheduled Area matters under the 5th Schedule?",
+        options: ["State Legislative Council", "Tribal Advisory Council", "Zila Parishad", "Inter-State Council"],
+        ans: 1,
+        topic: "5th Schedule TAC"
+      },
+      {
+        q: "The Doctrine of Repugnancy is found under which Article?",
+        options: ["Article 245", "Article 248", "Article 254(1)", "Article 368"],
+        ans: 2,
+        topic: "Doctrine of Repugnancy"
+      },
+      {
+        q: "What is the unicameral parliament of Israel called?",
+        options: ["Knesset", "Diet", "Cortes", "Storting"],
+        ans: 0,
+        topic: "World Parliaments"
+      }
+    ];
+
+    let ftIndex = 0;
+    let ftSelectedOpt = null;
+    let ftAnswers = [];
+
+    function startFinalTest() {
+      document.getElementById('finalTestIntro').style.display = 'none';
+      document.getElementById('finalTestArea').style.display = 'block';
+      ftIndex = 0;
+      ftAnswers = [];
+      renderFinalTestQ();
+    }
+
+    function renderFinalTestQ() {
+      const q = finalTestQuestions[ftIndex];
+      document.getElementById('ftCurrentQ').textContent = ftIndex + 1;
+      document.getElementById('ftQuestionText').textContent = q.q;
+      ftSelectedOpt = null;
+
+      const container = document.getElementById('ftOptionsContainer');
+      const letters = ['A', 'B', 'C', 'D'];
+      container.innerHTML = q.options.map((opt, i) => `
+        <button class="option-btn" id="ftOpt_${i}" onclick="selectFtOpt(${i})">
+          <span class="option-letter">${letters[i]}</span>
+          <span>${opt}</span>
+        </button>
+      `).join('');
+    }
+
+    function selectFtOpt(idx) {
+      ftSelectedOpt = idx;
+      for (let i = 0; i < 4; i++) {
+        const el = document.getElementById(`ftOpt_${i}`);
+        if (el) el.classList.remove('selected');
+      }
+      document.getElementById(`ftOpt_${idx}`).classList.add('selected');
+    }
+
+    function submitFinalTestAnswer() {
+      if (ftSelectedOpt === null) {
+        alert('Please pick an answer before moving forward.');
+        return;
+      }
+      ftAnswers.push(ftSelectedOpt);
+
+      if (ftIndex < finalTestQuestions.length - 1) {
+        ftIndex++;
+        renderFinalTestQ();
+      } else {
+        showFinalReport();
+      }
+    }
+
+    function showFinalReport() {
+      document.getElementById('finalTestArea').style.display = 'none';
+      const card = document.getElementById('finalReportCard');
+      card.classList.add('show');
+
+      let correct = 0;
+      const weakTopics = [];
+
+      finalTestQuestions.forEach((q, i) => {
+        if (ftAnswers[i] === q.ans) {
+          correct++;
+        } else {
+          weakTopics.push(q.topic);
+        }
+      });
+
+      const total = finalTestQuestions.length;
+      const pct = Math.round((correct / total) * 100);
+
+      document.getElementById('ftPercentText').textContent = pct + '%';
+      document.getElementById('ftScoreCircle').style.setProperty('--percent', pct);
+
+      const verdictEl = document.getElementById('ftVerdict');
+      const feedbackEl = document.getElementById('ftFeedback');
+      const recoList = document.getElementById('ftRecommendations');
+
+      if (pct >= 80) {
+        verdictEl.textContent = '🌟 Outstanding Mastery!';
+        verdictEl.style.color = 'var(--success)';
+        feedbackEl.textContent = 'You have mastered the Salient Features & the 12 Schedules of the Constitution. Ready for any question in SSC / competitive exams!';
+      } else if (pct >= 50) {
+        verdictEl.textContent = '👍 Good Understanding with Specific Gaps';
+        verdictEl.style.color = 'var(--accent-gold)';
+        feedbackEl.textContent = 'You understand the broad structure, but specific articles (249, 250, 254) and schedule numbers need a quick re-read.';
+      } else {
+        verdictEl.textContent = '⚠️ Targeted Revision Recommended';
+        verdictEl.style.color = 'var(--error)';
+        feedbackEl.textContent = 'Key schedules or constitutional doctrines slipped during recall. Revisit Stage A and Stage C flashcards to solidify your concepts.';
+      }
+
+      if (weakTopics.length > 0) {
+        recoList.innerHTML = [...new Set(weakTopics)].map(t => `<li>Revise: <strong>${t}</strong> in Stage A and Stage E.</li>`).join('');
+      } else {
+        recoList.innerHTML = '<li>Zero weak spots! 100% accuracy achieved across all concepts.</li>';
+      }
+    }
+
+    /* INITIALIZATION */
+    window.addEventListener('DOMContentLoaded', () => {
+      updateOverallProgress();
+      renderFlashcard();
+      renderQuestion();
+    });
+  </script>
+</body>
+</html>

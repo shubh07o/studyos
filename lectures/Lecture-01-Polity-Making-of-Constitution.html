@@ -1,0 +1,2864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polity: Making of the Constitution | Interactive Learning Module</title>
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121826;
+      --bg-card: #182234;
+      --bg-card-hover: #1f2c42;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --accent-gold: #fbbf24;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --border: #243247;
+      --nav-active: #0284c7;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.15);
+      --accent-gold: #d97706;
+      --success: #059669;
+      --error: #dc2626;
+      --warning: #d97706;
+      --border: #e2e8f0;
+      --nav-active: #0284c7;
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* TOP HEADER */
+    header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .emblem-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #fbbf24, #d97706);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: #0f172a;
+      box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+    }
+
+    .brand-title h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-title p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .progress-widget {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--bg-card);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+
+    .progress-bar-mini {
+      width: 70px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--success));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .btn-icon {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1.05rem;
+    }
+
+    .btn-icon:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* NAVIGATION TABS */
+    nav.stage-nav {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    nav.stage-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-tabs {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .tab-btn {
+      padding: 0.85rem 1.15rem;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .stage-badge {
+      font-size: 0.7rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    /* MAIN CONTAINER */
+    main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .stage-section {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .stage-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION HEADER */
+    .section-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .section-banner h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-banner p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+    }
+
+    /* CARDS & GRIDS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .bookmark-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: color 0.2s ease;
+    }
+
+    .bookmark-btn.bookmarked {
+      color: var(--accent-gold);
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-gold));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg-card);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .timeline-year {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-content {
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    /* BADGES & HIGHLIGHTS */
+    .badge-exam {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-gold);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1.15rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.92rem;
+    }
+
+    .mnemonic-box {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.04));
+      border: 1px dashed var(--accent-gold);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .mnemonic-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* TABLES */
+    .custom-table-wrapper {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 1.25rem 0;
+    }
+
+    table.custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    table.custom-table th {
+      background: var(--bg-secondary);
+      color: var(--accent);
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    table.custom-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-main);
+    }
+
+    table.custom-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.custom-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* STAGE B: ACTIVE RECALL INTERFACES */
+    .recall-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .recall-question {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .reveal-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .reveal-btn:hover {
+      background: var(--accent);
+      color: #0f172a;
+    }
+
+    .revealed-content {
+      display: none;
+      margin-top: 0.85rem;
+      padding: 0.85rem;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid var(--success);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+
+    .revealed-content.show {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    /* MATCHING EXERCISE */
+    .matching-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .matching-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .match-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .match-select {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    /* FILL IN THE BLANK */
+    .fitb-input {
+      background: var(--bg-secondary);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      width: 140px;
+      text-align: center;
+    }
+
+    .fitb-check-btn {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    /* FLASHCARD COMPONENT (STAGE C) */
+    .flashcard-arena {
+      max-width: 650px;
+      margin: 2rem auto;
+      perspective: 1200px;
+    }
+
+    .flashcard-wrapper {
+      width: 100%;
+      height: 340px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .flashcard-wrapper.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      border: 2px solid var(--border);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem;
+      background: var(--bg-card);
+    }
+
+    .flashcard-front {
+      border-top: 5px solid var(--accent);
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+      border-top: 5px solid var(--success);
+      background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
+    }
+
+    .fc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .fc-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex: 1;
+      padding: 1rem 0;
+    }
+
+    .fc-prompt {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .fc-answer {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--success);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .fc-explanation {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 90%;
+    }
+
+    .fc-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    .fc-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-fc-nav {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-fc-nav:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+
+    .fc-status-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-fc-status {
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-remembered {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-difficult {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--error);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    /* STAGE D: QUIZ COMPONENT */
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quiz-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .q-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .q-basic { background: rgba(56, 189, 248, 0.2); color: var(--accent); }
+    .q-moderate { background: rgba(251, 191, 36, 0.2); color: var(--accent-gold); }
+    .q-difficult { background: rgba(239, 68, 68, 0.2); color: var(--error); }
+
+    .q-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not(.locked) {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+
+    .option-btn.selected {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: var(--success) !important;
+    }
+
+    .option-btn.incorrect {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--error) !important;
+      color: var(--error) !important;
+    }
+
+    .option-letter {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .q-explanation {
+      display: none;
+      padding: 1.25rem;
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      margin-top: 1.25rem;
+      font-size: 0.92rem;
+    }
+
+    .q-explanation.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .quiz-footer-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* SCORECARD */
+    .scorecard {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      max-width: 600px;
+      margin: 2rem auto;
+      display: none;
+    }
+
+    .scorecard.show {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .score-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: conic-gradient(var(--success) calc(var(--percent) * 1%), var(--border) 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.5rem auto;
+      position: relative;
+    }
+
+    .score-circle-inner {
+      width: 106px;
+      height: 106px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    /* STAGE E: QUICK REVISION ONE-LINERS */
+    .oneliner-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .oneliner-pill:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .oneliner-icon {
+      color: var(--accent-gold);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .confusing-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .confusing-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .confuse-side {
+      padding: 0.5rem;
+    }
+
+    .confuse-side h4 {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- TOP APP BAR -->
+  <header>
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="emblem-icon">🏛️</div>
+        <div class="brand-title">
+          <h1>INDIAN POLITY • LECTURE 01</h1>
+          <p>Making of the Indian Constitution | Parmar SSC Master Module</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="progress-widget" title="Overall Module Completion">
+          <span>Progress</span>
+          <div class="progress-bar-mini">
+            <div class="progress-bar-fill" id="overallProgress"></div>
+          </div>
+          <strong id="progressPercent">0%</strong>
+        </div>
+        <button class="btn-icon" id="bookmarksBtn" title="View Saved Bookmarks">⭐</button>
+        <button class="btn-icon" id="themeToggleBtn" title="Toggle Dark/Light Mode">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STAGE NAVIGATION TABS -->
+  <nav class="stage-nav">
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-stage="stageA">
+        <span class="stage-badge">Stage A</span> 📖 Understand
+      </button>
+      <button class="tab-btn" data-stage="stageB">
+        <span class="stage-badge">Stage B</span> ⚡ Active Recall
+      </button>
+      <button class="tab-btn" data-stage="stageC">
+        <span class="stage-badge">Stage C</span> 🎴 Flashcards (<span id="fcCount">20</span>)
+      </button>
+      <button class="tab-btn" data-stage="stageD">
+        <span class="stage-badge">Stage D</span> 📝 Exam Quiz (20 MCQs)
+      </button>
+      <button class="tab-btn" data-stage="stageE">
+        <span class="stage-badge">Stage E</span> 🚀 Quick Revision
+      </button>
+      <button class="tab-btn" data-stage="stageF">
+        <span class="stage-badge">Stage F</span> 🏆 Final Memory Test
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <main>
+
+    <!-- ========================================== -->
+    <!-- STAGE A: UNDERSTAND -->
+    <!-- ========================================== -->
+    <section id="stageA" class="stage-section active">
+      <div class="section-banner">
+        <div>
+          <h2>📖 Visual Deep-Dive Lessons</h2>
+          <p>Master every concept, timeline, committee, and constitutional figure with structured conceptual visual cards.</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageA')">✓ Mark Stage A Complete</button>
+      </div>
+
+      <!-- ROW 1: BASICS & FORMS OF GOV -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📜 What is a Constitution & World Origin</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('What is a Constitution', this)">★</button>
+          </div>
+          <div class="badge-exam">EXAM ESSENTIAL</div>
+          <p>A Constitution lays out certain <strong>ideals</strong> that form the basis of the kind of country a nation aspires to be.</p>
+          <div class="highlight-box">
+            • <strong>Tradition of Written Constitution began in:</strong> USA (in 1787).<br>
+            • <strong>Independence of USA:</strong> 4th July 1776.<br>
+            • <strong>Core Nuance:</strong> While all democratic countries are likely to have a Constitution, it is <em>not necessary</em> that all countries having a Constitution are democratic!
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            <strong>Democratic Government:</strong> Power is held by the people and exercised through their elected representatives.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">⚖️ 4 Major Forms of Government</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Forms of Government', this)">★</button>
+          </div>
+          <div class="grid-2" style="margin-bottom:0; gap:0.75rem;">
+            <div style="background:var(--bg-secondary); padding:0.75rem; border-radius:8px; border:1px solid var(--border);">
+              <strong style="color:var(--accent);">1. Communist</strong>
+              <p style="font-size:0.85rem; margin-top:4px;">Means of production fully controlled by government. <br><em>e.g., China</em></p>
+            </div>
+            <div style="background:var(--bg-secondary); padding:0.75rem; border-radius:8px; border:1px solid var(--border);">
+              <strong style="color:var(--accent);">2. Oligarchic</strong>
+              <p style="font-size:0.85rem; margin-top:4px;">Government ruled by a small, powerful few. <br><em>e.g., Russia, China</em></p>
+            </div>
+            <div style="background:var(--bg-secondary); padding:0.75rem; border-radius:8px; border:1px solid var(--border);">
+              <strong style="color:var(--accent);">3. Monarchic</strong>
+              <p style="font-size:0.85rem; margin-top:4px;">Ruled by a single monarch/king. <br><em>e.g., Saudi Arabia, UK</em></p>
+            </div>
+            <div style="background:var(--bg-secondary); padding:0.75rem; border-radius:8px; border:1px solid var(--border);">
+              <strong style="color:var(--accent);">4. Totalitarian</strong>
+              <p style="font-size:0.85rem; margin-top:4px;">Total, absolute control over lives of citizens. <br><em>e.g., North Korea</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 2: TIMELINE FOR CONSTITUENT ASSEMBLY -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">⏳ Chronology of Demand for Constituent Assembly</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('Constituent Assembly Demand Timeline', this)">★</button>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">1928</span>
+            <div class="timeline-content">
+              <strong>Nehru Report (Early Draft):</strong> Prepared and submitted by the All Parties Conference at Lucknow, chaired by <strong>Motilal Nehru</strong>.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">1934</span>
+            <div class="timeline-content">
+              <strong>First Official Idea:</strong> <strong>M. N. Roy</strong> (pioneer of communist movement in India) first proposed the idea of a Constituent Assembly for India.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">1935</span>
+            <div class="timeline-content">
+              <strong>Official Demand by INC:</strong> The Indian National Congress officially demanded a Constituent Assembly to frame the Constitution of India.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">1938</span>
+            <div class="timeline-content">
+              <strong>Adult Franchise Declaration:</strong> <strong>Jawaharlal Nehru</strong>, on behalf of INC, declared: <em>"The Constitution of free India must be framed without outside interference, by a Constituent Assembly elected on the basis of adult franchise."</em>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 3: BRITISH OFFERS & CABINET MISSION -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🇬🇧 British Offers (WWII Era: 1939–1945)</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('British Offers', this)">★</button>
+          </div>
+          <div class="badge-exam">REASON FOR OFFERS: SEEKING INDIAN COOPERATION IN WWII</div>
+          <ul style="padding-left:1.25rem; font-size:0.92rem; margin-bottom:1rem;">
+            <li><strong>August Offer (1940):</strong> First British recognition of Indian right to frame constitution.</li>
+            <li><strong>Cripps Proposal (1942):</strong> Headed by Sir Stafford Cripps. Offered Dominion Status post-war.</li>
+            <li><strong>Wavell Plan (1945):</strong> Shimla Conference discussions.</li>
+          </ul>
+          <div class="highlight-box">
+            💡 <strong>Mahatma Gandhi on Cripps Proposal:</strong> Described it as a <em>"post-dated cheque on a crashing bank."</em><br>
+            ❌ <strong>Reason for Rejection:</strong> Congress demanded <em>Purna Swaraj</em> (Complete Independence), whereas the Britishers only offered <em>Dominion Status</em>.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🏛️ Cabinet Mission Plan (1946) — The Accepted Foundation</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Cabinet Mission Plan', this)">★</button>
+          </div>
+          <p style="font-size:0.92rem;">Arrived in March 1946 with <strong>3 British Cabinet Ministers:</strong></p>
+          <div style="display:flex; gap:0.5rem; margin:0.75rem 0; flex-wrap:wrap;">
+            <span class="stage-badge">1. Lord Pethick-Lawrence (Chairman)</span>
+            <span class="stage-badge">2. Sir Stafford Cripps</span>
+            <span class="stage-badge">3. A. V. Alexander</span>
+          </div>
+          <div class="highlight-box" style="border-left-color:var(--success);">
+            ✅ Accepted by both the <strong>Congress</strong> and the <strong>Muslim League</strong>. Hence, the Constituent Assembly was constituted under this plan in November 1946.
+          </div>
+          <div class="mnemonic-box">
+            <div class="mnemonic-title">🧠 MEMORY TRICK: Cabinet Mission Members</div>
+            Remember the acronym <strong>"PAL"</strong>: <strong>P</strong>ethick-Lawrence (Chairman), <strong>A</strong>.V. Alexander, <strong>L</strong>ord Stafford Cripps!
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 4: SEATS BREAKDOWN DIAGRAM -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">📊 Architectural Breakdown of Assembly Seats (389 Total)</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('Assembly Seats Breakdown', this)">★</button>
+        </div>
+        <div class="custom-table-wrapper">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Total Seats</th>
+                <th>Nature</th>
+                <th>Sub-Division</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>British India</strong></td>
+                <td><strong style="color:var(--accent);">296</strong></td>
+                <td>Elected (Indirect)</td>
+                <td>
+                  • <strong>292</strong> from 11 Governor's Provinces<br>
+                  • <strong>4</strong> from 4 Chief Commissioner's Provinces (Delhi, Ajmer-Merwara, Coorg, British Baluchistan)
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Princely States</strong></td>
+                <td><strong style="color:var(--accent-gold);">93</strong></td>
+                <td>Nominated</td>
+                <td>Nominated by the heads/rulers of the respective princely states</td>
+              </tr>
+              <tr style="background:rgba(56, 189, 248, 0.05);">
+                <td><strong>Post-Partition Status</strong></td>
+                <td><strong style="color:var(--success);">299</strong></td>
+                <td>After Muslim League Boycott</td>
+                <td>
+                  • <strong>229</strong> Elected (Provinces)<br>
+                  • <strong>70</strong> Nominated (Princely States)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="grid-3" style="margin-top:1rem; margin-bottom:0;">
+          <div class="highlight-box">
+            <strong>Ratio:</strong> 1 seat per 1 million (10 Lakh) population.
+          </div>
+          <div class="highlight-box">
+            <strong>Communities:</strong> Muslims, Sikhs, and General (Proportional to population).
+          </div>
+          <div class="highlight-box">
+            <strong>Election Method:</strong> Indirect election by Proportional Representation via Single Transferable Vote (STV).
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 5: ELECTION RESULTS & INTERIM GOV -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🗳️ July–August 1946 Election Results (296 Seats)</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Election Results 1946', this)">★</button>
+          </div>
+          <div style="margin:1rem 0;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+              <span><strong>Indian National Congress (INC):</strong></span>
+              <span style="color:var(--success); font-weight:700;">208 Seats (Huge Majority)</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+              <span><strong>Muslim League:</strong></span>
+              <span style="color:var(--accent-gold); font-weight:700;">73 Seats</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span><strong>Independents / Small Groups:</strong></span>
+              <span style="color:var(--text-muted); font-weight:700;">15 Seats</span>
+            </div>
+          </div>
+          <div class="highlight-box">
+            <strong>Praja Mandal Movement:</strong> A series of political agitations (1920s-1940s) where people in princely states fought against local feudal rulers and British paramountcy for civil rights and democracy.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">👔 Interim Government of India (Formed: 2 Sept 1946)</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Interim Government Portfolios', this)">★</button>
+          </div>
+          <p style="font-size:0.88rem; margin-bottom:0.75rem;">
+            Announced on <strong>24th Aug 1946</strong>, took office on <strong>2nd Sept 1946</strong>. Lasted till 15th Aug 1947.
+          </p>
+          <ul style="font-size:0.85rem; padding-left:1.15rem; color:var(--text-muted);">
+            <li><strong>President of Executive Council:</strong> Viceroy Viscount Wavell (till Feb 1947), Lord Mountbatten (from Feb 1947).</li>
+            <li><strong>Commander-in-Chief:</strong> Sir Claude Auchinleck.</li>
+          </ul>
+          <div class="custom-table-wrapper" style="margin-top:0.75rem;">
+            <table class="custom-table" style="font-size:0.82rem;">
+              <thead>
+                <tr><th>Portfolio</th><th>Minister & Party</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>VP, External Affairs, Commonwealth</td><td><strong>Jawaharlal Nehru</strong> (INC)</td></tr>
+                <tr><td>Home, Info & Broadcasting</td><td><strong>Sardar Vallabhbhai Patel</strong> (INC)</td></tr>
+                <tr><td>Agriculture & Food</td><td><strong>Dr. Rajendra Prasad</strong> (INC)</td></tr>
+                <tr><td>Finance</td><td><strong>Liaquat Ali Khan</strong> (ML - 1st PM of Pak)</td></tr>
+                <tr><td>Defence</td><td><strong>Baldev Singh</strong> (INC)</td></tr>
+                <tr><td>Labour</td><td><strong>Jagjivan Ram</strong> (INC)</td></tr>
+                <tr><td>Law</td><td><strong>Jogendra Nath Mandal</strong> (ML)</td></tr>
+                <tr><td>Education & Arts</td><td><strong>C. Rajagopalachari</strong> (INC)</td></tr>
+                <tr><td>Industries & Supplies</td><td><strong>John Mathai</strong> (INC)</td></tr>
+                <tr><td>Commerce</td><td><strong>I. I. Chundrigar</strong> (ML)</td></tr>
+                <tr><td>Health</td><td><strong>Ghazanfar Ali Khan</strong> (ML)</td></tr>
+                <tr><td>Communications, Post & Air</td><td><strong>Abdur Rab Nishtar</strong> (ML)</td></tr>
+                <tr><td>Works, Mines & Power</td><td><strong>C. H. Bhabha</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 6: WORKING OF ASSEMBLY & OBJECTIVE RESOLUTION -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🏢 First Meeting & Dual Nature of the Assembly</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Working of Constituent Assembly', this)">★</button>
+          </div>
+          <div class="highlight-box">
+            📅 <strong>First Meeting:</strong> 9th December 1946 (Attended by 211 / 207 members). Muslim League boycotted.
+          </div>
+          <ul style="font-size:0.9rem; padding-left:1.25rem;">
+            <li><strong>Temporary President:</strong> <strong>Dr. Sachchidananda Sinha</strong> (Oldest member; followed French practice).</li>
+            <li><strong>Permanent President:</strong> <strong>Dr. Rajendra Prasad</strong> (Elected on 11 Dec 1946).</li>
+            <li><strong>Two Vice Presidents:</strong> <strong>H. C. Mukherjee</strong> and <strong>V. T. Krishnamachari</strong>.</li>
+            <li><strong>Constitutional Advisor:</strong> <strong>Sir B. N. Rau</strong>.</li>
+            <li><strong>Chief Draftsman:</strong> <strong>S. N. Mukherjee</strong>.</li>
+            <li><strong>Secretary:</strong> <strong>H. V. R. Iyengar</strong>.</li>
+          </ul>
+          <div class="highlight-box" style="border-left-color:var(--accent-gold); margin-top:1rem;">
+            ⚙️ <strong>Dual Functions:</strong><br>
+            • When meeting as <strong>Constituent Body</strong> (to frame Constitution) ➔ Chaired by <strong>Dr. Rajendra Prasad</strong>.<br>
+            • When meeting as <strong>Legislative Body</strong> (India's 1st Parliament) ➔ Chaired by <strong>G. V. Mavalankar</strong>.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📜 The Historic Objective Resolution</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Objective Resolution', this)">★</button>
+          </div>
+          <div class="badge-exam">FOUNDATION OF PREAMBLE</div>
+          <p style="font-size:0.92rem;">
+            Moved by <strong>Jawaharlal Nehru</strong> on <strong>13th December 1946</strong>; unanimously adopted on <strong>22nd January 1947</strong>.
+          </p>
+          <div class="highlight-box">
+            <em>"This Constituent Assembly declares its firm and solemn resolve to proclaim India as an <strong>Independent Sovereign Republic</strong> and to draw up for her future governance a Constitution..."</em>
+          </div>
+          <ul style="font-size:0.9rem; padding-left:1.25rem; color:var(--text-muted);">
+            <li>Declared territories of British India + Indian States + other willing parts shall form a <strong>Union</strong>.</li>
+            <li>Stipulated that all power and authority of sovereign independent India are <strong>derived from the people</strong>.</li>
+            <li>Its modified version forms the <strong>Preamble</strong> of the modern Constitution.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ROW 7: COMMITTEES OF CONSTITUENT ASSEMBLY -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">👥 Committees of the Constituent Assembly (8 Major & 13 Minor)</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('Assembly Committees', this)">★</button>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h4 style="color:var(--accent); margin-bottom:0.75rem;">🌟 8 Major Committees & Their Heads</h4>
+            <div class="custom-table-wrapper">
+              <table class="custom-table" style="font-size:0.85rem;">
+                <thead><tr><th>Committee</th><th>Head</th></tr></thead>
+                <tbody>
+                  <tr><td>Union Powers Committee</td><td><strong>Jawaharlal Nehru</strong></td></tr>
+                  <tr><td>Union Constitution Committee</td><td><strong>Jawaharlal Nehru</strong></td></tr>
+                  <tr><td>States Committee (Negotiation)</td><td><strong>Jawaharlal Nehru</strong></td></tr>
+                  <tr><td>Provincial Constitution Committee</td><td><strong>Sardar Patel</strong></td></tr>
+                  <tr><td>Advisory Committee on FR, Minorities, Tribal & Excluded</td><td><strong>Sardar Patel</strong> ("Bismarck")</td></tr>
+                  <tr><td>&nbsp;&nbsp;↳ FR Sub-committee</td><td><strong>J. B. Kripalani</strong></td></tr>
+                  <tr><td>&nbsp;&nbsp;↳ Minorities Sub-committee</td><td><strong>H. C. Mukherjee</strong></td></tr>
+                  <tr><td>&nbsp;&nbsp;↳ Tribal & Excluded Sub-committee</td><td><strong>A. V. Thakkar</strong></td></tr>
+                  <tr><td>Drafting Committee</td><td><strong>Dr. B. R. Ambedkar</strong></td></tr>
+                  <tr><td>Rules of Procedure Committee</td><td><strong>Dr. Rajendra Prasad</strong></td></tr>
+                  <tr><td>Steering Committee</td><td><strong>Dr. Rajendra Prasad</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mnemonic-box">
+              <div class="mnemonic-title">🧠 MEMORY TRICK: Committee Heads</div>
+              • Anything starting with <strong>"Union"</strong> or <strong>"States"</strong> ➔ <strong>Jawaharlal Nehru</strong>!<br>
+              • <strong>"Provincial"</strong> & <strong>"Advisory/Fundamental Rights"</strong> ➔ <strong>Sardar Patel</strong>!<br>
+              • <strong>"Procedure"</strong> & <strong>"Steering"</strong> (Assembly management) ➔ <strong>Dr. Rajendra Prasad</strong>!
+            </div>
+          </div>
+
+          <div>
+            <h4 style="color:var(--accent-gold); margin-bottom:0.75rem;">📋 Key Minor Committees</h4>
+            <div class="custom-table-wrapper">
+              <table class="custom-table" style="font-size:0.83rem;">
+                <thead><tr><th>Minor Committee</th><th>Head</th></tr></thead>
+                <tbody>
+                  <tr><td>Ad-hoc Committee on National Flag</td><td><strong>Dr. Rajendra Prasad</strong></td></tr>
+                  <tr><td>Finance and Staff Committee</td><td><strong>Dr. Rajendra Prasad</strong></td></tr>
+                  <tr><td>Order of Business Committee</td><td><strong>Dr. K. M. Munshi</strong></td></tr>
+                  <tr><td>House Committee</td><td><strong>B. Pattabhi Sitaramayya</strong></td></tr>
+                  <tr><td>Committee on Chief Commissioners' Provinces</td><td><strong>B. Pattabhi Sitaramayya</strong></td></tr>
+                  <tr><td>Committee on Functions of Constituent Assembly</td><td><strong>G. V. Mavalankar</strong></td></tr>
+                  <tr><td>Credentials Committee</td><td><strong>Alladi Krishnaswami Ayyar</strong></td></tr>
+                  <tr><td>Ad-hoc Committee on Supreme Court</td><td><strong>S. Varadachariar</strong></td></tr>
+                  <tr><td>Ad-hoc Committee on Citizenship</td><td><strong>S. Varadachariar</strong></td></tr>
+                  <tr><td>Linguistic Provinces Commission</td><td><strong>S. K. Dhar</strong></td></tr>
+                  <tr><td>Special Committee to Examine Draft Constitution</td><td><strong>Jawaharlal Nehru</strong></td></tr>
+                  <tr><td>Press Gallery Committee</td><td><strong>Usha Nath Sen</strong></td></tr>
+                  <tr><td>Expert Committee on Financial Provisions</td><td><strong>Nalini Ranjan Sarkar</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 8: DRAFTING COMMITTEE & DRAFTS -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">✒️ The Drafting Committee (Set up: 29 Aug 1947)</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Drafting Committee Details', this)">★</button>
+          </div>
+          <div class="badge-exam">7 MEMBERS • SAT FOR 141 DAYS • 1ST MEETING: 30 AUG 1947</div>
+          <ul style="font-size:0.9rem; padding-left:1.25rem; margin-bottom:1rem;">
+            <li><strong>1. Dr. B. R. Ambedkar (Chairman)</strong> — Celebrated as <em>"Modern Manu"</em> or <em>"Father of Indian Constitution"</em>.</li>
+            <li><strong>2. K. M. Munshi</strong></li>
+            <li><strong>3. Muhammad Saadullah</strong></li>
+            <li><strong>4. Alladi Krishnaswami Ayyar</strong></li>
+            <li><strong>5. N. Gopalaswami Ayyangar</strong></li>
+            <li><strong>6. B. L. Mitter</strong> ➔ Resigned due to ill-health, replaced by <strong>N. Madhav Rau</strong>.</li>
+            <li><strong>7. D. P. Khaitan</strong> ➔ Died in 1948, replaced by <strong>T. T. Krishnamachari</strong>.</li>
+          </ul>
+          <div class="mnemonic-box">
+            <div class="mnemonic-title">🧠 MEMORY TRICK: The Replacements</div>
+            • <strong>Mitter</strong> replaced by <strong>Madhav</strong> (Both start with <strong>M</strong>!)<br>
+            • <strong>Khaitan</strong> replaced by <strong>Krishnamachari</strong> (Both start with <strong>K</strong>!)
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📖 Drafts & Three Readings of Constitution</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Drafts and Readings', this)">★</button>
+          </div>
+          <h4 style="font-size:0.92rem; color:var(--accent);">Drafts Published:</h4>
+          <ul style="font-size:0.88rem; padding-left:1.25rem; margin-bottom:0.75rem;">
+            <li><strong>1st Draft (21 Feb 1948):</strong> Given 8 months for public scrutiny and feedback.</li>
+            <li><strong>2nd Draft (21 Oct 1948):</strong> Incorporated feedback.</li>
+            <li><strong>Final Draft (4 Nov 1948):</strong> Formally introduced by Dr. Ambedkar.</li>
+          </ul>
+          <h4 style="font-size:0.92rem; color:var(--accent-gold);">Three Official Readings:</h4>
+          <div class="custom-table-wrapper">
+            <table class="custom-table" style="font-size:0.83rem;">
+              <thead><tr><th>Reading</th><th>Duration</th><th>Significance</th></tr></thead>
+              <tbody>
+                <tr><td><strong>1st Reading</strong></td><td>4 Nov – 9 Nov 1948 (5 days)</td><td>General discussion on provisions</td></tr>
+                <tr><td><strong>2nd Reading</strong></td><td>15 Nov 1948 – 17 Oct 1949 (11 mos, 2 days)</td><td>Clause by clause examination & amendments</td></tr>
+                <tr><td><strong>3rd Reading</strong></td><td>14 Nov – 26 Nov 1949</td><td>Motion passed & Constitution adopted on 26 Nov 1949</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 9: STATS & LANDMARKS -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🔢 Essential Numbers & Statistics</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Vital Statistics of Constitution', this)">★</button>
+          </div>
+          <div class="custom-table-wrapper">
+            <table class="custom-table" style="font-size:0.88rem;">
+              <tbody>
+                <tr><td><strong>Total Time Taken:</strong></td><td><strong style="color:var(--accent);">2 years, 11 months, 18 days</strong></td></tr>
+                <tr><td><strong>Total Sessions Held:</strong></td><td><strong>11 Sessions</strong> (across 165 days)</td></tr>
+                <tr><td><strong>Budget / Expenditure:</strong></td><td><strong>₹64 Lakhs</strong></td></tr>
+                <tr><td><strong>Signatures on 24 Jan 1950:</strong></td><td><strong>284 Members</strong> (including <strong>15 female</strong> members)</td></tr>
+                <tr><td><strong>Original Articles:</strong></td><td><strong>395 Articles, 8 Schedules, 22 Parts</strong> & Preamble</td></tr>
+                <tr><td><strong>Printed Records of Debates:</strong></td><td>Compiled into <strong>12 Volumes</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📅 Other Historic Functions of the Assembly</h3>
+            <button class="bookmark-btn" onclick="toggleBookmark('Other Assembly Functions', this)">★</button>
+          </div>
+          <ul style="font-size:0.88rem; padding-left:1.25rem;">
+            <li><strong>National Flag Adopted:</strong> <strong>22 July 1947</strong>. Designed by <strong>Pingali Venkayya</strong> (Ratio 3:2, approved by Gandhi in Vijayawada 1921).</li>
+            <li><strong>Commonwealth Membership:</strong> Ratified in <strong>May 1949</strong>.</li>
+            <li><strong>National Anthem & National Song:</strong> Adopted on <strong>24 January 1950</strong> ("Jana Gana Mana" by Rabindranath Tagore; "Vande Mataram" by Bankim Chandra Chatterjee).</li>
+            <li><strong>First President of India Elected:</strong> <strong>Dr. Rajendra Prasad</strong> on 24 Jan 1950 (took office 26 Jan 1950).</li>
+            <li><strong>Provisions in force on 26 Nov 1949:</strong> Citizenship (Articles 5–9), Elections (Articles 324–329), Provisional Parliament.</li>
+            <li><strong>Republic Day Selection:</strong> <strong>26 January</strong> was chosen because in 1930, <em>Purna Swaraj Day</em> was celebrated on this date following the 1929 Lahore Congress Session.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ROW 10: ARTISTS, CALLIGRAPHERS & WOMEN -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">🎨 Art, Calligraphy, Seal & Women Members</h3>
+          <button class="bookmark-btn" onclick="toggleBookmark('Art, Calligraphy and Women', this)">★</button>
+        </div>
+        <div class="grid-3" style="margin-bottom:0;">
+          <div class="highlight-box">
+            <strong style="color:var(--accent);">Calligraphy:</strong><br>
+            • English: <strong>Prem Bihari Narain Raizada</strong> (Italic style)<br>
+            • Hindi: <strong>Vasant Krishan Vaidya</strong><br>
+            • Original Language: <strong>English</strong>
+          </div>
+          <div class="highlight-box">
+            <strong style="color:var(--accent-gold);">Art & Decoration:</strong><br>
+            • Decorated by Shantiniketan artists led by <strong>Nand Lal Bose</strong> & <strong>Beohar Rammanohar Sinha</strong>.<br>
+            • Official Seal / Symbol: <strong>Elephant</strong> (airavata).
+          </div>
+          <div class="highlight-box">
+            <strong style="color:var(--success);">Prominent Women (15 total):</strong><br>
+            • <strong>Rajkumari Amrit Kaur:</strong> 1st Health Minister of India.<br>
+            • <strong>Sucheta Kripalani:</strong> 1st Female CM of India (UP).<br>
+            • <strong>Sarojini Naidu:</strong> 1st Female Governor of India (UP).
+          </div>
+        </div>
+        <div class="highlight-box" style="margin-top:1rem; border-left-color:#818cf8;">
+          💬 <strong>Quotes & Trivia to Remember:</strong><br>
+          • <strong>Dr. S. Radhakrishnan:</strong> Addressed Parliament at midnight of 14-15 Aug 1947 right after Nehru.<br>
+          • <strong>B. R. Ambedkar:</strong> <em>"On the 26th Jan 1950, we are going to enter a life of contradictions. In politics we will have equality and in social and economic life we will have inequality."</em><br>
+          • <strong>Somnath Lahiri:</strong> Termed Constituent Assembly as a <em>"conspiracy of Britishers"</em> (in his book <em>Samyobad</em>; editor of <em>Swadhinata</em>).<br>
+          • <strong>H. M. Seervai:</strong> Authored famous treatise <em>'Constitutional Law of India'</em>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE B: ACTIVE RECALL -->
+    <!-- ========================================== -->
+    <section id="stageB" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>⚡ Active Recall Laboratory</h2>
+          <p>Don't just read passively. Test your neural retrieval before revealing the answers!</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageB')">✓ Mark Stage B Complete</button>
+      </div>
+
+      <div class="grid-2">
+        <!-- ACTIVITY 1: CLICK TO REVEAL -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🔍 Click-to-Reveal Retrieval Cards</h3>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">1. In which year and country did the tradition of a written constitution begin?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>USA in 1787</strong> (following its independence on 4th July 1776).
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">2. Who first put forward the idea of a Constituent Assembly for India, and when?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>M. N. Roy</strong> in <strong>1934</strong>.
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">3. Who called the Cripps Proposal a "post-dated cheque on a crashing bank"?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>Mahatma Gandhi</strong>.
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">4. How many members attended the very first meeting of the Constituent Assembly on 9 Dec 1946?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>211 (or 207) members</strong>. (Muslim League boycotted).
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">5. Who was the Finance Minister in the 1946 Interim Government?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> <strong>Liaquat Ali Khan</strong> (Muslim League, who later became Pakistan's 1st Prime Minister).
+            </div>
+          </div>
+
+          <div class="recall-card">
+            <div class="recall-question">6. What was the official seal / symbol of the Constituent Assembly?</div>
+            <button class="reveal-btn" onclick="toggleReveal(this)">👁️ Think & Reveal</button>
+            <div class="revealed-content">
+              <strong>Answer:</strong> The <strong>Elephant</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY 2: FILL IN THE BLANKS -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">✍️ Fill In The Blanks Challenge</h3>
+          </div>
+
+          <div class="recall-card">
+            <p>1. In the Cabinet Mission Plan, 1 seat in the Assembly was allocated per <input type="text" id="fitb1" class="fitb-input" placeholder="e.g. 10 lakh"> population.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb1', ['1 million', '10 lakh', '10 lakhs', '1000000', '1m'])">Check</button>
+            <span id="fitb1-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>2. The calligrapher of the original English Constitution was <input type="text" id="fitb2" class="fitb-input" placeholder="Raizada...">.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb2', ['prem bihari narain raizada', 'prem bihari', 'raizada'])">Check</button>
+            <span id="fitb2-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>3. Total expenditure incurred in drafting the Constitution was ₹<input type="text" id="fitb3" class="fitb-input" placeholder="in lakhs"> lakhs.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb3', ['64', '64 lakhs', '64 lakh'])">Check</button>
+            <span id="fitb3-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>4. B. L. Mitter in the Drafting Committee was replaced by N. <input type="text" id="fitb4" class="fitb-input" placeholder="Name">.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb4', ['madhav rau', 'madhava rau', 'madhav'])">Check</button>
+            <span id="fitb4-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+
+          <div class="recall-card">
+            <p>5. The Indian National Flag ratio (Length:Width) designed by Pingali Venkayya is <input type="text" id="fitb5" class="fitb-input" placeholder="e.g. 3:2">.</p>
+            <button class="fitb-check-btn" onclick="checkFitb('fitb5', ['3:2', '3 : 2'])">Check</button>
+            <span id="fitb5-res" style="margin-left:8px; font-weight:700;"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVITY 3: MATCH THE FOLLOWING INTERACTIVE -->
+      <div class="card" style="margin-bottom:2rem;">
+        <div class="card-header">
+          <h3 class="card-title">🔗 Match the Committees with their Respective Heads</h3>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem;">Select the correct head for each committee and click 'Verify Match'.</p>
+
+        <div class="matching-box">
+          <div>
+            <div class="match-item">
+              <span>1. Provincial Constitution Committee</span>
+              <select id="m1" class="match-select">
+                <option value="">Select Head...</option>
+                <option value="patel">Sardar Patel</option>
+                <option value="nehru">Jawaharlal Nehru</option>
+                <option value="rajendra">Dr. Rajendra Prasad</option>
+                <option value="ambedkar">Dr. B. R. Ambedkar</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>2. Steering Committee</span>
+              <select id="m2" class="match-select">
+                <option value="">Select Head...</option>
+                <option value="patel">Sardar Patel</option>
+                <option value="nehru">Jawaharlal Nehru</option>
+                <option value="rajendra">Dr. Rajendra Prasad</option>
+                <option value="ambedkar">Dr. B. R. Ambedkar</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="match-item">
+              <span>3. States Committee</span>
+              <select id="m3" class="match-select">
+                <option value="">Select Head...</option>
+                <option value="patel">Sardar Patel</option>
+                <option value="nehru">Jawaharlal Nehru</option>
+                <option value="rajendra">Dr. Rajendra Prasad</option>
+                <option value="ambedkar">Dr. B. R. Ambedkar</option>
+              </select>
+            </div>
+            <div class="match-item">
+              <span>4. Drafting Committee</span>
+              <select id="m4" class="match-select">
+                <option value="">Select Head...</option>
+                <option value="patel">Sardar Patel</option>
+                <option value="nehru">Jawaharlal Nehru</option>
+                <option value="rajendra">Dr. Rajendra Prasad</option>
+                <option value="ambedkar">Dr. B. R. Ambedkar</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <button class="btn-primary" onclick="verifyMatching()">Verify Match</button>
+          <span id="match-feedback" style="font-weight:700;"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE C: FLASHCARDS -->
+    <!-- ========================================== -->
+    <section id="stageC" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>🎴 3D Smart Flip Flashcards</h2>
+          <p>Flip, test, mark mastery, or shuffle. Use <strong>Spacebar</strong> to flip and <strong>Arrow Keys</strong> to navigate.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn-secondary" onclick="shuffleFlashcards()">🔀 Shuffle</button>
+          <button class="btn-secondary" onclick="markSectionComplete('stageC')">✓ Complete Stage C</button>
+        </div>
+      </div>
+
+      <div class="flashcard-arena">
+        <div class="flashcard-wrapper" id="flashcard" onclick="flipCard()">
+          <!-- FRONT FACE -->
+          <div class="flashcard-face flashcard-front">
+            <div class="fc-header">
+              <span id="fcCategory">Category: Constitutional Facts</span>
+              <span id="fcNumber">Card 1 / 20</span>
+            </div>
+            <div class="fc-body">
+              <div class="fc-prompt" id="fcQuestion">Loading Flashcard...</div>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-top:1rem;">(Click card or press Space to reveal answer)</p>
+            </div>
+            <div class="fc-footer">
+              <span>Status: <strong id="fcStatus">New</strong></span>
+              <span>Flip ↺</span>
+            </div>
+          </div>
+
+          <!-- BACK FACE -->
+          <div class="flashcard-face flashcard-back">
+            <div class="fc-header">
+              <span>Key Answer</span>
+              <span>Solution</span>
+            </div>
+            <div class="fc-body">
+              <div class="fc-answer" id="fcAnswer">Answer</div>
+              <div class="fc-explanation" id="fcExplanation">Explanation details</div>
+            </div>
+            <div class="fc-footer">
+              <span>Target: Competitive Exams</span>
+              <span>Next Card ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="fc-controls">
+          <button class="btn-fc-nav" onclick="prevCard()">◀ Prev</button>
+          <div class="fc-status-group">
+            <button class="btn-fc-status btn-difficult" onclick="markCardStatus('difficult')">🚩 Difficult</button>
+            <button class="btn-fc-status btn-remembered" onclick="markCardStatus('mastered')">✅ Mastered</button>
+          </div>
+          <button class="btn-fc-nav" onclick="nextCard()">Next ▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE D: QUIZ & PRACTICE -->
+    <!-- ========================================== -->
+    <section id="stageD" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>📝 Exam-Oriented Practice Bank</h2>
+          <p>Strictly curated based on Parmar Sir's lecture. Complete all 20 questions to evaluate your readiness.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn-secondary" onclick="restartQuiz()">🔄 Retake All</button>
+          <button class="btn-secondary" onclick="filterIncorrect()">❌ Review Mistakes</button>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <!-- QUIZ HEADER STATS -->
+        <div class="quiz-header-bar">
+          <div>Question <strong id="currentQNum">1</strong> of <strong id="totalQNum">20</strong></div>
+          <div style="display:flex; gap:1rem;">
+            <span>Score: <strong id="liveScore" style="color:var(--success);">0</strong></span>
+            <span>Accuracy: <strong id="liveAccuracy">0%</strong></span>
+          </div>
+        </div>
+
+        <!-- ACTIVE QUESTION CARD -->
+        <div class="quiz-card" id="quizCard">
+          <span class="q-badge q-basic" id="qDifficulty">Basic</span>
+          <div class="q-text" id="qQuestionText">Loading Question...</div>
+
+          <div class="options-grid" id="optionsContainer">
+            <!-- Dynamically populated options -->
+          </div>
+
+          <div class="q-explanation" id="qExplanationBox">
+            <strong style="color:var(--accent);">💡 Detailed Solution:</strong>
+            <p id="qExplanationText" style="margin-top:0.35rem;"></p>
+          </div>
+
+          <div class="quiz-footer-actions">
+            <button class="btn-secondary" id="btnPrevQ" onclick="prevQuestion()">◀ Previous</button>
+            <button class="btn-primary" id="btnNextQ" onclick="nextQuestion()">Next Question ▶</button>
+          </div>
+        </div>
+
+        <!-- SCORECARD MODAL / CONTAINER -->
+        <div class="scorecard" id="quizScorecard">
+          <h2>🎉 Quiz Completed!</h2>
+          <p style="color:var(--text-muted); margin-top:0.4rem;">Here is your performance diagnostic summary:</p>
+
+          <div class="score-circle" id="scoreCircle">
+            <div class="score-circle-inner" id="scorePercentInner">0%</div>
+          </div>
+
+          <div class="grid-3" style="margin:1.5rem 0; gap:0.75rem;">
+            <div class="highlight-box">Attempted: <strong id="resAttempted">20</strong></div>
+            <div class="highlight-box" style="border-left-color:var(--success);">Correct: <strong id="resCorrect" style="color:var(--success);">0</strong></div>
+            <div class="highlight-box" style="border-left-color:var(--error);">Incorrect: <strong id="resIncorrect" style="color:var(--error);">0</strong></div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:1rem;">
+            <button class="btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+            <button class="btn-secondary" onclick="markSectionComplete('stageD')">Mark Stage D Complete</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE E: QUICK REVISION -->
+    <!-- ========================================== -->
+    <section id="stageE" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>🚀 Quick Revision & High-Yield Cheat Sheet</h2>
+          <p>Last-minute rapid recap: high-yield one-liners, confusing pairs, and essential constitutional data.</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageE')">✓ Complete Stage E</button>
+      </div>
+
+      <!-- CONFUSING PAIRS -->
+      <h3 style="margin-bottom:1rem; color:var(--accent-gold);">⚡ Commonly Confused Facts (Must Avoid In Exam)</h3>
+      <div class="confusing-pair">
+        <div class="confuse-side">
+          <h4>26 November 1949 (Adoption Date)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            Constitution was adopted, enacted, and given to ourselves. Celebrated as <strong>Constitution Day (Samvidhan Divas)</strong>. Provisions on Citizenship, Elections, and Provisional Parliament commenced.
+          </p>
+        </div>
+        <div class="confuse-side" style="border-left:1px solid var(--border);">
+          <h4>26 January 1950 (Enforcement Date)</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            Full commencement of the Constitution. Celebrated as <strong>Republic Day</strong>. Chosen to commemorate <strong>26 Jan 1930 (Purna Swaraj Day)</strong> of the 1929 Lahore Session.
+          </p>
+        </div>
+      </div>
+
+      <div class="confusing-pair">
+        <div class="confuse-side">
+          <h4>Dr. B. R. Ambedkar</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            Chairman of the <strong>Drafting Committee</strong> (7 members). Father of the Indian Constitution / "Modern Manu".
+          </p>
+        </div>
+        <div class="confuse-side" style="border-left:1px solid var(--border);">
+          <h4>Sir B. N. Rau</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            <strong>Constitutional Advisor</strong> to the Constituent Assembly. Prepared the initial base draft before the Drafting Committee scrutinized it.
+          </p>
+        </div>
+      </div>
+
+      <div class="confusing-pair">
+        <div class="confuse-side">
+          <h4>Dual Role: Dr. Rajendra Prasad</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            Chaired the Assembly whenever it met as a <strong>Constituent Body</strong> (to frame the Constitution).
+          </p>
+        </div>
+        <div class="confuse-side" style="border-left:1px solid var(--border);">
+          <h4>Dual Role: G. V. Mavalankar</h4>
+          <p style="font-size:0.88rem; color:var(--text-muted);">
+            Chaired the Assembly whenever it met as a <strong>Legislative Body</strong> (India's First Provisional Parliament).
+          </p>
+        </div>
+      </div>
+
+      <!-- ONE LINERS -->
+      <h3 style="margin:2rem 0 1rem; color:var(--accent);">🔥 15 High-Yield Exam One-Liners</h3>
+      <div id="onelinersContainer">
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Origin of Written Constitution:</strong> The tradition began in the <strong>USA in 1787</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>First Demand:</strong> <strong>M. N. Roy</strong> first officially proposed the idea of a Constituent Assembly in <strong>1934</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Gandhi's Remark:</strong> Mahatma Gandhi described the 1942 Cripps Proposal as a <strong>"post-dated cheque on a crashing bank."</strong></div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Cabinet Mission Members (PAL):</strong> Pethick-Lawrence (Chairman), A. V. Alexander, Stafford Cripps.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Seat Ratio:</strong> Exactly <strong>1 seat per 10 Lakh (1 million)</strong> population.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Total Original Seats:</strong> <strong>389</strong> (296 British India + 93 Princely States). Reduced to <strong>299</strong> post-partition.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Interim Govt Finance Minister:</strong> <strong>Liaquat Ali Khan</strong> of Muslim League.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Temporary President:</strong> <strong>Dr. Sachchidananda Sinha</strong> was chosen on 9 Dec 1946 based on French convention (oldest member).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Two Vice Presidents:</strong> <strong>V. T. Krishnamachari</strong> and <strong>H. C. Mukherjee</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Objective Resolution:</strong> Moved by <strong>Jawaharlal Nehru on 13 Dec 1946</strong>, adopted on <strong>22 Jan 1947</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Total Time Taken:</strong> <strong>2 years, 11 months, and 18 days</strong> across 11 sessions (165 days).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Total Signatures:</strong> <strong>284 members</strong> signed the Constitution on 24 Jan 1950, including <strong>15 women</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>National Flag Adoption:</strong> <strong>22 July 1947</strong> (Designed by Pingali Venkayya, 3:2 ratio).</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Calligraphy Masters:</strong> English was calligraphed by <strong>Prem Bihari Narain Raizada</strong>; Hindi by <strong>Vasant Krishan Vaidya</strong>.</div>
+        </div>
+        <div class="oneliner-pill">
+          <span class="oneliner-icon">📌</span>
+          <div><strong>Artwork:</strong> Beautified by Shantiniketan artists led by <strong>Nandalal Bose</strong> and <strong>Beohar Rammanohar Sinha</strong>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STAGE F: FINAL MEMORY TEST -->
+    <!-- ========================================== -->
+    <section id="stageF" class="stage-section">
+      <div class="section-banner">
+        <div>
+          <h2>🏆 Final Memory & Retrieval Test</h2>
+          <p>Can you recall the facts without notes? Test your long-term memory under strict evaluation.</p>
+        </div>
+        <button class="btn-secondary" onclick="markSectionComplete('stageF')">✓ Complete Stage F</button>
+      </div>
+
+      <div class="card" id="finalTestIntro" style="max-width:700px; margin:0 auto; text-align:center; padding:3rem 2rem;">
+        <div style="font-size:3rem; margin-bottom:1rem;">🎯</div>
+        <h3>Comprehensive Final Test (10 High-Weightage Questions)</h3>
+        <p style="color:var(--text-muted); margin:1rem 0 2rem;">
+          This test checks whether the facts have entered your long-term memory. It will diagnose your weak topics and prescribe exact revision areas.
+        </p>
+        <button class="btn-primary" onclick="startFinalTest()">Begin Final Assessment</button>
+      </div>
+
+      <div class="quiz-container" id="finalTestArea" style="display:none;">
+        <div class="quiz-header-bar">
+          <div>Assessment Question <strong id="ftCurrentQ">1</strong> of 10</div>
+          <div>Mode: <strong style="color:var(--accent-gold);">Exam Simulation</strong></div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="q-text" id="ftQuestionText">Question text here</div>
+          <div class="options-grid" id="ftOptionsContainer"></div>
+          <div class="quiz-footer-actions">
+            <div></div>
+            <button class="btn-primary" id="ftSubmitBtn" onclick="submitFinalTestAnswer()">Submit & Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINAL DIAGNOSTIC REPORT -->
+      <div class="scorecard" id="finalReportCard">
+        <h2>📊 Final Performance & Diagnostic Report</h2>
+        <div class="score-circle" id="ftScoreCircle">
+          <div class="score-circle-inner" id="ftPercentText">0%</div>
+        </div>
+        <h3 id="ftVerdict" style="margin-bottom:1rem;">Good Effort!</h3>
+        <p id="ftFeedback" style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem;"></p>
+
+        <div style="text-align:left; background:var(--bg-secondary); padding:1.25rem; border-radius:12px; margin-bottom:1.5rem; border:1px solid var(--border);">
+          <h4 style="color:var(--accent); margin-bottom:0.5rem;">🔍 Recommended Revision Focus:</h4>
+          <ul id="ftRecommendations" style="font-size:0.9rem; padding-left:1.25rem; color:var(--text-main);">
+          </ul>
+        </div>
+
+        <button class="btn-primary" onclick="location.reload()">🔄 Restart Complete Learning Module</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SAVED BOOKMARKS MODAL -->
+  <div class="modal-overlay" id="bookmarksModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="display:flex; align-items:center; gap:0.5rem;">⭐ Saved Bookmarks</h3>
+        <button class="btn-icon" onclick="closeBookmarksModal()">✕</button>
+      </div>
+      <div class="modal-body" id="bookmarksList">
+        <p style="color:var(--text-muted);">No bookmarks saved yet. Click the star icon on any card to save it for quick review!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Parmar SSC GK/GS 5.0 • Lecture 01: Making of Indian Constitution</p>
+    <p style="margin-top:0.35rem; font-size:0.75rem;">Self-Contained Offline Interactive Learning System • LocalStorage Powered</p>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <!-- ========================================== -->
+  <script>
+    /* STORAGE KEYS */
+    const STORAGE_KEY_PROGRESS = 'gk_polity_lec01_progress';
+    const STORAGE_KEY_BOOKMARKS = 'gk_polity_lec01_bookmarks';
+    const STORAGE_KEY_FC = 'gk_polity_lec01_fc';
+
+    /* STATE */
+    let bookmarks = JSON.parse(localStorage.getItem(STORAGE_KEY_BOOKMARKS) || '[]');
+    let completedStages = JSON.parse(localStorage.getItem(STORAGE_KEY_PROGRESS) || '[]');
+
+    /* -------------------------------------------
+       STAGE NAVIGATION
+    ------------------------------------------- */
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const sections = document.querySelectorAll('.stage-section');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const stageId = btn.getAttribute('data-stage');
+        tabBtns.forEach(b => b.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(stageId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    /* THEME TOGGLE */
+    const themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', newTheme);
+      themeBtn.textContent = newTheme === 'dark' ? '🌓' : '☀️';
+    });
+
+    /* PROGRESS TRACKING */
+    function markSectionComplete(stageId) {
+      if (!completedStages.includes(stageId)) {
+        completedStages.push(stageId);
+        localStorage.setItem(STORAGE_KEY_PROGRESS, JSON.stringify(completedStages));
+        updateOverallProgress();
+        alert(`Stage ${stageId.replace('stage', '')} marked as complete!`);
+      } else {
+        alert(`Stage ${stageId.replace('stage', '')} is already marked complete.`);
+      }
+    }
+
+    function updateOverallProgress() {
+      const totalStages = 6;
+      const completedCount = completedStages.length;
+      const percent = Math.round((completedCount / totalStages) * 100);
+      document.getElementById('overallProgress').style.width = percent + '%';
+      document.getElementById('progressPercent').textContent = percent + '%';
+    }
+
+    /* BOOKMARKS LOGIC */
+    function toggleBookmark(title, btn) {
+      if (bookmarks.includes(title)) {
+        bookmarks = bookmarks.filter(b => b !== title);
+        btn.classList.remove('bookmarked');
+      } else {
+        bookmarks.push(title);
+        btn.classList.add('bookmarked');
+      }
+      localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
+      renderBookmarksModal();
+    }
+
+    document.getElementById('bookmarksBtn').addEventListener('click', () => {
+      renderBookmarksModal();
+      document.getElementById('bookmarksModal').classList.add('open');
+    });
+
+    function closeBookmarksModal() {
+      document.getElementById('bookmarksModal').classList.remove('open');
+    }
+
+    function renderBookmarksModal() {
+      const container = document.getElementById('bookmarksList');
+      if (bookmarks.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted);">No bookmarks saved yet. Click the star icon on any card to save it for quick review!</p>';
+        return;
+      }
+      container.innerHTML = bookmarks.map(b => `
+        <div style="background:var(--bg-secondary); padding:0.75rem 1rem; border-radius:8px; margin-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
+          <span>⭐ ${b}</span>
+          <button style="background:none; border:none; color:var(--error); cursor:pointer;" onclick="removeBookmark('${b}')">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function removeBookmark(title) {
+      bookmarks = bookmarks.filter(b => b !== title);
+      localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
+      renderBookmarksModal();
+      document.querySelectorAll('.bookmark-btn').forEach(btn => {
+        btn.classList.remove('bookmarked');
+      });
+    }
+
+    /* -------------------------------------------
+       STAGE B: REVEAL & FITB & MATCHING
+    ------------------------------------------- */
+    function toggleReveal(btn) {
+      const content = btn.nextElementSibling;
+      if (content.classList.contains('show')) {
+        content.classList.remove('show');
+        btn.textContent = '👁️ Think & Reveal';
+      } else {
+        content.classList.add('show');
+        btn.textContent = '🙈 Hide Solution';
+      }
+    }
+
+    function checkFitb(inputId, validAnswers) {
+      const input = document.getElementById(inputId);
+      const resSpan = document.getElementById(inputId + '-res');
+      const val = input.value.trim().toLowerCase();
+
+      if (validAnswers.includes(val)) {
+        resSpan.textContent = '✅ Correct!';
+        resSpan.style.color = 'var(--success)';
+      } else {
+        resSpan.textContent = `❌ Try again!`;
+        resSpan.style.color = 'var(--error)';
+      }
+    }
+
+    function verifyMatching() {
+      const m1 = document.getElementById('m1').value;
+      const m2 = document.getElementById('m2').value;
+      const m3 = document.getElementById('m3').value;
+      const m4 = document.getElementById('m4').value;
+      const feedback = document.getElementById('match-feedback');
+
+      if (m1 === 'patel' && m2 === 'rajendra' && m3 === 'nehru' && m4 === 'ambedkar') {
+        feedback.textContent = '🎉 All Matches are 100% Correct!';
+        feedback.style.color = 'var(--success)';
+      } else {
+        feedback.textContent = '❌ Some matches are incorrect. Check hints: Provincial=Patel, Steering=Prasad, States=Nehru, Drafting=Ambedkar.';
+        feedback.style.color = 'var(--error)';
+      }
+    }
+
+    /* -------------------------------------------
+       STAGE C: FLASHCARDS DATA & CONTROLS
+    ------------------------------------------- */
+    const flashcardsData = [
+      {
+        q: "Where and in what year did the tradition of a written constitution begin?",
+        a: "USA in 1787",
+        exp: "USA declared independence on 4th July 1776, and formed the first written constitution in 1787.",
+        category: "Constitutional Origin"
+      },
+      {
+        q: "Who was the first person to propose the idea of a Constituent Assembly for India?",
+        a: "M. N. Roy (1934)",
+        exp: "Manabendra Nath Roy, a pioneer of the communist movement in India, first proposed it in 1934.",
+        category: "Assembly Genesis"
+      },
+      {
+        q: "How did Mahatma Gandhi describe the Cripps Proposal (1942)?",
+        a: '"A post-dated cheque on a crashing bank"',
+        exp: "Because it offered post-war Dominion status while the Congress demanded immediate Purna Swaraj.",
+        category: "British Proposals"
+      },
+      {
+        q: "Who were the three members of the Cabinet Mission (1946)?",
+        a: "Pethick-Lawrence, Stafford Cripps, and A.V. Alexander",
+        exp: "Lord Pethick-Lawrence was the Chairman. Remember acronym 'PAL'.",
+        category: "Cabinet Mission"
+      },
+      {
+        q: "What was the total seat count under the Cabinet Mission Plan?",
+        a: "389 Seats",
+        exp: "296 from British India (292 provincial + 4 chief commissioners) and 93 from Princely States.",
+        category: "Assembly Composition"
+      },
+      {
+        q: "What was the population ratio for seat allocation in the Assembly?",
+        a: "1 Seat per 1 Million (10 Lakh) population",
+        exp: "Seats were allotted to communities: Muslims, Sikhs, and General in proportion to their population.",
+        category: "Representation"
+      },
+      {
+        q: "How many seats did INC win in the July-August 1946 elections?",
+        a: "208 Seats (Out of 296)",
+        exp: "Muslim League won 73 seats, and independent/small groups won 15 seats.",
+        category: "Elections 1946"
+      },
+      {
+        q: "What was the remaining seat count of the Constituent Assembly post-partition?",
+        a: "299 Seats",
+        exp: "229 representing provinces and 70 representing princely states.",
+        category: "Post-Partition"
+      },
+      {
+        q: "Who was the temporary president of the Assembly at its first meeting on 9 Dec 1946?",
+        a: "Dr. Sachchidananda Sinha",
+        exp: "Selected based on the French practice of appointing the oldest member.",
+        category: "Key Personalities"
+      },
+      {
+        q: "Who were the TWO Vice Presidents of the Constituent Assembly?",
+        a: "H. C. Mukherjee and V. T. Krishnamachari",
+        exp: "The Assembly had two elected Vice Presidents throughout its functioning.",
+        category: "Key Personalities"
+      },
+      {
+        q: "Who moved the historic 'Objective Resolution' and when?",
+        a: "Jawaharlal Nehru on 13 December 1946",
+        exp: "It was unanimously adopted on 22 January 1947, and later formed the Preamble.",
+        category: "Foundational Milestones"
+      },
+      {
+        q: "Who headed the Provincial Constitution Committee?",
+        a: "Sardar Vallabhbhai Patel",
+        exp: "Patel, known as the 'Bismarck of India', also headed the Advisory Committee on Fundamental Rights.",
+        category: "Committees"
+      },
+      {
+        q: "Who headed the Fundamental Rights Sub-Committee?",
+        a: "J. B. Kripalani",
+        exp: "While Sardar Patel headed the main Advisory committee, J. B. Kripalani headed the FR sub-committee.",
+        category: "Committees"
+      },
+      {
+        q: "When was the Drafting Committee set up and who was its Chairman?",
+        a: "29th August 1947 • Dr. B. R. Ambedkar",
+        exp: "The committee had 7 members and held its first meeting on 30th August 1947.",
+        category: "Drafting Committee"
+      },
+      {
+        q: "Who replaced B. L. Mitter in the Drafting Committee?",
+        a: "N. Madhav Rau",
+        exp: "B. L. Mitter resigned due to ill health. (Remember M -> M).",
+        category: "Drafting Committee"
+      },
+      {
+        q: "How much time did it take to frame the Constitution?",
+        a: "2 Years, 11 Months, and 18 Days",
+        exp: "Covering 11 sessions over 165 days with an expenditure of approximately ₹64 Lakhs.",
+        category: "Statistics"
+      },
+      {
+        q: "How many members actually signed the Constitution on 24 Jan 1950?",
+        a: "284 Members (including 15 women)",
+        exp: "Out of the 299 eligible members, 284 were present and signed.",
+        category: "Statistics"
+      },
+      {
+        q: "When was the Indian National Flag adopted?",
+        a: "22 July 1947",
+        exp: "Designed by Pingali Venkayya with a Length-to-Width ratio of 3:2.",
+        category: "National Symbols"
+      },
+      {
+        q: "Who was the calligrapher of the original English Constitution?",
+        a: "Prem Bihari Narain Raizada",
+        exp: "Written in a flowing italic style with a No. 303 nib.",
+        category: "Art & Calligraphy"
+      },
+      {
+        q: "Who called the Constituent Assembly a 'conspiracy of Britishers'?",
+        a: "Somnath Lahiri",
+        exp: "Communist leader and editor of Swadhinata; stated in his book Samyobad.",
+        category: "Critical Opinions"
+      }
+    ];
+
+    let currentFcIndex = 0;
+    let cardFlipped = false;
+
+    function renderFlashcard() {
+      const card = flashcardsData[currentFcIndex];
+      document.getElementById('fcCategory').textContent = `Category: ${card.category}`;
+      document.getElementById('fcNumber').textContent = `Card ${currentFcIndex + 1} / ${flashcardsData.length}`;
+      document.getElementById('fcQuestion').textContent = card.q;
+      document.getElementById('fcAnswer').textContent = card.a;
+      document.getElementById('fcExplanation').textContent = card.exp;
+
+      const wrapper = document.getElementById('flashcard');
+      wrapper.classList.remove('flipped');
+      cardFlipped = false;
+
+      const savedStatus = localStorage.getItem(`fc_${currentFcIndex}`) || 'New';
+      document.getElementById('fcStatus').textContent = savedStatus;
+    }
+
+    function flipCard() {
+      const wrapper = document.getElementById('flashcard');
+      cardFlipped = !cardFlipped;
+      wrapper.classList.toggle('flipped', cardFlipped);
+    }
+
+    function nextCard() {
+      if (currentFcIndex < flashcardsData.length - 1) {
+        currentFcIndex++;
+        renderFlashcard();
+      } else {
+        currentFcIndex = 0;
+        renderFlashcard();
+      }
+    }
+
+    function prevCard() {
+      if (currentFcIndex > 0) {
+        currentFcIndex--;
+        renderFlashcard();
+      } else {
+        currentFcIndex = flashcardsData.length - 1;
+        renderFlashcard();
+      }
+    }
+
+    function shuffleFlashcards() {
+      flashcardsData.sort(() => Math.random() - 0.5);
+      currentFcIndex = 0;
+      renderFlashcard();
+    }
+
+    function markCardStatus(status) {
+      localStorage.setItem(`fc_${currentFcIndex}`, status);
+      document.getElementById('fcStatus').textContent = status === 'mastered' ? 'Mastered ✅' : 'Difficult 🚩';
+      setTimeout(nextCard, 300);
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      const stageCActive = document.getElementById('stageC').classList.contains('active');
+      if (!stageCActive) return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        flipCard();
+      } else if (e.code === 'ArrowRight') {
+        nextCard();
+      } else if (e.code === 'ArrowLeft') {
+        prevCard();
+      }
+    });
+
+    /* -------------------------------------------
+       STAGE D: EXAM QUIZ (20 MCQS)
+    ------------------------------------------- */
+    const quizQuestions = [
+      {
+        q: "In which year and country did the tradition of framing a written Constitution begin?",
+        options: ["1776, UK", "1787, USA", "1789, France", "1919, Germany"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "The tradition of a written Constitution began in the USA in 1787 after declaring independence on 4th July 1776."
+      },
+      {
+        q: "Who first officially proposed the idea of a Constituent Assembly for India in 1934?",
+        options: ["Jawaharlal Nehru", "Mahatma Gandhi", "M. N. Roy", "Motilal Nehru"],
+        answer: 2,
+        difficulty: "Basic",
+        explanation: "M. N. Roy first mooted the idea in 1934. Later in 1935, INC officially endorsed it."
+      },
+      {
+        q: "Mahatma Gandhi characterized the Cripps Mission proposals (1942) as a:",
+        options: ["Charter of Slavery", "Post-dated cheque on a crashing bank", "Hollow promise of freedom", "Conspiracy of Britishers"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "Mahatma Gandhi called it a 'post-dated cheque on a crashing bank' because it offered post-war dominion status while India demanded immediate complete independence."
+      },
+      {
+        q: "Under the Cabinet Mission Plan (1946), the Constituent Assembly was to consist of how many total seats?",
+        options: ["296", "389", "299", "315"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "Total 389 seats were planned: 296 from British India and 93 from Princely States."
+      },
+      {
+        q: "What was the population scale adopted for allocating one seat in the Constituent Assembly?",
+        options: ["5 Lakhs", "10 Lakhs (1 Million)", "15 Lakhs", "20 Lakhs"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "Roughly 1 seat was allocated per 1 million (10 lakh) people among Muslims, Sikhs, and General communities."
+      },
+      {
+        q: "How many members represented the Chief Commissioner's Provinces out of the 296 British Indian seats?",
+        options: ["2", "4", "6", "11"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "4 members came from 4 Chief Commissioner's provinces: Delhi, Ajmer-Merwara, Coorg, and British Baluchistan."
+      },
+      {
+        q: "In the July–August 1946 elections for 296 seats, how many seats were won by the Indian National Congress (INC)?",
+        options: ["73", "195", "208", "211"],
+        answer: 2,
+        difficulty: "Moderate",
+        explanation: "Congress won 208 seats, Muslim League won 73, and small independent groups won 15 seats."
+      },
+      {
+        q: "Who among the following was the temporary President of the Constituent Assembly at its inaugural meeting?",
+        options: ["Dr. Rajendra Prasad", "Dr. Sachchidananda Sinha", "Dr. B. R. Ambedkar", "G. V. Mavalankar"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "Dr. Sachchidananda Sinha was elected temporary president following the French convention of honoring the oldest member."
+      },
+      {
+        q: "Whenever the Constituent Assembly met as a Legislative Body (Provisional Parliament), it was presided over by:",
+        options: ["Dr. Rajendra Prasad", "G. V. Mavalankar", "C. Rajagopalachari", "H. C. Mukherjee"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "When meeting as a Constituent body, Dr. Rajendra Prasad presided; when meeting as a Legislative body, G.V. Mavalankar presided."
+      },
+      {
+        q: "On which date was the historic 'Objective Resolution' moved in the Constituent Assembly by Jawaharlal Nehru?",
+        options: ["9 December 1946", "11 December 1946", "13 December 1946", "22 January 1947"],
+        answer: 2,
+        difficulty: "Moderate",
+        explanation: "Moved on 13 December 1946 by Nehru and unanimously adopted on 22 January 1947."
+      },
+      {
+        q: "Who was the Chairman of the Provincial Constitution Committee of the Constituent Assembly?",
+        options: ["Jawaharlal Nehru", "Sardar Vallabhbhai Patel", "Dr. B. R. Ambedkar", "Alladi Krishnaswami Ayyar"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "Sardar Vallabhbhai Patel chaired the Provincial Constitution Committee."
+      },
+      {
+        q: "Who among the following headed the Minorities Sub-Committee?",
+        options: ["J. B. Kripalani", "H. C. Mukherjee", "A. V. Thakkar", "Sardar Patel"],
+        answer: 1,
+        difficulty: "Difficult",
+        explanation: "H. C. Mukherjee headed the Minorities Sub-Committee, while J. B. Kripalani headed the Fundamental Rights Sub-Committee."
+      },
+      {
+        q: "The Drafting Committee was officially set up on which date?",
+        options: ["15 August 1947", "29 August 1947", "30 August 1947", "26 November 1949"],
+        answer: 1,
+        difficulty: "Difficult",
+        explanation: "Set up on 29th August 1947 with Dr. B. R. Ambedkar as its Chairman."
+      },
+      {
+        q: "In the Drafting Committee, who replaced D. P. Khaitan upon his demise in 1948?",
+        options: ["N. Madhav Rau", "T. T. Krishnamachari", "Muhammad Saadullah", "S. N. Mukherjee"],
+        answer: 1,
+        difficulty: "Difficult",
+        explanation: "D. P. Khaitan died in 1948 and was replaced by T. T. Krishnamachari. (B. L. Mitter was replaced by N. Madhav Rau)."
+      },
+      {
+        q: "What was the total time taken by the Constituent Assembly to draft the Constitution of India?",
+        options: ["2 years, 10 months, 20 days", "2 years, 11 months, 18 days", "3 years, 1 month, 12 days", "2 years, 9 months, 15 days"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "The Assembly sat for 11 sessions over 165 days, taking 2 years, 11 months, and 18 days."
+      },
+      {
+        q: "How many members of the Constituent Assembly actually appended their signatures to the Constitution on 24 Jan 1950?",
+        options: ["299", "284", "292", "389"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "A total of 284 members were present and signed the original documents on 24th January 1950."
+      },
+      {
+        q: "Which provisions of the Indian Constitution came into immediate force on 26th November 1949?",
+        options: ["Fundamental Rights & DPSP", "Citizenship & Elections", "Emergency Provisions", "Union Judiciary"],
+        answer: 1,
+        difficulty: "Difficult",
+        explanation: "Citizenship (Articles 5-9), Elections (Articles 324-329), and Provisional Parliament provisions came into force immediately on 26 Nov 1949."
+      },
+      {
+        q: "Who was the calligrapher of the original Constitution of India in English?",
+        options: ["Vasant Krishan Vaidya", "Prem Bihari Narain Raizada", "Nandalal Bose", "Beohar Rammanohar Sinha"],
+        answer: 1,
+        difficulty: "Moderate",
+        explanation: "Prem Bihari Narain Raizada handwrote the English copy in flowing italic script, while Vasant Krishan Vaidya wrote the Hindi version."
+      },
+      {
+        q: "The official seal and symbol adopted by the Constituent Assembly was the:",
+        options: ["Lion Capitol", "Elephant", "Tiger", "Lotus"],
+        answer: 1,
+        difficulty: "Basic",
+        explanation: "The Elephant was adopted as the official emblem and seal of the Constituent Assembly."
+      },
+      {
+        q: "Who among the following labeled the Constituent Assembly as a 'conspiracy of Britishers' in his book 'Samyobad'?",
+        options: ["M. N. Roy", "Somnath Lahiri", "H. M. Seervai", "Ram Manohar Lohia"],
+        answer: 1,
+        difficulty: "Difficult",
+        explanation: "Somnath Lahiri, communist leader and editor of Swadhinata, expressed this in his book Samyobad."
+      }
+    ];
+
+    let currentQ = 0;
+    let userAnswers = {};
+    let isReviewMode = false;
+
+    function renderQuestion() {
+      const q = quizQuestions[currentQ];
+      document.getElementById('currentQNum').textContent = currentQ + 1;
+      document.getElementById('totalQNum').textContent = quizQuestions.length;
+      document.getElementById('qQuestionText').textContent = q.q;
+
+      const diffBadge = document.getElementById('qDifficulty');
+      diffBadge.textContent = q.difficulty;
+      diffBadge.className = `q-badge q-${q.difficulty.toLowerCase()}`;
+
+      const optContainer = document.getElementById('optionsContainer');
+      const letters = ['A', 'B', 'C', 'D'];
+      const selectedAns = userAnswers[currentQ];
+
+      optContainer.innerHTML = q.options.map((opt, idx) => {
+        let classes = 'option-btn';
+        if (selectedAns !== undefined) {
+          classes += ' locked';
+          if (idx === q.answer) classes += ' correct';
+          else if (idx === selectedAns) classes += ' incorrect';
+        }
+        return `
+          <button class="${classes}" onclick="selectOption(${idx})" ${selectedAns !== undefined ? 'disabled' : ''}>
+            <span class="option-letter">${letters[idx]}</span>
+            <span>${opt}</span>
+          </button>
+        `;
+      }).join('');
+
+      const expBox = document.getElementById('qExplanationBox');
+      if (selectedAns !== undefined) {
+        document.getElementById('qExplanationText').textContent = q.explanation;
+        expBox.classList.add('show');
+      } else {
+        expBox.classList.remove('show');
+      }
+
+      document.getElementById('btnPrevQ').disabled = currentQ === 0;
+      document.getElementById('btnNextQ').textContent = (currentQ === quizQuestions.length - 1) ? 'Finish Quiz 🏁' : 'Next Question ▶';
+
+      updateQuizStats();
+    }
+
+    function selectOption(idx) {
+      if (userAnswers[currentQ] !== undefined) return;
+      userAnswers[currentQ] = idx;
+      renderQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentQ < quizQuestions.length - 1) {
+        currentQ++;
+        renderQuestion();
+      } else {
+        showScorecard();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQ > 0) {
+        currentQ--;
+        renderQuestion();
+      }
+    }
+
+    function updateQuizStats() {
+      let correct = 0;
+      let attempted = Object.keys(userAnswers).length;
+
+      Object.keys(userAnswers).forEach(qIdx => {
+        if (userAnswers[qIdx] === quizQuestions[qIdx].answer) {
+          correct++;
+        }
+      });
+
+      document.getElementById('liveScore').textContent = correct;
+      const acc = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+      document.getElementById('liveAccuracy').textContent = acc + '%';
+    }
+
+    function showScorecard() {
+      document.getElementById('quizCard').style.display = 'none';
+      const scorecard = document.getElementById('quizScorecard');
+      scorecard.classList.add('show');
+
+      let correct = 0;
+      quizQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.answer) correct++;
+      });
+
+      const total = quizQuestions.length;
+      const pct = Math.round((correct / total) * 100);
+
+      document.getElementById('resAttempted').textContent = total;
+      document.getElementById('resCorrect').textContent = correct;
+      document.getElementById('resIncorrect').textContent = total - correct;
+      document.getElementById('scorePercentInner').textContent = pct + '%';
+      document.getElementById('scoreCircle').style.setProperty('--percent', pct);
+    }
+
+    function restartQuiz() {
+      userAnswers = {};
+      currentQ = 0;
+      document.getElementById('quizCard').style.display = 'block';
+      document.getElementById('quizScorecard').classList.remove('show');
+      renderQuestion();
+    }
+
+    function filterIncorrect() {
+      const incorrectIdx = quizQuestions.findIndex((q, i) => userAnswers[i] !== undefined && userAnswers[i] !== q.answer);
+      if (incorrectIdx !== -1) {
+        currentQ = incorrectIdx;
+        document.getElementById('quizCard').style.display = 'block';
+        document.getElementById('quizScorecard').classList.remove('show');
+        renderQuestion();
+      } else {
+        alert('Splendid! You have no incorrect answers.');
+      }
+    }
+
+    /* -------------------------------------------
+       STAGE F: FINAL MEMORY TEST
+    ------------------------------------------- */
+    const finalTestQuestions = [
+      {
+        q: "Which plan was formally accepted by both Congress and Muslim League to form the Constituent Assembly?",
+        options: ["August Offer", "Cripps Proposal", "Wavell Plan", "Cabinet Mission Plan"],
+        ans: 3,
+        topic: "British Proposals"
+      },
+      {
+        q: "Who was the Chairman of the Drafting Committee?",
+        options: ["Dr. B. R. Ambedkar", "Jawaharlal Nehru", "Sardar Patel", "Dr. Rajendra Prasad"],
+        ans: 0,
+        topic: "Drafting Committee"
+      },
+      {
+        q: "How many female members were present among the 284 who signed the Constitution on 24 Jan 1950?",
+        options: ["9", "12", "15", "21"],
+        ans: 2,
+        topic: "Assembly Statistics"
+      },
+      {
+        q: "Who designed the Indian National Flag in its 3:2 ratio?",
+        options: ["Pingali Venkayya", "Rabindranath Tagore", "Nandalal Bose", "Bankim Chandra"],
+        ans: 0,
+        topic: "National Symbols"
+      },
+      {
+        q: "Who held the Law Portfolio in the 1946 Interim Government?",
+        options: ["Dr. B. R. Ambedkar", "Jogendra Nath Mandal", "C. Rajagopalachari", "Baldev Singh"],
+        ans: 1,
+        topic: "Interim Government"
+      },
+      {
+        q: "The first draft of the Indian Constitution prepared by Motilal Nehru in 1928 was known as:",
+        options: ["Lucknow Pact", "Nehru Report", "Delhi Manifesto", "Swaraj Draft"],
+        ans: 1,
+        topic: "Timeline 1928-1938"
+      },
+      {
+        q: "Who served as the Constitutional Advisor to the Constituent Assembly?",
+        options: ["Sir B. N. Rau", "Dr. B. R. Ambedkar", "S. N. Mukherjee", "H. V. R. Iyengar"],
+        ans: 0,
+        topic: "Key Figures"
+      },
+      {
+        q: "On what date was the Indian National Flag formally adopted by the Assembly?",
+        options: ["15 August 1947", "22 July 1947", "26 January 1950", "24 January 1950"],
+        ans: 1,
+        topic: "National Symbols"
+      },
+      {
+        q: "Who was the Chairman of the Advisory Committee on Fundamental Rights and Minorities?",
+        options: ["Jawaharlal Nehru", "Sardar Vallabhbhai Patel", "J. B. Kripalani", "H. C. Mukherjee"],
+        ans: 1,
+        topic: "Committees"
+      },
+      {
+        q: "The calligraphy of the Hindi version of the original Constitution was done by:",
+        options: ["Prem Bihari Raizada", "Vasant Krishan Vaidya", "Nandalal Bose", "Beohar Sinha"],
+        ans: 1,
+        topic: "Art & Calligraphy"
+      }
+    ];
+
+    let ftIndex = 0;
+    let ftSelectedOpt = null;
+    let ftAnswers = [];
+
+    function startFinalTest() {
+      document.getElementById('finalTestIntro').style.display = 'none';
+      document.getElementById('finalTestArea').style.display = 'block';
+      ftIndex = 0;
+      ftAnswers = [];
+      renderFinalTestQ();
+    }
+
+    function renderFinalTestQ() {
+      const q = finalTestQuestions[ftIndex];
+      document.getElementById('ftCurrentQ').textContent = ftIndex + 1;
+      document.getElementById('ftQuestionText').textContent = q.q;
+      ftSelectedOpt = null;
+
+      const container = document.getElementById('ftOptionsContainer');
+      const letters = ['A', 'B', 'C', 'D'];
+      container.innerHTML = q.options.map((opt, i) => `
+        <button class="option-btn" id="ftOpt_${i}" onclick="selectFtOpt(${i})">
+          <span class="option-letter">${letters[i]}</span>
+          <span>${opt}</span>
+        </button>
+      `).join('');
+    }
+
+    function selectFtOpt(idx) {
+      ftSelectedOpt = idx;
+      for (let i = 0; i < 4; i++) {
+        const el = document.getElementById(`ftOpt_${i}`);
+        if (el) el.classList.remove('selected');
+      }
+      document.getElementById(`ftOpt_${idx}`).classList.add('selected');
+    }
+
+    function submitFinalTestAnswer() {
+      if (ftSelectedOpt === null) {
+        alert('Please pick an answer before moving forward.');
+        return;
+      }
+      ftAnswers.push(ftSelectedOpt);
+
+      if (ftIndex < finalTestQuestions.length - 1) {
+        ftIndex++;
+        renderFinalTestQ();
+      } else {
+        showFinalReport();
+      }
+    }
+
+    function showFinalReport() {
+      document.getElementById('finalTestArea').style.display = 'none';
+      const card = document.getElementById('finalReportCard');
+      card.classList.add('show');
+
+      let correct = 0;
+      const weakTopics = [];
+
+      finalTestQuestions.forEach((q, i) => {
+        if (ftAnswers[i] === q.ans) {
+          correct++;
+        } else {
+          weakTopics.push(q.topic);
+        }
+      });
+
+      const total = finalTestQuestions.length;
+      const pct = Math.round((correct / total) * 100);
+
+      document.getElementById('ftPercentText').textContent = pct + '%';
+      document.getElementById('ftScoreCircle').style.setProperty('--percent', pct);
+
+      const verdictEl = document.getElementById('ftVerdict');
+      const feedbackEl = document.getElementById('ftFeedback');
+      const recoList = document.getElementById('ftRecommendations');
+
+      if (pct >= 80) {
+        verdictEl.textContent = '🌟 Outstanding Mastery!';
+        verdictEl.style.color = 'var(--success)';
+        feedbackEl.textContent = 'You have thoroughly absorbed Lecture 01 on the Making of the Constitution. You are fully ready for exam questions from this topic.';
+      } else if (pct >= 50) {
+        verdictEl.textContent = '👍 Good Knowledge with Scope for Revision';
+        verdictEl.style.color = 'var(--accent-gold)';
+        feedbackEl.textContent = 'You have understood the broad chronology and key structures, but some specific names, portfolios, or dates require another review.';
+      } else {
+        verdictEl.textContent = '⚠️ Needs Targeted Revision';
+        verdictEl.style.color = 'var(--error)';
+        feedbackEl.textContent = 'Crucial facts slipped during retrieval. Please go back to Stage A (Visual Lessons) and Stage C (Flashcards) to reinforce your retention.';
+      }
+
+      if (weakTopics.length > 0) {
+        recoList.innerHTML = [...new Set(weakTopics)].map(t => `<li>Revise: <strong>${t}</strong> in Stage A and Stage E.</li>`).join('');
+      } else {
+        recoList.innerHTML = '<li>Zero weak spots detected! Perfect score across all conceptual categories.</li>';
+      }
+    }
+
+    /* INITIALIZATION */
+    window.addEventListener('DOMContentLoaded', () => {
+      updateOverallProgress();
+      renderFlashcard();
+      renderQuestion();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GK Interactive Master Portal | Parmar SSC Toppers Hub</title>
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121826;
+      --bg-card: #182234;
+      --bg-card-hover: #1f2c42;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --accent-gold: #fbbf24;
+      --success: #10b981;
+      --error: #ef4444;
+      --border: #243247;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.15);
+      --accent-gold: #d97706;
+      --success: #059669;
+      --error: #dc2626;
+      --border: #e2e8f0;
+      --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .emblem-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-title h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-title p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-icon {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1.1rem;
+    }
+
+    .btn-icon:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(99, 102, 241, 0.08));
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.25rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    /* SEARCH & METRICS */
+    .search-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 0.9rem 1.25rem 0.9rem 3rem;
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.15rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* STATS STRIP */
+    .stats-strip {
+      max-width: 1100px;
+      margin: -1.5rem auto 2.5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .stat-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* SUBJECT TABS */
+    .content-area {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      flex: 1;
+    }
+
+    .subject-nav {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .subject-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sub-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.65rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .sub-btn:hover {
+      color: var(--text-main);
+      border-color: var(--accent);
+    }
+
+    .sub-btn.active {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+
+    /* CHAPTERS GRID */
+    .chapter-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* CHAPTER CARD */
+    .chapter-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+    }
+
+    .chapter-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.6);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .lec-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .ch-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+
+    .ch-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .features-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .feat-pill {
+      font-size: 0.72rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .card-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ch-btn {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chapter-card:hover .ch-btn {
+      transform: translateX(3px);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body data-theme="dark">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="emblem-icon">🏛️</div>
+        <div class="brand-title">
+          <h1>GK INTERACTIVE REVOLUTION</h1>
+          <p>Parmar SSC 5.0 • Master Subject & Chapter Library</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-icon" id="themeToggleBtn" title="Toggle Dark/Light Mode">🌓</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero-banner">
+    <div class="hero-container">
+      <div class="hero-badge">⚡ DIGITAL ACTIVE LEARNING HUB</div>
+      <h2 class="hero-title">Master General Knowledge Through Interactive Digital Modules</h2>
+      <p class="hero-subtitle">
+        Transform static lecture notes into visual explanations, active recall labs, 3D flashcards, and exam-oriented question banks.
+      </p>
+
+      <!-- SEARCH BAR -->
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search any topic (e.g., Schedules, Drafting Committee, Federalism)..." oninput="filterChapters()">
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(56, 189, 248, 0.15); color:var(--accent);">📚</div>
+      <div>
+        <div class="stat-val" id="totalLecturesCount">2</div>
+        <div class="stat-label">Total Interactive Modules</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(251, 191, 36, 0.15); color:var(--accent-gold);">⚡</div>
+      <div>
+        <div class="stat-val">12</div>
+        <div class="stat-label">Total Learning Stages</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:var(--success);">📝</div>
+      <div>
+        <div class="stat-val">40+</div>
+        <div class="stat-label">Exam-Grade Practice MCQs</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(99, 102, 241, 0.15); color:#818cf8;">🎴</div>
+      <div>
+        <div class="stat-val">42+</div>
+        <div class="stat-label">Smart 3D Flashcards</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="content-area">
+
+    <!-- SUBJECT TABS -->
+    <div class="subject-nav">
+      <button class="sub-btn active" onclick="switchSubject('all', this)">🌐 All Subjects</button>
+      <button class="sub-btn" onclick="switchSubject('polity', this)">⚖️ Indian Polity</button>
+      <button class="sub-btn" onclick="switchSubject('history', this)">🏛️ History</button>
+      <button class="sub-btn" onclick="switchSubject('geography', this)">🌍 Geography</button>
+      <button class="sub-btn" onclick="switchSubject('science', this)">🔬 General Science</button>
+      <button class="sub-btn" onclick="switchSubject('economics', this)">💰 Economics</button>
+      <button class="sub-btn" onclick="switchSubject('static', this)">📖 Static GK</button>
+    </div>
+
+    <!-- INDIAN POLITY SECTION -->
+    <div class="chapter-section" data-subject="polity">
+      <div class="section-title-bar">
+        <h3 class="section-title">⚖️ Indian Polity (Parmar SSC Batch 5.0)</h3>
+        <span style="font-size:0.85rem; color:var(--text-muted);">2 Modules Available</span>
+      </div>
+
+      <div class="chapters-grid" id="chaptersGrid">
+
+        <!-- LECTURE 01 CARD -->
+        <a href="lectures/Lecture-01-Polity-Making-of-Constitution.html" class="chapter-card" data-keywords="making constitution assembly cabinet mission nehru report ambedkar drafting committees demand 1934 1946 timeline">
+          <div>
+            <div class="card-top">
+              <span class="lec-badge">Lecture 01 • Polity</span>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Self-Contained</span>
+            </div>
+            <h4 class="ch-title">Making of the Indian Constitution</h4>
+            <p class="ch-desc">
+              Genesis & origin of Constitution, demand timeline (1928-1938), Cabinet Mission Plan 1946, 389 seats breakdown, Interim Government portfolios, working of the Assembly, 8 major & 13 minor committees, Drafting committee, and vital adoption stats.
+            </p>
+            <div class="features-pill-row">
+              <span class="feat-pill">📖 Visual Lessons</span>
+              <span class="feat-pill">⚡ Active Recall</span>
+              <span class="feat-pill">🎴 20 Flashcards</span>
+              <span class="feat-pill">📝 20 MCQs</span>
+              <span class="feat-pill">🏆 Memory Test</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <span style="font-size:0.82rem; color:var(--accent);">By Parmar Sir</span>
+            <span class="ch-btn">Launch Module ➔</span>
+          </div>
+        </a>
+
+        <!-- LECTURE 02 CARD -->
+        <a href="lectures/Lecture-02-Polity-Salient-Features-of-Constitution.html" class="chapter-card" data-keywords="salient features schedules tears of old pm federalism unitary parliamentary 7th schedule lists 5th 6th schedule adc 42nd amendment 8th schedule languages">
+          <div>
+            <div class="card-top">
+              <span class="lec-badge">Lecture 02 • Polity</span>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Self-Contained</span>
+            </div>
+            <h4 class="ch-title">Salient Features & The 12 Schedules</h4>
+            <p class="ch-desc">
+              Lengthiest written constitution, federalism debate (Wheare, Austin, Morris Jones, Jennings), Federal vs Unitary traits, all 12 schedules through TEARS OF OLD PM, Schedule 5 vs 6 deep dive, 3 legislative lists, 5 central override scenarios, and language amendments.
+            </p>
+            <div class="features-pill-row">
+              <span class="feat-pill">📜 TEARS OF OLD PM</span>
+              <span class="feat-pill">⚡ Active Recall</span>
+              <span class="feat-pill">🎴 22 Flashcards</span>
+              <span class="feat-pill">📝 20 MCQs</span>
+              <span class="feat-pill">🏆 Diagnostic Test</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <span style="font-size:0.82rem; color:var(--accent);">By Parmar Sir</span>
+            <span class="ch-btn">Launch Module ➔</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- OTHER SUBJECT PLACEHOLDERS -->
+    <div class="chapter-section" data-subject="history" style="display:none;">
+      <div class="section-title-bar">
+        <h3 class="section-title">🏛️ History (Ancient, Medieval, Modern)</h3>
+      </div>
+      <p style="color:var(--text-muted); padding:2rem; background:var(--bg-card); border-radius:12px; border:1px solid var(--border); text-align:center;">
+        No lecture modules uploaded yet. As soon as you upload History notes/PDFs, interactive chapters will automatically appear here!
+      </p>
+    </div>
+
+    <div class="chapter-section" data-subject="geography" style="display:none;">
+      <div class="section-title-bar">
+        <h3 class="section-title">🌍 Geography (Physical, Indian, World)</h3>
+      </div>
+      <p style="color:var(--text-muted); padding:2rem; background:var(--bg-card); border-radius:12px; border:1px solid var(--border); text-align:center;">
+        No lecture modules uploaded yet. As soon as you upload Geography notes/PDFs, interactive chapters will automatically appear here!
+      </p>
+    </div>
+
+    <div class="chapter-section" data-subject="science" style="display:none;">
+      <div class="section-title-bar">
+        <h3 class="section-title">🔬 General Science (Physics, Chemistry, Biology)</h3>
+      </div>
+      <p style="color:var(--text-muted); padding:2rem; background:var(--bg-card); border-radius:12px; border:1px solid var(--border); text-align:center;">
+        No lecture modules uploaded yet. Modules will be automatically indexed here upon upload!
+      </p>
+    </div>
+
+    <div class="chapter-section" data-subject="economics" style="display:none;">
+      <div class="section-title-bar">
+        <h3 class="section-title">💰 Economics</h3>
+      </div>
+      <p style="color:var(--text-muted); padding:2rem; background:var(--bg-card); border-radius:12px; border:1px solid var(--border); text-align:center;">
+        No lecture modules uploaded yet. Modules will be automatically indexed here upon upload!
+      </p>
+    </div>
+
+    <div class="chapter-section" data-subject="static" style="display:none;">
+      <div class="section-title-bar">
+        <h3 class="section-title">📖 Static GK & Miscellaneous</h3>
+      </div>
+      <p style="color:var(--text-muted); padding:2rem; background:var(--bg-card); border-radius:12px; border:1px solid var(--border); text-align:center;">
+        No lecture modules uploaded yet. Modules will be automatically indexed here upon upload!
+      </p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>GK Interactive Learning Hub • Competitive Examination Preparation</p>
+    <p style="margin-top:0.35rem; font-size:0.75rem;">GitHub Pages Ready • Standalone Offline Capable • LocalStorage Sync</p>
+  </footer>
+
+  <script>
+    /* THEME TOGGLE */
+    const themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', newTheme);
+      themeBtn.textContent = newTheme === 'dark' ? '🌓' : '☀️';
+    });
+
+    /* SUBJECT SWITCHER */
+    function switchSubject(subject, btn) {
+      document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const sections = document.querySelectorAll('.chapter-section');
+      sections.forEach(sec => {
+        if (subject === 'all') {
+          sec.style.display = sec.getAttribute('data-subject') === 'polity' ? 'block' : 'none';
+        } else {
+          sec.style.display = sec.getAttribute('data-subject') === subject ? 'block' : 'none';
+        }
+      });
+    }
+
+    /* SEARCH FILTER */
+    function filterChapters() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.chapter-card');
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const keywords = card.getAttribute('data-keywords') || '';
+        if (text.includes(query) || keywords.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
