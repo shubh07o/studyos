@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mock Manager</title>
+
+  <!-- Progressive Web App (PWA) Manifest & Meta Tags -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Mock Manager">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -156,6 +167,33 @@
     .btn-icon-setting svg {
       width: 17px;
       height: 17px;
+    }
+
+    .btn-pwa-install {
+      background-color: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      box-shadow: 0 1px 2px rgba(2, 132, 199, 0.25);
+    }
+
+    .btn-pwa-install:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-pwa-install svg {
+      width: 14px;
+      height: 14px;
     }
 
     .window-controls {
@@ -768,6 +806,14 @@
       </div>
     </div>
     <div class="window-header-right">
+      <button class="btn-pwa-install" id="btn-pwa-install" title="Install Mock Manager on your desktop or mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Install App
+      </button>
       <button class="btn-icon-setting" id="btn-settings-open" title="Settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3"></circle>
@@ -859,10 +905,17 @@
       </div>
       <div class="setting-item">
         <div class="setting-info">
-          <h4>Platform Version</h4>
-          <p>Mock Manager Pro v2.5 • Offline & GitHub Pages Ready</p>
+          <h4>PWA Offline Status</h4>
+          <p id="pwa-status-text">Service Worker: Registering...</p>
         </div>
-        <span class="pill-badge">v2.5</span>
+        <span class="pill-badge" id="pwa-status-badge">Checking</span>
+      </div>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h4>Platform Version</h4>
+          <p>Mock Manager Pro v2.6 • PWA & Offline Enabled</p>
+        </div>
+        <span class="pill-badge">v2.6 PWA</span>
       </div>
       <div class="setting-item">
         <div class="setting-info">
@@ -1486,6 +1539,65 @@
     });
 
     window.addEventListener("hashchange", handleHashChange);
+
+    // =========================================================================
+    // PWA SERVICE WORKER REGISTRATION & INSTALL PROMPT
+    // =========================================================================
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => {
+            console.log('[PWA] Service Worker registered with scope:', reg.scope);
+            const pwaText = document.getElementById('pwa-status-text');
+            const pwaBadge = document.getElementById('pwa-status-badge');
+            if (pwaText && pwaBadge) {
+              pwaText.textContent = 'Service Worker: Active & ready for offline practice';
+              pwaBadge.textContent = 'Offline Ready';
+              pwaBadge.style.backgroundColor = '#dcfce7';
+              pwaBadge.style.color = '#15803d';
+            }
+          })
+          .catch((err) => {
+            console.warn('[PWA] Service Worker registration failed:', err);
+            const pwaText = document.getElementById('pwa-status-text');
+            const pwaBadge = document.getElementById('pwa-status-badge');
+            if (pwaText && pwaBadge) {
+              pwaText.textContent = 'Service Worker: Unavailable on file:// protocol (Active on HTTPS)';
+              pwaBadge.textContent = 'HTTPS Only';
+            }
+          });
+      });
+    }
+
+    // Capture PWA Install Prompt (Add to Home Screen)
+    let deferredInstallPrompt = null;
+    const pwaInstallBtn = document.getElementById('btn-pwa-install');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      if (pwaInstallBtn) {
+        pwaInstallBtn.style.display = 'inline-flex';
+      }
+    });
+
+    if (pwaInstallBtn) {
+      pwaInstallBtn.addEventListener('click', async () => {
+        if (!deferredInstallPrompt) return;
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        console.log('[PWA] Install prompt outcome:', outcome);
+        deferredInstallPrompt = null;
+        pwaInstallBtn.style.display = 'none';
+      });
+    }
+
+    window.addEventListener('appinstalled', () => {
+      console.log('[PWA] Mock Manager installed successfully');
+      if (pwaInstallBtn) {
+        pwaInstallBtn.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>

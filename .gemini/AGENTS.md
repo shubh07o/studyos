@@ -79,8 +79,8 @@ Every generated file (`lectures/Lecture-XX-<Subject>-<Topic>.html`) must be 100%
 ## 5. AUTOMATED WORKFLOW ON FILE UPLOAD
 Whenever the user uploads or pastes material:
 1. Identify the subject (Maths, Reasoning, English, General Studies, Computer).
-2. Generate `lectures/Lecture-XX-<Subject>-<Topic>.html` following the clean minimalist design.
-3. Automatically append the module card into the root `index.html` under its respective subject section and update counts.
+2. Generate `lectures/Lecture-XX-<Subject>-<Topic>.html` following the clean minimalist design in Light Mode.
+3. Automatically append the module card into the root `index.html` under its respective subject section and update counts (preserve PWA manifest & SW links).
 4. Execute git sync:
    ```powershell
    git add .
