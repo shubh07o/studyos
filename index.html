@@ -3,49 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parmar Academy — Digital Interactive Learning Portal</title>
+  <title>Mock Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070d18;
-      --bg-surface: #0e1726;
-      --card-bg: #131f35;
-      --card-hover: #182742;
-      --border: #1f3152;
-      --border-accent: rgba(56, 189, 248, 0.3);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-faint: #64748b;
-      
-      /* Parmar Academy Signature Brand Colors */
-      --brand-navy: #091e3a;
-      --brand-blue: #0284c7;
-      --brand-cyan: #38bdf8;
-      --brand-gold: #ffb800;
-      --brand-gold-glow: rgba(255, 184, 0, 0.25);
-      --brand-red: #ef4444;
-      --brand-success: #10b981;
-      
-      --gradient-brand: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-      --gradient-gold: linear-gradient(135deg, #ffb800 0%, #f59e0b 100%);
-      --gradient-red: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-      --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
-      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
-
-    [data-theme="light"] {
       --bg: #f8fafc;
-      --bg-surface: #ffffff;
-      --card-bg: #ffffff;
-      --card-hover: #f1f5f9;
+      --surface: #ffffff;
       --border: #e2e8f0;
-      --border-accent: rgba(2, 132, 199, 0.3);
-      --text: #0f172a;
+      --border-subtle: #edf2f7;
+      --text-main: #0f172a;
       --text-muted: #64748b;
       --text-faint: #94a3b8;
-      --brand-navy: #0f172a;
-      --brand-blue: #0284c7;
-      --card-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-pill-bg: #e0f2fe;
+      --primary-pill-text: #0284c7;
+      
+      --card-radius: 16px;
+      --inner-radius: 12px;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+      --shadow-hover: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+      
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --surface: #131c31;
+      --border: #1e293b;
+      --border-subtle: #172239;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --primary-pill-bg: rgba(2, 132, 199, 0.18);
+      --primary-pill-text: #38bdf8;
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.4);
+      --shadow-hover: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -55,1378 +53,1174 @@
     }
 
     body {
-      font-family: var(--font-family);
       background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
+      color: var(--text-main);
+      font-family: var(--font);
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
       display: flex;
       flex-direction: column;
-      transition: background-color 0.2s ease, color 0.2s ease;
-      -webkit-font-smoothing: antialiased;
     }
 
-    /* TOP ANNOUNCEMENT BAR */
-    .top-announcement {
-      background: linear-gradient(90deg, #b91c1c, #dc2626, #b91c1c);
-      color: #ffffff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 0.35rem 1rem;
-      text-align: center;
-      letter-spacing: 0.02em;
-    }
-
-    /* MAIN HEADER */
-    header {
-      background: var(--bg-surface);
+    /* Window Header Bar */
+    .window-header {
+      background-color: var(--surface);
       border-bottom: 1px solid var(--border);
+      height: 48px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      user-select: none;
     }
 
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0.85rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .brand-group {
+    .window-header-left {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
-      cursor: pointer;
+      gap: 12px;
     }
 
-    .brand-emblem {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #ef4444, #991b1b);
-      border-radius: 10px;
+    .app-icon {
+      width: 22px;
+      height: 22px;
+      background: #0284c7;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #ffffff;
-      font-size: 1.35rem;
-      font-weight: 900;
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+      box-shadow: 0 1px 2px rgba(2, 132, 199, 0.3);
     }
 
-    .brand-text h1 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .brand-badge {
-      background: var(--gradient-gold);
-      color: #0f172a;
-      font-size: 0.65rem;
-      font-weight: 800;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .brand-sub {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .student-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.85rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--brand-success);
-      box-shadow: 0 0 8px var(--brand-success);
-    }
-
-    .theme-toggle {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-    }
-
-    .theme-toggle:hover {
-      border-color: var(--brand-cyan);
-    }
-
-    /* NAVIGATION BREADCRUMB BAR */
-    .nav-bar {
-      background: var(--brand-navy);
-      border-bottom: 1px solid var(--border);
-      padding: 0.75rem 1.5rem;
-    }
-
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
+    .app-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke-width: 2.8;
     }
 
     .breadcrumb {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
+      font-size: 13px;
       font-weight: 500;
-      color: #94a3b8;
-      overflow-x: auto;
-      white-space: nowrap;
+      letter-spacing: -0.1px;
     }
 
-    .bc-link {
-      color: #cbd5e1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: color 0.15s ease;
-    }
-
-    .bc-link:hover {
-      color: var(--brand-gold);
-    }
-
-    .bc-sep {
-      color: #475569;
-    }
-
-    .bc-current {
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .btn-back {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      padding: 0.35rem 0.85rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s ease;
-    }
-
-    .btn-back:hover {
-      background: var(--brand-gold);
-      color: #0f172a;
-      border-color: var(--brand-gold);
-    }
-
-    /* HERO BANNER */
-    .portal-hero {
-      background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.25), transparent 60%),
-                  radial-gradient(circle at bottom left, rgba(239, 68, 68, 0.15), transparent 50%),
-                  var(--bg-surface);
-      border-bottom: 1px solid var(--border);
-      padding: 2.5rem 1.5rem 2rem;
-    }
-
-    .hero-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-text-content {
-      max-width: 700px;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(255, 184, 0, 0.15);
-      color: var(--brand-gold);
-      border: 1px solid rgba(255, 184, 0, 0.3);
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 800;
-      margin-bottom: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .hero-headline {
-      font-size: 2.15rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-headline span {
-      background: linear-gradient(90deg, #38bdf8, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .stats-pills {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .stat-pill-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 0.75rem 1.25rem;
-      border-radius: 10px;
-      text-align: center;
-      min-width: 110px;
-      box-shadow: var(--card-shadow);
-    }
-
-    .stat-pill-num {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--brand-cyan);
-    }
-
-    .stat-pill-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .breadcrumb-title {
+      color: var(--text-main);
       font-weight: 600;
-    }
-
-    /* MAIN DRILL-DOWN APP VIEW */
-    main.content-wrapper {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
-      flex: 1;
-    }
-
-    .view-header {
-      margin-bottom: 2rem;
-    }
-
-    .view-step-badge {
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--brand-cyan);
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-    }
-
-    .view-title {
-      font-size: 1.85rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
-    }
-
-    .view-subtext {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* EDTECH COURSE CARD GRIDS */
-    .portal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* COURSE CARD */
-    .course-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--card-shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       cursor: pointer;
-      transition: all 0.25s ease;
-      position: relative;
     }
 
-    .course-card:hover {
-      border-color: var(--brand-cyan);
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px -5px rgba(2, 132, 199, 0.25);
+    .breadcrumb-title:hover {
+      color: var(--primary);
     }
 
-    .card-banner {
-      height: 110px;
-      position: relative;
+    .breadcrumb-sep {
+      color: var(--text-faint);
+      margin: 0 8px;
+    }
+
+    .breadcrumb-current {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .window-header-right {
       display: flex;
-      align-items: flex-end;
-      padding: 1rem 1.25rem;
+      align-items: center;
+      gap: 18px;
     }
 
-    .banner-subject-gs { background: linear-gradient(135deg, #091e3a, #1e3a8a); }
-    .banner-subject-quant { background: linear-gradient(135deg, #064e3b, #047857); }
-    .banner-subject-reasoning { background: linear-gradient(135deg, #581c87, #6d28d9); }
-    .banner-subject-english { background: linear-gradient(135deg, #7c2d12, #c2410c); }
-    .banner-subject-computer { background: linear-gradient(135deg, #164e63, #0e7490); }
-    .banner-subject-special { background: linear-gradient(135deg, #831843, #be185d); }
-
-    .card-icon-badge {
-      width: 46px;
-      height: 46px;
-      background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: 12px;
+    .btn-icon-setting {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .card-batch-tag {
-      background: var(--gradient-gold);
-      color: #0f172a;
-      font-size: 0.7rem;
-      font-weight: 800;
-      padding: 0.25rem 0.6rem;
+      padding: 4px;
       border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      transition: all 0.15s ease;
     }
 
-    .card-body-content {
-      padding: 1.25rem 1.25rem 1rem;
+    .btn-icon-setting:hover {
+      color: var(--text-main);
+      background-color: var(--border-subtle);
+    }
+
+    .btn-icon-setting svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .window-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text-muted);
+    }
+
+    .win-btn {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      padding: 4px;
+      border-radius: 4px;
+      transition: color 0.15s;
+    }
+
+    .win-btn:hover {
+      color: var(--text-main);
+    }
+
+    /* Main Container */
+    .app-container {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 36px 36px 64px 36px;
       flex: 1;
     }
 
-    .card-title-heading {
-      font-size: 1.15rem;
+    /* Divider */
+    .divider {
+      height: 1px;
+      background-color: var(--border);
+      width: 100%;
+      margin: 20px 0 28px 0;
+    }
+
+    /* ============================================================
+       VIEW 1: DASHBOARD (SUBJECTS GRID)
+       ============================================================ */
+    .dashboard-header h1 {
+      font-size: 28px;
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.45rem;
-      line-height: 1.35;
+      color: var(--text-main);
+      letter-spacing: -0.4px;
+      line-height: 1.2;
     }
 
-    .card-desc-paragraph {
-      font-size: 0.85rem;
+    .dashboard-header p {
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.45;
-      margin-bottom: 1rem;
+      margin-top: 4px;
+      font-weight: 400;
     }
 
-    .card-features-row {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.75rem;
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
-    .feature-chip {
-      font-size: 0.7rem;
-      font-weight: 600;
-      background: var(--bg);
+    @media (max-width: 1024px) {
+      .subjects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .subjects-grid {
+        grid-template-columns: 1fr;
+      }
+      .app-container {
+        padding: 20px 16px 40px 16px;
+      }
+    }
+
+    .subject-card {
+      background-color: var(--surface);
       border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-    }
-
-    .card-footer-action {
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      padding: 0.85rem 1.25rem;
+      border-radius: var(--card-radius);
+      padding: 22px 24px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-    }
-
-    .card-meta-text {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--brand-cyan);
-    }
-
-    .btn-card-cta {
-      background: var(--gradient-brand);
-      color: #ffffff;
-      border: none;
-      padding: 0.45rem 1rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
+      justify-content: space-between;
       cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    [data-theme="dark"] .subject-card:hover {
+      border-color: #334155;
+    }
+
+    .subject-card-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .subject-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .subject-card-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill-badge {
+      background-color: var(--primary-pill-bg);
+      color: var(--primary-pill-text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 12px;
+      border-radius: 9999px;
+      line-height: 1.4;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+    }
+
+    .subject-card-arrow {
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .subject-card:hover .subject-card-arrow {
+      color: var(--primary);
+      transform: translateX(2px);
+    }
+
+    .subject-card-arrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ============================================================
+       VIEW 2: SUBJECT DETAIL & CHAPTERS ACCORDIONS
+       ============================================================ */
+    .subject-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .subject-header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .btn-back-subjects {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-back-subjects:hover {
+      background-color: var(--border-subtle);
+      border-color: #cbd5e1;
+    }
+
+    .btn-back-subjects svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .subject-title-block h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: 0.2px;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .subject-title-block p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    .subject-header-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-faint);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .filter-input {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 9px 18px 9px 38px;
+      font-size: 13px;
+      color: var(--text-main);
+      width: 280px;
+      font-family: inherit;
       transition: all 0.2s ease;
     }
 
-    .course-card:hover .btn-card-cta {
-      background: var(--gradient-gold);
-      color: #0f172a;
-      box-shadow: 0 4px 12px var(--brand-gold-glow);
+    .filter-input::placeholder {
+      color: var(--text-faint);
     }
 
-    /* LEVEL 4: INTERACTIVE LECTURE CARDS */
-    .lecture-container {
+    .filter-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    /* Chapter Accordion Container */
+    .chapters-list {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 18px;
     }
 
-    .lecture-box {
-      background: var(--card-bg);
+    .chapter-card {
+      background-color: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      box-shadow: var(--card-shadow);
-      transition: all 0.25s ease;
+      border-radius: var(--card-radius);
+      padding: 18px 22px 20px 22px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease;
     }
 
-    .lecture-box:hover {
-      border-color: var(--brand-cyan);
-      transform: translateY(-2px);
-      box-shadow: 0 15px 30px rgba(2, 132, 199, 0.2);
-    }
-
-    .lec-left-info {
-      flex: 1;
-    }
-
-    .lec-badge-strip {
+    .chapter-header {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      padding: 4px 0 14px 0;
     }
 
-    .lec-num-pill {
-      background: var(--gradient-red);
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 0.15rem 0.55rem;
-      border-radius: 4px;
-      letter-spacing: 0.05em;
+    .chapter-toggle-icon {
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .lec-format-pill {
-      background: rgba(56, 189, 248, 0.15);
-      color: var(--brand-cyan);
-      font-size: 0.72rem;
+    .chapter-toggle-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .chapter-book-icon {
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chapter-book-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .chapter-name {
+      font-size: 15px;
       font-weight: 700;
-      padding: 0.15rem 0.55rem;
-      border-radius: 4px;
+      color: var(--text-main);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
     }
 
-    .lec-main-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-
-    .lec-main-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 1rem;
-    }
-
-    .lec-tags-list {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-
-    .lec-tag-item {
-      font-size: 0.72rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      font-weight: 500;
-    }
-
-    .lec-right-action {
+    .chapter-mocks-list {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 0.75rem;
+      gap: 10px;
+      padding-top: 4px;
+    }
+
+    .mock-row {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--inner-radius);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: all 0.15s ease;
+    }
+
+    .mock-row:hover {
+      border-color: #cbd5e1;
+      background-color: rgba(248, 250, 252, 0.6);
+    }
+
+    [data-theme="dark"] .mock-row:hover {
+      border-color: #334155;
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .mock-info-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .mock-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background-color: var(--primary-pill-bg);
+      color: var(--primary-pill-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
 
-    .lec-stages-summary {
-      text-align: right;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 600;
+    .mock-icon-box svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.2;
     }
 
-    .btn-start-learning {
-      background: var(--gradient-brand);
+    .mock-details {
+      min-width: 0;
+    }
+
+    .mock-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mock-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .btn-start-mock {
+      background-color: var(--primary);
       color: #ffffff;
-      padding: 0.75rem 1.4rem;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 800;
+      padding: 9px 20px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 600;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
-      transition: all 0.2s ease;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-family: inherit;
+      box-shadow: 0 1px 2px rgba(2, 132, 199, 0.2);
     }
 
-    .btn-start-learning:hover {
-      background: var(--gradient-gold);
-      color: #0f172a;
-      box-shadow: 0 6px 20px var(--brand-gold-glow);
-      transform: translateY(-2px);
+    .btn-start-mock:hover {
+      background-color: var(--primary-hover);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+      transform: translateY(-1px);
     }
 
-    /* EMPTY STATE */
-    .empty-state-box {
-      background: var(--card-bg);
-      border: 2px dashed var(--border);
-      border-radius: 16px;
-      padding: 4rem 2rem;
+    .btn-start-mock svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+
+    /* Empty state */
+    .empty-state {
       text-align: center;
-    }
-
-    .empty-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      font-size: 0.85rem;
+      padding: 56px 20px;
       color: var(--text-muted);
-      margin-top: auto;
+      background-color: var(--surface);
+      border-radius: var(--card-radius);
+      border: 1px dashed var(--border);
     }
 
-    @media (max-width: 768px) {
-      .hero-container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .lecture-box {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .lec-right-action {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid var(--border);
-        padding-top: 1rem;
-      }
+    .empty-state-icon {
+      color: var(--text-faint);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .empty-state h3 {
+      font-size: 16px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      font-size: 13px;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    /* Modal (Settings) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 440px;
+      max-width: 90vw;
+      padding: 24px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      transform: scale(0.96);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--text-main);
+      background: var(--border-subtle);
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .setting-info h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .setting-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Switch toggle */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--border);
+      transition: .2s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
     }
   </style>
 </head>
-<body data-theme="dark">
+<body>
 
-  <!-- TOP BANNER -->
-  <div class="top-announcement">
-    🚀 PARMAR TOPPERS DIGITAL PLATFORM • INTERACTIVE ACTIVE RECALL & MENTORSHIP MODULES
-  </div>
-
-  <!-- MAIN HEADER -->
-  <header>
-    <div class="header-inner">
-      <div class="brand-group" onclick="navigateTo('home')">
-        <div class="brand-emblem">🦁</div>
-        <div class="brand-text">
-          <h1>PARMAR ACADEMY <span class="brand-badge">TOPPERS HUB</span></h1>
-          <div class="brand-sub">Universal Interactive Exam Preparation Platform</div>
-        </div>
+  <!-- App Header / Window Bar -->
+  <header class="window-header">
+    <div class="window-header-left">
+      <div class="app-icon" title="Mock Manager">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
       </div>
-      <div class="header-actions">
-        <div class="student-badge">
-          <div class="status-dot"></div>
-          <span>Student Portal Active</span>
-        </div>
-        <button class="theme-toggle" id="themeBtn" title="Toggle Dark/Light Mode">🌓</button>
+      <div class="breadcrumb">
+        <span class="breadcrumb-title" onclick="navigateToDashboard()">Mock Manager</span>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current" id="topbar-crumb">Dashboard</span>
+      </div>
+    </div>
+    <div class="window-header-right">
+      <button class="btn-icon-setting" id="btn-settings-open" title="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+      <div class="window-controls">
+        <button class="win-btn" title="Minimize" onclick="alert('Mock Manager is running active.')">—</button>
+        <button class="win-btn" title="Toggle Fullscreen" onclick="toggleFullScreen()">🗖</button>
+        <button class="win-btn" title="Return to Dashboard" onclick="navigateToDashboard()">✕</button>
       </div>
     </div>
   </header>
 
-  <!-- BREADCRUMB & BACK STRIP -->
-  <div class="nav-bar">
-    <div class="nav-inner">
-      <div class="breadcrumb" id="breadcrumbTrail">
-        <span class="bc-current">Home (All Courses)</span>
+  <!-- App Main Content Area -->
+  <main class="app-container">
+    
+    <!-- View 1: Subjects Dashboard -->
+    <section id="view-dashboard">
+      <div class="dashboard-header">
+        <h1>Subjects</h1>
+        <p id="dashboard-subtitle">10 subjects available</p>
       </div>
-      <button class="btn-back" id="backBtn" onclick="navigateBack()" style="display:none;">
-        ← Back to Previous Level
-      </button>
+      <div class="divider"></div>
+      <div class="subjects-grid" id="subjects-grid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </section>
+
+    <!-- View 2: Subject Detail & Chapters Accordion -->
+    <section id="view-subject" style="display: none;">
+      <div class="subject-header-row">
+        <div class="subject-header-left">
+          <button class="btn-back-subjects" id="btn-back-to-dashboard" onclick="navigateToDashboard()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            All Subjects
+          </button>
+          <div class="subject-title-block">
+            <h1 id="subject-title">ENGLISH</h1>
+            <p id="subject-meta">3 chapters • 5 mocks</p>
+          </div>
+        </div>
+        <div class="subject-header-right">
+          <div class="search-input-wrapper">
+            <span class="search-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input type="text" class="filter-input" id="filter-input" placeholder="Filter chapters or mocks..." oninput="handleFilter(this.value)">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="chapters-list" id="chapters-list">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Settings</h3>
+        <button class="modal-close-btn" id="btn-settings-close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h4>Dark Appearance</h4>
+          <p>Toggle high-contrast dark theme</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="theme-switch" onchange="toggleDarkTheme(this.checked)">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h4>Platform Version</h4>
+          <p>Mock Manager Pro v2.5 • Offline & GitHub Pages Ready</p>
+        </div>
+        <span class="pill-badge">v2.5</span>
+      </div>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h4>Total Repository Content</h4>
+          <p>10 Subjects • 20 Chapters • 33 Modules</p>
+        </div>
+        <span class="pill-badge" style="background:#f1f5f9; color:#475569;">3.1 MB</span>
+      </div>
     </div>
   </div>
 
-  <!-- HERO BANNER -->
-  <section class="portal-hero" id="portalHero">
-    <div class="hero-container">
-      <div class="hero-text-content">
-        <div class="hero-tag">🔥 Target: SSC CGL / CHSL / CPO & State PCS</div>
-        <h2 class="hero-headline">Complete <span>Digital Classroom</span> & Active Recall Hub</h2>
-        <p class="hero-desc">
-          Structured step-by-step learning: Select your subject, navigate into sections and chapters, and master every concept with 3D flashcards, active recall drills, and exam-grade quizzes.
-        </p>
-      </div>
-      <div class="stats-pills">
-        <div class="stat-pill-box">
-          <div class="stat-pill-num">6</div>
-          <div class="stat-pill-label">Active Streams</div>
-        </div>
-        <div class="stat-pill-box">
-          <div class="stat-pill-num">33</div>
-          <div class="stat-pill-label">Ready Modules</div>
-        </div>
-        <div class="stat-pill-box">
-          <div class="stat-pill-num">1,800+</div>
-          <div class="stat-pill-label">Practice MCQs</div>
-        </div>
-        <div class="stat-pill-box">
-          <div class="stat-pill-num">100%</div>
-          <div class="stat-pill-label">Interactive</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DYNAMIC DRILL-DOWN APP VIEW -->
-  <main class="content-wrapper" id="appView">
-    <!-- Dynamically loaded based on active level -->
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>Parmar Academy • Interactive Toppers Learning System</p>
-    <p style="margin-top:0.35rem; font-size:0.75rem; color:var(--text-faint);">
-      Designed for Aspirants • 100% Offline Compatible Modules • Synchronized to GitHub Pages
-    </p>
-  </footer>
-
   <script>
-    /* ==========================================================
-       PARMAR ACADEMY COMPLETE CURRICULUM DATABASE (ALL 33 MODULES)
-    ========================================================== */
-    const parmarCurriculum = [
+    // =========================================================================
+    // CURRICULUM DATA: Exactly aligned with screenshot subjects & chapters
+    // =========================================================================
+    const CURRICULUM = [
       {
-        id: "gs",
-        code: "BATCH 5.0",
-        name: "General Studies (GK/GS)",
-        bannerClass: "banner-subject-gs",
-        icon: "🏛️",
-        desc: "Comprehensive General Studies covering Indian Polity, Modern History, Geography, Indian Economy, and General Science.",
-        sections: [
+        id: "reasoning",
+        name: "REASONING",
+        chapters: [
           {
-            id: "polity",
-            code: "POLITY",
-            name: "Indian Polity & Constitution",
-            icon: "⚖️",
-            desc: "Making of the Constitution, Salient Features, 12 Schedules, Preamble, Fundamental Rights, Parliament, and Judiciary.",
-            chapters: [
+            name: "Alphabet Test",
+            mocks: [
               {
-                id: "polity-ch1",
-                code: "UNIT 01",
-                title: "Constitutional Framework & Genesis",
-                desc: "Demands, British proposals, Cabinet Mission Plan 1946, Assembly committees, drafting, and 12 schedules.",
-                lectures: [
-                  {
-                    id: "POL-01",
-                    title: "Lecture 01: Making of the Indian Constitution",
-                    desc: "Demand timeline (1928-1938), Cabinet Mission 389 seats, Interim Government 1946, 8 Major & 13 Minor Committees, Drafting Committee (Ambedkar), 3 readings, and vital adoption stats.",
-                    url: "lectures/Lecture-01-Polity-Making-of-Constitution.html",
-                    stages: 6,
-                    mcqs: 20,
-                    flashcards: 20,
-                    tags: ["Cabinet Mission", "Drafting Committee", "Interim Govt", "389 Seats", "Adoption 1949"]
-                  },
-                  {
-                    id: "POL-02",
-                    title: "Lecture 02: Salient Features & The 12 Schedules",
-                    desc: "Lengthiest constitution, federalism debate (Wheare, Austin, Jennings), Federal vs Unitary traits, master mnemonic TEARS OF OLD PM, Schedule 5 vs 6 deep dive, 3 lists, and language amendments.",
-                    url: "lectures/Lecture-02-Polity-Salient-Features-of-Constitution.html",
-                    stages: 6,
-                    mcqs: 20,
-                    flashcards: 22,
-                    tags: ["TEARS OF OLD PM", "Schedule 5 & 6", "Article 249/250", "42nd Amendment", "I.R. Coelho"]
-                  }
-                ]
+                title: "Alphabet Test - Interactive Notes",
+                size: "99.2 KB",
+                added: "16 Oct 2026",
+                file: "lectures/Reasoning-Ch01-Alphabet-Test-Interactive-Notes.html"
               },
               {
-                id: "polity-ch2",
-                code: "UNIT 02",
-                title: "Preamble, Union Territory & Citizenship",
-                desc: "Philosophy of Preamble, Articles 1-4 (State reorganisations), and Articles 5-11 (Citizenship acts & CAA).",
-                lectures: []
-              },
-              {
-                id: "polity-ch3",
-                code: "UNIT 03",
-                title: "Fundamental Rights, DPSP & Fundamental Duties",
-                desc: "Articles 12-35 (Writs, 6 basic rights), Directive Principles (Part IV), and Fundamental Duties (Part IV-A).",
-                lectures: []
+                title: "Alphabet Test - 237Q Comprehensive Practice Quiz",
+                size: "93.5 KB",
+                added: "16 Oct 2026",
+                file: "lectures/Reasoning-Ch01-Alphabet-Test-237Q-Quiz.html"
               }
             ]
           },
           {
-            id: "history",
-            code: "HISTORY",
-            name: "Indian History (Ancient, Medieval, Modern)",
-            icon: "📜",
-            desc: "Indus Valley Civilization, Vedic age, Delhi Sultanate, Mughals, Revolt of 1857, and Indian National Movement.",
-            chapters: [
+            name: "Coding-Decoding",
+            mocks: [
               {
-                id: "hist-ch1",
-                code: "UNIT 01",
-                title: "Advent of Europeans & Freedom Struggle",
-                desc: "British conquests, 1857 Revolt, Swadeshi, and Gandhian mass movements.",
-                lectures: []
+                title: "Coding-Decoding - Core Concepts & Notes",
+                size: "102.5 KB",
+                added: "16 Oct 2026",
+                file: "lectures/Reasoning-Ch02-Coding-Decoding-Interactive-Notes.html"
+              },
+              {
+                title: "Coding-Decoding - 100Q Speed Mastery Quiz",
+                size: "54.1 KB",
+                added: "15 Oct 2026",
+                file: "lectures/Reasoning-Ch02-Coding-Decoding-100Q-Quiz.html"
               }
             ]
           },
           {
-            id: "geography",
-            code: "GEOGRAPHY",
-            name: "Geography (Physical & Indian)",
-            icon: "🌍",
-            desc: "Physiographic divisions of India, river drainage systems, climate, and soils.",
-            chapters: [
+            name: "Series",
+            mocks: [
               {
-                id: "geo-ch1",
-                code: "UNIT 01",
-                title: "Physiography & Indian River Systems",
-                desc: "Himalayas, Deccan plateau, Indus, Ganga, Brahmaputra, and Peninsular river basins.",
-                lectures: []
+                title: "Number & Letter Series - Notes & Full Quiz",
+                size: "142.1 KB",
+                added: "2 Nov 2026",
+                file: "lectures/Reasoning-Ch03-Series-Interactive-Notes-and-Quiz.html"
               }
             ]
           }
         ]
       },
       {
-        id: "reasoning",
-        code: "REASONING 5.0",
-        name: "Reasoning & Mental Ability",
-        bannerClass: "banner-subject-reasoning",
-        icon: "🧠",
-        desc: "Verbal and Non-verbal reasoning, letter patterns, coding-decoding, series, and logic sets.",
-        sections: [
+        id: "maths",
+        name: "MATHS",
+        chapters: [
           {
-            id: "verbal-reas",
-            code: "VERBAL",
-            name: "Verbal & Analytical Reasoning",
-            icon: "🔤",
-            desc: "Alphabet tests, letter shifting rules, coding-decoding, number & letter series drills.",
-            chapters: [
+            name: "Differential Equations",
+            mocks: [
               {
-                id: "reas-ch1",
-                code: "CH 01",
-                title: "Alphabet Test & Positional Value Drills",
-                desc: "Left-to-right shifts, opposite letter pairs, vowel-consonant rules, and ranking patterns.",
-                lectures: [
-                  {
-                    id: "REAS-01A",
-                    title: "Chapter 1: ALPHABETS — Interactive Notes & 148 Quizzes",
-                    desc: "Comprehensive digital notes, forward/backward rankings, letter pairs, and 148 interactive quiz drills.",
-                    url: "lectures/Reasoning-Ch01-Alphabet-Test-Interactive-Notes.html",
-                    stages: 5,
-                    mcqs: 148,
-                    flashcards: 25,
-                    tags: ["Alphabet Test", "Letter Pairs", "148 Quizzes", "Parmar SSC"]
-                  },
-                  {
-                    id: "REAS-01B",
-                    title: "Alphabet Test Mega Century Practice Quiz (237 Qs)",
-                    desc: "Massive speed drill of 237 curated questions covering every letter shift pattern asked in SSC exams.",
-                    url: "lectures/Reasoning-Ch01-Alphabet-Test-237Q-Quiz.html",
-                    stages: 4,
-                    mcqs: 237,
-                    flashcards: 10,
-                    tags: ["Mega Quiz", "237 Questions", "Speed Booster"]
-                  }
-                ]
-              },
-              {
-                id: "reas-ch2",
-                code: "CH 02",
-                title: "Coding & Decoding Mastery",
-                desc: "Direct letter coding, pattern reversals, matrix substitution, and numerical operations.",
-                lectures: [
-                  {
-                    id: "REAS-02A",
-                    title: "Chapter 2: CODING DECODING — Interactive Notes & 145 Quizzes",
-                    desc: "Complete concept breakdowns, pattern tables, cross-coding rules, and 145 targeted practice questions.",
-                    url: "lectures/Reasoning-Ch02-Coding-Decoding-Interactive-Notes.html",
-                    stages: 5,
-                    mcqs: 145,
-                    flashcards: 30,
-                    tags: ["Coding Decoding", "145 Quizzes", "Interactive Notes"]
-                  },
-                  {
-                    id: "REAS-02B",
-                    title: "Coding & Decoding Century Practice Quiz (100 Qs)",
-                    desc: "High-speed 100 question mock test to build accuracy under time pressure.",
-                    url: "lectures/Reasoning-Ch02-Coding-Decoding-100Q-Quiz.html",
-                    stages: 3,
-                    mcqs: 100,
-                    flashcards: 10,
-                    tags: ["Century Quiz", "100 Qs", "Exam Pattern"]
-                  }
-                ]
-              },
-              {
-                id: "reas-ch3",
-                code: "CH 03",
-                title: "Series (श्रृंखला) — Numbers & Letters",
-                desc: "Arithmetic, geometric, alternating, square/cube, and alphanumeric series patterns.",
-                lectures: [
-                  {
-                    id: "REAS-03",
-                    title: "SERIES (श्रृंखला) — Interactive Digital Notes & Quiz Suite",
-                    desc: "Master step-difference, double difference, prime gap series, and complete quiz challenges.",
-                    url: "lectures/Reasoning-Ch03-Series-Interactive-Notes-and-Quiz.html",
-                    stages: 5,
-                    mcqs: 85,
-                    flashcards: 20,
-                    tags: ["Series", "Number Series", "Missing Terms"]
-                  }
-                ]
+                title: "Differential Equations - 50 Questions Practice Module",
+                size: "85.3 KB",
+                added: "15 Oct 2026",
+                file: "lectures/Maths-Advanced-Differential-Equations-50Q.html"
               }
             ]
           }
         ]
+      },
+      {
+        id: "physics",
+        name: "PHYSICS",
+        chapters: []
       },
       {
         id: "english",
-        code: "ENGLISH SPECIAL",
-        name: "English Language & Grammar",
-        bannerClass: "banner-subject-english",
-        icon: "📖",
-        desc: "Grammar rules with exceptions, vocabulary root words, one-word substitution, and idioms.",
-        sections: [
+        name: "ENGLISH",
+        chapters: [
           {
-            id: "grammar",
-            code: "GRAMMAR",
-            name: "Grammar & Error Detection",
-            icon: "✍️",
-            desc: "Nouns, Pronouns, Determiners, Subject-Verb Agreement, and Tenses.",
-            chapters: [
+            name: "NOUN",
+            mocks: [
               {
-                id: "eng-noun",
-                code: "CH 01",
-                title: "Noun — Rules, Errors & Exceptions",
-                desc: "Uncountable nouns, collective nouns taking singular/plural verbs, hyphenated nouns, and apostrophe rules.",
-                lectures: [
-                  {
-                    id: "ENG-01A",
-                    title: "Chapter 1: NOUN — Interactive Digital Notes & Quizzes",
-                    desc: "Deep conceptual coverage of noun cases, confusing pairs, irregular plurals, and practice tests.",
-                    url: "lectures/English-Ch01-Noun-Digital-Notes-and-Quizzes.html",
-                    stages: 5,
-                    mcqs: 95,
-                    flashcards: 30,
-                    tags: ["Noun Rules", "Error Spotting", "Parmar SSC"]
-                  },
-                  {
-                    id: "ENG-01B",
-                    title: "English Noun Century Practice Quiz (100 Qs)",
-                    desc: "100 authentic SSC PYQs focused strictly on noun error detection and sentence improvements.",
-                    url: "lectures/English-Ch01-Noun-100Q-Practice-Quiz.html",
-                    stages: 3,
-                    mcqs: 100,
-                    flashcards: 15,
-                    tags: ["100 Qs", "Noun Quiz", "Century Drill"]
-                  }
-                ]
+                title: "NOUN",
+                size: "43.7 KB",
+                added: "16 Oct 2026",
+                file: "lectures/English-Ch01-Noun-100Q-Practice-Quiz.html"
               },
               {
-                id: "eng-pronoun",
-                code: "CH 02",
-                title: "Pronoun — Complete Framework (By PSP Sir)",
-                desc: "Personal, relative (who/whom/that), reflexive, distributive pronouns, and rule of 231 vs 123.",
-                lectures: [
-                  {
-                    id: "ENG-02A",
-                    title: "Chapter 2: PRONOUN Digital Notes & Complete Quiz",
-                    desc: "Full lecture notes by PSP Sir: relative pronouns, reciprocal pronouns, and comprehensive quiz.",
-                    url: "lectures/English-Ch02-Pronoun-Digital-Notes-and-Quiz.html",
-                    stages: 5,
-                    mcqs: 80,
-                    flashcards: 25,
-                    tags: ["Pronoun Rules", "PSP Sir", "Comprehensive Notes"]
-                  },
-                  {
-                    id: "ENG-02B",
-                    title: "SSC English Pronoun Century Quiz (100 Questions)",
-                    desc: "100 rigorous questions specifically testing pronoun agreement and case errors.",
-                    url: "lectures/English-Ch02-Pronoun-100Q-Century-Quiz.html",
-                    stages: 3,
-                    mcqs: 100,
-                    flashcards: 10,
-                    tags: ["Pronoun 100Q", "Century Mock", "PYQs"]
-                  }
-                ]
-              },
-              {
-                id: "eng-determiners",
-                code: "CH 03",
-                title: "Determiners & Articles Mastery",
-                desc: "Few/A few/The few, Little/A little/The little, Each, Every, Either, Neither, and quantifier rules.",
-                lectures: [
-                  {
-                    id: "ENG-03",
-                    title: "Determiners Mastery — Interactive Notes & 100 PYQ Quiz",
-                    desc: "Complete matrix of determiners, usage rules, and 100 previous-year practice questions.",
-                    url: "lectures/English-Ch03-Determiners-Mastery-Notes-and-Quiz.html",
-                    stages: 5,
-                    mcqs: 100,
-                    flashcards: 20,
-                    tags: ["Determiners", "Quantifiers", "100 PYQs"]
-                  }
-                ]
+                title: "NOUN NOTES",
+                size: "133.6 KB",
+                added: "16 Oct 2026",
+                file: "lectures/English-Ch01-Noun-Digital-Notes-and-Quizzes.html"
               }
             ]
           },
           {
-            id: "vocab",
-            code: "VOCABULARY",
-            name: "Vocabulary & Idioms Powerhouse",
-            icon: "📚",
-            desc: "Root words, One Word Substitution (OWS), idioms, and Blackbook SSC vocabulary.",
-            chapters: [
+            name: "pronoun",
+            mocks: [
               {
-                id: "eng-vocab-ch",
-                code: "VOCAB 01",
-                title: "Blackbook & Core Vocabulary Suites",
-                desc: "Root-word based memorization, OWS mastery, and high-frequency idioms.",
-                lectures: [
-                  {
-                    id: "VOC-01",
-                    title: "VocabMaster Pro (English Edition) | Lectures 1–5 Portal",
-                    desc: "High-yield vocabulary foundation covering Lectures 1 to 5 with mnemonic memory hooks.",
-                    url: "lectures/English-Vocab-VocabMaster-Pro-Lec1-5.html",
-                    stages: 5,
-                    mcqs: 75,
-                    flashcards: 40,
-                    tags: ["VocabMaster", "Lectures 1-5", "Root Words"]
-                  },
-                  {
-                    id: "VOC-02",
-                    title: "One Word Substitution (OWS) Mastery — Lectures 6–8",
-                    desc: "Exam-oriented OWS sets covering government, phobias, manias, and personality types.",
-                    url: "lectures/English-Vocab-OWS-Mastery-Lec6-8.html",
-                    stages: 5,
-                    mcqs: 90,
-                    flashcards: 50,
-                    tags: ["OWS", "Lectures 6-8", "Blackbook"]
-                  },
-                  {
-                    id: "VOC-03",
-                    title: "Day 1 Blackbook SSC Vocab — OWS (1–69) & Idioms (1–63)",
-                    desc: "Exact Blackbook SSC Day 1 target: 69 One Word Substitutions and 63 Idioms & Phrases with quizzes.",
-                    url: "lectures/English-Vocab-Blackbook-Day1-OWS-and-Idioms.html",
-                    stages: 4,
-                    mcqs: 132,
-                    flashcards: 65,
-                    tags: ["Blackbook", "Day 1", "OWS & Idioms"]
-                  }
-                ]
+                title: "pronoun notes",
+                size: "241.4 KB",
+                added: "29 Oct 2026",
+                file: "lectures/English-Ch02-Pronoun-Digital-Notes-and-Quiz.html"
+              },
+              {
+                title: "century practice",
+                size: "65.2 KB",
+                added: "31 Oct 2026",
+                file: "lectures/English-Ch02-Pronoun-100Q-Century-Quiz.html"
+              }
+            ]
+          },
+          {
+            name: "DETERMINER",
+            mocks: [
+              {
+                title: "notes and quizes",
+                size: "77.2 KB",
+                added: "5 Nov 2026",
+                file: "lectures/English-Ch03-Determiners-Mastery-Notes-and-Quiz.html"
               }
             ]
           }
         ]
       },
       {
-        id: "quant",
-        code: "MATHS SPECIAL",
-        name: "Quantitative Aptitude (Maths)",
-        bannerClass: "banner-subject-quant",
-        icon: "📐",
-        desc: "Calculation boosters, arithmetic percentage mastery, algebra, and advanced calculus.",
-        sections: [
+        id: "ssc-math",
+        name: "SSC MATH",
+        chapters: [
           {
-            id: "arithmetic",
-            code: "ARITHMETIC",
-            name: "Arithmetic & Speed Calculation",
-            icon: "➕",
-            desc: "Mental arithmetic, speed drills, percentages, profit & loss, and ratios.",
-            chapters: [
+            name: "Calculation Speed",
+            mocks: [
               {
-                id: "math-speed",
-                code: "SPEED MATH",
-                title: "Calculation Booster & Mental Math Drills",
-                desc: "Vedic speed multiplication, base method, fractions to percentage chart, square/cube shortcuts.",
-                lectures: [
-                  {
-                    id: "MATH-01",
-                    title: "Calculation Booster — Interactive Notes, Drills & Quizzes",
-                    desc: "Essential speed calculations, table mastery, split & merge techniques, and daily speed drills.",
-                    url: "lectures/Maths-Calculation-Booster-Speed-Drills.html",
-                    stages: 5,
-                    mcqs: 60,
-                    flashcards: 30,
-                    tags: ["Speed Math", "Calculation Booster", "Vedic Tricks"]
-                  }
-                ]
-              },
-              {
-                id: "math-percent",
-                code: "PERCENTAGE",
-                title: "Percentage Mastery Hub",
-                desc: "Fraction conversions, successive percentage change, price-consumption-expenditure, voting & population.",
-                lectures: [
-                  {
-                    id: "MATH-02",
-                    title: "Parmar SSC Percentage Mastery Hub & Complete Quiz Suite",
-                    desc: "Complete percentage lecture suite: all formula variations, typewise practice problems, and quiz.",
-                    url: "lectures/Maths-Arithmetic-Percentage-Mastery-Hub.html",
-                    stages: 6,
-                    mcqs: 110,
-                    flashcards: 25,
-                    tags: ["Percentage", "Typewise Problems", "Parmar SSC"]
-                  }
-                ]
+                title: "Speed Calculation Drills & Vedic Tricks",
+                size: "76.6 KB",
+                added: "16 Oct 2026",
+                file: "lectures/Maths-Calculation-Booster-Speed-Drills.html"
               }
             ]
           },
           {
-            id: "higher-math",
-            code: "HIGHER MATH",
-            name: "Advanced & Higher Mathematics",
-            icon: "∫dx",
-            desc: "Differential equations, calculus, coordinate geometry, and advanced algebra.",
-            chapters: [
+            name: "Percentage",
+            mocks: [
               {
-                id: "diff-eq",
-                code: "CALCULUS",
-                title: "Differential Equations",
-                desc: "Order and degree, variable separable, homogeneous equations, and integrating factor methods.",
-                lectures: [
-                  {
-                    id: "MATH-03",
-                    title: "Differential Equations — 50 Questions Practice Quiz",
-                    desc: "Rigorous 50-question mock on forming and solving first and second order differential equations.",
-                    url: "lectures/Maths-Advanced-Differential-Equations-50Q.html",
-                    stages: 3,
-                    mcqs: 50,
-                    flashcards: 15,
-                    tags: ["Differential Equations", "Calculus", "50 Qs"]
-                  }
-                ]
+                title: "Percentage Mastery Hub & Arithmetic Notes",
+                size: "136.2 KB",
+                added: "20 Oct 2026",
+                file: "lectures/Maths-Arithmetic-Percentage-Mastery-Hub.html"
               }
             ]
           }
         ]
       },
       {
-        id: "entrance",
-        code: "MARITIME & ENTRANCE",
-        name: "Sponsorship & Entrance Exams",
-        bannerClass: "banner-subject-special",
-        icon: "⚓",
-        desc: "Dedicated preparation for IMU CET, Agniveer Vayu, and Anglo-Eastern Merchant Navy Sponsorship Exams.",
-        sections: [
+        id: "exploration",
+        name: "EXPLORATION",
+        chapters: [
           {
-            id: "imu-cet",
-            code: "IMU CET",
-            name: "IMU CET & Agniveer Vayu Portal",
-            icon: "🚢",
-            desc: "Indian Maritime University Common Entrance Test blueprint, vocabulary, and subject mocks.",
-            chapters: [
+            name: "Strategy & Mind Games",
+            mocks: [
               {
-                id: "imu-prep",
-                code: "IMU 01",
-                title: "IMU CET Master Preparation & Vocab",
-                desc: "Exam pattern, high-yield English, physics and maritime terminology.",
-                lectures: [
-                  {
-                    id: "IMU-01",
-                    title: "IMU CET Master Prep Hub — Vocabulary, Quizzes & Blueprint",
-                    desc: "Complete entrance blueprint, syllabus breakdown, high-yield vocabulary, and practice mocks.",
-                    url: "lectures/Entrance-IMU-CET-Master-Prep-Hub.html",
-                    stages: 5,
-                    mcqs: 85,
-                    flashcards: 35,
-                    tags: ["IMU CET", "Maritime", "Exam Blueprint"]
-                  },
-                  {
-                    id: "IMU-02",
-                    title: "IMU CET & Agniveer Vayu — Top 100 Expected Vocabulary Hub",
-                    desc: "100 most anticipated vocabulary words with contextual examples, antonyms, and quizzes.",
-                    url: "lectures/Entrance-IMU-CET-Agniveer-100-Vocab.html",
-                    stages: 4,
-                    mcqs: 100,
-                    flashcards: 50,
-                    tags: ["Top 100 Vocab", "Agniveer Vayu", "IMU CET"]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            id: "anglo-eastern",
-            code: "AEMA SPONSOR",
-            name: "Anglo-Eastern Sponsorship Written Exam",
-            icon: "🎖️",
-            desc: "Complete subject-wise PYQ suites for Anglo-Eastern Maritime Academy deck/engine cadet sponsorship.",
-            chapters: [
-              {
-                id: "ae-science",
-                code: "SCI PYQs",
-                title: "Physics & Chemistry PYQ Hubs",
-                desc: "Previous year questions in Physics and Chemistry formulated by expert faculty.",
-                lectures: [
-                  {
-                    id: "AE-PHY-01",
-                    title: "Anglo-Eastern Written PYQs — Physics Complete 80 Questions Hub",
-                    desc: "Complete 80 Physics questions covering mechanics, thermodynamics, electricity, and optics.",
-                    url: "lectures/Entrance-Anglo-Eastern-Physics-80-PYQs.html",
-                    stages: 4,
-                    mcqs: 80,
-                    flashcards: 20,
-                    tags: ["Physics PYQs", "80 Questions", "AEMA"]
-                  },
-                  {
-                    id: "AE-CHM-01",
-                    title: "Anglo-Eastern Sponsorship Exam — 50 Chemistry PYQs Hub",
-                    desc: "50 essential Chemistry questions covering stoichiometry, atomic structure, and bonding.",
-                    url: "lectures/Entrance-Anglo-Eastern-Chemistry-50-PYQs.html",
-                    stages: 3,
-                    mcqs: 50,
-                    flashcards: 15,
-                    tags: ["Chemistry", "50 PYQs", "AEMA"]
-                  },
-                  {
-                    id: "AE-CHM-02",
-                    title: "Anglo-Eastern Written PYQs — Chemistry Hub (Rohit Jha Sir)",
-                    desc: "Special chemistry problem-solving session and PYQ bank compiled by Rohit Jha Sir.",
-                    url: "lectures/Entrance-Anglo-Eastern-Chemistry-Rohit-Sir-PYQs.html",
-                    stages: 4,
-                    mcqs: 45,
-                    flashcards: 15,
-                    tags: ["Rohit Sir", "Chemistry PYQ", "Merchant Navy"]
-                  }
-                ]
-              },
-              {
-                id: "ae-maths",
-                code: "MATH PYQs",
-                title: "Mathematics & Quantitative PYQ Hubs",
-                desc: "Previous year calculus, algebra, trigonometry, and arithmetic questions.",
-                lectures: [
-                  {
-                    id: "AE-MTH-01",
-                    title: "Anglo-Eastern Exam — Maths & Quant 52 PYQs Interactive Hub",
-                    desc: "52 authentic questions with complete stepwise interactive derivations.",
-                    url: "lectures/Entrance-Anglo-Eastern-Maths-Quant-52-PYQs.html",
-                    stages: 4,
-                    mcqs: 52,
-                    flashcards: 15,
-                    tags: ["Maths PYQ", "52 Qs", "Quant"]
-                  },
-                  {
-                    id: "AE-MTH-02",
-                    title: "Anglo-Eastern Written PYQs — Mathematics 75 Questions (Neha Ma'am)",
-                    desc: "75 essential math questions curated by Neha Gupta Ma'am for AEMA entrance.",
-                    url: "lectures/Entrance-Anglo-Eastern-Maths-75-PYQs.html",
-                    stages: 4,
-                    mcqs: 75,
-                    flashcards: 20,
-                    tags: ["Neha Ma'am", "75 Questions", "Maths"]
-                  }
-                ]
-              },
-              {
-                id: "ae-aptitude",
-                code: "APTITUDE",
-                title: "English, Reasoning & Maritime GK",
-                desc: "English grammar, reasoning aptitude, maritime awareness, and interview guidelines.",
-                lectures: [
-                  {
-                    id: "AE-ENG-01",
-                    title: "Anglo-Eastern Sponsorship Exam — 30 English PYQs Hub",
-                    desc: "30 grammar, comprehension, and error identification questions.",
-                    url: "lectures/Entrance-Anglo-Eastern-English-30-PYQs.html",
-                    stages: 3,
-                    mcqs: 30,
-                    flashcards: 15,
-                    tags: ["English PYQ", "30 Qs"]
-                  },
-                  {
-                    id: "AE-ENG-02",
-                    title: "Anglo-Eastern Written PYQs — English Master Hub",
-                    desc: "Comprehensive English preparation hub with vocabulary and sentence structuring drills.",
-                    url: "lectures/Entrance-Anglo-Eastern-English-Master-Hub.html",
-                    stages: 4,
-                    mcqs: 50,
-                    flashcards: 20,
-                    tags: ["English Master", "AEMA"]
-                  },
-                  {
-                    id: "AE-REA-01",
-                    title: "Anglo-Eastern Exam — General Aptitude & Reasoning (88 PYQs Mock)",
-                    desc: "88-question mock test testing speed, spatial aptitude, and logical deductions.",
-                    url: "lectures/Entrance-Anglo-Eastern-Reasoning-88-PYQs.html",
-                    stages: 4,
-                    mcqs: 88,
-                    flashcards: 15,
-                    tags: ["Reasoning 88Q", "Aptitude Mock"]
-                  },
-                  {
-                    id: "AE-REA-02",
-                    title: "Anglo-Eastern Written PYQs — Reasoning & Aptitude Hub",
-                    desc: "Targeted reasoning practice module covering analytical patterns and clocks-calendars.",
-                    url: "lectures/Entrance-Anglo-Eastern-Reasoning-Aptitude-Hub.html",
-                    stages: 4,
-                    mcqs: 60,
-                    flashcards: 15,
-                    tags: ["Reasoning Hub", "Aptitude"]
-                  },
-                  {
-                    id: "AE-GK-01",
-                    title: "Anglo-Eastern Written PYQs — GK & Maritime Awareness Hub",
-                    desc: "General knowledge, ocean geography, shipping terminology, and maritime safety.",
-                    url: "lectures/Entrance-Anglo-Eastern-GK-Maritime-Awareness.html",
-                    stages: 4,
-                    mcqs: 55,
-                    flashcards: 25,
-                    tags: ["Maritime GK", "Shipping Awareness"]
-                  },
-                  {
-                    id: "AE-INT-01",
-                    title: "Master Study Guide: Anglo-Eastern Sponsorship & Interview",
-                    desc: "Complete blueprint for clearing the psychometric test, medicals, and personal interview.",
-                    url: "lectures/Entrance-Anglo-Eastern-Study-Guide-and-Interview.html",
-                    stages: 5,
-                    mcqs: 40,
-                    flashcards: 30,
-                    tags: ["Interview Guide", "Psychometric", "Cadetship"]
-                  },
-                  {
-                    id: "AE-INT-02",
-                    title: "Anglo-Eastern Deck Entrance Test — Syllabus & Progress Tracker",
-                    desc: "Interactive syllabus checklist and progress tracker for cadet sponsorship aspirants.",
-                    url: "lectures/Entrance-Anglo-Eastern-Deck-Entrance-Tracker.html",
-                    stages: 3,
-                    mcqs: 25,
-                    flashcards: 10,
-                    tags: ["Syllabus Tracker", "Deck Cadet"]
-                  }
-                ]
+                title: "Wizard's Chess (Gothic Interactive Edition)",
+                size: "77.2 KB",
+                added: "16 Oct 2026",
+                file: "lectures/Special-Wizards-Chess-Gothic-Edition.html"
               }
             ]
           }
         ]
       },
       {
-        id: "games",
-        code: "STRATEGY LAB",
-        name: "Brain Games & Logic Lab",
-        bannerClass: "banner-subject-computer",
-        icon: "♟️",
-        desc: "Cognitive enhancements, logical thinking, and chess strategy for competitive aptitude.",
-        sections: [
+        id: "vocab-ssc",
+        name: "VOCAB SSC",
+        chapters: [
           {
-            id: "chess",
-            code: "CHESS",
-            name: "Chess Strategy & Logic",
-            icon: "🏰",
-            desc: "Tactical positioning, pattern analysis, and strategic vision.",
-            chapters: [
+            name: "Root Words & Vocabulary",
+            mocks: [
               {
-                id: "wizards-chess",
-                code: "GAME 01",
-                title: "Wizard's Chess — Gothic Cathedral Edition",
-                desc: "Play and analyze tactical chess inside an atmospheric gothic cathedral engine.",
-                lectures: [
-                  {
-                    id: "CHESS-01",
-                    title: "Wizard's Chess — Gothic Cathedral Interactive Game",
-                    desc: "Immersive chess arena with move validation, engine evaluation, and gothic styling.",
-                    url: "lectures/Special-Wizards-Chess-Gothic-Edition.html",
-                    stages: 2,
-                    mcqs: 0,
-                    flashcards: 0,
-                    tags: ["Chess", "Cognitive Drill", "Strategy"]
-                  }
-                ]
+                title: "VocabMaster Pro - High-Frequency Root Words (Lec 1-5)",
+                size: "101.2 KB",
+                added: "31 Oct 2026",
+                file: "lectures/English-Vocab-VocabMaster-Pro-Lec1-5.html"
+              },
+              {
+                title: "Agniveer & IMU-CET - 100 High Yield Vocabulary Questions",
+                size: "50.6 KB",
+                added: "20 Oct 2026",
+                file: "lectures/Entrance-IMU-CET-Agniveer-100-Vocab.html"
+              }
+            ]
+          },
+          {
+            name: "One Word Substitution",
+            mocks: [
+              {
+                title: "OWS Mastery Drills (Lec 6-8)",
+                size: "110.3 KB",
+                added: "31 Oct 2026",
+                file: "lectures/English-Vocab-OWS-Mastery-Lec6-8.html"
+              },
+              {
+                title: "IMU-CET Comprehensive Master Preparation Hub",
+                size: "150.5 KB",
+                added: "17 Oct 2026",
+                file: "lectures/Entrance-IMU-CET-Master-Prep-Hub.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "anglo-eastern",
+        name: "ANGLO EASTERN",
+        chapters: [
+          {
+            name: "Maritime GK & Interview",
+            mocks: [
+              {
+                title: "Maritime Awareness & Shipping GK Guide",
+                size: "38.5 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-GK-Maritime-Awareness.html"
+              },
+              {
+                title: "Study Guide & Cadet Interview Manual",
+                size: "101.5 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Study-Guide-and-Interview.html"
+              },
+              {
+                title: "Deck Entrance Syllabus Tracker & Readiness Meter",
+                size: "16.5 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Deck-Entrance-Tracker.html"
+              }
+            ]
+          },
+          {
+            name: "Science PYQs (Physics & Chemistry)",
+            mocks: [
+              {
+                title: "Anglo-Eastern Physics - 80 PYQ Exam Drills",
+                size: "71.6 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Physics-80-PYQs.html"
+              },
+              {
+                title: "Anglo-Eastern Chemistry - 50 PYQs Collection",
+                size: "116.6 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Chemistry-50-PYQs.html"
+              },
+              {
+                title: "Anglo-Eastern Chemistry - Rohit Sir PYQs & Concepts",
+                size: "32.9 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Chemistry-Rohit-Sir-PYQs.html"
+              }
+            ]
+          },
+          {
+            name: "Aptitude, Maths & English",
+            mocks: [
+              {
+                title: "Anglo-Eastern Maths - 75 PYQ Speed Drills",
+                size: "69.7 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Maths-75-PYQs.html"
+              },
+              {
+                title: "Anglo-Eastern Quant & Aptitude - 52 PYQs",
+                size: "70.2 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Maths-Quant-52-PYQs.html"
+              },
+              {
+                title: "Anglo-Eastern Reasoning - 88 PYQs Practice Bank",
+                size: "68.0 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Reasoning-88-PYQs.html"
+              },
+              {
+                title: "Anglo-Eastern Aptitude & Reasoning - Strategy Hub",
+                size: "39.0 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-Reasoning-Aptitude-Hub.html"
+              },
+              {
+                title: "Anglo-Eastern English - 30 PYQs Practice Test",
+                size: "110.1 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-English-30-PYQs.html"
+              },
+              {
+                title: "Anglo-Eastern English - Master Preparation Hub",
+                size: "34.3 KB",
+                added: "19 Oct 2026",
+                file: "lectures/Entrance-Anglo-Eastern-English-Master-Hub.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "blackbook",
+        name: "blackbook",
+        chapters: [
+          {
+            name: "Blackbook Vocabulary",
+            mocks: [
+              {
+                title: "Blackbook Day 1 - OWS & Idioms Booster",
+                size: "92.4 KB",
+                added: "31 Oct 2026",
+                file: "lectures/English-Vocab-Blackbook-Day1-OWS-and-Idioms.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "polity",
+        name: "POLITY & GS",
+        chapters: [
+          {
+            name: "Making of the Constitution",
+            mocks: [
+              {
+                title: "Lecture 01 - Making of Constitution (Full 6-Stage Notes & Active Recall)",
+                size: "111.6 KB",
+                added: "13 Nov 2026",
+                file: "lectures/Lecture-01-Polity-Making-of-Constitution.html"
+              }
+            ]
+          },
+          {
+            name: "Salient Features of Constitution",
+            mocks: [
+              {
+                title: "Lecture 02 - Salient Features & Sources (Full 6-Stage Notes & Active Recall)",
+                size: "110.5 KB",
+                added: "13 Nov 2026",
+                file: "lectures/Lecture-02-Polity-Salient-Features-of-Constitution.html"
               }
             ]
           }
@@ -1434,290 +1228,264 @@
       }
     ];
 
-    /* ==========================================================
-       ROUTER / NAVIGATION STATE CONTROLLER
-    ========================================================== */
-    let navState = {
-      level: 'home',
-      subjectId: null,
-      sectionId: null,
-      chapterId: null
-    };
+    // Helper functions for counts
+    function getSubjectCounts(subject) {
+      const chapterCount = subject.chapters.length;
+      let mockCount = 0;
+      subject.chapters.forEach(ch => {
+        mockCount += ch.mocks.length;
+      });
+      return { chapterCount, mockCount };
+    }
 
-    function parseHash() {
-      const hash = window.location.hash.replace('#', '');
-      if (!hash || hash === 'home') {
-        navState = { level: 'home', subjectId: null, sectionId: null, chapterId: null };
+    // State
+    let currentSubjectId = null;
+    let collapsedChapters = {}; // id: boolean
+
+    // DOM Elements
+    const viewDashboard = document.getElementById("view-dashboard");
+    const viewSubject = document.getElementById("view-subject");
+    const topbarCrumb = document.getElementById("topbar-crumb");
+    const dashboardSubtitle = document.getElementById("dashboard-subtitle");
+    const subjectsGrid = document.getElementById("subjects-grid");
+    const subjectTitle = document.getElementById("subject-title");
+    const subjectMeta = document.getElementById("subject-meta");
+    const chaptersList = document.getElementById("chapters-list");
+    const filterInput = document.getElementById("filter-input");
+
+    // Initialize Dashboard Grid
+    function renderDashboard() {
+      dashboardSubtitle.textContent = `${CURRICULUM.length} subjects available`;
+      subjectsGrid.innerHTML = "";
+
+      CURRICULUM.forEach(sub => {
+        const { chapterCount, mockCount } = getSubjectCounts(sub);
+        const card = document.createElement("div");
+        card.className = "subject-card";
+        card.onclick = () => navigateToSubject(sub.id);
+
+        card.innerHTML = `
+          <div class="subject-card-left">
+            <div class="subject-card-title">${sub.name}</div>
+            <div class="subject-card-badges">
+              <span class="pill-badge">${chapterCount} Chapter${chapterCount === 1 ? '' : 's'}</span>
+              <span class="pill-badge">${mockCount} Mock${mockCount === 1 ? '' : 's'}</span>
+            </div>
+          </div>
+          <div class="subject-card-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        `;
+        subjectsGrid.appendChild(card);
+      });
+    }
+
+    // Render Subject Detail
+    function renderSubjectDetail(subjectId, filterKeyword = "") {
+      const subject = CURRICULUM.find(s => s.id === subjectId);
+      if (!subject) return navigateToDashboard();
+
+      currentSubjectId = subjectId;
+      topbarCrumb.textContent = subject.name.toUpperCase();
+      subjectTitle.textContent = subject.name.toUpperCase();
+
+      const { chapterCount, mockCount } = getSubjectCounts(subject);
+      subjectMeta.textContent = `${chapterCount} chapter${chapterCount === 1 ? '' : 's'} • ${mockCount} mock${mockCount === 1 ? '' : 's'}`;
+
+      chaptersList.innerHTML = "";
+
+      if (subject.chapters.length === 0) {
+        chaptersList.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h3>No Chapters Uploaded Yet</h3>
+            <p>New test mocks and notes for this subject will be synchronized here shortly.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const q = filterKeyword.trim().toLowerCase();
+      let totalVisibleMocks = 0;
+
+      subject.chapters.forEach((chapter, chIdx) => {
+        const chapterKey = `${subjectId}-ch-${chIdx}`;
+        const filteredMocks = chapter.mocks.filter(m => {
+          if (!q) return true;
+          return m.title.toLowerCase().includes(q) || chapter.name.toLowerCase().includes(q);
+        });
+
+        if (q && filteredMocks.length === 0) {
+          return; // Skip non-matching chapter if filter active
+        }
+
+        totalVisibleMocks += filteredMocks.length;
+
+        // Auto-expand if filter is active, otherwise respect toggle
+        const isCollapsed = q ? false : !!collapsedChapters[chapterKey];
+
+        const chapterCard = document.createElement("div");
+        chapterCard.className = "chapter-card";
+
+        // Header
+        const header = document.createElement("div");
+        header.className = "chapter-header";
+        header.onclick = () => {
+          collapsedChapters[chapterKey] = !isCollapsed;
+          renderSubjectDetail(subjectId, filterInput.value);
+        };
+
+        header.innerHTML = `
+          <div class="chapter-toggle-icon" style="transform: ${isCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)'}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          <div class="chapter-book-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <div class="chapter-name">${chapter.name}</div>
+          <span class="pill-badge">${chapter.mocks.length} Mock${chapter.mocks.length === 1 ? '' : 's'}</span>
+        `;
+        chapterCard.appendChild(header);
+
+        // Mocks List
+        if (!isCollapsed) {
+          const mocksList = document.createElement("div");
+          mocksList.className = "chapter-mocks-list";
+
+          filteredMocks.forEach(mock => {
+            const row = document.createElement("div");
+            row.className = "mock-row";
+
+            row.innerHTML = `
+              <div class="mock-info-group">
+                <div class="mock-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                </div>
+                <div class="mock-details">
+                  <div class="mock-title">${mock.title}</div>
+                  <div class="mock-meta">Size: ${mock.size} &nbsp;•&nbsp; Added: ${mock.added}</div>
+                </div>
+              </div>
+              <a href="${mock.file}" target="_blank" class="btn-start-mock">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Start Mock
+              </a>
+            `;
+            mocksList.appendChild(row);
+          });
+
+          chapterCard.appendChild(mocksList);
+        }
+
+        chaptersList.appendChild(chapterCard);
+      });
+
+      if (q && totalVisibleMocks === 0) {
+        chaptersList.innerHTML = `
+          <div class="empty-state">
+            <h3>No results found</h3>
+            <p>No chapters or mocks match your search: "<strong>${filterKeyword}</strong>"</p>
+          </div>
+        `;
+      }
+    }
+
+    // Navigation & Routing
+    function navigateToDashboard() {
+      currentSubjectId = null;
+      window.location.hash = "#dashboard";
+      viewDashboard.style.display = "block";
+      viewSubject.style.display = "none";
+      topbarCrumb.textContent = "Dashboard";
+      if (filterInput) filterInput.value = "";
+    }
+
+    function navigateToSubject(subjectId) {
+      window.location.hash = `#subject/${subjectId}`;
+      viewDashboard.style.display = "none";
+      viewSubject.style.display = "block";
+      if (filterInput) filterInput.value = "";
+      renderSubjectDetail(subjectId);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function handleFilter(value) {
+      if (currentSubjectId) {
+        renderSubjectDetail(currentSubjectId, value);
+      }
+    }
+
+    function handleHashChange() {
+      const hash = window.location.hash;
+      if (hash.startsWith("#subject/")) {
+        const subId = hash.replace("#subject/", "").trim();
+        renderSubjectDetail(subId);
+        viewDashboard.style.display = "none";
+        viewSubject.style.display = "block";
       } else {
-        const parts = hash.split('/');
-        if (parts.length === 1) {
-          navState = { level: 'subject', subjectId: parts[0], sectionId: null, chapterId: null };
-        } else if (parts.length === 2) {
-          navState = { level: 'section', subjectId: parts[0], sectionId: parts[1], chapterId: null };
-        } else if (parts.length === 3) {
-          navState = { level: 'chapter', subjectId: parts[0], sectionId: parts[1], chapterId: parts[2] };
+        navigateToDashboard();
+      }
+    }
+
+    // Fullscreen API toggle
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
         }
       }
-      renderView();
     }
 
-    function navigateTo(level, sId, secId, chId) {
-      if (level === 'home') {
-        window.location.hash = 'home';
-      } else if (level === 'subject') {
-        window.location.hash = `${sId}`;
-      } else if (level === 'section') {
-        window.location.hash = `${sId}/${secId}`;
-      } else if (level === 'chapter') {
-        window.location.hash = `${sId}/${secId}/${chId}`;
-      }
-    }
-
-    function navigateBack() {
-      if (navState.level === 'chapter') {
-        navigateTo('section', navState.subjectId, navState.sectionId);
-      } else if (navState.level === 'section') {
-        navigateTo('subject', navState.subjectId);
-      } else if (navState.level === 'subject') {
-        navigateTo('home');
+    // Dark Mode Toggle
+    function toggleDarkTheme(enableDark) {
+      if (enableDark) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("mm_theme", "dark");
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("mm_theme", "light");
       }
     }
 
-    /* RENDER VIEW */
-    function renderView() {
-      const appView = document.getElementById('appView');
-      const breadcrumb = document.getElementById('breadcrumbTrail');
-      const backBtn = document.getElementById('backBtn');
-      const hero = document.getElementById('portalHero');
+    // Modal Control
+    const settingsModal = document.getElementById("settings-modal");
+    document.getElementById("btn-settings-open").onclick = () => settingsModal.classList.add("active");
+    document.getElementById("btn-settings-close").onclick = () => settingsModal.classList.remove("active");
+    settingsModal.onclick = (e) => {
+      if (e.target === settingsModal) settingsModal.classList.remove("active");
+    };
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // ==========================================
-      // LEVEL 1: HOME (ALL SUBJECTS)
-      // ==========================================
-      if (navState.level === 'home') {
-        hero.style.display = 'block';
-        backBtn.style.display = 'none';
-        breadcrumb.innerHTML = `<span class="bc-current">Home (All Courses)</span>`;
-
-        appView.innerHTML = `
-          <div class="view-header">
-            <span class="view-step-badge">Level 1 • Select Subject</span>
-            <h1 class="view-title">Available Toppers Batches</h1>
-            <p class="view-subtext">Click on any subject to explore its academic sections, chapters, and live modules.</p>
-          </div>
-
-          <div class="portal-grid">
-            ${parmarCurriculum.map(sub => {
-              let totalLecs = 0;
-              sub.sections.forEach(s => s.chapters.forEach(c => totalLecs += c.lectures.length));
-
-              return `
-                <div class="course-card" onclick="navigateTo('subject', '${sub.id}')">
-                  <div class="card-banner ${sub.bannerClass}">
-                    <span class="card-batch-tag">${sub.code}</span>
-                    <div class="card-icon-badge">${sub.icon}</div>
-                  </div>
-                  <div class="card-body-content">
-                    <h3 class="card-title-heading">${sub.name}</h3>
-                    <p class="card-desc-paragraph">${sub.desc}</p>
-                    <div class="card-features-row">
-                      <span class="feature-chip">${sub.sections.length} Sections</span>
-                      ${totalLecs > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:800;">${totalLecs} Active Modules</span>` : `<span class="feature-chip">Curriculum Ready</span>`}
-                      <span class="feature-chip">Bilingual</span>
-                    </div>
-                  </div>
-                  <div class="card-footer-action">
-                    <span class="card-meta-text">By Parmar Sir & Team</span>
-                    <button class="btn-card-cta">Explore Course ➔</button>
-                  </div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        `;
-        return;
+    // Initialize on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      // Saved Theme
+      const savedTheme = localStorage.getItem("mm_theme");
+      if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.getElementById("theme-switch").checked = true;
       }
 
-      hero.style.display = 'none';
-
-      // ==========================================
-      // LEVEL 2: SECTIONS VIEW
-      // ==========================================
-      const currentSub = parmarCurriculum.find(s => s.id === navState.subjectId);
-      if (!currentSub) { navigateTo('home'); return; }
-
-      if (navState.level === 'subject') {
-        backBtn.style.display = 'inline-flex';
-        breadcrumb.innerHTML = `
-          <span class="bc-link" onclick="navigateTo('home')">Home</span>
-          <span class="bc-sep">/</span>
-          <span class="bc-current">${currentSub.name}</span>
-        `;
-
-        appView.innerHTML = `
-          <div class="view-header">
-            <span class="view-step-badge">Level 2 • Sections in ${currentSub.name}</span>
-            <h1 class="view-title">${currentSub.name}</h1>
-            <p class="view-subtext">${currentSub.desc}</p>
-          </div>
-
-          <div class="portal-grid">
-            ${currentSub.sections.map(sec => {
-              let secLecs = 0;
-              sec.chapters.forEach(c => secLecs += c.lectures.length);
-
-              return `
-                <div class="course-card" onclick="navigateTo('section', '${currentSub.id}', '${sec.id}')">
-                  <div class="card-banner ${currentSub.bannerClass}">
-                    <span class="card-batch-tag">${sec.code}</span>
-                    <div class="card-icon-badge">${sec.icon}</div>
-                  </div>
-                  <div class="card-body-content">
-                    <h3 class="card-title-heading">${sec.name}</h3>
-                    <p class="card-desc-paragraph">${sec.desc}</p>
-                    <div class="card-features-row">
-                      <span class="feature-chip">${sec.chapters.length} Units/Chapters</span>
-                      ${secLecs > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:800;">${secLecs} Active Modules</span>` : `<span class="feature-chip">Curriculum Ready</span>`}
-                    </div>
-                  </div>
-                  <div class="card-footer-action">
-                    <span class="card-meta-text">${sec.chapters.length} Chapters</span>
-                    <button class="btn-card-cta">View Chapters ➔</button>
-                  </div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        `;
-        return;
-      }
-
-      // ==========================================
-      // LEVEL 3: CHAPTERS VIEW
-      // ==========================================
-      const currentSec = currentSub.sections.find(s => s.id === navState.sectionId);
-      if (!currentSec) { navigateTo('subject', currentSub.id); return; }
-
-      if (navState.level === 'section') {
-        backBtn.style.display = 'inline-flex';
-        breadcrumb.innerHTML = `
-          <span class="bc-link" onclick="navigateTo('home')">Home</span>
-          <span class="bc-sep">/</span>
-          <span class="bc-link" onclick="navigateTo('subject', '${currentSub.id}')">${currentSub.name}</span>
-          <span class="bc-sep">/</span>
-          <span class="bc-current">${currentSec.name}</span>
-        `;
-
-        appView.innerHTML = `
-          <div class="view-header">
-            <span class="view-step-badge">Level 3 • Chapters in ${currentSec.name}</span>
-            <h1 class="view-title">${currentSec.name}</h1>
-            <p class="view-subtext">${currentSec.desc}</p>
-          </div>
-
-          <div class="portal-grid">
-            ${currentSec.chapters.map(ch => {
-              const count = ch.lectures.length;
-              return `
-                <div class="course-card" onclick="navigateTo('chapter', '${currentSub.id}', '${currentSec.id}', '${ch.id}')">
-                  <div class="card-banner" style="background: linear-gradient(135deg, #1e293b, #334155);">
-                    <span class="card-batch-tag">${ch.code}</span>
-                    <div class="card-icon-badge">📖</div>
-                  </div>
-                  <div class="card-body-content">
-                    <h3 class="card-title-heading">${ch.title}</h3>
-                    <p class="card-desc-paragraph">${ch.desc}</p>
-                    <div class="card-features-row">
-                      ${count > 0 ? `<span class="feature-chip" style="color:var(--brand-gold); font-weight:800;">${count} Live Modules</span>` : `<span class="feature-chip">Upcoming</span>`}
-                      <span class="feature-chip">Active Recall</span>
-                      <span class="feature-chip">Quizzes</span>
-                    </div>
-                  </div>
-                  <div class="card-footer-action">
-                    <span class="card-meta-text">${count} Interactive Modules</span>
-                    <button class="btn-card-cta">Open Chapter ➔</button>
-                  </div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-        `;
-        return;
-      }
-
-      // ==========================================
-      // LEVEL 4: LECTURES VIEW (THE ACTUAL MODULES)
-      // ==========================================
-      const currentCh = currentSec.chapters.find(c => c.id === navState.chapterId);
-      if (!currentCh) { navigateTo('section', currentSub.id, currentSec.id); return; }
-
-      if (navState.level === 'chapter') {
-        backBtn.style.display = 'inline-flex';
-        breadcrumb.innerHTML = `
-          <span class="bc-link" onclick="navigateTo('home')">Home</span>
-          <span class="bc-sep">/</span>
-          <span class="bc-link" onclick="navigateTo('subject', '${currentSub.id}')">${currentSub.name}</span>
-          <span class="bc-sep">/</span>
-          <span class="bc-link" onclick="navigateTo('section', '${currentSub.id}', '${currentSec.id}')">${currentSec.name}</span>
-          <span class="bc-sep">/</span>
-          <span class="bc-current">${currentCh.code}</span>
-        `;
-
-        appView.innerHTML = `
-          <div class="view-header">
-            <span class="view-step-badge">Level 4 • Modules in ${currentCh.code}</span>
-            <h1 class="view-title">${currentCh.title}</h1>
-            <p class="view-subtext">${currentCh.desc}</p>
-          </div>
-
-          <div class="lecture-container">
-            ${currentCh.lectures.length > 0 ? currentCh.lectures.map(lec => `
-              <div class="lecture-box">
-                <div class="lec-left-info">
-                  <div class="lec-badge-strip">
-                    <span class="lec-num-pill">${lec.id}</span>
-                    <span class="lec-format-pill">Interactive Learning Module</span>
-                  </div>
-                  <h2 class="lec-main-title">${lec.title}</h2>
-                  <p class="lec-main-desc">${lec.desc}</p>
-                  <div class="lec-tags-list">
-                    ${lec.tags.map(t => `<span class="lec-tag-item">#${t}</span>`).join('')}
-                  </div>
-                </div>
-                <div class="lec-right-action">
-                  <div class="lec-stages-summary">
-                    <div>${lec.stages} Stages • ${lec.mcqs} Practice MCQs</div>
-                    <div style="color:var(--brand-gold); font-weight:700;">${lec.flashcards} Flashcards</div>
-                  </div>
-                  <a href="${lec.url}" class="btn-start-learning">Start Interactive Learning ➔</a>
-                </div>
-              </div>
-            `).join('') : `
-              <div class="empty-state-box">
-                <div class="empty-icon">📂</div>
-                <h3 style="font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:0.5rem;">No Modules Added to this Chapter Yet</h3>
-                <p style="font-size:0.9rem; color:var(--text-muted); max-width:550px; margin:0 auto;">
-                  Whenever you upload PDF notes or study material for this unit, our automated pipeline will instantly create the interactive learning module and link it right here.
-                </p>
-              </div>
-            `}
-          </div>
-        `;
-      }
-    }
-
-    /* THEME SWITCHER */
-    const themeBtn = document.getElementById('themeBtn');
-    themeBtn.addEventListener('click', () => {
-      const current = document.body.getAttribute('data-theme');
-      const target = current === 'dark' ? 'light' : 'dark';
-      document.body.setAttribute('data-theme', target);
+      renderDashboard();
+      handleHashChange();
     });
 
-    /* INITIALIZATION & ROUTING */
-    window.addEventListener('hashchange', parseHash);
-    window.addEventListener('DOMContentLoaded', parseHash);
+    window.addEventListener("hashchange", handleHashChange);
   </script>
 </body>
 </html>
