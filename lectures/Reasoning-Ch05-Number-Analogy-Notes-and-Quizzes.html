@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 5: NUMBER ANALOGY - Interactive Digital Notes & 110 Quizzes | Parmar SSC Reasoning</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-dark: #60a5fa;
+      --accent: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --border: #334155;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Fixed Left Sidebar */
+    .sidebar {
+      width: 290px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+
+    .brand-back:hover { text-decoration: underline; }
+
+    .brand-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .brand h1 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 12px 8px;
+      flex-grow: 1;
+    }
+
+    .nav-item { margin-bottom: 4px; }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover { background: var(--surface-alt); }
+
+    .nav-btn.active {
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .badge {
+      background: var(--surface-alt);
+      color: var(--text-muted);
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .nav-btn.active .badge {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .sidebar-stats {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--surface-alt);
+      font-size: 12px;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .stats-row strong { color: var(--primary); }
+
+    /* Main Content Layout */
+    .main {
+      margin-left: 290px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Sticky Topbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 90;
+      gap: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .breadcrumb {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .breadcrumb span { color: var(--text); font-weight: 600; }
+
+    .search-box {
+      position: relative;
+      width: 280px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+
+    .btn:hover { background: var(--surface-alt); }
+    .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-primary:hover { background: var(--primary-dark); }
+
+    /* Content Area */
+    .content-container {
+      padding: 28px 32px 60px;
+      max-width: 1120px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-page { display: none; }
+    .section-page.active { display: block; animation: fadeIn 0.25s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Cards & Components */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-box {
+      background: #f0f7ff;
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+
+    .warn-box {
+      background: #fffbeb;
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .formula-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13.5px;
+    }
+
+    .formula-card strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    /* Active Recall Interactive Drills */
+    .drill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .drill-item {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .drill-item:hover { border-color: #93c5fd; background: #f8fafc; }
+
+    .drill-q {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drill-q::after {
+      content: '👉 Reveal Logic';
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      background: #eff6ff;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    .drill-ans {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+      font-size: 13.5px;
+      color: #065f46;
+      background: #ecfdf5;
+      padding: 10px 12px;
+      border-radius: 6px;
+      line-height: 1.5;
+    }
+
+    .drill-ans.hidden { display: none; }
+
+    /* Interactive Quiz Cards */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 18px;
+      transition: all 0.2s;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .quiz-tag {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .quiz-question {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .quiz-opt {
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .quiz-opt.correct {
+      background: #ecfdf5 !important;
+      border-color: #10b981 !important;
+      color: #065f46 !important;
+      font-weight: 700;
+    }
+
+    .quiz-opt.wrong {
+      background: #fef2f2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b !important;
+    }
+
+    .quiz-exp {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #10b981;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    .quiz-exp.show { display: block; animation: fadeIn 0.2s ease; }
+
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .menu-toggle { display: block; }
+      .search-box { display: none; }
+      .content-container { padding: 18px 16px 40px; }
+      .quiz-options { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <a href="../index.html" class="brand-back">← Mock Manager</a>
+      <div class="brand-badge">PARMAR SSC REASONING</div>
+      <h1>Number Analogy</h1>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Chapter 05 • 110 Questions</p>
+    </div>
+
+    <ul class="nav-list">
+      <li class="nav-item">
+        <button class="nav-btn active" onclick="showTab('tab-hierarchy', this)">
+          <span>📖 Priority Hierarchy & Theory</span>
+          <span class="badge">Theory</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" onclick="showTab('tab-powers', this)">
+          <span>⚡ 1. Squares & Cubes</span>
+          <span class="badge">Q.1–25</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" onclick="showTab('tab-multipliers', this)">
+          <span>✖️ 2. Multipliers & Divisors</span>
+          <span class="badge">Q.26–56</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" onclick="showTab('tab-sets', this)">
+          <span>📐 3. Set & Triad Analogies</span>
+          <span class="badge">Q.57–85</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" onclick="showTab('tab-advanced', this)">
+          <span>🧩 4. Advanced & Digit Logic</span>
+          <span class="badge">Q.86–110</span>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-btn" onclick="showTab('tab-marathon', this)">
+          <span>🏆 5. Exam Marathon Arena</span>
+          <span class="badge">110 Qs</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="sidebar-stats">
+      <div class="stats-row">
+        <span>Questions Attempted:</span>
+        <strong id="stat-attempted">0 / 110</strong>
+      </div>
+      <div class="stats-row">
+        <span>Accuracy Score:</span>
+        <strong id="stat-accuracy">0%</strong>
+      </div>
+      <div class="stats-row">
+        <span>Correct Answers:</span>
+        <strong id="stat-correct" style="color: var(--success);">0</strong>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Body Content -->
+  <main class="main">
+    <!-- Sticky Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="breadcrumb">Reasoning / <span>Number Analogy</span></div>
+      </div>
+
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search" class="search-input" placeholder="Search patterns & numbers..." oninput="handleSearch(this.value)" />
+      </div>
+
+      <div class="topbar-actions">
+        <button class="btn" onclick="revealAllVisible()">👁️ Reveal</button>
+        <button class="btn" onclick="hideAllVisible()">🙈 Hide</button>
+        <button class="btn" onclick="resetAllQuizzes()">🔄 Reset</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+      </div>
+    </header>
+
+    <!-- Content Sections -->
+    <div class="content-container">
+
+      <!-- TAB 0: Hierarchy & Core Theory -->
+      <section id="tab-hierarchy" class="section-page active">
+        <h2 class="page-title">Number Analogy Priority Hierarchy & Core Theory</h2>
+        <p class="page-subtitle">The strict priority order used by SSC and TCS examiners when evaluating conflicting mathematical patterns.</p>
+
+        <div class="card">
+          <div class="card-title">👑 The Standard Priority Hierarchy</div>
+          <p>When multiple logic rules appear to fit the given options, always prioritize in this exact sequence:</p>
+          <div class="grid-3">
+            <div class="formula-card">
+              <strong>Priority 1: Prime Numbers</strong>
+              Check for prime series, consecutive primes, or prime squares/cubes.<br>
+              <em>E.g. 5 : 25 :: 7 : 49 or 13 : 17 :: 19 : 23</em>
+            </div>
+            <div class="formula-card">
+              <strong>Priority 2: Squares & Cubes</strong>
+              Check powers: n², n³, n²±k, n³±k, n³+n, (n±1)².<br>
+              <em>E.g. 8 : 67 (8²+3) :: 11 : 124 (11²+3)</em>
+            </div>
+            <div class="formula-card">
+              <strong>Priority 3: Multipliers & Divisors</strong>
+              Check products: n × k ± m or n ÷ 2 ± k.<br>
+              <em>E.g. 19 : 32 (19×2-6) :: 35 : 64 (35×2-6)</em>
+            </div>
+            <div class="formula-card">
+              <strong>Priority 4: Addition / Subtraction</strong>
+              Check constant difference: A + k = B.<br>
+              <em>E.g. 45 : 165 (+120) :: 24 : 144 (+120)</em>
+            </div>
+            <div class="formula-card">
+              <strong>Priority 5: Digital Operations</strong>
+              Sum of digits, product of digits, sum of digit squares.<br>
+              <em>E.g. 456 : 15 (4+5+6=15) :: 789 : 24</em>
+            </div>
+            <div class="formula-card">
+              <strong>Priority 6: Set / Triad Operations</strong>
+              Operations on whole numbers without breaking digits.<br>
+              <em>E.g. (33, 429, 13) → 33 × 13 = 429</em>
+            </div>
+          </div>
+          <div class="warn-box">
+            <strong>Standard TCS Constraint:</strong> In modern SSC & Railway exams, note instructions strictly state: <em>"Operations should be performed on whole numbers, without breaking down numbers into constituent digits"</em>. Always check whole number arithmetic before attempting digit splits!
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">⚡ Interactive Drills: Test Your Pattern Recognition</div>
+          <div class="drill-list">
+            <div class="drill-item" onclick="toggleDrill(this)">
+              <div class="drill-q">Drill 1: 5 : 130 :: 7 : ? (Which power pattern is used?)</div>
+              <div class="drill-ans hidden">
+                <strong>Formula:</strong> Cube + Number (n³ + n).<br>
+                5³ + 5 = 125 + 5 = 130.<br>
+                For 7: 7³ + 7 = 343 + 7 = 350!
+              </div>
+            </div>
+            <div class="drill-item" onclick="toggleDrill(this)">
+              <div class="drill-q">Drill 2: 24 : 126 :: 63 : ? (Identify the hybrid square-cube pattern)</div>
+              <div class="drill-ans hidden">
+                <strong>Formula:</strong> (n² - 1) : (n³ + 1).<br>
+                24 = 5² - 1, and 126 = 5³ + 1.<br>
+                63 = 8² - 1. Therefore, ? = 8³ + 1 = 512 + 1 = 513!
+              </div>
+            </div>
+            <div class="drill-item" onclick="toggleDrill(this)">
+              <div class="drill-q">Drill 3: In set triad (a, b, c), what are the most common relationship formulas?</div>
+              <div class="drill-ans hidden">
+                <strong>Common Archetypes:</strong><br>
+                1. a × c = b (Product of outer numbers equals middle)<br>
+                2. (a + c) ÷ 2 = b (Average of outers)<br>
+                3. (a + c)² = b (Square of sum)<br>
+                4. a × k + c × m = b (Weighted linear combination)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 1: Squares, Cubes & Higher Powers -->
+      <section id="tab-powers" class="section-page">
+        <h2 class="page-title">Tab 1: Squares, Cubes & Higher Powers</h2>
+        <p class="page-subtitle">Practice Questions Q.1 to Q.25 • Power series, square additions/subtractions, and hybrid square-cube mappings.</p>
+        <div id="tab1-container"></div>
+      </section>
+
+      <!-- TAB 2: Multipliers, Divisors & Differences -->
+      <section id="tab-multipliers" class="section-page">
+        <h2 class="page-title">Tab 2: Multipliers, Divisors & Differences</h2>
+        <p class="page-subtitle">Practice Questions Q.26 to Q.56 • Linear multipliers (n × k ± m), division logic, and arithmetic difference shifts.</p>
+        <div id="tab2-container"></div>
+      </section>
+
+      <!-- TAB 3: Set & Triad Analogies -->
+      <section id="tab-sets" class="section-page">
+        <h2 class="page-title">Tab 3: Set & Triad Analogies</h2>
+        <p class="page-subtitle">Practice Questions Q.57 to Q.85 • Whole-number triad sets (a, b, c) from modern RRB NTPC & SSC exams.</p>
+        <div id="tab3-container"></div>
+      </section>
+
+      <!-- TAB 4: Advanced & Digit Logic -->
+      <section id="tab-advanced" class="section-page">
+        <h2 class="page-title">Tab 4: Advanced Operations & Multi-Step Logic</h2>
+        <p class="page-subtitle">Practice Questions Q.86 to Q.110 • Multi-pair analogies (X : Y), digit manipulations, and sequential chained operations.</p>
+        <div id="tab4-container"></div>
+      </section>
+
+      <!-- TAB 5: Marathon Practice Arena -->
+      <section id="tab-marathon" class="section-page">
+        <h2 class="page-title">Tab 5: Exam Marathon Practice Arena</h2>
+        <p class="page-subtitle">All 110 Real Exam Questions in a Single Interactive Simulator with Category Filters and Live Score Tracking.</p>
+        <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">FILTER CATEGORY:</span>
+            <select id="marathon-filter" onchange="filterMarathon(this.value)" style="padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px; margin-left: 8px;">
+              <option value="all">All 110 Questions</option>
+              <option value="Squares, Cubes & Power Series">Squares & Cubes (Q1–25)</option>
+              <option value="Multipliers, Divisors & Differences">Multipliers & Divisors (Q26–56)</option>
+              <option value="Set Analogies & Triad Patterns">Set & Triad Analogies (Q57–85)</option>
+              <option value="Advanced Operations & Multi-Step Logic">Advanced & Digit Logic (Q86–110)</option>
+            </select>
+          </div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--primary);" id="marathon-score-badge">
+            Score: 0 / 110
+          </div>
+        </div>
+        <div id="marathon-container"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // All questions dataset
+    const ALL_QUESTIONS = [{"id": 1, "q": "Q1. In the following question, select the related number from the given alternatives. 8 : 67 :: 11 : ?", "opts": ["A) 105", "B) 124", "C) 103", "D) 99"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Number² + 3 8²+3 = 64 + 3 = 67 Apply the same rule to 11: 11² + 3 = 121 +3 = 124 Hence, option (B) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 2, "q": "Q2. In the following question, select the related number from the given alternatives. 24 : 126 :: 63 : ?", "opts": ["A) 433", "B) 344", "C) 192", "D) 513"], "ans": 3, "ans_letter": "D", "exp": "24 : 126 :: 63 : 513 52 − 1 53 + 1 82 − 1 83 + 1 ⇒ 83 + 1 = 512 + 1 = 513 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 3, "q": "Q3. In the following question, select the related number from the given alternatives. 19 : 32 :: 35 : ?", "opts": ["A) 64", "B) 53", "C) 51", "D) 46"], "ans": 0, "ans_letter": "A", "exp": "19 : 32 :: 35 : 64 x2−6 x2−6 ⇒ 35 x 2 – 6 = 70 – 6 = 64 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 4, "q": "Q4. In the following question, select the related number from the given alternatives. 8 : 3 :: 12 : ?", "opts": ["A) 6", "B) 4", "C) 5", "D) 7"], "ans": 2, "ans_letter": "C", "exp": "8 : 3 :: 12 : 5 ÷2 – 1 ÷2 – 1 ⇒ (12 ÷ 2) – 1 = 6 – 1 = 5 Hence, option (C) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 5, "q": "Q5. In the following question, select the related number from the given alternatives. 5 : 130 :: 7 : ?", "opts": ["A) 350", "B) 210", "C) 343", "D) 336"], "ans": 0, "ans_letter": "A", "exp": "⇒ 5³ + 5 = 125 + 5 = 130 Therefore, 7³ + 7 = 343 + 7= 350 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 6, "q": "Q6. In the following question, select the related number from the given alternatives. 9 : 90 :: 12 : ?", "opts": ["A) 156", "B) 138", "C) 114", "D) 128"], "ans": 0, "ans_letter": "A", "exp": "Step 1 → 9 : 90 :: 12 : 156 ×10 (Next ×13 (Next Number) Number) 9² + 9 = 81 + 9 = 90 Therefore, 12² + 12 = 144+ 12 = 156 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 7, "q": "Q7. In the following question, select the related number from the given alternatives. 12 : 72 :: 18 : ?", "opts": ["A) 118", "B) 136", "C) 162", "D) 190"], "ans": 2, "ans_letter": "C", "exp": "12² ÷ 2 = 144 ÷ 2 = 72 Therefore, 18² ÷ 2 = 324 ÷ 2 = 162 Step 2 → 12 : 72 :: 18 : 162 x6 x9 Half of 12 Half of 18 Hence, option (C) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 8, "q": "Q8. In the following question, select the related number from the given alternatives. 144 : 23 :: 256 : ?", "opts": ["A) 42", "B) 31", "C) 37", "D) 22"], "ans": 1, "ans_letter": "B", "exp": "Pattern: √Number × 2 − 1 √144 = 12 12 × 2 − 1 = 24 − 1 = 23 Similarly, √256 = 16 16 × 2 − 1 = 32 − 1 = 31 Hence, option (B) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 9, "q": "Q9. In the following question, select the related number from the given alternatives. 14 : 49 :: 28 : ?", "opts": ["A) 98", "B) 92", "C) 72", "D) 84"], "ans": 0, "ans_letter": "A", "exp": "Pattern: (Number × 3) + (Number ÷ 2) (14 × 3) + (14 ÷ 2) = 42 + 7 = 49 (28 × 3) + (28 ÷ 2) = 84 + 14 = 98 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 10, "q": "Q10. In the following question, select the related number from the given alternatives. 456 : 15 :: 789 : ?", "opts": ["A) 25", "B) 21", "C) 28", "D) 24"], "ans": 3, "ans_letter": "D", "exp": "456 : 15 :: 789 : 24 4 + 5 + 6 = 15 7 + 8 + 9 = 24 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 11, "q": "Q11. In the following question, select the related number from the given alternatives. 245 : 40 :: 723 : ?", "opts": ["A) 36", "B) 42", "C) 63", "D) 23"], "ans": 1, "ans_letter": "B", "exp": "245 : 40 :: 723 : 42 2 x 4 x 5 = 40 7 x 2 x 3 = 42 Hence, option (B) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 12, "q": "Q12. In the following question, select the related number from the given alternatives. 56 : 61 :: 39 : ?", "opts": ["A) 90", "B) 89", "C) 84", "D) 77"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Sum of Squares of Digits 56 : 61 :: 39 : 90 ⇒ 52 + 62 ⇒ 25 + 36 = 61 ⇒ 32 + 92 ⇒ 9 + 81 = 90 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 13, "q": "Q13. Select the option that is related to the fourth number in the same way as the first number is related to the second number and the fifth number is related to the sixth number. === NEW PAGE === 13 : 4 :: ? : 6 :: 16 : 5", "opts": ["A) 19", "B) 14", "C) 17", "D) 21"], "ans": 0, "ans_letter": "A", "exp": "Pattern: (Number × 3) + 1 13 : 4 :: 19 : 6 :: 16 : 5 x3 + 1 x3 + 1 x3 + 1 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 14, "q": "Q14. Select the option that is related to the fourth number in the same way as the first number is related to the second number and the fifth number is related to the sixth number. 15 : 90 :: ? : 112 :: 18 : 162", "opts": ["A) 18", "B) 14", "C) 13", "D) 16"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Initial Number × (Initial Number − 9) 15 : 90 :: ? : 112 :: 18 : 162 ⇒ 15 × (15 − 9) = 15 × 6 = 90 ⇒ 18 × (18 − 9) = 18 × 9 = 162 Therefore, x × (x − 9) = 112 By option (d) 16 × (16 − 9) = 16 × 7 = 112 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 15, "q": "Q15. Select the option that is related to the fourth term in the same way as the first term is related to the second term and the fifth term is related to the sixth term. 8 : 496 :: ? : 204 :: 9 : 711", "opts": ["A) 6", "B) 5", "C) 11", "D) 13"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Cube − (Initial Number × 2) 8 : 496 :: ? : 204 :: 9 : 711 ⇒ 8³ − (8 × 2) = 512 − 16 = 496 Similarly, 9³ − (9 × 2) = 729 − 18 = 711 Therefore, 6³ − (6 × 2) = 216 − 12 = 204 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 16, "q": "Q16. Select the option that is related to the fifth number in the same way as the second number is related to the first number and the fourth number is related to the third number. 9 : 109 :: 7 : 71 :: 13 : ?", "opts": ["A) 238", "B) 229", "C) 218", "D) 209"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Number × (Number + 3) + 1 9 : 109 :: 7 : 71 :: 13 : ? ⇒ 9 × (9 + 3) + 1 = 9 × 12 + 1 = 109 ⇒ 7 × (7 + 3) + 1 = 7 × 10 + 1 = 71 Therefore, 13 × (13 + 3) + 1 = 13 × 16 + 1 = 208 + 1 = 209 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 17, "q": "Q17. Select the option that is related to the third number in the same way as the second number is related to the first number and the sixth number is related to the fifth number. 76 : 11 :: 88 : ? :: 68 : 9", "opts": ["A) 12", "B) 14", "C) 18", "D) 15"], "ans": 1, "ans_letter": "B", "exp": "Pattern: (Number ÷ 4) − 8 76 : 11 :: 88 : 14 :: 68 : 9 ÷4 – 8 ÷4 – 8 ÷4 – 8 ⇒ 76 ÷ 4 − 8 ⇒ 19 − 8 = 11 ⇒ 68 ÷ 4 − 8 ⇒ 17 − 8 = 9 ⇒ 88 ÷ 4 − 8 ⇒ 22 − 8 = 14 Hence, option (B) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 18, "q": "Q18. Select the option that is related to the third term in the same way as the second term is related to the first term and the sixth term is related to the fifth term. 88.4 : 64 :: 72.8 : ? :: 96.2 : 71.8", "opts": ["A) 51.2", "B) 49", "C) 50", "D) 48.4"], "ans": 3, "ans_letter": "D", "exp": "88.4 : 64 :: 72.8 : 48.4 :: 96.2 : 71.8 – 24.4 – 24.4 – 24.4 ⇒ 72.8 – 24.4 = 48.4 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 19, "q": "Q19. Select the option that is related to the third number in the same way as the second number is related to the first number and the sixth number is related to the fifth number. === NEW PAGE === 37 : 100 :: 24 : ? :: 29 : 76", "opts": ["A) 64", "B) 61", "C) 75", "D) 70"], "ans": 1, "ans_letter": "B", "exp": "37 : 100 :: 24 : 61 :: 29 : 76 x3 – 11 x3 – 11 x3 – 11 ⇒ 24 x 3 – 11 = 72 – 11 = 61 Hence, option (B) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 20, "q": "Q20. Select the option that is related to the third number in the same way as the second number is related to the first number and the sixth number is related to the fifth number. 12 : 64 :: ? : 116 :: 32 : 144", "opts": ["A) 25", "B) 14", "C) 46", "D) 35"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Initial Number × 4 + 16 • 12 × 4 + 16 = 48 + 16 = 64 • 32 × 4 + 16 = 128 + 16 = 144 Therefore, • x × 4 + 16 = 116 • x × 4 = 100 • x = 25 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 21, "q": "Q21. Select the option that is related to third term in the same way as the second term is related to the first term and the sixth term is related to the fifth term. [1/97] : [1/63] :: [1/114] : ? :: [1/89] : [1/55]", "opts": ["A) [1/80]", "B) [1/77]", "C) [1/86]", "D) [1/83]"], "ans": 0, "ans_letter": "A", "exp": "1 : 1 :: 1 : 1 :: 1 : 1 97 63 114 80 89 55 – 34 – 34 – 34 ⇒ 114 – 34 = 80 Hence, option (A) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 22, "q": "Q22. Select the option that is related to the fifth number in the same way as the second number is related to the first number and the fourth number is related to the third number. 5 : 45 :: 3 : 3 :: 6 : ?", "opts": ["A) 90", "B) 106", "C) 110", "D) 96"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Initial Number × (Initial Number − 2)² • 5 × (5 − 2)² = 5 × 3² = 5 × 9 = 45 • 3 × (3 − 2)² = 3 × 1² = 3 × 1 = 3 Therefore, • 6 × (6 − 2)² = 6 × 4² = 6 × 16 = 96 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 23, "q": "Q23. Select the option that is related to the third term in the same way as the second term is related to the first term and the sixth term is related to the fifth term. 25 : 18 :: 37 : ? :: 49 : 36", "opts": ["A) 29", "B) 32", "C) 30", "D) 27"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Initial Number − Sum of digits • 25 − (2 + 5) = 25 − 7 = 18 • 49 − (4 + 9) = 49 − 13 = 36 Therefore, • 37 − (3 + 7) = 37 − 10 = 27 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 24, "q": "Q24. Select the option that is related to the fifth number in the same way as the first number is related to the second number and the third number is related to the fourth number. 32 : 10 :: 24 : 12 :: 98 : ?", "opts": ["A) 25", "B) 24", "C) 43", "D) 34"], "ans": 3, "ans_letter": "D", "exp": "Pattern: (Sum of digits) × 2 32 : 10 :: 24 : 12 :: 98 : 34 (3 + 2) x 2 (2 + 4) x 2 (9 + 8) x 2 ⇒ 17 x 2 = 34 Hence, option (D) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 25, "q": "Q25. Select the option that is related to the fifth number in the same way as the second number is related to the first number and the fourth number is related to the third number. === NEW PAGE === 175 : 210 :: 310 : 372 :: 295 : ?", "opts": ["A) 362", "B) 354", "C) 348", "D) 340"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Number + (Number ÷ 5) • 175 + (175 ÷ 5) = 175 + 35 = 210 • 310 + (310 ÷ 5) = 310 + 62 = 372 Therefore, • 295 + (295 ÷ 5) = 295 + 59 = 354 Hence, option (B) is the correct answer.", "cat": "Squares, Cubes & Power Series", "tab": "tab1"}, {"id": 26, "q": "Q26. Select the option that is related to the third number in the same way as the second number is related to the first number and the sixth number is related to the fifth number. 16 : 20 :: 256 : ? :: 49 : 56", "opts": ["A) 272", "B) 266", "C) 264", "D) 278"], "ans": 0, "ans_letter": "A", "exp": "Pattern: √Number × (√Number + 1) 16 : 20 √16 = 4 4 × (4 + 1) = 4 × 5 = 20 49 : 56 √49 = 7 7 × (7 + 1) = 7 × 8 = 56 Therefore: 256 : ? √256 = 16 16 × (16 + 1) = 16 × 17 = 272 Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 27, "q": "Q27. Select the option that is related to the fourth term in the same way as the first term is related to the second term and the fifth term is related to the sixth term. 8 : 48 :: ? : 143 :: 15 : 195", "opts": ["A) 13", "B) 17", "C) 19", "D) 11"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Number × (Number − 2) • 8 × (8 − 2) = 8 × 6 = 48 • 15 × (15 − 2) = 15 × 13 = 195 For the missing number: x × (x − 2) = 143 By option (a) • 13 × (13 − 2) = 13 × 11 = 143 Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 28, "q": "Q28. Select the option that is related to the third number in the same way as the second number is related to the first number and the sixth number is related to the fifth number. 30 : 48 :: 60 : ? :: 45 : 72", "opts": ["A) 90", "B) 88", "C) 96", "D) 92"], "ans": 2, "ans_letter": "C", "exp": "30 : 48 :: 60 : 96 :: 45 : 72 ÷5 x 8 ÷5 x 8 ÷5 x 8 ⇒ 30 ÷ 5 x 8 ⇒ 6 x 8 = 48 ⇒ 45 ÷ 5 x 8 ⇒ 9 x 8 = 72 ⇒ 60 ÷ 5 x 8 ⇒ 12 x 8 = 96 Hence, option (C) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 29, "q": "Q29. Select the option that is related to the third term in the same way as the second term is related to the first term and the sixth term is related to the fifth term. 24 : 840 :: 27 : ? :: 33 : 1452", "opts": ["A) 756", "B) 297", "C) 1026", "D) 729"], "ans": 2, "ans_letter": "C", "exp": "Pattern: Initial no. × (Initial no. + 11) • 24 × (24 + 11) = 24 × 35 = 840 • 33 × (33 + 11) = 33 × 44 = 1452 Therefore, • 27 × (27 + 11) = 27 × 38 = 1026 Hence, option (C) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 30, "q": "Q30. Select the option that is related to the third term in the same way as the second term is related to the first term and the sixth term is related to the fifth term. 21 : 196 :: 29 : ? :: 38 : 315", "opts": ["A) 319", "B) 252", "C) 203", "D) 841"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Number × 7 + 49 21 : 196 :: 29 : 252 :: 38 : 315 x7 + 49 x7 + 49 x7 + 49 ⇒ 21 x 7 + 49 ⇒ 147 + 49 = 196 ⇒ 38 x 7 + 49 ⇒ 266 + 49 = 315 ⇒ 29 x 7 + 49 ⇒ 203 + 49 = 252 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 31, "q": "Q31. In each of the following questions, two numbers are given which follow a certain logical or arithmetic relationship. Identify the same pattern and apply it to find the missing number in the second pair. === NEW PAGE === Choose the correct option from the given alternatives. 19384 : 31506 :: 28493 : ? SSC Steno 06 Aug 2025 S3", "opts": ["A) 40615", "B) 41706", "C) 40617", "D) 39615"], "ans": 0, "ans_letter": "A", "exp": "Step 1: Find the difference between the first pair. 31506 – 19384 = 12122 Step 2: Apply the same pattern to the second pair. 28493 + 12122 = 40615 Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 32, "q": "Q32. Select the option that is related to the fifth number in the same way as the fourth number is related to the third number and the second number is related to the first number. 76 : 69 :: 49 : 45 :: 69 : ? SSC CPO 28 Jun 2024 S2", "opts": ["A) 67", "B) 65", "C) 63", "D) 62"], "ans": 2, "ans_letter": "C", "exp": "▪ 76 − 7 = 69 ▪ 49 − 4 = 45 ▪ 69 − 6 = 63 Hence, option (C) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 33, "q": "Q33. Select the option that is related to the fifth number in the same way as the second number is related to the first number and the fourth number is related to the third number. 2976 : 493 :: 4902 : 814 :: 2466 : ? SSC CHSL T1 29 Nov 2025 S2", "opts": ["A) 404", "B) 412", "C) 398", "D) 408"], "ans": 3, "ans_letter": "D", "exp": "2976 : 493 :: 4902 : 814 :: 2466 : ? × 6 + 18 × 6 + 18 × 6 + 18 ⇒ 493 × 6 + 18 = 2958 + 18 = 2976 ⇒ 814 × 6 + 18 = 4884 + 18 = 4902 Let the missing number be x. ⇒ (x × 6) + 18 = 2466 ⇒ 6x = 2466 − 18 x = 2448 ÷ 6 x = 408 Hence, option (D) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 34, "q": "Q34. Select the option that is related to the fifth number in the same way as the second number is related to the first number and the fourth number is related to the third number. 691 : 4834 :: 514 : 3595 :: 927 : ? SSC CHSL T1 30 Nov 2025 S2", "opts": ["A) 6495", "B) 6488", "C) 6490", "D) 6486"], "ans": 3, "ans_letter": "D", "exp": "691 : 4834 :: 514 : 3595 :: 927 : ? × 7 − 3 × 7 − 3 × 7 − 3 927 × 7 − 3 = 6489 − 3 = 6486 691 × 7 − 3 = 4837 − 3 = 4834 514 × 7 − 3 = 3598 − 3 = 3595 Hence, option (D) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 35, "q": "Q35. Select the option that is related to the third term in the same way as the second term is related to the first term and the sixth term is related to the fifth term. 2943 : 3894 :: 2617 : ? :: 8615 : 9566 SSC CHSL T1 28 Nov 2025 S2", "opts": ["A) 3570", "B) 3568", "C) 3542", "D) 3541"], "ans": 1, "ans_letter": "B", "exp": "2943 : 3894 :: 2617 : 3568 :: 8615 : 9566 +951 +951 +951 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 36, "q": "Q36. 31 is related to 41 following a certain logic. Following the same logic, 53 is related to 61. To which of the following is 17 related, following the same logic? === NEW PAGE ===", "opts": ["A) 29", "B) 25", "C) 19", "D) 23"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Next to Next Prime Number • 31 → Next Prime = 37 → 41 • 53 → Next Prime = 59 → 61 • 17 → Next Prime = 19 → 23 Hence, option (D) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 37, "q": "Q37. 38 is related to 17 following a certain logic. Following the same logic, 52 is related to 24. To which of the following is 26 related, following the same logic? RRB Group-D Exam, 25 Aug, 2026", "opts": ["A) 7", "B) 11", "C) 15", "D) 8"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Number ÷ 2 – 2 38 : 17 :: 52 : 24 :: 26 : 11 ÷ 2 – 2 ÷ 2 – 2 ÷ 2 – 2 ⇒ 38 ÷ 2 – 2 ⇒ 19 – 2 = 17 ⇒ 52 ÷ 2 – 2 ⇒ 26 – 2 = 24 ⇒ 26 ÷ 2 – 2 ⇒ 13 – 2 = 11 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 38, "q": "Q38. 159 is related to 220 following a certain logic. Following the same logic, 101 is related to 162. To which of the following is 200 related, following the same logic?", "opts": ["A) 299", "B) 261", "C) 310", "D) 247"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Number + 61 159 : 220 :: 101 : 162 :: 200 : 261 +61 +61 +61 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 39, "q": "Q39. 125 is related to 50 in a certain way. Following the same logic, 230 is related to 92. To which of the following is 315 related, following the same logic?", "opts": ["A) 145", "B) 135", "C) 120", "D) 126"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Initial Number ÷ 5 x 2 125 : 50 :: 230 : 92 :: 315 : 126 ÷ 5 x 2 ÷ 5 x 2 ÷ 5 x 2 ⇒ (125 ÷ 5) x 2 ⇒ 25 x 2 = 50 ⇒ (230 ÷ 5) x 2 ⇒ 46 x 2 = 92 ⇒ (35 ÷ 5) x 2 ⇒ 63 x 2 = 126 (315 ÷ 5) Hence, option (D) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 40, "q": "Q40. 31 is related to 122 following a certain logic. Following the same logic, 24 is related to 94. To which of the following is 19 related, following the same logic? RRB Group-D Exam, 19 Aug, 2026", "opts": ["A) 70", "B) 64", "C) 74", "D) 78"], "ans": 2, "ans_letter": "C", "exp": "Pattern: Number x 4 – 2 31 : 122 :: 24 : 94 :: 19 : 74 x4 – 2 x4 – 2 x4 – 2 ⇒ 19 x 4 – 2 ⇒ 76 – 2 = 74 ⇒ 31 x 4 – 2 ⇒ 124 – 2 = 122 ⇒ 24 x 4 – 2 ⇒ 96 – 2 = 94 Hence, option (C) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 41, "q": "Q41. 12 is related to 147 following a certain logic. Following the same logic, 19 is related to 364. To which of the following is 14 related, following the same logic? NTPC Graduation, 27 Mar, 2026", "opts": ["A) 199", "B) 203", "C) 168", "D) 211"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Initial Number² + 3 12 : 147 :: 19 : 364 :: 14 : 199 ⇒ 192 + 3 ⇒ 361 + 3 = 364 ⇒ 122 + 3 ⇒ 144 + 3 = 147 ⇒ 142 + 3 ⇒ 196 + 3 = 199 === NEW PAGE === Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 42, "q": "Q42. 10 is related to 110 following a certain logic. Following the same logic, 15 is related to 240. To which of the following is 17 related, following the same logic? RRB Group-D Exam, 21 Aug, 2026", "opts": ["A) 306", "B) 323", "C) 324", "D) 342"], "ans": 0, "ans_letter": "A", "exp": "Method 1 : Pattern: Initial Number² + Initial No. • 10² + 10 = 100 + 10 = 110 • 15² + 15 = 225 + 15 = 240 Therefore, • 17² + 17 = 289 + 17 = 306 Method 2 : Pattern: Number × Next Number • 10 × 11 = 110 • 15 × 16 = 240 Therefore, • 17 × 18 = 306 Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 43, "q": "Q43. 99 is related to 77.3 following a certain logic. Following the same logic, 84.4 is related to 62.7. To which of the following is 72.6 related, following the same logic?", "opts": ["A) 52.7", "B) 50.9", "C) 57.3", "D) 54.2"], "ans": 1, "ans_letter": "B", "exp": "99 : 77.3 :: 84.4 : 62.7 :: 72.6 : 50.9 – 21.7 – 21.7 – 21.7 ⇒ 72.6 – 21.7 = 50.9 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 44, "q": "Q44. 42 is related to 36 following a certain logic. Following the same logic, 57 is related to 144. Which of the following numbers is related to 81 related using the same logic?", "opts": ["A) 44", "B) 45", "C) 56", "D) 46"], "ans": 1, "ans_letter": "B", "exp": "• 42 → 4 + 2 = 6 → 6² = 36 • 57 → 5 + 7 = 12 → 12² = 144 Therefore, • 45 → 4 + 5 = 9 → 9² = 81 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 45, "q": "Q45. 3 is related to 125 following a certain logic. Following the same logic, 5 is related to 729. To which of the given options is 1 related, following the same logic? (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding/subtracting/multiplying to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 16", "B) 9", "C) 4", "D) 1"], "ans": 3, "ans_letter": "D", "exp": "Pattern: (Number × 2 − 1)³ • 3 → (3 × 2 − 1)³ = 5³ = 125 • 5 → (5 × 2 − 1)³ = 9³ = 729 Therefore, • 1 → (1 × 2 − 1)³ = 1³ = 1 Hence, option (D) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 46, "q": "Q46. 62 is related to 79 following certain logic. Following the same logic, 98 is related to 119. To which of the following numbers is 14 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) === NEW PAGE ===", "opts": ["A) 23", "B) 24", "C) 19", "D) 21"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Nearest square – 2 62 : 79 :: 98 : 119 :: 14 : 23 82– 2 92– 2 102– 2 112– 2 42– 2 52– 2 +1 +1 +1 Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 47, "q": "Q47. 5 is related to 81 following a certain logic. Following the same logic, 2 is related to 9. To which of the given options is 6 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 164", "B) 169", "C) 121", "D) 144"], "ans": 2, "ans_letter": "C", "exp": "Pattern: (Number × 2 − 1)² 5 : 81 :: 2 : 9 :: 6 : 121 (2x2 –1)2 (6x2 –1)2 (5x2 –1)2 = 32 = 112 = 92 Hence, option (C) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 48, "q": "Q48. 40 is related to 53 following certain logic. Following the same logic, 8 is related to 13. To which of the following numbers is 68 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting/ multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 83", "B) 85", "C) 73", "D) 84"], "ans": 1, "ans_letter": "B", "exp": "Pattern: 2nd number will be obtained by taking the square of consecutive natural numbers 40 : 53 :: 8 : 13 :: 68 : 85 62+ 4 72+ 4 22+ 4 32+ 4 82+ 4 92+ 4 +1 +1 +1 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 49, "q": "Q49. 30 is related to 41 following certain logic. Following the same logic, 14 is related to 21. To which of the following numbers is 54 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 59", "B) 69", "C) 63", "D) 53"], "ans": 1, "ans_letter": "B", "exp": "Pattern: 2nd number will be obtained by taking the square of consecutive natural numbers 30 : 41 :: 14 : 21 :: 54 : 69 52+ 5 62+ 5 32+ 5 42+ 5 72+ 5 82+ 5 === NEW PAGE === Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 50, "q": "Q50. 61 is related to 18 following a certain logic. Following the same logic, 213 is related to 38. To which of the following is 509 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 64", "B) 66", "C) 72", "D) 78"], "ans": 1, "ans_letter": "B", "exp": "Pattern: 1st No. → n³ − 3 2nd No. → n² + 2 61 : 18 :: 213 : 38 :: 509 : 66 43 – 3 62+ 2 82+ 2 42+ 2 63 – 3 83 – 3 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 51, "q": "Q51. 13 is related to 119 following a certain logic. Following the same logic, 9 is related to 31. To which of the following is 8 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 14", "B) 27", "C) 10", "D) 24"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Square of the number − 50 13 : 119 :: 9 : 31 :: 8 : 14 82 – 50 = 64 – 50 92 – 50 = 81 – 50 132 – 50 =169 – 50 Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 52, "q": "Q52. 21 is related to 220 by certain logic. Following the same logic, 72 is related to 781. To which of the following is 27 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 316", "B) 340", "C) 290", "D) 286"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Number ×11 − 11 21 : 220 :: 72 : 781 :: 27 : 286 ×11 − 11 ×11 − 11 ×11 − 11 21 × 11 − 11 = 231 − 11 = 220 Therefore, 27 × 11 − 11 = 297 – 11 = 286 72 × 11 − 11 = 792 – 11 = 781 Hence, option (D) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 53, "q": "Q53. 31 is related to 152 by certain logic. Following the same logic, 47 is related to 168. To which of the following is 66 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing === NEW PAGE === mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 187", "B) 185", "C) 180", "D) 190"], "ans": 0, "ans_letter": "A", "exp": "Pattern: +121 31 : 152 :: 47 : 168 :: 66 : 187 +121 +121 +121 ⇒ 66 + 121 = 187 Hence, option (A) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 54, "q": "Q54. 21 is related to 59 by certain logic. Following the same logic, 32 is related to 81. To which of the following is 29 related, following the same logic? (NOTE : Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g. 13 - Operations on 13 such as adding /deleting /multiplying etc., to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.)", "opts": ["A) 58", "B) 75", "C) 60", "D) 62"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Number ×2 + 17 21 : 59 :: 32 : 81 :: 29 : 75 ×2 + 17 ×2 + 17 ×2 + 17 21 × 2 + 17 42 + 17= 59 32 × 2 + 17 64 + 17 = 81 29 × 2 + 17 58 + 17 = 75 Hence, option (B) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 55, "q": "Q55. In the following number-pairs, the second number is obtained by applying certain mathematical operations to the first number. Select the set in which the numbers are related in the same way as are the numbers of the following sets. 50, 4 80, 7 NTPC Graduation 5, June, 2025", "opts": ["A) 90, 11", "B) 60, 6", "C) 70, 6", "D) 100, 11"], "ans": 2, "ans_letter": "C", "exp": "Pattern: Number ÷ 10 − 1 50 : 4 80 : 7 = 80 ÷ 10 − 1 = 8 − 1 = 7 = 50 ÷ 10 − 1 = 5 − 1 = 4 Now check the options: c) 70 : 6 =70 ÷ 10 − 1 = 7 − 1 = 6 Hence, option (C) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 56, "q": "Q56. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 18, 141 42, 165 RRB NTPC CBT - 1, 2025", "opts": ["A) 11, 155", "B) 24, 167", "C) 28, 129", "D) 36, 159"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Number + 123 42 : 165 18 : 141 +123 +123 ⇒ 18 + 123 = 141 ⇒ 42 + 123 = 165 === NEW PAGE === Now check the options: d) 36 : 159 36 + 123 = 159 Hence, option (D) is the correct answer.", "cat": "Multipliers, Divisors & Differences", "tab": "tab2"}, {"id": 57, "q": "Q57. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 45, 165 24, 144 RRB NTPC CBT - 1, 2025", "opts": ["A) 21, 131", "B) 18, 142", "C) 38, 158", "D) 42, 172"], "ans": 2, "ans_letter": "C", "exp": "Pattern: +120 24 : 144 45 : 165 24 + 120 = 144 45 + 120 = 165 Now check the options: c) 38 : 158 38 + 120 = 158 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 58, "q": "Q58. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 17, 33 13, 25 NTPC Graduation 5, June, 2025", "opts": ["A) 54, 108", "B) 23, 35", "C) 74, 146", "D) 31, 61"], "ans": 3, "ans_letter": "D", "exp": "Pattern: ×2 − 1 13 : 25 17 : 33 13 × 2 − 1 = 26 − 1 = 25 17 × 2 − 1 = 34 − 1 = 33 Now check the options: d) 31 : 61 31 × 2 − 1 = 62 − 1 = 61 Hence, option (D) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 59, "q": "Q59. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 18, 200 17, 189 RRB NTPC UG T1 19 Jun 2026 S1", "opts": ["A) 22, 246", "B) 19, 211", "C) 16, 176", "D) 24, 264"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Number ×11 + 2 17 : 189 18 : 200 ×11 + 2 ×11 + 2 = 17 × 11 + 2 = 187 + 2 = 189 = 18 × 11 + 2 = 198 + 2 = 200 Now check the options: b) 19 : 211 ×11 + 2 = 19 × 11 + 2 = 209 + 2 = 211 === NEW PAGE === Hence, option (B) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 60, "q": "Q60. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 19, 229 22, 265 RRB NTPC UG T1 16 Jun 2026 S1", "opts": ["A) 24, 252", "B) 23, 278", "C) 28, 337", "D) 26, 314"], "ans": 2, "ans_letter": "C", "exp": "Pattern: ×12 + 1 22 : 265 19 : 229 ×12 + 1 ×12 + 1 22 × 12 + 1 = 264 + 1= 265 19 × 12 + 1 = 228 + 1 = 229 Now check the options: c) 28 : 337 28 × 12 + 1 = 336 + 1 = 337 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 61, "q": "Q61. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 12, 1716 15, 3360", "opts": ["A) 45, 2031", "B) 27, 2744", "C) 11, 1320", "D) 14, 2740"], "ans": 2, "ans_letter": "C", "exp": "Pattern: 123 – 12 15 : 3360 12 : 1716 123 – 12 153 – 15 1728 – 12 = 1716 3375 – 15 = 3360 Now check the options: c) 11 : 1320 113 – 11 1331 – 11 = 1320 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 62, "q": "Q62. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 15, 3150 21, 8820", "opts": ["A) 11, 1210", "B) 14, 2548", "C) 18, 5518", "D) 12, 1620"], "ans": 0, "ans_letter": "A", "exp": "Pattern: n³ − n² 15 : 3150 21 : 8820 15³ − 15² 21³ − 21² 3375 − 225 = 3150 9261 − 441 = 8820 === NEW PAGE === Now check the options: a) 11 : 1210 11³ − 11² 1331 − 121 = 1210 Hence, option (A) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 63, "q": "Q63. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 24, 16 48, 32", "opts": ["A) 72, 36", "B) 60, 20", "C) 96, 62", "D) 84, 56"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Second Number = First Number − One- third of First Number 48 : 32 24 : 16 = 24 − (24 ÷ 3) = 24 – 16 = 16 = 48 − (48 ÷ 3) = 48 – 16 = 32 Now check the options: d) 84 : 56 = 84 − (84 ÷ 3) = 84 – 28 = 56 Hence, option (D) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 64, "q": "Q64. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) 18, 45 36, 90", "opts": ["A) 24, 54", "B) 14, 35", "C) 28, 63", "D) 42, 95"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Second Number = (First Number × 2) + (First Number ÷ 2) 36 : 90 18 : 45 (36 × 2) + (36 ÷ 2) = 72 + 18 = 90 (18 × 2) + (18 ÷ 2) = 36 + 9 = 45 Now check the options: b) 14 : 35 (14 × 2) + (14 ÷ 2) = 28 + 7 = 35 Hence, option (B) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 65, "q": "Q65. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding /subtracting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) [( 7 9) , ( 31 39)] , [( 3 5) , ( 15 23)] 11 13) , ( 47 55)] (b) [( 9 13) , ( 37", "opts": ["A) [", "B) [", "C) [", "D) ["], "ans": 0, "ans_letter": "A", "exp": "For 7/9: For 3/5: • 7 × 4 + 3 = 31 • 9 × 4 + 3 = 39 • 3 × 4 + 3 = 15 • 5 × 4 + 3 = 23 𝟏𝟏 𝟒𝟕 𝟓𝟓)] Now check the options: a) [( 𝟏𝟑) , ( 11 × 4 + 3 = 47 13 × 4 + 3 = 55 Hence, option (A) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 66, "q": "Q66. In the following number-pairs, the second number is obtained by applying certain mathematical operations to the first number. Which numbers should replace X and Y so that the pattern followed by the two numbers on the left side of :: is the same as that on the right side of ::? X : 108 :: 9 : Y RRB Technician Grade-03, 2024", "opts": ["A) X = 12, Y = 81", "B) X = 14, Y = 81", "C) X = 16, Y = 145", "D) X = 12, Y = 126"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Second Number = First Number × 9 X : 108 :: 9 : Y By option (a) X = 12, Y = 81 12 : 108 :: 9 : 81 x9 x9 12 × 9 = 108 9 × 9 = 81 Hence, option (A) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 67, "q": "Q67. In the following number-pairs, the second number is obtained by applying certain mathematical operations to the first number. Which numbers should replace X and Y so that the pattern followed by the two numbers on the left side of :: is the same as that on the right side of ::? X : 116 :: 16 : Y RRB Technician Grade-03, 2024", "opts": ["A) X = 13, Y = 144", "B) X = 13, Y = 143", "C) X = 11, Y = 143", "D) X = 13, Y = 145"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Second Number = (First Number × 9) − 1 X : 116 : : 16 : Y By option (b) X = 13, Y = 143 13 : 116 : : 16 : 143 13 × 9 − 1 16 × 9 − 1 = 117 − 1 = 116 = 144 − 1 = 143 Hence, option (B) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 68, "q": "Q68. In the following number-pairs, the second number is obtained by applying certain mathematical operations to the first number. Which numbers should replace X and Y so that the pattern followed by the two numbers on the left side of :: is the same as that on the right side of ::? X : 38 :: 9 : Y RRB Technician Grade-03, 2024", "opts": ["A) X = 15, Y = 48", "B) X = 14, Y = 28", "C) X = 15, Y = 28", "D) X = 14, Y = 30"], "ans": 1, "ans_letter": "B", "exp": "Pattern: Second Number=(First Number × 2) + 10 X : 38 :: 9 : Y By option (b) X = 14, Y = 28 14 : 38 :: 9 : 28 x2 + 10 x2 + 10 14 × 2 + 10 = 28 + 10 = 38 9 × 2 + 10 = 18 + 10 = 28 Hence, option (B) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 69, "q": "Q69. In the following number-pairs, the second number is obtained by applying certain mathematical operations to the first number. Which numbers should replace X and Y so that the pattern followed by the two numbers on the left side of :: is the same as that on the right side of ::? X : 45 :: 16 : Y RRB Technician Grade-03, 2024", "opts": ["A) X = 10, Y = 75", "B) X = 14, Y = 85", "C) X = 10, Y = 65", "D) X = 14, Y = 75"], "ans": 0, "ans_letter": "A", "exp": "Pattern: Second Number = (First Number × 5) − 5 X : 45 :: 16 : Y === NEW PAGE === By option (a) X = 10, Y = 75 10 : 45 :: 16 : 75 × 5 − 5 × 5 − 5 16 × 5 − 5 = 80 – 5 = 75 10 × 5 − 5 = 50 – 5 = 45 Hence, option (A) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 70, "q": "Q70. In the following number-pairs, the second number is obtained by applying certain mathematical operations to the first number. Which numbers should replace X and Y so that the pattern followed by the two numbers on the left side of :: is the same as that on the right side of ::? X : 18.8 :: 21 : Y RRB Technician Grade-03, 2024", "opts": ["A) X = 20, Y = 26.8", "B) X = 17, Y = 22.6", "C) X = 11, Y = 29.4", "D) X = 15, Y = 24.8"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Second Number = First Number + 3.8 X : 18.8 :: 21 : Y By option (d) X = 15, Y = 24.8 15 : 18.8 :: 21 : 24.8 + 3.8 + 3.8 15 + 3.8 = 18.8 21 + 3.8 = 24.8 Hence, option (D) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 71, "q": "Q71. Select the pair which is related to each other in the same way as the following – 72:25 SSC CPO 29 Jun 2024 S1", "opts": ["A) 68:8", "B) 46:14", "C) 28:36", "D) 54:30"], "ans": 2, "ans_letter": "C", "exp": "Pattern: Difference of digits, then square the result. 72 : 25 (7 − 2)² = 5² = 25 Check the given options. Option (a) 68 : 8 (6 − 8)² = (−2)² = 4 ≠ 8 Option (b) 46 : 14 (4 − 6)² = (−2)² = 4 ≠ 14 Option (c) 28 : 36 (2 − 8)² = (−6)² = 36 Option (d) 54 : 30 (5 − 4)² = 1² = 1 ≠ 30 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 72, "q": "Q72. Select the option in which the numbers share the same relationship as that shared by the given pair of numbers. 50 – 130 SSC CPO 29 Jun 2024 S3", "opts": ["A) 60 – 120", "B) 30 – 80", "C) 75 – 110", "D) 35 – 120"], "ans": 1, "ans_letter": "B", "exp": "Pattern: 2nd Number = 1st Number × 2.5 + 5 50 : 130 = 50 × 2.5 + 5 = 125 + 5 = 130 × 2.5 + 5 Check the given options. By Option (b) 30 : 80 = 30 × 2.5 + 5 = 75 + 5 = 80 × 2.5 + 5 Hence, option (B) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 73, "q": "Q73. Select the option in which the numbers share the same relationship as that shared by the given pair of numbers. 23 – 27 SSC CPO 28 Jun 2024 S2", "opts": ["A) 11 – 55", "B) 15 – 25", "C) 15 – 45", "D) 11 – 33"], "ans": 2, "ans_letter": "C", "exp": "Pattern: Reverse the digits and subtract 5. 23 : 27 Reverse the digits of 23 = 32 ⇒ 32 − 5 = 27 By option (c) 15 : 45 Reverse the digits of 15 = 51 ⇒ 51 − 6 = 45 Group Analogy (Set related questions) Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 74, "q": "Q74. Select the set in which the numbers are related in the same way as are the numbers of the following sets. === NEW PAGE === (13, 39, 3) (15, 75, 5) RRB Group-D Exam 2024", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "Pattern: 1st Number × 3rd Number = 2nd Number For (15, 75, 5): ⇒ 15 × 5 = 75 For (13, 39, 3): ⇒ 13 × 3 = 39 Now check the options: (a) (5, 25, 15) ⇒ 5 × 15 = 75 ≠ 25 (b) (10, 35, 3) ⇒ 10 × 3 = 30 ≠ 35 (c) (64, 8, 4) ⇒ 64 × 4 = 256 ≠ 8 (d) (12, 36, 3) ⇒12 × 3 = 36 Hence, option (D) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 75, "q": "Q75. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (33, 429, 13) (44, 220, 5) NTPC Graduation 9 June, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 2, "ans_letter": "C", "exp": "Pattern: 1st Number × 3rd Number = 2nd Number For (44, 220, 5): ⇒ 44 × 5 = 220 For (33, 429, 13): ⇒ 33 × 13 = 429 Now check the option: (c) (43, 903, 21) ⇒ 43 × 21 = 903 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 76, "q": "Q76. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (43, 48, 5) (49, 70, 21) NTPC Graduation 10, June, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "Pattern: 1st Number + 3rd Number = 2nd Number For (49, 70, 21): ⇒ 49 + 21 = 70 For (43, 48, 5): ⇒ 43 + 5 = 48 Now check the option: (a) (20, 34, 14) ⇒ 20 + 14 = 34 Hence, option (A) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 77, "q": "Q77. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (19, 354, 7) (9, 73, 8) NTPC Graduation 11, June, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "Pattern: (1st number)² − 3rd number = 2nd Number For (9, 73, 8): ⇒ 9² − 8 = 81 − 8 = 73 For (19, 354, 7): ⇒ 19² − 7 = 361 − 7 = 354 Now check the option: (d) (3, −10, 19) ⇒ 3² − 19 = 9 − 19 = −10 Hence, option (D) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 78, "q": "Q78. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (15, -6, 3) (43, 582, 25) NTPC Graduation 16, June, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 2, "ans_letter": "C", "exp": "Pattern: (3rd Number)² − 1st Number = 2nd Number For (43, 582, 25): ⇒ 25² − 43 = 625 − 43 = 582 For (15, −6, 3): ⇒ 3² − 15 = 9 − 15 = −6 Now check the option: (c) (45, 99, 12) ⇒ 12² − 45 = 144 − 45 = 99 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 79, "q": "Q79. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (5, 14, 24) (3, 10, 16) === NEW PAGE === NTPC Graduation 22 June 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "Pattern: 1st Number × 2 + 4 = 2nd Number 2nd Number × 2 − 4 = 3rd Number 5, 14, 24 3, 10 , 16 × 2 − 4 × 2 + 4 × 2 − 4 × 2 + 4 7, 18, 32 × 2 − 4 × 2 + 4 ⇒ 7 × 2 + 4 ⇒ 14 + 4 = 18 ⇒ 18 × 2 − 4 ⇒ 36 – 4 = 32 Hence, option (A) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 80, "q": "Q80. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (75, 62, 49) (61, 48, 35) NTPC UG 7 Aug 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 2, "ans_letter": "C", "exp": "Pattern: Each next number is obtained by subtracting 13. 75, 62, 49 61, 48, 35 − 13 − 13 − 13 − 13 92, 79, 66 − 13 − 13 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 81, "q": "Q81. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding to/subtracting from/multiplying with 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) (2, 7, 11) (13, 17, 29) SSC Steno 10 Dec 2024 S1", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "All three numbers in each set are Prime Numbers. For (2, 7, 11): → 2, 7, 11 are Prime Numbers. For (13, 17, 29): → 13, 17, 29 are Prime Numbers. Now check the option: (d) (13, 17, 23) ➢ 13, 17, 23 are also Prime Numbers. Hence, option (D) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 82, "q": "Q82. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding to/subtracting from/multiplying with 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) (10, 5, 20) (14, 7, 28) SSC CHSL 01 Jul 2024 S1", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 2, "ans_letter": "C", "exp": "Pattern: ▪ 1st Number ÷ 2 = 2nd Number ▪ 2nd Number × 4 = 3rd Number === NEW PAGE === For (10, 5, 20): ⇒ 10 ÷ 2 = 5 ⇒ 5 × 4 = 20 For (14, 7, 28): ⇒ 14 ÷ 2 = 7 ⇒ 7 × 4 = 28 Now check the option: (c) (22, 11, 44) ⇒ 22 ÷ 2 = 11 ⇒ 11 × 4 = 44 Hence, option (C) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 83, "q": "Q83. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding to/subtracting from/multiplying with 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) (5, 9, 196) (2, 8, 100) IB ACIO 16 Sep 2025 S2", "opts": ["A) 6, 3, 121", "B) 9, 5, 231", "C) 7, 3, 212", "D) 5, 4, 81"], "ans": 3, "ans_letter": "D", "exp": "Pattern: (1st No. + 2nd No.) ² = 3rd No. For (5, 9, 196): ⇒ (5 + 9)² = 14² = 196 For (2, 8, 100): ⇒ (2 + 8)² = 10² = 100 Now check the option: (d) (5, 4, 81) ⇒ (5 + 4)² = 9² = 81 Hence, option (D) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 84, "q": "Q84. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding to/subtracting from/multiplying with 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) (88, 76, 64) (71, 59, 47) RRB NTPC, CBT - 1, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 1, "ans_letter": "B", "exp": "Pattern: 2nd Number = (1st Number + 3rd Number) ÷ 2 For (71, 59, 47): ⇒ (71 + 47) ÷ 2 = 118 ÷ 2 = 59 For (88, 76, 64): ⇒ (88 + 64) ÷ 2 = 152 ÷ 2 = 76 Now check the option: (b) (64, 52, 40) ⇒ (64 + 40) ÷ 2 = 104 ÷ 2 = 52 Hence, option (B) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 85, "q": "Q85. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding to/subtracting from/multiplying with 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) (29, 40, 53) (37, 48, 61) === NEW PAGE === RRB NTPC, CBT - 1, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "+11 +13 +11 +13 53, 64, 77 +11 +13 Hence, option (A) is the correct answer.", "cat": "Set Analogies & Triad Patterns", "tab": "tab3"}, {"id": 86, "q": "Q86. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding to/subtracting from/multiplying with 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) (34, 47, 62) (119, 142, 167) SSC CGL T1, 09/09/24 S3", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "Pattern: 2nd No. = (1st No. + 3rd No.) ÷ 2 − 1 For (34, 47, 62): ⇒ (34 + 62) ÷ 2 − 1 = 96 ÷ 2 − 1 = 48 − 1 = 47 For (119, 142, 167): ⇒ (119 + 167) ÷ 2 − 1 = 286 ÷ 2 − 1 = 143 − 1 = 142 Now check the option: (d) (79, 98, 119) ⇒ (79 + 119) ÷ 2 − 1 = 198 ÷ 2 − 1 = 99 − 1 = 98 Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 87, "q": "Q87. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into their constituent digits. E.g. 13 - Operations on 13 such as adding to/subtracting from/multiplying with 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed.) (57, 56.4, 58.4) (49, 48.4, 50.4) RRB NTPC, CBT - 1, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "57, 56.4, 58.4 49, 48.4, 50.4 –0.6 +2 –0.6 +2 83, 82.4, 84.4 –0.6 +2 Hence, option (A) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 88, "q": "Q88. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (48, 26, 15), (88, 46, 25) === NEW PAGE === RRB NTPC, CBT - 1, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "Pattern: ▪ (2nd Number × 2) − 4 = 1st Number ▪ (3rd Number × 2) − 4 = 2nd Number For (48, 26, 15): ⇒ (26 × 2) − 4 = 52 − 4 = 48 ⇒ (15 × 2) − 4 = 30 − 4 = 26 For (88, 46, 25): ⇒ (46 × 2) − 4 = 92 − 4 = 88 ⇒ (25 × 2) − 4 = 50 − 4 = 46 Now check the option: (a) (24, 14, 9) ⇒ (14 × 2) − 4 = 28 − 4 = 24 ⇒ (9 × 2) − 4 = 18 − 4 = 14 Hence, option (A) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 89, "q": "Q89. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (23, 70, 211) (12, 37, 112) RRB NTPC, CBT - 1, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "Pattern: ▪ 2nd Number = (1st Number × 3) + 1 ▪ 3rd Number = (2nd Number × 3) + 1 For (23, 70, 211): ⇒ (23 × 3) + 1 = 69 + 1 = 70 ⇒ (70 × 3) + 1 = 210 + 1 = 211 For (12, 37, 112): ⇒ (12 × 3) + 1 = 36 + 1 = 37 ⇒ (37 × 3) + 1 = 111 + 1 = 112 Now check the option: (a) (33, 100, 301) ⇒ (33 × 3) + 1 = 99 + 1 = 100 ⇒ (100 × 3) + 1 = 300 + 1 = 301 Hence, option (A) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 90, "q": "Q90. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (11, 116, 5) (18, 317, 7)", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 1, "ans_letter": "B", "exp": "Pattern: (1st No.)² − 3rd No. = 2nd No. For (18, 317, 7): ⇒ 18² − 7 = 324 − 7 = 317 For (11, 116, 5): ⇒ 11² − 5 = 121 − 5 = 116 Now check the option: (b) (13, 163, 6) ⇒ 13² − 6 = 169 − 6 = 163 Hence, option (B) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 91, "q": "Q91. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) === NEW PAGE === (5, 14, 35) (4, 13, 33) RRB NTPC UG, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "Pattern: 1st No. + 2nd No. + 16 = 3rd No. For (4, 13, 33): ⇒ 4 + 13 + 16 = 33 For (5, 14, 35): ⇒ 5 + 14 + 16 = 35 Now check the option: (a) (10, 19, 45) ⇒ 10 + 19 + 16 = 45 Hence, option (A) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 92, "q": "Q92. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (4, 2, 8) (8, 5, 33) IB ACIO 17 Sep 2025 S1", "opts": ["A) 10, 4, 24", "B) 1, 3, 7", "C) 12, 5, 37", "D) 10, 5, 25"], "ans": 2, "ans_letter": "C", "exp": "Pattern: (2nd No.)² + 1st No.= 3rd No. For (8, 5, 33): ⇒ 5² + 8 = 25 + 8 = 33 For (4, 2, 8): ⇒ 2² + 4 = 4 + 4 = 8 Now check the option: (c) (12, 5, 37) ⇒ 5² + 12 = 25 + 12 = 37 Hence, option (C) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 93, "q": "Q93. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (3, 3, 30) (10, 21, 1021) IB ACIO 17 Sep 2025 S2", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "Pattern: (1st No.)³ + 2nd No. = 3rd No. For (3, 3, 30): ⇒ 3³ + 3 = 27 + 3 = 30 For (10, 21, 1021): ⇒ 10³ + 21 = 1000 + 21 = 1021 Now check the option: (d) (6, 4, 220) ⇒ 6³ + 4 = 216 + 4 = 220 Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 94, "q": "Q94. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed). === NEW PAGE === (-6, 4, -48) (8, -6, 96) SSC MTS 2023, 10 May S1", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 2, "ans_letter": "C", "exp": "Pattern: 3rd Number = 1st Number × 2nd Number × 2 (the sign is ignored) For (-6, 4, -48): ⇒ 6 × 4 × 2 = 48 For (8, -6, 96): ⇒ 8 × 6 × 2 = 96 Now check the option: (c) (-5, 3, 30) ⇒ 5 × 3 × 2 = 30 Hence, option (C) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 95, "q": "Q95. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (46, 2208, 24) (4, 192, 24) RRB NTPC UG, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "Pattern: (1st No. × 3rd No.) × 2 = 2nd No. For (46, 2208, 24): ⇒ (46 × 24) × 2 = 1104 × 2 = 2208 For (4, 192, 24): ⇒ (4 × 24) × 2 = 96 × 2 = 192 Now check the option: (d) (39, 546, 7) ⇒ (39 × 7) × 2 = 273 × 2 = 546 Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 96, "q": "Q96. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (5, 22, 26) (11, 40, 44)", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 1, "ans_letter": "B", "exp": "11, 40, 44 For → 5, 22, 26 For → +4 ×3+7 ×3+7 +4 16, 55, 59 ×3+7 +4 ⇒ 16 × 3 + 7 = 48 + 7 = 55 Hence, option (B) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 97, "q": "Q97. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) === NEW PAGE === (7, 152, 5) (9, 305, 8) RRB Grade D, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 2, "ans_letter": "C", "exp": "Pattern: 2nd Number = [(1st Number × 3rd Number) × 4] + (1st Number + 3rd Number) For (7, 152, 5): ⇒ (7 × 5) × 4 + (7 + 5) = 35 × 4 + 12 = 140 + 12 = 152 For (9, 305, 8): ⇒ (9 × 8) × 4 + (9 + 8) = 72 × 4 + 17 = 288 + 17 = 305 Now check the option: (c) (11, 236, 5) ⇒ (11 × 5) × 4 + (11 + 5) = 55 × 4 + 16 = 220 + 16 = 236 Hence, option (C) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 98, "q": "Q98. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (35, -34, 1) (35, 14, 7)", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "Pattern: 1st No. + 2nd No. = (3rd No.)² For (35, 14, 7): ⇒ 35 + 14 = 49 = 7² For (35, -34, 1): ⇒ 35 + (-34) = 1 = 1² Now check the option: (d) (23, 266, 17) ⇒ 23 + 266 = 289 = 17² Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 99, "q": "Q99. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (2, 49, 15) (29, 112, 18) RRB NTPC UG, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "Pattern: (1st No. × 2) + (3rd No. × 3) = 2nd No. For (29, 112, 18): ⇒ (29 × 2) + (18 × 3) = 58 + 54 = 112 For (2, 49, 15): ⇒ (2 × 2) + (15 × 3) = 4 + 45 = 49 Now check the option: (a) (30, 75, 5) ⇒ (30 × 2) + (5 × 3) = 60 + 15 = 75 Hence, option (A) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 100, "q": "Q100. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) === NEW PAGE === (5, 28, 15) (29, 102, 17) RRB Grade D, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 3, "ans_letter": "D", "exp": "Pattern: 2nd No. = (1st No. × 3) + 3rd No. − 2 For (5, 28, 15): ⇒ (5 × 3) + 15 − 2 = 15 + 15 − 2 = 28 For (29, 102, 17): ⇒ (29 × 3) + 17 − 2 = 87 + 17 − 2 = 102 Now check the option: (d) (47, 142, 3) ⇒ (47 × 3) + 3 − 2 = 141 + 3 − 2 = 142 Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 101, "q": "Q101. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (19, 374, 14) (47, 2230, 22) RRB NTPC UG, 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 2, "ans_letter": "C", "exp": "Pattern: (1st No.)² + 3rd No. − 1 = 2nd No. For (19, 374, 14): ⇒ 19² + 14 − 1 = 361 + 14 − 1 = 374 For (47, 2230, 22): ⇒ 47² + 22 − 1 = 2209 + 22 − 1 = 2230 Now check the option: (c) (50, 2514, 15) ⇒ 50² + 15 − 1 = 2500 + 15 − 1 = 2514 Hence, option (C) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 102, "q": "Q102. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (13, 8, 83) (17, 12, 175)", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 1, "ans_letter": "B", "exp": "Pattern: 3rd Number = (1st Number × 2nd Number) − (1st Number + 2nd Number) For (13, 8, 83): ⇒ (13 × 8) − (13 + 8) = 104 − 21 = 83 For (17, 12, 175): ⇒ (17 × 12) − (17 + 12) = 204 − 29 = 175 Now check the option: (b) (19, 7, 107) ⇒ (19 × 7) − (19 + 7) = 133 − 26 = 107 Hence, option (B) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 103, "q": "Q103. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) === NEW PAGE === (23, 2, 537) (6, 7, 379) SSC CGL T1, 2022", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 1, "ans_letter": "B", "exp": "Pattern: (1st No.)² + (2nd No.)³ = 3rd Number For (6, 7, 379): ⇒ 6² + 7³ = 36 + 343 = 379 For (23, 2, 537): ⇒ 23² + 2³ = 529 + 8 = 537 Now check the option: (b) (19, 4, 425) ⇒ 19² + 4³ = 361 + 64 = 425 Hence, option (B) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 104, "q": "Q104. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (13, 7, 100) (19, 11, 210)", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 1, "ans_letter": "B", "exp": "Pattern: 3rd Number = (1st Number² − 2nd Number²) − (1st Number + 2nd Number) For (19, 11, 210): ⇒ (19² − 11²) − (19 + 11) = (361 − 121) − 30 = 240 − 30 = 210 For (13, 7, 100): ⇒ (13² − 7²) − (13 + 7) = (169 − 49) − 20 = 120 − 20 = 100 Now check the option: (b) (22, 14, 252) ⇒ (22² − 14²) − (22 + 14) = (484 − 196) − 36 = 288 − 36 = 252 Hence, option (B) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 105, "q": "Q105. Select the set in which the numbers are related in the same way as are the numbers of the following sets. (NOTE: Operations should be performed on the whole numbers, without breaking down the numbers into its constituent digits. E.g.13 - Operations on 13 such as adding /deleting /multiplying etc. to 13 can be performed. Breaking down 13 into 1 and 3 and then performing mathematical operations on 1 and 3 is not allowed) (16, 63, 16) (36, 111, 4) RRB NTPC UG CBT-1, 28 Aug 2025", "opts": ["A) ", "B) ", "C) ", "D) "], "ans": 0, "ans_letter": "A", "exp": "Pattern: (1st No. × 3) + 3rd No. − 1 = 2nd No. For (36, 111, 4): ⇒ (36 × 3) + 4 − 1 = 108 + 4 − 1 = 111 For (16, 63, 16): ⇒ (16 × 3) + 16 − 1 = 48 + 16 − 1 = 63 Now check the option: (a) (47, 144, 4) ⇒ (47 × 3) + 4 − 1 = 141 + 4 − 1 = 144 Hence, option (A) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 106, "q": "Q106. Select the triad from among the given options that is analogous to the given triad. 505 – 604 – 217 SSC Steno 10 Dec 2024 S1", "opts": ["A) 432 – 513 – 711", "B) 161 – 512 – 710", "C) 125 – 223 – 342", "D) 244 – 226 – 262"], "ans": 3, "ans_letter": "D", "exp": "Pattern: Sum of Digits of each number = 10 Given Set: 505 – 604 – 217 505 = 5 + 0 + 5 = 10 604 = 6 + 0 + 4 = 10 217 = 2 + 1 + 7 = 10 Now check option (d) 244 – 226 – 262 244 = 2 + 4 + 4 = 10 226 = 2 + 2 + 6 = 10 262 = 2 + 6 + 2 = 10 Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 107, "q": "Q107. Below are given two sets of numbers. In each set of numbers, a certain mathematical operation on the first number results in the second number. Similarly, a certain mathematical operation on the second number results in the third number and so on. Which of the given options follows the same set of operations as in the question? 12 - 14 - 16 - 20 ; 14 - 16 - 18 - 22 NTPC Graduation 18 June, 2025", "opts": ["A) 3 - 5 - 7 - 11", "B) 19 - 20 - 22 - 44", "C) 4 - 8 - 16 – 32", "D) 13 - 15 - 17 - 32"], "ans": 0, "ans_letter": "A", "exp": "12 14 16 20 14 16 18 22 +2 +2 +4 +2 +2 +4 3 5 7 11 +2 +2 +4 Hence, option (A) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 108, "q": "Q108. Below are given two sets of numbers. In each set of numbers, a certain mathematical operation on the first number results in the second number. Similarly, a certain mathematical operation on the second number results in the third number and so on. Which of the given options follows the same set of operations as in the question? 3 - 5 - 10 - 12 ; 8 - 10 - 20 - 22 NTPC Graduation 5, June, 2025", "opts": ["A) 4 - 6 - 12 – 24", "B) 28 - 30 - 60 - 64", "C) 6 - 10 - 12 – 24", "D) 18 - 20 - 40 - 42"], "ans": 3, "ans_letter": "D", "exp": "3 5 10 12 8 10 20 22 +2 ×2 +2 +2 ×2 +2 18 20 40 42 +2 ×2 +2 Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 109, "q": "Q109. Below are given two sets of numbers. In each set of numbers, a certain mathematical operation on the first number results in the second number. Similarly, a certain mathematical operation on the second number results in the third number and so on. Which of the given options follows the same set of operations as in the question? 8 - 33 - 66 - 81 ; 11 - 36 - 72 - 87 SSC CGL T1, 25/09/24 S2", "opts": ["A) 21 - 46 - 82 - 107", "B) 6 - 31 - 62 - 97", "C) 15 - 40 - 80 - 95", "D) 18 - 43 - 86 - 100"], "ans": 2, "ans_letter": "C", "exp": "8 33 66 81 11 36 72 87 +25 ×2 +15 +25 ×2 +15 15 40 80 95 +25 ×2 +15 Hence, option (C) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}, {"id": 110, "q": "Q110. Below are given two sets of numbers. In each set of numbers, a certain mathematical operation on the first number results in the second number. Similarly, a certain mathematical operation on the second number results in the third number and so on. Which of the given options follows the same set of operations as in the question? === NEW PAGE === 10 - 12 - 8 - 15 ; 12 - 14 - 10 - 19 SSC CGL T1, 25/09/24 S2", "opts": ["A) 6 - 8 - 12 - 16", "B) 8 - 6 - 10 - 18", "C) 15 - 13 - 9 - 19", "D) 11 - 13 - 9 - 17"], "ans": 3, "ans_letter": "D", "exp": "10 12 8 15 12 14 10 19 +2 – 4 ×2 – 1 +2 – 4 ×2 – 1 11 13 9 17 +2 – 4 ×2 – 1 Hence, option (D) is the correct answer.", "cat": "Advanced Operations & Multi-Step Logic", "tab": "tab4"}];
+
+    let state = {
+      attempted: 0,
+      correct: 0,
+      answers: {}
+    };
+
+    function renderQuestions() {
+      const t1 = document.getElementById('tab1-container');
+      const t2 = document.getElementById('tab2-container');
+      const t3 = document.getElementById('tab3-container');
+      const t4 = document.getElementById('tab4-container');
+      const tm = document.getElementById('marathon-container');
+
+      ALL_QUESTIONS.forEach(q => {
+        const cardHtml = createCardHtml(q);
+        if (q.tab === 'tab1') t1.insertAdjacentHTML('beforeend', cardHtml);
+        else if (q.tab === 'tab2') t2.insertAdjacentHTML('beforeend', cardHtml);
+        else if (q.tab === 'tab3') t3.insertAdjacentHTML('beforeend', cardHtml);
+        else if (q.tab === 'tab4') t4.insertAdjacentHTML('beforeend', cardHtml);
+        tm.insertAdjacentHTML('beforeend', createCardHtml(q, true));
+      });
+    }
+
+    function createCardHtml(q, isMarathon = false) {
+      const uid = isMarathon ? `m-${q.id}` : `q-${q.id}`;
+      const optsHtml = q.opts.map((opt, idx) => `
+        <button class="quiz-opt" onclick="handleOptClick('${uid}', ${q.id}, ${idx}, ${q.ans}, this)">
+          ${opt}
+        </button>
+      `).join('');
+
+      return `
+        <div class="quiz-card" id="card-${uid}" data-cat="${q.cat}">
+          <div class="quiz-meta">
+            <span class="quiz-tag">${q.cat}</span>
+            <span>Question ${q.id} of 110</span>
+          </div>
+          <div class="quiz-question">${q.q}</div>
+          <div class="quiz-options">
+            ${optsHtml}
+          </div>
+          <div class="quiz-exp" id="exp-${uid}">
+            <strong>Step-by-Step Logic:</strong> ${q.exp}
+          </div>
+        </div>
+      `;
+    }
+
+    function handleOptClick(cardUid, qId, chosenIdx, correctIdx, btn) {
+      const card = document.getElementById(`card-${cardUid}`);
+      if (!card) return;
+      const btns = card.querySelectorAll('.quiz-opt');
+      btns.forEach(b => b.disabled = true);
+
+      const isCorrect = (chosenIdx === correctIdx);
+      if (isCorrect) {
+        btn.classList.add('correct');
+      } else {
+        btn.classList.add('wrong');
+        btns[correctIdx].classList.add('correct');
+      }
+
+      const exp = document.getElementById(`exp-${cardUid}`);
+      if (exp) exp.classList.add('show');
+
+      if (!state.answers[qId]) {
+        state.answers[qId] = isCorrect ? 'correct' : 'wrong';
+        state.attempted++;
+        if (isCorrect) state.correct++;
+        updateStats();
+      }
+    }
+
+    function updateStats() {
+      const att = document.getElementById('stat-attempted');
+      const acc = document.getElementById('stat-accuracy');
+      const cor = document.getElementById('stat-correct');
+      const msb = document.getElementById('marathon-score-badge');
+
+      att.textContent = `${state.attempted} / 110`;
+      cor.textContent = `${state.correct}`;
+      const pct = state.attempted > 0 ? Math.round((state.correct / state.attempted) * 100) : 0;
+      acc.textContent = `${pct}%`;
+      if (msb) msb.textContent = `Score: ${state.correct} / 110 (${pct}%)`;
+    }
+
+    function showTab(tabId, btn) {
+      document.querySelectorAll('.section-page').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+      if (btn) btn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleDrill(el) {
+      const ans = el.querySelector('.drill-ans');
+      if (ans) ans.classList.toggle('hidden');
+    }
+
+    function revealAllVisible() {
+      const activeSec = document.querySelector('.section-page.active');
+      if (!activeSec) return;
+      activeSec.querySelectorAll('.drill-ans').forEach(a => a.classList.remove('hidden'));
+      activeSec.querySelectorAll('.quiz-exp').forEach(e => e.classList.add('show'));
+    }
+
+    function hideAllVisible() {
+      const activeSec = document.querySelector('.section-page.active');
+      if (!activeSec) return;
+      activeSec.querySelectorAll('.drill-ans').forEach(a => a.classList.add('hidden'));
+      activeSec.querySelectorAll('.quiz-exp').forEach(e => e.classList.remove('show'));
+    }
+
+    function resetAllQuizzes() {
+      if (!confirm('Reset all questions and score?')) return;
+      state = { attempted: 0, correct: 0, answers: {} };
+      document.querySelectorAll('.quiz-opt').forEach(b => {
+        b.disabled = false;
+        b.classList.remove('correct', 'wrong');
+      });
+      document.querySelectorAll('.quiz-exp').forEach(e => e.classList.remove('show'));
+      document.querySelectorAll('.drill-ans').forEach(a => a.classList.add('hidden'));
+      updateStats();
+    }
+
+    function filterMarathon(cat) {
+      const cards = document.querySelectorAll('#marathon-container .quiz-card');
+      cards.forEach(c => {
+        if (cat === 'all' || c.getAttribute('data-cat') === cat) {
+          c.style.display = 'block';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    function handleSearch(val) {
+      const q = val.toLowerCase().trim();
+      const activeSec = document.querySelector('.section-page.active');
+      if (!activeSec) return;
+      const cards = activeSec.querySelectorAll('.quiz-card, .card');
+      cards.forEach(c => {
+        const text = c.textContent.toLowerCase();
+        c.style.display = text.includes(q) ? 'block' : 'none';
+      });
+    }
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const current = root.getAttribute('data-theme');
+      root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderQuestions();
+    });
+  </script>
+</body>
+</html>

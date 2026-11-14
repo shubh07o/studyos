@@ -52,7 +52,12 @@ Passive reading leads to rapid memory decay. StudyOS strictly enforces an **Acti
   - Border Lines: `--border: #e2e8f0`
 - **Theme Switcher**: An optional dark mode toggle may be provided in the header for night reading, but the initial load MUST always render clean Light Mode.
 
-### B. Typography & Micro-Layout
+### B. Strict English-Only Standard (Non-Negotiable)
+- **ALL content across the platform — every web application view, digital note, interactive quiz, self-tested drill, explanation, button, header, and metadata — MUST ALWAYS BE WRITTEN 100% IN ENGLISH.**
+- Even when source PDFs, lecture notes, or faculty slides are bilingual or predominantly in Hindi (Devanagari script), the system must **accurately translate, articulate, and present all concepts, question stems, options, and step-by-step logic in clean, professional English**.
+- No Devanagari script is allowed in generated learning files, quizzes, or dashboard entries.
+
+### C. Typography & Micro-Layout
 - **Font Stack**: Clean, modern system sans-serif: `'Segoe UI', system-ui, -apple-system, sans-serif`.
 - **Card Hierarchy**: Distinct `.card` containers with subtle drop-shadows (`0 4px 12px rgba(15, 23, 42, 0.06)`), 12px border radius, and explicit divider borders.
 - **Rule Callouts**:
