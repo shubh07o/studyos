@@ -40,34 +40,39 @@ The interactive modules must structurally adapt to the subject matter:
 
 ---
 
-## 3. ZERO DATA LOSS RULE
-- Extract and preserve 100% of facts, rules, exceptions, formulas, cases, dates, and trivia.
-- Never summarize so aggressively that exam-relevant minutiae are lost.
-- In competitive examinations, cutoff-clearing marks come from rare exceptions, footnotes, and edge cases. Preserve every single one.
+## 3. ZERO DATA LOSS & MAXIMALIST EXHAUSTIVE GENERATION (WORLD'S BEST STANDARD)
+- **NO ARTIFICIAL QUANTITY LIMITS**: Never artificially cap or pre-decide quantity (e.g., never stop at "just 20 questions" or "10 flashcards"). Generate as many active recall prompts, quizzes, flashcards, fill-in-the-blanks, and revision items as **humanly possible** from the chapter's notes.
+- **Deep Fact & Concept Verification**: Deeply inspect and verify every fact, formula, exception, case law, date, mnemonic, and footnote in the source notes. Zero omissions. Zero hallucinations.
+- **Content-Adaptive Pedagogy**: Analyze the source material first to determine what method makes it the *world's best interactive module* for that specific chapter:
+  - For Rule/Grammar heavy notes: Sentence error-spotter, exception callouts, click-to-correct.
+  - For Fact/History/Polity heavy notes: Chronological interactive timelines, comparative article matrices, fill-in-the-blank drills.
+  - For Formula/Quant/Maths heavy notes: Step-by-step solution reveals, mental arithmetic speed drills, formula flashcards.
+  - For Reasoning heavy notes: Logic flowcharts, pattern recognition cards, timed deduction puzzles.
+  - For Vocab heavy notes: Root word decomposition, synonym/antonym matrices, one-word substitution drills.
 
 ---
 
-## 4. THE 6 STANDALONE MODULE STAGES
+## 4. PEDAGOGICAL STAGES (UNCONSTRAINED & ADAPTIVE)
 
-Every generated file (`lectures/Lecture-XX-<Subject>-<Topic>.html`) must be 100% self-contained (all HTML, CSS, JS inline, zero CDN dependencies, fully offline) and include:
+Every generated file (`lectures/Lecture-XX-<Subject>-<Topic>.html`) must be 100% self-contained (all HTML, CSS, JS inline, zero external CDN dependencies, fully offline) and maximize retention through:
 
-1. **STAGE A: UNDERSTAND**  
-   Structured, clean conceptual cards. Tables, flowcharts, timelines, and subject-specific breakdowns.
-2. **STAGE B: ACTIVE RECALL (Ultra-Rigorous)**  
-   At least 4 different interactive formats:
+1. **STAGE A: DEEP CONCEPTUAL UNDERSTANDING**  
+   Exhaustive, structured visual cards. Tables, flowcharts, timelines, and subject-specific breakdowns covering 100% of the notes.
+2. **STAGE B: ULTRA-MAXIMAL ACTIVE RECALL**  
+   As many interactive prompts as possible across multiple formats:
    - *Click-to-Reveal* cards (forces active retrieval before seeing answers)
    - *Fill-in-the-Blanks* (with real-time string checking: `✅ Correct` / `❌ Try again`)
    - *Match the Following* (interactive dropdown selector)
    - *True / False* (with detailed rationale)
-   - *Identification / Formula Spotter* ("Which rule / formula / person am I?")
-3. **STAGE C: 3D FLASHCARDS**  
-   Front/back flip cards, category filter, shuffle, mastery tracking (Mastered / Difficult), keyboard shortcuts (`Spacebar` to flip, `Arrow keys` to navigate).
-4. **STAGE D: EXAM QUIZ & PRACTICE**  
-   At least 20 exam-grade MCQs (Basic, Moderate, Difficult). Immediate answer validation, full explanatory notes, score & accuracy %, filter incorrect answers, retake mode.
-5. **STAGE E: QUICK REVISION**  
+   - *Identification / Formula Spotter* ("Which rule / formula / article / person am I?")
+3. **STAGE C: HIGH-VOLUME FLASHCARDS**  
+   Comprehensive front/back flip cards covering every concept, categorized, shuffleable, mastery tracking (Mastered / Difficult), keyboard shortcuts (`Spacebar` to flip, `Arrow keys` to navigate).
+4. **STAGE D: EXHAUSTIVE EXAM QUIZ & PRACTICE**  
+   Maximum possible exam-grade MCQs (Basic, Moderate, Difficult). Immediate answer validation, full explanatory notes, score & accuracy %, filter incorrect answers, retake mode.
+5. **STAGE E: SPEED REVISION & CHEAT SHEETS**  
    High-yield one-liners, confusing pairs comparator, and fast reference cheat-sheets.
-6. **STAGE F: FINAL MEMORY TEST**  
-   Timed or unassisted diagnostic assessment with automatic weak-topic identification and revision prescriptions.
+6. **STAGE F: COMPREHENSIVE DIAGNOSTIC TEST**  
+   Diagnostic assessment with automatic weak-topic identification and revision prescriptions.
 
 ---
 
