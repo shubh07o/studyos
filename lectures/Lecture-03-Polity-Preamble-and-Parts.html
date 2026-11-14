@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polity Lecture 03: Preamble & The 22 Parts | Interactive Learning Module</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-faint: #94a3b8;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --accent-glow: rgba(2, 132, 199, 0.12);
+      --accent-pill: #e0f2fe;
+      --accent-gold: #d97706;
+      --gold-pill: #fef3c7;
+      --success: #059669;
+      --success-pill: #dcfce7;
+      --error: #dc2626;
+      --error-pill: #fee2e2;
+      --warning: #d97706;
+      --border: #e2e8f0;
+      --border-subtle: #edf2f7;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+      --card-shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131c31;
+      --bg-card: #172239;
+      --bg-card-hover: #1e2c48;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --accent-glow: rgba(56, 189, 248, 0.2);
+      --accent-pill: rgba(2, 132, 199, 0.2);
+      --border: #243247;
+      --border-subtle: #1e293b;
+      --card-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.4);
+      --card-shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.6);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP BAR */
+    header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .emblem-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--accent-pill);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .brand-title h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--text-main);
+    }
+
+    .brand-title p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .progress-widget {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .progress-bar-mini {
+      width: 70px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .btn-icon {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-icon:hover {
+      background: var(--bg-secondary);
+      border-color: #cbd5e1;
+    }
+
+    .btn-portal-back {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-portal-back:hover {
+      background: var(--bg-secondary);
+      border-color: #cbd5e1;
+    }
+
+    /* STAGE NAVIGATION TABS */
+    nav.stage-nav {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 57px;
+      z-index: 90;
+      overflow-x: auto;
+    }
+
+    .nav-tabs {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .tab-btn {
+      padding: 0.85rem 1.1rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .stage-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+    }
+
+    .tab-btn.active .stage-badge {
+      background: var(--accent-pill);
+      color: var(--accent);
+    }
+
+    /* MAIN CONTAINER */
+    main.main-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem 1.5rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    .stage-section {
+      display: none;
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    .stage-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTION BANNER */
+    .section-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .banner-text h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .banner-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .banner-badge {
+      background: var(--accent-pill);
+      color: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* CARDS & GRIDS */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .concept-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.2s ease;
+    }
+
+    .concept-card:hover {
+      box-shadow: var(--card-shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+    }
+
+    .card-tag.accent {
+      background: var(--accent-pill);
+      color: var(--accent);
+    }
+
+    .card-tag.gold {
+      background: var(--gold-pill);
+      color: var(--accent-gold);
+    }
+
+    .point-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .point-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      line-height: 1.55;
+    }
+
+    .point-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .highlight-bold {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tag-term {
+      background: var(--accent-pill);
+      color: var(--accent);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85em;
+    }
+
+    /* FULL WIDTH CARDS & TABLES */
+    .full-width-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .data-table-container {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    table.data-table th, table.data-table td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    table.data-table th {
+      background: var(--bg-secondary);
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    table.data-table tbody tr:hover {
+      background: var(--bg-secondary);
+    }
+
+    /* PREAMBLE ORIGINAL SCROLL BOX */
+    .preamble-scroll-box {
+      background: #fffdf5;
+      border: 2px solid #e7d8b8;
+      border-radius: 12px;
+      padding: 2rem;
+      font-family: Georgia, serif;
+      color: #3b2f1e;
+      line-height: 1.9;
+      position: relative;
+      margin: 1.5rem 0;
+      box-shadow: inset 0 0 20px rgba(180, 140, 70, 0.08);
+    }
+
+    [data-theme="dark"] .preamble-scroll-box {
+      background: #1c1a16;
+      border-color: #4a3e2d;
+      color: #e5dac9;
+    }
+
+    .preamble-scroll-title {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(180, 140, 70, 0.3);
+      padding-bottom: 0.5rem;
+    }
+
+    /* INTERACTIVE ACTIVE RECALL STYLES */
+    .recall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .recall-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      user-select: none;
+    }
+
+    .recall-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .recall-question {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .recall-hint {
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: var(--accent-pill);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .recall-answer {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      display: none;
+      border-left: 3px solid var(--accent);
+      margin-top: 0.5rem;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .recall-card.revealed .recall-answer {
+      display: block;
+    }
+
+    .recall-card.revealed {
+      border-color: var(--accent);
+    }
+
+    /* FILL IN THE BLANKS */
+    .fitb-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .fitb-sentence {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 2;
+    }
+
+    .fitb-input {
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-main);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+
+    .fitb-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .fitb-input.correct {
+      border-color: var(--success);
+      background: var(--success-pill);
+      color: var(--success);
+    }
+
+    .fitb-input.incorrect {
+      border-color: var(--error);
+      background: var(--error-pill);
+      color: var(--error);
+    }
+
+    .btn-check-fitb {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.75rem;
+      transition: background 0.15s;
+    }
+
+    .btn-check-fitb:hover {
+      background: var(--accent-hover);
+    }
+
+    /* FLASHCARDS (STAGE C) */
+    .flashcard-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      perspective: 1000px;
+    }
+
+    .flashcard {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      height: 320px;
+      cursor: pointer;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      backface-visibility: hidden;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 18px;
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+      background: var(--bg-card);
+    }
+
+    .fc-category {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fc-main-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-align: center;
+      line-height: 1.4;
+      margin: auto 0;
+    }
+
+    .fc-instruction {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .fc-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-fc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-fc:hover {
+      background: var(--bg-secondary);
+      border-color: #cbd5e1;
+    }
+
+    /* QUIZ (STAGE D) */
+    .quiz-container {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .quiz-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      line-height: 1.45;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .quiz-option {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.15s ease;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--accent);
+      background: rgba(2, 132, 199, 0.04);
+    }
+
+    .quiz-option.selected-correct {
+      border-color: var(--success);
+      background: var(--success-pill);
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .quiz-option.selected-wrong {
+      border-color: var(--error);
+      background: var(--error-pill);
+      color: var(--error);
+      font-weight: 600;
+    }
+
+    .quiz-explanation {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--accent);
+      font-size: 0.88rem;
+      color: var(--text-main);
+      display: none;
+    }
+
+    .quiz-score-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      display: none;
+    }
+
+    /* SPEED REVISION CHEAT SHEETS */
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cheat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--card-shadow);
+    }
+
+    .cheat-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cheat-card p {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* COMPLETE STAGE BUTTON */
+    .btn-complete-stage {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-complete-stage:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-container { padding: 0.5rem 1rem; }
+      .brand-title h1 { font-size: 0.92rem; }
+      .nav-tabs { padding: 0 1rem; }
+      .tab-btn { padding: 0.75rem 0.8rem; font-size: 0.8rem; }
+      main.main-content { padding: 1.25rem 1rem 3rem 1rem; }
+      .concept-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- TOP APP BAR -->
+  <header>
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="emblem-icon">📜</div>
+        <div class="brand-title">
+          <h1>INDIAN POLITY • LECTURE 03</h1>
+          <p>Preamble, Philosophy & The 22 Parts | Parmar GK/GS 5.0</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../index.html" class="btn-portal-back" title="Return to Mock Manager Dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Dashboard
+        </a>
+        <div class="progress-widget" title="Module Completion Progress">
+          <span>Progress</span>
+          <div class="progress-bar-mini">
+            <div class="progress-bar-fill" id="overallProgress"></div>
+          </div>
+          <strong id="progressPercent">0%</strong>
+        </div>
+        <button class="btn-icon" id="themeToggleBtn" title="Toggle Light/Dark Mode">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STAGE NAVIGATION TABS -->
+  <nav class="stage-nav">
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-stage="stageA">
+        <span class="stage-badge">Stage A</span> 📖 Deep Understand
+      </button>
+      <button class="tab-btn" data-stage="stageB">
+        <span class="stage-badge">Stage B</span> ⚡ Active Recall
+      </button>
+      <button class="tab-btn" data-stage="stageC">
+        <span class="stage-badge">Stage C</span> 🎴 Flashcards (<span id="fcCount">24</span>)
+      </button>
+      <button class="tab-btn" data-stage="stageD">
+        <span class="stage-badge">Stage D</span> 📝 Exhaustive Quiz (30 MCQs)
+      </button>
+      <button class="tab-btn" data-stage="stageE">
+        <span class="stage-badge">Stage E</span> 🚀 Speed Revision
+      </button>
+      <button class="tab-btn" data-stage="stageF">
+        <span class="stage-badge">Stage F</span> 🎯 Diagnostic Test
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="main-content">
+
+    <!-- =========================================================================
+         STAGE A: DEEP CONCEPTUAL UNDERSTANDING
+         ========================================================================= -->
+    <section id="stageA" class="stage-section active">
+      <div class="section-banner">
+        <div class="banner-text">
+          <h2>📖 Stage A: Deep Conceptual Understanding</h2>
+          <p>Exhaustive visual breakdown of the Preamble, key scholar quotes, socialism & democracy models, landmark case laws, and all 22 Constitutional Parts.</p>
+        </div>
+        <span class="banner-badge">Exhaustive Notes</span>
+      </div>
+
+      <!-- THE OFFICIAL PREAMBLE TEXT -->
+      <div class="full-width-card">
+        <div class="card-header">
+          <div class="card-title">📜 Text of the Preamble of India</div>
+          <span class="card-tag accent">Adopted 26 Nov 1949</span>
+        </div>
+        <div class="preamble-scroll-box">
+          <div class="preamble-scroll-title">THE CONSTITUTION OF INDIA • PREAMBLE</div>
+          <p><strong>"WE, THE PEOPLE OF INDIA,</strong> having solemnly resolved to constitute India into a <strong>SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC</strong> and to secure to all its citizens:</p>
+          <p style="margin: 0.75rem 0;">
+            <strong>JUSTICE,</strong> social, economic and political;<br>
+            <strong>LIBERTY</strong> of thought, expression, belief, faith and worship;<br>
+            <strong>EQUALITY</strong> of status and of opportunity; and to promote among them all;<br>
+            <strong>FRATERNITY</strong> assuring the dignity of the individual and the unity and integrity of the Nation;
+          </p>
+          <p><strong>IN OUR CONSTITUENT ASSEMBLY</strong> this <strong>twenty-sixth day of November, 1949</strong>, do <strong>HEREBY ADOPT, ENACT AND GIVE TO OURSELVES THIS CONSTITUTION.</strong>"</p>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          * Note: The terms <span class="tag-term">Socialist</span>, <span class="tag-term">Secular</span>, and <span class="tag-term">Integrity</span> were added later by the 42nd Constitutional Amendment Act, 1976 (Trick: <strong>ISS</strong> / <strong>SIS</strong>).
+        </p>
+      </div>
+
+      <!-- CORE FOUNDATIONS & ORIGINS -->
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🏛️ Essence & Compilation</div>
+            <span class="card-tag">Core Concept</span>
+          </div>
+          <ul class="point-list">
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Introductory Statement:</strong> States the reasons and guiding values/philosophy of the Constitution.</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Summary or Essence:</strong> Embodies the soul and philosophy of the entire Indian Constitution.</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Compiled at the End:</strong> It was enacted and made <span class="tag-term">after</span> the entire Constitution was already compiled and adopted.</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Modified Objective Resolution:</strong> Based on the Objective Resolution introduced by <span class="highlight-bold">J.L. Nehru</span> on <strong>13 Dec 1946</strong> and unanimously approved on <strong>22 Jan 1947</strong>.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🌍 Borrowed Elements & Artistry</div>
+            <span class="card-tag accent">Exam Favorites</span>
+          </div>
+          <ul class="point-list">
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Phrase 'We the People of India':</strong> Borrowed from the Constitution of the <span class="tag-term">USA</span>.</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Idea of Preamble:</strong> Borrowed from <span class="tag-term">USA</span> (first country to begin with a Preamble).</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Language of Preamble:</strong> Borrowed from the Constitution of <span class="tag-term">Australia</span>.</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Illumination & Decoration:</strong> Designed by artists of Shantiniketan — <span class="highlight-bold">Beohar Rammanohar Sinha</span> (Jabalpur) and <span class="highlight-bold">Nandalal Bose</span>. Calligraphy by <span class="highlight-bold">Prem Behari Narain Raizada</span>.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAMOUS JURIST & SCHOLAR QUOTES -->
+      <div class="full-width-card">
+        <div class="card-header">
+          <div class="card-title">🗣️ Famous Comments & Quotes on Preamble</div>
+          <span class="card-tag gold">100% Asked in Exams</span>
+        </div>
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Eminent Scholar / Jurist</th>
+                <th>Exact Statement / Title for Preamble</th>
+                <th>Exam Context / Work</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>N. A. Palkhivala</strong></td>
+                <td><span class="tag-term">"ID Card of the Constitution"</span></td>
+                <td>Eminent constitutional jurist; highlighted identity role.</td>
+              </tr>
+              <tr>
+                <td><strong>K. M. Munshi</strong></td>
+                <td><span class="tag-term">"Political Horoscope of the Constitution"</span></td>
+                <td>Member of the Drafting Committee; forecasts destiny.</td>
+              </tr>
+              <tr>
+                <td><strong>Sir Ernest Barker</strong></td>
+                <td><span class="tag-term">"Keynote of the Constitution"</span></td>
+                <td>English political scientist in his book <em>Principles of Social and Political Theory (1951)</em>.</td>
+              </tr>
+              <tr>
+                <td><strong>Pt. Thakur Das Bhargava</strong></td>
+                <td><span class="tag-term">"Jewel Set", "Soul of the Constitution", "Most Precious Part", "Yardstick"</span></td>
+                <td>Member of Constituent Assembly; yardstick to measure the worth of the constitution.</td>
+              </tr>
+              <tr>
+                <td><strong>Justice M. Hidayatullah</strong></td>
+                <td><span class="tag-term">"Resembles USA Declaration of Independence, but is more than a Declaration"</span></td>
+                <td>Former Chief Justice of India; noted it contains our solemn resolve.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- KEYWORDS OF NATURE: SOVEREIGN, SOCIALIST, SECULAR, DEMOCRATIC, REPUBLIC -->
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">👑 Sovereign</div>
+            <span class="card-tag">Nature</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-main); margin-bottom:0.75rem;">
+            India is neither a dependency nor a dominion of any other nation. It is an independent state.
+          </p>
+          <ul class="point-list">
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div>People have supreme right to make decisions on <strong>internal as well as external matters</strong>.</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div>No external power can dictate to the government of India.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🤝 Socialist</div>
+            <span class="card-tag">Nature</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-main); margin-bottom:0.75rem;">
+            Added by <strong>42nd Amendment (1976)</strong>. Derived from Russian Revolution (1917).
+          </p>
+          <ul class="point-list">
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong>Core Idea:</strong> Wealth is generated socially and should be shared equally; government regulates ownership to reduce inequality.</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong>Economic Models:</strong> Capitalistic (USA) vs. Socialist (Russia) vs. <span class="tag-term">Mixed Economy (India)</span>.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🕊️ Secular</div>
+            <span class="card-tag">Nature</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-main); margin-bottom:0.75rem;">
+            Added by <strong>42nd Amendment (1976)</strong>. Complete religious freedom without state bias.
+          </p>
+          <ul class="point-list">
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Positive Secularism (India):</strong> State gives equal respect and protection to all religions (<em>Sarva Dharma Sambhava</em>) and can interfere to eliminate social evils (e.g. untouchability).</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Negative Secularism (USA / Western):</strong> Complete strict wall of separation; zero state interference.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🗳️ Democratic & Republic</div>
+            <span class="card-tag">Nature</span>
+          </div>
+          <ul class="point-list">
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Democracy:</strong> System of 'Government by consent' — <span class="highlight-bold">John Locke</span> (<em>Father of Liberalism</em>, book: <em>Two Treatises of Government 1689</em>).</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Abraham Lincoln:</strong> "Government of the people, by the people, for the people shall not perish from the Earth."</div>
+            </li>
+            <li class="point-item">
+              <span class="point-bullet"></span>
+              <div><strong class="highlight-bold">Republic:</strong> Head of state is <span class="tag-term">elected</span> (not hereditary). UK is a Constitutional Monarchy (non-republic), while India is a Republic.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TYPES OF SOCIALISM & KARL MARX -->
+      <div class="full-width-card">
+        <div class="card-header">
+          <div class="card-title">📚 Deep Dive: Types of Socialism & Marxism</div>
+          <span class="card-tag accent">Conceptual Clarity</span>
+        </div>
+        <div class="concept-grid" style="margin-bottom:0;">
+          <div class="concept-card">
+            <div class="card-header"><span class="card-title">1. Radical Socialism</span></div>
+            <p style="font-size:0.88rem; color:var(--text-main);">Ending private ownership of all businesses/wealth entirely and making everything shared equally to create a classless society.</p>
+          </div>
+          <div class="concept-card">
+            <div class="card-header"><span class="card-title">2. Gandhian Socialism</span></div>
+            <p style="font-size:0.88rem; color:var(--text-main);">Promotes non-violence, self-reliance (swadeshi), village-centered economy, and <span class="tag-term">Decentralised Planning</span>.</p>
+          </div>
+          <div class="concept-card">
+            <div class="card-header"><span class="card-title">3. Nehruvian Socialism</span></div>
+            <p style="font-size:0.88rem; color:var(--text-main);">Emphasizes state-controlled key heavy industries to achieve growth and equality; known as Mixed Socialism with <span class="tag-term">Centralised Planning</span>.</p>
+          </div>
+        </div>
+        <div style="background:var(--bg-secondary); border-radius:10px; padding:1.2rem; margin-top:1.2rem;">
+          <h4 style="font-size:0.95rem; font-weight:700; color:var(--text-main); margin-bottom:0.5rem;">⚒️ Karl Marx's Ideology (Marxism):</h4>
+          <p style="font-size:0.88rem; color:var(--text-main); margin-bottom:0.4rem;">• Developed with <strong>Friedrich Engels</strong> in 19th Century. Society split into <strong>Bourgeoisie</strong> (wealthy owners) and <strong>Proletariat</strong> (working class).</p>
+          <p style="font-size:0.88rem; color:var(--text-main); margin-bottom:0.4rem;">• <strong>Exploitation:</strong> Owners extract surplus value by underpaying workers for their hard labor.</p>
+          <p style="font-size:0.88rem; color:var(--text-main);">• <strong>Famous Books:</strong> <em>The Communist Manifesto (1848)</em> & <em>Das Kapital / Capital (1867)</em>.</p>
+        </div>
+      </div>
+
+      <!-- DIRECT VS INDIRECT DEMOCRACY -->
+      <div class="full-width-card">
+        <div class="card-header">
+          <div class="card-title">⚖️ Direct Democracy vs Indirect Democracy</div>
+          <span class="card-tag">Forms of Governance</span>
+        </div>
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Direct Democracy</th>
+                <th>Indirect (Representative) Democracy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Definition</strong></td>
+                <td>Citizens directly participate in decision-making and vote on laws & policies themselves.</td>
+                <td>Citizens elect representatives who make laws and govern on their behalf.</td>
+              </tr>
+              <tr>
+                <td><strong>Devices</strong></td>
+                <td>Referendum, Initiative, Recall, Plebiscite.</td>
+                <td>Parliamentary elections, Legislative votes.</td>
+              </tr>
+              <tr>
+                <td><strong>Country Examples</strong></td>
+                <td><span class="tag-term">Switzerland</span>, <span class="tag-term">Uruguay</span>, <span class="tag-term">Latvia</span>, <span class="tag-term">Lithuania</span></td>
+                <td><span class="tag-term">India</span>, <span class="tag-term">Canada</span>, <span class="tag-term">USA</span>, <span class="tag-term">UK</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- OBJECTIVES: JUSTICE, LIBERTY, EQUALITY, FRATERNITY -->
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">⚖️ 3 Types of Justice</div>
+            <span class="card-tag accent">Borrowed: USSR</span>
+          </div>
+          <p style="font-size:0.9rem; margin-bottom:0.6rem;">Social, Economic, and Political Justice:</p>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-bullet"></span><div><strong>Social Justice:</strong> Equal treatment of all citizens without discrimination based on caste, color, race, religion, sex.</div></li>
+            <li class="point-item"><span class="point-bullet"></span><div><strong>Economic Justice:</strong> Non-discrimination between people on basis of wealth, income, and property.</div></li>
+            <li class="point-item"><span class="point-bullet"></span><div><strong>Political Justice:</strong> All citizens have equal political access and voice in government.</div></li>
+          </ul>
+        </div>
+
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🗽 5 Forms of Liberty</div>
+            <span class="card-tag gold">Borrowed: France</span>
+          </div>
+          <p style="font-size:0.9rem; margin-bottom:0.6rem;">Absence of restraints on activities of individuals:</p>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-bullet"></span><div>1. <strong>Thought</strong></div></li>
+            <li class="point-item"><span class="point-bullet"></span><div>2. <strong>Expression</strong></div></li>
+            <li class="point-item"><span class="point-bullet"></span><div>3. <strong>Belief</strong></div></li>
+            <li class="point-item"><span class="point-bullet"></span><div>4. <strong>Faith</strong></div></li>
+            <li class="point-item"><span class="point-bullet"></span><div>5. <strong>Worship</strong></div></li>
+          </ul>
+        </div>
+
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🟰 2 Types of Equality</div>
+            <span class="card-tag gold">Borrowed: France</span>
+          </div>
+          <p style="font-size:0.9rem; margin-bottom:0.6rem;">Absence of special privilege to any section of society:</p>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-bullet"></span><div>1. <strong>Equality of Status:</strong> No artificial civic or legal hierarchy.</div></li>
+            <li class="point-item"><span class="point-bullet"></span><div>2. <strong>Equality of Opportunity:</strong> Adequate opportunities for all individuals without distinction.</div></li>
+          </ul>
+        </div>
+
+        <div class="concept-card">
+          <div class="card-header">
+            <div class="card-title">🤝 Fraternity & Dignity</div>
+            <span class="card-tag gold">Borrowed: France</span>
+          </div>
+          <p style="font-size:0.9rem; margin-bottom:0.6rem;">A sense of common brotherhood:</p>
+          <ul class="point-list">
+            <li class="point-item"><span class="point-bullet"></span><div>Assures the <strong>dignity of the individual</strong>.</div></li>
+            <li class="point-item"><span class="point-bullet"></span><div>Assures the <strong>unity and integrity of the Nation</strong> ('integrity' added in 1976).</div></li>
+            <li class="point-item"><span class="point-bullet"></span><div>Promoted via Single Citizenship and Article 51A (Fundamental Duties).</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SUPREME COURT CASES ON PREAMBLE -->
+      <div class="full-width-card">
+        <div class="card-header">
+          <div class="card-title">🏛️ Supreme Court Jurisprudence on Preamble</div>
+          <span class="card-tag accent">Vital Case Laws</span>
+        </div>
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Case Name & Year</th>
+                <th>Supreme Court Ruling</th>
+                <th>Is Preamble Part of Constitution?</th>
+                <th>Can it be Amended?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Berubari Union Case (1960)</strong></td>
+                <td>Preamble is an aid to interpretation and key to the minds of makers, but <em>NOT</em> a part of the Constitution.</td>
+                <td><span class="tag-term" style="background:var(--error-pill); color:var(--error);">❌ NO</span></td>
+                <td><span class="tag-term" style="background:var(--error-pill); color:var(--error);">❌ NO</span></td>
+              </tr>
+              <tr>
+                <td><strong>Kesavananda Bharati Case (1973)</strong></td>
+                <td>Overruled Berubari case! SC held Preamble IS a part of the Constitution. It can be amended under Article 368 without destroying <em>Basic Structure</em>.</td>
+                <td><span class="tag-term" style="background:var(--success-pill); color:var(--success);">✅ YES</span></td>
+                <td><span class="tag-term" style="background:var(--success-pill); color:var(--success);">✅ YES (under Art 368)</span></td>
+              </tr>
+              <tr>
+                <td><strong>LIC of India Case (1995)</strong></td>
+                <td>Reaffirmed Kesavananda Bharati ruling: Preamble is an <em>integral part</em> of the Constitution.</td>
+                <td><span class="tag-term" style="background:var(--success-pill); color:var(--success);">✅ YES (Integral)</span></td>
+                <td><span class="tag-term" style="background:var(--success-pill); color:var(--success);">✅ YES</span></td>
+              </tr>
+              <tr>
+                <td><strong>Ashwini Kumar Upadhyay v. UOI (Nov 2024)</strong></td>
+                <td>Supreme Court rejected petition challenging insertion of "Socialist" and "Secular" into Preamble, upholding 42nd CAA 1976.</td>
+                <td><span class="tag-term" style="background:var(--success-pill); color:var(--success);">✅ Fully Valid</span></td>
+                <td>Affirmed validity of 1976 amendment.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:1rem; padding:0.85rem 1rem; background:var(--bg-secondary); border-radius:8px; font-size:0.85rem;">
+          <strong>Enforceability Rule:</strong> The Preamble is <span class="tag-term">Non-Justiciable</span> (not enforceable in a court of law). It is neither a source of power to the legislature nor a restriction upon legislative powers.
+        </div>
+      </div>
+
+      <!-- COMPLETE TABLE OF THE 22 PARTS OF THE CONSTITUTION -->
+      <div class="full-width-card">
+        <div class="card-header">
+          <div class="card-title">📖 Complete Master Matrix: All 22 Parts of the Constitution</div>
+          <span class="card-tag gold">Page 7 Exact Match</span>
+        </div>
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Part No.</th>
+                <th>Subject Matter</th>
+                <th>Article Range</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Part 1</strong></td><td>The Union and its Territory</td><td><code>Articles 1 to 4</code></td></tr>
+              <tr><td><strong>Part 2</strong></td><td>Citizenship</td><td><code>Articles 5 to 11</code></td></tr>
+              <tr><td><strong>Part 3</strong></td><td>Fundamental Rights</td><td><code>Articles 12 to 35</code></td></tr>
+              <tr><td><strong>Part 4</strong></td><td>Directive Principles of State Policy (DPSP)</td><td><code>Articles 36 to 51</code></td></tr>
+              <tr><td><strong>Part 4A</strong></td><td>Fundamental Duties</td><td><code>Article 51A</code></td></tr>
+              <tr><td><strong>Part 5</strong></td><td>The Union Government</td><td><code>Articles 52 to 151</code></td></tr>
+              <tr><td><strong>Part 6</strong></td><td>The State Governments</td><td><code>Articles 152 to 237</code></td></tr>
+              <tr><td><strong>Part 8</strong></td><td>The Union Territories</td><td><code>Articles 239 to 242</code></td></tr>
+              <tr><td><strong>Part 9</strong></td><td>The Panchayats</td><td><code>Articles 243 to 243O</code></td></tr>
+              <tr><td><strong>Part 9A</strong></td><td>The Municipalities</td><td><code>Articles 243P to 243ZG</code></td></tr>
+              <tr><td><strong>Part 9B</strong></td><td>The Co-operative Societies</td><td><code>Articles 243ZH to 243ZT</code></td></tr>
+              <tr><td><strong>Part 10</strong></td><td>The Scheduled and Tribal Areas</td><td><code>Articles 244 to 244A</code></td></tr>
+              <tr><td><strong>Part 11</strong></td><td>Relations Between the Union and the States</td><td><code>Articles 245 to 263</code></td></tr>
+              <tr><td><strong>Part 12</strong></td><td>Finance, Property, Contracts and Suits</td><td><code>Articles 264 to 300A</code></td></tr>
+              <tr><td><strong>Part 13</strong></td><td>Trade, Commerce and Intercourse within India</td><td><code>Articles 301 to 307</code></td></tr>
+              <tr><td><strong>Part 14</strong></td><td>Services Under the Union & States</td><td><code>Articles 308 to 323</code></td></tr>
+              <tr><td><strong>Part 14A</strong></td><td>Tribunals</td><td><code>Articles 323A to 323B</code></td></tr>
+              <tr><td><strong>Part 15</strong></td><td>Elections</td><td><code>Articles 324 to 329A</code></td></tr>
+              <tr><td><strong>Part 16</strong></td><td>Special Provisions Relating to Certain Classes</td><td><code>Articles 330 to 342A</code></td></tr>
+              <tr><td><strong>Part 17</strong></td><td>Official Language</td><td><code>Articles 343 to 351A</code></td></tr>
+              <tr><td><strong>Part 18</strong></td><td>Emergency Provisions</td><td><code>Articles 352 to 360</code></td></tr>
+              <tr><td><strong>Part 19</strong></td><td>Miscellaneous</td><td><code>Articles 361 to 367</code></td></tr>
+              <tr><td><strong>Part 20</strong></td><td>Amendment of the Constitution</td><td><code>Article 368</code></td></tr>
+              <tr><td><strong>Part 21</strong></td><td>Temporary, Transitional & Special Provisions</td><td><code>Articles 369 to 392</code></td></tr>
+              <tr><td><strong>Part 22</strong></td><td>Short Title, Commencement, Authoritative Text in Hindi and Repeals</td><td><code>Articles 393 to 395</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <button class="btn-complete-stage" onclick="markStageComplete('stageA'); switchStage('stageB');">
+          Complete Stage A & Proceed to Active Recall →
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         STAGE B: MAXIMAL ACTIVE RECALL
+         ========================================================================= -->
+    <section id="stageB" class="stage-section">
+      <div class="section-banner">
+        <div class="banner-text">
+          <h2>⚡ Stage B: Maximal Active Recall Drills</h2>
+          <p>Test your brain's retrieval pathways with Click-to-Reveal cards and real-time interactive Fill-in-the-Blanks before looking at solutions!</p>
+        </div>
+        <span class="banner-badge">Interactive Recall</span>
+      </div>
+
+      <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:1rem; color:var(--text-main);">
+        💡 Click-to-Reveal Fact Drill (Click to Test Yourself)
+      </h3>
+      <div class="recall-grid">
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Who called the Preamble the 'ID Card of the Constitution'?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>N. A. Palkhivala</strong> (Eminent jurist and constitutional expert).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Who referred to the Preamble as the 'Political Horoscope'?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>K. M. Munshi</strong> (Drafting Committee member).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>In which landmark case did the Supreme Court hold that Preamble is NOT a part of the Constitution?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Berubari Union Case (1960)</strong> (later overruled in 1973).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Which 3 words were added to the Preamble by the 42nd Amendment Act, 1976?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Socialist, Secular, Integrity</strong> (Trick: ISS / SIS).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Which country did India borrow the 'Language of the Preamble' from?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Australia</strong> (while the <em>Idea of Preamble</em> and <em>'We the People'</em> came from USA).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Who wrote the book 'Two Treatises of Government' (1689)?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>John Locke</strong> (known as the <em>Father of Liberalism</em>).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>What are the 3 types of Justice mentioned in the Preamble and from where were they borrowed?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Social, Economic, and Political Justice</strong> — borrowed from the <strong>Soviet Union (USSR)</strong> / Russian Revolution.
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>List the 5 forms of Liberty guaranteed in the Preamble.</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            Liberty of <strong>Thought, Expression, Belief, Faith, and Worship</strong>.
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Which Part of the Indian Constitution deals with 'Elections'?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Part 15</strong> (Articles 324 to 329A).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Which Part covers 'Emergency Provisions' and what is its article range?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Part 18</strong> (Articles 352 to 360).
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>In which recent case (Nov 2024) did the Supreme Court dismiss a challenge against the 42nd Amendment's Preamble changes?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Ashwini Kumar Upadhyay v. Union of India (Nov 2024)</strong>.
+          </div>
+        </div>
+
+        <div class="recall-card" onclick="this.classList.toggle('revealed')">
+          <div class="recall-question">
+            <span>Which Part of the Constitution was added for 'Fundamental Duties'?</span>
+            <span class="recall-hint">Tap to Reveal</span>
+          </div>
+          <div class="recall-answer">
+            <strong>Part 4A</strong> (Article 51A).
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE FILL IN THE BLANKS -->
+      <h3 style="font-size:1.15rem; font-weight:700; margin: 2rem 0 1rem 0; color:var(--text-main);">
+        ✍️ Real-Time Fill-in-the-Blanks Drill (Type and Check)
+      </h3>
+
+      <div class="fitb-card">
+        <p class="fitb-sentence">
+          1. The Preamble is a modified version of the 
+          <input type="text" class="fitb-input" data-answer="objective resolution" placeholder="Type here...">
+          which was introduced by J.L. Nehru on 13 Dec 1946.
+        </p>
+      </div>
+
+      <div class="fitb-card">
+        <p class="fitb-sentence">
+          2. The two artists from Shantiniketan who decorated the Preamble were Nand Lal Bose and 
+          <input type="text" class="fitb-input" data-answer="beohar rammanohar sinha" placeholder="Type here...">.
+        </p>
+      </div>
+
+      <div class="fitb-card">
+        <p class="fitb-sentence">
+          3. In India, we follow 
+          <input type="text" class="fitb-input" data-answer="positive" placeholder="positive / negative">
+          secularism where the State gives equal respect and may interfere to reform social evils.
+        </p>
+      </div>
+
+      <div class="fitb-card">
+        <p class="fitb-sentence">
+          4. 
+          <input type="text" class="fitb-input" data-answer="gandhian" placeholder="Type here...">
+          Socialism promotes a village-centered economy with decentralised planning.
+        </p>
+      </div>
+
+      <div class="fitb-card">
+        <p class="fitb-sentence">
+          5. Part 20 of the Indian Constitution contains Article 
+          <input type="text" class="fitb-input" data-answer="368" placeholder="Article no.">
+          which deals with the Amendment of the Constitution.
+        </p>
+      </div>
+
+      <button class="btn-check-fitb" onclick="checkAllFITB()">Check Answers</button>
+
+      <div style="text-align: center; margin-top:2rem;">
+        <button class="btn-complete-stage" onclick="markStageComplete('stageB'); switchStage('stageC');">
+          Complete Stage B & Proceed to Flashcards →
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         STAGE C: 3D FLASHCARDS
+         ========================================================================= -->
+    <section id="stageC" class="stage-section">
+      <div class="section-banner">
+        <div class="banner-text">
+          <h2>🎴 Stage C: 3D Memory Flashcards</h2>
+          <p>Master key terms, case rulings, and constitutional parts through spatial repetition. Press <strong>Spacebar</strong> to flip, and <strong>Arrow keys</strong> to navigate!</p>
+        </div>
+        <span class="banner-badge">Spatial Repetition</span>
+      </div>
+
+      <div class="flashcard-wrapper">
+        <div class="flashcard" id="mainFlashcard" onclick="flipCurrentCard()">
+          <div class="flashcard-front">
+            <div class="fc-category">
+              <span id="fcCategoryTag">Jurist Quote</span>
+              <span id="fcIndexTag">1 / 24</span>
+            </div>
+            <div class="fc-main-text" id="fcFrontText">
+              "Preamble is the ID Card of the Constitution."
+            </div>
+            <div class="fc-instruction">Tap card or press Spacebar to flip ↺</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-category">
+              <span>Answer & Explanation</span>
+              <span id="fcIndexTagBack">1 / 24</span>
+            </div>
+            <div class="fc-main-text" id="fcBackText">
+              N. A. Palkhivala
+            </div>
+            <div class="fc-instruction">Eminent jurist who stressed that Preamble identifies the core philosophy of our Constitution.</div>
+          </div>
+        </div>
+
+        <div class="fc-controls">
+          <button class="btn-fc" onclick="prevCard()">← Previous</button>
+          <button class="btn-fc" onclick="shuffleCards()">🔀 Shuffle</button>
+          <button class="btn-fc" onclick="nextCard()">Next →</button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top:3rem;">
+        <button class="btn-complete-stage" onclick="markStageComplete('stageC'); switchStage('stageD');">
+          Complete Stage C & Proceed to Quiz →
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         STAGE D: EXHAUSTIVE EXAM QUIZ
+         ========================================================================= -->
+    <section id="stageD" class="stage-section">
+      <div class="section-banner">
+        <div class="banner-text">
+          <h2>📝 Stage D: Exhaustive Exam Quiz (30 MCQs)</h2>
+          <p>Every single concept, footnote, scholar quote, and constitutional part tested under real exam conditions with instant explanations.</p>
+        </div>
+        <span class="banner-badge">30 Questions</span>
+      </div>
+
+      <div class="quiz-score-banner" id="quizScoreBanner">
+        <h3 style="font-size:1.3rem; margin-bottom:0.5rem;">Quiz Completed!</h3>
+        <p style="font-size:1rem; color:var(--text-muted);" id="quizScoreText"></p>
+        <button class="btn-complete-stage" onclick="retakeQuiz()" style="margin-top:1rem;">Retake Quiz</button>
+      </div>
+
+      <div class="quiz-container" id="quizQuestionsContainer">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+      <div style="text-align: center; margin-top:2rem;">
+        <button class="btn-complete-stage" onclick="markStageComplete('stageD'); switchStage('stageE');">
+          Complete Stage D & Proceed to Speed Revision →
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         STAGE E: SPEED REVISION & CHEAT SHEETS
+         ========================================================================= -->
+    <section id="stageE" class="stage-section">
+      <div class="section-banner">
+        <div class="banner-text">
+          <h2>🚀 Stage E: Speed Revision & High-Yield Cheat Sheets</h2>
+          <p>Quick-reference bullet points and confusing pair comparators designed for last-minute exam recall.</p>
+        </div>
+        <span class="banner-badge">Quick Cheat Sheet</span>
+      </div>
+
+      <div class="cheat-grid">
+        <div class="cheat-card">
+          <h4>📌 Berubari vs Kesavananda Bharati</h4>
+          <p><strong>Berubari (1960):</strong> Preamble is NOT a part of the Constitution & CANNOT be amended.<br>
+          <strong>Kesavananda (1973):</strong> Overruled Berubari! Preamble IS a part of the Constitution & CAN be amended under Article 368 without altering the Basic Structure.</p>
+        </div>
+
+        <div class="cheat-card">
+          <h4>📌 USA vs Australia Borrowings</h4>
+          <p><strong>USA:</strong> Idea of Preamble & the opening phrase <em>'We the People of India'</em>.<br>
+          <strong>Australia:</strong> Specific <em>Language and style</em> of the Preamble (along with Concurrent List).</p>
+        </div>
+
+        <div class="cheat-card">
+          <h4>📌 USSR vs France Objectives</h4>
+          <p><strong>USSR (Russia):</strong> Ideals of <em>Justice</em> (Social, Economic, and Political).<br>
+          <strong>France:</strong> Ideals of <em>Liberty, Equality, Fraternity, and Republic</em>.</p>
+        </div>
+
+        <div class="cheat-card">
+          <h4>📌 42nd Amendment 1976 (Trick: ISS / SIS)</h4>
+          <p>Preamble has been amended <strong>ONLY ONCE</strong> in 1976. Added 3 words: <strong>Integrity, Socialist, Secular</strong>. Upheld in Nov 2024 by Supreme Court.</p>
+        </div>
+
+        <div class="cheat-card">
+          <h4>📌 Justiciability & Power</h4>
+          <p>The Preamble is <strong>Non-Justiciable</strong> (not enforceable in courts). It is <strong>neither a source of power</strong> nor a <strong>limitation/prohibition</strong> on the legislature.</p>
+        </div>
+
+        <div class="cheat-card">
+          <h4>📌 High-Frequency Parts (15, 17, 18, 20)</h4>
+          <p><strong>Part 15:</strong> Elections (Art 324-329A)<br>
+          <strong>Part 17:</strong> Official Language (Art 343-351A)<br>
+          <strong>Part 18:</strong> Emergency Provisions (Art 352-360)<br>
+          <strong>Part 20:</strong> Amendment of Constitution (Art 368)</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top:2rem;">
+        <button class="btn-complete-stage" onclick="markStageComplete('stageE'); switchStage('stageF');">
+          Complete Stage E & Proceed to Final Diagnostic Test →
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         STAGE F: DIAGNOSTIC TEST
+         ========================================================================= -->
+    <section id="stageF" class="stage-section">
+      <div class="section-banner">
+        <div class="banner-text">
+          <h2>🎯 Stage F: Final Diagnostic Memory Test</h2>
+          <p>Comprehensive 15-question diagnostic evaluation to identify your weak retention areas before examination.</p>
+        </div>
+        <span class="banner-badge">Diagnostic Assessment</span>
+      </div>
+
+      <div class="quiz-container" id="diagnosticContainer">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+      <div style="text-align: center; margin-top:2rem;">
+        <button class="btn-complete-stage" onclick="finishFullModule()">
+          🏁 Mark Entire Lecture 03 as Mastered!
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // STATE & INITIALIZATION
+    // =========================================================================
+    const STORAGE_KEY = 'studyos_polity_lec3';
+    let completedStages = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+    function updateProgress() {
+      const totalStages = 6;
+      const pct = Math.round((completedStages.length / totalStages) * 100);
+      document.getElementById('overallProgress').style.width = pct + '%';
+      document.getElementById('progressPercent').textContent = pct + '%';
+    }
+
+    function markStageComplete(stageId) {
+      if (!completedStages.includes(stageId)) {
+        completedStages.push(stageId);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(completedStages));
+        updateProgress();
+      }
+    }
+
+    function finishFullModule() {
+      ['stageA', 'stageB', 'stageC', 'stageD', 'stageE', 'stageF'].forEach(s => {
+        if (!completedStages.includes(s)) completedStages.push(s);
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(completedStages));
+      updateProgress();
+      alert('🎉 Outstanding! You have fully mastered Lecture 03 (Preamble & The 22 Parts)!');
+    }
+
+    // Tab Navigation
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const stageSections = document.querySelectorAll('.stage-section');
+
+    function switchStage(stageId) {
+      tabBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-stage') === stageId);
+      });
+      stageSections.forEach(sec => {
+        sec.classList.toggle('active', sec.id === stageId);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => switchStage(btn.getAttribute('data-stage')));
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', newTheme);
+      themeBtn.textContent = newTheme === 'light' ? '🌙' : '☀️';
+    });
+
+    // =========================================================================
+    // STAGE B: FILL IN THE BLANKS
+    // =========================================================================
+    function checkAllFITB() {
+      const inputs = document.querySelectorAll('.fitb-input');
+      inputs.forEach(input => {
+        const correct = input.getAttribute('data-answer').toLowerCase();
+        const userVal = input.value.trim().toLowerCase();
+        if (userVal === correct || (correct.includes(userVal) && userVal.length >= 4)) {
+          input.className = 'fitb-input correct';
+        } else {
+          input.className = 'fitb-input incorrect';
+        }
+      });
+    }
+
+    // =========================================================================
+    // STAGE C: FLASHCARDS DATA & LOGIC
+    // =========================================================================
+    const FLASHCARDS = [
+      { cat: "Jurist Quote", q: "Who termed the Preamble as the 'ID Card of the Constitution'?", a: "N. A. Palkhivala" },
+      { cat: "Jurist Quote", q: "Who called the Preamble the 'Political Horoscope of the Constitution'?", a: "K. M. Munshi" },
+      { cat: "Scholar Quote", q: "Who described the Preamble as the 'Keynote of the Constitution' in his 1951 book?", a: "Sir Ernest Barker (Book: Principles of Social and Political Theory)" },
+      { cat: "Constituent Assembly", q: "Who called Preamble the 'Soul of the Constitution, Jewel Set, and Yardstick'?", a: "Pt. Thakur Das Bhargava" },
+      { cat: "Judicial Quote", q: "Who stated that Preamble resembles USA's Declaration of Independence but is more than a Declaration?", a: "Justice M. Hidayatullah" },
+      { cat: "Source of Constitution", q: "What is the ultimate source of power of the Indian Constitution?", a: "'We, the People of India' (The Citizens of India)" },
+      { cat: "Amendments", q: "How many times has the Preamble been amended so far?", a: "Only Once (in 1976 via 42nd Constitutional Amendment Act)" },
+      { cat: "Amendments", q: "Which 3 words were added by the 42nd Amendment in 1976?", a: "Socialist, Secular, Integrity (Trick: ISS / SIS)" },
+      { cat: "Case Law (1960)", q: "What was held in Berubari Union Case (1960) regarding the Preamble?", a: "Preamble is NOT a part of the Constitution and cannot be amended." },
+      { cat: "Case Law (1973)", q: "What did the Supreme Court hold in Kesavananda Bharati Case (1973)?", a: "Preamble IS a part of the Constitution and CAN be amended under Article 368 without altering the Basic Structure." },
+      { cat: "Case Law (1995)", q: "What was reaffirmed in the LIC of India Case (1995)?", a: "Preamble is an integral part of the Constitution." },
+      { cat: "Recent Law (2024)", q: "Which Supreme Court case recently dismissed a challenge to the words 'Socialist' and 'Secular' in the Preamble?", a: "Ashwini Kumar Upadhyay v. Union of India (Nov 2024)" },
+      { cat: "Borrowings", q: "From where was the phrase 'We the people of India' borrowed?", a: "USA" },
+      { cat: "Borrowings", q: "From where was the Language of the Preamble borrowed?", a: "Australia" },
+      { cat: "Borrowings", q: "From where were the ideals of 'Justice (Social, Economic, Political)' borrowed?", a: "Soviet Union (USSR) / Russian Revolution (1917)" },
+      { cat: "Borrowings", q: "From where were the ideals of 'Liberty, Equality, Fraternity, and Republic' borrowed?", a: "France (French Revolution 1789–1799)" },
+      { cat: "Socialism", q: "Which type of socialism promotes non-violence, self-reliance, and decentralised village planning?", a: "Gandhian Socialism" },
+      { cat: "Socialism", q: "Which books were authored by Karl Marx?", a: "The Communist Manifesto (1848 with Engels) and Das Kapital (1867)" },
+      { cat: "Secularism", q: "What type of secularism is practiced in India?", a: "Positive Secularism (equal respect/protection to all faiths; state can reform social evils)" },
+      { cat: "Democracy", q: "Name countries practicing Direct Democracy.", a: "Switzerland, Uruguay, Latvia, Lithuania" },
+      { cat: "Part 3", q: "What does Part 3 of the Constitution deal with?", a: "Fundamental Rights (Articles 12 to 35)" },
+      { cat: "Part 4A", q: "Which article and subject are in Part 4A?", a: "Article 51A — Fundamental Duties" },
+      { cat: "Part 15", q: "What is the subject of Part 15 of the Constitution?", a: "Elections (Articles 324 to 329A)" },
+      { cat: "Part 18", q: "What does Part 18 of the Constitution cover?", a: "Emergency Provisions (Articles 352 to 360)" }
+    ];
+
+    let currentCardIdx = 0;
+    const cardEl = document.getElementById('mainFlashcard');
+
+    function updateCardUI() {
+      const card = FLASHCARDS[currentCardIdx];
+      cardEl.classList.remove('flipped');
+      document.getElementById('fcCategoryTag').textContent = card.cat;
+      document.getElementById('fcIndexTag').textContent = `${currentCardIdx + 1} / ${FLASHCARDS.length}`;
+      document.getElementById('fcIndexTagBack').textContent = `${currentCardIdx + 1} / ${FLASHCARDS.length}`;
+      document.getElementById('fcFrontText').textContent = card.q;
+      document.getElementById('fcBackText').textContent = card.a;
+    }
+
+    function flipCurrentCard() {
+      cardEl.classList.toggle('flipped');
+    }
+
+    function nextCard() {
+      currentCardIdx = (currentCardIdx + 1) % FLASHCARDS.length;
+      updateCardUI();
+    }
+
+    function prevCard() {
+      currentCardIdx = (currentCardIdx - 1 + FLASHCARDS.length) % FLASHCARDS.length;
+      updateCardUI();
+    }
+
+    function shuffleCards() {
+      FLASHCARDS.sort(() => Math.random() - 0.5);
+      currentCardIdx = 0;
+      updateCardUI();
+    }
+
+    // Keyboard Shortcuts for Flashcards
+    window.addEventListener('keydown', (e) => {
+      if (document.getElementById('stageC').classList.contains('active')) {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          flipCurrentCard();
+        } else if (e.code === 'ArrowRight') {
+          nextCard();
+        } else if (e.code === 'ArrowLeft') {
+          prevCard();
+        }
+      }
+    });
+
+    // =========================================================================
+    // STAGE D: 30 EXAM MCQs
+    // =========================================================================
+    const QUIZ_QUESTIONS = [
+      {
+        q: "The Preamble to the Indian Constitution is based on which of the following?",
+        options: ["Government of India Act 1935", "Objective Resolution presented by J.L. Nehru", "Cabinet Mission Plan", "Indian Independence Act 1947"],
+        correct: 1,
+        exp: "The Preamble is a modified version of the historic Objective Resolution introduced by J.L. Nehru on 13 Dec 1946 and adopted on 22 Jan 1947."
+      },
+      {
+        q: "Who among the following called the Preamble the 'ID Card of the Constitution'?",
+        options: ["K. M. Munshi", "Dr. B. R. Ambedkar", "N. A. Palkhivala", "Sir Alladi Krishnaswami Iyer"],
+        correct: 2,
+        exp: "Eminent constitutional jurist N. A. Palkhivala described the Preamble as the 'Identity Card of the Constitution'."
+      },
+      {
+        q: "The words 'Socialist', 'Secular', and 'Integrity' were added to the Preamble by which Constitutional Amendment Act?",
+        options: ["24th Amendment Act, 1971", "42nd Amendment Act, 1976", "44th Amendment Act, 1978", "86th Amendment Act, 2002"],
+        correct: 1,
+        exp: "The 42nd Constitutional Amendment Act of 1976 added Socialist, Secular, and Integrity to the Preamble (Trick: ISS / SIS)."
+      },
+      {
+        q: "In which landmark case did the Supreme Court explicitly rule for the first time that the Preamble IS an integral part of the Constitution?",
+        options: ["Berubari Union Case (1960)", "Golaknath Case (1967)", "Kesavananda Bharati Case (1973)", "Minerva Mills Case (1980)"],
+        correct: 2,
+        exp: "In Kesavananda Bharati Case (1973), the 13-judge bench overruled Berubari (1960) and held that Preamble is a part of the Constitution."
+      },
+      {
+        q: "The 'Language' of the Indian Preamble was borrowed from the Constitution of which country?",
+        options: ["USA", "Australia", "Canada", "Ireland"],
+        correct: 1,
+        exp: "The idea of Preamble came from the USA, but the specific language and style of the Preamble was borrowed from Australia."
+      },
+      {
+        q: "The ideals of 'Liberty, Equality, Fraternity and Republic' in our Preamble were borrowed from:",
+        options: ["Russian Revolution", "French Revolution", "American Revolution", "Irish Constitution"],
+        correct: 1,
+        exp: "Liberty, Equality, Fraternity and Republic were borrowed from the French Constitution / French Revolution (1789–1799)."
+      },
+      {
+        q: "The ideals of Justice (Social, Economic, and Political) were inspired by:",
+        options: ["American Declaration of Independence", "French Revolution", "Russian Revolution (USSR)", "British Magna Carta"],
+        correct: 2,
+        exp: "The three types of Justice (Social, Economic, and Political) were taken from the Russian Revolution (1917) / Soviet Constitution."
+      },
+      {
+        q: "How many types of Liberty and Equality are mentioned in the Preamble respectively?",
+        options: ["3 and 2", "5 and 2", "5 and 3", "4 and 2"],
+        correct: 1,
+        exp: "5 forms of Liberty (Thought, Expression, Belief, Faith, Worship) and 2 forms of Equality (Status and Opportunity)."
+      },
+      {
+        q: "Who termed the Preamble as the 'Political Horoscope of the Constitution'?",
+        options: ["K. M. Munshi", "Pt. Thakur Das Bhargava", "M. Hidayatullah", "Sir Ernest Barker"],
+        correct: 0,
+        exp: "Dr. K. M. Munshi, a key member of the Drafting Committee, termed the Preamble as the 'Political Horoscope of the Constitution'."
+      },
+      {
+        q: "Sir Ernest Barker, an English political scientist, praised the Preamble as the 'Keynote of the Constitution' in which book?",
+        options: ["Das Kapital", "Two Treatises of Government", "Principles of Social and Political Theory", "The Spirit of Laws"],
+        correct: 2,
+        exp: "Ernest Barker quoted the Indian Preamble on the opening page of his famous 1951 book 'Principles of Social and Political Theory'."
+      },
+      {
+        q: "Which of the following describes India's concept of 'Positive Secularism'?",
+        options: ["Strict separation of State and religion with zero interference", "Complete hostility of the State towards all religious practices", "Equal respect and protection for all religions with state power to reform social evils", "Declaring Hinduism as the official state religion"],
+        correct: 2,
+        exp: "Positive Secularism means all religions have equal status and support from the state, while the state can intervene to abolish evils like untouchability."
+      },
+      {
+        q: "Which of the following countries is an example of Direct Democracy?",
+        options: ["Canada", "United Kingdom", "Switzerland", "India"],
+        correct: 2,
+        exp: "Switzerland (along with Uruguay, Latvia, Lithuania) uses direct democratic tools such as Referendum, Initiative, Recall, and Plebiscite."
+      },
+      {
+        q: "Why is the United Kingdom NOT considered a Republic?",
+        options: ["It does not have a written constitution", "Its Head of State (Monarch) is hereditary and not elected", "It has a unitary system", "It is not a member of the UN Security Council"],
+        correct: 1,
+        exp: "A Republic requires that the Head of State is elected for a fixed term. UK has a hereditary King/Queen, so it is a Constitutional Monarchy."
+      },
+      {
+        q: "Who is celebrated as the 'Father of Liberalism' who wrote 'Two Treatises of Government' (1689)?",
+        options: ["Karl Marx", "John Locke", "Jean-Jacques Rousseau", "Adam Smith"],
+        correct: 1,
+        exp: "John Locke is the Father of Liberalism who propounded that legitimate government is based on the 'consent of the governed'."
+      },
+      {
+        q: "Which famous books were written by Karl Marx?",
+        options: ["The Social Contract & Emile", "The Communist Manifesto (1848) & Das Kapital (1867)", "Leviathan & Behemoth", "Wealth of Nations & Theory of Moral Sentiments"],
+        correct: 1,
+        exp: "Karl Marx authored The Communist Manifesto (1848, with Engels) and Das Kapital (1867)."
+      },
+      {
+        q: "Gandhian Socialism emphasizes which of the following planning systems?",
+        options: ["Centralised Planning", "Decentralised Village-Centered Planning", "Total State Monopolisation", "Free Market Laissez-Faire"],
+        correct: 1,
+        exp: "Gandhian socialism focuses on non-violence, trusteeship, self-reliance, and decentralised planning centered around villages."
+      },
+      {
+        q: "Who decorated and illuminated the pages of the original Indian Constitution and Preamble?",
+        options: ["Raja Ravi Varma", "Beohar Rammanohar Sinha and Nandalal Bose", "Amrita Sher-Gil", "M. F. Husain"],
+        correct: 1,
+        exp: "Beohar Rammanohar Sinha (of Jabalpur) designed and decorated the Preamble page under the mentorship of Nandalal Bose of Shantiniketan."
+      },
+      {
+        q: "In which month and year did the Supreme Court reject a petition challenging the words 'Socialist' and 'Secular' in the Preamble?",
+        options: ["January 2020", "August 2022", "November 2024 (Ashwini Kumar Upadhyay Case)", "March 2025"],
+        correct: 2,
+        exp: "In November 2024, the Supreme Court in Ashwini Kumar Upadhyay v. UOI upheld the insertion of 'Socialist' and 'Secular' by the 42nd Amendment."
+      },
+      {
+        q: "What is the legal status and enforceability of the Preamble?",
+        options: ["Directly enforceable in the Supreme Court under Article 32", "It is non-justiciable (not legally enforceable in courts)", "It is a supreme law that overrides Fundamental Rights", "Enforceable only during National Emergency"],
+        correct: 1,
+        exp: "The Preamble is non-justiciable: its provisions cannot be enforced in courts of law, nor does it grant substantive powers to legislature."
+      },
+      {
+        q: "Part 1 of the Indian Constitution deals with which subject?",
+        options: ["Citizenship", "The Union and its Territory (Articles 1–4)", "Fundamental Rights", "Directive Principles"],
+        correct: 1,
+        exp: "Part 1 covers The Union and its Territory (Articles 1 to 4)."
+      },
+      {
+        q: "Part 2 of the Constitution encompasses which set of Articles?",
+        options: ["Articles 1 to 4", "Articles 5 to 11 (Citizenship)", "Articles 12 to 35", "Articles 36 to 51"],
+        correct: 1,
+        exp: "Part 2 deals with Citizenship across Articles 5 to 11."
+      },
+      {
+        q: "Which Part corresponds to the Directive Principles of State Policy (DPSP)?",
+        options: ["Part 3", "Part 4 (Articles 36–51)", "Part 4A", "Part 5"],
+        correct: 1,
+        exp: "Part 4 contains the Directive Principles of State Policy from Articles 36 to 51."
+      },
+      {
+        q: "Which Part deals with 'The Panchayats' and what is its article range?",
+        options: ["Part 9 (Articles 243 to 243O)", "Part 9A (Articles 243P to 243ZG)", "Part 9B (Articles 243ZH to 243ZT)", "Part 10 (Articles 244 to 244A)"],
+        correct: 0,
+        exp: "Part 9 covers The Panchayats (Articles 243 to 243O), added by the 73rd Amendment Act 1992."
+      },
+      {
+        q: "Municipalities are dealt with in which Part of the Constitution?",
+        options: ["Part 8", "Part 9", "Part 9A (Articles 243P to 243ZG)", "Part 9B"],
+        correct: 2,
+        exp: "Part 9A deals with Municipalities (Articles 243P to 243ZG), added by the 74th Amendment Act 1992."
+      },
+      {
+        q: "Which Part covers 'Elections' in the Indian Constitution?",
+        options: ["Part 14", "Part 14A", "Part 15 (Articles 324 to 329A)", "Part 16"],
+        correct: 2,
+        exp: "Part 15 deals with Elections under Articles 324 to 329A."
+      },
+      {
+        q: "Emergency Provisions are contained in which Part of the Constitution?",
+        options: ["Part 17", "Part 18 (Articles 352 to 360)", "Part 19", "Part 20"],
+        correct: 1,
+        exp: "Part 18 deals with Emergency Provisions (Articles 352 to 360: National, President's Rule, Financial)."
+      },
+      {
+        q: "Which Part contains the procedure for 'Amendment of the Constitution'?",
+        options: ["Part 18", "Part 19", "Part 20 (Article 368)", "Part 21"],
+        correct: 2,
+        exp: "Part 20 consists solely of Article 368, dedicated to the Amendment of the Constitution."
+      },
+      {
+        q: "Which Part was repealed by the 7th Constitutional Amendment Act, 1956?",
+        options: ["Part 7", "Part 9", "Part 14A", "Part 21"],
+        correct: 0,
+        exp: "Part 7 (dealing with Part B States) was deleted/repealed by the 7th Constitutional Amendment Act, 1956."
+      },
+      {
+        q: "Official Language is covered in which Part of the Constitution?",
+        options: ["Part 16", "Part 17 (Articles 343 to 351A)", "Part 18", "Part 22"],
+        correct: 1,
+        exp: "Part 17 covers Official Language across Articles 343 to 351A."
+      },
+      {
+        q: "The opening phrase 'We, the People of India' signifies:",
+        options: ["British Parliament's gift to India", "The ultimate sovereignty resides with the people of India", "Only government officials are sovereign", "State Governors hold supreme authority"],
+        correct: 1,
+        exp: "'We, the People of India' declares that the Constitution derives its authority and sovereignty directly from the citizens of India."
+      }
+    ];
+
+    function renderQuiz() {
+      const container = document.getElementById('quizQuestionsContainer');
+      container.innerHTML = '';
+      QUIZ_QUESTIONS.forEach((qObj, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.id = `quiz-card-${qIdx}`;
+
+        card.innerHTML = `
+          <div class="quiz-header">
+            <span>Question ${qIdx + 1} of ${QUIZ_QUESTIONS.length}</span>
+            <span>Single Choice</span>
+          </div>
+          <div class="quiz-question">${qObj.q}</div>
+          <div class="quiz-options">
+            ${qObj.options.map((opt, oIdx) => `
+              <div class="quiz-option" onclick="selectQuizAnswer(${qIdx}, ${oIdx})">
+                <span style="font-weight:700; width:20px;">${String.fromCharCode(65 + oIdx)}.</span>
+                <span>${opt}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="quiz-explanation" id="quiz-exp-${qIdx}">
+            <strong>Explanation:</strong> ${qObj.exp}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    let quizAnswers = {};
+
+    function selectQuizAnswer(qIdx, oIdx) {
+      if (quizAnswers[qIdx] !== undefined) return; // Prevent changing answer
+      quizAnswers[qIdx] = oIdx;
+
+      const card = document.getElementById(`quiz-card-${qIdx}`);
+      const options = card.querySelectorAll('.quiz-option');
+      const correctIdx = QUIZ_QUESTIONS[qIdx].correct;
+
+      if (oIdx === correctIdx) {
+        options[oIdx].classList.add('selected-correct');
+      } else {
+        options[oIdx].classList.add('selected-wrong');
+        options[correctIdx].classList.add('selected-correct');
+      }
+
+      const exp = document.getElementById(`quiz-exp-${qIdx}`);
+      exp.style.display = 'block';
+
+      // Check if all answered
+      if (Object.keys(quizAnswers).length === QUIZ_QUESTIONS.length) {
+        let score = 0;
+        QUIZ_QUESTIONS.forEach((q, i) => {
+          if (quizAnswers[i] === q.correct) score++;
+        });
+        const banner = document.getElementById('quizScoreBanner');
+        banner.style.display = 'block';
+        document.getElementById('quizScoreText').textContent = `You scored ${score} out of ${QUIZ_QUESTIONS.length} (${Math.round((score / QUIZ_QUESTIONS.length) * 100)}% accuracy)!`;
+        banner.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function retakeQuiz() {
+      quizAnswers = {};
+      document.getElementById('quizScoreBanner').style.display = 'none';
+      renderQuiz();
+    }
+
+    // Diagnostic Test Render
+    function renderDiagnostic() {
+      const diagContainer = document.getElementById('diagnosticContainer');
+      diagContainer.innerHTML = '';
+      const diagSubset = QUIZ_QUESTIONS.slice(0, 15);
+      diagSubset.forEach((qObj, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML = `
+          <div class="quiz-header">
+            <span>Diagnostic Question ${qIdx + 1} of 15</span>
+          </div>
+          <div class="quiz-question">${qObj.q}</div>
+          <div class="quiz-options">
+            ${qObj.options.map((opt, oIdx) => `
+              <div class="quiz-option" onclick="this.classList.toggle('selected-correct')">
+                <span style="font-weight:700; width:20px;">${String.fromCharCode(65 + oIdx)}.</span>
+                <span>${opt}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        diagContainer.appendChild(card);
+      });
+    }
+
+    // Initialize On Load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateProgress();
+      updateCardUI();
+      renderQuiz();
+      renderDiagnostic();
+    });
+  </script>
+</body>
+</html>
