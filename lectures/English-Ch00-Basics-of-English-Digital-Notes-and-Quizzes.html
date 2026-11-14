@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 0: BASICS OF ENGLISH - Interactive Digital Notes & Quizzes | Parmar SSC</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #edf2f9;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-dark: #60a5fa;
+      --accent: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --border: #334155;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 290px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand {
+      padding: 20px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .brand p {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .stats-bar {
+      padding: 12px 20px;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 12px;
+      flex: 1;
+    }
+
+    .nav-item {
+      margin-bottom: 4px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--surface-alt);
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-btn .badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(100, 116, 139, 0.2);
+    }
+
+    .nav-btn.active .badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    /* Main Content Area */
+    .main {
+      flex: 1;
+      margin-left: 290px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 450px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .content-container {
+      padding: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-page {
+      display: none;
+    }
+
+    .section-page.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Cards */
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .page-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .rule-box {
+      background: var(--surface-alt);
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+    }
+
+    .warn-box {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 6px;
+      background: var(--surface-alt);
+      color: var(--primary);
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .tag.correct { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+    .tag.wrong { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+
+    /* Interactive Drill Item (Click to Reveal) */
+    .drill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .drill-item {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .drill-item:hover {
+      border-color: var(--primary);
+    }
+
+    .drill-q {
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .drill-ans {
+      font-weight: 700;
+      color: var(--success);
+      background: rgba(16, 185, 129, 0.12);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .drill-ans.hidden {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+    }
+
+    /* Interactive MCQ / Error Spotting Quiz Component */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-meta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quiz-question {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.15s;
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .quiz-opt.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger);
+    }
+
+    .quiz-exp {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--success);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .quiz-exp.visible {
+      display: block;
+    }
+
+    /* Pill / Chip Grid */
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+    }
+
+    .chip strong {
+      color: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main {
+        margin-left: 0;
+      }
+      .menu-toggle {
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>PARMAR SSC | ENGLISH</h1>
+      <p>Topper's Batch • BASICS OF ENGLISH (By PSP Sir)</p>
+    </div>
+    <div class="stats-bar">
+      <span>Score: <strong id="score-val">0</strong> / <span id="total-val">0</span></span>
+      <button class="btn" style="padding:3px 8px;font-size:0.75rem;" onclick="resetAllQuizzes()">Reset</button>
+    </div>
+    <ul class="nav-list" id="nav-list">
+      <li class="nav-item"><button class="nav-btn active" onclick="showTab('tab-letters', this)">🔤 0. Letters, Sounds & Units <span class="badge">P. 2</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-pos', this)">🏷️ 1. 8 Parts of Speech & Attributes <span class="badge">P. 2</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-inflection', this)">🔄 2. Inflection vs Non-Inflection <span class="badge">P. 2-3</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-noun-pronoun', this)">👥 3. Noun & Pronoun Positions <span class="badge">P. 3</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-verb-types', this)">⚡ 4. Verb Forms & Types <span class="badge">P. 3-4</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-linking', this)">🔗 5. Linking Verbs & Sense Verbs <span class="badge">P. 4</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-master-quiz', this)">🏆 6. Comprehensive Foundation Quiz <span class="badge">P. 1-4</span></button></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ Menu</button>
+      <div class="search-box">
+        <input type="text" id="global-search" placeholder="Search any rule, term, or question across the current tab..." oninput="filterCurrentTab(this.value)" />
+      </div>
+      <div class="top-actions">
+        <button class="btn" onclick="toggleAllDrills(true)">👁️ Reveal All Answers</button>
+        <button class="btn" onclick="toggleAllDrills(false)">🙈 Hide Answers</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+      </div>
+    </header>
+
+    <div class="content-container">
+
+      <!-- ================= TAB 0: LETTERS, SOUNDS & UNITS (PAGE 2) ================= -->
+      <section class="section-page active" id="tab-letters">
+        <h2 class="page-title">0. Letters, Sounds & Hierarchy of English Units</h2>
+        <p class="page-subtitle">Page 2 • The Smallest Unit of Language, Phonetics, Vowel Sounds vs Consonant Sounds, Alphabet vs Alphabets</p>
+
+        <div class="card">
+          <h3>🔤 1. The Hierarchy of Language Units</h3>
+          <p>Every language starts from the smallest unit of sound and builds up to complex thought expression:</p>
+          <div class="rule-box" style="text-align:center; font-size:1.1rem; font-weight:700;">
+            LETTER &lt; WORD &lt; PHRASE &lt; CLAUSE &lt; SENTENCE
+          </div>
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <h4>Smallest Unit = Letter (26 Letters)</h4>
+              <p>The English alphabet contains 26 written letters divided into:</p>
+              <ul style="padding-left:18px;">
+                <li><strong>Vowels (5):</strong> a, e, i, o, u</li>
+                <li><strong>Consonants (21):</strong> b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Meaningful Group = Word</h4>
+              <p>A word is a meaningful combination of letters. Random combinations without meaning do not form words!</p>
+              <ul style="padding-left:18px;">
+                <li><em>Go</em> ✅ | <em>Og</em> ❌ (Meaningless)</li>
+                <li><em>Come</em> ✅ | <em>Omec</em> ❌ (Meaningless)</li>
+                <li>Hindi analogy: <em>क + म + ल = कमल</em> ✅ | <em>म + क + ल = मकल</em> ❌</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🗣️ 2. Phonetics & Sounds (44 Sounds in English)</h3>
+          <p>While English has 26 written letters, it produces <strong>44 phonetic sounds</strong>:</p>
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="rule-box">
+              <h4>20 Vowel Sounds</h4>
+              <p>Divided into pure sounds and gliding sounds:</p>
+              <ul style="padding-left:18px;">
+                <li><strong>Monophthongs (12):</strong> Pure Vowels / Single Vowel sounds (एकल स्वर ध्वनि).</li>
+                <li><strong>Diphthongs (8):</strong> Double Vowel sounds / Glides (द्विस्वर ध्वनि).</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>24 Consonant Sounds</h4>
+              <p>Produced with partial or complete closure of the vocal tract (व्यंजन ध्वनियाँ).</p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:16px; background:var(--surface-alt);">
+            <h4>📢 The Article Sound Rule (A vs An):</h4>
+            <p>Articles <strong>A / An</strong> depend strictly on the <strong>INITIAL PHONETIC SOUND</strong>, not the written letter:</p>
+            <div class="grid-2" style="margin-top:10px;">
+              <ul style="padding-left:18px;">
+                <li><strong>An Hour:</strong> Begins with vowel sound 'आ' ➔ takes <em>An</em>.</li>
+                <li><strong>A Horse:</strong> Begins with consonant sound 'ह' ➔ takes <em>A</em>.</li>
+              </ul>
+              <ul style="padding-left:18px;">
+                <li><strong>An Eagle:</strong> Begins with vowel sound 'इ' ➔ takes <em>An</em>.</li>
+                <li><strong>A European:</strong> Begins with consonant sound 'य' (yu-) ➔ takes <em>A</em>.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>⚠️ 3. Alphabet vs Alphabets (High-Frequency Exam Trap - Page 2)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Alphabet (वर्णमाला)</h4>
+              <p>The entire set of letters (A to Z) arranged in a fixed order. It is an uncountable singular noun for a single language.</p>
+              <p>• <em>"Children learn the <strong>alphabet</strong> before they start reading words."</em> ✅</p>
+              <p>• <em>"The teacher wrote the <strong>alphabet</strong> on the board."</em> ✅</p>
+            </div>
+            <div class="warn-box">
+              <h4>Alphabets = Languages (भाषाएँ)</h4>
+              <p>When 's' is added to alphabet, its meaning changes completely to <strong>LANGUAGES</strong>!</p>
+              <p>• <em>"He knows many <strong>alphabets</strong>."</em> (Means he knows many languages).</p>
+              <p>• <em>"He learned 26 alphabets"</em> ❌ ➔ <strong>"26 letters of the alphabet"</strong> ✅.</p>
+            </div>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Letters, Sounds & Alphabet — Click to Reveal</h4>
+          <div class="drill-list" id="drill-tab0"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Fundamentals (Page 2)</h4>
+          <div id="quiz-tab0"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 1: 8 PARTS OF SPEECH & ATTRIBUTES (PAGE 2) ================= -->
+      <section class="section-page" id="tab-pos">
+        <h2 class="page-title">1. The 8 Parts of Speech & Form-Function Attributes</h2>
+        <p class="page-subtitle">Page 2 • Identification of Words in Context, The 8 Functional Categories, Grammatical Attributes</p>
+
+        <div class="card">
+          <h3>🏷️ 1. The 8 Parts of Speech</h3>
+          <p>Every single word in an English sentence performs a specific syntactic role known as its <strong>Part of Speech</strong>:</p>
+          <div class="chip-grid" style="margin-top:12px;">
+            <span class="chip"><strong>1. NOUN:</strong> Naming word (Rohan, honesty, team)</span>
+            <span class="chip"><strong>2. PRONOUN:</strong> Replaces noun (they, he, which)</span>
+            <span class="chip"><strong>3. VERB:</strong> Action/State/Possession (go, come, is, have)</span>
+            <span class="chip"><strong>4. ADJECTIVE:</strong> Qualifies noun/pronoun (intelligent, brave)</span>
+            <span class="chip"><strong>5. ADVERB:</strong> Modifies verb/adj/adverb (very, wisely, fast)</span>
+            <span class="chip"><strong>6. PREPOSITION:</strong> Relational word (on, in, between, for)</span>
+            <span class="chip"><strong>7. CONJUNCTION:</strong> Connects words/clauses (and, but, because)</span>
+            <span class="chip"><strong>8. INTERJECTION:</strong> Sudden emotion (Alas!, Hurrah!, Wow!)</span>
+          </div>
+          <p style="margin-top:12px; font-size:0.9rem; color:var(--text-muted);">
+            <em>Note:</em> Modern functional grammar also recognizes <strong>Articles</strong> (a, an, the) and <strong>Determiners</strong> (this, that, some, few) as foundational word classes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>⚙️ 2. The 6 Attributes of Words (Form & Function)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Attribute</th><th>Categories / Values</th><th>Applicable Parts of Speech</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Number</strong></td>
+                  <td>Singular / Plural</td>
+                  <td>Noun, Pronoun, Verb</td>
+                  <td>Boy → Boys | He → They | Plays → Play</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Gender</strong></td>
+                  <td>Masculine, Feminine, Common, Neuter</td>
+                  <td>Noun, Pronoun</td>
+                  <td>Actor / Actress | He / She / It</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Cases</strong></td>
+                  <td>Subjective (Nominative), Objective (Accusative), Possessive (Genitive)</td>
+                  <td>Noun, Pronoun</td>
+                  <td>He (Subject) → Him (Object) → His (Possessive)</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Person</strong></td>
+                  <td>1st Person (Speaker), 2nd Person (Listener), 3rd Person (Spoken about)</td>
+                  <td>Pronouns & Verbs</td>
+                  <td>I / We (1st) | You (2nd) | He / She / They (3rd)</td>
+                </tr>
+                <tr>
+                  <td><strong>5. State</strong></td>
+                  <td>Condition, Status, Existence</td>
+                  <td>Linking Verbs & Complements</td>
+                  <td><em>"You are a learner."</em> (State of being)</td>
+                </tr>
+                <tr>
+                  <td><strong>6. Degree</strong></td>
+                  <td>Positive, Comparative, Superlative</td>
+                  <td>Adjectives & Adverbs</td>
+                  <td>Wise → Wiser → Wisest | Wisely → More wisely → Most wisely</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Identifying Parts of Speech — Click to Reveal</h4>
+          <div class="drill-list" id="drill-tab1"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Parts of Speech & Attributes</h4>
+          <div id="quiz-tab1"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: INFLECTION VS NON-INFLECTION (PAGES 2-3) ================= -->
+      <section class="section-page" id="tab-inflection">
+        <h2 class="page-title">2. Inflection vs Non-Inflection in English</h2>
+        <p class="page-subtitle">Pages 2 & 3 • Which Words Change Form and Which Remain Rigid; The 5 Inflected Classes</p>
+
+        <div class="card">
+          <h3>🔄 1. What is Inflection (रूप-परिवर्तन)?</h3>
+          <p><strong>Inflection</strong> is the change in the form of a word to express a grammatical function such as tense, number, case, gender, or degree of comparison.</p>
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <h4>5 Inflected Parts of Speech (Change Form)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>NOUN:</strong> Changes for number & possession.</li>
+                <li><strong>PRONOUN:</strong> Changes for case, person, and number.</li>
+                <li><strong>VERB:</strong> Changes for tense, voice, aspect, participle.</li>
+                <li><strong>ADJECTIVE:</strong> Changes for degrees of comparison.</li>
+                <li><strong>ADVERB:</strong> Changes for degrees of comparison.</li>
+              </ul>
+            </div>
+            <div class="warn-box">
+              <h4>Non-Inflected Parts of Speech (Rigid Form)</h4>
+              <p>These classes <strong>NEVER change their spelling or form</strong> regardless of sentence context:</p>
+              <ul style="padding-left:18px;">
+                <li><strong>Preposition:</strong> <em>on, in, at, between</em> (Never "ons" or "ined" ❌)</li>
+                <li><strong>Conjunction:</strong> <em>and, but, because, although</em></li>
+                <li><strong>Interjection:</strong> <em>alas, hurrah, wow, ouch</em></li>
+                <li><strong>Article & Determiner:</strong> <em>the, every, each</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📋 2. Comprehensive Inflection Across the 5 Classes (Page 3)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Part of Speech</th><th>Inflection Mechanism</th><th>Examples</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Noun Inflection</strong></td>
+                  <td>Number & Possession ('s)</td>
+                  <td>• Girl → <strong>Girls</strong><br>• Child → <strong>Children</strong><br>• Ram → <strong>Ram's</strong> book</td>
+                </tr>
+                <tr>
+                  <td><strong>Verb Inflection</strong></td>
+                  <td>Tense, Person & Participles (V1, V2, V3, V4, V5)</td>
+                  <td>• Walk → <strong>Walked</strong> → <strong>Walking</strong><br>• Go → <strong>Went</strong> → <strong>Gone</strong><br>• Eat → <strong>Eating</strong> | Play → <strong>Plays</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Adjective Inflection</strong></td>
+                  <td>Degrees of Comparison (P.D → C.D → S.D)</td>
+                  <td>• Tall → <strong>Taller</strong> → <strong>Tallest</strong><br>• Small → <strong>Smaller</strong> → <strong>Smallest</strong><br>• Good → <strong>Better</strong> → <strong>Best</strong><br>• Difficult → <strong>More difficult</strong> → <strong>Most difficult</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Pronoun Inflection</strong></td>
+                  <td>Grammatical Cases (Subjective → Objective → Possessive)</td>
+                  <td>• I → <strong>Me</strong> → <strong>My</strong> → <strong>Mine</strong><br>• He → <strong>Him</strong> → <strong>His</strong><br>• They → <strong>Them</strong> → <strong>Their</strong> → <strong>Theirs</strong><br>• Who → <strong>Whom</strong> → <strong>Whose</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Adverb Inflection</strong></td>
+                  <td>Degrees of Comparison (Manner & Action speed)</td>
+                  <td>• Wisely → <strong>More wisely</strong> → <strong>Most wisely</strong><br>• Bravely → <strong>More bravely</strong> → <strong>Most bravely</strong><br>• Fast → <strong>Faster</strong> → <strong>Fastest</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Inflection Identification — Click to Reveal</h4>
+          <div class="drill-list" id="drill-tab2"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Inflection Rules</h4>
+          <div id="quiz-tab2"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: NOUN & PRONOUN POSITIONS (PAGE 3) ================= -->
+      <section class="section-page" id="tab-noun-pronoun">
+        <h2 class="page-title">3. Noun & Pronoun — Definitions, Attributes & Syntactic Positions</h2>
+        <p class="page-subtitle">Page 3 • The 5 Positions of a Noun; The 3 Positions of a Pronoun; Case Harmony</p>
+
+        <div class="card">
+          <h3>👥 1. What is a Noun? ("Name is Noun")</h3>
+          <p><strong>"Everything is a noun, or Name is a noun."</strong> A noun is the naming word for any person, place, thing, concept, emotion, or collection.</p>
+          <div class="chip-grid" style="margin-top:10px;">
+            <span class="chip"><strong>Honesty</strong> (Abstract)</span>
+            <span class="chip"><strong>Jury</strong> (Collective)</span>
+            <span class="chip"><strong>Gold</strong> (Material)</span>
+            <span class="chip"><strong>Police</strong> (Collective)</span>
+            <span class="chip"><strong>Childhood</strong> (State)</span>
+            <span class="chip"><strong>Beauty</strong> (Quality)</span>
+            <span class="chip"><strong>Committee</strong> (Collective)</span>
+          </div>
+
+          <h4 style="margin-top:18px;">📍 The 5 Syntactic Positions of a Noun (Page 3)</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Position / Syntactic Role</th><th>Rule Description</th><th>Master Example</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Noun as Subject</strong></td>
+                  <td>Performs the action or is the topic of the sentence.</td>
+                  <td><em><strong>The students</strong> are preparing for competitive examinations.</em></td>
+                </tr>
+                <tr>
+                  <td><strong>2. Noun as Object of a Verb</strong></td>
+                  <td>Directly receives the action of a transitive verb.</td>
+                  <td><em>The teacher explained <strong>the lesson</strong>.</em></td>
+                </tr>
+                <tr>
+                  <td><strong>3. Noun as Object of a Preposition</strong></td>
+                  <td>Follows a preposition to complete prepositional phrase.</td>
+                  <td><em>He is interested in <strong>music</strong>.</em> ('in' = Prep, 'music' = Obj of Prep)</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Noun as Subject Complement</strong></td>
+                  <td>Follows a linking verb to identify/rename the subject.</td>
+                  <td><em>Ram is a <strong>teacher</strong>.</em> ('is' = Linking verb, 'teacher' = Complement)</td>
+                </tr>
+                <tr>
+                  <td><strong>5. Noun in Apposition</strong></td>
+                  <td>Placed next to another noun to explain or describe it.</td>
+                  <td><em>Kalidas, <strong>a great Sanskrit poet</strong>, wrote Abhijnanashakuntalam.</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🎭 2. What is a Pronoun? ("Represents a Noun")</h3>
+          <p>A pronoun replaces or represents a noun to avoid monotonous repetition.</p>
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="rule-box">
+              <h4>Classification of Pronouns (Page 3)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Personal:</strong> I, we, you, he, she, it, they</li>
+                <li><strong>Possessive:</strong> mine, ours, yours, his, hers, theirs</li>
+                <li><strong>Self (Reflexive/Emphatic):</strong> myself, yourself, himself</li>
+                <li><strong>Demonstrative:</strong> this, that, these, those</li>
+                <li><strong>Relative:</strong> who, whom, whose, which, that</li>
+                <li><strong>Indefinite:</strong> someone, anyone, everybody, none</li>
+                <li><strong>Distributive:</strong> each, either, neither</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>The 3 Syntactic Positions of a Pronoun</h4>
+              <ol style="padding-left:18px;">
+                <li><strong>Pronoun as Subject:</strong><br><em><strong>She</strong> teaches English grammar.</em></li>
+                <li><strong>Pronoun as Object of a Verb:</strong><br><em>The principal rewarded <strong>them</strong>.</em></li>
+                <li><strong>Pronoun as Object of a Preposition:</strong><br><em>Between you and <strong>me</strong>, this decision is incorrect.</em></li>
+              </ol>
+            </div>
+          </div>
+          <div class="warn-box" style="margin-top:14px;">
+            <strong>⚠️ Golden Exam Trap: Preposition Takes OBJECTIVE Case!</strong>
+            <br>Prepositions (between, for, with, to) are always followed by the <strong>Objective Case</strong> of a pronoun:
+            <br>• <em>Between you and I</em> ❌ ➔ <strong>Between you and me</strong> ✅.
+            <br>• <em>For he and I</em> ❌ ➔ <strong>For him and me</strong> ✅.
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Noun & Pronoun Positions — Click to Reveal</h4>
+          <div class="drill-list" id="drill-tab3"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Positions & Case Rules</h4>
+          <div id="quiz-tab3"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: VERB FORMS & TYPES (PAGES 3-4) ================= -->
+      <section class="section-page" id="tab-verb-types">
+        <h2 class="page-title">4. Verb Anatomy — Action, State, Possession & Helping Verbs</h2>
+        <p class="page-subtitle">Pages 3 & 4 • The 3 Core Functions of Verbs; Main Verbs vs Helping Verbs; Primary vs Modal Auxiliaries</p>
+
+        <div class="card">
+          <h3>⚡ 1. The 3 Core Functions of a Verb</h3>
+          <p>Traditional definitions say "verb is an action word". But PSP Sir emphasizes: <strong>A verb expresses Action, State, OR Possession!</strong></p>
+          <div class="grid-3" style="margin-top:12px;">
+            <div class="rule-box">
+              <h4>1. Action (कार्य)</h4>
+              <p>Physical or mental dynamic activity.</p>
+              <p>• <em>"You are <strong>playing</strong> well."</em></p>
+              <p>• <em>"He is <strong>driving</strong> his car."</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>2. State (अवस्था / स्थिति)</h4>
+              <p>State of being, identity, condition.</p>
+              <p>• <em>"You are a good player."</em></p>
+              <p>• <em>"He is a driver."</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>3. Possession (अधिकार)</h4>
+              <p>Ownership or belonging.</p>
+              <p>• <em>"You <strong>have</strong> a bat."</em></p>
+              <p>• <em>"He <strong>has</strong> a car."</em></p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:14px; background:var(--surface-alt);">
+            <h4>🔄 Action Verbs: Doing vs Happening (Page 3)</h4>
+            <div class="grid-2" style="margin-top:8px;">
+              <p>• <strong>Doing (Intentionally done by agent):</strong> <em>"I am reading a lesson."</em></p>
+              <p>• <strong>Happening (Occurs naturally without deliberate agent):</strong> <em>"It rained last night."</em></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🛠️ 2. Main Verb vs Auxiliary (Helping) Verb</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Main Verb (Principal Verb)</h4>
+              <ul style="padding-left:18px;">
+                <li>Possesses forms (V1, V2, V3, V4, V5).</li>
+                <li>Can stand alone as the sole verb in a sentence.</li>
+                <li>Expresses the main action or state.</li>
+              </ul>
+              <div class="chip-grid" style="margin-top:10px;">
+                <span class="chip"><strong>V1:</strong> Base / Present (go, play)</span>
+                <span class="chip"><strong>V2:</strong> Past Simple (went, played)</span>
+                <span class="chip"><strong>V3:</strong> Past Participle (gone, played)</span>
+                <span class="chip"><strong>V4:</strong> Present Participle / -ing (going)</span>
+              </div>
+            </div>
+            <div class="rule-box">
+              <h4>Auxiliary Verb (Helping Verb)</h4>
+              <ul style="padding-left:18px;">
+                <li>Does not have full independent lexical meaning alone.</li>
+                <li>Helps the main verb express tense, mood, passive voice, questions, and negatives.</li>
+                <li><em>"You <strong>are</strong> playing."</em> (are = HV, playing = MV)</li>
+                <li><em>"He <strong>has</strong> finished his work."</em> (has = HV, finished = MV)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🧭 3. Primary Auxiliaries vs Modal Auxiliaries (Page 4)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Auxiliary Category</th><th>Verbs Included</th><th>Special Behavioral Rule</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Primary Auxiliaries</strong></td>
+                  <td>• <strong>Be:</strong> is, am, are, was, were<br>• <strong>Do:</strong> do, does, did<br>• <strong>Have:</strong> has, have, had</td>
+                  <td>Can act as <strong>BOTH</strong> Helping Verb AND Main Verb! (e.g. <em>"He has finished"</em> [HV] vs <em>"He has a car"</em> [MV]).</td>
+                </tr>
+                <tr>
+                  <td><strong>Modal Auxiliaries</strong></td>
+                  <td><em>can, could, may, might, shall, should, will, would, must, ought to</em></td>
+                  <td><strong>NEVER</strong> act as main verbs alone; always require a base verb (V1).</td>
+                </tr>
+                <tr>
+                  <td><strong>Semi-Modals (Marginal)</strong></td>
+                  <td><em>Need, Dare</em></td>
+                  <td>Can act as Helping Verbs (in negatives/questions) and also as Main Verbs!</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Verbs, Auxiliaries & Functions — Click to Reveal</h4>
+          <div class="drill-list" id="drill-tab4"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Verb Classification</h4>
+          <div id="quiz-tab4"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: LINKING VERBS (PAGE 4) ================= -->
+      <section class="section-page" id="tab-linking">
+        <h2 class="page-title">5. Linking Verbs & The "Be" Substitution Trick</h2>
+        <p class="page-subtitle">Page 4 • Helping Verb vs Linking Verb; Verbs of Sense; The Master Substitution Rule</p>
+
+        <div class="card">
+          <h3>🔗 1. What is a Linking Verb?</h3>
+          <p>A <strong>Linking Verb</strong> does not express action. Instead, it connects the subject to a <strong>Subject Complement</strong> (noun or adjective) that describes or identifies the subject.</p>
+          <div class="rule-box" style="margin-top:12px;">
+            <strong>The Be-Form Rule (Page 4):</strong>
+            <ul style="padding-left:18px; margin-top:6px;">
+              <li>If a separate verb follows a "be" form ➔ The "be" form acts as a <strong>Helping Verb</strong>.<br><em>"You <strong>are</strong> learning a lesson."</em> ('are' = HV, 'learning' = MV).</li>
+              <li>If NO separate verb follows the "be" form ➔ The "be" form acts as the <strong>Main Verb (Linking Verb)</strong>.<br><em>"You <strong>are</strong> a learner."</em> ('are' = Linking Verb, 'learner' = Complement).<br><em>"You <strong>were</strong> there."</em> ('were' = Linking Verb).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>👃 2. Verbs of Sensation (Sensory Linking Verbs)</h3>
+          <p>Common linking verbs other than "be": <strong>be, seem, become, appear, look, feel, taste, smell, sound, grow, turn, keep, prove</strong>.</p>
+          <ul style="padding-left:18px; margin-top:8px;">
+            <li><em>"She is intelligent."</em> (is = LV, intelligent = Adj complement)</li>
+            <li><em>"He became a doctor."</em> (became = LV, doctor = Noun complement)</li>
+            <li><em>"The food tastes delicious."</em> (tastes = LV, delicious = Adj complement)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>💡 3. The Master Identification Test (The "Be" Substitution Trick - Page 4)</h3>
+          <p>How do you confirm whether a sensory verb is functioning as a Linking Verb?</p>
+          <div class="rule-box" style="font-size:1.05rem; font-weight:700; text-align:center;">
+            Replace the verb with a "BE" form (is / was / are). If the sentence remains meaningful and keeps its core sense, the verb is a LINKING VERB!
+          </div>
+          <div class="table-wrap" style="margin-top:14px;">
+            <table>
+              <thead><tr><th>Original Sentence</th><th>Substitute with "Be" (is / was)</th><th>Result & Conclusion</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><em>"It tasted better."</em></td>
+                  <td>➔ <em>"It <strong>was</strong> better."</em></td>
+                  <td><span class="tag correct">Meaningful</span> ➔ 'Tasted' is a <strong>Linking Verb</strong>!</td>
+                </tr>
+                <tr>
+                  <td><em>"He looks happy."</em></td>
+                  <td>➔ <em>"He <strong>is</strong> happy."</em></td>
+                  <td><span class="tag correct">Meaningful</span> ➔ 'Looks' is a <strong>Linking Verb</strong>!</td>
+                </tr>
+                <tr>
+                  <td><em>"He feels sad."</em></td>
+                  <td>➔ <em>"He <strong>is</strong> sad."</em></td>
+                  <td><span class="tag correct">Meaningful</span> ➔ 'Feels' is a <strong>Linking Verb</strong>!</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="warn-box" style="margin-top:14px;">
+            <strong>⚠️ Fundamental SSC Exam Rule:</strong>
+            <br>Linking verbs connect to a <strong>Subject Complement (ADJECTIVE)</strong>, NEVER an adverb!
+            <br>• <em>"He feels badly"</em> ❌ ➔ <strong>"He feels bad"</strong> ✅.
+            <br>• <em>"The rose smells sweetly"</em> ❌ ➔ <strong>"The rose smells sweet"</strong> ✅.
+            <br>• <em>"She looked beautifully"</em> ❌ ➔ <strong>"She looked beautiful"</strong> ✅.
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Linking Verbs & Complements — Click to Reveal</h4>
+          <div class="drill-list" id="drill-tab5"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Linking Verbs & Traps</h4>
+          <div id="quiz-tab5"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: COMPREHENSIVE FOUNDATION QUIZ ================= -->
+      <section class="section-page" id="tab-master-quiz">
+        <h2 class="page-title">6. Comprehensive Foundation Master Quiz</h2>
+        <p class="page-subtitle">Test your complete mastery of Letters, Sounds, 8 Parts of Speech, Inflection, and Linking Verbs</p>
+
+        <div class="card">
+          <h3>🏆 Full Chapter Assessment (15 Exam-Grade Questions)</h3>
+          <p>Answer each question to evaluate your foundation in English grammar. Track your live score on the sidebar:</p>
+          <div id="quiz-master-arena"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    // ==================== DATA ARRAYS ====================
+
+    // Tab 0: Letters, Sounds & Units
+    const drillsTab0 = [
+      { q: "1. Children learn the alphabets before they start reading words.", a: "alphabet (The 26 letters of a language are called 'alphabet', not 'alphabets')" },
+      { q: "2. The teacher wrote the alphabets on the blackboard.", a: "alphabet (Use singular 'alphabet')" },
+      { q: "3. Total phonetic sounds in English language are: 26 or 44?", a: "44 sounds (20 vowel sounds + 24 consonant sounds)" },
+      { q: "4. Single pure vowel sounds are called: Monophthongs or Diphthongs?", a: "Monophthongs (12 pure vowels; 8 gliding vowels are Diphthongs)" },
+      { q: "5. Identify correct article: (A / An) European.", a: "A European (Begins with consonant sound 'य' [yu-])" },
+      { q: "6. Identify correct article: (A / An) Hour.", a: "An Hour (Begins with vowel sound 'आ' [ou-])" },
+      { q: "7. Identify correct article: (A / An) Horse.", a: "A Horse (Begins with consonant sound 'ह')" },
+      { q: "8. Identify correct article: (A / An) Eagle.", a: "An Eagle (Begins with vowel sound 'इ')" },
+      { q: "9. Arrange in ascending order of size: Clause, Letter, Sentence, Word, Phrase.", a: "Letter < Word < Phrase < Clause < Sentence" },
+      { q: "10. He knows four alphabets including French, German, and Spanish.", a: "Correct! ('Alphabets' means languages when plural)" }
+    ];
+
+    const quizTab0Data = [
+      { meta: "Page 2 • Sounds Q1", q: "Q1. How many total vowel sounds are there in the English phonetic system?", opts: ["A) 5", "B) 21", "C) 20", "D) 24"], ans: 2, exp: "English has 5 written vowel letters, but produces 20 vowel sounds (12 Monophthongs + 8 Diphthongs)." },
+      { meta: "Page 2 • Phonetics Q2", q: "Q2. A double vowel or gliding vowel sound is technically called a:", opts: ["A) Monophthong", "B) Diphthong", "C) Consonant", "D) Syllable"], ans: 1, exp: "Diphthongs are double/gliding vowel sounds (there are 8 in English)." },
+      { meta: "Page 2 • Articles Q3", q: "Q3. Which of the following words correctly takes the indefinite article 'A'?", opts: ["A) Hour", "B) European", "C) Honest man", "D) MLA"], ans: 1, exp: "'European' starts with a consonant sound ('य' /j/), so it takes 'A European'." },
+      { meta: "Page 2 • Spotting Error Q4", q: "Q4. The kindergarten children (A) / were taught all (B) / the alphabets in their first month. (C) / No error (D)", opts: ["A) The kindergarten children", "B) were taught all", "C) the alphabets in their first month", "D) No error"], ans: 2, exp: "Replace 'alphabets' with 'alphabet' (or 'letters of the alphabet')." }
+    ];
+
+    // Tab 1: 8 Parts of Speech & Attributes
+    const drillsTab1 = [
+      { q: "1. Identify part of speech: 'Alas! We missed the train.'", a: "Interjection (Alas expresses sudden sorrow)" },
+      { q: "2. Identify part of speech: 'She works very hard.' (What is 'very'?)", a: "Adverb (Modifies the adverb 'hard')" },
+      { q: "3. Identify part of speech: 'The intelligent boy solved the puzzle.' (What is 'intelligent'?)", a: "Adjective (Qualifies the noun 'boy')" },
+      { q: "4. Identify part of speech: 'He spoke wisely.' (What is 'wisely'?)", a: "Adverb (Modifies the action verb 'spoke')" },
+      { q: "5. Identify part of speech: 'Ram and Shyam are brothers.' (What is 'and'?)", a: "Conjunction (Connects two nouns)" },
+      { q: "6. Identify part of speech: 'The cat jumped on the table.' (What is 'on'?)", a: "Preposition (Relates 'jumped' to 'table')" },
+      { q: "7. Which parts of speech possess the attribute of 'Degree'?", a: "Adjective and Adverb (Wise/Wiser/Wisest; Wisely/More wisely/Most wisely)" },
+      { q: "8. Which parts of speech possess the attribute of 'Gender'?", a: "Noun and Pronoun (Masculine, Feminine, Neuter, Common)" }
+    ];
+
+    const quizTab1Data = [
+      { meta: "Page 2 • Parts of Speech Q1", q: "Q1. How many total traditional Parts of Speech are recognized in English grammar?", opts: ["A) 6", "B) 7", "C) 8", "D) 10"], ans: 2, exp: "There are 8 traditional parts of speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction, and Interjection." },
+      { meta: "Page 2 • Attributes Q2", q: "Q2. Which grammatical attribute is exclusively applicable to Adjectives and Adverbs?", opts: ["A) Gender", "B) Number", "C) Case", "D) Degree"], ans: 3, exp: "Degrees of Comparison (Positive, Comparative, Superlative) belong strictly to Adjectives and Adverbs." },
+      { meta: "Page 2 • Identification Q3", q: "Q3. In the sentence 'Rohan is a very diligent student', the word 'very' is a/an:", opts: ["A) Adjective", "B) Adverb", "C) Conjunction", "D) Determiner"], ans: 1, exp: "'Very' is an intensifier Adverb modifying the adjective 'diligent'." }
+    ];
+
+    // Tab 2: Inflection vs Non-Inflection
+    const drillsTab2 = [
+      { q: "1. Can the preposition 'between' undergo inflection (change form)?", a: "No! Prepositions never inflect (No inflection)" },
+      { q: "2. What is the inflection of noun 'child' to show plural number?", a: "Children (Irregular plural inflection)" },
+      { q: "3. What is the inflection of noun 'Ram' to show possession?", a: "Ram's (Possessive case inflection)" },
+      { q: "4. What is the past tense inflection of verb 'go'?", a: "Went (V2 form)" },
+      { q: "5. What is the comparative degree inflection of 'difficult'?", a: "More difficult (Periphrastic comparative inflection)" },
+      { q: "6. What is the objective case inflection of pronoun 'They'?", a: "Them (Subjective: They -> Objective: Them)" },
+      { q: "7. Can the conjunction 'because' be pluralized or inflected?", a: "No! Conjunctions are rigid and have no inflection" },
+      { q: "8. Name the 5 parts of speech that have Inflection.", a: "Noun, Pronoun, Verb, Adjective, Adverb" }
+    ];
+
+    const quizTab2Data = [
+      { meta: "Page 2 • Inflection Q1", q: "Q1. Which of the following word classes does NOT undergo inflection?", opts: ["A) Noun", "B) Preposition", "C) Verb", "D) Pronoun"], ans: 1, exp: "Prepositions, Conjunctions, Interjections, Articles, and Determiners have NO inflection." },
+      { meta: "Page 3 • Inflection Q2", q: "Q2. Pronoun inflection primarily manifests as changes in:", opts: ["A) Degree", "B) Grammatical Case", "C) Voice", "D) Participle"], ans: 1, exp: "Pronouns inflect to show case (I -> Me -> My -> Mine; He -> Him -> His)." },
+      { meta: "Page 3 • Verb Inflection Q3", q: "Q3. 'Eat -> Ate -> Eating -> Eaten' is an example of:", opts: ["A) Noun declension", "B) Verb inflection", "C) Adjective comparison", "D) Adverb modification"], ans: 1, exp: "Verbs change form (inflect) to express tense, aspect, and participles." }
+    ];
+
+    // Tab 3: Noun & Pronoun Positions
+    const drillsTab3 = [
+      { q: "1. Identify the role of 'The students' in: 'The students are preparing for exams.'", a: "Noun as Subject" },
+      { q: "2. Identify the role of 'the lesson' in: 'The teacher explained the lesson.'", a: "Noun as Object of Verb" },
+      { q: "3. Identify the role of 'music' in: 'He is interested in music.'", a: "Noun as Object of Preposition ('in')" },
+      { q: "4. Identify the role of 'a teacher' in: 'Ram is a teacher.'", a: "Noun as Subject Complement (after linking verb 'is')" },
+      { q: "5. Identify the role of 'a great Sanskrit poet' in: 'Kalidas, a great Sanskrit poet, wrote Abhijnanashakuntalam.'", a: "Noun in Apposition" },
+      { q: "6. Spot the error: 'Between you and I, this decision is incorrect.'", a: "Between you and me (Preposition 'between' takes Objective Case 'me')" },
+      { q: "7. Identify the role of 'them' in: 'The principal rewarded them.'", a: "Pronoun as Object of Verb" },
+      { q: "8. What kind of pronoun is 'each, either, neither'?", a: "Distributive Pronouns" }
+    ];
+
+    const quizTab3Data = [
+      { meta: "Page 3 • Noun Positions Q1", q: "Q1. In 'Mr. Sharma is a renowned surgeon', the noun 'surgeon' functions as a/an:", opts: ["A) Object of Verb", "B) Object of Preposition", "C) Subject Complement", "D) Noun in Apposition"], ans: 2, exp: "After the linking verb 'is', 'surgeon' renames the subject as a Subject Complement." },
+      { meta: "Page 3 • Pronoun Case Q2", q: "Q2. The manager divided the confidential documents between (A) / the director (B) / and I. (C) / No error (D)", opts: ["A) The manager divided", "B) the confidential documents", "C) and I", "D) No error"], ans: 2, exp: "Preposition 'between' governs the objective case: replace 'and I' with 'and me'." },
+      { meta: "Page 3 • Pronoun Types Q3", q: "Q3. The words 'this, that, these, those' belong to which pronoun category?", opts: ["A) Relative Pronouns", "B) Demonstrative Pronouns", "C) Indefinite Pronouns", "D) Reflexive Pronouns"], ans: 1, exp: "This, that, these, those point out specific items and are Demonstrative Pronouns." }
+    ];
+
+    // Tab 4: Verb Forms & Types
+    const drillsTab4 = [
+      { q: "1. Classify the verb function: 'He has a sports car.' (Action, State, or Possession?)", a: "Possession (Ownership of car)" },
+      { q: "2. Classify the verb function: 'He is driving a car.' (Action, State, or Possession?)", a: "Action (Dynamic driving activity)" },
+      { q: "3. Classify the verb function: 'He is a professional driver.' (Action, State, or Possession?)", a: "State (Identity / Condition of being a driver)" },
+      { q: "4. Classify: 'I am reading a novel.' (Doing action or Happening action?)", a: "Doing (Deliberate activity performed by agent)" },
+      { q: "5. Classify: 'It rained heavily last night.' (Doing action or Happening action?)", a: "Happening (Natural occurrence without agent)" },
+      { q: "6. Identify the verbs: 'She is reading a book.'", a: "'is' = Helping Verb (HV); 'reading' = Main Verb (MV)" },
+      { q: "7. Which verbs can act as both Helping Verbs AND Main Verbs?", a: "Primary Auxiliaries: Be, Do, Have" },
+      { q: "8. Can modal verbs (can, may, shall, must) ever take an -ing or -ed ending?", a: "No! Modals do not have inflected forms" }
+    ];
+
+    const quizTab4Data = [
+      { meta: "Page 3 • Verb Functions Q1", q: "Q1. In the sentence 'Rohan has two brothers', the verb 'has' denotes:", opts: ["A) Physical Action", "B) State of Being", "C) Possession / Relationship", "D) Happening"], ans: 2, exp: "'Has' expresses ownership, relationship, or possession." },
+      { meta: "Page 4 • Verb Types Q2", q: "Q2. In 'They have finished the assignment', the word 'have' functions as a:", opts: ["A) Principal Main Verb", "B) Auxiliary Helping Verb", "C) Linking Verb", "D) Transitive Main Verb"], ans: 1, exp: "'Have' helps the main verb 'finished' form the present perfect tense." },
+      { meta: "Page 4 • Auxiliaries Q3", q: "Q3. Which pair of verbs are classified as Semi-Modal (Marginal) Auxiliaries?", opts: ["A) Can and Could", "B) May and Might", "C) Need and Dare", "D) Shall and Will"], ans: 2, exp: "'Need' and 'Dare' can function both as main verbs and as modal auxiliary verbs." }
+    ];
+
+    // Tab 5: Linking Verbs
+    const drillsTab5 = [
+      { q: "1. Identify the verb in: 'You are a learner.' (Helping Verb or Linking Verb?)", a: "Linking Verb (No main verb follows 'are', so it connects subject to complement)" },
+      { q: "2. Identify the verb in: 'You are learning a lesson.' (Helping Verb or Linking Verb?)", a: "Helping Verb ('are' assists the main verb 'learning')" },
+      { q: "3. Apply the 'Be' trick: 'The food tastes delicious.' -> 'The food is delicious.' Is 'tastes' a linking verb?", a: "Yes! The sentence remains completely meaningful, so 'tastes' is a Linking Verb." },
+      { q: "4. Apply the 'Be' trick: 'He looks happy.' -> 'He is happy.' Is 'looks' a linking verb?", a: "Yes! 'Looks' is a Linking Verb taking adjective complement 'happy'." },
+      { q: "5. Spot the error: 'He feels badly about the accident.'", a: "feels bad (Linking verb 'feel' requires an adjective complement, not an adverb)" },
+      { q: "6. Spot the error: 'The flowers smell sweetly in the morning.'", a: "smell sweet (Linking verb 'smell' takes adjective 'sweet')" },
+      { q: "7. Spot the error: 'The soup tasted deliciously.'", a: "tasted delicious (Adjective 'delicious' needed after linking verb)" },
+      { q: "8. Name 6 common sensory linking verbs.", a: "be, seem, become, appear, look, feel, taste, smell, sound" }
+    ];
+
+    const quizTab5Data = [
+      { meta: "Page 4 • Linking Verbs Q1", q: "Q1. What is the fundamental grammatical function of a Linking Verb?", opts: ["A) To show a dynamic physical action", "B) To connect the subject with a subject complement", "C) To govern a direct object", "D) To indicate passive voice"], ans: 1, exp: "Linking verbs connect the subject to a subject complement (noun or adjective) that describes or identifies the subject." },
+      { meta: "Page 4 • Spotting Error Q2", q: "Q2. The velvet fabric (A) / felt smoothly (B) / against her fingers. (C) / No error (D)", opts: ["A) The velvet fabric", "B) felt smoothly", "C) against her fingers", "D) No error"], ans: 1, exp: "Replace 'felt smoothly' with 'felt smooth' because 'feel' is a linking verb requiring an adjective complement." },
+      { meta: "Page 4 • Identification Q3", q: "Q3. In which of the following sentences does 'appear' function as a LINKING VERB?", opts: ["A) The magician appeared suddenly on the stage.", "B) A strange figure appeared out of the mist.", "C) The results appear promising for the team.", "D) He appeared before the magistrate yesterday."], ans: 2, exp: "In (C), replace 'appear' with 'are' -> 'The results are promising'. It is meaningful, so 'appear' is a Linking Verb!" }
+    ];
+
+    // Tab 6: Comprehensive Foundation Master Quiz
+    const quizMasterArenaData = [
+      { meta: "Foundation Synthesis • Q1", q: "Q1. How many pure single vowel sounds (Monophthongs) exist in the English language?", opts: ["A) 5", "B) 8", "C) 12", "D) 20"], ans: 2, exp: "Out of 20 vowel sounds, 12 are Monophthongs (pure single vowels) and 8 are Diphthongs (double gliding vowels)." },
+      { meta: "Foundation Synthesis • Q2", q: "Q2. Which indefinite article should precede the phrase '______ unique opportunity'?", opts: ["A) An", "B) A", "C) The", "D) None"], ans: 1, exp: "'Unique' begins with the consonant sound 'य' (/j/), so it takes 'A unique opportunity'." },
+      { meta: "Foundation Synthesis • Q3", q: "Q3. The phrase '26 alphabets' in English is technically incorrect because:", opts: ["A) 'Alphabet' cannot take plural form when referring to languages", "B) The 26 units of English are 'letters', which constitute one 'alphabet'", "C) Alphabet is always an adjective", "D) English has only 21 alphabets"], ans: 1, exp: "The 26 individual characters are 'letters'. The complete set from A to Z is called the 'alphabet'." },
+      { meta: "Foundation Synthesis • Q4", q: "Q4. Which of the following is NOT one of the 8 traditional Parts of Speech?", opts: ["A) Interjection", "B) Conjunction", "C) Determiner", "D) Preposition"], ans: 2, exp: "Determiners (and Articles) are modern additions; the 8 traditional parts of speech are Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction, and Interjection." },
+      { meta: "Foundation Synthesis • Q5", q: "Q5. Which word class undergoes NO inflection whatsoever?", opts: ["A) Adverbs", "B) Conjunctions", "C) Pronouns", "D) Adjectives"], ans: 1, exp: "Conjunctions, Prepositions, and Interjections never change their form or spelling." },
+      { meta: "Foundation Synthesis • Q6", q: "Q6. In the sentence 'Kalidas, the Shakespeare of India, wrote great plays', the phrase 'the Shakespeare of India' is:", opts: ["A) Noun as Direct Object", "B) Noun as Object of Preposition", "C) Noun in Apposition", "D) Noun as Subject Complement"], ans: 2, exp: "It sits adjacent to 'Kalidas' to explain his identity, functioning as a Noun in Apposition." },
+      { meta: "Foundation Synthesis • Q7", q: "Q7. In 'Between you and _______, there should be no secrets', which pronoun is grammatically correct?", opts: ["A) I", "B) me", "C) my", "D) mine"], ans: 1, exp: "Preposition 'between' requires the objective case pronoun 'me'." },
+      { meta: "Foundation Synthesis • Q8", q: "Q8. In 'He has a large collection of rare coins', the verb 'has' functions as a:", opts: ["A) Helping Verb of Action", "B) Principal Main Verb of Possession", "C) Primary Auxiliary of Tense", "D) Linking Verb of State"], ans: 1, exp: "'Has' is the sole principal verb here, expressing possession of coins." },
+      { meta: "Foundation Synthesis • Q9", q: "Q9. In which sentence does 'taste' function as an ACTION verb (not a linking verb)?", opts: ["A) The coffee tastes bitter.", "B) The chef tasted the soup carefully.", "C) Sugar tastes sweet.", "D) This medicine tastes unpleasant."], ans: 1, exp: "In (B), the chef performs a deliberate physical action of tasting. (Try replacing with 'was': 'The chef was the soup' is meaningless!)." },
+      { meta: "Foundation Synthesis • Q10", q: "Q10. 'The music sounded [beautifully] to the audience.' Spot the correct improvement:", opts: ["A) more beautifully", "B) beautiful", "C) most beautifully", "D) No improvement"], ans: 1, exp: "'Sound' is a linking verb here; it must take the adjective complement 'beautiful', not the adverb 'beautifully'." }
+    ];
+
+    // ==================== RENDERING & INTERACTIVITY ENGINE ====================
+
+    let score = 0;
+    let totalQuestions = 0;
+
+    function renderDrills(containerId, items) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = items.map(item => `
+        <div class="drill-item" onclick="this.querySelector('.drill-ans').classList.toggle('hidden')">
+          <span class="drill-q">${item.q}</span>
+          <span class="drill-ans hidden" data-answer="✓ ${item.a}">Click to Reveal</span>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.drill-item').forEach(el => {
+        el.addEventListener('click', function () {
+          const ansSpan = this.querySelector('.drill-ans');
+          if (ansSpan.classList.contains('hidden')) {
+            ansSpan.textContent = 'Click to Reveal';
+          } else {
+            ansSpan.textContent = ansSpan.getAttribute('data-answer');
+          }
+        });
+      });
+    }
+
+    function renderQuiz(containerId, quizArray) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      totalQuestions += quizArray.length;
+      document.getElementById('total-val').textContent = totalQuestions;
+
+      container.innerHTML = quizArray.map((qObj, qIdx) => {
+        const uniqueId = `${containerId}-q${qIdx}`;
+        const optsHtml = qObj.opts.map((optText, oIdx) => `
+          <button class="quiz-opt" onclick="checkQuizAnswer('${uniqueId}', ${oIdx}, ${qObj.ans}, this)">
+            ${optText}
+          </button>
+        `).join('');
+
+        return `
+          <div class="quiz-card" id="${uniqueId}">
+            <div class="quiz-meta"><span>${qObj.meta}</span><span>Interactive MCQ</span></div>
+            <div class="quiz-question">${qObj.q}</div>
+            <div class="quiz-options">${optsHtml}</div>
+            <div class="quiz-exp" id="${uniqueId}-exp"><strong>Explanation:</strong> ${qObj.exp}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.checkQuizAnswer = function (cardId, selectedIdx, correctIdx, btnEl) {
+      const card = document.getElementById(cardId);
+      const buttons = card.querySelectorAll('.quiz-opt');
+      const expBox = document.getElementById(`${cardId}-exp`);
+
+      buttons.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === correctIdx) {
+          b.classList.add('correct');
+        }
+      });
+
+      if (selectedIdx === correctIdx) {
+        score++;
+        document.getElementById('score-val').textContent = score;
+      } else {
+        btnEl.classList.add('wrong');
+      }
+
+      expBox.classList.add('visible');
+    };
+
+    window.showTab = function (tabId, btnEl) {
+      document.querySelectorAll('.section-page').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+
+      document.getElementById('sidebar').classList.remove('open');
+      const searchInput = document.getElementById('global-search');
+      if (searchInput.value) {
+        searchInput.value = '';
+        filterCurrentTab('');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.toggleAllDrills = function (reveal) {
+      document.querySelectorAll('.drill-ans').forEach(ansSpan => {
+        if (reveal) {
+          ansSpan.classList.remove('hidden');
+          ansSpan.textContent = ansSpan.getAttribute('data-answer');
+        } else {
+          ansSpan.classList.add('hidden');
+          ansSpan.textContent = 'Click to Reveal';
+        }
+      });
+    };
+
+    window.toggleTheme = function () {
+      const htmlEl = document.documentElement;
+      if (htmlEl.getAttribute('data-theme') === 'dark') {
+        htmlEl.removeAttribute('data-theme');
+      } else {
+        htmlEl.setAttribute('data-theme', 'dark');
+      }
+    };
+
+    window.filterCurrentTab = function (query) {
+      const q = query.toLowerCase().trim();
+      const activeSection = document.querySelector('.section-page.active');
+      if (!activeSection) return;
+
+      activeSection.querySelectorAll('.card, .drill-item, .quiz-card, .chip, tr').forEach(el => {
+        if (!q) {
+          el.style.display = '';
+          return;
+        }
+        if (el.classList.contains('drill-item') || el.classList.contains('quiz-card') || el.classList.contains('chip')) {
+          const text = el.textContent.toLowerCase() + ' ' + (el.querySelector('.drill-ans')?.getAttribute('data-answer') || '').toLowerCase();
+          el.style.display = text.includes(q) ? '' : 'none';
+        }
+      });
+    };
+
+    window.resetAllQuizzes = function () {
+      score = 0;
+      totalQuestions = 0;
+      document.getElementById('score-val').textContent = '0';
+      initAllContent();
+    };
+
+    function initAllContent() {
+      totalQuestions = 0;
+      score = 0;
+
+      // Render Drills
+      renderDrills('drill-tab0', drillsTab0);
+      renderDrills('drill-tab1', drillsTab1);
+      renderDrills('drill-tab2', drillsTab2);
+      renderDrills('drill-tab3', drillsTab3);
+      renderDrills('drill-tab4', drillsTab4);
+      renderDrills('drill-tab5', drillsTab5);
+
+      // Render Quizzes
+      renderQuiz('quiz-tab0', quizTab0Data);
+      renderQuiz('quiz-tab1', quizTab1Data);
+      renderQuiz('quiz-tab2', quizTab2Data);
+      renderQuiz('quiz-tab3', quizTab3Data);
+      renderQuiz('quiz-tab4', quizTab4Data);
+      renderQuiz('quiz-tab5', quizTab5Data);
+      renderQuiz('quiz-master-arena', quizMasterArenaData);
+    }
+
+    document.addEventListener('DOMContentLoaded', initAllContent);
+  </script>
+</body>
+</html>
