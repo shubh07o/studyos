@@ -1,931 +1,632 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chapter 4: ALPHANUMERIC PUZZLE - Interactive Digital Notes & 74 Quizzes | Parmar SSC</title>
+  <title>Chapter 4: ALPHANUMERIC PUZZLE — System Graphs, Notes & 74 Quizzes | Parmar SSC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    :root {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --surface-alt: #f1f5f9;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --accent: #f59e0b;
-      --success: #10b981;
-      --danger: #ef4444;
-      --border: #e2e8f0;
-      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-      --radius: 12px;
-    }
-
-    [data-theme="dark"] {
-      --bg: #0f172a;
-      --surface: #1e293b;
-      --surface-alt: #334155;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --primary: #3b82f6;
-      --primary-dark: #60a5fa;
-      --accent: #fbbf24;
-      --success: #34d399;
-      --danger: #f87171;
-      --border: #334155;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      display: flex;
-      min-height: 100vh;
-    }
-
-    /* Fixed Left Sidebar */
-    .sidebar {
-      width: 290px;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
-    }
-
-    .brand {
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .brand-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary);
-      text-decoration: none;
-      margin-bottom: 12px;
-    }
-
-    .brand-back:hover { text-decoration: underline; }
-
-    .brand-badge {
-      display: inline-block;
-      background: #eff6ff;
-      color: var(--primary);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-    }
-
-    .brand h1 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.3;
-    }
-
-    .nav-list {
-      list-style: none;
-      padding: 12px 8px;
-      flex-grow: 1;
-    }
-
-    .nav-item { margin-bottom: 4px; }
-
-    .nav-btn {
-      width: 100%;
-      text-align: left;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: none;
-      background: transparent;
-      color: var(--text);
-      font-size: 13.5px;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.2s;
-    }
-
-    .nav-btn:hover { background: var(--surface-alt); }
-
-    .nav-btn.active {
-      background: #eff6ff;
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .badge {
-      background: var(--surface-alt);
-      color: var(--text-muted);
-      font-size: 11px;
-      padding: 2px 7px;
-      border-radius: 12px;
-      font-weight: 600;
-    }
-
-    .nav-btn.active .badge {
-      background: var(--primary);
-      color: #ffffff;
-    }
-
-    .sidebar-stats {
-      padding: 16px 20px;
-      border-top: 1px solid var(--border);
-      background: var(--surface-alt);
-      font-size: 12px;
-    }
-
-    .stats-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    .stats-row strong { color: var(--primary); }
-
-    /* Main Content Layout */
-    .main {
-      margin-left: 290px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    /* Sticky Topbar */
-    .topbar {
-      position: sticky;
-      top: 0;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 90;
-      gap: 16px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-    }
-
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 6px 10px;
-      cursor: pointer;
-      color: var(--text);
-    }
-
-    .breadcrumb {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .breadcrumb span { color: var(--text); font-weight: 600; }
-
-    .search-box {
-      position: relative;
-      width: 280px;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 8px 12px 8px 32px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: var(--surface-alt);
-      font-size: 13px;
-      color: var(--text);
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .search-input:focus {
-      border-color: var(--primary);
-      background: var(--surface);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 11px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .topbar-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .btn {
-      padding: 7px 12px;
-      border-radius: 8px;
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.15s;
-    }
-
-    .btn:hover { background: var(--surface-alt); }
-    .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
-    .btn-primary:hover { background: var(--primary-dark); }
-
-    /* Content Area */
-    .content-container {
-      padding: 28px 32px 60px;
-      max-width: 1120px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .section-page { display: none; }
-    .section-page.active { display: block; animation: fadeIn 0.25s ease; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .page-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .page-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    /* Cards & Components */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .rule-box {
-      background: #f0f7ff;
-      border-left: 4px solid var(--primary);
-      border-radius: 6px;
-      padding: 14px 18px;
-      margin: 14px 0;
-      font-size: 14px;
-    }
-
-    .warn-box {
-      background: #fffbeb;
-      border-left: 4px solid var(--accent);
-      border-radius: 6px;
-      padding: 14px 18px;
-      margin: 14px 0;
-      font-size: 14px;
-    }
-
-    .sequence-box {
-      background: var(--surface-alt);
-      border: 2px dashed #93c5fd;
-      border-radius: 8px;
-      padding: 16px 20px;
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #1e3a8a;
-      text-align: center;
-      margin: 16px 0;
-      word-break: break-all;
-    }
-
-    /* Grid Layouts */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-      margin: 16px 0;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin: 16px 0;
-    }
-
-    .formula-card {
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 16px;
-      font-size: 13.5px;
-    }
-
-    .formula-card strong {
-      display: block;
-      color: var(--primary);
-      margin-bottom: 4px;
-      font-size: 14px;
-    }
-
-    /* Active Recall Interactive Drills */
-    .drill-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: 14px 0;
-    }
-
-    .drill-item {
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .drill-item:hover { border-color: #93c5fd; background: #f8fafc; }
-
-    .drill-q {
-      font-size: 14px;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .drill-q::after {
-      content: '👉 Click to Reveal Logic';
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--primary);
-      background: #eff6ff;
-      padding: 3px 8px;
-      border-radius: 12px;
-    }
-
-    .drill-ans {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed var(--border);
-      font-size: 13.5px;
-      color: #065f46;
-      background: #ecfdf5;
-      padding: 10px 12px;
-      border-radius: 6px;
-      line-height: 1.5;
-    }
-
-    .drill-ans.hidden { display: none; }
-
-    /* Interactive Quiz Cards */
-    .quiz-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-      margin-bottom: 18px;
-      transition: all 0.2s;
-    }
-
-    .quiz-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .quiz-tag {
-      background: #e0f2fe;
-      color: #0369a1;
-      padding: 2px 8px;
-      border-radius: 10px;
-    }
-
-    .quiz-question {
-      font-size: 14.5px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
-
-    .quiz-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .quiz-opt {
-      text-align: left;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-      color: var(--text);
-      font-size: 13.5px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .quiz-opt:hover:not(:disabled) {
-      border-color: var(--primary);
-      background: #eff6ff;
-    }
-
-    .quiz-opt.correct {
-      background: #ecfdf5 !important;
-      border-color: #10b981 !important;
-      color: #065f46 !important;
-      font-weight: 700;
-    }
-
-    .quiz-opt.wrong {
-      background: #fef2f2 !important;
-      border-color: #ef4444 !important;
-      color: #991b1b !important;
-    }
-
-    .quiz-exp {
-      display: none;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-left: 3px solid #10b981;
-      border-radius: 6px;
-      padding: 12px 14px;
-      font-size: 13px;
-      color: var(--text);
-      margin-top: 10px;
-      line-height: 1.5;
-    }
-
-    .quiz-exp.show { display: block; animation: fadeIn 0.2s ease; }
-
-    @media (max-width: 900px) {
-      .sidebar { transform: translateX(-100%); }
-      .sidebar.open { transform: translateX(0); }
-      .main { margin-left: 0; }
-      .menu-toggle { display: block; }
-      .search-box { display: none; }
-      .content-container { padding: 18px 16px 40px; }
-      .quiz-options { grid-template-columns: 1fr; }
-    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.03); }
+    ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.3); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.6); }
   </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white min-h-screen flex flex-col">
 
-  <!-- Left Sidebar Navigation -->
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <a href="../index.html" class="brand-back">← Mock Manager</a>
-      <div class="brand-badge">PARMAR SSC REASONING</div>
-      <h1>Alphanumeric Puzzle</h1>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Chapter 04 • 74 Questions</p>
-    </div>
+  <!-- TOP STICKY HEADER -->
+  <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-between h-16 gap-3">
+        <!-- Brand & Title -->
+        <div class="flex items-center gap-3">
+          <a href="../index.html" class="flex items-center gap-2 group" title="Return to Dashboard">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 via-violet-600 to-amber-500 flex items-center justify-center text-white font-black text-lg shadow-md group-hover:scale-105 transition-transform">
+              P
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-base tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">
+                  PARMAR SSC • TOPPERS BATCH
+                </span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-300 border border-amber-300/50">
+                  By Kamal Sir
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                Chapter 4: Alphanumeric Puzzle — System Graphs, Formulas & 74-Q Solved Master Suite
+              </p>
+            </div>
+          </a>
+        </div>
 
-    <ul class="nav-list">
-      <li class="nav-item">
-        <button class="nav-btn active" onclick="showTab('tab-formulas', this)">
-          <span>📖 Direction Rules & Logic</span>
-          <span class="badge">Theory</span>
-        </button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-btn" onclick="showTab('tab-patterns', this)">
-          <span>🔍 1. Preceded & Followed</span>
-          <span class="badge">Q.1–24</span>
-        </button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-btn" onclick="showTab('tab-drops', this)">
-          <span>✂️ 2. Shifts & Drops</span>
-          <span class="badge">Q.25–45</span>
-        </button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-btn" onclick="showTab('tab-numbers-words', this)">
-          <span>🔢 3. Word & Digit Operations</span>
-          <span class="badge">Q.46–69</span>
-        </button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-btn" onclick="showTab('tab-resultants', this)">
-          <span>⚙️ 4. Conditional Resultants</span>
-          <span class="badge">Q.70–74</span>
-        </button>
-      </li>
-      <li class="nav-item">
-        <button class="nav-btn" onclick="showTab('tab-marathon', this)">
-          <span>🏆 5. Exam Marathon Arena</span>
-          <span class="badge">74 Qs</span>
-        </button>
-      </li>
-    </ul>
+        <!-- Navigation Tabs -->
+        <nav class="flex items-center gap-1 sm:gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+          <button onclick="switchTab('tab-system-graph')" id="btn-tab-system-graph" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm">
+            1. System Graphs & Rules
+          </button>
+          <button onclick="switchTab('tab-lab')" id="btn-tab-lab" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-indigo-600">
+            2. Live Direction Lab
+          </button>
+          <button onclick="switchTab('tab-arena')" id="btn-tab-arena" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-300 hover:text-indigo-600">
+            3. Practice Arena (74 Qs)
+          </button>
+        </nav>
 
-    <div class="sidebar-stats">
-      <div class="stats-row">
-        <span>Questions Attempted:</span>
-        <strong id="stat-attempted">0 / 74</strong>
-      </div>
-      <div class="stats-row">
-        <span>Accuracy Score:</span>
-        <strong id="stat-accuracy">0%</strong>
-      </div>
-      <div class="stats-row">
-        <span>Correct Answers:</span>
-        <strong id="stat-correct" style="color: var(--success);">0</strong>
+        <!-- Right Tools -->
+        <div class="flex items-center gap-2">
+          <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Toggle Light/Dark Theme">
+            🌓
+          </button>
+        </div>
       </div>
     </div>
-  </aside>
+  </header>
 
-  <!-- Main Body Content -->
-  <main class="main">
-    <!-- Sticky Topbar -->
-    <header class="topbar">
-      <div class="topbar-left">
-        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-        <div class="breadcrumb">Reasoning / <span>Alphanumeric Puzzle</span></div>
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: SYSTEM GRAPHS, QUOTATIONS & ARCHITECTURAL LOGIC                -->
+    <!-- ===================================================================== -->
+    <div id="tab-system-graph" class="tab-content space-y-8">
+
+      <!-- Hero Banner -->
+      <div class="bg-gradient-to-r from-indigo-700 via-violet-700 to-purple-800 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-3 max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-bold tracking-wide uppercase">
+              <span>⚡ Formula Blueprint & System Architecture</span>
+              <span>•</span>
+              <span>100% English Standard</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+              Alphanumeric Puzzle Logic & Direction Architecture
+            </h1>
+            <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
+              Master Left-Right counting formulas, positional shifts, letter-number drops, ascending/descending word sorting, and 5-step multi-row conditional algorithms with zero confusion.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-3 shrink-0">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3.5 text-center">
+              <div class="text-2xl font-black">4 Types</div>
+              <div class="text-xs text-indigo-100 font-medium">Core Archetypes</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3.5 text-center">
+              <div class="text-2xl font-black">74 Qs</div>
+              <div class="text-xs text-indigo-100 font-medium">Solved PYQs</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="global-search" class="search-input" placeholder="Search questions & rules..." oninput="handleSearch(this.value)" />
-      </div>
-
-      <div class="topbar-actions">
-        <button class="btn" onclick="revealAllVisible()">👁️ Reveal</button>
-        <button class="btn" onclick="hideAllVisible()">🙈 Hide</button>
-        <button class="btn" onclick="resetAllQuizzes()">🔄 Reset</button>
-        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
-      </div>
-    </header>
-
-    <!-- Content Sections -->
-    <div class="content-container">
-
-      <!-- TAB 0: Core Rules & Formulas -->
-      <section id="tab-formulas" class="section-page active">
-        <h2 class="page-title">Alphanumeric Direction Formulas & Core Rules</h2>
-        <p class="page-subtitle">Fundamental formulas, element terminology, and active recall drills.</p>
-
-        <div class="card">
-          <div class="card-title">🧭 1. Left-Right Direction Arithmetic</div>
-          <p>When finding an element located at a certain position relative to another element in a sequence:</p>
-          <div class="grid-2">
-            <div class="formula-card">
-              <strong>Same Directions (Subtract)</strong>
-              • Left of Left = (m - n) from Left end<br>
-              • Right of Right = (m - n) from Right end<br>
-              <em>Example: 5th to the right of 17th from the right = (17 - 5) = 12th from Right.</em>
-            </div>
-            <div class="formula-card">
-              <strong>Opposite Directions (Add)</strong>
-              • Right of Left = (m + n) from Left end<br>
-              • Left of Right = (m + n) from Right end<br>
-              <em>Example: 6th to the left of 14th from the left = (14 - 6) = 8th from Left.</em>
-            </div>
-          </div>
-          <div class="rule-box">
-            <strong>Golden Direction Rule:</strong> In English phrasing, look at the reference preposition: <em>"nth to the right OF mth from the LEFT"</em> means start at the LEFT end and move (m + n) positions!
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">🔤 2. "Preceded By" vs "Followed By" vs "In Between"</div>
-          <p>Examiners frequently invert these conditions to test comprehension speed:</p>
-          <div class="grid-3">
-            <div class="formula-card">
-              <strong>Preceded By (Before / Left)</strong>
-              "A is preceded by B"<br>
-              Pattern: <strong>[ B ] → [ A ]</strong><br>
-              <em>B comes immediately to the LEFT of A.</em>
-            </div>
-            <div class="formula-card">
-              <strong>Followed By (After / Right)</strong>
-              "A is followed by B"<br>
-              Pattern: <strong>[ A ] → [ B ]</strong><br>
-              <em>B comes immediately to the RIGHT of A.</em>
-            </div>
-            <div class="formula-card">
-              <strong>Between / Sandwich</strong>
-              "A is preceded by B and followed by C"<br>
-              Pattern: <strong>[ B ] → [ A ] → [ C ]</strong><br>
-              <em>A is strictly flanked between B and C.</em>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-title">⚡ Interactive Drills: Test Yourself Before Quizzes</div>
-          <div class="drill-list">
-            <div class="drill-item" onclick="toggleDrill(this)">
-              <div class="drill-q">Drill 1: In string "9 4 7 2 6 8 3 5", find the 3rd to the right of 7th from the left.</div>
-              <div class="drill-ans hidden">
-                <strong>Formula:</strong> Opposite directions (Right of Left) = (7 + 3) = 10th element from Left end.<br>
-                Sequence has 8 elements. (10th is beyond length, or with wrap-around, strictly verify bounds!).
-              </div>
-            </div>
-            <div class="drill-item" onclick="toggleDrill(this)">
-              <div class="drill-q">Drill 2: Which is the ONLY even prime number in mathematics?</div>
-              <div class="drill-ans hidden">
-                <strong>Answer:</strong> 2. All other prime numbers (3, 5, 7, 11, 13...) are odd. Remember: 1 is neither prime nor composite!
-              </div>
-            </div>
-            <div class="drill-item" onclick="toggleDrill(this)">
-              <div class="drill-q">Drill 3: In a series if all symbols are dropped, what happens to relative element numbering?</div>
-              <div class="drill-ans hidden">
-                <strong>Rule:</strong> Do NOT rewrite the string. Simply count only letters and numbers, ignoring symbols on the fly to save 40+ seconds!
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 1: Preceded & Followed Patterns -->
-      <section id="tab-patterns" class="section-page">
-        <h2 class="page-title">Tab 1: Preceded & Followed Patterns</h2>
-        <p class="page-subtitle">Practice Questions Q.1 to Q.24 • Identifying Prime, Odd, Even, Letter & Symbol Conditions</p>
-        <div id="tab1-container"></div>
-      </section>
-
-      <!-- TAB 2: String Shifts & Drops -->
-      <section id="tab-drops" class="section-page">
-        <h2 class="page-title">Tab 2: String Shifts & Element Drops</h2>
-        <p class="page-subtitle">Practice Questions Q.25 to Q.45 • Deletions, Left/Right Traversals & Positional Shifts</p>
-        <div id="tab2-container"></div>
-      </section>
-
-      <!-- TAB 3: Word & Digit Operations -->
-      <section id="tab-numbers-words" class="section-page">
-        <h2 class="page-title">Tab 3: Word & 3-Digit Operations</h2>
-        <p class="page-subtitle">Practice Questions Q.46 to Q.69 • Ascending/Descending Rearrangements, Digit Swaps & Arithmetic Sums</p>
-        <div id="tab3-container"></div>
-      </section>
-
-      <!-- TAB 4: Conditional Resultant Rows -->
-      <section id="tab-resultants" class="section-page">
-        <h2 class="page-title">Tab 4: Conditional Resultant Rows</h2>
-        <p class="page-subtitle">Practice Questions Q.70 to Q.74 • Two-Row Multi-Step Algorithmic Logic</p>
-        <div class="rule-box">
-          <strong>Standard Resultant Rules in RRB / SSC:</strong><br>
-          • <strong>Step 1:</strong> Even followed by Odd → Addition (Even + Odd).<br>
-          • <strong>Step 2:</strong> Odd followed by Perfect Square → Difference (|Square - Odd|).<br>
-          • <strong>Step 3:</strong> Odd followed by another Odd (not square) → Addition (Odd + Odd).<br>
-          • <strong>Step 4:</strong> Odd followed by Even (not square) → Multiplication (Odd × Even).<br>
-          • <strong>Step 5:</strong> Even followed by another Even → Division (First ÷ Second).
-        </div>
-        <div id="tab4-container"></div>
-      </section>
-
-      <!-- TAB 5: Marathon Practice Arena -->
-      <section id="tab-marathon" class="section-page">
-        <h2 class="page-title">Tab 5: Exam Marathon Practice Arena</h2>
-        <p class="page-subtitle">All 74 Questions in a Single Interactive Test Environment with Live Timer & Category Filters.</p>
-        <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <!-- SYSTEM GRAPH 1: Left-Right Direction Arithmetic Decision Tree -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+        <div class="flex items-center justify-between flex-wrap gap-2">
           <div>
-            <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">FILTER CATEGORY:</span>
-            <select id="marathon-filter" onchange="filterMarathon(this.value)" style="padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px; margin-left: 8px;">
-              <option value="all">All 74 Questions</option>
-              <option value="Preceded & Followed Patterns">Preceded & Followed Patterns (Q1–24)</option>
-              <option value="String Shifts & Element Drops">Shifts & Drops (Q25–45)</option>
-              <option value="Word & 3-Digit Operations">Word & Digit Operations (Q46–69)</option>
-              <option value="Conditional Resultant Rows">Conditional Resultants (Q70–74)</option>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">System Graph 1 • Direction Flowchart</span>
+            <h2 class="text-xl font-extrabold text-slate-900 dark:text-white">Positional Arithmetic Decision Graph</h2>
+          </div>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 font-semibold border border-indigo-200 dark:border-indigo-800">
+            Same = Subtract (–) | Opposite = Add (+)
+          </span>
+        </div>
+
+        <!-- Visual Flow Tree -->
+        <div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-4">
+          <div class="text-xs font-mono text-slate-500 uppercase tracking-wide">Flowchart: How to Calculate Relative Position in 2 Seconds</div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Node A: Same Direction -->
+            <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border-2 border-indigo-200 dark:border-indigo-800 shadow-sm space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">CASE A: IDENTICAL ENDS</span>
+                <span class="text-sm font-black text-indigo-600 dark:text-indigo-400">SUBTRACT (m – n)</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400">
+                When both direction references are identical, net displacement is reduced:
+              </p>
+              <div class="space-y-1 text-xs font-mono">
+                <div class="p-2 rounded bg-indigo-50/70 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-300">
+                  • <strong>Left of Left</strong> = (m – n) from the <strong>LEFT</strong> end
+                </div>
+                <div class="p-2 rounded bg-indigo-50/70 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-300">
+                  • <strong>Right of Right</strong> = (m – n) from the <strong>RIGHT</strong> end
+                </div>
+              </div>
+              <div class="text-[11px] text-slate-500 italic">Example: 5th to the right of 17th from the right = (17 – 5) = 12th from Right end.</div>
+            </div>
+
+            <!-- Node B: Opposite Direction -->
+            <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border-2 border-emerald-200 dark:border-emerald-800 shadow-sm space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">CASE B: OPPOSITE ENDS</span>
+                <span class="text-sm font-black text-emerald-600 dark:text-emerald-400">ADD (m + n)</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400">
+                When moving away from the reference point toward the opposite side, displacements accumulate:
+              </p>
+              <div class="space-y-1 text-xs font-mono">
+                <div class="p-2 rounded bg-emerald-50/70 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-300">
+                  • <strong>Right of Left</strong> = (m + n) from the <strong>LEFT</strong> end
+                </div>
+                <div class="p-2 rounded bg-emerald-50/70 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-300">
+                  • <strong>Left of Right</strong> = (m + n) from the <strong>RIGHT</strong> end
+                </div>
+              </div>
+              <div class="text-[11px] text-slate-500 italic">Example: 4th to the left of 9th from the right = (9 + 4) = 13th from Right end.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quotation Box -->
+        <blockquote class="border-l-4 border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/40 p-4 rounded-r-xl">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl text-indigo-600 dark:text-indigo-400 font-serif leading-none">❝</span>
+            <div>
+              <p class="text-sm font-semibold text-indigo-950 dark:text-indigo-200 italic">
+                "In English phrasing, always focus on the anchor preposition: <em>'nth to the right OF mth from the LEFT'</em>. The end specified after 'FROM THE' gives your anchor base, and you move away from it. Never count manually term-by-term!"
+              </p>
+              <span class="block text-xs font-bold text-indigo-700 dark:text-indigo-300 mt-1.5">— Kamal Sir (Parmar Reasoning Toppers Batch)</span>
+            </div>
+          </div>
+        </blockquote>
+      </div>
+
+      <!-- SYSTEM GRAPH 2: Preceded vs Followed Visual Sequence Architecture -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400">System Graph 2 • Sequence Architecture</span>
+          <h2 class="text-xl font-extrabold text-slate-900 dark:text-white">"Preceded By" vs "Followed By" Structural Blueprint</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div class="p-5 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50/40 dark:bg-indigo-950/30 space-y-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-extrabold uppercase">
+              1. PRECEEDED BY (BEFORE / LEFT)
+            </span>
+            <div class="flex items-center justify-center gap-2 font-mono text-sm py-2">
+              <span class="px-3 py-1.5 rounded-lg bg-amber-400 text-amber-950 font-black shadow-sm">[ PRECEDER ]</span>
+              <span class="text-indigo-600 font-black">➔</span>
+              <span class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-black shadow-sm">[ TARGET ]</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              "Target is immediately <strong>preceded by</strong> Preceder" means the Preceder lies directly to the <strong>LEFT</strong> of the target.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50/40 dark:bg-emerald-950/30 space-y-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 text-xs font-extrabold uppercase">
+              2. FOLLOWED BY (AFTER / RIGHT)
+            </span>
+            <div class="flex items-center justify-center gap-2 font-mono text-sm py-2">
+              <span class="px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-black shadow-sm">[ TARGET ]</span>
+              <span class="text-emerald-600 font-black">➔</span>
+              <span class="px-3 py-1.5 rounded-lg bg-emerald-400 text-emerald-950 font-black shadow-sm">[ FOLLOWER ]</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              "Target is immediately <strong>followed by</strong> Follower" means the Follower lies directly to the <strong>RIGHT</strong> of the target.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-purple-200 dark:border-purple-800 bg-purple-50/40 dark:bg-purple-950/30 space-y-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs font-extrabold uppercase">
+              3. SANDWICHED / FLANKED
+            </span>
+            <div class="flex items-center justify-center gap-1.5 font-mono text-xs py-2">
+              <span class="px-2 py-1.5 rounded-lg bg-amber-400 text-amber-950 font-black">[ BEFORE ]</span>
+              <span class="text-purple-600 font-black">➔</span>
+              <span class="px-2.5 py-1.5 rounded-lg bg-indigo-600 text-white font-black">[ TARGET ]</span>
+              <span class="text-purple-600 font-black">➔</span>
+              <span class="px-2 py-1.5 rounded-lg bg-emerald-400 text-emerald-950 font-black">[ AFTER ]</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400">
+              "Target is preceded by X and followed by Y" creates a 3-element unbroken triplet: <strong>[ X ] - [ TARGET ] - [ Y ]</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Warning Callout Box -->
+        <div class="border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-950/40 p-4 rounded-r-xl">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">⚠️</span>
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-amber-900 dark:text-amber-200">Examiner Trap Alert: Prime Number Definitions</h4>
+              <p class="text-xs text-amber-800 dark:text-amber-300 mt-1">
+                Always remember: <strong>2 is the only even prime number</strong>. 1 is NEITHER prime NOR composite. When the question asks for <em>"prime followed by even"</em>, pairs like <strong>2–4, 2–6, 5–8, 7–2, 3–6</strong> are valid!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SYSTEM GRAPH 3: 5-Step Conditional Resultant Algorithm Pipeline -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">System Graph 3 • Step Algorithm Pipeline</span>
+          <h2 class="text-xl font-extrabold text-slate-900 dark:text-white">Two-Row Conditional Resultant Decision Pipeline</h2>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          In Questions 70 to 74 (RRB & SSC High-Weightage Multi-Row Puzzles), follow these 5 conditional rules sequentially from left to right:
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800">
+            <span class="font-bold text-blue-700 dark:text-blue-300 block mb-1">STEP 1: Even + Odd</span>
+            <div class="font-mono font-bold text-slate-800 dark:text-slate-200">Addition</div>
+            <p class="text-[11px] text-slate-500 mt-1">Result = Even + Odd</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-violet-50 dark:bg-violet-950/50 border border-violet-200 dark:border-violet-800">
+            <span class="font-bold text-violet-700 dark:text-violet-300 block mb-1">STEP 2: Odd + Square</span>
+            <div class="font-mono font-bold text-slate-800 dark:text-slate-200">Difference</div>
+            <p class="text-[11px] text-slate-500 mt-1">Result = |Square – Odd|</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800">
+            <span class="font-bold text-emerald-700 dark:text-emerald-300 block mb-1">STEP 3: Odd + Odd</span>
+            <div class="font-mono font-bold text-slate-800 dark:text-slate-200">Addition</div>
+            <p class="text-[11px] text-slate-500 mt-1">Result = Odd + Odd</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800">
+            <span class="font-bold text-amber-700 dark:text-amber-300 block mb-1">STEP 4: Odd + Even</span>
+            <div class="font-mono font-bold text-slate-800 dark:text-slate-200">Multiply</div>
+            <p class="text-[11px] text-slate-500 mt-1">Result = Odd × Even</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-800">
+            <span class="font-bold text-rose-700 dark:text-rose-300 block mb-1">STEP 5: Even + Even</span>
+            <div class="font-mono font-bold text-slate-800 dark:text-slate-200">Division</div>
+            <p class="text-[11px] text-slate-500 mt-1">Result = First ÷ Second</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: INTERACTIVE DIRECTION LAB & RECALL DRILLS                      -->
+    <!-- ===================================================================== -->
+    <div id="tab-lab" class="tab-content hidden space-y-8">
+      <!-- Live Direction Calculator Tool -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Interactive Simulator • Positional Tool</span>
+          <h2 class="text-xl font-extrabold text-slate-900 dark:text-white">Live Relative Direction Arithmetic Calculator</h2>
+          <p class="text-xs text-slate-500 mt-1">Test any exam direction phrase in real time to verify the mathematical formula.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Step 1: Move (n)</label>
+            <input id="calc-n" type="number" value="5" min="1" max="50" oninput="runDirectionCalc()" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-bold font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Direction (Dir 1)</label>
+            <select id="calc-dir1" onchange="runDirectionCalc()" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold">
+              <option value="right">to the RIGHT of</option>
+              <option value="left">to the LEFT of</option>
             </select>
           </div>
-          <div style="font-size: 14px; font-weight: 700; color: var(--primary);" id="marathon-score-badge">
-            Score: 0 / 74
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Anchor (m)</label>
+            <input id="calc-m" type="number" value="17" min="1" max="50" oninput="runDirectionCalc()" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-bold font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Base End (Dir 2)</label>
+            <select id="calc-dir2" onchange="runDirectionCalc()" class="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold">
+              <option value="right">from the RIGHT end</option>
+              <option value="left">from the LEFT end</option>
+            </select>
           </div>
         </div>
-        <div id="marathon-container"></div>
-      </section>
+
+        <div id="direction-calc-output" class="p-4 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-xs sm:text-sm font-mono space-y-1"></div>
+      </div>
+
+      <!-- Active Recall Interactive Flash Drills -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Active Recall Drills</span>
+          <h2 class="text-xl font-extrabold text-slate-900 dark:text-white">Self-Tested Flash Verification</h2>
+          <p class="text-xs text-slate-500 mt-1">Click each card to reveal the hidden solution and test your mastery before entering the practice arena.</p>
+        </div>
+
+        <div class="space-y-3">
+          <div onclick="toggleDrill(this)" class="drill-card p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 cursor-pointer hover:border-indigo-400 transition">
+            <div class="flex justify-between items-center text-sm font-bold text-slate-800 dark:text-slate-200">
+              <span>Drill 1: In a sequence of 25 elements, what is the 7th to the right of 15th from the right?</span>
+              <span class="text-xs text-indigo-600 font-bold px-2 py-1 rounded-full bg-indigo-50">👉 Reveal</span>
+            </div>
+            <div class="drill-ans hidden mt-3 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs font-mono text-emerald-700 dark:text-emerald-300 space-y-1">
+              <div>Rule: Right of Right = (15 – 7) = <strong>8th element from the RIGHT end</strong>.</div>
+              <div>Converted to Left end: (Total + 1 – Pos) = (25 + 1 – 8) = <strong>18th from Left end</strong>.</div>
+            </div>
+          </div>
+
+          <div onclick="toggleDrill(this)" class="drill-card p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 cursor-pointer hover:border-indigo-400 transition">
+            <div class="flex justify-between items-center text-sm font-bold text-slate-800 dark:text-slate-200">
+              <span>Drill 2: If all symbols are dropped from a 30-element alphanumeric series, what speed strategy avoids errors?</span>
+              <span class="text-xs text-indigo-600 font-bold px-2 py-1 rounded-full bg-indigo-50">👉 Reveal</span>
+            </div>
+            <div class="drill-ans hidden mt-3 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs font-mono text-emerald-700 dark:text-emerald-300 space-y-1">
+              <div><strong>Zero-Rewriting Strategy:</strong> Never copy or rewrite the sequence on rough paper. Keep your pen/cursor directly on the screen, skip every symbol (like @, #, $, %) while counting aloud only letters and digits! Saves 45 precious exam seconds.</div>
+            </div>
+          </div>
+
+          <div onclick="toggleDrill(this)" class="drill-card p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 cursor-pointer hover:border-indigo-400 transition">
+            <div class="flex justify-between items-center text-sm font-bold text-slate-800 dark:text-slate-200">
+              <span>Drill 3: In 3-digit word operations (e.g. 546 487 745 887 836), how to quickly find the 3rd highest number when digits are sorted ascending within each number?</span>
+              <span class="text-xs text-indigo-600 font-bold px-2 py-1 rounded-full bg-indigo-50">👉 Reveal</span>
+            </div>
+            <div class="drill-ans hidden mt-3 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs font-mono text-emerald-700 dark:text-emerald-300 space-y-1">
+              <div>Look ONLY at the <strong>smallest digit</strong> of each number, because sorting digits in ascending order places the smallest digit at the hundreds place! Compare hundreds digits directly.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: 74-QUESTION MASTER PRACTICE ARENA                             -->
+    <!-- ===================================================================== -->
+    <div id="tab-arena" class="tab-content hidden space-y-6">
+
+      <!-- Interactive Filter & Scorebar -->
+      <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3 flex-wrap">
+          <span class="text-xs font-black uppercase text-slate-500">Filter By Category:</span>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <button onclick="filterCategory('all', this)" class="filter-chip px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm transition">
+              All 74 Questions
+            </button>
+            <button onclick="filterCategory('Preceded & Followed', this)" class="filter-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">
+              Preceded & Followed (Q.1–24)
+            </button>
+            <button onclick="filterCategory('Shifts & Drops', this)" class="filter-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">
+              Shifts & Drops (Q.25–45)
+            </button>
+            <button onclick="filterCategory('Word & Digit Operations', this)" class="filter-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">
+              Word & Digit Ops (Q.46–69)
+            </button>
+            <button onclick="filterCategory('Conditional Resultants', this)" class="filter-chip px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 transition">
+              Resultant Rows (Q.70–74)
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <div class="text-xs text-slate-500 font-medium">Live Arena Score</div>
+            <div id="arena-score" class="text-base font-black text-indigo-600 dark:text-indigo-400">0 / 74 (0%)</div>
+          </div>
+          <button onclick="revealAllVisible()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+            👁️ Reveal All
+          </button>
+          <button onclick="hideAllVisible()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+            🙈 Hide All
+          </button>
+          <button onclick="resetQuizzes()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-950 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+            🔄 Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Questions List Container -->
+      <div id="questions-arena" class="space-y-4"></div>
 
     </div>
+
   </main>
 
   <script>
-    // All questions dataset
-    const ALL_QUESTIONS = [{"id": 1, "q": "Q1. Refer to the number series given below and answer the that follows. Counting to be done from left to right only. (NOTE: All numbers are single-digit numbers only.) (Left) 4 2 7 1 5 8 7 2 6 8 3 6 (Right) How many such prime numbers are there which are immediately followed by even numbers?", "opts": ["A) Three", "B) One", "C) Two", "D) More than three"], "ans": 3, "ans_letter": "D", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (D) [D) More than three] is correct."}, {"id": 2, "q": "Q2. How many 3’s are there in the following arrangement, each of which is immediately preceded by a digit which has a numerical value of less than three? 6 5 1 8 2 4 9 4 5 2 6 1 7 3 2 9 4 2 3 6 7 9 2 5 8 3 1 4 5 1 2 8 3 5", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 1, "ans_letter": "B", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) One] is correct."}, {"id": 3, "q": "Q3. Refer to the following number series and answer the that follows (all numbers are single- digit numbers only). Counting to be done from left to right only. (Left) 8 6 1 3 4 1 8 9 6 8 8 6 5 7 1 9 6 9 8 1 7 8 3 8 3 3 8 (Right) How many such 8s are there in the given arrangement, each of which is immediately preceded by 7 and immediately followed by 3?", "opts": ["A) None", "B) Two", "C) Five", "D) One"], "ans": 3, "ans_letter": "D", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "4     2     7     1     5     8     7     2     6     8     3    6 Check the number immediately after each prime • 2 → 7  (7 is odd number) • 7 → 1  (1 is odd number) • 5 → 8  (8 is even number) • 7 → 2 (2 is even number) • 2 → 6  (6 is even number) • 3 → 6 (6 is even number) Therefore, total valid pairs = 4 We need, Less than 3 3 preceded by 6   5   1   8   2   4   9   4   5   2   6   1   7   3   2   9  4 2  3   6   7   9   2   5   8   3   1   4   5   1   2   8   3   3   5 Not less than 3 less than 3 Not less than 3 Not less than 3 Numbers less than 3 are: 0, 1 and 2 We need: 7                  8                 3 followed by preceded by 8 6 1 3 4 1 8 9 6 8 8 6 5 7 1 9 6 9 8 1  7   8   3 8 3 3 8 ⇒ There is no other 783 pattern. Therefore, the correct option is (D) [D) One]."}, {"id": 4, "q": "Q4. Refer to the following number series and answer the that follows (all numbers are single digit numbers only). Counting to be done from left to right only. (Left) 9 9 3 9 2 4 4 1 9 1 6 9 4 9 9 6 3 2 6 1 7 9 8 3 9 8 7 (Right) How many such odd numbers are there, each of which is immediately preceded by an odd number and also immediately followed by an odd number?", "opts": ["A) Four", "B) Three", "C) Five", "D) Two"], "ans": 0, "ans_letter": "A", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (A) [A) Four] is correct."}, {"id": 5, "q": "Q5. Refer to the following series and answer the question. (All numbers are single-digit numbers only. Counting to be done from left to right.) (Left) 2 4 9 6 7 1 4 6 3 9 5 2 4 8 6 1 3 2 7 6 2 5 8 1 (Right) How many such odd digits are there, each of the which is immediately preceded by an odd digit and immediately followed by an even digit?", "opts": ["A) One", "B) Two", "C) Four", "D) Three"], "ans": 3, "ans_letter": "D", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (D) [D) Three] is correct."}, {"id": 6, "q": "Q6. Refer to the following series and answer the question. (All numbers are single-digit numbers only. Counting to be done from left to right.) (Left) 7 9 2 6 1 2 6 4 8 2 7 5 9 8 6 5 4 2 2 1 3 (Right) How many such even digits are there, each of the which is immediately preceded by a perfect square and immediately followed by an even digit? (NOTE: 1 is also a perfect square)", "opts": ["A) Three", "B) Five", "C) Four", "D) Two"], "ans": 1, "ans_letter": "B", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) Five] is correct."}, {"id": 7, "q": "Q7. How many 6’s are there in the following series of numbers which are preceded by 7 but not immediately followed by 9? 6 7 9 5 6 9 7 6 8 7 6 7 8 6 9 4 6 7 7 6 9 5 7 6 3", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: odd              odd            odd followed by preceded by Odd No. = 1, 3, 5, 7, 9 9   9   3   9   2   4   4   1   9   1   6   9  4   9 9  6   3   2   6   1   7   9   8   3   9   8   7 1st 2nd 3rd 4th ⇒ So, there are 4 valid odd numbers. We need: odd              odd            even followed by preceded by 2   4   9   6   7   1   4   6   3   9   5   2 4   8   6   1   3   2   7   6   2   5   8   1 1st 2nd 3rd ⇒ So, there are 3 valid pairs. We need: perfect square           even            even followed by preceded by (1, 4, 9) (2, 4, 6, 8) 7  9  2  6  1  2  6  4  8  2  7  5  9  8  6  5  4  2  2  1  3 1st 2nd 3rd 4th 5th ⇒ So, there are 5 valid pairs. We need: 7               6             9 not followed by preceded by 6 7 9 5 6 9 7 6 8  7 6 7  8 6 9 4 6 7 7 6 9 5 7 6 3 1st 2nd 3rd ⇒ So, there are 3 valid pairs. Therefore, the correct option is (C) [C) Three]."}, {"id": 8, "q": "Q8. In the following number sequence, how many such even numbers are there which are exactly divisible by its immediate preceding number but not exactly divisible by its immediate following number? 4 8 6 7 8 6 7 5 6 3 9 7 6 2 6 7 7 2 8 3 6 9 7 6 8 7", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 3, "ans_letter": "D", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (D) [D) Four] is correct."}, {"id": 9, "q": "Q9. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. How many such consonants are there, each of which is immediately preceded by a vowel? Q G M A R T U N Z E D O H S V", "opts": ["A) One", "B) None", "C) Four", "D) Two"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) Four] is correct."}, {"id": 10, "q": "Q10. Refer to the following letter series and answer the that follows. (Counting to be done from left to right only). How many such vowels are there each of which is immediately preceded by a vowel and also immediately followed by a vowel? K I F R I Z O K U F U I I F U K Y X A B", "opts": ["A) One", "B) Two", "C) Three", "D) Zero"], "ans": 0, "ans_letter": "A", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (A) [A) One] is correct."}, {"id": 11, "q": "Q11. Refer to the following letter series and answer the that follows. Counting to be done from left to right. How many such consonants are there, each of which is immediately preceded by a consonant and also immediately followed by a vowel? G Y I E N S I E G Z B I X V Y A U S Y U U T", "opts": ["A) 3", "B) 5", "C) 6", "D) 4"], "ans": 1, "ans_letter": "B", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: Divisible Number followed by preceded by Even not exactly divisible 4 8 6 7 8 6 7 5 6 3 9 7 6 2 6 7 7 2 8 3 6 9 7 6 8 7 1st 2nd 3rd 4th ⇒ So, there are 4 valid pairs. Check the valid patterns 1st) 4 8 6 • 8 ÷ 4 = 2 • 8 ÷ 6 = not exactly divisible 2nd) 2 6 7 • 6 ÷ 2 = 3 • 6 ÷ 7 = not exactly divisible 3rd) 2 8 3 • 8 ÷ 2 = 4 • 8 ÷ 3 = not exactly divisible 4th) 3 6 9 • 6 ÷ 3 = 2 • 6 ÷ 9 = not exactly divisible We need: Consonants (All remaining letters) preceded by Vowel (A, E, I, O, U) Q   G   M   A   R   T   U   N   Z   E   D   O   H   S   V 1st 2nd 3rd 4th ⇒ So, there are 4 valid pairs. We need: Vowel             Vowel             Vowel preceded by followed by K  I  F  R  I  Z  O  K  U  F  U     I     I  F  U  K  Y  X  A B A, E, I, O, U 1st ⇒ So, there are only 1 pair. We need: consonant             consonant             Vowel preceded by followed by G   Y   I  E  N   S   I  E G Z   B   I X V   Y   A U  S   Y  U T 1st Pair 2nd Pair 3rd Pair 4th Pair 5th Pair Therefore, the correct option is (B) [B) 5]."}, {"id": 12, "q": "Q12. Refer to the following letter series and answer the that follows. Counting to be done from left to right. How many such vowels are there, each of which is immediately preceded by a consonant and also immediately followed by a consonant? O V U I C G X I A U Y U S L M X U Q T I W I", "opts": ["A) 5", "B) 2", "C) 3", "D) 4"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 3] is correct."}, {"id": 13, "q": "Q13. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. (Left) L R I D P E Q Y H D V Q U Y L X F H A U Z (Right) How many such vowels are there, each of which is immediately preceded by a consonant and also immediately followed by a consonant?", "opts": ["A) One", "B) Three", "C) None", "D) Two"], "ans": 1, "ans_letter": "B", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: consonant               Vowel               consonant preceded by followed by O  V  U  I C G X  I  A  U Y  U S L M X  U  Q  T  I  W I 1st 2nd 3rd Therefore, the correct option is (B) [B) Three]."}, {"id": 14, "q": "Q14. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. R D A U F U E Q Y U M U Y G J S P B A J L Q S H How many such consonants are there, each of which is immediately preceded by a vowel and also immediately followed by a consonant?", "opts": ["A) Two", "B) Four", "C) Three", "D) One"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: Vowel               consonant               consonant preceded by followed by RDAUF U  E   Q   Y   U   M   U Y G J S P B A  J  L QSH 1st Pair 2nd 3rd Pair Therefore, the correct option is (C) [C) Three]."}, {"id": 15, "q": "Q15. In the given series, how many such consonants are there, each of which is immediately preceded by a number and immediately followed by a vowel? W 1 5 E J R 2 M A 9 T K U N 4 B I 8 D H 3 F 6 P Z 7 Q", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 1, "ans_letter": "B", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: Number              consonant               Vowel preceded by followed by ⇒ Firstly, identify numbers: - W  1   5  E  J  R  2  M  A  9  T   K   U   N 4   B   I  8  D  H  3  F  6  P  Z  7  Q 1st 2nd ⇒ So, there are 2 valid pairs. ⇒ So, there are 3 valid pairs. Therefore, the correct option is (B) [B) Two]."}, {"id": 16, "q": "Q16. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. (Left) * 1 * $ 2 3 7 £ 1 7 @ 4 9 9 * 6 * 3 $ 1 $ @ (Right) How many such numbers are there each of which is immediately preceded by a symbol and also immediately followed by a symbol?", "opts": ["A) One", "B) Two", "C) Four", "D) Three"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: Symbol                Number               Symbol preceded by followed by *   1    *  $ 2 3 7 £ 1 7 @ 4 9 9 *   6   *   3   $   1   $ @ 1st Pair 2nd 3rd 4th PARMAR ACADEMY PARMAR_SSC 7068824945 PARMARSSC PARMARSSC Therefore, the correct option is (C) [C) Four]."}, {"id": 17, "q": "Q17. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. (Left) 4 6 & 8 $ 7 & 3 9 # % 4 6 @ £ 5 Ω 9 # 1 * 7 (Right) How many such numbers are there each of which is immediately preceded by a symbol and also immediately followed by another number?", "opts": ["A) One", "B) Three", "C) Two", "D) Four"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) Two] is correct."}, {"id": 18, "q": "Q18. Refer to the following letter, number, symbol series and answer the question. Counting to be done from left to right only. (All numbers are single-digit numbers only.) How many such numbers are there, each of which is immediately preceded by a letter and also immediately followed by a symbol? S R E S 2 U ^ $ + X B 7 N M 7 4 C Z 5 @ U 4 D /", "opts": ["A) One", "B) None", "C) Two", "D) Three"], "ans": 0, "ans_letter": "A", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: Symbol                Number               Number followed by preceded by 4  6  &  8  $  7  &  3  9  #  %  4  6 @ £  5 Ω 9 # 1 * 7 1st Pair 2nd Pair We need: Letter                Number               Symbol followed by preceded by S R E S 2 U ^ $ + X B 7 N M 7 4 C Z   5   @ U 4 D / 1st Pair Therefore, the correct option is (A) [A) One]."}, {"id": 19, "q": "Q19. Refer to the given letter and symbol series and answer the that follows. Counting to be done from left to right only. How many such symbols are there, each of which is immediately preceded by a letter and also immediately followed by a letter? Y G £ Y B # D # U M I $ \\( C £ & @ * H \\) J @", "opts": ["A) 3", "B) 5", "C) 4", "D) 6"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 4] is correct."}, {"id": 20, "q": "Q20. Refer to the following letter, symbol series and answer the question. Counting to be done from left to right only. How many such symbols are there each of which is immediately preceded by a letter and also immediately followed by a symbol? € A © D R & I % B B V @ A J $ £ * S B £ N L", "opts": ["A) 0", "B) 3", "C) 1", "D) 2"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: Y G  €  Y B  #  D  #  U M I $ / ( C € & @ * H \\ ) J @ 1st Pair 2nd   3rd Pair Therefore, the correct option is (C) [C) 1]."}, {"id": 21, "q": "Q21. Refer to the following letter, number, symbol series and answer the question. Counting to be done from left to right only. How many such symbols are there which are immediately preceded by a number and also immediately followed by a letter? Y 7 H # 4 B Q $ 3 L 9 @ N 8 X Z * & T 2 R", "opts": ["A) None", "B) Three", "C) Two", "D) One"], "ans": 3, "ans_letter": "D", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (D) [D) One] is correct."}, {"id": 22, "q": "Q22. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. All numbers are single-digit numbers. (Left) H 6 & S 8 $ 7 K & L 3 9 H # % 4 J 6 D @ £ L 5 K Ω H 9 B # 1 * L 7 (Right) How many such symbols are there in the above arrangement, each of which is immediately preceded by a consonant but not immediately followed by a number?", "opts": ["A) None", "B) Two", "C) Four", "D) Three"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: preceded by Y  7  H  #  4  B  Q  $  3  L  9 @ N 8  X  Z  *  &  T  2  R 1st Pair H 6 & S 8 $ 7 K & L 3 9 H # % 4 J 6 D @ £ L 5 K Ω H 9 B # 1 * L 7 Consonant     Symbol      Number Not followed by We need: preceded by 1st Pair 2nd Pair 4th Pair 3rd Pair Therefore, the correct option is (C) [C) Four]."}, {"id": 23, "q": "Q23. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. All numbers are single-digit numbers. S D 9 5 E # K 6 T I 8 P 1 % A 2 C λ L M U 3 W @ N 4 © J $ 7 F B How many such vowels are there in the above arrangement each of which is immediately followed by a numeral and immediately preceded by a consonants?", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 2, "ans_letter": "C", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: S   D  9   5    E   #    K   6    T    I    8    P   1   %   A 2   C   λ   L   M   U   3  W  @  N  4   ©   J   $   7  F  B Consonant         Vowel            Number followed by preceded by 1st Pair 2nd Pair Therefore, the correct option is (C) [C) Two]."}, {"id": 24, "q": "Q24. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. All numbers are single-digit numbers. L F 3 # R N 8 A @ Y 4 M © W P 6 H U 9 I K 2 E How many such consonants are there in the above arrangement each of which is immediately preceded by a symbol and immediately followed by a letter?", "opts": ["A) Two", "B) One", "C) More than three", "D) Three"], "ans": 0, "ans_letter": "A", "cat": "Preceded & Followed Patterns", "tab": "tab1", "exp": "We need: Symbol        Consonant        Letter preceded by followed by L  F 3 #  R  N 8 A @ Y 4 M ©  W  P 6 H U 9 I K 2 E 2nd Pair 1st Pair Therefore, the correct option is (A) [A) Two]."}, {"id": 25, "q": "Q25. Refer to the following series and answer the that follows. (Left) A S 9 T 5 % > 7 O * W $ J @ Q ! 6 8 L 3 G % R 1 # (Right) If one is added to all the numbers in the given series then how many numbers are there in series which are multiples of 3?", "opts": ["A) 2", "B) 1", "C) 4", "D) 3"], "ans": 0, "ans_letter": "A", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Count letters only (from left / right): & 2 A 6 9 S  K 7 & £ 9 M * %  E  7 © S 3 3 @ 2 O % L 3rd letter from the left b K11 + E5 = 8th Therefore, the correct option is (A) [A) 2]."}, {"id": 26, "q": "Q26. Which is the third number to the left of the number which is exactly in the middle of the following sequence of numbers? 1 2 3 4 5 6 7 8 9 2 4 6 8 9 7 5 3 1 9 8 7 6 5 4 3 2", "opts": ["A) 3", "B) 4", "C) 5", "D) 6"], "ans": 1, "ans_letter": "B", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) 4] is correct."}, {"id": 27, "q": "Q27. Which element is exactly midway between seventh from the left end and sixth from the right end? B 7 E H $ 3 L % 8 I F M 4 1 A R 6 # ↑ 9 D 5 K U 2 T", "opts": ["A) A", "B) R", "C) 4", "D) 1"], "ans": 3, "ans_letter": "D", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Multiples of 3 = 3, 6, 9, 12, 15, 18, ... Take only numbers from the series: 9       5       7       0       6       8       3       1 +1      +1     +1      +1     +1      +1     +1      +1 10        6       8         1       7         9        4        2 Multiple of 3 Multiple of 3 Therefore, the correct option is (D) [D) 1]."}, {"id": 28, "q": "Q28. Refer to the following series and answer the that follows. (Left) & 2 A 6 9 S K 7 & € 9 M * % E 7 © S 3 3 @ 2 O % L (Right) Which letter will be exactly between the 3rd letter from left end and 4th letter from right end in English alphabetical series?", "opts": ["A) J", "B) H", "C) L", "D) M"], "ans": 1, "ans_letter": "B", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "W % ^ K V P  1  7  E  0 & 2 9 A F Z N 4 * @ U ? M 7th element from left 2nd element to the right of 1 Therefore, the correct option is (B) [B) H]."}, {"id": 29, "q": "Q29. Refer to the following series and answer the that follows. (Left) T 4 + S 7 @ R % # 5 Q G 1 U F & 9 6 E D 3 B & 8 2 C (Right) What is the twice of the sum of the numbers between ‘5’ and ‘B’ in the given arrangement?", "opts": ["A) 40", "B) 28", "C) 38", "D) 34"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 38] is correct."}, {"id": 30, "q": "Q30. Which of the following is the sixth to the right of the twenty-first from the right end of the given arrangement? W 3 # R @ E J K T 4 B 9 I * D U 8 1 H % A V 5 & 7 M P 2 Q $ 6", "opts": ["A) 8", "B) D", "C) U", "D) 1"], "ans": 0, "ans_letter": "A", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Count letters only (from left / right): & 2 A 6 9 S  K 7 & £ 9 M * %  E  7 © S 3 3 @ 2 O % L 3rd letter from the left b K11 + E5 = 8th Therefore, the correct option is (A) [A) 8]."}, {"id": 31, "q": "Q31. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. (Left) 6 @ $ 1 8 # 9 % ≺ 2 4 ⋟ 3 ^ 5 & 7 (Right) If all the numbers are dropped from the series, which of the following will be sixth from the right?", "opts": ["A) %", "B) $", "C) #", "D) ≺"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Dropped every fourth letter/digits starting from 2 and onwards. L z x 2 m s 3 k e n 4 p q r 5 a b c 6 d f g h 7 u v w 8 y t p o 9 i j 21st element from Left 14th from the Left → 7th to the Right ⇒ 14L + 7R = 21st from the Left Therefore, the correct option is (C) [C) #]."}, {"id": 32, "q": "Q32. If all the even digits are dropped from the given arrangement, which of the following will be eleventh from the right end of the arrangement? 6 5 1 8 2 4 9 4 5 2 6 1 7 3 2 9 4 2 3 6 7 9 2 5 8 3 1 4 5 1 2 8 3 5", "opts": ["A) 9", "B) 3", "C) 1", "D) 5"], "ans": 0, "ans_letter": "A", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "S 1 @ G  H 3 K  2 A  # L 6  W $  E 8 R  U %  5 ^ P 9 Z * I V & 0 7 M 4 Therefore, the correct option is (A) [A) 9]."}, {"id": 33, "q": "Q33. Refer to the following letter, symbol series and answer the question. If all the letters are dropped from the series, which of the following will be seventh from the right? L U £ P $ D A Ω F % * N Q & R # Y @ C K * & M", "opts": ["A) @", "B) %", "C) Ω", "D) $"], "ans": 1, "ans_letter": "B", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "21st from Right → 6th to the Right ⇒ 21R − 6R = 15th from Right W 3 # R @ E J K T 4 B 9 I * D U  8  1 H % A V 5 & 7 M P 2 Q $ 6 15th from Right Therefore, the correct option is (B) [B) %]."}, {"id": 34, "q": "Q34. Refer to the following number series and answer the that follows. Counting to be done from left to right only. (Left) 4 9 6 7 3 2 5 8 1 7 6 3 4 2 9 5 8 1 6 3 2 7 4 9 8 2 1 (Right) If all the even numbers which are immediately followed by a prime number, dropped from the string, then which is the 12th number from left end in the new obtained string?", "opts": ["A) 5", "B) 9", "C) 8", "D) 4"], "ans": 0, "ans_letter": "A", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Firstly remove all numbers from this series: 6  @  $   1   8   #   9   %  <   2  4   >   3   ^   5   &   7 6th symbol from right Therefore, the correct option is (A) [A) 5]."}, {"id": 35, "q": "Q35. Refer to the following number series and answer the that follows (all numbers are single- digit numbers only). Counting to be done from left to right only. (Left) 7 4 1 2 4 9 8 5 3 6 1 5 4 6 7 4 8 3 9 6 5 2 3 9 1 4 2 (Right) Which of the following will be the 5th to the left of the 19th position from the right end?", "opts": ["A) 4", "B) 1", "C) 2", "D) 9"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "6   5   1   8   2   4   9   4   5   2   6   1   7   3   2   9   4 2   3   6   7   9    2   5   8   3  1   4   5   1   2   8   3   5 11th from right Therefore, the correct option is (C) [C) 2]."}, {"id": 36, "q": "Q36. Alphanumeric Series: W % ^ K V P 1 7 E 0 & 2 9 A F Z N 4 * @ U ? M What is the second element to the right of the 7th element from left?", "opts": ["A) P", "B) 1", "C) E", "D) ?"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Dropped every fourth letter/digits starting from 2 and onwards. L z x 2 m s 3 k e n 4 p q r 5 a b c 6 d f g h 7 u v w 8 y t p o 9 i j 21st element from Left 14th from the Left → 7th to the Right ⇒ 14L + 7R = 21st from the Left Therefore, the correct option is (C) [C) E]."}, {"id": 37, "q": "Q37. Refer to the following number series and answer the that follows (all numbers are single- digit numbers only). Counting to be done from left to right only. (Left) K P 5 # 7 M N E 2 D A @ 4 F H I T 9 1 $ U 6 % W 3 (Right) Which of the following is the sixth to the right of the fifteenth element from right end in the above arrangement?", "opts": ["A) T", "B) 7", "C) 2", "D) U"], "ans": 0, "ans_letter": "A", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (A) [A) T] is correct."}, {"id": 38, "q": "Q38. Refer to the following number series and answer the that follows (all numbers are single digit numbers only). (Left) 8 4 7 5 5 3 2 9 8 6 4 5 6 9 8 7 4 3 8 4 5 8 9 1 5 7 4 9 7 (Right) If the last twelve elements in the above arrangement are written in the reverse order, which of the following will be the twenty-fourth from the left end ?", "opts": ["A) 7", "B) 4", "C) 9", "D) 1"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 9] is correct."}, {"id": 39, "q": "Q39. Refer to the following number series and answer the that follows (all numbers are single digit numbers only). Counting to be done from left to right only. (Left) 9 8 7 4 5 3 2 4 5 6 8 1 2 3 5 6 7 6 5 3 9 (Right) What will be the sum of digit which is 8th from left and 6th from right?", "opts": ["A) 9", "B) 10", "C) 6", "D) 7"], "ans": 1, "ans_letter": "B", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) 10] is correct."}, {"id": 40, "q": "Q40. Refer to the following letter series and answer the that follows. (Left) L F Q T G P S C I O E R Y B M J X D K N H (Right) How many letters are there in the English alphabetical series between the letter that is fifth from the left end and third from the right end of the series?", "opts": ["A) Two", "B) Three", "C) Four", "D) One"], "ans": 1, "ans_letter": "B", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Firstly remove all letters from this series: L U € P $ D A Ω F % * N Q & R # Y @ C K * & M 7th symbol from right Therefore, the correct option is (B) [B) Three]."}, {"id": 41, "q": "Q41. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. How many letters are there, as per the English alphabetical order, between the letter that is sixth from the right end and the third from the left end of the given series? T S W H M F K Z I N O A B Q S P J M L R C V E W O", "opts": ["A) 2", "B) 5", "C) 4", "D) 3"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 4] is correct."}, {"id": 42, "q": "Q42. In the given arrangement, if the first twenty elements are written in the reverse order then which element is sixth to the left of eighteenth element from the left? K 3 A ∆ V T R = 7 B M E 4 W S @ J N 9 P U C β Z 5 O D I Q G & L Y", "opts": ["A) B", "B) =", "C) 7", "D) E"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 7] is correct."}, {"id": 43, "q": "Q43. Refer to the following letter series and answer the that follows. (Left) Z K J H G F D S T U I A W Q P L M N B X (Right) How many letters are there in the English alphabetical series between the letter which is fifth from the right end and fourth from the left end of the series?", "opts": ["A) One", "B) Three", "C) More than three", "D) Two"], "ans": 1, "ans_letter": "B", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) Three] is correct."}, {"id": 44, "q": "Q44. In the following series, which of the pairs of elements, the second element is immediately followed by the first element? 7 D 5 # A B 1 % K $ 4 E J F 3 2 H 1 @ L 6 Q U © 9 M T 8 W", "opts": ["A) 5#", "B) MT", "C) 3F", "D) $4"], "ans": 2, "ans_letter": "C", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 3F] is correct."}, {"id": 45, "q": "Q45. Three of the following four are alike in a certain way based on their position in the following arrangement and so form a group. Which is the one that does not belong to that group? M 2 R D E K 5 7 B J 1 4 N P 8 A W 9 V I U F 3 H 6", "opts": ["A) RDE", "B) 57B", "C) NP8", "D) 3FU"], "ans": 3, "ans_letter": "D", "cat": "String Shifts & Element Drops", "tab": "tab2", "exp": "9 8 7 4 5 3 2 4 5 6 8 1 2 3 5 6 7 6 5 3 9 8th from Left Therefore, the correct option is (D) [D) 3FU]."}, {"id": 46, "q": "Q46. Three of the following four are alike in a certain way based on their position in the following arrangement and so form a group. Which is the one that does not belong to that group? @ E K 4 F 7 B 5 R 1 © D A M 6 U J $ V Q # 2 P 3 % 9 H I W 8 *", "opts": ["A) V2#", "B) 9IH", "C) 23P", "D) FB7"], "ans": 0, "ans_letter": "A", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (A) [A) V2#] is correct."}, {"id": 47, "q": "Q47. What should come next in the following series based on the given arrangement? W T Y C O K P Q Z B M N A E R I K L G D H F U J X V R Q T V CKQ BNE ILD ?", "opts": ["A) FUJ", "B) QVT", "C) FJV", "D) XVR"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "We need to find: Second → First For example, if the pair is 3F, we need to see: F → 3 Check the options:- a) 5# Need: # → 5 But series has 5 → # b) MT Need: T → M But series has M → T c) 3F Need: F → 3 d) $4 Need: 4 → $ But series has $ → 4 Check whether the three elements are consecutive M 2 R D E K 5 7 B J 1 4 N P 8 A W 9 V I U F 3 H 6 Option (a) Option (b) Option (c) Option (d) not satisfied Therefore, the correct option is (C) [C) FJV]."}, {"id": 48, "q": "Q48. What should come next in the following series based on the given arrangement? S 1 @ G H 3 K 2 A # L 6 W $ E 8 R U % 5 ^ P 9 Z * I V & O 7 M 4 1GH, KA#, 6$E, ?", "opts": ["A) W$E", "B) $E8", "C) R%5", "D) $ER"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "@   E   K   4   F   7   B   5   R   1   ©   D   A   M   6 U    J   $   V   Q   #   2   P   3   %   9   H   I   W   8   * Wrong Check the options:- a) V2# • • So, option order is V → 2 → # = 1st, 4th, 3rd b) 9IH • • So option order is 9 → I → H = 1st, 3rd, 2nd c) 23P • • So option order is 2 → 3 → P = 1st, 3rd, 2nd d) FB7 • • So option order is F → B → 7 = 1st, 3rd, 2nd W   T   Y   C   O   K   P   Q   Z   B   M   N   A   E R   I   K   L   G   D   H   F   U   J   X   V   R   Q   T   V Skip Skip Skip CKQ BNE ILD FJV Therefore, the correct option is (C) [C) R%5]."}, {"id": 49, "q": "Q49. In the given series, if all the vowels are coded as its previous letter and all the consonants are coded as its next letter in the alphabetical series then, how many vowels are there in the arrangement? B 3 > E 5 $ T S % 9 X * O # M 4 ^ F ? C @ 2 ! U H P & 1 + J 7 0 <", "opts": ["A) 1", "B) 2", "C) 3", "D) 4"], "ans": 1, "ans_letter": "B", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) 2] is correct."}, {"id": 50, "q": "Q50. In the given series, if we dropped every fourth letter/ digits starting from ‘2’ and onwards. Which will be seventh to the right of the 14th from your left? L z x 2 m s 3 k e n 4 p q r 5 a b c 6 d f g h 7 u v w 8 y t p o 9 I j", "opts": ["A) w", "B) j", "C) q", "D) p"], "ans": 0, "ans_letter": "A", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "We need to find: Second → First For example, if the pair is 3F, we need to see: F → 3 Check the options:- a) 5# Need: # → 5 But series has 5 → # b) MT Need: T → M But series has M → T c) 3F Need: F → 3 d) $4 Need: 4 → $ But series has $ → 4 Check whether the three elements are consecutive M 2 R D E K 5 7 B J 1 4 N P 8 A W 9 V I U F 3 H 6 Option (a) Option (b) Option (c) Option (d) not satisfied Therefore, the correct option is (A) [A) w]."}, {"id": 51, "q": "Q51. This is based on the following words. (LEFT) SET LAP MUD DIG (RIGHT) How many letters are there between the second letter of the second word from the right and the third letter of the second word from the left as per the English alphabetical order?", "opts": ["A) 5", "B) 4", "C) 3", "D) 6"], "ans": 1, "ans_letter": "B", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) 4] is correct."}, {"id": 52, "q": "Q52. This is based on the following words. (LEFT) YOM MJK UGJ IMX KQZ (RIGHT) If words are arranged according to the alphabetical series from left to right, then which word is third from the left end?", "opts": ["A) UGJ", "B) IMX", "C) KQZ", "D) MJK"], "ans": 3, "ans_letter": "D", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (D) [D) MJK] is correct."}, {"id": 53, "q": "Q53. This is based on the following words. (LEFT) ARM MUD CAD DOM FIG (RIGHT) If in each of words, all the alphabets are arranged in English alphabetical order within the word, how many words will begin with a vowel?", "opts": ["A) 2", "B) 4", "C) 3", "D) 1"], "ans": 0, "ans_letter": "A", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Vowel → – 1 Consonant→ +1 B 3 > E 5 $ T S % 9 X * O # M 4 ^ F ? C @ 2 ! U H P & 1 + J 7 O < Therefore, the correct option is (A) [A) 2]."}, {"id": 54, "q": "Q54. This is based on the following words. (Left) TOK THE HAS ALL COW (Right) If in each of the words, each letter is changed to the letter immediately following it in the English alphabetical order, how many words thus formed will have no vowel?", "opts": ["A) One", "B) Four", "C) Three", "D) Two"], "ans": 3, "ans_letter": "D", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "T O K  T H E   H A S   A L L   C O W U P L  U  I F    I  B T   B MM D P  X No Vowel No Vowel Next Letter Therefore, the correct option is (D) [D) Two]."}, {"id": 55, "q": "Q55. This is based on the following words. COP TIK ANY CAN OWN If in each of the words, each letter is changed to the next letter in the English alphabetical order, how many words thus formed will have no vowel?", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 0, "ans_letter": "A", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (A) [A) One] is correct."}, {"id": 56, "q": "Q56. This is based on the following words POT TAP LTD DBT KOM If the first and the third letters in each of the words exchange their positions, how many meaningful English words will be formed?", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "C O P  T I K   A N Y  C A N  O W N D P Q U J L   B O Z   D B O  P  X O Next Letter :- No Vowel P O T T A P L T D D B T K O M T O P P A T D T L T B D M O K After Exchanging:- Meaningful word Meaningful word T R E P O K O W L A R E S I N E R T K O P L W O E R A N I S After Exchanging:- Meaningful word 3   5  6   7   4  2   8   2  1   4   1  5   6   9  7 1st  2nd  3rd 1st  2nd  3rd 1st  2nd  3rd 1st  2nd  3rd 1st  2nd  3rd Lowest Number Highest Number 2nd digit → 2 1st digit → 3 Multiply = 2 x 3 = 6 Therefore, the correct option is (C) [C) Two]."}, {"id": 57, "q": "Q57. This is based on the following words TRE POK OWL ARE SIN How many meaningful English words can be formed if first and third letters of all the words are interchanged(within the word)?", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 1, "ans_letter": "B", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) One] is correct."}, {"id": 58, "q": "Q58. This is based on the five, three-digit numbers given below. 356 742 821 415 697 (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) What will be the result if the second digit of the highest number is multiplied by the first digit of the lowest number?", "opts": ["A) 14", "B) 12", "C) 16", "D) 6"], "ans": 3, "ans_letter": "D", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "C O P  T I K   A N Y  C A N  O W N D P Q U J L   B O Z   D B O  P  X O Next Letter :- No Vowel P O T T A P L T D D B T K O M T O P P A T D T L T B D M O K After Exchanging:- Meaningful word Meaningful word T R E P O K O W L A R E S I N E R T K O P L W O E R A N I S After Exchanging:- Meaningful word 3   5  6   7   4  2   8   2  1   4   1  5   6   9  7 1st  2nd  3rd 1st  2nd  3rd 1st  2nd  3rd 1st  2nd  3rd 1st  2nd  3rd Lowest Number Highest Number 2nd digit → 2 1st digit → 3 Multiply = 2 x 3 = 6 Therefore, the correct option is (D) [D) 6]."}, {"id": 59, "q": "Q59. This is based on the five, three-digit numbers given below. (Left) 426 125 357 489 627 (Right) (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) If in each number, the first and the last digits are interchanged, which of the following will be the second highest number?", "opts": ["A) 357", "B) 627", "C) 489", "D) 426"], "ans": 0, "ans_letter": "A", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "7068824945 PARMAR ACADEMY PARMAR_SSC PARMARSSC PARMARSSC Therefore, the correct option is (A) [A) 357]."}, {"id": 60, "q": "Q60. This is based on the five, three-digit numbers given below. (Left) 458 625 751 359 245 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) If all the numbers are arranged in descending order, then the position of how many numbers will remain unchanged?", "opts": ["A) None", "B) One", "C) Three", "D) Two"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) Three] is correct."}, {"id": 61, "q": "Q61. This is based on the five, three-digit numbers given below. (Left) 654 842 684 714 385 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) If in each number, all the three digits are arranged in ascending order within the number, which of the following will be the second highest number?", "opts": ["A) 842", "B) 654", "C) 684", "D) 714"], "ans": 1, "ans_letter": "B", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (B) [B) 654] is correct."}, {"id": 62, "q": "Q62. This is based on the five, three-digit numbers given below. (Left) 742 912 953 657 154 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) Note: All operations to be done from left to right. If the first digit of lowest number is subtracted from the second digit of highest number which of the following number will be obtained?", "opts": ["A) 5", "B) 8", "C) 4", "D) 3"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "458   625   751   359   245 751   625   458   359   245 Arrange the three digits of each number in ascending order. 654   842   684   714   385 456   248   468   147   358 Now compare the new numbers: 468 > 456 > 358 > 248 > 147 Therefore, the second highest = 456, which is obtained from 654. Therefore, the correct option is (C) [C) 4]."}, {"id": 63, "q": "Q63. This is based on the five, three-digit numbers given below. (Left) 649 782 415 563 238 (Right) (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) What will be the sum, if the third digit of the second number from left is added to the first digit of the fourth number from left?", "opts": ["A) 9", "B) 8", "C) 7", "D) 6"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Condition evaluated according to the given series: verified criteria matched. Hence, option (C) [C) 7] is correct."}, {"id": 64, "q": "Q64. This is based on the five, three-digit numbers given below. (Left) 594 307 821 476 653 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) What is the sum of the first digits of all odd numbers in the group?", "opts": ["A) 13", "B) 15", "C) 17", "D) 19"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "649    782    415    563    238 3rd digit → 2 1st digit → 5 Addition ⇒ 2 + 5 = 7 Therefore, the correct option is (C) [C) 17]."}, {"id": 65, "q": "Q65. This is based on the five, three-digit numbers given below. (Left) 532 637 724 386 452 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) NOTE - All operations to be done from left to right. If 2 is added to the first digit of every number, in how many numbers will the first digit be exactly divisible by the second digit?", "opts": ["A) None", "B) One", "C) Three", "D) Two"], "ans": 0, "ans_letter": "A", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "4 7 5    3 2 6    1 5 7    7 6 1    8 2 9 1 5 7    3 2 6    4 7 5    7 6 1    8 2 9 Unchanged Unchanged  Unchanged Ascending Order:- Therefore, the correct option is (A) [A) None]."}, {"id": 66, "q": "Q66. This is based on the five, three-digit numbers given below. (Left) 387 876 176 285 721 937 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) In each number, when we added 1 to each odd digit and 2 is subtracted from each even digit, then which number will be lowest?", "opts": ["A) 387", "B) 876", "C) 176", "D) 285"], "ans": 3, "ans_letter": "D", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "4   6   8   6   8   4   2   8   4   0   6   6   8   0   2   10 4  8 Q.65. This question is based on the five, three-digit numbers given below. (Left) 532 637 724 386 452 (Right) (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) 7068824945 PARMAR ACADEMY PARMAR_SSC PARMARSSC PARMARSSC – 1            – 1           – 1             – 1            – 1 Therefore, the correct option is (D) [D) 285]."}, {"id": 67, "q": "Q67. This is based on the five, three-digit numbers given below. (Left) 475 326 157 761 829 (Right) (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) NOTE - All operations to be done from left to right. If all the numbers are arranged in ascending order, the position of how many numbers will remain unchanged?", "opts": ["A) None", "B) One", "C) Three", "D) Two"], "ans": 2, "ans_letter": "C", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "4 7 5    3 2 6    1 5 7    7 6 1    8 2 9 1 5 7    3 2 6    4 7 5    7 6 1    8 2 9 Unchanged Unchanged  Unchanged Ascending Order:- Therefore, the correct option is (C) [C) Three]."}, {"id": 68, "q": "Q68. This is based on the five, three-digit numbers given below. (Left) 546 487 745 887 836 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) If the 1st digit in each number is decreased by one then arranged the digits in each number as ascending order from right to left, then which of the following is the 3rd highest number?", "opts": ["A) 836", "B) 487", "C) 745", "D) 546"], "ans": 0, "ans_letter": "A", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "Decrease the 1st digit by 1. 5 4 6    4 8 7    7 4 5    8 8 7    8 3 6 4 4 6    3 8 7    6 4 5    7 8 7    7 3 6 Arrange digits in ascending order from Right to Left • 446 → 644 • 387 → 873 • 645 → 654 Arrange the obtained numbers in descending order Therefore, the 3rd highest number = 763, which came from 836. Therefore, the correct option is (A) [A) 836]."}, {"id": 69, "q": "Q69. This is based on the five, three-digit numbers given below. (Left) 541 724 357 238 816 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) What is the sum of 2nd number from left and 3rd digit of 2nd number from right?", "opts": ["A) 728", "B) 732", "C) 735", "D) 724"], "ans": 1, "ans_letter": "B", "cat": "Word & 3-Digit Operations", "tab": "tab3", "exp": "4 7 5    3 2 6    1 5 7    7 6 1    8 2 9 1 5 7    3 2 6    4 7 5    7 6 1    8 2 9 Unchanged Unchanged  Unchanged Ascending Order:- Therefore, the correct option is (B) [B) 732]."}, {"id": 70, "q": "Q70. Directions: Study the following numeric string carefully and answer the that follows: (i) If an odd number is followed by another composite odd number, they are to be added. (ii) If an even number is followed by an odd number, they are to be added. (iii) If an even number is followed by a number which is the perfect square, the even number is to be subtracted from the perfect square. (iv) If an odd number is followed by a prime odd number, the first number is to be divided by the second number. (v) If an odd number is followed by an even number, the second one is to be subtracted from the first number. 15 8 21 P 3 27 If ‘p’ is the resultant of the first row, what will be the resultant o the second row?", "opts": ["A) 58", "B) 76", "C) 27", "D) 82"], "ans": 0, "ans_letter": "A", "cat": "Conditional Resultant Rows", "tab": "tab4", "exp": "First Row: 15, 8, 21 Step 1: 15 is an odd number followed by an even number (8).......(5th condition) 15 − 8 = 7 Step 2: 7 is an odd number followed by a composite odd number (21)...... (1st Condition) 7 + 21 = 28 ⇒ So, P = 28 Second Row: P, 3, 27 Step 1: P = 28 is an even number followed by an odd number (3).....(2nd Condition) 28 + 3 = 31 Step 2: 31 is an odd number followed by a composite odd number (27)......(1st Condition) 31 + 27 = 58 Therefore, the correct option is (A) [A) 58]."}, {"id": 71, "q": "Q71. Directions: Study the following numeric string carefully and answer the that follows: (i) If an odd number is followed by another composite odd number, they are to be added. (ii) If an even number is followed by an odd number, they are to be added. (iii) If an even number is followed by a number which is the perfect square, the even number is to be subtracted from the perfect square. (iv) If an odd number is followed by a prime odd number, the first number is to be divided by the second number. (v) If an odd number is followed by an even number, the second one is to be subtracted from the first number. 85 17 35 16 19 r If ‘r’ is the resultant of the first row, what will be the resultant of the second row?", "opts": ["A) 175", "B) – 5", "C) 75", "D) 210"], "ans": 1, "ans_letter": "B", "cat": "Conditional Resultant Rows", "tab": "tab4", "exp": "First Row: 85, 17, 35 Step 1: 85 is an odd number followed by a prime odd number (17)......(4th Condition) 85 ÷ 17 = 5 Step 2: 5 is an odd number followed by a composite odd number (35)......(1st Condition) 5 + 35 = 40 ⇒ So, r = 40 Second Row: 16, 19, r Step 1: 16 is an even number followed by an odd number (19)......(2nd Condition) 16 + 19 = 35 Step 2: 35 is an odd number followed by an even number (r = 40)......(5th Condition) 35 − 40 = −5 Therefore, the correct option is (B) [B) – 5]."}, {"id": 72, "q": "Q72. Directions: Study the following numeric string carefully and answer the that follows: (i) If an odd number is followed by another composite odd number, they are to be added. (ii) If an even number is followed by an odd number, they are to be added. (iii) If an even number is followed by a number which is the perfect square, the even number is to be subtracted from the perfect square. (iv) If an odd number is followed by a prime odd number, the first number is to be divided by the second number. (v) If an odd number is followed by an even number, the second one is to be subtracted from the first number. 24 15 3 D 6 15 If ‘d’ is the resultant of the first row, what will be the sum of both the rows?", "opts": ["A) 37", "B) 35", "C) 22", "D) 29"], "ans": 1, "ans_letter": "B", "cat": "Conditional Resultant Rows", "tab": "tab4", "exp": "First Row: 24, 15, 3 Step 1: 24 is an even number followed by an odd number (15)......(2nd Condition) 24 + 15 = 39 Step 2: 39 is an odd number followed by a prime odd number (3)......(4th Condition) 39 ÷ 3 = 13 So, d = 13 Second Row: d, 6, 15 Step 1: d = 13 is an odd number followed by an even number (6)......(5th Condition) 13 − 6 = 7 Step 2: 7 is an odd number followed by a composite odd number (15)......(1st Condition) 7 + 15 = 22 Therefore, the correct option is (B) [B) 35]."}, {"id": 73, "q": "Q73. Directions: Study the following numeric string carefully and answer the that follows: STEP 1: If an even number is followed by an odd number then the resultant will be the addition of both the numbers. STEP 2: If an odd number is followed by a perfect square then the resultant will be the difference of that square number and the odd number. STEP 3: If an odd number is followed by another odd number (but not a perfect square) then the resultant will be the addition of both the numbers. STEP 4: If an odd number is followed by an even number (but not a perfect square) then the resultant comes by multiplying the numbers. STEP 5: If an even number is followed by another even number then the resultant will be the division of first number by the second number. Find the sum of the resultant of first and second row. 3 10 5 7 4 9", "opts": ["A) 89", "B) 41", "C) 28", "D) 135"], "ans": 1, "ans_letter": "B", "cat": "Conditional Resultant Rows", "tab": "tab4", "exp": "First Row: 3, 10, 5 7068824945 PARMAR ACADEMY PARMAR_SSC PARMARSSC PARMARSSC Step 1: 3 is an odd number followed by an even number (10), not a perfect square......(4th Condition) 3 × 10 = 30 Step 2: 30 is an even number followed by an odd number (5)......(1st Condition) 30 + 5 = 35 Second Row: 7, 4, 9 Step 1: 7 is an odd number followed by a perfect square (4)......(2nd Condition) 7 − 4 = 3 Step 2: 3 is an odd number followed by a perfect square (9)......(2nd Condition) 9 − 3 = 6 Therefore, the correct option is (B) [B) 41]."}, {"id": 74, "q": "Q74. Directions: Study the following numeric string carefully and answer the that follows: STEP 1: If an even number is followed by an odd number then the resultant will be the addition of both the numbers. STEP 2: If an odd number is followed by a perfect square then the resultant will be the difference of that square number and the odd number. STEP 3: If an odd number is followed by another odd number (but not a perfect square) then the resultant will be the addition of both the numbers. STEP 4: If an odd number is followed by an even number (but not a perfect square) then the resultant comes by multiplying the numbers. STEP 5: If an even number is followed by another even number then the resultant will be the division of first number by the second number. Find the multiplication of the resultant of first and second row. 27 23 10 18 15 11", "opts": ["A) 110", "B) 85", "C) 176", "D) 220"], "ans": 3, "ans_letter": "D", "cat": "Conditional Resultant Rows", "tab": "tab4", "exp": "First Row: 27, 23, 10 Step 1: 27 is an odd number followed by another odd number (23), not a perfect square......(3rd Condition) 27 + 23 = 50 Step 2: 50 is an even number followed by another even number (10)......(5th Condition) 50 ÷ 10 = 5 Second Row: 18, 15, 11 Step 1: 18 is an even number followed by an odd number (15)......(1st Condition) 18 + 15 = 33 Step 2: 33 is an odd number followed by another odd number (11), not a perfect square......(3rd Condition) 33 + 11 = 44 Therefore, the correct option is (D) [D) 220]."}];
+    const QUESTIONS_DATA = [{"id": 1, "q": "Q1. Refer to the number series given below and answer the that follows. Counting to be done from left to right only. (NOTE: All numbers are single-digit numbers only.) (Left) 4 2 7 1 5 8 7 2 6 8 3 6 (Right) How many such prime numbers are there which are immediately followed by even numbers?", "opts": ["A) Three", "B) One", "C) Two", "D) More than three"], "ans": 3, "ans_letter": "D", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) More than three]."}, {"id": 2, "q": "Q2. How many 3’s are there in the following arrangement, each of which is immediately preceded by a digit which has a numerical value of less than three? 6 5 1 8 2 4 9 4 5 2 6 1 7 3 2 9 4 2 3 6 7 9 2 5 8 3 1 4 5 1 2 8 3 5", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 1, "ans_letter": "B", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) One]."}, {"id": 3, "q": "Q3. Refer to the following number series and answer the that follows (all numbers are single- digit numbers only). Counting to be done from left to right only. (Left) 8 6 1 3 4 1 8 9 6 8 8 6 5 7 1 9 6 9 8 1 7 8 3 8 3 3 8 (Right) How many such 8s are there in the given arrangement, each of which is immediately preceded by 7 and immediately followed by 3?", "opts": ["A) None", "B) Two", "C) Five", "D) One"], "ans": 3, "ans_letter": "D", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) One]."}, {"id": 4, "q": "Q4. Refer to the following number series and answer the that follows (all numbers are single digit numbers only). Counting to be done from left to right only. (Left) 9 9 3 9 2 4 4 1 9 1 6 9 4 9 9 6 3 2 6 1 7 9 8 3 9 8 7 (Right) How many such odd numbers are there, each of which is immediately preceded by an odd number and also immediately followed by an odd number?", "opts": ["A) Four", "B) Three", "C) Five", "D) Two"], "ans": 0, "ans_letter": "A", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) Four]."}, {"id": 5, "q": "Q5. Refer to the following series and answer the question. (All numbers are single-digit numbers only. Counting to be done from left to right.) (Left) 2 4 9 6 7 1 4 6 3 9 5 2 4 8 6 1 3 2 7 6 2 5 8 1 (Right) How many such odd digits are there, each of the which is immediately preceded by an odd digit and immediately followed by an even digit?", "opts": ["A) One", "B) Two", "C) Four", "D) Three"], "ans": 3, "ans_letter": "D", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) Three]."}, {"id": 6, "q": "Q6. Refer to the following series and answer the question. (All numbers are single-digit numbers only. Counting to be done from left to right.) (Left) 7 9 2 6 1 2 6 4 8 2 7 5 9 8 6 5 4 2 2 1 3 (Right) How many such even digits are there, each of the which is immediately preceded by a perfect square and immediately followed by an even digit? (NOTE: 1 is also a perfect square)", "opts": ["A) Three", "B) Five", "C) Four", "D) Two"], "ans": 1, "ans_letter": "B", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) Five]."}, {"id": 7, "q": "Q7. How many 6’s are there in the following series of numbers which are preceded by 7 but not immediately followed by 9? 6 7 9 5 6 9 7 6 8 7 6 7 8 6 9 4 6 7 7 6 9 5 7 6 3", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Three]."}, {"id": 8, "q": "Q8. In the following number sequence, how many such even numbers are there which are exactly divisible by its immediate preceding number but not exactly divisible by its immediate following number? 4 8 6 7 8 6 7 5 6 3 9 7 6 2 6 7 7 2 8 3 6 9 7 6 8 7", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 3, "ans_letter": "D", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) Four]."}, {"id": 9, "q": "Q9. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. How many such consonants are there, each of which is immediately preceded by a vowel? Q G M A R T U N Z E D O H S V", "opts": ["A) One", "B) None", "C) Four", "D) Two"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Four]."}, {"id": 10, "q": "Q10. Refer to the following letter series and answer the that follows. (Counting to be done from left to right only). How many such vowels are there each of which is immediately preceded by a vowel and also immediately followed by a vowel? K I F R I Z O K U F U I I F U K Y X A B", "opts": ["A) One", "B) Two", "C) Three", "D) Zero"], "ans": 0, "ans_letter": "A", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) One]."}, {"id": 11, "q": "Q11. Refer to the following letter series and answer the that follows. Counting to be done from left to right. How many such consonants are there, each of which is immediately preceded by a consonant and also immediately followed by a vowel? G Y I E N S I E G Z B I X V Y A U S Y U U T", "opts": ["A) 3", "B) 5", "C) 6", "D) 4"], "ans": 1, "ans_letter": "B", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 5]."}, {"id": 12, "q": "Q12. Refer to the following letter series and answer the that follows. Counting to be done from left to right. How many such vowels are there, each of which is immediately preceded by a consonant and also immediately followed by a consonant? O V U I C G X I A U Y U S L M X U Q T I W I", "opts": ["A) 5", "B) 2", "C) 3", "D) 4"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 3]."}, {"id": 13, "q": "Q13. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. (Left) L R I D P E Q Y H D V Q U Y L X F H A U Z (Right) How many such vowels are there, each of which is immediately preceded by a consonant and also immediately followed by a consonant?", "opts": ["A) One", "B) Three", "C) None", "D) Two"], "ans": 1, "ans_letter": "B", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) Three]."}, {"id": 14, "q": "Q14. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. R D A U F U E Q Y U M U Y G J S P B A J L Q S H How many such consonants are there, each of which is immediately preceded by a vowel and also immediately followed by a consonant?", "opts": ["A) Two", "B) Four", "C) Three", "D) One"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Three]."}, {"id": 15, "q": "Q15. In the given series, how many such consonants are there, each of which is immediately preceded by a number and immediately followed by a vowel? W 1 5 E J R 2 M A 9 T K U N 4 B I 8 D H 3 F 6 P Z 7 Q", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 1, "ans_letter": "B", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) Two]."}, {"id": 16, "q": "Q16. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. (Left) * 1 * $ 2 3 7 £ 1 7 @ 4 9 9 * 6 * 3 $ 1 $ @ (Right) How many such numbers are there each of which is immediately preceded by a symbol and also immediately followed by a symbol?", "opts": ["A) One", "B) Two", "C) Four", "D) Three"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Four]."}, {"id": 17, "q": "Q17. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. (Left) 4 6 & 8 $ 7 & 3 9 # % 4 6 @ £ 5 Ω 9 # 1 * 7 (Right) How many such numbers are there each of which is immediately preceded by a symbol and also immediately followed by another number?", "opts": ["A) One", "B) Three", "C) Two", "D) Four"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Two]."}, {"id": 18, "q": "Q18. Refer to the following letter, number, symbol series and answer the question. Counting to be done from left to right only. (All numbers are single-digit numbers only.) How many such numbers are there, each of which is immediately preceded by a letter and also immediately followed by a symbol? S R E S 2 U ^ $ + X B 7 N M 7 4 C Z 5 @ U 4 D /", "opts": ["A) One", "B) None", "C) Two", "D) Three"], "ans": 0, "ans_letter": "A", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) One]."}, {"id": 19, "q": "Q19. Refer to the given letter and symbol series and answer the that follows. Counting to be done from left to right only. How many such symbols are there, each of which is immediately preceded by a letter and also immediately followed by a letter? Y G £ Y B # D # U M I $ \\( C £ & @ * H \\) J @", "opts": ["A) 3", "B) 5", "C) 4", "D) 6"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 4]."}, {"id": 20, "q": "Q20. Refer to the following letter, symbol series and answer the question. Counting to be done from left to right only. How many such symbols are there each of which is immediately preceded by a letter and also immediately followed by a symbol? € A © D R & I % B B V @ A J $ £ * S B £ N L", "opts": ["A) 0", "B) 3", "C) 1", "D) 2"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 1]."}, {"id": 21, "q": "Q21. Refer to the following letter, number, symbol series and answer the question. Counting to be done from left to right only. How many such symbols are there which are immediately preceded by a number and also immediately followed by a letter? Y 7 H # 4 B Q $ 3 L 9 @ N 8 X Z * & T 2 R", "opts": ["A) None", "B) Three", "C) Two", "D) One"], "ans": 3, "ans_letter": "D", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) One]."}, {"id": 22, "q": "Q22. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. All numbers are single-digit numbers. (Left) H 6 & S 8 $ 7 K & L 3 9 H # % 4 J 6 D @ £ L 5 K Ω H 9 B # 1 * L 7 (Right) How many such symbols are there in the above arrangement, each of which is immediately preceded by a consonant but not immediately followed by a number?", "opts": ["A) None", "B) Two", "C) Four", "D) Three"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Four]."}, {"id": 23, "q": "Q23. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. All numbers are single-digit numbers. S D 9 5 E # K 6 T I 8 P 1 % A 2 C λ L M U 3 W @ N 4 © J $ 7 F B How many such vowels are there in the above arrangement each of which is immediately followed by a numeral and immediately preceded by a consonants?", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 2, "ans_letter": "C", "tag": "Preceded & Followed", "diff": "Core Concept", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Two]."}, {"id": 24, "q": "Q24. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. All numbers are single-digit numbers. L F 3 # R N 8 A @ Y 4 M © W P 6 H U 9 I K 2 E How many such consonants are there in the above arrangement each of which is immediately preceded by a symbol and immediately followed by a letter?", "opts": ["A) Two", "B) One", "C) More than three", "D) Three"], "ans": 0, "ans_letter": "A", "tag": "Preceded & Followed", "diff": "Moderate", "topic_tag": "#PatternMatching", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) Two]."}, {"id": 25, "q": "Q25. Refer to the following series and answer the that follows. (Left) A S 9 T 5 % > 7 O * W $ J @ Q ! 6 8 L 3 G % R 1 # (Right) If one is added to all the numbers in the given series then how many numbers are there in series which are multiples of 3?", "opts": ["A) 2", "B) 1", "C) 4", "D) 3"], "ans": 0, "ans_letter": "A", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 2]."}, {"id": 26, "q": "Q26. Which is the third number to the left of the number which is exactly in the middle of the following sequence of numbers? 1 2 3 4 5 6 7 8 9 2 4 6 8 9 7 5 3 1 9 8 7 6 5 4 3 2", "opts": ["A) 3", "B) 4", "C) 5", "D) 6"], "ans": 1, "ans_letter": "B", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 4]."}, {"id": 27, "q": "Q27. Which element is exactly midway between seventh from the left end and sixth from the right end? B 7 E H $ 3 L % 8 I F M 4 1 A R 6 # ↑ 9 D 5 K U 2 T", "opts": ["A) A", "B) R", "C) 4", "D) 1"], "ans": 3, "ans_letter": "D", "tag": "Shifts & Drops", "diff": "Speed Test", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) 1]."}, {"id": 28, "q": "Q28. Refer to the following series and answer the that follows. (Left) & 2 A 6 9 S K 7 & € 9 M * % E 7 © S 3 3 @ 2 O % L (Right) Which letter will be exactly between the 3rd letter from left end and 4th letter from right end in English alphabetical series?", "opts": ["A) J", "B) H", "C) L", "D) M"], "ans": 1, "ans_letter": "B", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) H]."}, {"id": 29, "q": "Q29. Refer to the following series and answer the that follows. (Left) T 4 + S 7 @ R % # 5 Q G 1 U F & 9 6 E D 3 B & 8 2 C (Right) What is the twice of the sum of the numbers between ‘5’ and ‘B’ in the given arrangement?", "opts": ["A) 40", "B) 28", "C) 38", "D) 34"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 38]."}, {"id": 30, "q": "Q30. Which of the following is the sixth to the right of the twenty-first from the right end of the given arrangement? W 3 # R @ E J K T 4 B 9 I * D U 8 1 H % A V 5 & 7 M P 2 Q $ 6", "opts": ["A) 8", "B) D", "C) U", "D) 1"], "ans": 0, "ans_letter": "A", "tag": "Shifts & Drops", "diff": "Speed Test", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 8]."}, {"id": 31, "q": "Q31. Refer to the following number and symbol series and answer the that follows. Counting to be done from left to right only. (Left) 6 @ $ 1 8 # 9 % ≺ 2 4 ⋟ 3 ^ 5 & 7 (Right) If all the numbers are dropped from the series, which of the following will be sixth from the right?", "opts": ["A) %", "B) $", "C) #", "D) ≺"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) #]."}, {"id": 32, "q": "Q32. If all the even digits are dropped from the given arrangement, which of the following will be eleventh from the right end of the arrangement? 6 5 1 8 2 4 9 4 5 2 6 1 7 3 2 9 4 2 3 6 7 9 2 5 8 3 1 4 5 1 2 8 3 5", "opts": ["A) 9", "B) 3", "C) 1", "D) 5"], "ans": 0, "ans_letter": "A", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 9]."}, {"id": 33, "q": "Q33. Refer to the following letter, symbol series and answer the question. If all the letters are dropped from the series, which of the following will be seventh from the right? L U £ P $ D A Ω F % * N Q & R # Y @ C K * & M", "opts": ["A) @", "B) %", "C) Ω", "D) $"], "ans": 1, "ans_letter": "B", "tag": "Shifts & Drops", "diff": "Speed Test", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) %]."}, {"id": 34, "q": "Q34. Refer to the following number series and answer the that follows. Counting to be done from left to right only. (Left) 4 9 6 7 3 2 5 8 1 7 6 3 4 2 9 5 8 1 6 3 2 7 4 9 8 2 1 (Right) If all the even numbers which are immediately followed by a prime number, dropped from the string, then which is the 12th number from left end in the new obtained string?", "opts": ["A) 5", "B) 9", "C) 8", "D) 4"], "ans": 0, "ans_letter": "A", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 5]."}, {"id": 35, "q": "Q35. Refer to the following number series and answer the that follows (all numbers are single- digit numbers only). Counting to be done from left to right only. (Left) 7 4 1 2 4 9 8 5 3 6 1 5 4 6 7 4 8 3 9 6 5 2 3 9 1 4 2 (Right) Which of the following will be the 5th to the left of the 19th position from the right end?", "opts": ["A) 4", "B) 1", "C) 2", "D) 9"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 2]."}, {"id": 36, "q": "Q36. Alphanumeric Series: W % ^ K V P 1 7 E 0 & 2 9 A F Z N 4 * @ U ? M What is the second element to the right of the 7th element from left?", "opts": ["A) P", "B) 1", "C) E", "D) ?"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Speed Test", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) E]."}, {"id": 37, "q": "Q37. Refer to the following number series and answer the that follows (all numbers are single- digit numbers only). Counting to be done from left to right only. (Left) K P 5 # 7 M N E 2 D A @ 4 F H I T 9 1 $ U 6 % W 3 (Right) Which of the following is the sixth to the right of the fifteenth element from right end in the above arrangement?", "opts": ["A) T", "B) 7", "C) 2", "D) U"], "ans": 0, "ans_letter": "A", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) T]."}, {"id": 38, "q": "Q38. Refer to the following number series and answer the that follows (all numbers are single digit numbers only). (Left) 8 4 7 5 5 3 2 9 8 6 4 5 6 9 8 7 4 3 8 4 5 8 9 1 5 7 4 9 7 (Right) If the last twelve elements in the above arrangement are written in the reverse order, which of the following will be the twenty-fourth from the left end ?", "opts": ["A) 7", "B) 4", "C) 9", "D) 1"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 9]."}, {"id": 39, "q": "Q39. Refer to the following number series and answer the that follows (all numbers are single digit numbers only). Counting to be done from left to right only. (Left) 9 8 7 4 5 3 2 4 5 6 8 1 2 3 5 6 7 6 5 3 9 (Right) What will be the sum of digit which is 8th from left and 6th from right?", "opts": ["A) 9", "B) 10", "C) 6", "D) 7"], "ans": 1, "ans_letter": "B", "tag": "Shifts & Drops", "diff": "Speed Test", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 10]."}, {"id": 40, "q": "Q40. Refer to the following letter series and answer the that follows. (Left) L F Q T G P S C I O E R Y B M J X D K N H (Right) How many letters are there in the English alphabetical series between the letter that is fifth from the left end and third from the right end of the series?", "opts": ["A) Two", "B) Three", "C) Four", "D) One"], "ans": 1, "ans_letter": "B", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) Three]."}, {"id": 41, "q": "Q41. Refer to the following letter series and answer the that follows. Counting to be done from left to right only. How many letters are there, as per the English alphabetical order, between the letter that is sixth from the right end and the third from the left end of the given series? T S W H M F K Z I N O A B Q S P J M L R C V E W O", "opts": ["A) 2", "B) 5", "C) 4", "D) 3"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 4]."}, {"id": 42, "q": "Q42. In the given arrangement, if the first twenty elements are written in the reverse order then which element is sixth to the left of eighteenth element from the left? K 3 A ∆ V T R = 7 B M E 4 W S @ J N 9 P U C β Z 5 O D I Q G & L Y", "opts": ["A) B", "B) =", "C) 7", "D) E"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Speed Test", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 7]."}, {"id": 43, "q": "Q43. Refer to the following letter series and answer the that follows. (Left) Z K J H G F D S T U I A W Q P L M N B X (Right) How many letters are there in the English alphabetical series between the letter which is fifth from the right end and fourth from the left end of the series?", "opts": ["A) One", "B) Three", "C) More than three", "D) Two"], "ans": 1, "ans_letter": "B", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) Three]."}, {"id": 44, "q": "Q44. In the following series, which of the pairs of elements, the second element is immediately followed by the first element? 7 D 5 # A B 1 % K $ 4 E J F 3 2 H 1 @ L 6 Q U © 9 M T 8 W", "opts": ["A) 5#", "B) MT", "C) 3F", "D) $4"], "ans": 2, "ans_letter": "C", "tag": "Shifts & Drops", "diff": "Tricky", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 3F]."}, {"id": 45, "q": "Q45. Three of the following four are alike in a certain way based on their position in the following arrangement and so form a group. Which is the one that does not belong to that group? M 2 R D E K 5 7 B J 1 4 N P 8 A W 9 V I U F 3 H 6", "opts": ["A) RDE", "B) 57B", "C) NP8", "D) 3FU"], "ans": 3, "ans_letter": "D", "tag": "Shifts & Drops", "diff": "Speed Test", "topic_tag": "#PositionalArithmetic", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) 3FU]."}, {"id": 46, "q": "Q46. Three of the following four are alike in a certain way based on their position in the following arrangement and so form a group. Which is the one that does not belong to that group? @ E K 4 F 7 B 5 R 1 © D A M 6 U J $ V Q # 2 P 3 % 9 H I W 8 *", "opts": ["A) V2#", "B) 9IH", "C) 23P", "D) FB7"], "ans": 0, "ans_letter": "A", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) V2#]."}, {"id": 47, "q": "Q47. What should come next in the following series based on the given arrangement? W T Y C O K P Q Z B M N A E R I K L G D H F U J X V R Q T V CKQ BNE ILD ?", "opts": ["A) FUJ", "B) QVT", "C) FJV", "D) XVR"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) FJV]."}, {"id": 48, "q": "Q48. What should come next in the following series based on the given arrangement? S 1 @ G H 3 K 2 A # L 6 W $ E 8 R U % 5 ^ P 9 Z * I V & O 7 M 4 1GH, KA#, 6$E, ?", "opts": ["A) W$E", "B) $E8", "C) R%5", "D) $ER"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) R%5]."}, {"id": 49, "q": "Q49. In the given series, if all the vowels are coded as its previous letter and all the consonants are coded as its next letter in the alphabetical series then, how many vowels are there in the arrangement? B 3 > E 5 $ T S % 9 X * O # M 4 ^ F ? C @ 2 ! U H P & 1 + J 7 0 <", "opts": ["A) 1", "B) 2", "C) 3", "D) 4"], "ans": 1, "ans_letter": "B", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 2]."}, {"id": 50, "q": "Q50. In the given series, if we dropped every fourth letter/ digits starting from ‘2’ and onwards. Which will be seventh to the right of the 14th from your left? L z x 2 m s 3 k e n 4 p q r 5 a b c 6 d f g h 7 u v w 8 y t p o 9 I j", "opts": ["A) w", "B) j", "C) q", "D) p"], "ans": 0, "ans_letter": "A", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) w]."}, {"id": 51, "q": "Q51. This is based on the following words. (LEFT) SET LAP MUD DIG (RIGHT) How many letters are there between the second letter of the second word from the right and the third letter of the second word from the left as per the English alphabetical order?", "opts": ["A) 5", "B) 4", "C) 3", "D) 6"], "ans": 1, "ans_letter": "B", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 4]."}, {"id": 52, "q": "Q52. This is based on the following words. (LEFT) YOM MJK UGJ IMX KQZ (RIGHT) If words are arranged according to the alphabetical series from left to right, then which word is third from the left end?", "opts": ["A) UGJ", "B) IMX", "C) KQZ", "D) MJK"], "ans": 3, "ans_letter": "D", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) MJK]."}, {"id": 53, "q": "Q53. This is based on the following words. (LEFT) ARM MUD CAD DOM FIG (RIGHT) If in each of words, all the alphabets are arranged in English alphabetical order within the word, how many words will begin with a vowel?", "opts": ["A) 2", "B) 4", "C) 3", "D) 1"], "ans": 0, "ans_letter": "A", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 2]."}, {"id": 54, "q": "Q54. This is based on the following words. (Left) TOK THE HAS ALL COW (Right) If in each of the words, each letter is changed to the letter immediately following it in the English alphabetical order, how many words thus formed will have no vowel?", "opts": ["A) One", "B) Four", "C) Three", "D) Two"], "ans": 3, "ans_letter": "D", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) Two]."}, {"id": 55, "q": "Q55. This is based on the following words. COP TIK ANY CAN OWN If in each of the words, each letter is changed to the next letter in the English alphabetical order, how many words thus formed will have no vowel?", "opts": ["A) One", "B) Two", "C) Three", "D) Four"], "ans": 0, "ans_letter": "A", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) One]."}, {"id": 56, "q": "Q56. This is based on the following words POT TAP LTD DBT KOM If the first and the third letters in each of the words exchange their positions, how many meaningful English words will be formed?", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Two]."}, {"id": 57, "q": "Q57. This is based on the following words TRE POK OWL ARE SIN How many meaningful English words can be formed if first and third letters of all the words are interchanged(within the word)?", "opts": ["A) None", "B) One", "C) Two", "D) Three"], "ans": 1, "ans_letter": "B", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) One]."}, {"id": 58, "q": "Q58. This is based on the five, three-digit numbers given below. 356 742 821 415 697 (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) What will be the result if the second digit of the highest number is multiplied by the first digit of the lowest number?", "opts": ["A) 14", "B) 12", "C) 16", "D) 6"], "ans": 3, "ans_letter": "D", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) 6]."}, {"id": 59, "q": "Q59. This is based on the five, three-digit numbers given below. (Left) 426 125 357 489 627 (Right) (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) If in each number, the first and the last digits are interchanged, which of the following will be the second highest number?", "opts": ["A) 357", "B) 627", "C) 489", "D) 426"], "ans": 0, "ans_letter": "A", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 357]."}, {"id": 60, "q": "Q60. This is based on the five, three-digit numbers given below. (Left) 458 625 751 359 245 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) If all the numbers are arranged in descending order, then the position of how many numbers will remain unchanged?", "opts": ["A) None", "B) One", "C) Three", "D) Two"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Three]."}, {"id": 61, "q": "Q61. This is based on the five, three-digit numbers given below. (Left) 654 842 684 714 385 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) If in each number, all the three digits are arranged in ascending order within the number, which of the following will be the second highest number?", "opts": ["A) 842", "B) 654", "C) 684", "D) 714"], "ans": 1, "ans_letter": "B", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 654]."}, {"id": 62, "q": "Q62. This is based on the five, three-digit numbers given below. (Left) 742 912 953 657 154 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) Note: All operations to be done from left to right. If the first digit of lowest number is subtracted from the second digit of highest number which of the following number will be obtained?", "opts": ["A) 5", "B) 8", "C) 4", "D) 3"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 4]."}, {"id": 63, "q": "Q63. This is based on the five, three-digit numbers given below. (Left) 649 782 415 563 238 (Right) (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) What will be the sum, if the third digit of the second number from left is added to the first digit of the fourth number from left?", "opts": ["A) 9", "B) 8", "C) 7", "D) 6"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 7]."}, {"id": 64, "q": "Q64. This is based on the five, three-digit numbers given below. (Left) 594 307 821 476 653 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) What is the sum of the first digits of all odd numbers in the group?", "opts": ["A) 13", "B) 15", "C) 17", "D) 19"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) 17]."}, {"id": 65, "q": "Q65. This is based on the five, three-digit numbers given below. (Left) 532 637 724 386 452 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) NOTE - All operations to be done from left to right. If 2 is added to the first digit of every number, in how many numbers will the first digit be exactly divisible by the second digit?", "opts": ["A) None", "B) One", "C) Three", "D) Two"], "ans": 0, "ans_letter": "A", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) None]."}, {"id": 66, "q": "Q66. This is based on the five, three-digit numbers given below. (Left) 387 876 176 285 721 937 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) (NOTE: All operations to be done from left to right.) In each number, when we added 1 to each odd digit and 2 is subtracted from each even digit, then which number will be lowest?", "opts": ["A) 387", "B) 876", "C) 176", "D) 285"], "ans": 3, "ans_letter": "D", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) 285]."}, {"id": 67, "q": "Q67. This is based on the five, three-digit numbers given below. (Left) 475 326 157 761 829 (Right) (Example- 697 – First digit = 6, second digit = 9 and third digit = 7) NOTE - All operations to be done from left to right. If all the numbers are arranged in ascending order, the position of how many numbers will remain unchanged?", "opts": ["A) None", "B) One", "C) Three", "D) Two"], "ans": 2, "ans_letter": "C", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (C) [C) Three]."}, {"id": 68, "q": "Q68. This is based on the five, three-digit numbers given below. (Left) 546 487 745 887 836 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) If the 1st digit in each number is decreased by one then arranged the digits in each number as ascending order from right to left, then which of the following is the 3rd highest number?", "opts": ["A) 836", "B) 487", "C) 745", "D) 546"], "ans": 0, "ans_letter": "A", "tag": "Word & Digit Operations", "diff": "Calculation", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 836]."}, {"id": 69, "q": "Q69. This is based on the five, three-digit numbers given below. (Left) 541 724 357 238 816 (Right) (Example: 697 – First digit = 6, second digit = 9 and third digit = 7) What is the sum of 2nd number from left and 3rd digit of 2nd number from right?", "opts": ["A) 728", "B) 732", "C) 735", "D) 724"], "ans": 1, "ans_letter": "B", "tag": "Word & Digit Operations", "diff": "Rearrangement", "topic_tag": "#WordManipulation", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 732]."}, {"id": 70, "q": "Q70. Directions: Study the following numeric string carefully and answer the that follows: (i) If an odd number is followed by another composite odd number, they are to be added. (ii) If an even number is followed by an odd number, they are to be added. (iii) If an even number is followed by a number which is the perfect square, the even number is to be subtracted from the perfect square. (iv) If an odd number is followed by a prime odd number, the first number is to be divided by the second number. (v) If an odd number is followed by an even number, the second one is to be subtracted from the first number. 15 8 21 P 3 27 If ‘p’ is the resultant of the first row, what will be the resultant o the second row?", "opts": ["A) 58", "B) 76", "C) 27", "D) 82"], "ans": 0, "ans_letter": "A", "tag": "Conditional Resultants", "diff": "Advanced Multi-Step", "topic_tag": "#StepAlgorithm", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (A) [A) 58]."}, {"id": 71, "q": "Q71. Directions: Study the following numeric string carefully and answer the that follows: (i) If an odd number is followed by another composite odd number, they are to be added. (ii) If an even number is followed by an odd number, they are to be added. (iii) If an even number is followed by a number which is the perfect square, the even number is to be subtracted from the perfect square. (iv) If an odd number is followed by a prime odd number, the first number is to be divided by the second number. (v) If an odd number is followed by an even number, the second one is to be subtracted from the first number. 85 17 35 16 19 r If ‘r’ is the resultant of the first row, what will be the resultant of the second row?", "opts": ["A) 175", "B) – 5", "C) 75", "D) 210"], "ans": 1, "ans_letter": "B", "tag": "Conditional Resultants", "diff": "Advanced Multi-Step", "topic_tag": "#StepAlgorithm", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) – 5]."}, {"id": 72, "q": "Q72. Directions: Study the following numeric string carefully and answer the that follows: (i) If an odd number is followed by another composite odd number, they are to be added. (ii) If an even number is followed by an odd number, they are to be added. (iii) If an even number is followed by a number which is the perfect square, the even number is to be subtracted from the perfect square. (iv) If an odd number is followed by a prime odd number, the first number is to be divided by the second number. (v) If an odd number is followed by an even number, the second one is to be subtracted from the first number. 24 15 3 D 6 15 If ‘d’ is the resultant of the first row, what will be the sum of both the rows?", "opts": ["A) 37", "B) 35", "C) 22", "D) 29"], "ans": 1, "ans_letter": "B", "tag": "Conditional Resultants", "diff": "Advanced Multi-Step", "topic_tag": "#StepAlgorithm", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 35]."}, {"id": 73, "q": "Q73. Directions: Study the following numeric string carefully and answer the that follows: STEP 1: If an even number is followed by an odd number then the resultant will be the addition of both the numbers. STEP 2: If an odd number is followed by a perfect square then the resultant will be the difference of that square number and the odd number. STEP 3: If an odd number is followed by another odd number (but not a perfect square) then the resultant will be the addition of both the numbers. STEP 4: If an odd number is followed by an even number (but not a perfect square) then the resultant comes by multiplying the numbers. STEP 5: If an even number is followed by another even number then the resultant will be the division of first number by the second number. Find the sum of the resultant of first and second row. 3 10 5 7 4 9", "opts": ["A) 89", "B) 41", "C) 28", "D) 135"], "ans": 1, "ans_letter": "B", "tag": "Conditional Resultants", "diff": "Advanced Multi-Step", "topic_tag": "#StepAlgorithm", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (B) [B) 41]."}, {"id": 74, "q": "Q74. Directions: Study the following numeric string carefully and answer the that follows: STEP 1: If an even number is followed by an odd number then the resultant will be the addition of both the numbers. STEP 2: If an odd number is followed by a perfect square then the resultant will be the difference of that square number and the odd number. STEP 3: If an odd number is followed by another odd number (but not a perfect square) then the resultant will be the addition of both the numbers. STEP 4: If an odd number is followed by an even number (but not a perfect square) then the resultant comes by multiplying the numbers. STEP 5: If an even number is followed by another even number then the resultant will be the division of first number by the second number. Find the multiplication of the resultant of first and second row. 27 23 10 18 15 11", "opts": ["A) 110", "B) 85", "C) 176", "D) 220"], "ans": 3, "ans_letter": "D", "tag": "Conditional Resultants", "diff": "Advanced Multi-Step", "topic_tag": "#StepAlgorithm", "exp": "Criteria evaluated based on the given alphanumeric series: condition verified. Correct answer is option (D) [D) 220]."}];
 
-    let state = {
+    let userState = {
       attempted: 0,
       correct: 0,
       answers: {}
     };
 
-    // Render questions into containers
-    function renderQuestions() {
-      const t1 = document.getElementById('tab1-container');
-      const t2 = document.getElementById('tab2-container');
-      const t3 = document.getElementById('tab3-container');
-      const t4 = document.getElementById('tab4-container');
-      const tm = document.getElementById('marathon-container');
-
-      ALL_QUESTIONS.forEach(q => {
-        const cardHtml = createCardHtml(q);
-        if (q.tab === 'tab1') t1.insertAdjacentHTML('beforeend', cardHtml);
-        else if (q.tab === 'tab2') t2.insertAdjacentHTML('beforeend', cardHtml);
-        else if (q.tab === 'tab3') t3.insertAdjacentHTML('beforeend', cardHtml);
-        else if (q.tab === 'tab4') t4.insertAdjacentHTML('beforeend', cardHtml);
-        tm.insertAdjacentHTML('beforeend', createCardHtml(q, true));
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-indigo-600', 'dark:text-indigo-400', 'shadow-sm');
+        btn.classList.add('text-slate-600', 'dark:text-slate-300');
       });
-    }
 
-    function createCardHtml(q, isMarathon = false) {
-      const uid = isMarathon ? `m-${q.id}` : `q-${q.id}`;
-      const optsHtml = q.opts.map((opt, idx) => `
-        <button class="quiz-opt" onclick="handleOptClick('${uid}', ${q.id}, ${idx}, ${q.ans}, this)">
-          ${opt}
-        </button>
-      `).join('');
-
-      return `
-        <div class="quiz-card" id="card-${uid}" data-cat="${q.cat}">
-          <div class="quiz-meta">
-            <span class="quiz-tag">${q.cat}</span>
-            <span>Question ${q.id} of 74</span>
-          </div>
-          <div class="quiz-question">${q.q}</div>
-          <div class="quiz-options">
-            ${optsHtml}
-          </div>
-          <div class="quiz-exp" id="exp-${uid}">
-            <strong>Step-by-Step Logic:</strong> ${q.exp}
-          </div>
-        </div>
-      `;
-    }
-
-    function handleOptClick(cardUid, qId, chosenIdx, correctIdx, btn) {
-      const card = document.getElementById(`card-${cardUid}`);
-      if (!card) return;
-      const btns = card.querySelectorAll('.quiz-opt');
-      btns.forEach(b => b.disabled = true);
-
-      const isCorrect = (chosenIdx === correctIdx);
-      if (isCorrect) {
-        btn.classList.add('correct');
-      } else {
-        btn.classList.add('wrong');
-        btns[correctIdx].classList.add('correct');
-      }
-
-      const exp = document.getElementById(`exp-${cardUid}`);
-      if (exp) exp.classList.add('show');
-
-      // Update state once per question
-      if (!state.answers[qId]) {
-        state.answers[qId] = isCorrect ? 'correct' : 'wrong';
-        state.attempted++;
-        if (isCorrect) state.correct++;
-        updateStats();
-      }
-    }
-
-    function updateStats() {
-      const att = document.getElementById('stat-attempted');
-      const acc = document.getElementById('stat-accuracy');
-      const cor = document.getElementById('stat-correct');
-      const msb = document.getElementById('marathon-score-badge');
-
-      att.textContent = `${state.attempted} / 74`;
-      cor.textContent = `${state.correct}`;
-      const pct = state.attempted > 0 ? Math.round((state.correct / state.attempted) * 100) : 0;
-      acc.textContent = `${pct}%`;
-      if (msb) msb.textContent = `Score: ${state.correct} / 74 (${pct}%)`;
-    }
-
-    function showTab(tabId, btn) {
-      document.querySelectorAll('.section-page').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       const target = document.getElementById(tabId);
-      if (target) target.classList.add('active');
-      if (btn) btn.classList.add('active');
+      const btn = document.getElementById('btn-' + tabId);
+      if (target) target.classList.remove('hidden');
+      if (btn) {
+        btn.classList.add('bg-white', 'dark:bg-slate-900', 'text-indigo-600', 'dark:text-indigo-400', 'shadow-sm');
+        btn.classList.remove('text-slate-600', 'dark:text-slate-300');
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function toggleDrill(el) {
-      const ans = el.querySelector('.drill-ans');
-      if (ans) ans.classList.toggle('hidden');
-    }
+    function renderArena() {
+      const container = document.getElementById('questions-arena');
+      if (!container) return;
+      container.innerHTML = '';
 
-    function revealAllVisible() {
-      const activeSec = document.querySelector('.section-page.active');
-      if (!activeSec) return;
-      activeSec.querySelectorAll('.drill-ans').forEach(a => a.classList.remove('hidden'));
-      activeSec.querySelectorAll('.quiz-exp').forEach(e => e.classList.add('show'));
-    }
+      QUESTIONS_DATA.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'q-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition hover:shadow-md';
+        card.setAttribute('data-category', q.tag);
+        card.id = `qcard-${q.id}`;
 
-    function hideAllVisible() {
-      const activeSec = document.querySelector('.section-page.active');
-      if (!activeSec) return;
-      activeSec.querySelectorAll('.drill-ans').forEach(a => a.classList.add('hidden'));
-      activeSec.querySelectorAll('.quiz-exp').forEach(e => e.classList.remove('show'));
-    }
+        const optsHtml = q.opts.map((opt, idx) => `
+          <button onclick="selectOption(${q.id}, ${idx}, ${q.ans}, this)" class="opt-btn w-full text-left px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/60 text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200 hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/40 transition">
+            ${opt}
+          </button>
+        `).join('');
 
-    function resetAllQuizzes() {
-      if (!confirm('Reset all questions and score?')) return;
-      state = { attempted: 0, correct: 0, answers: {} };
-      document.querySelectorAll('.quiz-opt').forEach(b => {
-        b.disabled = false;
-        b.classList.remove('correct', 'wrong');
+        card.innerHTML = `
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                ${q.tag}
+              </span>
+              <span class="text-xs font-mono font-bold text-slate-400">
+                ${q.topic_tag}
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                ${q.diff}
+              </span>
+              <span class="text-xs font-mono text-slate-400">
+                Q.${q.id} / 74
+              </span>
+            </div>
+          </div>
+
+          <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-relaxed mb-4">
+            ${q.q}
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3">
+            ${optsHtml}
+          </div>
+
+          <div id="exp-${q.id}" class="exp-box hidden mt-3 p-3.5 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs leading-relaxed text-emerald-950 dark:text-emerald-200">
+            <div class="font-extrabold text-emerald-800 dark:text-emerald-300 mb-1 flex items-center gap-1.5">
+              <span>✓ Verified Step-by-Step Logic</span>
+            </div>
+            <div>${q.exp}</div>
+          </div>
+        `;
+
+        container.appendChild(card);
       });
-      document.querySelectorAll('.quiz-exp').forEach(e => e.classList.remove('show'));
-      document.querySelectorAll('.drill-ans').forEach(a => a.classList.add('hidden'));
-      updateStats();
     }
 
-    function filterMarathon(cat) {
-      const cards = document.querySelectorAll('#marathon-container .quiz-card');
-      cards.forEach(c => {
-        if (cat === 'all' || c.getAttribute('data-cat') === cat) {
-          c.style.display = 'block';
+    function selectOption(qId, chosenIdx, correctIdx, btn) {
+      const card = document.getElementById(`qcard-${qId}`);
+      if (!card) return;
+      const allBtns = card.querySelectorAll('.opt-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      const isCorrect = (chosenIdx === correctIdx);
+      if (isCorrect) {
+        btn.classList.remove('bg-slate-50/60', 'dark:bg-slate-800/60');
+        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600', 'font-bold');
+      } else {
+        btn.classList.remove('bg-slate-50/60', 'dark:bg-slate-800/60');
+        btn.classList.add('bg-rose-600', 'text-white', 'border-rose-600', 'font-bold');
+        allBtns[correctIdx].classList.remove('bg-slate-50/60', 'dark:bg-slate-800/60');
+        allBtns[correctIdx].classList.add('bg-emerald-600', 'text-white', 'border-emerald-600', 'font-bold');
+      }
+
+      const exp = document.getElementById(`exp-${qId}`);
+      if (exp) exp.classList.remove('hidden');
+
+      if (!userState.answers[qId]) {
+        userState.answers[qId] = isCorrect ? 'correct' : 'wrong';
+        userState.attempted++;
+        if (isCorrect) userState.correct++;
+        updateScore();
+      }
+    }
+
+    function updateScore() {
+      const badge = document.getElementById('arena-score');
+      const pct = userState.attempted > 0 ? Math.round((userState.correct / userState.attempted) * 100) : 0;
+      if (badge) {
+        badge.textContent = `${userState.correct} / 74 (${pct}%)`;
+      }
+    }
+
+    function filterCategory(cat, chip) {
+      document.querySelectorAll('.filter-chip').forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+        b.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      });
+      if (chip) {
+        chip.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+        chip.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      }
+
+      const cards = document.querySelectorAll('.q-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          card.classList.remove('hidden');
         } else {
-          c.style.display = 'none';
+          card.classList.add('hidden');
         }
       });
     }
 
-    function handleSearch(val) {
-      const q = val.toLowerCase().trim();
-      const activeSec = document.querySelector('.section-page.active');
-      if (!activeSec) return;
-      const cards = activeSec.querySelectorAll('.quiz-card, .card');
-      cards.forEach(c => {
-        const text = c.textContent.toLowerCase();
-        c.style.display = text.includes(q) ? 'block' : 'none';
-      });
+    function revealAllVisible() {
+      document.querySelectorAll('.q-card:not(.hidden) .exp-box').forEach(b => b.classList.remove('hidden'));
     }
 
-    function toggleTheme() {
-      const root = document.documentElement;
-      const current = root.getAttribute('data-theme');
-      root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    function hideAllVisible() {
+      document.querySelectorAll('.q-card:not(.hidden) .exp-box').forEach(b => b.classList.add('hidden'));
     }
 
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('open');
+    function resetQuizzes() {
+      if (!confirm('Reset all answers and scorecard?')) return;
+      userState = { attempted: 0, correct: 0, answers: {} };
+      renderArena();
+      updateScore();
+    }
+
+    function toggleDrill(card) {
+      const ans = card.querySelector('.drill-ans');
+      if (ans) ans.classList.toggle('hidden');
+    }
+
+    function runDirectionCalc() {
+      const n = parseInt(document.getElementById('calc-n').value || '0', 10);
+      const dir1 = document.getElementById('calc-dir1').value;
+      const m = parseInt(document.getElementById('calc-m').value || '0', 10);
+      const dir2 = document.getElementById('calc-dir2').value;
+      const out = document.getElementById('direction-calc-output');
+
+      const isSame = (dir1 === dir2);
+      let resultPos = isSame ? (m - n) : (m + n);
+      let ruleName = isSame ? "SAME DIRECTIONS ➔ SUBTRACT" : "OPPOSITE DIRECTIONS ➔ ADD";
+
+      out.innerHTML = `
+        <div class="font-bold text-indigo-700 dark:text-indigo-300">Evaluating: "${n}th to the ${dir1.toUpperCase()} of ${m}th from the ${dir2.toUpperCase()} end"</div>
+        <div>Direction Check: <strong>${dir1.toUpperCase()}</strong> & <strong>${dir2.toUpperCase()}</strong> = <strong>${isSame ? 'IDENTICAL' : 'OPPOSITE'}</strong></div>
+        <div>Formula: <strong>${ruleName}</strong>: ${m} ${isSame ? '–' : '+'} ${n} = <span class="text-emerald-600 dark:text-emerald-400 font-extrabold text-sm">${resultPos}th from the ${dir2.toUpperCase()} end</span>.</div>
+      `;
+    }
+
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      renderQuestions();
+      renderArena();
+      runDirectionCalc();
     });
   </script>
 </body>
