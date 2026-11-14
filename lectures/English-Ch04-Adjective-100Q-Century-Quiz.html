@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English: Adjective 100Q Century Practice Quiz | Parmar SSC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --border-subtle: #edf2f7;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-faint: #94a3b8;
+      
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-pill: #e0f2fe;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.06);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --surface: #131c31;
+      --border: #1e293b;
+      --border-subtle: #172239;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --primary-pill: rgba(2, 132, 199, 0.2);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    header.topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      height: 52px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--primary);
+    }
+
+    .breadcrumb-sep { color: var(--text-faint); }
+    .breadcrumb-current { color: var(--text-main); font-weight: 600; }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--border-subtle);
+      border-color: #cbd5e1;
+    }
+
+    /* Main Container */
+    .quiz-layout {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 20px 80px 20px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .quiz-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Banner & Filter */
+    .quiz-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .banner-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .banner-title h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.2px;
+    }
+
+    .banner-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .filter-pill {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--primary-pill);
+      color: var(--primary);
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Question Cards */
+    .question-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease;
+    }
+
+    .question-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .q-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .q-number {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-pill);
+      padding: 2px 10px;
+      border-radius: 6px;
+    }
+
+    .q-exam {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--border-subtle);
+      padding: 2px 10px;
+      border-radius: 6px;
+    }
+
+    .q-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .option-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      text-align: left;
+    }
+
+    .option-btn:hover {
+      border-color: var(--primary);
+      background: rgba(2, 132, 199, 0.03);
+    }
+
+    .opt-letter {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--border-subtle);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected-correct {
+      background: var(--success-bg) !important;
+      border-color: var(--success-border) !important;
+      color: var(--success) !important;
+      font-weight: 600;
+    }
+
+    .option-btn.selected-correct .opt-letter {
+      background: var(--success);
+      color: #fff;
+    }
+
+    .option-btn.selected-wrong {
+      background: var(--error-bg) !important;
+      border-color: var(--error-border) !important;
+      color: var(--error) !important;
+      font-weight: 600;
+    }
+
+    .option-btn.selected-wrong .opt-letter {
+      background: var(--error);
+      color: #fff;
+    }
+
+    .explanation-box {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: var(--bg);
+      border-left: 3px solid var(--primary);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-main);
+      display: none;
+      animation: fadeIn 0.2s ease;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sticky Sidebar Palette */
+    .palette-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: sticky;
+      top: 72px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .palette-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stats-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .stat-mini {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .stat-mini-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-mini-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .palette-item {
+      aspect-ratio: 1;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .palette-item:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .palette-item.status-correct {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    .palette-item.status-wrong {
+      background: var(--error);
+      color: #fff;
+      border-color: var(--error);
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand-icon">✓</div>
+      <div class="breadcrumb">
+        <a href="../index.html">Mock Manager</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="../index.html#subject/english">ENGLISH</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Adjective 100Q Century Quiz</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-action" onclick="resetQuiz()">↻ Reset</button>
+      <button class="btn-action" id="themeBtn" onclick="toggleTheme()">🌙</button>
+      <a href="../index.html" class="btn-action">← Exit</a>
+    </div>
+  </header>
+
+  <main class="quiz-layout">
+    <div class="quiz-main-col">
+      <div class="quiz-banner">
+        <div class="banner-row">
+          <div class="banner-title">
+            <h1>Adjective Century Practice Marathon (100 Questions)</h1>
+            <p>Complete set of 100 PYQs curated from SSC CGL, CPO, CHSL, Steno, DSSSB & Selection Post exams with official solutions.</p>
+          </div>
+          <span style="background:var(--primary-pill); color:var(--primary); font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px;">
+            100 MCQs
+          </span>
+        </div>
+        <div class="filter-pills">
+          <span class="filter-pill active" onclick="filterQuestions('all', this)">All (100)</span>
+          <span class="filter-pill" onclick="filterQuestions('unanswered', this)">Unanswered</span>
+          <span class="filter-pill" onclick="filterQuestions('incorrect', this)">Incorrect</span>
+          <span class="filter-pill" onclick="filterQuestions('cgl', this)">SSC CGL</span>
+          <span class="filter-pill" onclick="filterQuestions('steno', this)">SSC Steno</span>
+          <span class="filter-pill" onclick="filterQuestions('dsssb', this)">DSSSB ASO</span>
+        </div>
+      </div>
+
+      <div id="questionsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Sidebar Quick Navigator -->
+    <aside class="palette-card">
+      <div class="palette-title">
+        <span>Question Palette</span>
+        <span id="answeredRatio" style="font-size:12px; color:var(--text-muted);">0 / 100</span>
+      </div>
+      <div class="stats-box">
+        <div class="stat-mini">
+          <div class="stat-mini-val" id="correctScore">0</div>
+          <div class="stat-mini-lbl">Correct</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-val" id="accuracyScore">0%</div>
+          <div class="stat-mini-lbl">Accuracy</div>
+        </div>
+      </div>
+      <div class="palette-grid" id="paletteGrid">
+        <!-- 100 buttons rendered dynamically -->
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    // 100 QUESTIONS DATA EXACTLY MATCHING CENTURY PDF & OFFICIAL ANSWER KEY
+    const QUESTIONS = [
+      {
+        id: 1,
+        text: "The journalist was more shocked than any political reporter.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["all political reporters", "other political reporters", "any of the political reporters", "No substitution required"],
+        ans: 1,
+        exp: "When comparing a person with others in the same group, 'other' must be used with 'any' to exclude the subject. Hence, 'than any other political reporter'."
+      },
+      {
+        id: 2,
+        text: "She is more smarter than her brother.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["smarter", "smartest", "extra smart", "more smartest"],
+        ans: 0,
+        exp: "Double comparative is incorrect. 'Smarter' is already in comparative degree; 'more' should be omitted."
+      },
+      {
+        id: 3,
+        text: "As a pioneer of early cybersecurity protocols in the late 1990s, Aegis-X provided more robust end-to-end data encryption than any network security platform of the time.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["than any other network security platform", "to any other network security platform", "than did any network security platform", "No improvement required"],
+        ans: 0,
+        exp: "Aegis-X is itself a network security platform, so it must be excluded from comparison using 'other'. Hence 'than any other network security platform'."
+      },
+      {
+        id: 4,
+        text: "Of all the candidates, he was the most cleverest.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["most clever", "more clever", "cleverest", "No substitution required"],
+        ans: 2,
+        exp: "Double superlative is grammatically incorrect. Use either 'cleverest' or 'most clever'; since 'cleverest' is available, it is the best single-word superlative."
+      },
+      {
+        id: 5,
+        text: "This is the borest movie I have ever seen.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["more boring", "boring", "most boring", "boringest"],
+        ans: 2,
+        exp: "'Boring' forms its superlative with 'most boring', not 'borest' or 'boringest'."
+      },
+      {
+        id: 6,
+        text: "This road is narrow than the one we took yesterday.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["more narrower", "narrower", "most narrow", "narrowest"],
+        ans: 1,
+        exp: "Comparison between two roads requires the comparative degree 'narrower' before 'than'."
+      },
+      {
+        id: 7,
+        text: "He is superior than his contemporaries in the field of theoretical physics and quantum mechanics due to his innovative research.",
+        exam: "SSC Steno Exam 2026",
+        options: ["He is more superior to", "He is most superior than", "He is superior from", "He is superior to"],
+        ans: 3,
+        exp: "Latin adjectives ending in -ior (superior, inferior, senior, junior, prior, anterior, posterior) take preposition 'to', never 'than' or 'more'."
+      },
+      {
+        id: 8,
+        text: "She is considered the most intelligent of the two architects who designed the sustainable skyscraper project for the new business district.",
+        exam: "SSC Steno Exam 2026",
+        options: ["most intelligent between the two", "the more intelligent of the two", "more intelligent than the two", "intelligent of the two"],
+        ans: 1,
+        exp: "When selecting between two persons/things ('of the two'), use 'the + comparative degree'. Hence 'the more intelligent of the two'."
+      },
+      {
+        id: 9,
+        text: "He is more senior than me in the organization.",
+        exam: "SSC Steno Exam 2026",
+        options: ["senior to me", "more senior to I", "senior than me", "more senior than I"],
+        ans: 0,
+        exp: "'Senior' does not take 'more' and takes preposition 'to' followed by objective pronoun 'me'. Hence 'senior to me'."
+      },
+      {
+        id: 10,
+        text: "He aspires to become the more influential leader in the country representing marginalised communities.",
+        exam: "SSC GD Exam 2025-26",
+        options: ["a most influential leader", "the most influential leader", "most influential leader", "No improvement required"],
+        ans: 1,
+        exp: "Representing one among all leaders in the country requires the superlative degree: 'the most influential leader'."
+      },
+      {
+        id: 11,
+        text: "He is more wiser than his brother.",
+        exam: "SSC CPO Pre 2025",
+        options: ["very wise", "more wise", "wiser to", "wiser"],
+        ans: 3,
+        exp: "Double comparative is prohibited. Use 'wiser' instead of 'more wiser'."
+      },
+      {
+        id: 12,
+        text: "Bim believed that silence was the worse betrayal of all, even more than spoken cruelty.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["More worse", "Worse", "Worst", "Bad"],
+        ans: 2,
+        exp: "'Of all' denotes comparison among all, requiring superlative degree 'the worst', not 'the worse'."
+      },
+      {
+        id: 13,
+        text: "Bathsheba realized too late that Gabriel Oak had been better man for her all along.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["More good", "Best", "Even better", "Good"],
+        ans: 1,
+        exp: "In the ultimate evaluation of all suitors, superlative 'the best man' is required."
+      },
+      {
+        id: 14,
+        text: "Of the three paths, this is the most shortest.",
+        exam: "SSC SP (Graduation) Level 2025",
+        options: ["more short", "shorter", "most short", "shortest"],
+        ans: 3,
+        exp: "'Most shortest' is a double superlative. The correct superlative form is 'shortest'."
+      },
+      {
+        id: 15,
+        text: "This is the most toughest exam that I have ever taken.",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["the most tough exam", "the toughest exam", "the most toughest exam", "is toughest exam"],
+        ans: 1,
+        exp: "Avoid double superlative. 'The toughest exam' is correct."
+      },
+      {
+        id: 16,
+        text: "Which student scored the first highest marks in the class?",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["the first highest", "the highest first", "the highest marks", "the first marks"],
+        ans: 2,
+        exp: "'First highest' is redundant. Use 'the highest marks'."
+      },
+      {
+        id: 17,
+        text: "The car is moving very fastly on the road.",
+        exam: "SSC STENO Exam 2025",
+        options: ["fastliness", "quickliness", "fast", "quicker"],
+        ans: 2,
+        exp: "'Fastly' is non-existent in standard English. 'Fast' functions as both an adjective and an adverb."
+      },
+      {
+        id: 18,
+        text: "In the following sentence, identify the revision that most accurately addresses any error in adjective placement: 'The uniquely aromatic, vibrant brewed teas sourced from mountain villages often attract connoisseurs seeking subtler flavors.'",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "The aromatic, vibrant uniquely brewed teas sourced from mountain villages often attract connoisseurs seeking subtler flavors.",
+          "The uniquely vibrant aromatic brewed teas sourced from mountain villages often attract connoisseurs seeking subtler flavors.",
+          "The brewed aromatic vibrant uniquely teas sourced from mountain villages often attract connoisseurs seeking subtler flavors.",
+          "The vibrant, uniquely aromatic brewed teas sourced from mountain villages often attract connoisseurs seeking subtler flavors."
+        ],
+        ans: 3,
+        exp: "Correct adjective ordering places the general opinion/vibe ('vibrant') first, followed by adverb-modified quality ('uniquely aromatic') and the participle ('brewed')."
+      },
+      {
+        id: 19,
+        text: "Identify the sentence with incorrect adjective usage.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "The researcher offered a methodical analysis of the conflicting evidence.",
+          "The panel praised the candidate's insightful interpretation of the historical evidence.",
+          "The committee adopted a pragmatic approach to resolving the institutional dispute.",
+          "The report contained several ambiguity recommendations that required clarification."
+        ],
+        ans: 3,
+        exp: "'Ambiguity' is a noun; the adjective form 'ambiguous' is required to qualify the noun 'recommendations'."
+      },
+      {
+        id: 20,
+        text: "The scientist presented a comprehending and understanding analysis of the environmental impact.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "The scientist presented a comprehensively and thorough analysis of the environmental impact.",
+          "The scientist presented a comprehension and understanding analysis of the environmental impact.",
+          "The scientist presented a comprehending and detailed analysis of the environmental impact.",
+          "The scientist presented a comprehensive and thorough analysis of the environmental impact."
+        ],
+        ans: 3,
+        exp: "Appropriate qualitative adjectives are 'comprehensive' and 'thorough' to describe the noun 'analysis'."
+      },
+      {
+        id: 21,
+        text: "Seldom have we encountered a theory ______ intriguing ______ this one.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["much, than", "more, than", "as, that", "more, as"],
+        ans: 1,
+        exp: "Comparative degree construction requires 'more intriguing than this one'."
+      },
+      {
+        id: 22,
+        text: "His recent paper is as ___ as any ever published in the journal's history.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["insightful", "more insightful", "most insightful", "insightfully"],
+        ans: 0,
+        exp: "'As...as' takes positive degree of adjective. Hence 'insightful'."
+      },
+      {
+        id: 23,
+        text: "No strategy was found to be ___ than diversification during the crisis.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["effective", "most effective", "more effective", "effectively"],
+        ans: 2,
+        exp: "'Than' requires comparative degree 'more effective'."
+      },
+      {
+        id: 24,
+        text: "The soldiers, exhausted though they were, pressed on with an almost ______ fortitude.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["mechanical", "mechanically", "mechanize", "mechanic"],
+        ans: 0,
+        exp: "An adjective is needed to qualify noun 'fortitude'. 'Mechanical' is the adjective."
+      },
+      {
+        id: 25,
+        text: "Between the two musicians, I find Bach’s compositions to be ______ profound.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["most", "more", "better", "best"],
+        ans: 1,
+        exp: "Comparison between two entities ('Between the two') requires comparative 'more profound'."
+      },
+      {
+        id: 26,
+        text: "When comparing the two theories, Newton’s laws were initially considered ______ acceptable.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["least", "less", "lesser", "little"],
+        ans: 1,
+        exp: "Between two items, use comparative degree 'less acceptable'."
+      },
+      {
+        id: 27,
+        text: "The director's ______ refusal to compromise and the board’s ______ criticism led to a stalemate.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["steadiness, scathing", "steadfastly, scathe", "steadfast, scathing", "steadily, scathes"],
+        ans: 2,
+        exp: "Both nouns ('refusal' and 'criticism') require adjectives: 'steadfast' and 'scathing'."
+      },
+      {
+        id: 28,
+        text: "He wrote with ______ skill, weaving intricate narratives effortlessly into complex themes.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["utmost", "most", "too much", "extreme"],
+        ans: 0,
+        exp: "'Utmost skill' is the standard idiomatic expression meaning maximum or highest degree of skill."
+      },
+      {
+        id: 29,
+        text: "No matter how _____ the evidence was, the jury remained unconvinced.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["compelling", "compel", "compels", "compulsion"],
+        ans: 0,
+        exp: "'How + adjective': 'compelling' is the participle adjective modifying 'evidence'."
+      },
+      {
+        id: 30,
+        text: "This project is far _________ than the previous one.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["easy", "easier", "easiest", "more easiest"],
+        ans: 1,
+        exp: "'Far' intensifies a comparative adjective: 'far easier than'."
+      },
+      {
+        id: 31,
+        text: "India is one of the _________ growing economies in the world, attracting significant foreign investments.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["more fast", "most fast", "faster", "fastest"],
+        ans: 3,
+        exp: "'One of the + superlative': 'fastest growing economies'."
+      },
+      {
+        id: 32,
+        text: "This year’s costumes are ______ than last year's, but they were also ______ to prepare.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["elaborater, difficulter", "most elaborate, most difficult", "elaborate, difficult", "more elaborate, more difficult"],
+        ans: 3,
+        exp: "Multi-syllable adjectives take 'more': 'more elaborate' and 'more difficult'."
+      },
+      {
+        id: 33,
+        text: "When the lights went out, we spent a ______ evening talking by the ______ light of a few candles.",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["noiseless, waving", "silent, blinking", "quiet, flickering", "still, shaking"],
+        ans: 2,
+        exp: "'Quiet evening' and 'flickering light' are natural, correct adjective collocates."
+      },
+      {
+        id: 34,
+        text: "The final performance was the ______ of the entire evening.",
+        exam: "SSC Phase-14 (Graduation) Exam 2026",
+        options: ["more spectacular", "most spectacular", "spectacular", "least spectacular"],
+        ans: 1,
+        exp: "'The + superlative' is required: 'the most spectacular'."
+      },
+      {
+        id: 35,
+        text: "She completed the task ______ efficiently than her colleagues, surprising everyone.",
+        exam: "SSC Phase-14 (Graduation) Exam 2026",
+        options: ["most", "much", "many", "more"],
+        ans: 3,
+        exp: "'Than' necessitates comparative degree 'more efficiently'."
+      },
+      {
+        id: 36,
+        text: "The ambassador's statement, riddled with diplomatic hedging, failed to offer a ____ position on the escalating conflict.",
+        exam: "SSC Steno Exam 2026",
+        options: ["categorize", "categorically", "category", "categorical"],
+        ans: 3,
+        exp: "Noun 'position' requires the adjective 'categorical' (unambiguous, explicit)."
+      },
+      {
+        id: 37,
+        text: "Of the two candidates, the younger one is _____.",
+        exam: "SSC Steno Exam 2026",
+        options: ["the most talented", "talented", "more talented", "most talented"],
+        ans: 2,
+        exp: "Comparing two candidates: 'more talented' (or 'the more talented')."
+      },
+      {
+        id: 38,
+        text: "While the proposal appeared pragmatic on paper, its implementation proved ____ complicated than expected.",
+        exam: "SSC CGL 2025 Tier-01",
+        options: ["less", "more", "much", "rather"],
+        ans: 1,
+        exp: "'More complicated than expected' fits the contrast with 'pragmatic on paper'."
+      },
+      {
+        id: 39,
+        text: "Her interpretation was ___ than insightful; it bordered on the revelatory.",
+        exam: "SSC CGL 2025 Tier-01",
+        options: ["less", "more", "other", "rather"],
+        ans: 1,
+        exp: "Comparing two qualities/degrees: 'more than insightful'."
+      },
+      {
+        id: 40,
+        text: "This is ____ biryani I have had in a year. It is almost ____ the one from Nizam's House in Hyderabad.",
+        exam: "SSC DP HC (Ministrial) Exam-2025",
+        options: ["a, gooder than", "the better, as good as", "a, better", "the best, as good as"],
+        ans: 3,
+        exp: "Superlative 'the best' for one in a year, and equality 'as good as' for comparison."
+      },
+      {
+        id: 41,
+        text: "They treated the interim guidelines as _______, pending formal ratification.",
+        exam: "SSC CPO Pre 2025",
+        options: ["provisional", "provisionally", "provisioned", "provision"],
+        ans: 0,
+        exp: "'Provisional' is the adjective needed to describe the interim nature."
+      },
+      {
+        id: 42,
+        text: "The committee regarded the proposal as ___ to the organization's long-term vision.",
+        exam: "SSC CPO Pre 2025",
+        options: ["integral", "integrally", "integration", "integrate"],
+        ans: 0,
+        exp: "Adjective 'integral' is required after linking verb/preposition."
+      },
+      {
+        id: 43,
+        text: "Of the two proposals, the second one was far ___ to implement with the available resources.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["better", "best", "good", "more better"],
+        ans: 0,
+        exp: "Between two proposals, comparative 'better' is used with 'far'."
+      },
+      {
+        id: 44,
+        text: "This is by far the ___ performance we've seen from the team all season.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["better", "best", "good", "most better"],
+        ans: 1,
+        exp: "'By far the + superlative': 'by far the best performance'."
+      },
+      {
+        id: 45,
+        text: "Identify the correct type of adjective in: 'She ate sufficient bread.' Here, 'Sufficient' is a _______ adjective.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["proper", "numeral", "qualitative", "quantitative"],
+        ans: 3,
+        exp: "'Sufficient' indicates quantity of uncountable noun 'bread', making it an Adjective of Quantity."
+      },
+      {
+        id: 46,
+        text: "This mountain is ___ than the one we climbed last year.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["high", "higher", "highest", "more high"],
+        ans: 1,
+        exp: "Comparative of 'high' is 'higher'."
+      },
+      {
+        id: 47,
+        text: "This book is ___ than the one I read last week.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["interesting", "interest", "more interesting", "most interesting"],
+        ans: 2,
+        exp: "'More interesting than' is the correct comparative."
+      },
+      {
+        id: 48,
+        text: "That was the ___ performance of the night.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["amazing", "more amazing", "most amazing", "much amazing"],
+        ans: 2,
+        exp: "'The most amazing performance'."
+      },
+      {
+        id: 49,
+        text: "Madhu was the one who had eaten the ________ number of mangoes, only one!",
+        exam: "SSC SP (10+2) Level 2025",
+        options: ["less", "lesser", "least", "leastest"],
+        ans: 2,
+        exp: "'The least number of mangoes' (superlative of little: little -> less -> least)."
+      },
+      {
+        id: 50,
+        text: "Among the shortlisted candidates, she presented the ___ argument with impeccable logic and evidence.",
+        exam: "SSC SP (Graduation) Level 2025",
+        options: ["most compelling", "more compelling", "much compelling", "most compelled"],
+        ans: 0,
+        exp: "'Among all candidates' calls for superlative 'the most compelling argument'."
+      },
+      {
+        id: 51,
+        text: "The revised algorithm is ___ than the previous version, reducing load time by half.",
+        exam: "SSC SP (Graduation) Level 2025",
+        options: ["efficient", "most efficient", "more efficient", "efficiency"],
+        ans: 2,
+        exp: "'More efficient than'."
+      },
+      {
+        id: 52,
+        text: "Of all the analysts on the panel, Priya was considered the ___ in macroeconomic interpretation.",
+        exam: "SSC SP (Graduation) Level 2025",
+        options: ["best", "better", "most better", "more best"],
+        ans: 0,
+        exp: "'Of all the analysts' requires superlative 'the best'."
+      },
+      {
+        id: 53,
+        text: "We spent an __________ day at school yesterday.",
+        exam: "SSC STENO Exam 2025",
+        options: ["enjoyable", "enjoying", "enjoyment", "enjoyed"],
+        ans: 0,
+        exp: "Adjective 'enjoyable' correctly modifies noun 'day'."
+      },
+      {
+        id: 54,
+        text: "Hari is _________ than Sohan in solving mathematical problems.",
+        exam: "SSC STENO Exam 2025",
+        options: ["most talented", "talented", "more talented", "talenter"],
+        ans: 2,
+        exp: "'More talented than'."
+      },
+      {
+        id: 55,
+        text: "The reviewer praises the ________ film for masterfully hiding deep political undertones beneath the innocent story of a schoolboy.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "deceptively simple Iranian 1980s drama",
+          "Iranian deceptively simple 1980s drama",
+          "1980s deceptively simple Iranian drama",
+          "deceptively simple 1980s Iranian drama"
+        ],
+        ans: 3,
+        exp: "Order of adjectives: Opinion ('deceptively simple') -> Age ('1980s') -> Origin ('Iranian') -> Noun ('drama')."
+      },
+      {
+        id: 56,
+        text: "The graphic novel centers on the deeply personal experiences of a ________ protagonist navigating severe societal restrictions.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "young rebellious Iranian female",
+          "rebellious Iranian young female",
+          "rebellious young Iranian female",
+          "Iranian rebellious young female"
+        ],
+        ans: 2,
+        exp: "Opinion ('rebellious') -> Age ('young') -> Origin ('Iranian') -> Classification ('female')."
+      },
+      {
+        id: 57,
+        text: "At the film's closure, the audience is left with a sense of hope symbolized by a ________ flower used as a bookmark.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "beautiful fragile tiny dried",
+          "beautiful dried tiny fragile",
+          "tiny beautiful fragile dried",
+          "beautiful tiny fragile dried"
+        ],
+        ans: 3,
+        exp: "Opinion ('beautiful') -> Size ('tiny') -> Quality/State ('fragile') -> Condition ('dried')."
+      },
+      {
+        id: 58,
+        text: "Many bookshops around the world proudly display this ________ anthology in their prominent comic sections.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "new influential Iranian graphic",
+          "influential new Iranian graphic",
+          "Iranian influential new graphic",
+          "influential Iranian new graphic"
+        ],
+        ans: 1,
+        exp: "Opinion ('influential') -> Age ('new') -> Origin ('Iranian') -> Type ('graphic')."
+      },
+      {
+        id: 59,
+        text: "The young boy navigates a ________ path to return the homework notebook and save his friend.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "treacherous long winding dirt",
+          "long treacherous dirt winding",
+          "winding long treacherous dirt",
+          "treacherous winding long dirt"
+        ],
+        ans: 0,
+        exp: "Opinion ('treacherous') -> Length/Size ('long') -> Shape ('winding') -> Material ('dirt')."
+      },
+      {
+        id: 60,
+        text: "Of all the solutions proposed, this one is by far the ____.",
+        exam: "SSC CGL 2025 Tier-01",
+        options: ["more cost-effective", "most cost-effective", "cost-effectiver", "much cost-effective"],
+        ans: 1,
+        exp: "'By far the most cost-effective'."
+      },
+      {
+        id: 61,
+        text: "The director demanded the screenplay be revised to eliminate ____ dialogue.",
+        exam: "SSC CGL 2025 Tier-01",
+        options: ["superfluous", "superfluity", "superfluously", "superfluousness"],
+        ans: 0,
+        exp: "Adjective 'superfluous' modifies noun 'dialogue'."
+      },
+      {
+        id: 62,
+        text: "Hardly had the scientist presented his theory when critics called it ___ absurd theory of the decade.",
+        exam: "SSC SP (10+2) Level 2025",
+        options: ["the more", "the most", "most", "the guests have arrived"],
+        ans: 1,
+        exp: "'The most absurd theory of the decade'."
+      },
+      {
+        id: 63,
+        text: "I have a strongly feeling that something’s off. (Find error part)",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["feeling", "strongly", "have", "something"],
+        ans: 1,
+        exp: "'Strongly' is an adverb; use adjective 'strong' to modify noun 'feeling'."
+      },
+      {
+        id: 64,
+        text: "Her performance was extremely excellence throughout the quarter. (Find error part)",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["extremely", "excellence", "throughout", "quarter"],
+        ans: 1,
+        exp: "'Excellence' is a noun; use predicate adjective 'excellent'."
+      },
+      {
+        id: 65,
+        text: "The correlation-matrix visualization (1)/ appeared more clear (2)/ when the superfluous variables were removed (3)/ during the second iteration of analysis. (4)",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["(1)", "(2)", "(3)", "(4)"],
+        ans: 1,
+        exp: "Part (2) is incorrect: 'more clear' should be 'clearer'."
+      },
+      {
+        id: 66,
+        text: "This is the most easiest question in the test. (Find error part)",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["test", "most", "question", "easiest"],
+        ans: 1,
+        exp: "'Most' causes double superlative; remove 'most'."
+      },
+      {
+        id: 67,
+        text: "He paid a heavy apology after the incident. (Find error part)",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["apology", "paid", "heavy", "incident"],
+        ans: 2,
+        exp: "Collocation error: One makes a 'sincere/profuse' apology or tenders an apology, not a 'heavy' apology."
+      },
+      {
+        id: 68,
+        text: "She wore a stunning red silk long scarf (1) that complemented her traditional attire (2)...",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["(1)", "(2)", "(3)", "(4)"],
+        ans: 0,
+        exp: "Part (1) has incorrect adjective order: Length ('long') comes before colour ('red') and material ('silk'): 'stunning long red silk scarf'."
+      },
+      {
+        id: 69,
+        text: "He is more smarter than anyone else in class. (Correct the underlined part)",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["smarter", "more smart", "smartest", "No substitution required"],
+        ans: 0,
+        exp: "Double comparative: change 'more smarter' to 'smarter'."
+      },
+      {
+        id: 70,
+        text: "(P) Professor Ali’s latest historical monograph is more comprehensive than concise... (Q) The lead prosecutor remarked that the defendant's confession was ready than calculated...",
+        exam: "SSC CGL Tier-01 2026",
+        options: ["Only P", "Only Q", "Both P and Q", "Neither P nor Q"],
+        ans: 1,
+        exp: "Statement (Q) has an error: when comparing two qualities of the same person/thing, use 'more ready than calculated', not 'ready than'."
+      },
+      {
+        id: 71,
+        text: "She is / senior than / me / in service. (Find error)",
+        exam: "SSC Phase-14 (Matriculation) Exam 2026",
+        options: ["She is", "senior than", "me", "in service"],
+        ans: 1,
+        exp: "Latin comparative 'senior' takes 'to', not 'than'. Change 'senior than' to 'senior to'."
+      },
+      {
+        id: 72,
+        text: "There are / less students / in the hall / today. (Find error)",
+        exam: "SSC Phase-14 (Matriculation) Exam 2026",
+        options: ["There are", "less students", "in the hall", "today"],
+        ans: 1,
+        exp: "'Students' is a countable noun; use 'fewer students', not 'less students'."
+      },
+      {
+        id: 73,
+        text: "Of all the dancers, she performed more gracefully. (Find error)",
+        exam: "SSC Phase-14 (Graduation) Exam 2026",
+        options: ["gracefully", "more", "performed", "dancers"],
+        ans: 1,
+        exp: "'Of all the dancers' denotes comparison among all; use superlative 'most gracefully'."
+      },
+      {
+        id: 74,
+        text: "He is an extremely talent musician. (Find error)",
+        exam: "SSC Phase-14 (Graduation) Exam 2026",
+        options: ["talent", "an", "musician", "extremely"],
+        ans: 0,
+        exp: "'Talent' is a noun; use adjective 'talented' to modify 'musician'."
+      },
+      {
+        id: 75,
+        text: "(A) The strategy adopted by the administration / (B) is far superior than / (C) the one implemented by the previous committee. / (D) No Error",
+        exam: "SSC Steno Exam 2026",
+        options: ["(A)", "(B)", "(C)", "(D)"],
+        ans: 1,
+        exp: "Part (B) error: 'superior' takes 'to', so it should be 'far superior to'."
+      },
+      {
+        id: 76,
+        text: "Please provide a detailing explanation of the research methodology... (Find error)",
+        exam: "SSC Steno Exam 2026",
+        options: ["Please provide a detailing explanation", "of the research methodology used in", "your recent scientific paper for", "clarification purposes requested by the board."],
+        ans: 0,
+        exp: "Use participle adjective 'detailed explanation', not 'detailing explanation'."
+      },
+      {
+        id: 77,
+        text: "It is a fact that there are most cars in Los Angeles than people. (Find error)",
+        exam: "SSC Steno Exam 2026",
+        options: ["a fact that", "most cars", "than people", "It is a fact"],
+        ans: 1,
+        exp: "'Than' requires comparative degree 'more cars', not superlative 'most cars'."
+      },
+      {
+        id: 78,
+        text: "She is senior than me by five years. (Find error)",
+        exam: "SSC Steno Exam 2026",
+        options: ["She is", "senior than", "me by five years", "No error"],
+        ans: 1,
+        exp: "'Senior' takes 'to': 'senior to me'."
+      },
+      {
+        id: 79,
+        text: "The company will invest more(A) six hundred crores(B) in the next five years to expand(C) its operations in Britain (D). (Find error)",
+        exam: "SSC CGL 2025 Tier-02 Paper01",
+        options: ["D", "A", "C", "B"],
+        ans: 1,
+        exp: "Part (A): 'More than six hundred crores' is required when expressing numbers/quantities."
+      },
+      {
+        id: 80,
+        text: "She speaks more persuasively than she writes, (1) / which, according to her critics, (2) / makes her a better orator rather than (3) / an accomplished communicator. (4)",
+        exam: "SSC CPO Pre 2025",
+        options: ["(1)", "(2)", "(3)", "(4)"],
+        ans: 2,
+        exp: "Part (3): 'Better' is a comparative that pairs with 'than', not 'rather than'."
+      },
+      {
+        id: 81,
+        text: "We must respect the elder people in our community. (Find error)",
+        exam: "SSC CPO Pre 2025",
+        options: ["respect", "people", "elder", "community"],
+        ans: 2,
+        exp: "'Elder' is used exclusively for family relations without 'than'; for general elderly citizens, use 'older' or 'elderly'."
+      },
+      {
+        id: 82,
+        text: "Rahul is(A) / taller(B) / than any boy(C)/ in his office(D). (Find error)",
+        exam: "SSC CPO Pre 2025",
+        options: ["than any boy (C)", "in his office(D)", "Rahul is(A)", "taller(B)"],
+        ans: 0,
+        exp: "Rahul is himself a boy in his office, so he must be excluded using 'other': 'than any other boy'."
+      },
+      {
+        id: 83,
+        text: "Among all the students (1) / he is the better (2) / in mathematics (3) / and physics(4). (Find error)",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["Among all the students (1)", "he is the better (2)", "in mathematics (3)", "and physics. (4)"],
+        ans: 1,
+        exp: "'Among all the students' requires superlative 'the best', not comparative 'the better'."
+      },
+      {
+        id: 84,
+        text: "This is the (1) / most easiest question (2) / in the entire (3) / test paper(4). (Find error)",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["This is the (1)", "most easiest question (2)", "in the entire (3)", "test paper. (4)"],
+        ans: 1,
+        exp: "Double superlative: delete 'most', use 'the easiest question'."
+      },
+      {
+        id: 85,
+        text: "Of the two brothers (1) / Ramesh is more tall (2) / than Suresh (3) / by two inches (4). (Find error)",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["Of the two brothers (1)", "Ramesh is more tall (2)", "than Suresh (3)", "by two inches. (4)"],
+        ans: 1,
+        exp: "Comparative of single-syllable 'tall' is 'taller', not 'more tall'."
+      },
+      {
+        id: 86,
+        text: "This book is (1) / gooder than (2) / the one we read (3) / last month(4). (Find error)",
+        exam: "SSC SP Matriculation Level 2025",
+        options: ["This book is (1)", "gooder than (2)", "the one we read (3)", "last month. (4)"],
+        ans: 1,
+        exp: "'Gooder' does not exist; the comparative of 'good' is 'better'."
+      },
+      {
+        id: 87,
+        text: "Of the three runners, he was the faster. (Find error)",
+        exam: "SSC SP (Graduation) Level 2025",
+        options: ["faster", "was", "runners", "three"],
+        ans: 0,
+        exp: "Among three runners, use superlative 'the fastest', not comparative 'the faster'."
+      },
+      {
+        id: 88,
+        text: "You always have noise in the city and it is very stressed. (Find error)",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["You always have noise", "in the city and", "it is very stressed.", "No correction required"],
+        ans: 2,
+        exp: "A situation/environment is 'stressful'; people feel 'stressed'. Change to 'very stressful'."
+      },
+      {
+        id: 89,
+        text: "Recycling is now an essential measure and it is time for everyone in society to become more responsibility. (Find error)",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["Recycling is now an essential measure", "and it is time for everyone", "in society to become", "more responsibility."],
+        ans: 3,
+        exp: "'Responsibility' is a noun; use adjective 'responsible' after linking verb 'become'."
+      },
+      {
+        id: 90,
+        text: "When asked why students had enrolled in the geometry class, 85% of them saw it as essentials. (Find error)",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["When asked why students had enrolled", "in the geometry class,", "85% of them saw it as essentials.", "No correction required"],
+        ans: 2,
+        exp: "Use adjective 'essential', not plural noun 'essentials'."
+      },
+      {
+        id: 91,
+        text: "The painting (A) / is the most unique (B) / of all the pieces (C) / in the gallery (D). (Find error)",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["The painting", "is the most unique", "of all the pieces", "in the gallery"],
+        ans: 1,
+        exp: "'Unique' is a non-gradable (absolute) adjective. It cannot take 'most' or 'more'."
+      },
+      {
+        id: 92,
+        text: "The new employee (A) / seems to be (B) / a fast learner (C) / and more smarter than the last one (D). (Find error)",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["The new employee", "seems to be", "a fast learner", "and more smarter than the last one"],
+        ans: 3,
+        exp: "Double comparative 'more smarter': delete 'more'."
+      },
+      {
+        id: 93,
+        text: "The book, (A) / which you recommended, (B) / was interesting and (C) / an easily read (D). (Find error)",
+        exam: "SSC CHSL Tier-01 2025",
+        options: ["The book,", "which you recommended,", "was interesting and", "an easily read"],
+        ans: 3,
+        exp: "'Read' here is used as a noun, requiring adjective 'easy': 'an easy read'."
+      },
+      {
+        id: 94,
+        text: "Mount Everest is more highest peak in the world. (Find error)",
+        exam: "SSC STENO Exam 2025",
+        options: ["world", "more", "highest", "everest"],
+        ans: 1,
+        exp: "Omit 'more': 'the highest peak in the world'."
+      },
+      {
+        id: 95,
+        text: "This route is most safer than the highway. (Find error)",
+        exam: "SSC STENO Exam 2025",
+        options: ["safer", "highway", "most", "route"],
+        ans: 2,
+        exp: "Double degree error: delete 'most', use 'safer than'."
+      },
+      {
+        id: 96,
+        text: "She is more smarter than her sister. (Find error)",
+        exam: "SSC STENO Exam 2025",
+        options: ["No error", "more smarter", "She is", "than her sister"],
+        ans: 1,
+        exp: "Double comparative 'more smarter': change to 'smarter'."
+      },
+      {
+        id: 97,
+        text: "Choose the sentence that correctly uses the comparative degree.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: [
+          "This is the most easiest task.",
+          "This task is more easier than the previous one.",
+          "This task is easier than the previous one.",
+          "This task is the more easier than the previous one."
+        ],
+        ans: 2,
+        exp: "'This task is easier than the previous one' correctly avoids double comparatives."
+      },
+      {
+        id: 98,
+        text: "Identify the sentence that uses the positive degree of comparison.",
+        exam: "SSC SP Matriculation Level 2025",
+        options: [
+          "She is the most intelligent student in the class.",
+          "She is more intelligent than her classmates.",
+          "She is as intelligent as her classmates.",
+          "She is the more intelligent student in the class"
+        ],
+        ans: 2,
+        exp: "'As intelligent as' represents comparison using the positive degree of the adjective."
+      },
+      {
+        id: 99,
+        text: "Which among the following sentences uses adjective with correct degree of comparison?",
+        exam: "SSC STENO Exam 2025",
+        options: [
+          "New Delhi is more hotter to Chandigarh.",
+          "New Delhi is more hotter than Chandigarh.",
+          "New Delhi is hotter to Chandigarh.",
+          "New Delhi is hotter than Chandigarh."
+        ],
+        ans: 3,
+        exp: "'Hotter than' correctly uses single comparative with conjunction 'than'."
+      },
+      {
+        id: 100,
+        text: "Identify the sentence that demonstrates incorrect adjective usage after a linking verb.",
+        exam: "DSSSB ASO Exam 2026",
+        options: [
+          "The evidence remains sufficiently compelling despite the criticism.",
+          "The proposed solution sounds remarkably impractical under current conditions.",
+          "The revised methodology appears remarkably effective in practice.",
+          "The findings seem convincingly."
+        ],
+        ans: 3,
+        exp: "'Seem' is a linking verb that requires a predicate adjective ('convincing'), not an adverb ('convincingly')."
+      }
+    ];
+
+    let userAnswers = {};
+    let currentFilter = 'all';
+
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      QUESTIONS.forEach((q, idx) => {
+        const isAnswered = userAnswers[idx] !== undefined;
+        const isCorrect = isAnswered && userAnswers[idx] === q.ans;
+        const isWrong = isAnswered && !isCorrect;
+
+        // Filtering
+        if (currentFilter === 'unanswered' && isAnswered) return;
+        if (currentFilter === 'incorrect' && !isWrong) return;
+        if (currentFilter === 'cgl' && !q.exam.includes('CGL')) return;
+        if (currentFilter === 'steno' && !q.exam.includes('Steno') && !q.exam.includes('STENO')) return;
+        if (currentFilter === 'dsssb' && !q.exam.includes('DSSSB')) return;
+
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `q-card-${idx}`;
+
+        card.innerHTML = `
+          <div class="q-meta">
+            <span class="q-number">Q${q.id}</span>
+            <span class="q-exam">${q.exam}</span>
+          </div>
+          <div class="q-text">${q.text}</div>
+          <div class="options-grid">
+            ${q.options.map((opt, oIdx) => {
+              let optClass = 'option-btn';
+              if (isAnswered) {
+                if (oIdx === q.ans) optClass += ' selected-correct';
+                else if (oIdx === userAnswers[idx]) optClass += ' selected-wrong';
+              }
+              return `
+                <button class="${optClass}" onclick="handleAnswer(${idx}, ${oIdx})">
+                  <span class="opt-letter">${String.fromCharCode(65 + oIdx)}</span>
+                  <span>${opt}</span>
+                </button>
+              `;
+            }).join('')}
+          </div>
+          <div class="explanation-box" id="exp-${idx}" style="display: ${isAnswered ? 'block' : 'none'};">
+            <strong>Rule & Explanation:</strong> ${q.exp}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      renderPalette();
+      updateScoreboard();
+    }
+
+    function handleAnswer(qIdx, optIdx) {
+      if (userAnswers[qIdx] !== undefined) return; // Prevent change
+      userAnswers[qIdx] = optIdx;
+      renderQuestions();
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = '';
+      QUESTIONS.forEach((q, idx) => {
+        const item = document.createElement('div');
+        item.className = 'palette-item';
+        item.textContent = q.id;
+
+        if (userAnswers[idx] !== undefined) {
+          if (userAnswers[idx] === q.ans) item.classList.add('status-correct');
+          else item.classList.add('status-wrong');
+        }
+
+        item.onclick = () => {
+          currentFilter = 'all';
+          document.querySelectorAll('.filter-pill').forEach(p => p.classList.toggle('active', p.textContent.includes('All')));
+          renderQuestions();
+          const target = document.getElementById(`q-card-${idx}`);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+        grid.appendChild(item);
+      });
+    }
+
+    function updateScoreboard() {
+      const answeredCount = Object.keys(userAnswers).length;
+      let correctCount = 0;
+      QUESTIONS.forEach((q, idx) => {
+        if (userAnswers[idx] === q.ans) correctCount++;
+      });
+      const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100);
+
+      document.getElementById('answeredRatio').textContent = `${answeredCount} / 100`;
+      document.getElementById('correctScore').textContent = correctCount;
+      document.getElementById('accuracyScore').textContent = `${accuracy}%`;
+    }
+
+    function filterQuestions(filterType, pillEl) {
+      currentFilter = filterType;
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pillEl.classList.add('active');
+      renderQuestions();
+    }
+
+    function resetQuiz() {
+      if (confirm("Reset all answers and restart the 100-question marathon?")) {
+        userAnswers = {};
+        renderQuestions();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', next);
+      document.getElementById('themeBtn').textContent = next === 'light' ? '🌙' : '☀️';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderQuestions();
+    });
+  </script>
+</body>
+</html>
