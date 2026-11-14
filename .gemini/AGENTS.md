@@ -12,10 +12,13 @@ This workspace is **NOT restricted to GK**. It is built for **ALL COMPETITIVE EX
 
 ---
 
-## 1. DESIGN PHILOSOPHY: ZERO AI SLOP
-- **Aesthetic Benchmark**: Linear, Notion, Vercel, Apple documentation.
-- **Color Palette**: Sophisticated zinc/slate monochrome (`#09090b` / `#111114` dark; `#fbfbfb` / `#ffffff` light) with subtle, purposeful accent cues.
-- **Typography**: Clean system sans typography, crisp monospaced tags (`#font-mono`), generous breathing space, disciplined font hierarchy.
+## 1. DESIGN PHILOSOPHY: ZERO AI SLOP & MANDATORY LIGHT MODE
+- **Aesthetic Benchmark**: Mock Manager, Notion, Linear, Apple documentation.
+- **MANDATORY LIGHT MODE (NON-NEGOTIABLE)**:
+  - **ALL web learning modules, practice quizzes, digital notes, and dashboards MUST ALWAYS default to and open in LIGHT MODE.**
+  - **Primary Palette**: Crisp light background (`#f8fafc` / `#ffffff`), pure white cards (`#ffffff`), subtle borders (`#e2e8f0`), and high-contrast dark slate text (`#0f172a` / `#1e293b`).
+  - **NEVER default to dark mode** on any module, quiz, or page. If a theme toggle exists, it must default to Light Mode.
+- **Typography**: Clean system sans typography (`Inter`, `-apple-system`, `Segoe UI`), crisp monospaced tags, generous breathing space, disciplined font hierarchy.
 - **NO Slop**:
   - No rainbow gradients or cartoonish glows.
   - No cheesy marketing hype ("REVOLUTION", "TOPPERS MAGIC", "BECOME A TOPPER").

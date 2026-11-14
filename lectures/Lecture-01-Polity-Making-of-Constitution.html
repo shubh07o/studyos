@@ -6,25 +6,6 @@
   <title>Polity: Making of the Constitution | Interactive Learning Module</title>
   <style>
     :root {
-      --bg-primary: #0a0e17;
-      --bg-secondary: #121826;
-      --bg-card: #182234;
-      --bg-card-hover: #1f2c42;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --accent-gold: #fbbf24;
-      --success: #10b981;
-      --error: #ef4444;
-      --warning: #f59e0b;
-      --border: #243247;
-      --nav-active: #0284c7;
-      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    }
-
-    [data-theme="light"] {
       --bg-primary: #f8fafc;
       --bg-secondary: #f1f5f9;
       --bg-card: #ffffff;
@@ -40,6 +21,25 @@
       --border: #e2e8f0;
       --nav-active: #0284c7;
       --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.02);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121826;
+      --bg-card: #182234;
+      --bg-card-hover: #1f2c42;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --accent-gold: #fbbf24;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --border: #243247;
+      --nav-active: #0284c7;
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -1036,7 +1036,7 @@
     }
   </style>
 </head>
-<body data-theme="dark">
+<body data-theme="light">
 
   <!-- TOP APP BAR -->
   <header>
@@ -1057,7 +1057,7 @@
           <strong id="progressPercent">0%</strong>
         </div>
         <button class="btn-icon" id="bookmarksBtn" title="View Saved Bookmarks">⭐</button>
-        <button class="btn-icon" id="themeToggleBtn" title="Toggle Dark/Light Mode">🌓</button>
+        <button class="btn-icon" id="themeToggleBtn" title="Toggle Dark/Light Mode">🌙</button>
       </div>
     </div>
   </header>
@@ -2105,10 +2105,10 @@
     /* THEME TOGGLE */
     const themeBtn = document.getElementById('themeToggleBtn');
     themeBtn.addEventListener('click', () => {
-      const currentTheme = document.body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const currentTheme = document.body.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
       document.body.setAttribute('data-theme', newTheme);
-      themeBtn.textContent = newTheme === 'dark' ? '🌓' : '☀️';
+      themeBtn.textContent = newTheme === 'light' ? '🌙' : '☀️';
     });
 
     /* PROGRESS TRACKING */
