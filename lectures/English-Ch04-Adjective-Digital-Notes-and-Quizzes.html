@@ -1,1034 +1,1939 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English: Chapter 4 - Adjectives | Comprehensive Interactive Notes</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 4: ADJECTIVE - Interactive Digital Notes & Quizzes | Parmar SSC</title>
   <style>
     :root {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #f1f5f9;
-      --bg-card: #ffffff;
-      --bg-card-hover: #f8fafc;
-      --text-main: #0f172a;
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #edf2f9;
+      --text: #1e293b;
       --text-muted: #64748b;
-      --text-faint: #94a3b8;
-      
-      --accent: #0284c7;
-      --accent-hover: #0369a1;
-      --accent-pill: #e0f2fe;
-      --accent-gold: #d97706;
-      --gold-pill: #fef3c7;
-      --success: #059669;
-      --success-pill: #dcfce7;
-      --error: #dc2626;
-      --error-pill: #fee2e2;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
       --border: #e2e8f0;
-      --border-subtle: #edf2f7;
-      
-      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
-      --card-shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --radius: 12px;
     }
 
     [data-theme="dark"] {
-      --bg-primary: #0b1120;
-      --bg-secondary: #131c31;
-      --bg-card: #172239;
-      --bg-card-hover: #1e2c48;
-      --text-main: #f8fafc;
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-alt: #334155;
+      --text: #f8fafc;
       --text-muted: #94a3b8;
-      --text-faint: #64748b;
-      --accent: #38bdf8;
-      --accent-hover: #0284c7;
-      --accent-pill: rgba(2, 132, 199, 0.2);
-      --border: #243247;
-      --border-subtle: #1e293b;
-      --card-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.4);
-      --card-shadow-hover: 0 12px 28px -4px rgba(0, 0, 0, 0.6);
+      --primary: #3b82f6;
+      --primary-dark: #60a5fa;
+      --accent: #fbbf24;
+      --success: #34d399;
+      --danger: #f87171;
+      --border: #334155;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-family: var(--font-family);
-      background-color: var(--bg-primary);
-      color: var(--text-main);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      display: flex;
       min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 290px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* TOP HEADER */
-    header {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
+      position: fixed;
       top: 0;
+      bottom: 0;
+      left: 0;
       z-index: 100;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
     }
 
-    .header-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+    .brand {
+      padding: 20px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: #fff;
     }
 
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-
-    .emblem-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: var(--accent-pill);
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .brand h1 {
       font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
     }
 
-    .brand-title h1 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.2px;
-      color: var(--text-main);
+    .brand p {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-top: 4px;
     }
 
-    .brand-title p {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-
-    .progress-widget {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.85rem;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .progress-bar-mini {
-      width: 70px;
-      height: 6px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--accent);
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    .btn-portal-back {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 0.4rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.15s ease;
-    }
-
-    .btn-portal-back:hover {
-      background: var(--bg-secondary);
-      border-color: #cbd5e1;
-    }
-
-    /* STAGE NAVIGATION TABS */
-    nav.stage-nav {
-      background: var(--bg-card);
+    .stats-bar {
+      padding: 12px 20px;
+      background: var(--surface-alt);
       border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 57px;
-      z-index: 90;
-      overflow-x: auto;
-    }
-
-    .nav-tabs {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+      font-size: 0.85rem;
       display: flex;
-      gap: 0.5rem;
-    }
-
-    .tab-btn {
-      padding: 0.85rem 1.1rem;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      transition: all 0.15s ease;
-      font-family: inherit;
+      font-weight: 600;
     }
 
-    .tab-btn:hover { color: var(--text-main); }
-    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-    .stage-badge {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-      background: var(--bg-secondary);
-      color: var(--text-muted);
-    }
-
-    .tab-btn.active .stage-badge {
-      background: var(--accent-pill);
-      color: var(--accent);
-    }
-
-    /* MAIN CONTAINER */
-    main.main-content {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem 1.5rem;
-      width: 100%;
+    .nav-list {
+      list-style: none;
+      padding: 12px;
       flex: 1;
     }
 
-    .stage-section {
-      display: none;
-      animation: fadeIn 0.25s ease forwards;
+    .nav-item {
+      margin-bottom: 4px;
     }
 
-    .stage-section.active { display: block; }
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--surface-alt);
+    }
+
+    .nav-btn.active {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-btn .badge {
+      margin-left: auto;
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 99px;
+      background: rgba(100, 116, 139, 0.2);
+    }
+
+    .nav-btn.active .badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    /* Main Content Area */
+    .main {
+      flex: 1;
+      margin-left: 290px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-box {
+      flex: 1;
+      max-width: 450px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .content-container {
+      padding: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-page {
+      display: none;
+    }
+
+    .section-page.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* SECTION BANNER */
-    .section-banner {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      box-shadow: var(--card-shadow);
+    /* Typography & Cards */
+    .page-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
     }
 
-    .banner-text h2 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .banner-text p {
-      font-size: 0.9rem;
+    .page-subtitle {
       color: var(--text-muted);
-      margin-top: 0.25rem;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
     }
 
-    .banner-badge {
-      background: var(--accent-pill);
-      color: var(--accent);
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 600;
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
     }
 
-    /* CONCEPT CARDS & GRIDS */
-    .concept-grid {
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--surface-alt);
+      padding-bottom: 8px;
+    }
+
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
     }
 
-    .concept-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      box-shadow: var(--card-shadow);
-      transition: all 0.2s ease;
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
     }
-
-    .concept-card:hover {
-      box-shadow: var(--card-shadow-hover);
-      border-color: #cbd5e1;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .card-tag {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      background: var(--bg-secondary);
-      color: var(--text-muted);
-    }
-
-    .card-tag.accent { background: var(--accent-pill); color: var(--accent); }
-    .card-tag.gold { background: var(--gold-pill); color: var(--accent-gold); }
 
     .rule-box {
-      background: var(--bg-secondary);
+      background: var(--surface-alt);
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+    }
+
+    .warn-box {
+      background: rgba(245, 158, 11, 0.12);
       border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 6px;
+      background: var(--surface-alt);
+      color: var(--primary);
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .tag.correct { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+    .tag.wrong { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
       padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      margin: 10px 0;
-      color: var(--text-main);
+      border: 1px solid var(--border);
+      text-align: left;
     }
 
-    .example-line {
+    th {
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+
+    /* Interactive Drill Item (Click to Reveal) */
+    .drill-list {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
-      font-size: 0.9rem;
-      margin: 6px 0;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
     }
 
-    .tag-correct {
+    .drill-item {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .drill-item:hover {
+      border-color: var(--primary);
+    }
+
+    .drill-q {
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .drill-ans {
+      font-weight: 700;
+      color: var(--success);
+      background: rgba(16, 185, 129, 0.12);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .drill-ans.hidden {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+    }
+
+    /* Interactive MCQ / Error Spotting Quiz Component */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-meta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .quiz-question {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px;
+    }
+
+    .quiz-opt {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.15s;
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
       color: var(--success);
       font-weight: 700;
     }
 
-    .tag-wrong {
-      color: var(--error);
-      font-weight: 700;
-      text-decoration: line-through;
+    .quiz-opt.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger);
     }
 
-    .tag-pill {
-      background: var(--accent-pill);
-      color: var(--accent);
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 0.85em;
-      font-weight: 600;
+    .quiz-exp {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--success);
+      font-size: 0.9rem;
+      display: none;
     }
 
-    /* FULL WIDTH CARDS & TABLES */
-    .full-width-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem 2rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--card-shadow);
-    }
-
-    table.data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-      margin-top: 1rem;
-    }
-
-    table.data-table th, table.data-table td {
-      padding: 0.85rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    table.data-table th {
-      background: var(--bg-secondary);
-      color: var(--text-main);
-      font-weight: 700;
-    }
-
-    table.data-table tbody tr:hover {
-      background: var(--bg-secondary);
-    }
-
-    /* RECALL & FITB */
-    .recall-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .recall-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      cursor: pointer;
-      box-shadow: var(--card-shadow);
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-
-    .recall-card:hover {
-      border-color: var(--accent);
-    }
-
-    .recall-card.revealed .recall-answer {
+    .quiz-exp.visible {
       display: block;
     }
 
-    .recall-answer {
-      background: var(--bg-secondary);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
+    /* Pill / Chip Grid */
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 20px;
       font-size: 0.88rem;
-      color: var(--text-main);
-      display: none;
-      border-left: 3px solid var(--accent);
-      margin-top: 0.5rem;
-      animation: fadeIn 0.2s ease;
     }
 
-    /* FLASHCARD */
-    .flashcard-wrapper {
-      max-width: 640px;
-      margin: 0 auto;
-      perspective: 1000px;
+    .chip strong {
+      color: var(--primary);
     }
 
-    .flashcard {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      height: 320px;
-      cursor: pointer;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: var(--card-shadow-hover);
-    }
-
-    .flashcard.flipped { transform: rotateY(180deg); }
-
-    .flashcard-front, .flashcard-back {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      backface-visibility: hidden;
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 18px;
-    }
-
-    .flashcard-back {
-      transform: rotateY(180deg);
-      background: var(--bg-card);
-    }
-
-    .fc-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .btn-fc {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 0.6rem 1.2rem;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.15s ease;
-    }
-
-    .btn-fc:hover {
-      background: var(--bg-secondary);
-      border-color: #cbd5e1;
-    }
-
-    /* QUIZ & STAGE BUTTONS */
-    .btn-complete-stage {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 0.75rem 1.75rem;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-      transition: all 0.15s ease;
-    }
-
-    .btn-complete-stage:hover {
-      background: var(--accent-hover);
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main {
+        margin-left: 0;
+      }
+      .menu-toggle {
+        display: inline-block;
+      }
     }
   </style>
 </head>
-<body data-theme="light">
+<body>
 
-  <header>
-    <div class="header-container">
-      <div class="brand-group">
-        <div class="emblem-icon">📖</div>
-        <div class="brand-title">
-          <h1>ENGLISH GRAMMAR • CHAPTER 04</h1>
-          <p>Adjectives: Complete Rules, Degrees & Exceptions | Parmar Toppers Batch</p>
-        </div>
-      </div>
-      <div class="header-actions">
-        <a href="../index.html" class="btn-portal-back">
-          ← Dashboard
-        </a>
-        <div class="progress-widget">
-          <span>Progress</span>
-          <div class="progress-bar-mini">
-            <div class="progress-bar-fill" id="overallProgress"></div>
-          </div>
-          <strong id="progressPercent">0%</strong>
-        </div>
-        <button class="btn-portal-back" id="themeBtn" onclick="toggleTheme()">🌙</button>
-      </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <h1>PARMAR SSC | ENGLISH</h1>
+      <p>Topper's Batch • Chapter 4: ADJECTIVE (By PSP Sir)</p>
     </div>
-  </header>
-
-  <nav class="stage-nav">
-    <div class="nav-tabs">
-      <button class="tab-btn active" data-stage="stageA"><span class="stage-badge">Stage A</span> 📖 Deep Theory</button>
-      <button class="tab-btn" data-stage="stageB"><span class="stage-badge">Stage B</span> ⚡ Active Recall</button>
-      <button class="tab-btn" data-stage="stageC"><span class="stage-badge">Stage C</span> 🎴 Flashcards (20)</button>
-      <button class="tab-btn" data-stage="stageD"><span class="stage-badge">Stage D</span> 📝 Core Quiz (25 MCQs)</button>
-      <button class="tab-btn" data-stage="stageE"><span class="stage-badge">Stage E</span> 🚀 Cheat Sheets</button>
-      <button class="tab-btn" data-stage="stageF"><span class="stage-badge">Stage F</span> 🎯 Diagnostic</button>
+    <div class="stats-bar">
+      <span>Score: <strong id="score-val">0</strong> / <span id="total-val">0</span></span>
+      <button class="btn" style="padding:3px 8px;font-size:0.75rem;" onclick="resetAllQuizzes()">Reset</button>
     </div>
-  </nav>
+    <ul class="nav-list" id="nav-list">
+      <li class="nav-item"><button class="nav-btn active" onclick="showTab('tab-syllabus', this)">📋 0. Syllabus & Degrees <span class="badge">P. 1-3</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-elder', this)">👥 1. Elder/Older & Further <span class="badge">P. 3</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-later', this)">⏱️ 2. Later/Latter & Few/Little <span class="badge">P. 3-4</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-degrees', this)">⚖️ 3. Degrees of Comparison <span class="badge">P. 4-6</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-logical', this)">🎯 4. Logical & One vs Group <span class="badge">P. 6-7</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-and-gradual', this)">📈 5. 'And' Rule & Gradual Change <span class="badge">P. 7-8</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-selection', this)">🏆 6. Selection & Latin (-ior) <span class="badge">P. 7-9</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-nongradable', this)">💎 7. Non-Gradables & Modifiers <span class="badge">P. 8-10</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-confusing', this)">🧩 8. Noun vs Adj & Confusing Pairs <span class="badge">P. 10-12</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-osascomp', this)">🎨 9. OSASCOMP & Predicative <span class="badge">P. 12-14</span></button></li>
+      <li class="nav-item"><button class="nav-btn" onclick="showTab('tab-practice', this)">🔥 10. Master Practice Arena <span class="badge">P. 14-20</span></button></li>
+    </ul>
+  </aside>
 
-  <main class="main-content">
-
-    <!-- STAGE A: THEORY -->
-    <section id="stageA" class="stage-section active">
-      <div class="section-banner">
-        <div class="banner-text">
-          <h2>📖 Stage A: Complete Adjective Theory & Grammar Mechanics</h2>
-          <p>From Adjective vs Determiner distinction to Latin comparatives, OSASCOMP order, and non-gradables.</p>
-        </div>
-        <span class="banner-badge">Exhaustive Notes</span>
+  <!-- MAIN AREA -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ Menu</button>
+      <div class="search-box">
+        <input type="text" id="global-search" placeholder="Search any rule, adjective, or question across the current tab..." oninput="filterCurrentTab(this.value)" />
       </div>
+      <div class="top-actions">
+        <button class="btn" onclick="toggleAllDrills(true)">👁️ Reveal All Answers</button>
+        <button class="btn" onclick="toggleAllDrills(false)">🙈 Hide Answers</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+      </div>
+    </header>
 
-      <div class="concept-grid">
-        <div class="concept-card">
-          <div class="card-header">
-            <div class="card-title">⚖️ Adjective vs Determiner</div>
-            <span class="card-tag accent">Foundation</span>
+    <div class="content-container">
+
+      <!-- ================= TAB 0: SYLLABUS & DEGREES (PAGES 1-3) ================= -->
+      <section class="section-page active" id="tab-syllabus">
+        <h2 class="page-title">Chapter 4: ADJECTIVE — Foundation, Classification & Degrees</h2>
+        <p class="page-subtitle">Concept Based Notes • Exam Oriented Content • Complete Coverage of Adjectives (By PSP Sir)</p>
+
+        <div class="card">
+          <h3>📚 Adjective Chapter Overview (11 Modules)</h3>
+          <div class="grid-2">
+            <ol style="padding-left:20px;">
+              <li><strong>Adjective Definition & Positions</strong> (Attributive vs Predicative, Adjective vs Determiner)</li>
+              <li><strong>Degrees of Comparison</strong> (Positive, Comparative, Superlative & Regular/Irregular Chart)</li>
+              <li><strong>Confusing Comparatives</strong> (Elder/Eldest vs Older/Oldest; Further vs Farther)</li>
+              <li><strong>Order vs Time Comparatives</strong> (Later/Latest vs Latter/Last; Former vs First)</li>
+              <li><strong>Quantifiers</strong> (Few/A few/The few vs Little/A little/The little; Fewer vs Less)</li>
+              <li><strong>Comparison Structure Rules</strong> (As...as, So...as, Double Comparative Prohibition, Much vs Very)</li>
+            </ol>
+            <ol start="7" style="padding-left:20px;">
+              <li><strong>Logical Comparison & Group Exclusion</strong> (That of / Those of, -er vs More, Other/Else Exclusion)</li>
+              <li><strong>Parallel Degrees & Changes</strong> (The 'And' rule, Gradual change, Parallel comparative 'The... The...')</li>
+              <li><strong>Selection & Latin Adjectives</strong> (The comparative of the two, -ior adjectives taking 'to', Prefer/Preferable)</li>
+              <li><strong>Non-Gradable & Position Constraints</strong> (Absolute adjectives, Worth seeing, Post-nominal modifiers, 'If not')</li>
+              <li><strong>OSASCOMP & Practice Arena</strong> (Order of multiple adjectives, Predicative-only list, 50+ PYQ Spotting Errors)</li>
+            </ol>
           </div>
-          <table style="width:100%; font-size:0.86rem; border-collapse:collapse;">
-            <tr style="border-bottom:1px solid var(--border);">
-              <th style="padding:6px 0; color:var(--accent);">Adjectives</th>
-              <th style="padding:6px 0; color:var(--text-muted);">Determiners</th>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;">1. Can be used as complement</td>
-              <td style="padding:6px 0;">1. Can't be used as complement</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;">2. Gradable (wiser, wisest)</td>
-              <td style="padding:6px 0;">2. Non-gradable</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 0;">3. Adverbs can qualify them</td>
-              <td style="padding:6px 0;">3. Adverbs cannot qualify them</td>
-            </tr>
-          </table>
         </div>
 
-        <div class="concept-card">
-          <div class="card-header">
-            <div class="card-title">🎭 Attributive vs Predicative</div>
-            <span class="card-tag">Usage Types</span>
+        <div class="card">
+          <h3>💡 What is an Adjective?</h3>
+          <p><strong>"An Adjective is a word which describes or qualifies any Noun or Pronoun."</strong></p>
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <h4>1. Attributive Use (With Noun)</h4>
+              <p>When an adjective comes directly <strong>before a noun</strong> to qualify it.</p>
+              <p><em>Examples:</em></p>
+              <ul style="padding-left:18px;">
+                <li>I met a <strong>brave</strong> soldier.</li>
+                <li>She purchased an <strong>expensive</strong> car.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>2. Predicative Use (Without Noun / Subject Complement)</h4>
+              <p>When an adjective is used after a <strong>linking verb</strong> (Be form, seem, appear) as a subject complement.</p>
+              <p><em>Examples:</em></p>
+              <ul style="padding-left:18px;">
+                <li>He is <strong>brave</strong>.</li>
+                <li>The soldier is <strong>brave</strong>.</li>
+              </ul>
+            </div>
           </div>
-          <p style="font-size:0.88rem; margin-bottom:8px;"><strong>Attributive:</strong> Placed directly before Noun (<em>I met a <span class="tag-pill">brave</span> soldier.</em>)</p>
-          <p style="font-size:0.88rem; margin-bottom:8px;"><strong>Predicative:</strong> Used after linking verb as complement without noun (<em>The soldier is <span class="tag-pill">brave</span>.</em>)</p>
+
+          <div class="card" style="margin-top:16px; background:var(--surface-alt);">
+            <h4>⚖️ Adjectives vs Determiners (Crucial SSC Distinction - Page 2)</h4>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Feature</th><th>Adjectives</th><th>Determiners</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Complement Usage</strong></td><td>Can be used as a complement (Predicative)</td><td>Cannot be used as a complement</td></tr>
+                  <tr><td><strong>Gradability</strong></td><td>Gradable (Possesses Positive, Comparative, Superlative)</td><td>Non-gradable (Cannot have degrees)</td></tr>
+                  <tr><td><strong>Adverb Qualification</strong></td><td>Can be qualified by adverbs (e.g. <em>very brave</em>)</td><td>Cannot be qualified by adverbs</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🌟 The 3 Degrees of Adjective Comparison</h3>
+          <div class="grid-3">
+            <div class="rule-box">
+              <h4>1. Positive Degree</h4>
+              <p>Denotes equality or simple quality without comparison.</p>
+              <p><em>"You are a talented student."</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>2. Comparative Degree</h4>
+              <p>Comparison between <strong>one vs another</strong> (Two entities).</p>
+              <p><em>"You are wiser than Rahul."</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>3. Superlative Degree</h4>
+              <p>Comparison of <strong>one vs all</strong> (Three or more entities).</p>
+              <p><em>"Rahul is the best player of the team."</em></p>
+            </div>
+          </div>
+
+          <h4 style="margin-top:18px;">📋 Comprehensive Degree Conversion Table (Page 2)</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>Type / Rule</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Wise</td><td>Wiser</td><td>Wisest</td><td>Regular (-r / -st)</td></tr>
+                <tr><td>Brave</td><td>Braver</td><td>Bravest</td><td>Regular (-r / -st)</td></tr>
+                <tr><td>Tall</td><td>Taller</td><td>Tallest</td><td>Regular (-er / -est)</td></tr>
+                <tr><td>Good / Well</td><td>Better</td><td>Best</td><td>Irregular</td></tr>
+                <tr><td>Bad / Ill</td><td>Worse</td><td>Worst</td><td>Irregular</td></tr>
+                <tr><td>Little</td><td>Less / Lesser</td><td>Least</td><td>Irregular (Quantity)</td></tr>
+                <tr><td>Few</td><td>Fewer</td><td>Fewest</td><td>Regular (Number)</td></tr>
+                <tr><td>Old</td><td>Older / Elder</td><td>Oldest / Eldest</td><td>Dual Forms</td></tr>
+                <tr><td>Far</td><td>Farther / Further</td><td>Farthest / Furthest</td><td>Dual Forms</td></tr>
+                <tr><td>Late</td><td>Later / Latter</td><td>Latest / Last</td><td>Time vs Order</td></tr>
+                <tr><td>Near</td><td>Nearer</td><td>Nearest / Next</td><td>Distance vs Position</td></tr>
+                <tr><td>Much / Many</td><td>More</td><td>Most</td><td>Quantity vs Number</td></tr>
+                <tr><td>Honest</td><td>More honest</td><td>Most honest</td><td>Multi-syllable (More / Most)</td></tr>
+                <tr><td>Difficult</td><td>More difficult</td><td>Most difficult</td><td>Multi-syllable (More / Most)</td></tr>
+                <tr><td>Costly</td><td>Costlier</td><td>Costliest</td><td>-y to -ier / -iest</td></tr>
+                <tr><td>Healthy</td><td>Healthier</td><td>Healthiest</td><td>-y to -ier / -iest</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Degree Selection Drills (Page 2) — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p2"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Practice Quiz: Fundamentals (Page 2)</h4>
+          <div id="quiz-p2"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 1: ELDER/OLDER & FURTHER/FARTHER (PAGE 3) ================= -->
+      <section class="section-page" id="tab-elder">
+        <h2 class="page-title">1. Elder / Eldest vs Older / Oldest & Further vs Farther</h2>
+        <p class="page-subtitle">Page 3 • Family Relationships vs General Comparison; Additional vs Physical Distance</p>
+
+        <div class="card">
+          <h3>👥 Elder / Eldest vs Older / Oldest</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Elder / Eldest</h4>
+              <ul style="padding-left:18px;">
+                <li>Used <strong>strictly for members of the SAME family</strong> (blood relations: brothers, sisters, sons, daughters).</li>
+                <li>Used <strong>Attributively</strong> (before a noun): <em>elder brother, elder sister</em>.</li>
+                <li>When used in comparison, it takes preposition <strong>'to'</strong> (never 'than'): <em>He is elder to me</em>.</li>
+                <li><strong>NEVER</strong> used for non-living things, animals, or persons outside the family.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Older / Oldest</h4>
+              <ul style="padding-left:18px;">
+                <li>Used for persons <strong>outside the family</strong> (friends, colleagues, citizens).</li>
+                <li>Used for <strong>animals, buildings, monuments, and things</strong> (e.g. <em>oldest school, oldest temple</em>).</li>
+                <li>In comparison, it takes the conjunction <strong>'than'</strong>: <em>He is older than his friend</em>.</li>
+                <li>Can be used both Attributively and Predicatively.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="warn-box">
+            <strong>⚠️ Golden Exam Trap (Page 3):</strong>
+            <br>• 2 entities → Comparative Degree (<em>elder / older</em>).
+            <br>• More than 2 entities → Superlative Degree (<em>eldest / oldest</em>).
+            <br><em>"It is difficult to judge which is the elder of the four brothers."</em> ➔ <strong>Wrong!</strong> Since there are 4 brothers (> 2), use <strong>eldest</strong>!
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📍 Further vs Farther</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Further = "Additional / Extra"</h4>
+              <p>Refers to something <strong>more in degree, time, thought, or quantity</strong>.</p>
+              <p><em>Examples:</em></p>
+              <ul style="padding-left:18px;">
+                <li>He went abroad for <strong>further</strong> studies.</li>
+                <li>I need <strong>further</strong> support / questions for practice.</li>
+                <li>Without any <strong>further</strong> delay, we started the meeting.</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>Farther = "Distance"</h4>
+              <p>Refers strictly to <strong>physical distance or spatial measurement</strong>.</p>
+              <p><em>Examples:</em></p>
+              <ul style="padding-left:18px;">
+                <li>Mumbai is <strong>farther</strong> from Patna than Ambala.</li>
+                <li>The library is <strong>farther</strong> down the street than the bank.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Elder/Older & Further/Farther — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p3-elder"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Spotting Errors Quiz (Page 3)</h4>
+          <div id="quiz-p3-elder"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: LATER/LATTER & FEW/LITTLE (PAGES 3-4) ================= -->
+      <section class="section-page" id="tab-later">
+        <h2 class="page-title">2. Later, Latter, Latest, Last & Few vs Little</h2>
+        <p class="page-subtitle">Pages 3 & 4 • Time vs Order Dynamics; Countable vs Uncountable Quantifiers</p>
+
+        <div class="card">
+          <h3>⏱️ The Four-Way Matrix: Later, Latter, Latest, Last</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Concept</th><th>Comparative Form (2 items)</th><th>Superlative Form (3+ items)</th><th>Meaning & Usage</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>TIME (समय)</strong></td>
+                  <td><strong>Later</strong> (बाद में)</td>
+                  <td><strong>Latest</strong> (हाल ही में / सबसे नया)</td>
+                  <td>Denotes time sequence. Opposite of <em>Earlier / Former</em>.</td>
+                </tr>
+                <tr>
+                  <td><strong>ORDER (क्रम)</strong></td>
+                  <td><strong>Latter</strong> (2 में से बाद वाला)</td>
+                  <td><strong>Last</strong> (सबके अंत में)</td>
+                  <td>Denotes position in a list. Opposite of <em>Former (1st of 2) / First (1st of 3+)</em>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid-2" style="margin-top:16px;">
+            <div class="rule-box">
+              <h4>Position Rules (Former vs Latter)</h4>
+              <ul style="padding-left:18px;">
+                <li>Between 2 entities (e.g. <em>Rahul & Virat</em>):
+                  <br>• Rahul = <strong>Former</strong> (1st of 2)
+                  <br>• Virat = <strong>Latter</strong> (2nd of 2)
+                </li>
+                <li>Among 3 or more (e.g. <em>Rahul, Virat & Dhoni</em>):
+                  <br>• Rahul = <strong>First</strong> (1st of 3+)
+                  <br>• Dhoni = <strong>Last</strong> (Final of 3+)
+                </li>
+              </ul>
+            </div>
+            <div class="warn-box">
+              <h4>Late vs Lately</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Late:</strong> देरी से (Opposite of early). <em>"He arrived late."</em></li>
+                <li><strong>Lately:</strong> हाल ही में (Recently). <em>"He hasn't called me lately."</em></li>
+                <li><em>Exam Alert:</em> <em>"He will get lately"</em> ❌ ➔ <em>"He will get late"</em> ✅.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>⚖️ Few vs Little: Countable vs Uncountable Quantifiers (Page 4)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>FEW (Countable Plural Nouns)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Few:</strong> Hard any / negligible (Negative sense).</li>
+                <li><strong>A few:</strong> Some, at least a small number (Positive sense).</li>
+                <li><strong>The few:</strong> Whatever small number available, all of them.</li>
+                <li><strong>Comparative:</strong> <em>Fewer</em> (e.g. <em>no fewer than 10 men</em>).</li>
+              </ul>
+            </div>
+            <div class="rule-box">
+              <h4>LITTLE (Uncountable Singular Nouns)</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>Little:</strong> Almost none / negligible (Negative sense).</li>
+                <li><strong>A little:</strong> Some, a small amount (Positive sense).</li>
+                <li><strong>The little:</strong> Whatever small amount available, all of it.</li>
+                <li><strong>Comparative:</strong> <em>Less</em> (e.g. <em>no less than 5 litres of oil</em>).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="warn-box">
+            <strong>⚠️ Golden Rule for SSC (No fewer than vs No less than):</strong>
+            <br>• With Countable Nouns (Men, eggs, questions, people) ➔ Use <strong>No fewer than</strong>.
+            <br>• With Uncountable Nouns (Milk, oil, money, water) ➔ Use <strong>No less than</strong>.
+            <br>• <em>Exception:</em> When a plural number denotes a single unified amount of money, distance, or time, <em>no less than</em> is accepted.
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Later/Latter & Few/Little — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p4-later"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Practice Quiz (Pages 3-4)</h4>
+          <div id="quiz-p4-later"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: DEGREES OF COMPARISON RULES (PAGES 4-6) ================= -->
+      <section class="section-page" id="tab-degrees">
+        <h2 class="page-title">3. Degrees of Comparison — As...As, So...As & Common Traps</h2>
+        <p class="page-subtitle">Pages 4, 5 & 6 • Structure Alignment, Double Comparative Traps & Intensifiers</p>
+
+        <div class="card">
+          <h3>📐 Structural Formulas for Comparison</h3>
+          <div class="grid-3">
+            <div class="rule-box">
+              <h4>Positive Degree Structure</h4>
+              <p><code>As + [Positive Adj] + As</code> (Used in both Affirmative & Negative)</p>
+              <p><code>So + [Positive Adj] + As</code> (Strictly used in Negative sentences)</p>
+              <p><em>"Raman is as brave as his brother."</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>Comparative Degree Structure</h4>
+              <p><code>[Comparative Adj / More] + than</code></p>
+              <p>Compares two entities or actions.</p>
+              <p><em>"He is wiser than you are."</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>Superlative Degree Structure</h4>
+              <p><code>The + [Superlative Adj / Most] + of / in</code></p>
+              <p>Compares one entity against the whole group.</p>
+              <p><em>"She is the most talented student in class."</em></p>
+            </div>
+          </div>
+
+          <div class="warn-box" style="margin-top:16px;">
+            <strong>🚫 Strict Prohibition of Double Comparatives & Double Superlatives:</strong>
+            <br>Never use two comparative or two superlative markers together!
+            <br>• <em>more wiser</em> ❌ ➔ <strong>wiser</strong> ✅
+            <br>• <em>more hotter</em> ❌ ➔ <strong>hotter</strong> ✅
+            <br>• <em>most ablest</em> ❌ ➔ <strong>ablest</strong> or <strong>most able</strong> ✅
+            <br>• <em>most noisiest</em> ❌ ➔ <strong>noisiest</strong> ✅
+            <br>• <em>more better</em> ❌ ➔ <strong>better</strong> ✅
+            <br>• <em>most fastest</em> ❌ ➔ <strong>fastest</strong> ✅
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🔥 Intensifier Rules: Much vs Very</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>VERY + Positive Degree</h4>
+              <p>Used to intensify base adjectives.</p>
+              <p>• <em>Very smart</em> ✅ | <em>Very good</em> ✅ | <em>Very cold</em> ✅</p>
+              <p>• <em>Very better</em> ❌ ➔ <strong>Much better</strong> ✅</p>
+            </div>
+            <div class="rule-box">
+              <h4>MUCH + Comparative Degree</h4>
+              <p>Used to intensify comparative forms.</p>
+              <p>• <em>Much smarter</em> ✅ | <em>Much better</em> ✅ | <em>Much faster</em> ✅</p>
+              <p>• <em>Much good</em> ❌ ➔ <strong>Very good</strong> ✅</p>
+            </div>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Comparison Structures (Pages 4-6) — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p5-degrees"></div>
+
+          <h4 style="margin-top:24px;">🎯 SSC PYQ Practice Quiz: Degrees & Traps</h4>
+          <div id="quiz-p5-degrees"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: LOGICAL & ONE VS GROUP (PAGES 6-7) ================= -->
+      <section class="section-page" id="tab-logical">
+        <h2 class="page-title">4. Logical Comparison & One vs Group Exclusion</h2>
+        <p class="page-subtitle">Pages 6 & 7 • That of / Those of, -er vs More for Same Person & Other/Else Rules</p>
+
+        <div class="card">
+          <h3>🎯 1. Logical Comparison (That of / Those of)</h3>
+          <p>Comparison must always be between <strong>similar qualities or entities</strong>, never between a person and a quality!</p>
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="rule-box">
+              <h4>Singular Replacement ➔ 'That of'</h4>
+              <p><span class="tag wrong">Wrong</span> The climate of Delhi is hotter than Mumbai.</p>
+              <p><span class="tag correct">Correct</span> The climate of Delhi is hotter than <strong>that of</strong> Mumbai.</p>
+              <hr style="margin:8px 0; border-color:var(--border);">
+              <p><span class="tag wrong">Wrong</span> My bag is costlier than Rahul.</p>
+              <p><span class="tag correct">Correct</span> My bag is costlier than <strong>that of Rahul</strong> (or <strong>Rahul's</strong>).</p>
+            </div>
+            <div class="rule-box">
+              <h4>Plural Replacement ➔ 'Those of'</h4>
+              <p><span class="tag wrong">Wrong</span> The people of India are more laborious than Pakistan.</p>
+              <p><span class="tag correct">Correct</span> The people of India are more laborious than <strong>those of</strong> Pakistan.</p>
+              <hr style="margin:8px 0; border-color:var(--border);">
+              <p><span class="tag wrong">Wrong</span> The works by Wordsworth are more fascinating than Charles Dickens.</p>
+              <p><span class="tag correct">Correct</span> ...more fascinating than <strong>those by</strong> Charles Dickens.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>👤 2. Comparing Two Qualities of the SAME Person (-er vs More)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Comparing 2 Different Persons ➔ Use '-er'</h4>
+              <p>When comparing the same quality between two different people.</p>
+              <p>• <em>Rohit is <strong>taller</strong> than Mohit.</em></p>
+              <p>• <em>Mottappa is <strong>taller</strong> than Kattappa.</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>Comparing 2 Qualities of SAME Person ➔ Use 'MORE'</h4>
+              <p>When comparing two different qualities belonging to the <strong>exact same individual</strong>, never use '-er'; always use <strong>MORE + Positive Degree</strong>!</p>
+              <p>• He is <em>wiser</em> than clever ❌ ➔ He is <strong>more wise</strong> than clever ✅.</p>
+              <p>• This student is <em>wiser</em> than tall ❌ ➔ He is <strong>more wise</strong> than tall ✅.</p>
+              <p>• This hall is <em>wider</em> than high ❌ ➔ It is <strong>more wide</strong> than high ✅.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🌐 3. One vs Group Exclusion (Concept of 'Other' and 'Else')</h3>
+          <p>When an individual is compared with a group to which they belong, they must be <strong>excluded</strong> from the comparison pool using <strong>'other'</strong> or <strong>'else'</strong>.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Degree</th><th>Exclusion Rule</th><th>Example</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Positive & Comparative</strong></td>
+                  <td><strong>MUST EXCLUDE:</strong> Use <em>other</em> with <code>any, no, all, most</code>; use <em>else</em> with <code>anybody, nobody, someone</code>.</td>
+                  <td>• <em>The Ganga is holier than <strong>any other river</strong> of India.</em><br>• <em>No <strong>other</strong> animal is as sacred as the cow.</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Different Group (No Exclusion)</strong></td>
+                  <td>If comparing with a group they <strong>do not belong to</strong>, do NOT use 'other'!</td>
+                  <td>• <em>The Ganga is holier than <strong>any river of China</strong>.</em> (Ganga is not in China!)</td>
+                </tr>
+                <tr>
+                  <td><strong>Superlative Degree</strong></td>
+                  <td><strong>NEVER USE OTHER/ELSE:</strong> In superlative, the subject is already part of the whole group!</td>
+                  <td>• <em>Gold is the most precious of <strong>all metals</strong>.</em> (NOT <em>all other metals</em> ❌)<br>• <em>He is the cleverest of <strong>all students</strong>.</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Logical Comparison & Group Exclusion — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p6-logical"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: One vs Group Traps</h4>
+          <div id="quiz-p6-logical"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: 'AND' RULE & GRADUAL CHANGE (PAGES 7-8) ================= -->
+      <section class="section-page" id="tab-and-gradual">
+        <h2 class="page-title">5. The 'And' Rule, Gradual Change & Parallel Comparison</h2>
+        <p class="page-subtitle">Pages 7 & 8 • Degree Harmony across Conjunctions; Continuous Progression & 'The... The...'</p>
+
+        <div class="card">
+          <h3>🔗 1. The 'AND' Coordinate Rule</h3>
+          <p>When two adjectives are connected by coordinate conjunctions like <strong>AND</strong> or <strong>BUT</strong>, they must be in the <strong>SAME DEGREE</strong> of comparison!</p>
+          <div class="grid-3" style="margin-top:12px;">
+            <div class="rule-box">
+              <h4>Positive + AND + Positive</h4>
+              <p><em>He is <strong>wise and laborious</strong>.</em></p>
+              <p><em>(Not: wiser and laborious ❌)</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>Comparative + AND + Comparative</h4>
+              <p><em>Rajat is <strong>wiser and more amusing</strong> than his wife.</em></p>
+              <p><em>(Both joined by 'than')</em></p>
+            </div>
+            <div class="rule-box">
+              <h4>Superlative + AND + Superlative</h4>
+              <p><em>Subhash is <strong>the bravest and most energetic</strong> person.</em></p>
+              <p><em>(Article 'the' is shared)</em></p>
+            </div>
+          </div>
+          <div class="warn-box" style="margin-top:14px;">
+            <strong>⚠️ Shared Article Rule:</strong> When two superlatives qualify the same person, the definite article <strong>'The'</strong> is placed only before the FIRST adjective:
+            <br><em>"You are <strong>the best and most talented</strong> student"</em> (NOT <em>the best and the most talented</em>).
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📈 2. Gradual Change (Continuous Progressive Process)</h3>
+          <p>When an action or quality changes continuously step-by-step over time, use: <code>Comparative Degree + and + Comparative Degree</code>.</p>
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="rule-box">
+              <p>• It is getting <em>dark and darker</em> ❌ ➔ It is getting <strong>darker and darker</strong> ✅.</p>
+              <p>• You are becoming <em>lazy and lazier</em> ❌ ➔ You are becoming <strong>lazier and lazier</strong> ✅.</p>
+              <p>• She is getting <em>more fat and fatter</em> ❌ ➔ She is getting <strong>fatter and fatter</strong> ✅.</p>
+            </div>
+            <div class="rule-box">
+              <p>• In his old age, a person gets <em>more weak day by day</em> ❌ ➔ gets <strong>weaker and weaker</strong> ✅.</p>
+              <p>• Lives have become <em>healthier and long</em> ❌ ➔ <strong>healthier and longer</strong> ✅.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>⚡ 3. Parallel Comparative: "The... The..." Structure</h3>
+          <p>When two developments or actions are proportionately dependent on each other, use the definite article <strong>'The'</strong> with both comparative degrees:</p>
+          <div class="rule-box" style="font-size:1.05rem; font-weight:600; text-align:center;">
+            The + Comparative Degree . . . , The + Comparative Degree . . .
+          </div>
+          <div class="grid-2" style="margin-top:14px;">
+            <ul style="padding-left:18px;">
+              <li><strong>The higher</strong> you go, <strong>the cooler</strong> it is.</li>
+              <li><strong>The more</strong> you work, <strong>the more</strong> you will get.</li>
+            </ul>
+            <ul style="padding-left:18px;">
+              <li><strong>The faster</strong> he completes the work, <strong>the larger</strong> will be his profit.</li>
+              <li><strong>The more carefully</strong> you listen, <strong>the more easily</strong> you understand.</li>
+            </ul>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: 'And' Rule & Parallel Progression — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p7-and"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Parallel Comparisons</h4>
+          <div id="quiz-p7-and"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: SELECTION & LATIN (-IOR) (PAGES 7-9) ================= -->
+      <section class="section-page" id="tab-selection">
+        <h2 class="page-title">6. The Selection Rule, Latin -ior Adjectives & Prefer/Preferable</h2>
+        <p class="page-subtitle">Pages 7, 8 & 9 • The + Comparative of the Two; Latin Adjectives Taking 'To'; Preferable Rules</p>
+
+        <div class="card">
+          <h3>🏆 1. Comparison vs Selection ('The' with Comparative)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Context</th><th>Grammar Pattern</th><th>Article Rule</th><th>Example</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Direct Comparison</strong></td>
+                  <td><code>Comparative + than</code></td>
+                  <td><strong>NO article</strong> before comparative</td>
+                  <td><em>She is <strong>better than</strong> her friend.</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Selection of Two</strong></td>
+                  <td><code>The + Comparative + of the two</code></td>
+                  <td><strong>MUST take 'THE'</strong></td>
+                  <td><em>She is <strong>the better of</strong> her two friends.</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Selection of 3+</strong></td>
+                  <td><code>The + Superlative + of all / three</code></td>
+                  <td><strong>MUST take 'THE'</strong></td>
+                  <td><em>He was <strong>the fastest of</strong> the three runners.</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🏛️ 2. Latin Comparative Adjectives Ending in -IOR</h3>
+          <p>These 7 adjectives originate from Latin: <strong>Superior, Inferior, Senior, Junior, Prior, Anterior, Posterior</strong>.</p>
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="rule-box">
+              <h4>Rules for Latin Adjectives:</h4>
+              <ul style="padding-left:18px;">
+                <li>Always followed by preposition <strong>TO</strong> (NEVER <em>than</em>!).</li>
+                <li>They already possess comparative meaning, so <strong>never add 'more' or 'most'</strong>!</li>
+                <li>Can be qualified by <strong>much</strong> (e.g. <em>much superior to</em>), but NEVER <em>more</em>.</li>
+              </ul>
+            </div>
+            <div class="warn-box">
+              <h4>SSC Exam Corrections:</h4>
+              <p>• He is <em>more senior than</em> me ❌ ➔ He is <strong>senior to</strong> me ✅.</p>
+              <p>• He came here <em>prior than</em> us ❌ ➔ came here <strong>prior to</strong> us ✅.</p>
+              <p>• This cloth is <em>inferior than</em> that ❌ ➔ <strong>inferior to</strong> that ✅.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>☕ 3. Prefer (Verb) vs Preferable (Adjective)</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Prefer (Verb)</h4>
+              <p>Takes preposition <strong>TO</strong> (or <em>rather than</em> with bare infinitives).</p>
+              <p>• <em>I prefer milk <strong>to</strong> tea.</em> (NOT <em>than</em> ❌)</p>
+            </div>
+            <div class="rule-box">
+              <h4>Preferable (Adjective)</h4>
+              <p>Already comparative in sense. Takes preposition <strong>TO</strong>. Never use <em>more</em>!</p>
+              <p>• Death is <em>more preferable to</em> dishonour ❌ ➔ <strong>preferable to</strong> ✅.</p>
+              <p>• Can use <strong>much preferable</strong>, but NEVER <em>more preferable</em>!</p>
+            </div>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Selection & Latin Adjectives — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p8-selection"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Latin Adjectives & Selection</h4>
+          <div id="quiz-p8-selection"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 7: NON-GRADABLES & MODIFIERS (PAGES 8-10) ================= -->
+      <section class="section-page" id="tab-nongradable">
+        <h2 class="page-title">7. Non-Gradable Adjectives, Post-Positive Modifiers & Special Collocations</h2>
+        <p class="page-subtitle">Pages 8, 9 & 10 • Absolute Qualities, 'Worth Seeing', Redundant Modifiers & 'If Not' Formula</p>
+
+        <div class="card">
+          <h3>💎 1. Non-Gradable (Absolute) Adjectives</h3>
+          <p>These adjectives represent extreme or absolute states that cannot be graded or increased/decreased in degree.</p>
+          <div class="chip-grid" style="margin-top:12px;">
+            <span class="chip"><strong>Unique</strong></span>
+            <span class="chip"><strong>Perfect</strong></span>
+            <span class="chip"><strong>Ideal</strong></span>
+            <span class="chip"><strong>Supreme</strong></span>
+            <span class="chip"><strong>Universal</strong></span>
+            <span class="chip"><strong>Excellent</strong></span>
+            <span class="chip"><strong>Complete</strong></span>
+            <span class="chip"><strong>Entire</strong></span>
+            <span class="chip"><strong>Eternal</strong></span>
+            <span class="chip"><strong>Everlasting</strong></span>
+            <span class="chip"><strong>Absolute</strong></span>
+            <span class="chip"><strong>Impossible</strong></span>
+            <span class="chip"><strong>Round</strong></span>
+            <span class="chip"><strong>Square</strong></span>
+            <span class="chip"><strong>Empty</strong></span>
+            <span class="chip"><strong>Dead</strong></span>
+            <span class="chip"><strong>Final</strong></span>
+            <span class="chip"><strong>Chief</strong></span>
+            <span class="chip"><strong>Extreme</strong></span>
+          </div>
+          <div class="warn-box" style="margin-top:14px;">
+            <strong>🚫 Absolute Prohibition:</strong> Never use <em>more, most, very, comparatively, relatively, -er, -est</em> with non-gradables!
+            <br>• <em>the most unique</em> ❌ ➔ <strong>a unique</strong> ✅
+            <br>• <em>most ideal teacher</em> ❌ ➔ <strong>an ideal teacher</strong> ✅
+            <br>• <em>more rounded</em> ❌ ➔ <strong>round</strong> ✅
+            <br>• <em>the most perfect curve</em> ❌ ➔ <strong>a perfect curve</strong> ✅
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🎬 2. Post-Positive Adjective: "Worth Seeing / Reading"</h3>
+          <p>Adjectives like <strong>worth seeing, worth reading, worth visiting</strong> come AFTER the noun they modify, not before!</p>
+          <div class="grid-2" style="margin-top:10px;">
+            <div class="rule-box">
+              <p><span class="tag wrong">Wrong</span> a worth seeing movie</p>
+              <p><span class="tag correct">Correct</span> a movie <strong>worth seeing</strong></p>
+            </div>
+            <div class="rule-box">
+              <p><span class="tag wrong">Wrong</span> a worth seeing monument</p>
+              <p><span class="tag correct">Correct</span> a monument <strong>worth seeing</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📐 3. Modifiers that Require POSITIVE DEGREE</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Use POSITIVE DEGREE with:</h4>
+              <p><code>Enough, Too, As...as, So...as, Very, Relatively, Comparatively, Half, Twice, Thrice</code></p>
+              <ul style="padding-left:18px; margin-top:8px;">
+                <li><em>strongest enough</em> ❌ ➔ <strong>strong enough</strong> ✅</li>
+                <li><em>too poorest</em> ❌ ➔ <strong>too poor</strong> ✅</li>
+                <li><em>comparatively safer</em> ❌ ➔ <strong>comparatively safe</strong> ✅</li>
+                <li><em>relatively warmer</em> ❌ ➔ <strong>relatively warm</strong> ✅</li>
+                <li><em>twice heavier than</em> ❌ ➔ <strong>twice as heavy as</strong> ✅</li>
+              </ul>
+            </div>
+            <div class="warn-box">
+              <h4>Redundancy Traps:</h4>
+              <ul style="padding-left:18px;">
+                <li><strong>"Adequate enough"</strong> ➔ Superfluous! Use either <em>adequate</em> OR <em>enough</em>.</li>
+                <li><strong>"Equally as...as"</strong> ➔ Superfluous! Use either <em>equally</em> OR <em>as...as</em>.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🧩 4. The 'If Not' Combination Formula</h3>
+          <p>When combining two comparative standards using <strong>'if not'</strong>:</p>
           <div class="rule-box">
-            <strong>Linking Verbs taking Adjectives:</strong> Feel, taste, smell, sound, look, seem, appear, become, be, turn, get, grow, keep, make, prove.
+            <code>As + Positive Degree + As  +  IF NOT  +  Comparative Degree</code>
+          </div>
+          <ul style="padding-left:18px; margin-top:10px;">
+            <li><span class="tag wrong">Wrong</span> She is as beautiful if not beautiful than her sister.</li>
+            <li><span class="tag correct">Correct</span> She is <strong>as beautiful as</strong>, if not <strong>more beautiful than</strong>, her sister.</li>
+            <li><span class="tag wrong">Wrong</span> He runs as fast if not fast than my friend.</li>
+            <li><span class="tag correct">Correct</span> He runs <strong>as fast as</strong>, if not <strong>faster than</strong>, my friend.</li>
+          </ul>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Non-Gradables & Modifiers — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p9-nongradable"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Non-Gradables & Modifiers</h4>
+          <div id="quiz-p9-nongradable"></div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 8: NOUN VS ADJ & CONFUSING PAIRS (PAGES 10-12) ================= -->
+      <section class="section-page" id="tab-confusing">
+        <h2 class="page-title">8. Noun vs Adjective Confusions, Suffixes & Special Word Pairs</h2>
+        <p class="page-subtitle">Pages 10, 11 & 12 • -ly Ending Nouns/Adjectives; Participial Adjective Forms; High-Frequency Word Pairs</p>
+
+        <div class="card">
+          <h3>🏷️ 1. Noun vs Adjective with -LY Ending (Page 10)</h3>
+          <p>Normally, adding <em>-ly</em> to an adjective creates an adverb (e.g. <em>slow → slowly</em>). However, adding <em>-ly</em> to a <strong>NOUN</strong> creates an <strong>ADJECTIVE</strong>!</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Noun (Person)</th><th>Adjective Form</th><th>Adverb Form</th><th>Exam Usage Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Miser (कंजूस व्यक्ति)</td><td><strong>Miserly</strong> (कंजूस)</td><td>In a miserly manner</td><td>He is very miser ❌ ➔ He is <strong>very miserly</strong> ✅</td></tr>
+                <tr><td>Coward (कायर व्यक्ति)</td><td><strong>Cowardly</strong> (कायर)</td><td>In a cowardly manner</td><td>as coward as Rahul ❌ ➔ as <strong>cowardly</strong> as Rahul ✅</td></tr>
+                <tr><td>Niggard (कंजूस व्यक्ति)</td><td><strong>Niggardly</strong></td><td>In a niggardly manner</td><td>He lived a <strong>niggardly</strong> life ✅</td></tr>
+                <tr><td>Optimist (आशावादी व्यक्ति)</td><td><strong>Optimistic</strong></td><td>Optimistically</td><td>too optimist ❌ ➔ too <strong>optimistic</strong> ✅</td></tr>
+                <tr><td>Fool (मूर्ख व्यक्ति)</td><td><strong>Foolish</strong></td><td>Foolishly</td><td>not so fool as ❌ ➔ not so <strong>foolish</strong> as ✅</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
 
-      <!-- DEGREES OF COMPARISON -->
-      <div class="full-width-card">
-        <div class="card-header">
-          <div class="card-title">📊 The Three Degrees of Comparison</div>
-          <span class="card-tag gold">Core Structure</span>
-        </div>
-        <div class="concept-grid" style="margin-bottom:0;">
-          <div class="concept-card">
-            <div class="card-header"><span class="card-title">Positive Degree</span></div>
-            <p style="font-size:0.88rem;">Represents equality or basic quality:</p>
-            <p style="font-size:0.88rem; margin-top:4px;">• <em>As + Positive + As</em> (Affirmative & Negative)</p>
-            <p style="font-size:0.88rem;">• <em>So + Positive + As</em> (Negative only)</p>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Ex: <em>She is as intelligent as her classmates.</em></p>
-          </div>
-          <div class="concept-card">
-            <div class="card-header"><span class="card-title">Comparative Degree</span></div>
-            <p style="font-size:0.88rem;">Comparison between two entities:</p>
-            <p style="font-size:0.88rem; margin-top:4px;">• <em>er / more + than</em></p>
-            <p style="font-size:0.88rem;">• <em>The + comparative + of the two</em> (Selection)</p>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Ex: <em>Ramesh is taller than Suresh.</em></p>
-          </div>
-          <div class="concept-card">
-            <div class="card-header"><span class="card-title">Superlative Degree</span></div>
-            <p style="font-size:0.88rem;">One compared against all:</p>
-            <p style="font-size:0.88rem; margin-top:4px;">• <em>The + -est / most</em></p>
-            <p style="font-size:0.88rem;">• No 'other' or 'else' allowed!</p>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Ex: <em>Rahul is the best player of the team.</em></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- CRUCIAL CONFUSING PAIRS -->
-      <div class="full-width-card">
-        <div class="card-header">
-          <div class="card-title">🔍 High-Yield Confusing Pairs Mastered</div>
-          <span class="card-tag accent">Exam Golden Rules</span>
-        </div>
-        <div class="concept-grid">
-          <div class="concept-card">
-            <div class="card-header"><span class="card-title">Elder / Eldest vs Older / Oldest</span></div>
-            <p style="font-size:0.88rem;">• <strong>Elder / Eldest:</strong> Strictly for blood relations (family members). Never takes 'than'. (<em>My elder brother is a teacher.</em>)</p>
-            <p style="font-size:0.88rem;">• <strong>Older / Oldest:</strong> For non-family persons or objects; takes 'than'. (<em>Rohan is older than his friend.</em>)</p>
-          </div>
-
-          <div class="concept-card">
-            <div class="card-header"><span class="card-title">Further vs Farther</span></div>
-            <p style="font-size:0.88rem;">• <strong>Farther:</strong> Physical distance (<em>Mumbai is farther from Patna than Ambala.</em>)</p>
-            <p style="font-size:0.88rem;">• <strong>Further:</strong> Additional / subsequent (<em>I need further support / further discussion.</em>)</p>
-          </div>
-
-          <div class="concept-card">
-            <div class="card-header"><span class="card-title">Later / Latter vs Latest / Last</span></div>
-            <p style="font-size:0.88rem;">• <strong>Later / Latest:</strong> Time oriented (<em>He came later than you. What is the latest score?</em>)</p>
-            <p style="font-size:0.88rem;">• <strong>Latter / Last:</strong> Order / position oriented (<em>Latter: second of two; Last: end of series.</em>)</p>
-            <p style="font-size:0.88rem;">• <strong>Former vs First:</strong> Former = first of two; First = first of 3+.</p>
-          </div>
-
-          <div class="concept-card">
-            <div class="card-header"><span class="card-title">Latin Comparatives & Prefer</span></div>
-            <p style="font-size:0.88rem;">• <em>Superior, inferior, senior, junior, prior, anterior, posterior</em>:</p>
-            <p style="font-size:0.88rem;">Always take <span class="tag-pill">to</span> (NEVER 'than'). Never precede with 'more'.</p>
-            <p style="font-size:0.88rem; margin-top:4px;">• <em>Prefer / Preferable</em> takes <span class="tag-pill">to</span> (<em>I prefer coffee to tea</em>).</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- GOLDEN EXAM RULES -->
-      <div class="concept-grid">
-        <div class="concept-card">
-          <div class="card-header">
-            <div class="card-title">👤 Two Qualities of Same Person</div>
-            <span class="card-tag gold">Special Rule</span>
-          </div>
-          <div class="rule-box">
-            When comparing two different qualities of the <strong>SAME person</strong>, use <strong>`more + positive degree`</strong>, NEVER '-er'!
-          </div>
-          <div class="example-line"><span class="tag-correct">✔</span> He is <strong>more wise than clever</strong>.</div>
-          <div class="example-line"><span class="tag-wrong">✖</span> He is wiser than clever.</div>
-          <div class="example-line"><span class="tag-correct">✔</span> This hall is <strong>more wide than high</strong>.</div>
-        </div>
-
-        <div class="concept-card">
-          <div class="card-header">
-            <div class="card-title">👥 One vs Group Comparison ('Other' Rule)</div>
-            <span class="card-tag gold">Exclusion Rule</span>
-          </div>
-          <div class="rule-box">
-            In Comparative/Positive, use <strong>'other'</strong> with <em>any, no, all, most</em> to exclude the subject from its own group:
-          </div>
-          <div class="example-line"><span class="tag-correct">✔</span> Rohit is better than <strong>any other player</strong> of Indian team.</div>
-          <div class="example-line"><span class="tag-correct">✔</span> Ganga is holier than <strong>any other river</strong> of India.</div>
-          <div class="example-line"><span class="tag-correct">✔</span> Ganga is holier than <strong>any river</strong> of China (Ganga is not part of China!).</div>
-        </div>
-
-        <div class="concept-card">
-          <div class="card-header">
-            <div class="card-title">🚫 Non-Gradable (Absolute) Adjectives</div>
-            <span class="card-tag">No More / Most</span>
-          </div>
-          <p style="font-size:0.88rem; margin-bottom:8px;">Cannot be used in Comparative or Superlative degrees:</p>
-          <div style="font-size:0.82rem; line-height:1.7; background:var(--bg-secondary); padding:8px 12px; border-radius:8px;">
-            <em>Unique, Perfect, Ideal, Supreme, Excellent, Universal, Round, Square, Triangular, Parallel, Circular, Eternal, Everlasting, Extreme, Complete, Entire, Final, Dead, Chief, Impossible, Prime.</em>
-          </div>
-          <div class="example-line" style="margin-top:8px;"><span class="tag-wrong">✖</span> This is the most unique problem.</div>
-          <div class="example-line"><span class="tag-correct">✔</span> This is <strong>a unique problem</strong>.</div>
-        </div>
-
-        <div class="concept-card">
-          <div class="card-header">
-            <div class="card-title">🗂️ Order of Adjectives (OSASCOMP)</div>
-            <span class="card-tag accent">Sequence Formula</span>
-          </div>
-          <div class="rule-box" style="font-family:var(--font-mono); font-size:0.82rem;">
-            Determiner → Opinion → Size → Age → Shape → Colour → Origin → Material → Purpose → NOUN
-          </div>
-          <div class="example-line">
-            <span class="tag-correct">✔</span> She purchased an <strong>expensive</strong> (opinion) <strong>large</strong> (size) <strong>antique</strong> (age) <strong>round</strong> (shape) <strong>yellow</strong> (colour) <strong>Italian</strong> (origin) <strong>wooden</strong> (material) <strong>dining</strong> (purpose) table.
-          </div>
-        </div>
-      </div>
-
-      <div style="text-align: center;">
-        <button class="btn-complete-stage" onclick="switchStage('stageB')">Proceed to Active Recall Drills →</button>
-      </div>
-    </section>
-
-    <!-- STAGE B: ACTIVE RECALL -->
-    <section id="stageB" class="stage-section">
-      <div class="section-banner">
-        <div class="banner-text">
-          <h2>⚡ Stage B: Active Retrieval & Fill-in Drills</h2>
-          <p>Tap cards to test your retention of PSP Sir's adjective rules and error spotting patterns.</p>
-        </div>
-        <span class="banner-badge">Active Recall</span>
-      </div>
-
-      <div class="recall-grid">
-        <div class="recall-card" onclick="this.classList.toggle('revealed')">
-          <div style="font-weight:700; font-size:0.92rem; margin-bottom:6px;">Rule for comparing two qualities of the same person?</div>
-          <div class="recall-answer">Use <strong>more + positive degree</strong> (e.g. <em>He is more wise than clever</em>, never <em>wiser than clever</em>).</div>
-        </div>
-
-        <div class="recall-card" onclick="this.classList.toggle('revealed')">
-          <div style="font-weight:700; font-size:0.92rem; margin-bottom:6px;">Why is 'She is senior than me' incorrect?</div>
-          <div class="recall-answer">Latin adjectives (senior, junior, superior, inferior, prior) take preposition <strong>to</strong>, not <strong>than</strong>. Correct: <em>She is senior to me</em>.</div>
-        </div>
-
-        <div class="recall-card" onclick="this.classList.toggle('revealed')">
-          <div style="font-weight:700; font-size:0.92rem; margin-bottom:6px;">Difference between 'Further' and 'Farther'?</div>
-          <div class="recall-answer"><strong>Farther</strong> relates to physical distance. <strong>Further</strong> means 'additional' or 'in addition to'.</div>
-        </div>
-
-        <div class="recall-card" onclick="this.classList.toggle('revealed')">
-          <div style="font-weight:700; font-size:0.92rem; margin-bottom:6px;">What is wrong with 'This is the most unique monument'?</div>
-          <div class="recall-answer"><strong>Unique</strong> is a non-gradable (absolute) adjective. It cannot take <em>more</em> or <em>most</em>. Correct: <em>This is a unique monument</em>.</div>
-        </div>
-
-        <div class="recall-card" onclick="this.classList.toggle('revealed')">
-          <div style="font-weight:700; font-size:0.92rem; margin-bottom:6px;">Rule for 'worth seeing' and 'worth reading'?</div>
-          <div class="recall-answer">They are used post-nominally (after the noun). Say <em>a movie worth seeing</em>, NOT <em>a worth seeing movie</em>.</div>
-        </div>
-
-        <div class="recall-card" onclick="this.classList.toggle('revealed')">
-          <div style="font-weight:700; font-size:0.92rem; margin-bottom:6px;">Can we use comparative degree with 'relatively' or 'comparatively'?</div>
-          <div class="recall-answer"><strong>No!</strong> Always use Positive Degree (e.g. <em>Jaipur is relatively warm</em>, not <em>warmer</em>).</div>
-        </div>
-      </div>
-
-      <div style="text-align: center;">
-        <button class="btn-complete-stage" onclick="switchStage('stageC')">Proceed to Flashcards →</button>
-      </div>
-    </section>
-
-    <!-- STAGE C: FLASHCARDS -->
-    <section id="stageC" class="stage-section">
-      <div class="section-banner">
-        <div class="banner-text">
-          <h2>🎴 Stage C: 3D Rule Flashcards</h2>
-          <p>Tap card or press <strong>Spacebar</strong> to flip. Use arrow keys to navigate.</p>
-        </div>
-        <span class="banner-badge">20 Cards</span>
-      </div>
-
-      <div class="flashcard-wrapper">
-        <div class="flashcard" id="fcCard" onclick="this.classList.toggle('flipped')">
-          <div class="flashcard-front">
-            <div style="display:flex; justify-content:space-between; color:var(--accent); font-size:0.8rem; font-weight:700;">
-              <span id="fcTag">Rule Card</span>
-              <span id="fcNum">1 / 20</span>
+        <div class="card">
+          <h3>🔍 2. Participial & Suffix Adjective Errors in SSC (Page 11)</h3>
+          <p>SSC exams frequently test whether you can recognize the correct Adjective form preceding a noun:</p>
+          <div class="grid-2">
+            <div class="rule-box">
+              <ul style="padding-left:18px;">
+                <li><em>more detail analysis</em> ❌ ➔ <strong>detailed</strong> analysis ✅</li>
+                <li><em>how importance it is</em> ❌ ➔ how <strong>important</strong> it is ✅</li>
+                <li><em>carefully investigation</em> ❌ ➔ <strong>careful</strong> investigation ✅</li>
+                <li><em>repaired freely of charge</em> ❌ ➔ <strong>free</strong> of charge ✅</li>
+                <li><em>regularly interval</em> ❌ ➔ <strong>regular</strong> interval ✅</li>
+                <li><em>newly launch bar</em> ❌ ➔ newly <strong>launched</strong> bar ✅</li>
+                <li><em>aesthetics appeal</em> ❌ ➔ <strong>aesthetic</strong> appeal ✅</li>
+              </ul>
             </div>
-            <div id="fcQ" style="font-size:1.2rem; font-weight:700; text-align:center; margin:auto 0;">
-              What preposition does 'prefer' and 'preferable' take?
+            <div class="rule-box">
+              <ul style="padding-left:18px;">
+                <li><em>thoroughly cleaning</em> ❌ ➔ <strong>thorough</strong> cleaning ✅</li>
+                <li><em>desert place</em> ❌ ➔ <strong>deserted</strong> place ✅</li>
+                <li><em>a learnt man</em> ❌ ➔ a <strong>learned</strong> man ✅</li>
+                <li><em>settle life</em> ❌ ➔ <strong>settled</strong> life ✅</li>
+                <li><em>administration ability</em> ❌ ➔ <strong>administrative</strong> ability ✅</li>
+                <li><em>an easily read</em> ❌ ➔ an <strong>easy</strong> read ✅</li>
+                <li><em>steamed cup of tea</em> ❌ ➔ <strong>steaming</strong> cup of tea ✅</li>
+              </ul>
             </div>
-            <div style="font-size:0.75rem; color:var(--text-muted); text-align:center;">Tap to flip ↺</div>
-          </div>
-          <div class="flashcard-back">
-            <div style="display:flex; justify-content:space-between; color:var(--accent); font-size:0.8rem; font-weight:700;">
-              <span>Answer</span>
-              <span id="fcNumB">1 / 20</span>
-            </div>
-            <div id="fcA" style="font-size:1.15rem; font-weight:700; text-align:center; margin:auto 0;">
-              They both take 'to', never 'than'. Also, avoid 'more preferable'.
-            </div>
-            <div style="font-size:0.75rem; color:var(--text-muted); text-align:center;">Example: Death is preferable to dishonour.</div>
           </div>
         </div>
 
-        <div class="fc-controls">
-          <button class="btn-fc" onclick="prevCard()">← Prev</button>
-          <button class="btn-fc" onclick="shuffleCards()">🔀 Shuffle</button>
-          <button class="btn-fc" onclick="nextCard()">Next →</button>
+        <div class="card">
+          <h3>⚡ 3. High-Frequency Confusing Word Pairs (Page 11-12)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Word Pair</th><th>Meanings & Differences</th><th>Exam Example</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>First vs Foremost</strong></td>
+                  <td>• <strong>First:</strong> Order (पहला)<br>• <strong>Foremost:</strong> Most prominent / popular (अग्रणी)</td>
+                  <td>Indira Gandhi was the <strong>foremost</strong> politician of her time.</td>
+                </tr>
+                <tr>
+                  <td><strong>Principal vs Principle</strong></td>
+                  <td>• <strong>Principal:</strong> Head of institution / Chief (प्रधान)<br>• <strong>Principle:</strong> Moral belief / Rule (सिद्धांत)</td>
+                  <td>Violated the <strong>principal rights</strong> of the employees.</td>
+                </tr>
+                <tr>
+                  <td><strong>Utmost vs Outermost</strong></td>
+                  <td>• <strong>Utmost:</strong> Extreme / Highest degree<br>• <strong>Outermost:</strong> Farthest exterior boundary</td>
+                  <td>Entered the palace from the <strong>outermost</strong> gate.</td>
+                </tr>
+                <tr>
+                  <td><strong>Disinterested vs Uninterested</strong></td>
+                  <td>• <strong>Disinterested:</strong> Impartial / Unbiased (निष्पक्ष)<br>• <strong>Uninterested:</strong> Having no interest (उदासीन)</td>
+                  <td>A judge should be <strong>disinterested</strong> towards both parties.</td>
+                </tr>
+                <tr>
+                  <td><strong>Tall vs High</strong></td>
+                  <td>• <strong>Tall:</strong> Used for living beings / vertical height<br>• <strong>High:</strong> Used for mountains / structures / elevations</td>
+                  <td>The man was seven feet <strong>tall</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Eminent vs Imminent</strong></td>
+                  <td>• <strong>Eminent:</strong> Famous / distinguished<br>• <strong>Imminent:</strong> About to happen soon (आसन्न)</td>
+                  <td>The symptoms of <strong>imminent</strong> storm were sensed.</td>
+                </tr>
+                <tr>
+                  <td><strong>Alternate vs Alternative</strong></td>
+                  <td>• <strong>Alternate:</strong> Every second one / by turns<br>• <strong>Alternative:</strong> A choice between options</td>
+                  <td>I visit the clinic on <strong>alternate</strong> days (Monday, Wednesday, Friday).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: Confusing Pairs & Word Forms — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p11-confusing"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: Confusing Words</h4>
+          <div id="quiz-p11-confusing"></div>
         </div>
-      </div>
+      </section>
 
-      <div style="text-align: center; margin-top:2rem;">
-        <button class="btn-complete-stage" onclick="switchStage('stageD')">Proceed to Practice Quiz →</button>
-      </div>
-    </section>
+      <!-- ================= TAB 9: OSASCOMP & PREDICATIVE RULES (PAGES 12-14) ================= -->
+      <section class="section-page" id="tab-osascomp">
+        <h2 class="page-title">9. OSASCOMP Order of Adjectives & Special Positions</h2>
+        <p class="page-subtitle">Pages 12, 13 & 14 • Multiple Adjectives Ordering; Predicative-Only List; The + Adjective Plural</p>
 
-    <!-- STAGE D: CORE QUIZ -->
-    <section id="stageD" class="stage-section">
-      <div class="section-banner">
-        <div class="banner-text">
-          <h2>📝 Stage D: Adjective Mastery Core Quiz (25 MCQs)</h2>
-          <p>Instant error analysis with rule-backed solutions.</p>
+        <div class="card">
+          <h3>🎨 1. The OSASCOMP Order Rule</h3>
+          <p>When multiple adjectives qualify the same noun, they MUST follow this standard order:</p>
+          <div class="chip-grid" style="margin-top:12px;">
+            <span class="chip"><strong>D:</strong> Determiner (A, the, two)</span>
+            <span class="chip"><strong>O:</strong> Opinion (Beautiful, costly)</span>
+            <span class="chip"><strong>S:</strong> Size (Large, big, tall)</span>
+            <span class="chip"><strong>A:</strong> Age (Old, young, antique)</span>
+            <span class="chip"><strong>S:</strong> Shape (Round, square)</span>
+            <span class="chip"><strong>C:</strong> Colour (Black, yellow)</span>
+            <span class="chip"><strong>O:</strong> Origin (Indian, Italian)</span>
+            <span class="chip"><strong>M:</strong> Material (Wooden, leather)</span>
+            <span class="chip"><strong>P:</strong> Purpose (Dining, wedding)</span>
+          </div>
+          <div class="rule-box" style="margin-top:14px;">
+            <strong>Master Example (Page 12):</strong>
+            <br><em>"She purchased an <strong>expensive</strong> (Opinion), <strong>large</strong> (Size), <strong>antique</strong> (Age), <strong>round</strong> (Shape), <strong>yellow</strong> (Colour), <strong>Italian</strong> (Origin), <strong>wooden</strong> (Material), <strong>dining</strong> (Purpose) table."</em>
+          </div>
         </div>
-        <span class="banner-badge">25 MCQs</span>
-      </div>
 
-      <div id="coreQuizContainer">
-        <!-- Rendered via JS -->
-      </div>
-
-      <div style="text-align: center; margin-top:2rem;">
-        <button class="btn-complete-stage" onclick="switchStage('stageE')">Proceed to Cheat Sheets →</button>
-      </div>
-    </section>
-
-    <!-- STAGE E: CHEAT SHEETS -->
-    <section id="stageE" class="stage-section">
-      <div class="section-banner">
-        <div class="banner-text">
-          <h2>🚀 Stage E: Adjective Quick Revision Cheat Sheets</h2>
-          <p>Key error patterns that repeatedly appear in SSC and government exams.</p>
+        <div class="card">
+          <h3>👥 2. "The + Adjective = Plural Noun" Rule</h3>
+          <div class="grid-2">
+            <div class="rule-box">
+              <h4>Plural Collective Meaning</h4>
+              <p>When <strong>'The'</strong> is placed before certain qualitative adjectives, it converts the adjective into a <strong>PLURAL NOUN</strong> denoting the entire class!</p>
+              <ul style="padding-left:18px; margin-top:8px;">
+                <li><em>The poor</em> = Poor people</li>
+                <li><em>The rich</em> = Rich people</li>
+                <li><em>The blind</em> = Blind people</li>
+                <li><em>The sick</em> = Sick people</li>
+                <li><em>The honest</em> = Honest people</li>
+              </ul>
+            </div>
+            <div class="warn-box">
+              <h4>Strict Exam Rules:</h4>
+              <ul style="padding-left:18px;">
+                <li>Always takes a <strong>PLURAL VERB</strong>: <em>The poor <strong>are</strong> hated by the rich</em>.</li>
+                <li><strong>NEVER add -s</strong>: <em>The poors</em> ❌, <em>The blinds</em> ❌.</li>
+                <li><strong>NEVER add 'people'</strong>: <em>The poor people</em> is redundant with <em>The</em>.</li>
+                <li>Note: <em>Riches</em> (Noun) means assets/wealth: <em>Riches have wings</em>.</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <span class="banner-badge">Cheat Sheet</span>
-      </div>
 
-      <div class="concept-grid">
-        <div class="concept-card">
-          <div class="card-header"><span class="card-title">1. Double Degree Trap</span></div>
-          <p style="font-size:0.88rem;">Never use <em>more wiser</em>, <em>most sweetest</em>, <em>more taller</em>. Use only one comparative/superlative marker.</p>
+        <div class="card">
+          <h3>🚫 3. Predicative-Only Adjectives (Page 14)</h3>
+          <p>These adjectives can <strong>NEVER be used attributively</strong> (directly before a noun); they are used ONLY predicatively (after a linking verb):</p>
+          <div class="chip-grid" style="margin-top:10px;">
+            <span class="chip"><strong>Afraid</strong></span>
+            <span class="chip"><strong>Asleep</strong></span>
+            <span class="chip"><strong>Awake</strong></span>
+            <span class="chip"><strong>Alone</strong></span>
+            <span class="chip"><strong>Alike</strong></span>
+            <span class="chip"><strong>Alive</strong></span>
+            <span class="chip"><strong>Ablaze</strong></span>
+            <span class="chip"><strong>Afloat</strong></span>
+            <span class="chip"><strong>Ashamed</strong></span>
+            <span class="chip"><strong>Glad</strong></span>
+            <span class="chip"><strong>Fond</strong></span>
+            <span class="chip"><strong>Well</strong></span>
+            <span class="chip"><strong>Ill</strong></span>
+          </div>
+          <div class="grid-2" style="margin-top:14px;">
+            <div class="rule-box">
+              <p>• <em>an afraid man</em> ❌ ➔ <strong>a man who is afraid</strong> / <strong>a frightened man</strong> ✅.</p>
+              <p>• <em>alive creatures</em> ❌ ➔ <strong>living creatures</strong> / <strong>creatures that are alive</strong> ✅.</p>
+            </div>
+            <div class="rule-box">
+              <p>• <em>a glad person</em> ❌ ➔ <strong>a happy person</strong> / <strong>a person who is glad</strong> ✅.</p>
+              <p>• <em>an asleep child</em> ❌ ➔ <strong>a sleeping child</strong> ✅.</p>
+            </div>
+          </div>
         </div>
-        <div class="concept-card">
-          <div class="card-header"><span class="card-title">2. Order with 'Of the Two'</span></div>
-          <p style="font-size:0.88rem;">Use <strong>the + comparative</strong> when selecting between two: <em>Ramesh is the taller of the two brothers.</em></p>
+
+        <div class="card">
+          <h3>👃 4. Verbs of Sensation (Linking Verbs)</h3>
+          <p>Verbs expressing sensory perception: <strong>Feel, Taste, Smell, Sound, Look, Seem, Appear, Become, Turn, Get, Grow, Keep, Make, Prove</strong></p>
+          <p>➔ Must be followed by an <strong>ADJECTIVE</strong> (as complement), NOT an Adverb!</p>
+          <ul style="padding-left:18px; margin-top:8px;">
+            <li>This fruit smells <em>sweetly</em> ❌ ➔ smells <strong>sweet</strong> ✅.</li>
+            <li>He feels <em>badly</em> ❌ ➔ feels <strong>bad</strong> ✅.</li>
+            <li>She looked <em>happily</em> ❌ ➔ looked <strong>happy</strong> ✅.</li>
+          </ul>
+
+          <h4 style="margin-top:20px;">⚡ Interactive Drills: OSASCOMP & Predicative Use — Click to Reveal</h4>
+          <div class="drill-list" id="drill-p13-osascomp"></div>
+
+          <h4 style="margin-top:24px;">🎯 Interactive Quiz: OSASCOMP & Linking Verbs</h4>
+          <div id="quiz-p13-osascomp"></div>
         </div>
-        <div class="concept-card">
-          <div class="card-header"><span class="card-title">3. Parallel Increase</span></div>
-          <p style="font-size:0.88rem;"><em>The higher you go, the cooler it becomes.</em> Both sides must use <strong>the + comparative</strong>.</p>
+      </section>
+
+      <!-- ================= TAB 10: MASTER PRACTICE ARENA (PAGES 14-20) ================= -->
+      <section class="section-page" id="tab-practice">
+        <h2 class="page-title">10. Master Practice Arena — 50+ Spotting Errors & PYQs</h2>
+        <p class="page-subtitle">Pages 14 to 20 • Complete High-Yield Exam Drills from PSP Sir's Digital Notes</p>
+
+        <div class="card">
+          <h3>🔥 Practice Drills Set 1: Spotting Errors (Q1 - Q25)</h3>
+          <p>Read each sentence, identify the grammatical error in self-tested mode, and click to reveal the exact correction and rule:</p>
+          <div class="drill-list" id="drill-practice-set1"></div>
         </div>
-        <div class="concept-card">
-          <div class="card-header"><span class="card-title">4. Elder vs Older</span></div>
-          <p style="font-size:0.88rem;">Family blood relations = <strong>Elder</strong> (no 'than'). General age / things = <strong>Older than</strong>.</p>
+
+        <div class="card" style="margin-top:20px;">
+          <h3>🏆 Practice Drills Set 2: Spotting Errors & PYQs (Q26 - Q50)</h3>
+          <p>Advanced high-frequency exam questions tested in SSC CGL, CHSL, CPO, and Stenographer:</p>
+          <div class="drill-list" id="drill-practice-set2"></div>
         </div>
-      </div>
 
-      <div style="text-align: center;">
-        <button class="btn-complete-stage" onclick="switchStage('stageF')">Proceed to Final Diagnostic →</button>
-      </div>
-    </section>
-
-    <!-- STAGE F: DIAGNOSTIC -->
-    <section id="stageF" class="stage-section">
-      <div class="section-banner">
-        <div class="banner-text">
-          <h2>🎯 Stage F: Final Adjective Diagnostic Assessment</h2>
-          <p>10 rapid-fire diagnostic checks to confirm readiness.</p>
+        <div class="card" style="margin-top:20px;">
+          <h3>🎯 Interactive Comprehensive Exam Quiz (Page 15-18)</h3>
+          <div id="quiz-practice-arena"></div>
         </div>
-        <span class="banner-badge">Final Check</span>
-      </div>
+      </section>
 
-      <div id="diagContainer"></div>
+    </div>
+  </div>
 
-      <div style="text-align: center; margin-top:2rem;">
-        <button class="btn-complete-stage" onclick="markAllDone()">🏁 Mark Chapter 4 Adjectives Mastered!</button>
-      </div>
-    </section>
-
-  </main>
-
+  <!-- SCRIPT -->
   <script>
-    const FC_CARDS = [
-      { q: "What preposition does 'prefer' and 'preferable' take?", a: "They both take 'to', never 'than'. Avoid 'more preferable'." },
-      { q: "What is the correct order of multiple adjectives?", a: "OSASCOMP: Opinion -> Size -> Age -> Shape -> Colour -> Origin -> Material -> Purpose." },
-      { q: "Which form is used when comparing two qualities of the same person?", a: "More + Positive Degree (e.g., 'more wise than clever')." },
-      { q: "Can 'unique', 'ideal', and 'perfect' take 'more' or 'most'?", a: "No! They are non-gradable (absolute) adjectives." },
-      { q: "How is 'elder' used compared to 'older'?", a: "'Elder' is used exclusively for family/blood relations and does not take 'than'." },
-      { q: "What degree is used with 'relatively' and 'comparatively'?", a: "Positive Degree only (e.g. 'comparatively safe', NOT 'safer')." },
-      { q: "Where does 'worth seeing' place relative to the noun?", a: "Postpositive: after the noun (e.g. 'a monument worth seeing')." },
-      { q: "What is the rule for adjectives starting with 'a-' like asleep, alive, afraid?", a: "They are predicative only (used after verb, not directly before noun)." },
-      { q: "What word must be used with 'any' when comparing within the same group?", a: "'Other' (e.g. 'better than any other player')." },
-      { q: "What is the meaning difference between 'farther' and 'further'?", a: "'Farther' = physical distance; 'Further' = additional/extra." },
-      { q: "What is the comparative form of 'little'?", a: "'Less' (or 'lesser' for figurative value); Superlative is 'least'." },
-      { q: "What degree is used with multipliers like 'twice', 'thrice'?", a: "Positive degree with as...as (e.g. 'twice as heavy as')." },
-      { q: "What does 'The poor' signify in grammar?", a: "A plural noun phrase meaning 'poor people' (requires plural verb, no 'poors')." },
-      { q: "What kind of adjective is 'sufficient' in 'sufficient bread'?", a: "Adjective of Quantity (uncountable noun)." },
-      { q: "Can 'enough' precede a comparative degree?", a: "No! 'Enough' follows positive degree: 'strong enough' (not 'stronger enough')." },
-      { q: "What is the rule of 'AND' connecting adjectives?", a: "Both adjectives must be in the same degree (Positive & Positive, Comp & Comp, Sup & Sup)." },
-      { q: "What is the superlative degree in 'He is ____ of the three boys'?", a: "Superlative: 'the tallest' (3+ items)." },
-      { q: "What is used for selection between two: 'He is ____ of the two brothers'?", a: "'the taller' (the + comparative + of the two)." },
-      { q: "What is the difference between 'crowded' and 'crowding'?", a: "'Crowded' = full of people (past participle); 'Crowding' = the act of gathering." },
-      { q: "What is the error in 'He is superior than me'?", a: "Change 'than' to 'to': 'He is superior to me'." }
+
+    // ==================== DATA ARRAYS ====================
+
+    // Tab 0: Fundamentals & Degrees (Page 2)
+    const drillsP2 = [
+      { q: "1. Radhika is less worried of all the students.", a: "least worried ('one vs all' requires Superlative Degree)" },
+      { q: "2. The Jupiter is the big planet of our solar system.", a: "the biggest planet (Superlative Degree for unique planetary extreme)" },
+      { q: "3. This is the great actor that I have ever met.", a: "the greatest actor (Superlative Degree after 'ever met')" },
+      { q: "4. Rakhi Sawant is the prolific actress of Indian Bollywood history.", a: "the most prolific actress (Superlative with multi-syllable adjective)" },
+      { q: "5. He is wiser than Rahul.", a: "Correct (Comparative Degree 'wiser' + 'than')" },
+      { q: "6. You are a more talented student than any in the batch.", a: "Correct (Comparative comparison)" },
+      { q: "7. We have purchased an expensive, beautiful, Italian, round, dining table.", a: "an expensive, beautiful, round, Italian, dining table (OSASCOMP ordering)" },
+      { q: "8. She is wise than her sister.", a: "wiser than her sister (Comparative form needed before 'than')" }
     ];
 
-    let fcIdx = 0;
-    function renderFC() {
-      const c = FC_CARDS[fcIdx];
-      document.getElementById('fcCard').classList.remove('flipped');
-      document.getElementById('fcNum').textContent = `${fcIdx + 1} / ${FC_CARDS.length}`;
-      document.getElementById('fcNumB').textContent = `${fcIdx + 1} / ${FC_CARDS.length}`;
-      document.getElementById('fcQ').textContent = c.q;
-      document.getElementById('fcA').textContent = c.a;
-    }
-    function nextCard() { fcIdx = (fcIdx + 1) % FC_CARDS.length; renderFC(); }
-    function prevCard() { fcIdx = (fcIdx - 1 + FC_CARDS.length) % FC_CARDS.length; renderFC(); }
-    function shuffleCards() { FC_CARDS.sort(() => Math.random() - 0.5); fcIdx = 0; renderFC(); }
-
-    // Core Quiz (25 Selected MCQs with rules)
-    const CORE_QUIZ = [
-      { q: "She is _____ than her sister.", opts: ["more smarter", "smarter", "more smart", "most smart"], ans: 1, exp: "Double comparative is incorrect. Single-syllable 'smart' takes -er: 'smarter'." },
-      { q: "This hall is _____ than high.", opts: ["wider", "more wide", "most wide", "more wider"], ans: 1, exp: "When comparing two qualities of the SAME object/person, use 'more + positive degree': 'more wide than high'." },
-      { q: "He is senior _____ me by two years.", opts: ["than", "to", "from", "over"], ans: 1, exp: "Latin adjectives (senior, junior, superior, inferior) take preposition 'to'." },
-      { q: "Rohit is better than _____ player of Indian team.", opts: ["any", "any other", "all", "most"], ans: 1, exp: "When comparing within the same group, 'other' excludes the subject: 'any other player'." },
-      { q: "Of the two brothers, Ramesh is _____.", opts: ["taller", "the taller", "the tallest", "tallest"], ans: 1, exp: "Selection between two requires 'the + comparative': 'the taller'." },
-      { q: "The climate of Hyderabad is better than _____.", opts: ["Chennai", "that of Chennai", "those of Chennai", "of Chennai"], ans: 1, exp: "Comparing climate with climate requires 'that of Chennai'." },
-      { q: "I need _____ information before making a decision.", opts: ["farther", "further", "farthest", "more farther"], ans: 1, exp: "'Further' means additional/extra; 'farther' relates to physical distance." },
-      { q: "He is my _____ brother.", opts: ["older", "elder", "more old", "eldest than"], ans: 1, exp: "Family blood relation without 'than' uses 'elder'." },
-      { q: "This is a _____ monument.", opts: ["worth seeing", "worth-seeing", "seeing-worth", "worth seen"], ans: 0, exp: "'Worth seeing' is placed post-nominally: 'a monument worth seeing'." },
-      { q: "She is _____ enough to carry that suitcase.", opts: ["strong", "stronger", "strongest", "more strong"], ans: 0, exp: "'Enough' follows the positive degree of adjective: 'strong enough'." }
+    const quizP2Data = [
+      { meta: "Page 2 • Degrees Q1", q: "Q1. Of all the models (A) / Jessica is (B) / the good-looking one (C) / No error (D)", opts: ["A) Of all the models", "B) Jessica is", "C) the good-looking one", "D) No error"], ans: 2, exp: "Comparison is 'one vs all' ('Of all the models'), so use Superlative Degree: 'the most good-looking one'." },
+      { meta: "Page 2 • Degrees Q2", q: "Q2. Of all the students in the class, (A) / the teachers were of the opinion that (B) / Rajiv was the most versatile. (C) / No error (D)", opts: ["A) Of all the students", "B) the teachers were of the opinion", "C) Rajiv was the most versatile", "D) No error"], ans: 3, exp: "No error! 'The most versatile' is the correct Superlative Degree for 'one vs all'." },
+      { meta: "Page 2 • Degrees Q3", q: "Q3. Among all the students (A) / he is the better (B) / in mathematics (C) / and physics. (D)", opts: ["A) Among all the students", "B) he is the better", "C) in mathematics", "D) and physics"], ans: 1, exp: "Replace 'the better' with 'the best' because the comparison is among all students (> 2)." },
+      { meta: "Page 2 • Degrees Q4", q: "Q4. Economists have declared that 2020 graduates will face the worse job depression since 1929.", opts: ["A) worse job depression", "B) worst job depression", "C) bad job depression", "D) more worse job depression"], ans: 1, exp: "Replace 'worse' with 'worst' (the worst job depression) as it represents the highest degree of severity." }
     ];
 
-    function renderCoreQuiz() {
-      const container = document.getElementById('coreQuizContainer');
-      container.innerHTML = '';
-      CORE_QUIZ.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'concept-card';
-        div.style.marginBottom = '14px';
-        div.innerHTML = `
-          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">Question ${idx + 1} of ${CORE_QUIZ.length}</div>
-          <div style="font-size:1rem; font-weight:700; margin:6px 0 12px 0;">${item.q}</div>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            ${item.opts.map((opt, oIdx) => `
-              <button style="text-align:left; padding:8px 12px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; cursor:pointer; font-family:inherit; font-size:0.9rem;" onclick="checkCoreAns(this, ${idx}, ${oIdx})">
-                ${String.fromCharCode(65 + oIdx)}. ${opt}
-              </button>
-            `).join('')}
-          </div>
-          <div id="c-exp-${idx}" style="display:none; margin-top:10px; padding:10px; background:var(--bg-primary); border-left:3px solid var(--accent); font-size:0.85rem;">
-            <strong>Rule:</strong> ${item.exp}
-          </div>
-        `;
-        container.appendChild(div);
+    // Tab 1: Elder/Older & Further/Farther (Page 3)
+    const drillsP3Elder = [
+      { q: "1. My elder / older brother is a teacher.", a: "elder brother (Blood brother = elder)" },
+      { q: "2. You are elder / older than his elder brother.", a: "older than (Followed by 'than', comparing outside family)" },
+      { q: "3. My elder sister is elder / older than your brother.", a: "older than (Comparing across two different families)" },
+      { q: "4. It is difficult to judge which is the elder of the four brothers.", a: "the eldest (Comparing 4 brothers > 2 requires Superlative)" },
+      { q: "5. Mumbai is ______ from Patna than Ambala.", a: "farther (Physical distance requires 'farther')" },
+      { q: "6. I need ______ support to complete this project.", a: "further support (Additional / extra requires 'further')" },
+      { q: "7. We needed ______ questions for practice.", a: "further questions ('Further' = additional)" },
+      { q: "8. He went abroad for ______ studies.", a: "further studies ('Further' = additional/advanced)" },
+      { q: "9. This is the furthest / farthest point of hill from earth.", a: "farthest (Physical distance requires 'farthest')" },
+      { q: "10. This church is the eldest building in the town.", a: "oldest building ('Elder/Eldest' is strictly for humans/family, not buildings!)" }
+    ];
+
+    const quizP3ElderData = [
+      { meta: "Page 3 • Spotting Error Q1", q: "Q1. After killing Caesar, (A) / the conspirators went farther (B) / and wanted to kill Antony. (C) / No error (D)", opts: ["A) After killing Caesar", "B) the conspirators went farther", "C) and wanted to kill Antony", "D) No error"], ans: 1, exp: "Replace 'farther' with 'further' (went further = progressed additionally in action)." },
+      { meta: "Page 3 • Spotting Error Q2", q: "Q2. The venue of examination (A) / is one mile further up (B) / the hill. (C) / No error (D)", opts: ["A) The venue of examination", "B) is one mile further up", "C) the hill", "D) No error"], ans: 1, exp: "Replace 'further' with 'farther' because it specifies physical distance ('one mile farther up')." },
+      { meta: "Page 3 • Fill in the Blank Q3", q: "Q3. Neha is senior and _______ than her cousin sister.", opts: ["A) elder", "B) older", "C) more elder", "D) eldest"], ans: 1, exp: "Followed by 'than', so 'older' is correct. Also note: 'cousin sister' is colloquial (use cousin)." },
+      { meta: "Page 3 • Spotting Error Q4", q: "Q4. Central government gave financial aid (A) / but refused for (B) / any farther help. (C) / No error (D)", opts: ["A) Central government gave aid", "B) but refused for", "C) any farther help", "D) No error"], ans: 2, exp: "Replace 'farther' with 'further' (further help = additional assistance)." }
+    ];
+
+    // Tab 2: Later/Latter/Latest/Last & Few/Little (Pages 3-4)
+    const drillsP4Later = [
+      { q: "1. He came here later / latter than you.", a: "later (Time comparison requires 'later')" },
+      { q: "2. Of these two girls, the last / latter was at fault.", a: "latter (Second of two in order requires 'latter')" },
+      { q: "3. Of these five boys the latter / last was intelligent.", a: "last (Final one among 5 boys requires 'last')" },
+      { q: "4. Z is the latter / last letter of the alphabet.", a: "last letter (Final position in entire alphabet series)" },
+      { q: "5. What is the last / latest news today?", a: "latest news (Most recent / fresh news = latest)" },
+      { q: "6. What is the last / latest score of Indian team?", a: "latest score (Current ongoing score = latest)" },
+      { q: "7. He left for Mumbai by the last / latest bus of the day.", a: "last bus (End of the schedule = last)" },
+      { q: "8. Of Milk & Coffee, I like the first / former.", a: "former (First of two items = former)" },
+      { q: "9. No less than ten men died in the accident.", a: "No fewer than ten men ('Men' is a countable plural noun)" },
+      { q: "10. We bought no fewer than 5 litres of milk.", a: "no less than 5 litres ('Milk/liquid volume' is uncountable)" },
+      { q: "11. She gets a less salary than her colleague.", a: "a smaller salary / less money ('Salary' takes low/small, or 'less money')" },
+      { q: "12. Lately when he grew older, he realized his mistake.", a: "Later when he grew older ('Later' = subsequently in time)" }
+    ];
+
+    const quizP4LaterData = [
+      { meta: "Page 3 • Order vs Time Q1", q: "Q1. Of the three, women, wine and songs, (A) / the former (B) / brought about his ruin. (C) / No error (D)", opts: ["A) Of the three, women, wine and songs", "B) the former", "C) brought about his ruin", "D) No error"], ans: 1, exp: "Since there are three items (women, wine, songs), use 'the first' instead of 'the former' ('former' is strictly for 2 items)." },
+      { meta: "Page 3 • Order vs Time Q2", q: "Q2. Mala's two brothers Rupesh and Bhupesh (A) / are hardworking (B) / but I like the latter most. (C) / No error (D)", opts: ["A) Mala's two brothers", "B) are hardworking", "C) but I like the latter most", "D) No error"], ans: 2, exp: "Between two people, use Comparative: 'I like the latter more' (not 'most')." },
+      { meta: "Page 3 • Order vs Time Q3", q: "Q3. Of the three cities, Mumbai, Delhi and Kolkata, (A) / the latter is (B) / the dirtiest. (C) / No error (D)", opts: ["A) Of the three cities", "B) the latter is", "C) the dirtiest", "D) No error"], ans: 1, exp: "For three cities, the final one is 'the last', not 'the latter'." },
+      { meta: "Page 4 • Few vs Little Q4", q: "Q4. Within three months, (A) / he has sold no fewer than (B) / five thousand liters of oil. (C) / No error (D)", opts: ["A) Within three months", "B) he has sold no fewer than", "C) five thousand liters of oil", "D) No error"], ans: 1, exp: "Replace 'no fewer than' with 'no less than' because 'liters of oil' is a volume measurement (uncountable entity)." },
+      { meta: "Page 4 • Few vs Little Q5", q: "Q5. No less than thousands of spectators (A) / are waiting for Dhoni (B) / to come out in the field. (C) / No error (D)", opts: ["A) No less than thousands of spectators", "B) are waiting for Dhoni", "C) to come out in the field", "D) No error"], ans: 0, exp: "Replace 'No less than' with 'No fewer than' because 'thousands of spectators' represents a countable plural noun." }
+    ];
+
+    // Tab 3: Degrees of Comparison Rules (Pages 4-6)
+    const drillsP5Degrees = [
+      { q: "1. You are as talented as me / I.", a: "as I [am] (Subjective case comparison: Subject = Subject)" },
+      { q: "2. Raman is so smarter that he can solve any problem.", a: "so smart that (Use Positive Degree with 'so...that')" },
+      { q: "3. Ranjit is as better as Ritika.", a: "as good as ('As...as' takes Positive Degree: good)" },
+      { q: "4. Deepika is so wiser than Rahul.", a: "much wiser than ('So' cannot qualify comparative degree directly)" },
+      { q: "5. New Delhi is more hotter than Chandigarh.", a: "hotter than (Double comparative error: remove 'more')" },
+      { q: "6. She is the most ablest girl of our group.", a: "the ablest / most able (Double superlative error: remove 'most' with 'ablest')" },
+      { q: "7. I liked the book more better than the film.", a: "much better (Remove double comparative 'more')" },
+      { q: "8. The campaign was one of the most noisiest.", a: "the noisiest (Remove double superlative 'most')" },
+      { q: "9. Bharatpur is transforming into India's most fastest bird sanctuary.", a: "fastest (Remove double superlative 'most')" },
+      { q: "10. This book is gooder than the one we read last month.", a: "better than ('Gooder' is an invalid word; comparative of good is better)" },
+      { q: "11. He has much sense than you have.", a: "more sense than ('Than' requires Comparative Degree 'more')" },
+      { q: "12. She can't sing much than four songs at a stretch.", a: "more than ('More than' denotes numerical/quantity exceedance)" },
+      { q: "13. India has turned 70 years older as a Republic.", a: "70 years old (Positive age expression: '70 years old')" },
+      { q: "14. The food was not as delicious as we had expected.", a: "Correct ('Not as...as' in negative sentence)" }
+    ];
+
+    const quizP5DegreesData = [
+      { meta: "CHSL 2025 • Positive Degree Q1", q: "Q1. Identify the sentence that uses the positive degree of comparison correctly:", opts: ["A) She is the most intelligent student in the class.", "B) She is more intelligent than her classmates.", "C) She is as intelligent as her classmates.", "D) She is the more intelligent student in the class."], ans: 2, exp: "'As intelligent as' is the standard positive degree comparison." },
+      { meta: "Stenographer 2025 • Degree Selection Q2", q: "Q2. Which among the following sentences uses adjective with correct degree of comparison?", opts: ["A) New Delhi is more hotter to Chandigarh.", "B) New Delhi is more hotter than Chandigarh.", "C) New Delhi is hotter to Chandigarh.", "D) New Delhi is hotter than Chandigarh."], ans: 3, exp: "'Hotter than' avoids double comparative and takes the conjunction 'than'." },
+      { meta: "SSC Exam • Superlative Q3", q: "Q3. (A) The Gita / (B) is most sacred book / (C) of the Hindus. / (D) No error", opts: ["A) The Gita", "B) is most sacred book", "C) of the Hindus", "D) No error"], ans: 1, exp: "Add the definite article: 'is the most sacred book' (Superlative Degree takes 'The')." },
+      { meta: "Selection Post XII • Q4", q: "Q4. This book is (A) / gooder than (B) / the one we read (C) / last month. (D)", opts: ["A) This book is", "B) gooder than", "C) the one we read", "D) last month"], ans: 1, exp: "Replace 'gooder than' with 'better than'." },
+      { meta: "Hindi Translator 2025 • Q5", q: "Q5. That was the [worse] movie I have ever seen in the theatre.", opts: ["A) movie", "B) worse", "C) ever", "D) worst"], ans: 3, exp: "Replace 'worse' (comparative) with 'worst' (superlative): 'the worst movie I have ever seen'." }
+    ];
+
+    // Tab 4: Logical Comparison & Group Exclusion (Pages 6-7)
+    const drillsP6Logical = [
+      { q: "1. The climate of Delhi is hotter than Mumbai.", a: "that of Mumbai (Comparing climate with climate, not with city)" },
+      { q: "2. The people of India are more laborious than Pakistan.", a: "those of Pakistan ('People' is plural -> replace with 'those of')" },
+      { q: "3. The works by Wordsworth are more fascinating than Charles Dickens.", a: "those by Charles Dickens ('Works' = literary writings, plural -> 'those by')" },
+      { q: "4. My bag is costlier than Rahul.", a: "that of Rahul / Rahul's (Comparing bag with bag)" },
+      { q: "5. Our soldiers were better trained than that of enemies.", a: "those of enemies ('Soldiers' is plural -> use 'those of')" },
+      { q: "6. This player is wiser than clever.", a: "more wise than clever (Comparing two qualities of the SAME player)" },
+      { q: "7. This student is wiser than tall.", a: "more wise than tall (Two qualities of same person -> use 'more')" },
+      { q: "8. This hall is wider than high.", a: "more wide than high (Two dimensions of same room -> use 'more')" },
+      { q: "9. Rohit is better than any player of Indian team.", a: "any other player (Rohit belongs to Indian team -> must exclude with 'other')" },
+      { q: "10. Gold is precious than all the metals.", a: "more precious than all other metals (Exclude gold from other metals)" },
+      { q: "11. The Ganga is holier than any river of India.", a: "any other river of India (Ganga is an Indian river -> must exclude)" },
+      { q: "12. The Ganga is holier than any river of China.", a: "Correct! (Ganga is not in China, so no exclusion needed)" },
+      { q: "13. Mount Everest is the highest of all other peaks.", a: "of all peaks (In Superlative Degree, NEVER use 'other' or 'else'!)" },
+      { q: "14. No animal is so sacred as the cow is.", a: "No other animal (Cow is an animal -> must exclude with 'other')" }
+    ];
+
+    const quizP6LogicalData = [
+      { meta: "SSC CGL • Logical Comparison Q1", q: "Q1. The dress that the girl wore was (A) / more attractive (B) / than the other girl. (C) / No error (D)", opts: ["A) The dress that the girl wore", "B) was more attractive", "C) than the other girl", "D) No error"], ans: 2, exp: "Replace 'than the other girl' with 'than that of the other girl' (comparing dresses, not girl)." },
+      { meta: "SSC Exam • Exclusion Q2", q: "Q2. This boy / is the cleverest / of all the other / in the class.", opts: ["A) in the class", "B) This boy", "C) is the cleverest", "D) of all the other"], ans: 3, exp: "In Superlative Degree ('is the cleverest'), omit 'the other'. Write: 'of all in the class'." },
+      { meta: "SSC CGL • Same Person Qualities Q3", q: "Q3. Of the two brothers, Mottappa is (A) / more tall (B) / than Kattappa (C) / by two inches. (D)", opts: ["A) Of the two brothers", "B) more tall", "C) than Kattappa", "D) by two inches"], ans: 1, exp: "Here two different people (Mottappa & Kattappa) are compared, so use 'taller' (not 'more tall'). 'More tall' is only used when comparing two qualities of the same person." },
+      { meta: "CPO Exam • Exclusion Q4", q: "Q4. The Statesman has (A) / the largest circulation of any (B) / English dailies. (C) / No error (D)", opts: ["A) The Statesman has", "B) the largest circulation of any", "C) English dailies", "D) No error"], ans: 1, exp: "In Superlative ('largest circulation'), do not use 'any' or 'other'. Write: 'the largest circulation of all English dailies'." }
+    ];
+
+    // Tab 5: Parallel Degrees & 'And' Rule (Pages 7-8)
+    const drillsP7And = [
+      { q: "1. He is wiser and laborious.", a: "wise and laborious (Both must be in Positive Degree)" },
+      { q: "2. Rajat is wiser and amusing than his wife.", a: "wiser and more amusing (Both joined by 'than' must be Comparative)" },
+      { q: "3. Subhash is the bravest and energetic person.", a: "the bravest and most energetic (Both must be Superlative)" },
+      { q: "4. You are the best and the most talented student.", a: "the best and most talented (Omit second 'the' when referring to same person)" },
+      { q: "5. It is getting dark & darker.", a: "darker and darker (Gradual change requires Comparative + and + Comparative)" },
+      { q: "6. She is getting more fat & fatter.", a: "fatter and fatter (Gradual change)" },
+      { q: "7. Daily exercise keeps us happier and healthy.", a: "happier and healthier / happy and healthy (Maintain identical degree)" },
+      { q: "8. In his old age, he is likely to get more weak day by day.", a: "weaker and weaker day by day (Gradual change)" },
+      { q: "9. The higher you go, the cooler it will be.", a: "Correct ('The + comparative..., the + comparative...')" },
+      { q: "10. The more you work, you will get more.", a: "the more you will get (Parallel structure requires 'The + comparative')" },
+      { q: "11. The faster he completes the work, the largest will be his profit.", a: "the larger will be his profit ('The larger' to match 'The faster')" },
+      { q: "12. His qualities include the ability to take right and quickly decisions.", a: "right and quick decisions (Both must be adjectives qualifying 'decisions')" }
+    ];
+
+    const quizP7AndData = [
+      { meta: "Page 7 • 'And' Rule Q1", q: "Q1. Meena is (A) / good and more (B) / beautiful than (C) / Reena. (D) / No Error (E)", opts: ["A) Meena is", "B) good and more", "C) beautiful than", "D) Reena"], ans: 1, exp: "Since both are followed by 'than Reena', change 'good' to Comparative: 'better and more beautiful than Reena'." },
+      { meta: "Page 7 • Parallel Q2", q: "Q2. Swami Vivekananda was (A) / one of the (B) / wisest and learned (C) / men of India. (D) / No error (E)", opts: ["A) Swami Vivekananda was", "B) one of the", "C) wisest and learned", "D) men of India"], ans: 2, exp: "Coordinate rule: change 'learned' to Superlative 'most learned' to match 'wisest': 'wisest and most learned men'." },
+      { meta: "Page 8 • Parallel Comparison Q3", q: "Q3. The higher you go, _______ it will be.", opts: ["A) The more cool", "B) The cooler", "C) The coolest", "D) The most cool"], ans: 1, exp: "'The + Comparative..., The + Comparative...' requires 'The cooler'." },
+      { meta: "Page 8 • Parallel Comparison Q4", q: "Q4. The faster he completes (A) / the work given to him, (B) / the largest will be (C) / his profit. (D) / No error (E)", opts: ["A) The faster he completes", "B) the work given to him", "C) the largest will be", "D) his profit"], ans: 2, exp: "Change 'the largest' to Comparative 'the larger' to parallel 'The faster'." }
+    ];
+
+    // Tab 6: Selection & Latin Adjectives (Pages 7-9)
+    const drillsP8Selection = [
+      { q: "1. She is better of her two friends.", a: "the better of her two friends (Selection of two requires 'the + comparative')" },
+      { q: "2. He is tallest of all the students.", a: "the tallest of all (Superlative requires 'the')" },
+      { q: "3. He is taller of these two students.", a: "the taller of these two (Selection of two requires 'the')" },
+      { q: "4. Between wealth and character, which is the most necessary?", a: "the more necessary (Selection between two entities takes Comparative)" },
+      { q: "5. He is senior than me.", a: "senior to me (Latin adjective takes 'to')" },
+      { q: "6. He is junior than me.", a: "junior to me ('Junior' takes 'to')" },
+      { q: "7. He came here prior than us.", a: "prior to us ('Prior' takes 'to')" },
+      { q: "8. He is more senior to me.", a: "senior to me (Never use 'more' with Latin adjectives)" },
+      { q: "9. I prefer bread than tea.", a: "bread to tea ('Prefer' takes preposition 'to')" },
+      { q: "10. Death is more preferable to dishonour.", a: "preferable to (Omit 'more' before 'preferable')" },
+      { q: "11. This watch is superior and more expensive than that.", a: "superior to and more expensive than (Both prepositions must be expressed!)" },
+      { q: "12. He is senior and more experienced than your friend.", a: "senior to and more experienced than (Preserve 'to' after senior)" },
+      { q: "13. It is nothing else than her pride.", a: "nothing else but her pride ('Else' is followed by 'but', not 'than')" },
+      { q: "14. Milk is more preferable than coffee.", a: "preferable to ('Preferable' takes 'to', omit 'more')" }
+    ];
+
+    const quizP8SelectionData = [
+      { meta: "Hindi Translator 2025 • Selection Q1", q: "Q1. Of the three runners, he was the [faster].", opts: ["A) was", "B) three", "C) runners", "D) fastest"], ans: 3, exp: "For three runners (> 2), use Superlative: 'the fastest of the three runners'." },
+      { meta: "SSC CGL 2025 • Preferable Q2", q: "Q2. The report was more preferable (A) / to the previous version (B) / due to its structured layout. (C) / No error (D)", opts: ["A) The report was more preferable", "B) to the previous version", "C) due to its structured layout", "D) No error"], ans: 0, exp: "'Preferable' already has comparative value; remove 'more': 'The report was preferable to...'." },
+      { meta: "SSC Exam • Latin Adjectives Q3", q: "Q3. This watch is (A) / superior and more (B) / expensive than the one (C) / you bought. (D) / No error (E)", opts: ["A) This watch is", "B) superior and more", "C) expensive than the one", "D) you bought"], ans: 1, exp: "Add 'to' after superior: 'superior to and more expensive than'." },
+      { meta: "SSC Exam • Preposition Q4", q: "Q4. He is in no way (A) / much inferior to him in (B) / any aspect whatsoever. (C) / No error (D)", opts: ["A) He is in no way", "B) much inferior to him in", "C) any aspect whatsoever", "D) No error"], ans: 3, exp: "No error! 'Inferior to' is correct, and 'much' is a valid intensifier for comparative meaning." }
+    ];
+
+    // Tab 7: Non-Gradables & Modifiers (Pages 8-10)
+    const drillsP9Nongradable = [
+      { q: "1. He is the most ideal teacher.", a: "an ideal teacher ('Ideal' is absolute/non-gradable)" },
+      { q: "2. This is the most unique thing.", a: "a unique thing ('Unique' cannot take 'most')" },
+      { q: "3. This table is more rounded than that.", a: "round / as round as ('Round' is non-gradable shape)" },
+      { q: "4. Good deeds are more everlasting.", a: "everlasting (Absolute state)" },
+      { q: "5. This is a worth seeing movie.", a: "a movie worth seeing ('Worth seeing' is post-positive)" },
+      { q: "6. You are the strongest enough to move that box.", a: "strong enough ('Enough' takes Positive Degree)" },
+      { q: "7. She is too poorest to buy that car.", a: "too poor to buy ('Too' takes Positive Degree)" },
+      { q: "8. Jaipur is relatively warmer than Mumbai.", a: "relatively warm ('Relatively/comparatively' take Positive Degree)" },
+      { q: "9. This place is comparatively safer for people.", a: "comparatively safe ('Comparatively' takes Positive Degree)" },
+      { q: "10. This object is twice heavier than that.", a: "twice as heavy as ('Twice/half/thrice' take 'as...as', not comparative)" },
+      { q: "11. She is as beautiful if not beautiful than her sister.", a: "as beautiful as, if not more beautiful than ('If not' formula)" },
+      { q: "12. He runs as fast if not fast than my friend.", a: "as fast as, if not faster than ('If not' formula)" },
+      { q: "13. Rohit is a most talented player.", a: "Correct! ('A most' = 'a very' talented player in Positive Degree)" },
+      { q: "14. Rohit is the most talented player of the team.", a: "Correct! ('The most' = Superlative Degree, One vs All)" }
+    ];
+
+    const quizP9NongradableData = [
+      { meta: "CHSL 2025 • Non-Gradables Q1", q: "Q1. The painting (A) / is the most unique (B) / of all the pieces (C) / in the gallery. (D)", opts: ["A) The painting", "B) is the most unique", "C) of all the pieces", "D) in the gallery"], ans: 1, exp: "'Unique' is an absolute adjective; remove 'the most' and write 'is unique'." },
+      { meta: "SSC CGL 2025 • Redundancy Q2", q: "Q2. The committee debated (A) / whether the proposed measures (B) / were adequate enough (C) / to meet goals. (D)", opts: ["A) The committee debated", "B) whether proposed measures", "C) were adequate enough", "D) to meet goals"], ans: 2, exp: "'Adequate enough' is redundant/superfluous. Use either 'adequate' or 'enough'." },
+      { meta: "SSC Exam • Redundancy Q3", q: "Q3. The two candidates are (A) / equally as intelligent as (B) / each other. (C) / No error (D)", opts: ["A) The two candidates are", "B) equally as intelligent as", "C) each other", "D) No error"], ans: 1, exp: "'Equally as intelligent as' is superfluous. Say 'as intelligent as each other' or 'equally intelligent'." },
+      { meta: "SSC CGL • Multiple Factor Q4", q: "Q4. The new model costs (A) / twice more than (B) / last year's model. (C) / No error (D)", opts: ["A) The new model costs", "B) twice more than", "C) last year's model", "D) No error"], ans: 1, exp: "With numerical multiples (half, twice, thrice), use 'twice as much as', not 'twice more than'." }
+    ];
+
+    // Tab 8: Noun vs Adj Confusions & Pairs (Pages 10-12)
+    const drillsP11Confusing = [
+      { q: "1. She is very miser.", a: "very miserly ('Miser' is a noun; 'miserly' is the adjective)" },
+      { q: "2. My friend is too optimist to lose heart.", a: "too optimistic ('Optimist' is noun; 'optimistic' is adjective)" },
+      { q: "3. You are not so fool as others.", a: "not so foolish as ('Fool' is noun; 'foolish' is adjective)" },
+      { q: "4. I have never seen a man as coward as Rahul.", a: "as cowardly as Rahul ('Cowardly' is the adjective)" },
+      { q: "5. A more detail analysis of customer needs is required.", a: "detailed analysis ('Detailed' is adjective qualifying 'analysis')" },
+      { q: "6. You must realize how importance it is.", a: "how important it is ('Important' is the adjective complement)" },
+      { q: "7. After a carefully investigation, we found termites.", a: "careful investigation ('Careful' adjective qualifies 'investigation')" },
+      { q: "8. They agreed to repair the damage freely of charge.", a: "free of charge ('Free of charge' is standard phrase)" },
+      { q: "9. He takes medicine at regularly interval.", a: "regular interval ('Regular' is adjective qualifying 'interval')" },
+      { q: "10. You can eat at the newly launch bar.", a: "newly launched bar (Past participle adjective)" },
+      { q: "11. All creative works have aesthetics appeal.", a: "aesthetic appeal ('Aesthetic' is the adjective form)" },
+      { q: "12. Have a thoroughly cleaning of the machine.", a: "thorough cleaning ('Thorough' is the adjective)" },
+      { q: "13. Crossing railway tracks is a punished offence.", a: "a punishable offence ('Punishable' = liable to punishment)" },
+      { q: "14. Mother offered me a steamed cup of tea.", a: "a steaming cup of tea ('Steaming' = emitting steam/hot)" },
+      { q: "15. We could not find her in the crowding hall.", a: "crowded hall ('Crowded' = full of people)" },
+      { q: "16. Indira Gandhi was the first politician of her time.", a: "foremost politician ('Foremost' = prominent/eminent)" },
+      { q: "17. A judge should be uninterested towards his duties.", a: "disinterested ('Disinterested' = impartial/unbiased; 'uninterested' = bored)" }
+    ];
+
+    const quizP11ConfusingData = [
+      { meta: "CHSL 2025 • Adjective Form Q1", q: "Q1. The book which you recommended (A) / was interesting (B) / and an easily read. (C) / No error (D)", opts: ["A) The book which you recommended", "B) was interesting", "C) and an easily read", "D) No error"], ans: 2, exp: "Replace adverb 'easily' with adjective 'easy' to qualify noun 'read': 'an easy read'." },
+      { meta: "CHSL 2025 • Parallel Form Q2", q: "Q2. The movie which you recommended (A) / was both (B) / interesting and entertain. (C) / No error (D)", opts: ["A) The movie which you recommended", "B) was both", "C) interesting and entertain", "D) No error"], ans: 2, exp: "Parallel adjectives: 'interesting and entertaining'." },
+      { meta: "SSC CGL 2025 • Confusing Words Q3", q: "Q3. He objected to the policy on grounds that (A) / it violated the (B) / principle rights of employees. (C) / No error (D)", opts: ["A) He objected to the policy", "B) it violated the", "C) principle rights of employees", "D) No error"], ans: 2, exp: "Replace 'principle' (moral rule) with 'principal' (main/chief): 'principal rights'." },
+      { meta: "SSC Exam • Confusing Words Q4", q: "Q4. When my sister was ill (A) / I went to the hospital (B) / on all alternative days. (C) / No error (D)", opts: ["A) When my sister was ill", "B) I went to the hospital", "C) on all alternative days", "D) No error"], ans: 2, exp: "Replace 'alternative' (choice) with 'alternate' (every other day): 'alternate days'." }
+    ];
+
+    // Tab 9: OSASCOMP & Predicative Use (Pages 12-14)
+    const drillsP13Osascomp = [
+      { q: "1. I saw (black-haired / two / young / Indian / tall / beautiful) girls.", a: "two beautiful, tall, young, black-haired, Indian girls (Determiner -> Opinion -> Size -> Age -> Colour -> Origin)" },
+      { q: "2. I want to buy (black / this / square / leather / small) handbag.", a: "this small, square, black, leather handbag (Det -> Size -> Shape -> Colour -> Material)" },
+      { q: "3. My friend gifted me (woollen / multicoloured / expensive / an / long) sweater.", a: "an expensive, long, multicoloured, woollen sweater (Det -> Opinion -> Size -> Colour -> Material)" },
+      { q: "4. They flashed a sharp big knife.", a: "a big sharp knife (Size before Shape/Condition)" },
+      { q: "5. Her black long hair adds to her beauty.", a: "long black hair (Size/Length 'long' before Colour 'black')" },
+      { q: "6. The poors are hated by the rich.", a: "The poor are hated ('The poor' is already plural; never add -s)" },
+      { q: "7. Blind is neglected by us.", a: "The blind are neglected ('The blind' represents the whole class, takes plural verb)" },
+      { q: "8. In India, there are many poor.", a: "many poor people ('Many' requires a plural noun 'people' after 'poor')" },
+      { q: "9. Lasers are indispensable tools for delicate eyes surgery.", a: "eye surgery (Noun used as adjective modifier must be singular)" },
+      { q: "10. He attended a two hours meeting.", a: "a two-hour meeting (Hyphenated noun modifier is singular)" },
+      { q: "11. This fruit smells sweetly.", a: "smells sweet (Verb of sensation takes Adjective complement)" },
+      { q: "12. He felt happily to learn that she got a job.", a: "felt happy (Linking verb 'feel' takes Adjective 'happy')" },
+      { q: "13. I saw many alive creatures in the sea.", a: "living creatures / creatures that were alive ('Alive' is predicative-only!)" },
+      { q: "14. A glad person cannot think rationally.", a: "A person who is glad / A happy person ('Glad' is predicative-only!)" },
+      { q: "15. He will not go because he is a very afraid man.", a: "a frightened man / a man who is afraid ('Afraid' is predicative-only!)" },
+      { q: "16. His house is next / nearest to mine.", a: "next to mine ('Next to' = adjacent; 'nearest' = closest distance)" }
+    ];
+
+    const quizP13OsascompData = [
+      { meta: "Page 12 • OSASCOMP Q1", q: "Q1. Rearrange to find correct order: 'round / Italian / an / expensive / table'", opts: ["A) an Italian expensive round table", "B) an expensive round Italian table", "C) an expensive Italian round table", "D) a round expensive Italian table"], ans: 1, exp: "Order: Determiner (an) -> Opinion (expensive) -> Shape (round) -> Origin (Italian) + Noun (table)." },
+      { meta: "Page 13 • Linking Verbs Q2", q: "Q2. The wedding gown looked (A) / decently despite (B) / being studded with (C) / heavy jewels. (D) / No error (E)", opts: ["A) The wedding gown looked", "B) decently despite", "C) being studded with", "D) heavy jewels"], ans: 1, exp: "Verb of sensation 'look' takes adjective complement: 'looked decent'." },
+      { meta: "Page 13 • Plural Adjectives Q3", q: "Q3. The poors (A) / need less than the rich (B) / because they lead (C) / a simple life. (D) / No error (E)", opts: ["A) The poors", "B) need less than the rich", "C) because they lead", "D) a simple life"], ans: 0, exp: "Never write 'The poors'; write 'The poor' (already plural noun representing all poor people)." },
+      { meta: "Page 14 • Predicative Only Q4", q: "Q4. The rescuer managed (A) / to save five (B) / asleep children (C) / from the burning building. (D)", opts: ["A) The rescuer managed", "B) to save five", "C) asleep children", "D) from the burning building"], ans: 2, exp: "'Asleep' cannot be used attributively before 'children'; use 'sleeping children'." }
+    ];
+
+    // Tab 10: Master Practice Arena (Pages 14-20)
+    const drillPracticeSet1 = [
+      { q: "1. I know no other person here but Mohan.", a: "no other person here than Mohan ('Other' takes conjunction 'than', not 'but')" },
+      { q: "2. She turned out to be no other but my old friend.", a: "no other than my old friend ('Other...than')" },
+      { q: "3. This pen is superior than that.", a: "superior to that (Latin adjective takes 'to')" },
+      { q: "4. I prefer milk than tea.", a: "prefer milk to tea ('Prefer' takes 'to')" },
+      { q: "5. This cloth is inferior than that.", a: "inferior to that ('Inferior' takes 'to')" },
+      { q: "6. Circle is the most perfect curve.", a: "a perfect curve ('Perfect' is an absolute non-gradable adjective)" },
+      { q: "7. This is the most unique problem.", a: "a unique problem ('Unique' is non-gradable)" },
+      { q: "8. This is the most universal application.", a: "a universal application ('Universal' is non-gradable)" },
+      { q: "9. Shyam is his oldest son.", a: "his eldest son (Family son = eldest)" },
+      { q: "10. She left Chandigarh by the latest bus.", a: "the last bus (Final bus of the schedule = last)" },
+      { q: "11. He reached latter than I.", a: "later than I ('Later' denotes time)" },
+      { q: "12. He and his sister quarreled; the later was at fault.", a: "the latter was at fault ('Latter' denotes the second person in order)" },
+      { q: "13. Rita, Anita and Sunita quarreled; the latest was at fault.", a: "the last was at fault (Final person among three = last)" },
+      { q: "14. Ludhiana is further from Delhi than Ambala.", a: "farther from Delhi (Physical distance requires 'farther')" },
+      { q: "15. Farther discussion on this topic is useless.", a: "Further discussion ('Further' = additional)" },
+      { q: "16. I lent him a few books I had.", a: "the few books I had ('The few' = all the books that were present)" },
+      { q: "17. I gave her little money I had.", a: "the little money I had ('The little' = all the small sum present)" },
+      { q: "18. I will not buy some mangoes.", a: "any mangoes (Negative sentences take 'any')" },
+      { q: "19. She is rather very intelligent.", a: "rather intelligent / very intelligent (Avoid combining 'rather very')" },
+      { q: "20. He has strong headache.", a: "a severe headache (Collocation with headache is 'severe' or 'bad')" },
+      { q: "21. It has proved much useful than harmful.", a: "more useful than harmful (Comparative comparison with 'than')" },
+      { q: "22. I shall not go somewhere.", a: "anywhere (Negative takes 'anywhere')" },
+      { q: "23. He is the ablest and wise man.", a: "ablest and wisest man (Coordinate rule: both must be Superlative)" },
+      { q: "24. He called the both girls.", a: "both the girls (Word order: 'both the', not 'the both')" },
+      { q: "25. This is the best book of the two.", a: "the better book of the two (Selection between two books requires Comparative)" }
+    ];
+
+    const drillPracticeSet2 = [
+      { q: "26. It is the eldest school in the city.", a: "the oldest school ('Eldest' is only for family members, not schools)" },
+      { q: "27. She is the better girl of the five.", a: "the best girl of the five (Selection among 5 requires Superlative)" },
+      { q: "28. She is our mutual friend.", a: "our common friend ('Mutual' is reciprocal between two; for three or more use 'common')" },
+      { q: "29. A very little number of students got through.", a: "A very small number of students ('Number' takes large/small, not little)" },
+      { q: "30. Many a student have been placed in first division.", a: "Many a student has been placed ('Many a + Singular Noun + Singular Verb')" },
+      { q: "31. Coleridge and Shelley both are contemporary, but former uses more supernatural force than later.", a: "...than the latter ('Latter' for second poet, with 'the')" },
+      { q: "32. In our farewell party, I reached earlier and my friends came latter.", a: "came later ('Later' denotes subsequent time)" },
+      { q: "33. Sachin and Sehwag are good players, but later is more attacking.", a: "the latter is ('Latter' = Sehwag, the 2nd player)" },
+      { q: "34. I could not tell which is the further place between Agra and Mathura.", a: "the farther place (Distance requires 'farther')" },
+      { q: "35. U.P. government asked for farther help.", a: "further help ('Further' = additional)" },
+      { q: "36. Rig Veda is the eldest of four Vedas.", a: "the oldest of four Vedas (Books/scriptures take 'oldest')" },
+      { q: "37. Take left turn, and latest house of this row will be yours.", a: "the last house ('Last' denotes position in the row)" },
+      { q: "38. Today you have made less mistakes than yesterday.", a: "fewer mistakes ('Mistakes' is a countable plural noun)" },
+      { q: "39. There are five stations; two first of it are very small.", a: "the first two (Ordinal 'first' precedes Cardinal 'two': Ordinal + Cardinal)" },
+      { q: "40. My all friends are settled well.", a: "All my friends (Word order: 'all my', not 'my all')" },
+      { q: "41. The all students were expected good marks.", a: "All the students (Word order: 'all the', not 'the all')" },
+      { q: "42. My two years baby threw things here and there.", a: "two-year-old baby (Noun modifier before baby must be singular)" },
+      { q: "43. Suraj was very faster than rest of the boys.", a: "much faster than ('Much' intensifies Comparative 'faster')" },
+      { q: "44. Much facilities provided by government are misused.", a: "Many facilities ('Facilities' is countable plural -> use 'many')" },
+      { q: "45. Much crop is destroyed by insects.", a: "Correct! ('Crop' used as uncountable mass entity)" },
+      { q: "46. Violence against women is a more major problem.", a: "a major problem ('Major' is non-gradable Latin comparative)" },
+      { q: "47. His problem is inferior than his brother.", a: "inferior to that of his brother ('Inferior to' + logical comparison 'that of')" },
+      { q: "48. Ratan came prior to me but wanted to go earlier than me.", a: "Correct! ('Prior to' and 'earlier than' used correctly)" },
+      { q: "49. Meera is more perfect in Hindi than English.", a: "more proficient / proficient ('Perfect' is non-gradable)" },
+      { q: "50. Ram Lal is the most richest person in town.", a: "the richest person (Double superlative error: remove 'most')" }
+    ];
+
+    const quizPracticeArenaData = [
+      { meta: "CGL PYQ • Ordinals & Cardinals Q1", q: "Q1. The two first chapters of this novel (A) / are rather dull (B) / but the remaining ones are interesting. (C) / No error (D)", opts: ["A) The two first chapters", "B) are rather dull", "C) but remaining ones interesting", "D) No error"], ans: 0, exp: "Ordinal adjectives always precede Cardinal adjectives. Write: 'The first two chapters'." },
+      { meta: "CHSL PYQ • Countable vs Uncountable Q2", q: "Q2. You have made (A) / less mistakes in this essay (B) / than you made in the previous one. (C) / No error (D)", opts: ["A) You have made", "B) less mistakes in this essay", "C) than in previous one", "D) No error"], ans: 1, exp: "Replace 'less' with 'fewer' because 'mistakes' is a countable plural noun." },
+      { meta: "CPO PYQ • Non-Gradables Q3", q: "Q3. The violence against women (A) / is a more major problem (B) / before the administration today. (C) / No error (D)", opts: ["A) The violence against women", "B) is a more major problem", "C) before administration", "D) No error"], ans: 1, exp: "'Major' is already an absolute/non-gradable comparative; omit 'more'." },
+      { meta: "Stenographer PYQ • Order of Words Q4", q: "Q4. My all relatives (A) / came to attend (B) / my sister's wedding ceremony. (C) / No error (D)", opts: ["A) My all relatives", "B) came to attend", "C) my sister's wedding", "D) No error"], ans: 0, exp: "Correct determiner order is 'All my relatives', not 'My all relatives'." },
+      { meta: "CGL PYQ • Hyphenated Noun Modifier Q5", q: "Q5. I bought a (A) / two years old baby dress (B) / for my niece yesterday. (C) / No error (D)", opts: ["A) I bought a", "B) two years old baby dress", "C) for my niece yesterday", "D) No error"], ans: 1, exp: "Hyphenated modifier preceding a noun must be singular: 'a two-year-old baby dress'." },
+      { meta: "CGL 2025 • Gradual Change Q6", q: "Q6. Though he was [more faster] than his opponent, his chances of winning were slim.", opts: ["A) fast", "B) faster", "C) more fast", "D) most fastest"], ans: 1, exp: "Double comparative error: remove 'more' and keep 'faster'." }
+    ];
+
+    // ==================== RENDERING & INTERACTIVITY ENGINE ====================
+
+    let score = 0;
+    let totalQuestions = 0;
+
+    function renderDrills(containerId, items) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = items.map(item => `
+        <div class="drill-item" onclick="this.querySelector('.drill-ans').classList.toggle('hidden')">
+          <span class="drill-q">${item.q}</span>
+          <span class="drill-ans hidden" data-answer="✓ ${item.a}">Click to Reveal</span>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.drill-item').forEach(el => {
+        el.addEventListener('click', function () {
+          const ansSpan = this.querySelector('.drill-ans');
+          if (ansSpan.classList.contains('hidden')) {
+            ansSpan.textContent = 'Click to Reveal';
+          } else {
+            ansSpan.textContent = ansSpan.getAttribute('data-answer');
+          }
+        });
       });
     }
 
-    function checkCoreAns(btn, qIdx, oIdx) {
-      const parent = btn.parentElement;
-      const allBtns = parent.querySelectorAll('button');
-      allBtns.forEach(b => b.disabled = true);
-      const isCorrect = oIdx === CORE_QUIZ[qIdx].ans;
-      if (isCorrect) {
-        btn.style.background = 'var(--success-pill)';
-        btn.style.color = 'var(--success)';
-        btn.style.borderColor = 'var(--success)';
+    function renderQuiz(containerId, quizArray) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      totalQuestions += quizArray.length;
+      document.getElementById('total-val').textContent = totalQuestions;
+
+      container.innerHTML = quizArray.map((qObj, qIdx) => {
+        const uniqueId = `${containerId}-q${qIdx}`;
+        const optsHtml = qObj.opts.map((optText, oIdx) => `
+          <button class="quiz-opt" onclick="checkQuizAnswer('${uniqueId}', ${oIdx}, ${qObj.ans}, this)">
+            ${optText}
+          </button>
+        `).join('');
+
+        return `
+          <div class="quiz-card" id="${uniqueId}">
+            <div class="quiz-meta"><span>${qObj.meta}</span><span>Interactive MCQ</span></div>
+            <div class="quiz-question">${qObj.q}</div>
+            <div class="quiz-options">${optsHtml}</div>
+            <div class="quiz-exp" id="${uniqueId}-exp"><strong>Explanation:</strong> ${qObj.exp}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.checkQuizAnswer = function (cardId, selectedIdx, correctIdx, btnEl) {
+      const card = document.getElementById(cardId);
+      const buttons = card.querySelectorAll('.quiz-opt');
+      const expBox = document.getElementById(`${cardId}-exp`);
+
+      buttons.forEach((b, idx) => {
+        b.disabled = true;
+        if (idx === correctIdx) {
+          b.classList.add('correct');
+        }
+      });
+
+      if (selectedIdx === correctIdx) {
+        score++;
+        document.getElementById('score-val').textContent = score;
       } else {
-        btn.style.background = 'var(--error-pill)';
-        btn.style.color = 'var(--error)';
-        btn.style.borderColor = 'var(--error)';
-        allBtns[CORE_QUIZ[qIdx].ans].style.background = 'var(--success-pill)';
-        allBtns[CORE_QUIZ[qIdx].ans].style.color = 'var(--success)';
+        btnEl.classList.add('wrong');
       }
-      document.getElementById(`c-exp-${qIdx}`).style.display = 'block';
-    }
 
-    function switchStage(stageId) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-stage') === stageId));
-      document.querySelectorAll('.stage-section').forEach(sec => sec.classList.toggle('active', sec.id === stageId));
+      expBox.classList.add('visible');
+    };
+
+    window.showTab = function (tabId, btnEl) {
+      document.querySelectorAll('.section-page').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      if (btnEl) btnEl.classList.add('active');
+
+      document.getElementById('sidebar').classList.remove('open');
+      const searchInput = document.getElementById('global-search');
+      if (searchInput.value) {
+        searchInput.value = '';
+        filterCurrentTab('');
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.toggleAllDrills = function (reveal) {
+      document.querySelectorAll('.drill-ans').forEach(ansSpan => {
+        if (reveal) {
+          ansSpan.classList.remove('hidden');
+          ansSpan.textContent = ansSpan.getAttribute('data-answer');
+        } else {
+          ansSpan.classList.add('hidden');
+          ansSpan.textContent = 'Click to Reveal';
+        }
+      });
+    };
+
+    window.toggleTheme = function () {
+      const htmlEl = document.documentElement;
+      if (htmlEl.getAttribute('data-theme') === 'dark') {
+        htmlEl.removeAttribute('data-theme');
+      } else {
+        htmlEl.setAttribute('data-theme', 'dark');
+      }
+    };
+
+    window.filterCurrentTab = function (query) {
+      const q = query.toLowerCase().trim();
+      const activeSection = document.querySelector('.section-page.active');
+      if (!activeSection) return;
+
+      activeSection.querySelectorAll('.card, .drill-item, .quiz-card, .chip, tr').forEach(el => {
+        if (!q) {
+          el.style.display = '';
+          return;
+        }
+        if (el.classList.contains('drill-item') || el.classList.contains('quiz-card') || el.classList.contains('chip')) {
+          const text = el.textContent.toLowerCase() + ' ' + (el.querySelector('.drill-ans')?.getAttribute('data-answer') || '').toLowerCase();
+          el.style.display = text.includes(q) ? '' : 'none';
+        }
+      });
+    };
+
+    window.resetAllQuizzes = function () {
+      score = 0;
+      totalQuestions = 0;
+      document.getElementById('score-val').textContent = '0';
+      initAllContent();
+    };
+
+    function initAllContent() {
+      totalQuestions = 0;
+      score = 0;
+
+      // Render Drills
+      renderDrills('drill-p2', drillsP2);
+      renderDrills('drill-p3-elder', drillsP3Elder);
+      renderDrills('drill-p4-later', drillsP4Later);
+      renderDrills('drill-p5-degrees', drillsP5Degrees);
+      renderDrills('drill-p6-logical', drillsP6Logical);
+      renderDrills('drill-p7-and', drillsP7And);
+      renderDrills('drill-p8-selection', drillsP8Selection);
+      renderDrills('drill-p9-nongradable', drillsP9Nongradable);
+      renderDrills('drill-p11-confusing', drillsP11Confusing);
+      renderDrills('drill-p13-osascomp', drillsP13Osascomp);
+      renderDrills('drill-practice-set1', drillPracticeSet1);
+      renderDrills('drill-practice-set2', drillPracticeSet2);
+
+      // Render Quizzes
+      renderQuiz('quiz-p2', quizP2Data);
+      renderQuiz('quiz-p3-elder', quizP3ElderData);
+      renderQuiz('quiz-p4-later', quizP4LaterData);
+      renderQuiz('quiz-p5-degrees', quizP5DegreesData);
+      renderQuiz('quiz-p6-logical', quizP6LogicalData);
+      renderQuiz('quiz-p7-and', quizP7AndData);
+      renderQuiz('quiz-p8-selection', quizP8SelectionData);
+      renderQuiz('quiz-p9-nongradable', quizP9NongradableData);
+      renderQuiz('quiz-p11-confusing', quizP11ConfusingData);
+      renderQuiz('quiz-p13-osascomp', quizP13OsascompData);
+      renderQuiz('quiz-practice-arena', quizPracticeArenaData);
     }
 
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.addEventListener('click', () => switchStage(btn.getAttribute('data-stage'))));
-
-    function toggleTheme() {
-      const cur = document.body.getAttribute('data-theme') || 'light';
-      const nxt = cur === 'light' ? 'dark' : 'light';
-      document.body.setAttribute('data-theme', nxt);
-      document.getElementById('themeBtn').textContent = nxt === 'light' ? '🌙' : '☀️';
-    }
-
-    function markAllDone() {
-      localStorage.setItem('studyos_adj_done', 'true');
-      document.getElementById('overallProgress').style.width = '100%';
-      document.getElementById('progressPercent').textContent = '100%';
-      alert('🎉 Fantastic! Chapter 4 - Adjectives is 100% completed & mastered!');
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      renderFC();
-      renderCoreQuiz();
-    });
+    document.addEventListener('DOMContentLoaded', initAllContent);
   </script>
 </body>
 </html>

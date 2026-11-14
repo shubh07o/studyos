@@ -52,27 +52,38 @@ The interactive modules must structurally adapt to the subject matter:
 
 ---
 
-## 4. PEDAGOGICAL STAGES (UNCONSTRAINED & ADAPTIVE)
+## 4. ARCHITECTURE: INTERACTIVE DIGITAL NOTES & SELF-TESTED DRILLS (BENCHMARK: NOUN, PRONOUN, CODING-DECODING)
 
-Every generated file (`lectures/Lecture-XX-<Subject>-<Topic>.html`) must be 100% self-contained (all HTML, CSS, JS inline, zero external CDN dependencies, fully offline) and maximize retention through:
+**CRITICAL SYSTEM UPDATE**: Do NOT split chapters into disconnected artificial stages (Stage A/B/C/D/E/F flashcards/active recall/mindmaps). 
+The golden architectural standard for all learning modules is the **Interactive Digital Notes & Self-Tested Quizzes engine** established in:
+- `lectures/English-Ch01-Noun-Digital-Notes-and-Quizzes.html`
+- `lectures/English-Ch02-Pronoun-Digital-Notes-and-Quiz.html`
+- `lectures/Reasoning-Ch02-Coding-Decoding-Interactive-Notes.html`
+- `lectures/Reasoning-Ch03-Series-Interactive-Notes-and-Quiz.html`
 
-1. **STAGE A: DEEP CONCEPTUAL UNDERSTANDING**  
-   Exhaustive, structured visual cards. Tables, flowcharts, timelines, and subject-specific breakdowns covering 100% of the notes.
-2. **STAGE B: ULTRA-MAXIMAL ACTIVE RECALL**  
-   As many interactive prompts as possible across multiple formats:
-   - *Click-to-Reveal* cards (forces active retrieval before seeing answers)
-   - *Fill-in-the-Blanks* (with real-time string checking: `✅ Correct` / `❌ Try again`)
-   - *Match the Following* (interactive dropdown selector)
-   - *True / False* (with detailed rationale)
-   - *Identification / Formula Spotter* ("Which rule / formula / article / person am I?")
-3. **STAGE C: HIGH-VOLUME FLASHCARDS**  
-   Comprehensive front/back flip cards covering every concept, categorized, shuffleable, mastery tracking (Mastered / Difficult), keyboard shortcuts (`Spacebar` to flip, `Arrow keys` to navigate).
-4. **STAGE D: EXHAUSTIVE EXAM QUIZ & PRACTICE**  
-   Maximum possible exam-grade MCQs (Basic, Moderate, Difficult). Immediate answer validation, full explanatory notes, score & accuracy %, filter incorrect answers, retake mode.
-5. **STAGE E: SPEED REVISION & CHEAT SHEETS**  
-   High-yield one-liners, confusing pairs comparator, and fast reference cheat-sheets.
-6. **STAGE F: COMPREHENSIVE DIAGNOSTIC TEST**  
-   Diagnostic assessment with automatic weak-topic identification and revision prescriptions.
+### Core Structural Requirements:
+1. **Sidebar Navigation**: Fixed left sidebar with granular module/page tabs (e.g. `📋 0. Syllabus & Intro`, `🏷️ 1. Elder vs Older`, etc.) with page-range badges (`P. 1-3`, `P. 3-5`), live score tracker (`Score: X / Y`), and reset button.
+2. **Topbar Tools**:
+   - Real-time search filter input across current tab (`filterCurrentTab()`).
+   - `👁️ Reveal All Answers` button (`toggleAllDrills(true)`).
+   - `🙈 Hide Answers` button (`toggleAllDrills(false)`).
+   - Theme toggle (Mandatory Light Mode default).
+3. **Self-Tested Mode on EVERY Single Concept & Example**:
+   - Every rule, exception, and example must be interactive.
+   - Example sentences must use Click-to-Reveal Drills:
+     ```html
+     <div class="drill-item" onclick="this.querySelector('.drill-ans').classList.toggle('hidden')">
+       <span class="drill-q">Sentence with error / fill-in-the-blank</span>
+       <span class="drill-ans hidden" data-answer="✓ Correct version (Grammar rule / justification)">Click to Reveal</span>
+     </div>
+     ```
+   - Learner reads the rule, tests themselves on the sentence, and clicks to reveal whether it's right/wrong and why.
+4. **Interactive Practice Quizzes & Spotting Errors**:
+   - In-line exam-grade MCQs and Spotting Error cards (`.quiz-card`) with 4 clickable options, instant green (`.correct`) and red (`.wrong`) feedback, disabled state after click, score increment, and detailed explanation box (`.quiz-exp`).
+5. **Tables, Chip Grids & Rule Boxes**:
+   - `.rule-box`, `.warn-box`, `.chip-grid`, `.table-wrap` for organized, visually crisp presentation of rules, exceptions, word lists, and formulas.
+6. **100% Self-Contained & Light Mode Default**:
+   - Pure inline CSS & JS, zero CDN dependencies, instant offline PWA compatibility. Always open in clean, crisp Light Mode.
 
 ---
 
