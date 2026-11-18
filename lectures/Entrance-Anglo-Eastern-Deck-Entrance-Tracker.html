@@ -32,13 +32,34 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
-    </style>
+    
+    /* Universal Mobile-First Responsiveness */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    button, a, input, select {
+      touch-action: manipulation;
+    }
+    @media (max-width: 640px) {
+      .portal-link-btn {
+        min-height: 38px;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.75rem;
+      }
+    }
+
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-full flex flex-col antialiased">
 
     <!-- Header Navigation -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center space-x-3">
+          <a href="../index.html" class="portal-link-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0 min-h-[40px]" title="Return to Portal Hub"><i class="fa-solid fa-arrow-left text-xs"></i><span>Portal</span></a>
             <div class="w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
                 <i class="fa-solid fa-anchor"></i>
             </div>

@@ -11,15 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">sorship Exam — 30 English PYQs & Grammar Hub</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter, JetBrains Mono & Noto Sans Devanagari -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" hre
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -124,7 +116,27 @@
         .animate-pop {
             animation: pulse-subtle 0.25s ease-out;
         }
-    </style>
+    
+    /* Universal Mobile-First Responsiveness */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    button, a, input, select {
+      touch-action: manipulation;
+    }
+    @media (max-width: 640px) {
+      .portal-link-btn {
+        min-height: 38px;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.75rem;
+      }
+    }
+
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-navy-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
@@ -133,6 +145,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
             <!-- Brand Title -->
             <div class="flex items-center gap-3">
+          <a href="../index.html" class="portal-link-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0 min-h-[40px]" title="Return to Portal Hub"><i class="fa-solid fa-arrow-left text-xs"></i><span>Portal</span></a>
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
                     <i class="fa-solid fa-spell-check text-lg"></i>
                 </div>

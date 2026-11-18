@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Offline • Mock Manager</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,39 +16,73 @@
       --text-muted: #64748b;
       --primary: #0284c7;
       --primary-hover: #0369a1;
+      --primary-pill-bg: #e0f2fe;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1120;
+        --surface: #131c31;
+        --border: #1e293b;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --primary-pill-bg: rgba(2, 132, 199, 0.2);
+      }
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --surface: #131c31;
+      --border: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary-pill-bg: rgba(2, 132, 199, 0.2);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       background-color: var(--bg);
       color: var(--text-main);
       font-family: var(--font);
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 20px 16px;
       text-align: center;
     }
 
     .offline-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 32px;
+      border-radius: 18px;
+      padding: 36px 24px;
       max-width: 440px;
       width: 100%;
-      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.08);
     }
 
     .offline-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      background: #e0f2fe;
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--primary-pill-bg);
       color: var(--primary);
       display: flex;
       align-items: center;
@@ -57,50 +91,65 @@
     }
 
     .offline-icon svg {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
     }
 
     h1 {
-      font-size: 20px;
+      font-size: clamp(18px, 4vw, 22px);
       font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      line-height: 1.3;
     }
 
     p {
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.55;
       margin-bottom: 24px;
     }
 
     .btn-action {
       background-color: var(--primary);
       color: #ffffff;
-      padding: 10px 24px;
-      border-radius: 9px;
+      padding: 12px 24px;
+      min-height: 44px;
+      border-radius: 10px;
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       border: none;
       cursor: pointer;
       transition: all 0.15s ease;
       font-family: inherit;
+      width: 100%;
+      max-width: 260px;
+      touch-action: manipulation;
     }
 
     .btn-action:hover {
       background-color: var(--primary-hover);
       transform: translateY(-1px);
     }
+
+    .btn-action:active {
+      transform: scale(0.98);
+    }
   </style>
+  <script>
+    if (localStorage.getItem("mm_theme") === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  </script>
 </head>
 <body>
   <div class="offline-card">
-    <div class="offline-icon">
+    <div class="offline-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="1" y1="1" x2="23" y2="23"></line>
         <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
@@ -112,7 +161,7 @@
       </svg>
     </div>
     <h1>You're Currently Offline</h1>
-    <p>No active network connection detected. Previously opened mock tests and notes remain cached and ready to practice.</p>
+    <p>No active internet connection detected. Previously opened mock tests and notes remain cached in your browser and ready to practice.</p>
     <a href="./index.html" class="btn-action">
       ← Return to Dashboard
     </a>

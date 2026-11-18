@@ -1034,6 +1034,136 @@
       color: var(--text-muted);
       margin-top: auto;
     }
+  
+    /* Responsive Enhancements for Mobile/Tablet */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .btn-portal-back {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+      min-height: 40px;
+      touch-action: manipulation;
+    }
+    .btn-portal-back:hover {
+      background: var(--bg-secondary);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .card {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    .data-table, table {
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+      .brand-group {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .brand-title h1 {
+        font-size: 1.05rem;
+      }
+      .brand-title p {
+        font-size: 0.72rem;
+      }
+      .header-actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .progress-widget {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .progress-bar-mini {
+        width: 50px;
+      }
+      nav.stage-nav {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .nav-tabs {
+        padding: 0 0.75rem;
+        gap: 0.35rem;
+        width: max-content;
+        min-width: 100%;
+      }
+      .tab-btn {
+        padding: 0.65rem 0.85rem;
+        font-size: 0.82rem;
+        min-height: 44px;
+      }
+      main {
+        padding: 1.25rem 0.85rem;
+      }
+      .section-banner {
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+      }
+      .section-banner h2 {
+        font-size: 1.3rem;
+      }
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+      }
+      .card {
+        padding: 1.25rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .header-container {
+        padding: 0.5rem 0.65rem;
+      }
+      .brand-title h1 {
+        font-size: 0.95rem;
+      }
+      .emblem-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
+      }
+      .tab-btn {
+        padding: 0.55rem 0.75rem;
+        font-size: 0.78rem;
+      }
+      main {
+        padding: 1rem 0.6rem;
+      }
+      .card {
+        padding: 1rem;
+        border-radius: 10px;
+      }
+      .opt-btn, .option-card, .btn {
+        min-height: 44px;
+      }
+    }
+
   </style>
 </head>
 <body data-theme="light">
@@ -1049,6 +1179,10 @@
         </div>
       </div>
       <div class="header-actions">
+        <a href="../index.html" class="btn-portal-back" title="Return to Portal Hub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          Portal
+        </a>
         <div class="progress-widget" title="Overall Module Completion">
           <span>Progress</span>
           <div class="progress-bar-mini">

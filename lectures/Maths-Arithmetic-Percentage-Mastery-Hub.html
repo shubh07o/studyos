@@ -13,6 +13,26 @@
     .opt-btn:hover:not(:disabled) { border-color: #4f46e5; background: #eef2ff; }
     .scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
     .scroll-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+  
+    /* Universal Mobile-First Responsiveness */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    button, a, input, select {
+      touch-action: manipulation;
+    }
+    @media (max-width: 640px) {
+      .portal-link-btn {
+        min-height: 38px;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.75rem;
+      }
+    }
+
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -21,6 +41,7 @@
   <header class="sticky top-0 z-40 bg-slate-900 text-white border-b border-slate-800 shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center gap-3">
+          <a href="../index.html" class="portal-link-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0 min-h-[40px]" title="Return to Portal Hub"><i class="fa-solid fa-arrow-left text-xs"></i><span>Portal</span></a>
         <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 font-black text-xl flex items-center justify-center">%</div>
         <div>
           <h1 class="font-extrabold text-base sm:text-lg tracking-tight">PARMAR SSC • PERCENTAGE MASTERY HUB</h1>

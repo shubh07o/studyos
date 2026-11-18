@@ -68,7 +68,58 @@ Passive reading leads to rapid memory decay. StudyOS strictly enforces an **Acti
   - `.table-wrap` & `table`: Responsive, zebra-friendly comparative tabular matrices.
   - `.tag.correct` / `.tag.wrong`: Visual indicators for grammatical accuracy vs common errors.
 
-### C. Zero AI Slop Standard
+### D. Universal Screen Responsiveness & Mobile-First Standards (MANDATORY FOR ALL MODULES)
+**Every single existing and future module, interactive notes page, quiz arena, mock test, and tool must strictly adhere to the following universal responsive requirements:**
+
+1. **Continuous Viewport Adaptation (No Device Gaps)**:
+   - Must fluidly adapt across ALL viewport widths without horizontal scrolling or clipped content:
+     - Small phones: `320px`, `340px`, `360px`
+     - Standard phones: `375px`, `390px`, `414px`
+     - Large phones: `430px`, `480px`, `600px`
+     - Tablets: `600px` – `1024px` (including portrait & landscape, `768px`, `820px`)
+     - Laptops & Desktops: `1024px` – `1920px` and beyond (`1280px`, `1366px`, `1440px`, `1920px+`)
+   - Mandatory test viewport widths: `320px, 344px, 360px, 375px, 390px, 414px, 430px, 480px, 600px, 768px, 820px, 1024px, 1280px, 1440px, 1920px`.
+   - **Zero Horizontal Overflow**: `document.documentElement.scrollWidth <= window.innerWidth` across every breakpoint.
+   - Enforce on `html, body`:
+     ```css
+     html, body {
+       overflow-x: hidden !important;
+       max-width: 100vw !important;
+       box-sizing: border-box;
+       -webkit-text-size-adjust: 100%;
+     }
+     *, *::before, *::after {
+       box-sizing: border-box;
+     }
+     ```
+
+2. **Fluid and Adaptive Architecture**:
+   - Use CSS Flexbox and Grid with fluid auto-fit/auto-fill rules.
+   - **NEVER use rigid `minmax(300px, 1fr)` or fixed pixel widths for cards on mobile.** On screens `< 768px`, grids must collapse to `grid-template-columns: 1fr !important;` with appropriate gap spacing (e.g., `clamp(0.75rem, 3vw, 1.25rem)`).
+   - Use fluid typography with `clamp()` or scalable rem units (e.g., `font-size: clamp(1rem, 2.5vw, 1.25rem)` for headings).
+   - Avoid fixed pixel heights that cause clipping or button overlaps.
+   - Word break and overflow safety: `overflow-wrap: break-word; word-break: break-word; hyphens: auto;` for titles and complex vocabulary.
+
+3. **Touch Ergonomics & Safe Areas**:
+   - All interactive targets (buttons, option cards, navigation tabs, dropdowns, drill items) must have a minimum touch target size of **44px × 44px** on touchscreens (`min-height: 44px; touch-action: manipulation;`).
+   - Support mobile browser notches and gesture bars:
+     ```css
+     padding-top: max(env(safe-area-inset-top), 0.75rem);
+     padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+     padding-left: max(env(safe-area-inset-left), 0.75rem);
+     padding-right: max(env(safe-area-inset-right), 0.75rem);
+     ```
+   - Keep form inputs and buttons usable when mobile on-screen virtual keyboards appear.
+
+4. **Universal Navigation & Return Links**:
+   - Every single module MUST have an accessible, visible "← Portal" link to `../index.html` in its header to prevent trapping mobile users.
+   - Multi-pane sidebars must include an off-canvas drawer pattern with a backdrop overlay, a clear `✕` close button, and auto-dismiss upon selection of any topic or tab.
+   - Horizontal tab bars must support smooth horizontal touch-scrolling (`overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;`).
+
+5. **Tables, Code Blocks & Formulas**:
+   - All data tables, mathematical expressions, ASCII diagrams, and code snippets must be wrapped in responsive scrollable containers (`overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%;`) so they never force page-level horizontal overflow.
+
+### E. Zero AI Slop Standard
 - No generic marketing slogans ("Revolutionary", "Toppers Secret", "Master in 5 minutes").
 - No non-functional decorative widgets or animations that distract from cognitive processing.
 - Clean, disciplined layouts prioritizing information density, legibility, and pedagogical clarity.

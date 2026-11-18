@@ -83,6 +83,26 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
+  
+    /* Universal Mobile-First Responsiveness */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    button, a, input, select {
+      touch-action: manipulation;
+    }
+    @media (max-width: 640px) {
+      .portal-link-btn {
+        min-height: 38px;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.75rem;
+      }
+    }
+
   </style>
 </head>
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen transition-colors duration-200 font-sans selection:bg-brand-500 selection:text-white">
@@ -181,6 +201,7 @@
       <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
         
         <div class="flex flex-col sm:flex-row items-center gap-3">
+          <a href="../index.html" class="portal-link-btn inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shrink-0 min-h-[40px]" title="Return to Portal Hub"><i class="fa-solid fa-arrow-left text-xs"></i><span>Portal</span></a>
           <!-- Search input -->
           <div class="relative w-full">
             <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>

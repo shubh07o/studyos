@@ -668,13 +668,122 @@
       color: var(--accent-blue);
       font-weight: 800;
     }
+  
+    /* Responsive Enhancements */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .portal-return-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.85rem;
+      background: #fff;
+      color: var(--text-primary) !important;
+      border: 1px solid var(--border-strong);
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      min-height: 40px;
+      white-space: nowrap;
+    }
+    .portal-return-btn:hover {
+      background: var(--accent-navy);
+      color: #fff !important;
+    }
+    .diagram-card, .info-box {
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 0.75rem 1rem;
+      }
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+      .brand {
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      .brand-text h1 {
+        font-size: 1.05rem;
+      }
+      .brand-text p {
+        font-size: 0.72rem;
+      }
+      .header-controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .global-search {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .ctrl-btn {
+        min-height: 44px;
+      }
+      .nav-tabs {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        gap: 6px;
+      }
+      .tab-btn {
+        flex-shrink: 0;
+        min-height: 44px;
+      }
+      .container {
+        padding: 0 0.85rem;
+      }
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+      }
+      .card, .section {
+        padding: 1.15rem;
+      }
+    }
+    @media (max-width: 480px) {
+      header {
+        padding: 0.5rem 0.65rem;
+      }
+      .brand-text h1 {
+        font-size: 0.95rem;
+      }
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+      }
+      .container {
+        padding: 0 0.5rem;
+      }
+      .card, .section {
+        padding: 0.85rem;
+      }
+    }
+  
   </style>
 </head>
 <body>
 
 <header>
   <div class="header-inner">
-    <div class="brand">
+    <a href="../index.html" class="portal-return-btn" title="Back to Portal">← Portal</a>
+      <div class="brand">
       <div class="brand-icon">⚓</div>
       <div class="brand-text">
         <h1>Master Study Guide: Anglo-Eastern Written Exam & Interview</h1>

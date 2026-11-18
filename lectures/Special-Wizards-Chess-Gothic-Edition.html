@@ -118,7 +118,27 @@
         .turn-glow {
             animation: pulseGlow 2.5s infinite ease-in-out;
         }
-    </style>
+    
+    /* Universal Mobile-First Responsiveness */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    button, a, input, select {
+      touch-action: manipulation;
+    }
+    @media (max-width: 640px) {
+      .portal-link-btn {
+        min-height: 38px;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.75rem;
+      }
+    }
+
+  </style>
 </head>
 <body class="font-sans antialiased selection:bg-cathedral-gold selection:text-cathedral-bg">
 
@@ -132,6 +152,7 @@
         <header class="pointer-events-auto md-surface rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 w-full max-w-7xl mx-auto">
             <!-- Brand & Cathedral Title -->
             <div class="flex items-center gap-3">
+                <a href="../index.html" class="portal-link-btn px-2.5 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/15 text-xs font-medium text-cathedral-gold flex items-center gap-1.5 transition-all shrink-0 min-h-[40px]" title="Return to Study Portal"><i class="fa-solid fa-arrow-left text-xs"></i><span>Portal</span></a>
                 <div class="w-9 h-9 rounded-xl bg-cathedral-gold/15 border border-cathedral-gold/40 flex items-center justify-center text-cathedral-gold shadow-inner">
                     <i class="fa-solid fa-chess-king text-lg"></i>
                 </div>

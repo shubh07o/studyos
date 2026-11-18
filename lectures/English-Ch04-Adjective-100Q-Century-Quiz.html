@@ -435,6 +435,47 @@
       color: #fff;
       border-color: var(--error);
     }
+  
+    /* Universal Mobile-First Topbar & Touch */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .topbar {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .btn-action, .opt-btn, .nav-btn {
+      touch-action: manipulation;
+    }
+    @media (max-width: 640px) {
+      .topbar {
+        padding: 0.6rem 0.75rem;
+      }
+      .topbar-left, .topbar-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .breadcrumb {
+        font-size: 0.82rem;
+      }
+      .btn-action {
+        min-height: 40px;
+        padding: 0.4rem 0.65rem;
+        font-size: 0.8rem;
+      }
+      .quiz-container {
+        padding: 0.85rem;
+      }
+      .option-item {
+        min-height: 48px;
+        padding: 0.75rem;
+      }
+    }
+  
   </style>
 </head>
 <body data-theme="light">
