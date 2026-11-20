@@ -1,5 +1,5 @@
 /* Service Worker for Mock Manager (StudyOS) */
-const CACHE_VERSION = 'v1.1.0';
+const CACHE_VERSION = 'v1.1.1';
 const STATIC_CACHE = `mockmanager-static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `mockmanager-dynamic-${CACHE_VERSION}`;
 

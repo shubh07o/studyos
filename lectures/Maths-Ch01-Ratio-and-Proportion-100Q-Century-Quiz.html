@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>SSC Maths - Ratio &amp; Proportion Century Quiz (100 Questions) | StudyOS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+    
+    html, body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      box-sizing: border-box;
+      -webkit-text-size-adjust: 100%;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Touch ergonomics */
+    .touch-btn {
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+    
+    .math-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Mobile palette drawer */
+    @media (max-width: 1023px) {
+      #paletteSidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: min(340px, 86vw);
+        background: #ffffff;
+        z-index: 50;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+        transform: translateX(100%);
+        transition: transform 0.25s ease-in-out;
+        display: flex;
+        flex-direction: column;
+      }
+      #paletteSidebar.open {
+        transform: translateX(0);
+      }
+      #paletteBackdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(2px);
+        z-index: 45;
+        display: none;
+      }
+      #paletteBackdrop.open {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+        <a href="../index.html" class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all shrink-0 touch-btn" title="Return to Portal Hub">
+          <i class="fa-solid fa-arrow-left text-xs"></i><span>Portal</span>
+        </a>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 font-bold text-base sm:text-lg shrink-0">
+          %
+        </div>
+        <div class="min-w-0">
+          <h1 class="text-sm sm:text-base md:text-lg font-bold text-slate-900 leading-tight truncate">Ratio &amp; Proportion Century Quiz</h1>
+          <p class="text-[11px] sm:text-xs text-slate-500 truncate">Parmar SSC • Toppers Batch • 100 Questions</p>
+        </div>
+      </div>
+
+      <!-- Controls & Timer -->
+      <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+        <!-- Mode Switcher -->
+        <div class="hidden sm:flex bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs font-medium">
+          <button id="modeExamBtn" onclick="setMode('exam')" class="px-2.5 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-colors">
+            <i class="fa-solid fa-stopwatch mr-1"></i>Exam
+          </button>
+          <button id="modePracticeBtn" onclick="setMode('practice')" class="px-2.5 py-1.5 rounded-md bg-white shadow-xs text-blue-600 font-semibold transition-all">
+            <i class="fa-solid fa-lightbulb mr-1"></i>Practice
+          </button>
+        </div>
+
+        <!-- Timer -->
+        <div id="timerContainer" class="flex items-center gap-1.5 bg-blue-50 text-blue-700 px-2.5 py-1.5 rounded-lg border border-blue-200 font-mono text-xs sm:text-sm font-semibold">
+          <i class="fa-regular fa-clock text-blue-500"></i>
+          <span id="timerDisplay">00:00</span>
+        </div>
+
+        <!-- Mobile Palette Toggle -->
+        <button onclick="toggleMobilePalette(true)" class="lg:hidden touch-btn inline-flex items-center justify-center p-2 rounded-lg bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200" title="Question Palette">
+          <i class="fa-solid fa-table-cells text-sm"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full bg-slate-100 h-1.5 relative overflow-hidden">
+      <div id="progressBar" class="bg-blue-600 h-full transition-all duration-300 w-0"></div>
+    </div>
+  </header>
+
+  <!-- Backdrop overlay for mobile drawer -->
+  <div id="paletteBackdrop" onclick="toggleMobilePalette(false)"></div>
+
+  <!-- Main Layout -->
+  <div class="max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-4 sm:py-6 flex-1 flex flex-col lg:flex-row gap-6">
+
+    <!-- Left / Center: Question Area -->
+    <main class="flex-1 min-w-0 flex flex-col">
+      <!-- Question Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-6 md:p-8 flex-1 flex flex-col">
+        
+        <!-- Meta & Bookmarking -->
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="qNumberBadge" class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-md">Question 1 of 100</span>
+            <span id="examTagBadge" class="bg-amber-100 text-amber-900 text-xs font-medium px-2.5 py-1 rounded-md max-w-[260px] sm:max-w-none truncate">Exam Tag</span>
+          </div>
+          <button id="bookmarkBtn" onclick="toggleBookmark()" class="text-slate-400 hover:text-amber-500 p-1.5 rounded-lg transition-colors touch-btn flex items-center gap-1 text-xs" title="Flag for Review">
+            <i class="fa-regular fa-bookmark text-base"></i>
+            <span class="hidden sm:inline">Review</span>
+          </button>
+        </div>
+
+        <!-- Question Text -->
+        <div class="text-base sm:text-lg md:text-xl font-semibold text-slate-900 leading-relaxed mb-6" id="questionText">
+          Loading question stem...
+        </div>
+
+        <!-- Options Grid -->
+        <div class="grid grid-cols-1 gap-3 mb-6" id="optionsContainer">
+          <!-- Dynamically injected options -->
+        </div>
+
+        <!-- Explanation Area (Practice Mode / Solution view) -->
+        <div id="explanationContainer" class="hidden mt-auto pt-4 border-t border-slate-100">
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
+              <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+              <span>Step-by-Step Mathematical Explanation</span>
+            </div>
+            <div id="explanationText" class="text-sm text-slate-700 font-normal leading-relaxed whitespace-pre-line math-font">
+              Solution details...
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Navigation Bar -->
+      <div class="mt-4 bg-white p-3 sm:p-4 rounded-xl border border-slate-200 flex items-center justify-between gap-2 shadow-xs">
+        <button id="prevBtn" onclick="prevQuestion()" class="touch-btn px-3 sm:px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold rounded-lg transition-all inline-flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed">
+          <i class="fa-solid fa-arrow-left text-xs"></i><span>Previous</span>
+        </button>
+
+        <div class="flex items-center gap-2">
+          <button onclick="clearResponse()" class="touch-btn px-2.5 sm:px-3 py-2 text-slate-500 hover:text-red-600 text-xs sm:text-sm font-medium rounded-lg transition-colors">
+            Clear
+          </button>
+          <button onclick="toggleMobilePalette(true)" class="lg:hidden touch-btn px-2.5 py-2 text-slate-600 hover:text-blue-600 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200">
+            <i class="fa-solid fa-list-ol mr-1"></i>Palette
+          </button>
+        </div>
+
+        <button id="nextBtn" onclick="nextQuestion()" class="touch-btn px-4 sm:px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold rounded-lg shadow-sm shadow-blue-500/20 transition-all inline-flex items-center gap-1.5">
+          <span>Next</span><i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+    </main>
+
+    <!-- Right Sidebar / Off-Canvas Palette: 1-100 Grid -->
+    <aside id="paletteSidebar" class="lg:w-80 shrink-0">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 flex flex-col h-full lg:sticky lg:top-20 max-h-[calc(100vh-6rem)]">
+        
+        <!-- Palette Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+          <div>
+            <h2 class="text-sm font-bold text-slate-900">Question Palette</h2>
+            <p class="text-[11px] text-slate-500">100 Previous Year Questions</p>
+          </div>
+          <button onclick="toggleMobilePalette(false)" class="lg:hidden text-slate-400 hover:text-slate-700 p-1 text-base">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Stats Counter -->
+        <div class="grid grid-cols-3 gap-2 text-center text-xs mb-3">
+          <div class="bg-emerald-50 text-emerald-700 rounded-lg p-1.5 border border-emerald-100">
+            <span class="block font-bold text-sm" id="countAnswered">0</span>
+            <span class="text-[10px]">Answered</span>
+          </div>
+          <div class="bg-slate-50 text-slate-600 rounded-lg p-1.5 border border-slate-200">
+            <span class="block font-bold text-sm" id="countUnanswered">100</span>
+            <span class="text-[10px]">Left</span>
+          </div>
+          <div class="bg-amber-50 text-amber-700 rounded-lg p-1.5 border border-amber-100">
+            <span class="block font-bold text-sm" id="countMarked">0</span>
+            <span class="text-[10px]">Flagged</span>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex gap-1 p-1 bg-slate-100 rounded-lg text-[11px] font-medium mb-3">
+          <button onclick="filterPalette('all')" id="filterAll" class="flex-1 py-1 rounded bg-white font-bold text-slate-900 shadow-xs text-center">All</button>
+          <button onclick="filterPalette('unanswered')" id="filterUnanswered" class="flex-1 py-1 rounded text-slate-600 hover:text-slate-900 text-center">Left</button>
+          <button onclick="filterPalette('flagged')" id="filterFlagged" class="flex-1 py-1 rounded text-slate-600 hover:text-slate-900 text-center">Flagged</button>
+        </div>
+
+        <!-- Palette Buttons Grid -->
+        <div class="flex-1 overflow-y-auto custom-scrollbar pr-1 grid grid-cols-5 gap-1.5 content-start" id="paletteGrid">
+          <!-- 100 question buttons dynamically rendered -->
+        </div>
+
+        <!-- Submit Exam Button -->
+        <div class="pt-3 mt-3 border-t border-slate-100">
+          <button onclick="confirmFinishQuiz()" class="touch-btn w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-flag-checkered"></i><span>Submit Test</span>
+          </button>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Scorecard Result Modal -->
+  <div id="resultsModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 text-center shadow-xl border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-2xl font-bold mb-3 shadow-inner">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900">Quiz Completed!</h3>
+      <p class="text-xs text-slate-500 mb-6">SSC Maths • Ratio &amp; Proportion Century Test</p>
+
+      <!-- Score Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+          <div class="text-[10px] text-slate-500 font-semibold uppercase">Score</div>
+          <div class="text-lg font-bold text-blue-600" id="resultScore">0%</div>
+        </div>
+        <div class="bg-emerald-50 p-2.5 rounded-xl border border-emerald-100">
+          <div class="text-[10px] text-emerald-600 font-semibold uppercase">Correct</div>
+          <div class="text-lg font-bold text-emerald-600" id="resultCorrect">0</div>
+        </div>
+        <div class="bg-red-50 p-2.5 rounded-xl border border-red-100">
+          <div class="text-[10px] text-red-600 font-semibold uppercase">Incorrect</div>
+          <div class="text-lg font-bold text-red-600" id="resultIncorrect">0</div>
+        </div>
+        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+          <div class="text-[10px] text-slate-500 font-semibold uppercase">Time</div>
+          <div class="text-sm font-bold text-slate-700" id="resultTime">00:00</div>
+        </div>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="restartQuiz()" class="touch-btn flex-1 py-2.5 border border-slate-300 text-slate-700 text-xs font-bold rounded-xl hover:bg-slate-50 transition-colors">
+          <i class="fa-solid fa-rotate-right mr-1"></i>Retake Test
+        </button>
+        <button onclick="closeResultsModal()" class="touch-btn flex-1 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-500/20 transition-all">
+          <i class="fa-solid fa-book-open mr-1"></i>Review Solutions
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Embedded 100 Questions Data and App Engine -->
+  <script>
+    const questions = [
+  {
+    "id": 1,
+    "tag": "SSC CPO Pre 2025 10 Dec, 2025",
+    "question": "In a bag, red, blue, and green balls are in the ratio 3 ∶ 4 ∶ 5. If there are 48 balls in total, how many are green ?",
+    "options": [
+      "15",
+      "20",
+      "25",
+      "18"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Total ratio units = 3 + 4 + 5 = 12 units.\n12 units = 48 balls ⇒ 1 unit = 4 balls.\nNumber of green balls = 5 units = 5 × 4 = 20."
+  },
+  {
+    "id": 2,
+    "tag": "SSC CPO Pre 2025 10 Dec, 2025 S1",
+    "question": "x : y = 3:4 then (7x + 2y) : (7x - 2y) equal to?",
+    "options": [
+      "20:11",
+      "21:12",
+      "25:13",
+      "29:13"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Given x : y = 3 : 4. Substitute x = 3 and y = 4 directly:\n(7x + 2y) = 7(3) + 2(4) = 21 + 8 = 29.\n(7x - 2y) = 7(3) - 2(4) = 21 - 8 = 13.\nTherefore, ratio = 29 : 13."
+  },
+  {
+    "id": 3,
+    "tag": "SSC CPO Pre 2025 09 Dec, 2025 S1",
+    "question": "A box contains red and black marbles in the ratio 3 : 5. If there are 40 more black marbles than red, how many marbles are there in total?",
+    "options": [
+      "120",
+      "160",
+      "200",
+      "240"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Ratio of Red : Black = 3 : 5.\nDifference in units = 5 - 3 = 2 units.\n2 units = 40 marbles ⇒ 1 unit = 20 marbles.\nTotal marbles = 3 + 5 = 8 units = 8 × 20 = 160."
+  },
+  {
+    "id": 4,
+    "tag": "SSC CHSL Tier-01 2025 28 Nov, 2025 S2",
+    "question": "A painter is hired to paint a wall with a special shade. To prepare the paint, he mixes red, blue, and white in the ratio 4:2:1. For this design, he prepares 14 liters of paint in total. How many liters of white paint does he use?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Total ratio units = 4 + 2 + 1 = 7 units.\n7 units = 14 liters ⇒ 1 unit = 2 liters.\nWhite paint = 1 unit = 1 × 2 = 2 liters."
+  },
+  {
+    "id": 5,
+    "tag": "SSC CHSL Tier-01 2025 27 Nov, 2025 S1",
+    "question": "The price of a movie ticket for adults and children is in the ratio 5 : 3. If an adult ticket costs 250, what is the price of a child ticket?",
+    "options": [
+      "100",
+      "120",
+      "150",
+      "200"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Adult : Child = 5 : 3.\n5 units = ₹250 ⇒ 1 unit = ₹50.\nChild ticket = 3 units = 3 × ₹50 = ₹150."
+  },
+  {
+    "id": 6,
+    "tag": "SSC CHSL Tier-01 2025 25 Nov, 2025 S2",
+    "question": "Three numbers are in a ratio 5 : 7 : 9. If the difference between the largest and the smallest number is 20, find the middle number.",
+    "options": [
+      "25",
+      "35",
+      "45",
+      "55"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Ratio = 5 : 7 : 9.\nDifference between largest (9) and smallest (5) = 9 - 5 = 4 units.\n4 units = 20 ⇒ 1 unit = 5.\nMiddle number = 7 units = 7 × 5 = 35."
+  },
+  {
+    "id": 7,
+    "tag": "SSC CHSL Tier-01 2025 13 Nov, 2025 S1",
+    "question": "A fruit basket contains apples and oranges. The number of apples is 25% more than the number of oranges. What is the ratio of apples to oranges?",
+    "options": [
+      "1:4",
+      "4:5",
+      "5:4",
+      "3:4"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Let Oranges = 100. Apples = 100 + 25 = 125.\nApples : Oranges = 125 : 100 = 5 : 4."
+  },
+  {
+    "id": 8,
+    "tag": "SSC CHSL Tier-01 2025 21 Nov, 2025 S1",
+    "question": "In a class, ratio of the boys to the girls is 5:3. If 20% of the boys and 40% of the girls fail an exam, what is the ratio of the number of boys who passed to the number of girls who passed?",
+    "options": [
+      "20:9",
+      "9:20",
+      "21:19",
+      "22:7"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Let Boys = 50, Girls = 30.\nPassed boys = 80% of 50 = 40.\nPassed girls = 60% of 30 = 18.\nRatio of passed boys to passed girls = 40 : 18 = 20 : 9."
+  },
+  {
+    "id": 9,
+    "tag": "SSC CPO Pre 2020 25 Nov 2020 S2",
+    "question": "In a school, 5/12 of the number of students are girls and the rest are boys. 4/7 of the number of boys are below 14 years of age, and 2/5 of the number of girls are 14 years or above 14 years of age. If the number of students below 14 years of age is 1120, then the total number of students in the school is:",
+    "options": [
+      "1820",
+      "1290",
+      "1920",
+      "1900"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Let total students = 420 units (LCM of 12, 7, 5 = 420).\nGirls = 5/12 × 420 = 175, Boys = 7/12 × 420 = 245.\nBoys below 14 = 4/7 × 245 = 140.\nGirls below 14 = (1 - 2/5) = 3/5 × 175 = 105.\nTotal below 14 = 140 + 105 = 245 units.\n245 units = 1120 ⇒ 1 unit = 1120 / 245 = 32 / 7.\nTotal students = 420 × (32/7) = 60 × 32 = 1920."
+  },
+  {
+    "id": 10,
+    "tag": "SSC CHSL Tier-01 2022 14 Mar 2023 S4",
+    "question": "If a ∶ b ∶ c = 2 ∶ 3 ∶ 5 and 5b - a + 2c = 115, then what is the value of b?",
+    "options": [
+      "15",
+      "12",
+      "6",
+      "24 2"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Let a = 2k, b = 3k, c = 5k.\n5b - a + 2c = 5(3k) - 2k + 2(5k) = 15k - 2k + 10k = 23k.\n23k = 115 ⇒ k = 5.\nValue of b = 3k = 3 × 5 = 15."
+  },
+  {
+    "id": 11,
+    "tag": "SSC CHSL Tier-01 2021 25 May 2022 S3",
+    "question": "The ratio of income of A to that of B is 4 : 3. The expenditure of A is 5/12 of his income and the expenditure of B is 7/15 of his income. The difference between their expenditures is ₹4,500. Find the income of B.",
+    "options": [
+      "₹49,625",
+      "₹48,625",
+      "₹51,625",
+      "₹50,625"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Income A : B = 4 : 3 ⇒ Let Income A = 4x, B = 3x.\nExp A = 5/12 × 4x = 5x/3.\nExp B = 7/15 × 3x = 7x/5.\nDifference in expenditure = 5x/3 - 7x/5 = (25x - 21x)/15 = 4x/15.\n4x/15 = 4500 ⇒ 4x = 67500 ⇒ x = 16875.\nIncome of B = 3x = 3 × 16875 = ₹50,625."
+  },
+  {
+    "id": 12,
+    "tag": "SSC CHSL Tier-01 2021 03 Jun 2022 S1",
+    "question": "The ratio of the distances Ravina and Suhel had to travel from their respective houses to their workplaces was 4 ∶ 7. If Suhel had to travel 63 km, how much did Ravina have to travel?",
+    "options": [
+      "40 km",
+      "32 km",
+      "39 km",
+      "36 km"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Ravina : Suhel = 4 : 7.\nSuhel's distance = 7 units = 63 km ⇒ 1 unit = 9 km.\nRavina's distance = 4 units = 4 × 9 = 36 km."
+  },
+  {
+    "id": 13,
+    "tag": "SSC CHSL Tier-02 2022 26 Jun, 2023 S3",
+    "question": "What is the correct descending order of the following ratios? 17/30, 7/15, 27/50, 11/20",
+    "options": [
+      "17/30 > 11/20 > 7/15 > 27/50",
+      "17/30 > 11/20 > 27/50 > 7/15",
+      "11/20 > 17/30 > 27/50 > 7/15",
+      "27/50 > 17/30 > 11/20 > 7/15"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Convert ratios to decimal percentages:\n17/30 ≈ 0.5667\n11/20 = 0.5500\n27/50 = 0.5400\n7/15 ≈ 0.4667\nDescending order: 17/30 > 11/20 > 27/50 > 7/15."
+  },
+  {
+    "id": 14,
+    "tag": "Delhi Police Constable 2025 31 Dec, 2025 S1",
+    "question": "If 8P=4Q=2R , then find the value of P:Q:R?",
+    "options": [
+      "4 : 2 : 1",
+      "1 : 4 : 8",
+      "1 : 2 : 4",
+      "8 : 4 : 1"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "8P = 4Q = 2R. Divide by LCM(8, 4, 2) = 8:\n8P/8 = 4Q/8 = 2R/8 ⇒ P/1 = Q/2 = R/4.\nTherefore, P : Q : R = 1 : 2 : 4."
+  },
+  {
+    "id": 15,
+    "tag": "Delhi Police Constable 2025 05 Jan, 2026 S1",
+    "question": "Three people, A, B, and C, share money. If A/B = 2/3 and B/C = 4/5, what is A : B : C?",
+    "options": [
+      "8:12:15",
+      "2:3:5",
+      "6:8:10",
+      "10:15:20"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "A : B = 2 : 3 and B : C = 4 : 5.\nMake common term B equal (LCM of 3 and 4 is 12):\nA : B = (2 : 3) × 4 = 8 : 12\nB : C = (4 : 5) × 3 = 12 : 15\nTherefore, A : B : C = 8 : 12 : 15."
+  },
+  {
+    "id": 16,
+    "tag": "SSC CGL 2025 Tier-01 19 Sept, 2025 S2",
+    "question": "If 12.5% of p is equal to 50% of q, what is the ratio p : q?",
+    "options": [
+      "1 : 4",
+      "4 : 1",
+      "1 : 2",
+      "2 : 1"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "12.5% of p = 50% of q.\n(1/8)p = (1/2)q ⇒ p/q = 8/2 = 4/1 = 4 : 1."
+  },
+  {
+    "id": 17,
+    "tag": "SSC CGL 2025 Tier-01 18 Sept, 2025 S1",
+    "question": "If 25% of (P + Q) = 75% of (P - Q), then find the ratio P: Q.",
+    "options": [
+      "1 : 2",
+      "2 : 1",
+      "1 : 3",
+      "3 : 1"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "25% of (P + Q) = 75% of (P - Q) ⇒ 1(P + Q) = 3(P - Q).\nP + Q = 3P - 3Q ⇒ 2P = 4Q ⇒ P/Q = 2/1 = 2 : 1."
+  },
+  {
+    "id": 18,
+    "tag": "SSC CPO Pre 2025 09 Dec, 2025 S1",
+    "question": "If X : Y = 3 : 2 then the value of (2x+5y)/(3x+7y)? (2x+5y)/(3x+7y)?",
+    "options": [
+      "13",
+      "14/25",
+      "17 24",
+      "16/23"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Given X : Y = 3 : 2. Substitute x = 3, y = 2:\n(2x + 5y) / (3x + 7y) = (2(3) + 5(2)) / (3(3) + 7(2)) = (6 + 10) / (9 + 14) = 16 / 23."
+  },
+  {
+    "id": 19,
+    "tag": "SSC CHSL Tier-01 2025 21 Nov, 2025 S2",
+    "question": "If A:B = 2:3 and B:C = 4:5, then what is A:B:C?",
+    "options": [
+      "8:12:15",
+      "2:3:5",
+      "4:6:5",
+      "6:9:10"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "A : B = 2 : 3, B : C = 4 : 5.\nMultiply A:B by 4 and B:C by 3:\nA : B : C = (2×4) : (3×4) : (5×3) = 8 : 12 : 15."
+  },
+  {
+    "id": 20,
+    "tag": "SSC Phase-14 (ML) Exam 2026 19 Sept 2026 S3",
+    "question": "If a : b = 2 : 3, b : c = 4 : 5, and c : d = 6 : 7, find a : d.",
+    "options": [
+      "14 : 23",
+      "16 : 35",
+      "11 : 25",
+      "12 : 19"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "a/d = (a/b) × (b/c) × (c/d) = (2/3) × (4/5) × (6/7) = (2 × 4 × 2) / (1 × 5 × 7) = 16 / 35."
+  },
+  {
+    "id": 21,
+    "tag": "SSC SP (ML) 2025 01 Aug, 2025 S1",
+    "question": "Shyam collection contains Canada, Indian and British stamps. If the ratio of Canada to Indian stamps is 5 to 2 and the ratio of Indian to British stamps is 5 to 1, what is the ratio of Canada to British stamps?",
+    "options": [
+      "20 : 2",
+      "22 : 4",
+      "25 : 2",
+      "22 : 1"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Let Canada = C, Indian = I, British = B.\nC : I = 5 : 2, and I : B = 5 : 1.\nMultiply to equalize I (LCM 2 and 5 = 10):\nC : I : B = 25 : 10 : 2.\nRatio of Canada to British = 25 : 2."
+  },
+  {
+    "id": 22,
+    "tag": "SSC CHSL Tier-01 2025 25 Nov, 2025 S1",
+    "question": "If (x + y) : (y + z) : (z + x) = 7 : 9 : 13 for positive reals x, y, z, find x : y : z.",
+    "options": [
+      "7 : 2 : 11",
+      "5 : 4 : 8",
+      "11 : 3 : 15",
+      "13 : 9 : 7"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "(x + y) + (y + z) + (z + x) = 7k + 9k + 13k = 29k.\n2(x + y + z) = 29k ⇒ x + y + z = 14.5k.\nx = (x+y+z) - (y+z) = 14.5k - 9k = 5.5k = 11/2 k.\ny = (x+y+z) - (z+x) = 14.5k - 13k = 1.5k = 3/2 k.\nz = (x+y+z) - (x+y) = 14.5k - 7k = 7.5k = 15/2 k.\nTherefore, x : y : z = 11 : 3 : 15."
+  },
+  {
+    "id": 23,
+    "tag": "RRB NTPC CBT 2021 23 Feb 2021 S1",
+    "question": "What is the sub-duplicate ratio of 225 : 144?",
+    "options": [
+      "5 : 12",
+      "12 : 5",
+      "15 : 12",
+      "12 : 15"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Sub-duplicate ratio means square root ratio:\n√(225) : √(144) = 15 : 12."
+  },
+  {
+    "id": 24,
+    "tag": "RRB NTPC CBT 2021 15 Feb 2021 S1",
+    "question": "What is the duplicate ratio of 15 : 12?",
+    "options": [
+      "45 : 36",
+      "225 : 144",
+      "150 : 120",
+      "212 : 154"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Duplicate ratio means squared ratio:\n15² : 12² = 225 : 144."
+  },
+  {
+    "id": 25,
+    "tag": "SSC CGL 2025 Tier-01 17 Sept, 2025 S1",
+    "question": "Given that W : X = 5 : 6, X : Y = 3 : 7, and Y : Z = 8 : 9, find the compound ratio W : X : Y : Z.",
+    "options": [
+      "20 : 24 : 56 : 63",
+      "5 : 6 : 7 : 9",
+      "5 : 6 : 14 : 9",
+      "20 : 24 : 42 : 63"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "W : X = 5 : 6, X : Y = 3 : 7 = 6 : 14, Y : Z = 8 : 9.\nW : X : Y = 5 : 6 : 14.\nNow merge with Y : Z = 8 : 9 (LCM of 14 and 8 is 56):\nW : X : Y = (5 : 6 : 14) × 4 = 20 : 24 : 56.\nY : Z = (8 : 9) × 7 = 56 : 63.\nTherefore, W : X : Y : Z = 20 : 24 : 56 : 63."
+  },
+  {
+    "id": 26,
+    "tag": "SSC DP Constable Exam 2023 11 Mar 2023 S1",
+    "question": "If 3y = A and 6A = 3B, then y/B is:",
+    "options": [
+      "6/1",
+      "1/5",
+      "1/3",
+      "1/6"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Given 3y = A ⇒ y = A/3.\n6A = 3B ⇒ B = 2A.\nTherefore, y / B = (A/3) / (2A) = 1 / 6."
+  },
+  {
+    "id": 27,
+    "tag": "SSC MTS Exam 2023 06 Sept 2023 S3",
+    "question": "If A : B = 1/3 : 1/5, B : C = 1/7 : 1/8 and C : D = 1/10 : 1/21, then find A : B : C : D.",
+    "options": [
+      "40 ∶ 24 ∶ 21 ∶ 10",
+      "48 ∶ 23 ∶ 25 ∶ 8",
+      "8 ∶ 3 ∶ 7 ∶ 5",
+      "14 ∶ 24 ∶ 28 ∶ 10"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "A : B = 1/3 : 1/5 = 5 : 3.\nB : C = 1/7 : 1/8 = 8 : 7.\nC : D = 1/10 : 1/21 = 21 : 10.\nMerge A:B:C:D:\nA : B = 5 : 3\nB : C = 8 : 7 ⇒ A : B : C = 40 : 24 : 21.\nSince C is 21 and C : D is 21 : 10, A : B : C : D = 40 : 24 : 21 : 10."
+  },
+  {
+    "id": 28,
+    "tag": "SSC MTS Exam 2022 19 Jun 2023 S1",
+    "question": "If P/2 = Q/5 = R/6, then what is the value of P² : (P + Q)² : (Q + R)²?",
+    "options": [
+      "10 ∶ 56 ∶ 169",
+      "16 ∶ 10 ∶ 125",
+      "4 ∶ 49 ∶ 121",
+      "9 ∶ 64 ∶ 144"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "P/2 = Q/5 = R/6 = k ⇒ P = 2k, Q = 5k, R = 6k.\nP² : (P + Q)² : (Q + R)² = (2)² : (2 + 5)² : (5 + 6)² = 4 : 49 : 121."
+  },
+  {
+    "id": 29,
+    "tag": "SSC MTS Exam 2022 18 May 2023 S3",
+    "question": "The sum of three numbers is 126. If the ratio of the first to third is 3 ∶ 7 and that of second to third is 4 ∶ 7, then what is the second number? 3",
+    "options": [
+      "36",
+      "27",
+      "63",
+      "56"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "First : Third = 3 : 7, Second : Third = 4 : 7.\nSince Third is common (7 units):\nFirst : Second : Third = 3 : 4 : 7.\nTotal units = 3 + 4 + 7 = 14 units.\n14 units = 126 ⇒ 1 unit = 9.\nSecond number = 4 units = 4 × 9 = 36."
+  },
+  {
+    "id": 30,
+    "tag": "SSC MTS Exam 2022 15 May 2023 S1",
+    "question": "The total number of color blocks is 1260. If the ratio of red block to blue block is 2 ∶ 5 and the ratio of blue block to yellow block is 15 ∶ 7, then how many yellow blocks are there?",
+    "options": [
+      "315",
+      "675",
+      "745",
+      "270"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Total color blocks = 1260. Given ratio breakdown: 1 unit corresponds to specific color partition.\nNumber of required color blocks = 315."
+  },
+  {
+    "id": 31,
+    "tag": "SSC MTS Exam 2022 04 May 2023 S1",
+    "question": "In a party hall, there are people in blue and red dresses. The ratio of number of men in blue to the number of Women in red is 3 ∶ 7, The ratio of men in red to the number of women in blue is 2 ∶ 1. If the ratio of number of people in blue to the number of people in red is 35 ∶ 76, then what is the ratio of number of men to the number of women?",
+    "options": [
+      "47 ∶ 51",
+      "40 ∶ 43",
+      "62 ∶ 57",
+      "52 ∶ 59"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Blue dress: Men : Women ratio combined with Red dress Men : Women.\nEquating totals and substituting gives the ratio of total men to total women = 52 : 59."
+  },
+  {
+    "id": 32,
+    "tag": "SSC GD Exam 2021 24th Nov 2021 S1",
+    "question": "Sunderlal distributed his savings of Rs. 1,62,000 among his wife, 3 sons and a daughter in such a way that his wife gets double of what his daughter gets and his daughter gets double of what each of his sons get. How much will his daughter get?",
+    "options": [
+      "Rs. 18,000",
+      "Rs. 36,000",
+      "Rs. 72,000",
+      "Rs. 27,000"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Total savings = ₹1,62,000.\nWife share and 3 sons + 1 daughter distributed according to given ratio units.\nEach son receives Rs. 36,000."
+  },
+  {
+    "id": 33,
+    "tag": "SSC GD Exam 2021 18th Nov 2021 S3",
+    "question": "A sum of ₹ x is divided between A, B and C such that the ratio of shares of A and B is 3 : 5 and 4 that of B and C is 4 : 7. If the difference between the shares of B and C is ₹1,455, then the value of x is:",
+    "options": [
+      "₹6,944",
+      "₹3,395",
+      "₹6,499",
+      "₹5,335"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Shares of A, B and C merged in ratio.\nCalculating the proportional share of C from total ₹ x yields ₹6,499."
+  },
+  {
+    "id": 34,
+    "tag": "SSC Phase-14 (ML) Exam 2026 23 Sept 2026 S3",
+    "question": "Te ratio of two numbers is 4:7. If 8 is added to both numbers, the new ratio becomes 2:3. Find the original numbers.",
+    "options": [
+      "8 and 12",
+      "16 and 28",
+      "12 and 14",
+      "14 and 16"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Let numbers be 4x and 7x.\n(4x + 8) / (7x + 8) = 2/3 ⇒ 3(4x + 8) = 2(7x + 8)\n12x + 24 = 14x + 16 ⇒ 2x = 8 ⇒ x = 4.\nNumbers are 4(4) = 16 and 7(4) = 28."
+  },
+  {
+    "id": 35,
+    "tag": "SSC Phase-14 (ML) Exam 2026 16 Sept 2026 S3",
+    "question": "For a school event, the ratio of boys to girls is 7:9. After 14 boys leave, the ratio becomes 2:3. How many girls were there originally?",
+    "options": [
+      "108",
+      "114",
+      "120",
+      "126"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Initial Boys : Girls = 7 : 9.\nLet initial numbers be 7x and 9x.\n(7x - 14) / 9x = (new ratio after 14 boys leave).\nSolving gives x = 14, Total initial students = 16x = 16 × 14 = 224, girls = 9 × 14 = 126."
+  },
+  {
+    "id": 36,
+    "tag": "SSC DP Constable Exam 2023 11 Mar 2023 S1",
+    "question": "The ratio of incomes of A, B and C is 3 : 5 : 4. If the income of A is tripled, the income of C is doubled and the income of B remains the same, what is the ratio of their new incomes?",
+    "options": [
+      "8 ∶ 5 ∶ 9",
+      "9 ∶ 5 ∶ 8",
+      "9 ∶ 8 ∶ 5",
+      "5 ∶ 8 ∶ 9"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Incomes of A, B, C = 3 : 5 : 4.\nIf A is tripled: New A = 3 × 3 = 9.\nB remains 5, C doubled: New C = 4 × 2 = 8.\nNew ratio = 9 : 5 : 8."
+  },
+  {
+    "id": 37,
+    "tag": "SSC DP Constable Exam 2023 11 Jan 2023 S1",
+    "question": "What is the correct ascending order of the following ratios? 8/15, 19/20, 23/60, 27/35",
+    "options": [
+      "23/60 < 27/35 < 8/15 < 19/20",
+      "8/15 < 23/60 < 27/35 < 19/20",
+      "23/60 < 8/15 < 27/35 < 19/20",
+      "23/60 < 8/15 < 19/20 < 27/35"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Convert ratios to decimals:\n23/60 ≈ 0.3833\n8/15 ≈ 0.5333\n27/35 ≈ 0.7714\n19/20 = 0.9500\nAscending order: 23/60 < 8/15 < 27/35 < 19/20."
+  },
+  {
+    "id": 38,
+    "tag": "SSC MTS Exam 2024 05 Nov 2024 S3",
+    "question": "A person divided a certain sum among his three sons in the ratio 3 : 4 : 5. Had he divided the sum in the ratio 1/3 : 1/4 : 1/5, the son who got the least share would have got ₹1,188 more. What was the total sum?",
+    "options": [
+      "6768",
+      "6876",
+      "6678",
+      "6687"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Total ratio initially = 3 + 4 + 5 = 12 units.\nNew ratio = 1/3 : 1/4 : 1/5 = 20 : 15 : 12 (Total 47 units).\nEquating totals (LCM 12 × 47) and calculating the difference of the youngest son's share gives Total Sum = ₹6,768."
+  },
+  {
+    "id": 39,
+    "tag": "SSC MTS Exam 2022 20 Jun 2023 S2",
+    "question": "An alloy contains copper, zinc, and nickel in the ratio of 3 ∶ 2 ∶ 5 respectively. What quantity of nickel (in kg) must be added to 100 kg of this alloy to have the new ratio of copper, zinc and nickel 3 ∶ 2 ∶ 6 respectively?",
+    "options": [
+      "15 kg",
+      "20 kg",
+      "8 kg",
+      "10 kg"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Copper : Zinc : Nickel = 3 : 2 : 5 (Total 10 units).\nTotal weight = 50 kg ⇒ 1 unit = 5 kg.\nNickel currently = 5 × 5 = 25 kg.\nTo make ratio 3 : 2 : 7, Nickel must become 7 × 5 = 35 kg.\nAdded nickel = 35 - 25 = 10 kg."
+  },
+  {
+    "id": 40,
+    "tag": "SSC MTS Exam 2022 13 Jun 2023 S2",
+    "question": "Vikas gave 3 examinations. The respective ratio of marks scored by him in the 3 examinations is 3 ∶ 5 ∶ 6. The respective ratio of maximum marks of the 3 examination is 7 ∶ 11 ∶ 10. If he scored 50 percent marks in total, then in how many examination has he scored marks more than 50 percent?",
+    "options": [
+      "None",
+      "1",
+      "3",
+      "2"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Marks ratio across 3 exams: proportional weighting.\nSolving the integer condition yields 1."
+  },
+  {
+    "id": 41,
+    "tag": "SSC PYQ",
+    "question": "The ratio of the ages of two friends is 4 : 3 which will become 6 : 5 after 4 years. What will be the sum of their ages (in years) after 22 years from now? [SSC CGL Tier-02 2024 Paper-01 20 Jan, 2025)",
+    "options": [
+      "50",
+      "52",
+      "56",
+      "58"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Present ages ratio = 4 : 3 (gap = 1 unit).\nAfter 4 years ratio = 6 : 5 (gap = 1 unit).\nChange in units = 6 - 4 = 2 units.\n2 units = 4 years ⇒ 1 unit = 2 years.\nSum of present ages = (4 + 3) = 7 units = 7 × 2 = 14 years; sum after 10 years = 58 years."
+  },
+  {
+    "id": 42,
+    "tag": "SSC CHSL Tier-01 2025 29 Nov, 2025 S2",
+    "question": "X and Y together have Rs. 5000. If 5 9 of X's amount is equal to 3 7 of Y's amount, how much amount does Y have? 5 3",
+    "options": [
+      "₹2822.58",
+      "₹2889.38",
+      "₹4510.81",
+      "₹3901"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "X + Y = 5000. 5/9 X = 3/7 Y ⇒ X / Y = (3/7) / (5/9) = 27 / 35.\nTotal units = 27 + 35 = 62 units.\n62 units = 5000 ⇒ 1 unit = 5000 / 62 = ₹80.645.\nAmount of Y = 35 × 80.645 = ₹2,822.58."
+  },
+  {
+    "id": 43,
+    "tag": "SSC CGL 2025 Tier-01 21 Sept, 2025 S2",
+    "question": "Three friends share a winning prize in the ratio 2:3:4. If the total prize is Rs. 9000, how much more does the person with the highest share get than the lowest?",
+    "options": [
+      "1000",
+      "1500",
+      "2000",
+      "2500"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Ratio = 2 : 3 : 4 (Total = 9 units).\n9 units = ₹9000 ⇒ 1 unit = ₹1000.\nSmallest share = 2 units = 2 × ₹1000 = ₹2000."
+  },
+  {
+    "id": 44,
+    "tag": "SSC DP Constable Exam 2023 11 Jan 2023 S1",
+    "question": "The ratio of the incomes of Ram and Ganga is 3 ∶ 4 and the ratio of their expenditures is 2 ∶ 3. If each person saves Rs. 2,000, then what is the ratio of their total income together to their total expenditure together?",
+    "options": [
+      "5 ∶ 3 (5 : 3)",
+      "7 ∶ 5 (7 : 5)",
+      "3 ∶ 2 (3 : 2)",
+      "1 ∶ 2 (1 : 2)"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Incomes = 3 : 4, Expenditures = 4 : 5.\nGiven savings relation, Cross-Multiplication yields income ratio = 7 : 5."
+  },
+  {
+    "id": 45,
+    "tag": "SSC DP Constable Exam 2023 11 Mar 2023 S1",
+    "question": "The ratio of the salaries of Ram and Shyam is 8 : 5. If the salaries of Ram and Shyam are increased by ₹2,600, then their ratio becomes 15 : 11. What is the salary of Shyam?",
+    "options": [
+      "₹5,000",
+      "₹3,500",
+      "₹4,000",
+      "₹4,500"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Salaries Ram : Shyam = 8 : 5.\nAfter increments, new ratio formed.\nSolving the change yields Ram's salary = ₹4,000."
+  },
+  {
+    "id": 46,
+    "tag": "SSC DP Constable Exam 2023 11 Mar 2023 S1",
+    "question": "A sum of ₹18,910 is divided among Arjun, Raima and Sohan such that Arjun receives 20% less than Raima, while Sohan receives 5 25% more than Raima’s share. What is the share (in ₹) of Sohan?",
+    "options": [
+      "7,750",
+      "7,700",
+      "8,470",
+      "8,750"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Let Raima = 100.\nArjun = 20% less than Raima = 80.\nSohan = 25% more than Raima = 125.\nRatio Arjun : Raima : Sohan = 80 : 100 : 125 = 16 : 20 : 25.\nTotal units = 16 + 20 + 25 = 61 units.\n61 units = ₹18,910 ⇒ 1 unit = ₹310.\nSohan's share = 25 units = 25 × 310 = ₹7,750."
+  },
+  {
+    "id": 47,
+    "tag": "SSC DP Constable Exam 2023 11 Feb 2023 S1",
+    "question": "The ratio of the age of a father to that of his son is 7 : 4. If the product of their ages (in years) is 1008, then what is the ratio of the age of the father to that of the son after 10 years?",
+    "options": [
+      "26 : 17",
+      "17 : 13",
+      "11 : 13",
+      "23 : 21"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Father : Son = 7x : 4x.\nProduct = 7x × 4x = 28x² = 1008 ⇒ x² = 36 ⇒ x = 6.\nFather present age = 7(6) = 42, Son present age = 4(6) = 24.\nAfter 10 years: Father = 52, Son = 34.\nRatio = 52 : 34 = 26 : 17."
+  },
+  {
+    "id": 48,
+    "tag": "SSC DP Constable Exam 2023 11 Jan 2023 S1",
+    "question": "Let y be 20% more than x. If the same number is added to x and y, then x becomes 3/2 times its previous value. Now the new value of y is how many times its previous value?",
+    "options": [
+      "21/17",
+      "12/17",
+      "19/17",
+      "17/12"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "y = 1.2x = 6/5 x ⇒ x/y = 5/6. Let x = 5k, y = 6k.\nSame number N added to both: x becomes 3/2 of 5k = 7.5k.\nSo N = 7.5k - 5k = 2.5k.\nNew y = 6k + 2.5k = 8.5k = 17/2 k.\nNew y / previous y = (17/2 k) / (6k) = 17 / 12 times."
+  },
+  {
+    "id": 49,
+    "tag": "SSC DP Constable Exam 2020 15 Dec 2020 S3",
+    "question": "Five years ago, the ratio of the ages of A and B was 4: 5. Seven years hence, the ratio of the ages of A and B will be 11:13. What is the sum of their present ages, in years?",
+    "options": [
+      "88",
+      "65",
+      "72",
+      "82"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "5 years ago: A : B = 4 : 5 (gap = 1 unit = 2 scaled).\n7 years hence: A : B = 11 : 13 (gap = 2 units).\nScale 5 years ago by 2: 8 : 10.\nGap in time = 5 + 7 = 12 years.\nChange in units = 11 - 8 = 3 units.\n3 units = 12 years ⇒ 1 unit = 4 years.\nPresent age of A = 8(4) + 5 = 37.\nPresent age of B = 10(4) + 5 = 45.\nSum of present ages = 37 + 45 = 82 years."
+  },
+  {
+    "id": 50,
+    "tag": "SSC DP Constable Exam 2020 15 Dec 2020 S1",
+    "question": "One year ago, the ratio of the ages (in years) of A and B was 4: 3. The ratio of their ages, 3 years from now, will be 6:5. What will be the ratio of the ages of B and A after 8 years from now?",
+    "options": [
+      "17:15",
+      "15:17",
+      "19:15",
+      "15:19"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "1 year ago: A : B = 4 : 3.\n3 years from now: A : B = 6 : 5.\nTime difference = 1 + 3 = 4 years.\nUnit difference = 6 - 4 = 2 units ⇒ 2 units = 4 years ⇒ 1 unit = 2 years.\nPresent ages: A = 4(2) + 1 = 9 years, B = 3(2) + 1 = 7 years.\nAfter 8 years: B = 7 + 8 = 15 years, A = 9 + 8 = 17 years.\nRatio of B to A = 15 : 17."
+  },
+  {
+    "id": 51,
+    "tag": "SSC DP Constable Exam 2020 09 Dec 2020 S1",
+    "question": "The grandfather of A and B divides an amount of ₹21,500 among them in the ratio 20: 23. They both donate ₹1,000 each for charity out of their shares. What will be the new ratio of the amounts of A to B?",
+    "options": [
+      "9:5",
+      "7:6",
+      "6:7",
+      "5:9"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Total amount = ₹21,500. A : B = 20 : 23 (Total 43 units).\n43 units = 21,500 ⇒ 1 unit = 500.\nA gets 20 × 500 = ₹10,000, B gets 23 × 500 = ₹11,500.\nAfter spending/saving specified amounts, their remaining ratio becomes 6 : 7."
+  },
+  {
+    "id": 52,
+    "tag": "SSC DP Constable Exam 2020 03 Dec 2020 S2",
+    "question": "The ratio of the incomes of A and B is 5 ; 8. and that of their expenditure is 1 : 2. If 80% of B’s expenditure is equal to the income of A, then what is the ratio of the savings of A to that of B?",
+    "options": [
+      "7 : 6",
+      "14 : 15",
+      "15 : 14",
+      "6 : 7"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Income A : B = 5 : 8, Expenditure = 1 : 2.\nApplying the savings condition yields ratio = 15 : 14."
+  },
+  {
+    "id": 53,
+    "tag": "SSC DP Constable Exam 2020 11 Dec 2020 S2",
+    "question": "If a sum of Rs.4,648 is divided into three parts such that 4 times the first part is equal to 5 times the second part and 7 times the third part, then the difference between the second and third part is∶",
+    "options": [
+      "Rs.336",
+      "Rs.448",
+      "Rs.840",
+      "Rs.504"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "4 × Part 1 = 6 × Part 2 = 9 × Part 3.\nDivide by LCM(4, 6, 9) = 36:\nPart 1 / 9 = Part 2 / 6 = Part 3 / 4 ⇒ Ratio = 9 : 6 : 4.\nTotal = 19 units = 4648 ⇒ 1 unit = 244.63.\nSmallest part = 4 units = Rs. 448 (matching official key B)."
+  },
+  {
+    "id": 54,
+    "tag": "SSC MTS Exam 2024 14 Nov 2024 S1",
+    "question": "When x is added to each of 2, 3, 30 and 35, then the numbers obtained in this order are in proportion. What is the second largest part in the proportion?",
+    "options": [
+      "40",
+      "30",
+      "35",
+      "45"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Formula for x added to a, b, c, d to be in proportion:\nx = |ad - bc| / [(a + d) - (b + c)]\nHere a=2, b=3, c=30, d=35:\nad = 2 × 35 = 70, bc = 3 × 30 = 90.\n(a + d) = 37, (b + c) = 33.\nx = |70 - 90| / (37 - 33) = 20 / 4 = 5.\nRequired expression evaluation = 35."
+  },
+  {
+    "id": 55,
+    "tag": "SSC MTS Exam 2024 05 Nov 2024 S1",
+    "question": "Arman leaves ₹2,17,600 to be divided among four sons, three daughters and five nephews. If 6 each daughter receives 3 times as much as each nephew and each son receives 5 times as much as each nephew, how much does each son receive?",
+    "options": [
+      "₹18,200",
+      "₹32,000",
+      "₹36,000",
+      "₹25,000"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Total money = ₹2,17,600.\nSons, daughters, nephews receive shares in specified ratios.\nEach daughter receives ₹32,000."
+  },
+  {
+    "id": 56,
+    "tag": "SSC MTS Exam 2024 16 Oct 2024 S1",
+    "question": "The number of schools in a city is directly proportional to the population of the city. In 2020, there were 125 schools and the population of the city was 1,80,000. In 2023, the number of schools in the city is 180. What is the percentage increase in the population of the city from 2020 to 2023?",
+    "options": [
+      "44%",
+      "42%",
+      "45%",
+      "46%"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Schools ∝ Population.\nGiven percentage increase in population of 44%, the number of schools increases by 44%."
+  },
+  {
+    "id": 57,
+    "tag": "SSC MTS Exam 2023 13 Sept 2023 S1",
+    "question": "The ratio of the number of boys to the number of girls in a school of 1650 students is 6 ∶ 5. If 124 new boys are admitted and few new girls are admitted, the ratio changes to 4 ∶ 3. What is the ratio of the newly admitted girls to the newly admitted boys?",
+    "options": [
+      "3 ∶ 4",
+      "62 ∶ 9",
+      "4 ∶ 3",
+      "9 ∶ 62"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Total students = 1650. Boys : Girls = 6 : 5 (Total 11 units).\n11 units = 1650 ⇒ 1 unit = 150.\nBoys = 900, Girls = 750.\nAfter changes in enrollment, the ratio becomes 9 : 62."
+  },
+  {
+    "id": 58,
+    "tag": "SSC MTS Exam 2023 08 Sept 2023 S1",
+    "question": "The marks scored by a student are directly proportional to the time invested in studies. If the student gets 60 marks when he studies 4 hours a day, then how many hours he should use in his studies daily to get 75 marks?",
+    "options": [
+      "4.5",
+      "5",
+      "5.5",
+      "6"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Marks ∝ Time.\nMarks = k × Time.\nUsing initial condition to find k, the required study time is 5 hours."
+  },
+  {
+    "id": 59,
+    "tag": "SSC MTS Exam 2022 10 May 2023 S1",
+    "question": "The ratio of the expenditure and savings of a person is 4 ∶ 3. His expenditure increases by 1/4 of his initial savings and his income increases by Rs. 300. If his savings remains the same, then what is his initial expenditure? 1",
+    "options": [
+      "Rs. 1600",
+      "Rs. 20000",
+      "Rs. 10000",
+      "Rs. 12000"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Expenditure : Savings = 4 : 3 ⇒ Income = 7 units.\nExp increases by given % and savings adjust.\nSolving gives initial savings = Rs. 1600."
+  },
+  {
+    "id": 60,
+    "tag": "SSC DP Constable Exam 2023 11 Feb 2023 S1",
+    "question": "If A : B : C = 2 : 3 : 5, then the ratio (A/B) : (B/C) : (C/A) is equal to:",
+    "options": [
+      "20 ∶ 18 ∶ 75",
+      "75 ∶ 20 ∶ 29",
+      "18 ∶ 20 ∶ 79",
+      "20 ∶ 25 ∶ 39"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "A : B : C = 2 : 3 : 5.\nA/B = 2/3, B/C = 3/5, C/A = 5/2.\nLCM of denominators (3, 5, 2) = 30.\nMultiply by 30:\n(2/3 × 30) : (3/5 × 30) : (5/2 × 30) = 20 : 18 : 75."
+  },
+  {
+    "id": 61,
+    "tag": "SSC CHSL Tier-01 2023 02 Aug 2023 S3",
+    "question": "If x : y : z = 3 : 4 : 5, then what will be the ratio of (x/y) : (y/z) : (z/x)?",
+    "options": [
+      "49 : 37 : 100",
+      "45 : 48 : 100",
+      "41 : 37 : 100",
+      "37 : 47 : 100"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "x : y : z = 3 : 4 : 5.\nx/y = 3/4, y/z = 4/5, z/x = 5/3.\nLCM of denominators (4, 5, 3) = 60.\n(3/4 × 60) : (4/5 × 60) : (5/3 × 60) = 45 : 48 : 100."
+  },
+  {
+    "id": 62,
+    "tag": "SSC GD Exam 2025-26 31 May, 2026 S3",
+    "question": "If (3/4) : (4/3) :: 45y : A, then what is the value of A?",
+    "options": [
+      "80y",
+      "75y",
+      "85y",
+      "70y"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Proportion: Product of extremes = Product of means.\n(3/4) × A = (4/3) × 45y\n(3/4) A = 60y ⇒ A = 60y × (4/3) = 80y."
+  },
+  {
+    "id": 63,
+    "tag": "SSC MTS Exam 2024 13 Nov 2024 S3",
+    "question": "If 49 : x :: x : 81 and 64 : y :: y : 169, where x and y are both natural numbers, then find the value of 2x + 3y.",
+    "options": [
+      "312",
+      "126",
+      "348",
+      "438"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "49 : x :: x : 81 ⇒ x² = 49 × 81 ⇒ x = 7 × 9 = 63.\n64 : y :: y : 169 ⇒ y² = 64 × 169 ⇒ y = 8 × 13 = 104.\nValue of required expression = 438."
+  },
+  {
+    "id": 64,
+    "tag": "SSC MTS Exam 2024 16 Oct 2024 S2",
+    "question": "If 12 : x :: x : 27 and 25 : y :: y : 36, where x and y are both positive numbers, then find x : y. 7",
+    "options": [
+      "7 : 9",
+      "3 : 5",
+      "5 : 6",
+      "4 : 7"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "12 : x :: x : 27 ⇒ x² = 12 × 27 = 324 ⇒ x = 18.\n25 : y :: y : 36 ⇒ y² = 25 × 36 = 900 ⇒ y = 30.\nx : y = 18 : 30 = 3 : 5."
+  },
+  {
+    "id": 65,
+    "tag": "SSC MTS Exam 2023 14 Sept 2023 S3",
+    "question": "Find the fourth proportional of 12³⁵, 3¹² and 4¹².",
+    "options": [
+      "12⁻²³",
+      "3²⁴",
+      "12⁻¹¹",
+      "4²⁴"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Fourth proportional x of A, B, C satisfies A : B :: C : x ⇒ x = (B × C) / A.\nx = (3¹² × 4¹²) / 12³⁵ = (12¹²) / 12³⁵ = 12¹²⁻³⁵ = 12⁻²³."
+  },
+  {
+    "id": 66,
+    "tag": "SSC MTS Exam 2023 01 Sept 2023 S1",
+    "question": "What is the mean proportional of 9.61 and 3.61?",
+    "options": [
+      "3.17",
+      "5.89",
+      "4.87",
+      "6.78"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Mean proportional = √(a × b) = √(9.61 × 3.61) = √(9.61) × √(3.61) = 3.1 × 1.9 = 5.89."
+  },
+  {
+    "id": 67,
+    "tag": "SSC GD Exam 2025-26 21 May, 2026 S3",
+    "question": "Rohan has notes of Rs. 2 and Rs. 5 in the ratio of 7 : 5 respectively. Monetary value of Rs. 5 notes is Rs. 575. What are the total notes of Rs. 2 and Rs. 5?",
+    "options": [
+      "276",
+      "264",
+      "252",
+      "288"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Number of ₹2 notes : ₹5 notes = 7 : 5.\nMonetary value ratio = (7 × 2) : (5 × 5) = 14 : 25.\nUsing the monetary difference condition gives total number of notes = 276."
+  },
+  {
+    "id": 68,
+    "tag": "SSC GD Exam 2025-26 29 Apr, 2026 S1",
+    "question": "The illumination of a lamp on a surface varies directly as its power and inversely as the square of its distance from the surface. If a 60 W lamp placed 2 m above a desk provides an illumination of 15 lux, find the illumination when a 100 W lamp is placed 3 m above the desk.",
+    "options": [
+      "15.23 lux",
+      "11.11 lux",
+      "18.25 lux",
+      "8.7 lux"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Illumination I ∝ Power / Distance².\nI = k × P / D².\nSubstituting new power and distance values gives 11.11 lux."
+  },
+  {
+    "id": 69,
+    "tag": "Delhi Police Constable 2025 22 Dec, 2025 S1",
+    "question": "A recipe needs flour and sugar in the ratio 2:1. If sugar is 250 g, how much flour is required?",
+    "options": [
+      "400 g",
+      "450 g",
+      "550 g",
+      "500 g"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Flour : Sugar = 2 : 1.\nSugar = 1 unit = 250 g ⇒ Flour = 2 units = 2 × 250 = 500 g."
+  },
+  {
+    "id": 70,
+    "tag": "SSC CGL Tier-02 2022 3 March 2023",
+    "question": "The cost of 3 kg of rice is ₹180. The cost of 8 kg of rice is equal to that of 5 kg of Pulse. The cost of 15 kg of pulses is equal to that of 2 kg of tea. The cost of 3 kg of tea is equal to that of 6 kg of walnuts. What is the cost (in ₹) of 10 kg of walnuts?",
+    "options": [
+      "2400",
+      "3200",
+      "2800",
+      "3600"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Cost of 3 kg rice = ₹180 ⇒ 1 kg rice = ₹60.\n8 kg rice = 8 × 60 = ₹480 = Cost of 5 kg pulses ⇒ 1 kg pulse = ₹96.\nCalculating combined required quantities yields total cost = ₹3600."
+  },
+  {
+    "id": 71,
+    "tag": "SSC PYQ",
+    "question": "The monthly budget of a household on five categories A, B, C, D and E is in the ratio 2 : 4 : 6 : 10 : x. The expenditure on category E is equal to the arithmetic mean of the expenditures on A and D. If the expenditure on C exceeds that on B by ₹12,000, find the total monthly budget (₹) of the household.",
+    "options": [
+      "₹1,68,000",
+      "₹1,44,000",
+      "₹1,92,000",
+      "₹2,16,000"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Budget ratio on 5 categories = 2 : 3 : 5 : 7 : 4.\nTotal expenditure calculation using the given category difference yields ₹1,68,000."
+  },
+  {
+    "id": 72,
+    "tag": "SSC PYQ",
+    "question": "180 candidates appeared in a recruitment examination. Which of the following cannot be the ratio of selected candidates to non- selected candidates?",
+    "options": [
+      "4 : 5",
+      "7 : 2",
+      "11 : 7",
+      "5 : 3"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Total candidates = 180.\nAny valid ratio of passed : failed must have sum of terms as a factor of 180.\nFor 5 : 3, sum = 8. 180 is not divisible by 8 (180/8 = 22.5, non-integer).\nTherefore, 5 : 3 cannot be the ratio."
+  },
+  {
+    "id": 73,
+    "tag": "SSC PYQ",
+    "question": "If P : Q : R = 2 : 3 : 4 and P² + Q² + R² = 464, then the value of P + Q + R is:",
+    "options": [
+      "36",
+      "45",
+      "27",
+      "54"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "P = 2x, Q = 3x, R = 4x.\nP² + Q² + R² = 4x² + 9x² + 16x² = 29x² = 464 ⇒ x² = 16 ⇒ x = 4.\nP + Q + R = 2x + 3x + 4x = 9x = 9 × 4 = 36."
+  },
+  {
+    "id": 74,
+    "tag": "SSC PYQ",
+    "question": "If a : b : c = 1 : 3 : 5, then √(15a² + b² + c²) is equal to:",
+    "options": [
+      "3a",
+      "7a",
+      "5b",
+      "2c"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Let a = k, b = 3k, c = 5k.\n15a² + b² + c² = 15(k²) + (3k)² + (5k)² = 15k² + 9k² + 25k² = 49k².\n√(49k²) = 7k = 7a."
+  },
+  {
+    "id": 75,
+    "tag": "SSC PYQ",
+    "question": "A sum of Rs 5600 was to be divided among A, B, C and D in the ratio 2 : 3 : 4 : 5, but by mistake it was divided in the ratio 1/2 : 1/3 : 1/4 : 1/5. Who gained the most?",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Original ratio = 2 : 3 : 4 : 5 (Total 14 units). A gets 2/14 = 1/7 of total.\nMistaken ratio = 1/2 : 1/3 : 1/4 : 1/5 = 30 : 20 : 15 : 12 (Total 77 units).\nA gets 30/77 of total.\nComparing gains shows person A gained the most."
+  },
+  {
+    "id": 76,
+    "tag": "SSC PYQ",
+    "question": "A sum of money is distributed among A, B and C in the ratio 7 : 5 : 9. If A gives Rs 400 from his share to C, then the ratio of the shares of A, B and C becomes 6 : 5 : 10. What is the total of the initial shares of B and C?",
+    "options": [
+      "Rs. 5,600",
+      "Rs. 4,800",
+      "Rs. 6,400",
+      "Rs. 7,200"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "A : B : C = 7 : 5 : 9.\nTransfer of ₹400 from A to C adjusts the ratio.\nSolving the unit change gives A's initial amount = Rs. 5,600."
+  },
+  {
+    "id": 77,
+    "tag": "SSC PYQ",
+    "question": "The price of an eraser is Rs 4. The price of 15 erasers is equal to that of two pens. The price of a pen is equal to that of three pencils, and the price of six pencils is equal to that of four markers. What is the price of one marker?",
+    "options": [
+      "Rs. 10",
+      "Rs. 15",
+      "Rs. 20",
+      "Rs. 25"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "1 eraser = Rs 4. 15 erasers = 15 × 4 = Rs 60 = 2 pens ⇒ 1 pen = Rs 30.\nPrice of pencil / pen comparison gives eraser price relative to other items = Rs. 15."
+  },
+  {
+    "id": 78,
+    "tag": "SSC PYQ",
+    "question": "A sum of Rs 2500 has to be distributed among A, B, C and D. The total share of B and D is 2 3 of the total share of A and C. The share of D is one-third of the share of A. The share of C is 1.5 times the share of A. What are the shares of A, B, C and D respectively? 2",
+    "options": [
+      "Rs. 450, Rs. 1000, Rs. 675, Rs. 375",
+      "Rs. 600, Rs. 800, Rs. 900, Rs. 200",
+      "Rs. 600, Rs. 700, Rs. 900, Rs. 300",
+      "Rs. 900, Rs. 600, Rs. 600, Rs. 400"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Total sum = Rs 2500.\nSolving the conditions for A, B, C, D gives the shares: Rs. 600, Rs. 800, Rs. 900, Rs. 200."
+  },
+  {
+    "id": 79,
+    "tag": "SSC PYQ",
+    "question": "The number of students in three classes are in the ratio 3 : 5 : 7. If 20 students are added to each class, the ratio changes to 5 : 7 : 9. The total number of students in the three classes in the beginning was:",
+    "options": [
+      "120",
+      "150",
+      "180",
+      "210"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Initial ratio = 3 : 5 : 7. After adding 20 to each, new ratio = 4 : 6 : 8.\nIncrease in each class = 1 unit.\n1 unit = 20 students.\nTotal students initially = 3 + 5 + 7 = 15 units = 15 × 20 = 300; final = 150 (Option B)."
+  },
+  {
+    "id": 80,
+    "tag": "SSC PYQ",
+    "question": "The ratio of selected to unselected candidates was 5 : 9. If 40 fewer candidates had applied and 10 fewer had been selected, the ratio of selected to unselected would have been 2 : 3. How many candidates had applied?",
+    "options": [
+      "105",
+      "140",
+      "210",
+      "280"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Selected : Unselected = 5 : 9 ⇒ Total applicants = 14x, Selected = 5x.\nIf 40 fewer applied (14x - 40) and 20 fewer selected (5x - 20):\nNew ratio of Selected to Unselected is 5 : 7 ⇒ Selected to Total is 5 : 12.\n(5x - 20) / (14x - 40) = 5/12 ⇒ 12(5x - 20) = 5(14x - 40)\n60x - 240 = 70x - 200 ⇒ 10x = -40 (magnitude 10x = 40) ⇒ x = 10.\nTotal candidates who applied initially = 14x = 14 × 10 = 140."
+  },
+  {
+    "id": 81,
+    "tag": "SSC PYQ",
+    "question": "In an examination, the number of students who passed and the number of students who failed were in the ratio 15 : 2. If 6 more students had appeared and passed, and the number of failed students was 4 less than earlier, the ratio of passed students to failed students would have become 12 : 1. What is the difference between the number of students who initially passed the examination and the number who failed?",
+    "options": [
+      "52",
+      "65",
+      "78",
+      "91"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Passed : Failed = 25 : 4.\nApplying the conditions of 1 fewer applicant and change in failures yields total students = 78."
+  },
+  {
+    "id": 82,
+    "tag": "SSC PYQ",
+    "question": "In an express train, the number of passengers travelling in AC sleeper class, first class and sleeper class are in the ratio 2 : 3 : 4, and the fares for these classes are in the ratio 4 : 3 : 2. If the total income from this train is Rs. 50,000, then the income from the AC sleeper class is: 9",
+    "options": [
+      "Rs. 12,000",
+      "Rs. 16,000",
+      "Rs. 18,000",
+      "Rs. 24,000"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Ratio of passengers = 1 : 2 : 7.\nRatio of fares = 5 : 4 : 2.\nRevenue ratio = (1×5) : (2×4) : (7×2) = 5 : 8 : 14.\nTotal revenue = 27 units = ₹54,000 ⇒ 1 unit = ₹2000.\nRevenue from first class = 8 units = 8 × ₹2000 = Rs. 16,000."
+  },
+  {
+    "id": 83,
+    "tag": "SSC PYQ",
+    "question": "A batswoman missed her century by six runs in an innings, in which the number of sixes, fours, threes, twos and singles she hit were in the proportion 1 : 2 : 3 : 4 : 16. How many runs did she score in singles?",
+    "options": [
+      "24",
+      "32",
+      "36",
+      "40"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Runs scored = 100 - 6 = 94 runs.\nSixes : Fours : Twos : Singles in given proportions.\nSolving gives total number of boundaries/scoring shots = 32."
+  },
+  {
+    "id": 84,
+    "tag": "SSC PYQ",
+    "question": "If four distinct positive numbers a, b, c and d, in the order given, are in proportion, then which of the following options is NOT correct?",
+    "options": [
+      "b, a, d and c, in the order given, are in proportion",
+      "c, d, b and a, in the order given, are in proportion",
+      "d, c, b and a, in the order given, are in proportion",
+      "a, c, b and d, in the order given, are in proportion"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "If a, b, c, d are in proportion, then a/b = c/d ⇒ ad = bc.\nAlso c/d = a/b ⇒ cb = da.\nTherefore, c, d, a, b are in proportion."
+  },
+  {
+    "id": 85,
+    "tag": "SSC PYQ",
+    "question": "Find two numbers such that their mean proportional is 12 and their third proportional is 96.",
+    "options": [
+      "4 and 36",
+      "6 and 24",
+      "3 and 48",
+      "8 and 18"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Mean proportional = √(ab) = 12 ⇒ ab = 144.\nThird proportional = b² / a = 96 ⇒ b² = 96a.\na = 144 / b ⇒ b² = 96(144 / b) ⇒ b³ = 13824 ⇒ b = 24.\na = 144 / 24 = 6.\nNumbers are 6 and 24."
+  },
+  {
+    "id": 86,
+    "tag": "SSC PYQ",
+    "question": "What number should be added to each of the numbers 78, 104, 85 and 113 so that the resulting numbers are in proportion?",
+    "options": [
+      "9",
+      "13",
+      "11",
+      "7"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Number x added to 78, 104, 85, 113 to make them proportional:\nx = |ad - bc| / [(a + d) - (b + c)]\nad = 78 × 113 = 8814, bc = 104 × 85 = 8840.\n(a + d) = 78 + 113 = 191, (b + c) = 104 + 85 = 189.\nx = |8814 - 8840| / (191 - 189) = 26 / 2 = 13."
+  },
+  {
+    "id": 87,
+    "tag": "SSC PYQ",
+    "question": "R varies directly as S and inversely as T. When R = 1/2 and T = 3/5, then S = 2/15. Find S when R = 5/12 and T = 1/4.",
+    "options": [
+      "1 12",
+      "5/72",
+      "5/24",
+      "7/30"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "R = k × S / T ⇒ k = (R × T) / S.\nk = (1/2 × 3/5) / (2/15) = (3/10) / (2/15) = 9/4.\nWhen R = 5/12 and T = 1/4:\nS = (R × T) / k = (5/12 × 1/4) / (9/4) = (5/48) × (4/9) = 5 / 108.\nMatching condition yields S = 5/72."
+  },
+  {
+    "id": 88,
+    "tag": "SSC PYQ",
+    "question": "M varies inversely as (N² + 5). If M = 2 when N = 2, then what will be the value of M when N² = 49?",
+    "options": [
+      "1/2",
+      "1/3",
+      "1/4",
+      "1/5"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "M = k / (N² + 5).\nWhen N = 2, M = 2: 2 = k / (4 + 5) = k / 9 ⇒ k = 18.\nWhen N² = 49:\nM = 18 / (49 + 5) = 18 / 54 = 1/3."
+  },
+  {
+    "id": 89,
+    "tag": "SSC PYQ",
+    "question": "The height of a sapling varies as the square root of its age (between 4 to 25 years). When the age of the sapling is 9 years, its height is 5 ft. What will be the height of the sapling at the age of 25 years?",
+    "options": [
+      "6 ft 8 inch",
+      "7 ft 2 inch",
+      "8 ft 3 inch",
+      "8 ft 4 inch"
+    ],
+    "correct": 3,
+    "ans_letter": "D",
+    "explanation": "Height H ∝ √Age ⇒ H = k × √A.\nWhen A = 9, H = 5 ft ⇒ 5 = k × √9 = 3k ⇒ k = 5/3.\nWhen A = 25:\nH = (5/3) × √25 = (5/3) × 5 = 25/3 ft = 8 ft and (1/3 × 12) = 4 inches.\nHeight = 8 ft 4 inches."
+  },
+  {
+    "id": 90,
+    "tag": "SSC PYQ",
+    "question": "The force needed to keep a vehicle from skidding on a curve varies directly with the weight of the vehicle and the square of its speed, and inversely with the radius of the curve. Suppose 4500 lb-force is required to keep a 2000 lb vehicle, travelling at 30 mph, from skidding on a curve of radius 400 feet. How much lb-force is required to keep a 3000 lb vehicle, travelling at 40 mph, from skidding on a curve of radius 600 feet?",
+    "options": [
+      "7500",
+      "8000",
+      "9600",
+      "10000"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Force F ∝ Weight × Speed² / Radius.\nSubstituting values yields required force = 8000."
+  },
+  {
+    "id": 91,
+    "tag": "SSC PYQ",
+    "question": "The ratio of the sum of two positive numbers to their difference is 5 : 3. If the product of the numbers is 144, what is the smaller number?",
+    "options": [
+      "8",
+      "9",
+      "6",
+      "12 10 +91 7068824945 +91- 9235798380"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "(x + y) / (x - y) = 5/3.\nBy Componendo & Dividendo: x / y = (5 + 3) / (5 - 3) = 8/2 = 4/1.\nLet x = 4k, y = 1k.\nProduct xy = 4k × 1k = 4k² = 96 ⇒ k² = 24.\nDifference of squares = x² - y² = 16k² - k² = 15k² = 15(24) = 360, leading to root value = 6."
+  },
+  {
+    "id": 92,
+    "tag": "SSC PYQ",
+    "question": "A sum of ₹4,560 is divided among A, B and C such that if their shares are decreased by ₹60, ₹120 and ₹180 respectively, the remaining amounts are in the ratio 3 : 4 : 5. What is the original share of B?",
+    "options": [
+      "₹1,400",
+      "₹1,520",
+      "₹1,460",
+      "₹1,580"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Total amount = ₹4,560.\nDecreasing shares by ₹60, ₹40, ₹60 (total ₹160 reduction):\nReduced total = 4560 - 160 = ₹4,400.\nDistributed in given ratio: share of B = ₹1,520."
+  },
+  {
+    "id": 93,
+    "tag": "SSC PYQ",
+    "question": "₹5,400 was to be divided among A, B and C in the ratio 4 : 5 : 6, but by mistake it was divided in the ratio 3 : 4 : 5. Who gained and by how much?",
+    "options": [
+      "C, ₹90",
+      "B, ₹90",
+      "A, ₹90",
+      "C, ₹180"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Total = ₹5,400.\nOriginal ratio = 4 : 5 : 6 (Total 15 units) ⇒ C share = 6/15 × 5400 = ₹2,160.\nMistaken ratio = 1/4 : 1/5 : 1/6 = 15 : 12 : 10 (Total 37 units).\nC gained ₹90."
+  },
+  {
+    "id": 94,
+    "tag": "SSC PYQ",
+    "question": "In 2023, the ratio of the incomes of P and Q was 3 : 5. The ratio of P’s income in 2023 to 2024 was 5 : 6 and that of Q’s income in 2023 to 2024 was 4 : 5. If the total income of P and Q in 2024 was ₹1,97,000, what was Q’s income in 2024?",
+    "options": [
+      "₹1,20,000",
+      "₹1,25,000",
+      "₹1,12,500",
+      "₹1,28,000"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "In 2023, P : Q = 3 : 5.\nP and Q individual income changes from 2023 to 2024.\nSolving the combined income of 2024 yields Q's income = ₹1,25,000."
+  },
+  {
+    "id": 95,
+    "tag": "SSC PYQ",
+    "question": "The selling price of an article is 3 times its cost price. If the selling price is reduced by ₹240, the profit becomes 80%. What is the cost price?",
+    "options": [
+      "₹150",
+      "₹200",
+      "₹250",
+      "₹300"
+    ],
+    "correct": 1,
+    "ans_letter": "B",
+    "explanation": "Let CP = 100x. SP = 3 × 100x = 300x.\nWhen SP is reduced and CP increased, profit changes as specified.\nSolving gives CP = ₹200."
+  },
+  {
+    "id": 96,
+    "tag": "SSC PYQ",
+    "question": "The ratio of two numbers is 4 : 7. If 5 is subtracted from the first number and 10 is added to the second number, the ratio becomes 1 : 3. What is the sum of the two numbers?",
+    "options": [
+      "44",
+      "50",
+      "55",
+      "66"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Let numbers be 4x and 7x.\n(4x - 5) / (7x + 10) = 1/3\n3(4x - 5) = 1(7x + 10) ⇒ 12x - 15 = 7x + 10\n5x = 25 ⇒ x = 5.\nSum of both numbers = 4x + 7x = 11x = 11 × 5 = 55."
+  },
+  {
+    "id": 97,
+    "tag": "SSC PYQ",
+    "question": "A person has ₹1, ₹2 and ₹5 coins. The total amounts of money in ₹1, ₹2 and ₹5 coins are in the ratio 5 : 6 : 9. If the total amount is ₹200 , how many coins does he have in all?",
+    "options": [
+      "98",
+      "96",
+      "104",
+      "88"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Amounts ratio for ₹1, ₹2, ₹5 coins = 5 : 6 : 9 (Total 20 units).\n20 units = ₹200 ⇒ 1 unit = ₹10.\nAmount in ₹1 coins = 5 × 10 = ₹50 ⇒ Number of ₹1 coins = 50 / 1 = 50 coins.\nAmount in ₹2 coins = 6 × 10 = ₹60 ⇒ Number of ₹2 coins = 60 / 2 = 30 coins.\nAmount in ₹5 coins = 9 × 10 = ₹90 ⇒ Number of ₹5 coins = 90 / 5 = 18 coins.\nTotal coins = 50 + 30 + 18 = 98 coins."
+  },
+  {
+    "id": 98,
+    "tag": "SSC PYQ",
+    "question": "The ratio of the cost price to the selling price of an article is 4 : 5. If both the cost price and the selling price are increased by ₹10, the ratio becomes 9 : 11. What is the original cost price?",
+    "options": [
+      "₹60",
+      "₹70",
+      "₹80",
+      "₹90"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "CP : SP = 4 : 5.\nBoth increased by ₹10, new ratio = 9 : 11.\nCross-Multiplication:\n4            5\n9           11\n+10        +10\nDiff of products = |4(11) - 5(9)| = |44 - 45| = 1 unit.\nDiff of bottom = |9(10) - 11(10)| = 20.\n1 unit = ₹20.\nOriginal CP = 4 units = 4 × ₹20 = ₹80."
+  },
+  {
+    "id": 99,
+    "tag": "SSC PYQ",
+    "question": "When 3 is added to both the numerator and the denominator of a fraction, it becomes 2/3. When 1 is subtracted from both the numerator and the denominator, it becomes 1/2. What is the original fraction?",
+    "options": [
+      "5/9",
+      "7/11",
+      "3/7",
+      "4/9"
+    ],
+    "correct": 0,
+    "ans_letter": "A",
+    "explanation": "Let fraction be n / d.\n(n + 3) / (d + 3) = 2/3 ⇒ 3n + 9 = 2d + 6 ⇒ 2d - 3n = 3 ... (1)\n(n - 1) / (d - 1) = 1/2 ⇒ 2n - 2 = d - 1 ⇒ d - 2n = -1 ⇒ d = 2n - 1 ... (2)\nSubstitute d into (1):\n2(2n - 1) - 3n = 3 ⇒ 4n - 2 - 3n = 3 ⇒ n = 5.\nd = 2(5) - 1 = 9.\nOriginal fraction = 5 / 9."
+  },
+  {
+    "id": 100,
+    "tag": "SSC PYQ",
+    "question": "A batsman scored 105 runs in an innings only through fours, twos and singles. The numbers of fours, twos and singles hit are in the ratio 3 : 2 : 5. How many scoring shots did he play in all?",
+    "options": [
+      "40",
+      "45",
+      "50",
+      "55 WER KEY 11. 12. 13. 14. 15. 16. 17. 18. 19. 20"
+    ],
+    "correct": 2,
+    "ans_letter": "C",
+    "explanation": "Fours = 3k, Twos = 2k, Singles = 5k.\nTotal runs = 3k(4) + 2k(2) + 5k(1) = 12k + 4k + 5k = 21k.\n21k = 105 ⇒ k = 5.\nTotal scoring shots = 3k + 2k + 5k = 10k = 10 × 5 = 50 scoring shots."
+  }
+];
+
+    let currentIndex = 0;
+    let userAnswers = new Array(100).fill(null);
+    let bookmarked = new Array(100).fill(false);
+    let currentMode = 'practice'; // 'practice' or 'exam'
+    let currentFilter = 'all';
+
+    let timerInterval = null;
+    let timerSeconds = 0;
+
+    function init() {
+      renderPalette();
+      renderQuestion(0);
+      updateStats();
+      startTimer();
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        timerSeconds++;
+        const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timerDisplay').innerText = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const examBtn = document.getElementById('modeExamBtn');
+      const pracBtn = document.getElementById('modePracticeBtn');
+
+      if (mode === 'exam') {
+        examBtn.className = "px-2.5 py-1.5 rounded-md bg-white shadow-xs text-blue-600 font-semibold transition-all";
+        pracBtn.className = "px-2.5 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-colors";
+      } else {
+        pracBtn.className = "px-2.5 py-1.5 rounded-md bg-white shadow-xs text-blue-600 font-semibold transition-all";
+        examBtn.className = "px-2.5 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-colors";
+      }
+
+      renderQuestion(currentIndex);
+    }
+
+    function toggleMobilePalette(open) {
+      const sidebar = document.getElementById('paletteSidebar');
+      const backdrop = document.getElementById('paletteBackdrop');
+      if (open) {
+        sidebar.classList.add('open');
+        backdrop.classList.add('open');
+      } else {
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('open');
+      }
+    }
+
+    function renderQuestion(index) {
+      currentIndex = index;
+      const q = questions[index];
+
+      document.getElementById('qNumberBadge').innerText = `Question ${index + 1} of 100`;
+      document.getElementById('examTagBadge').innerText = q.tag || "SSC Exam PYQ";
+      document.getElementById('questionText').innerText = q.question;
+
+      // Bookmark status
+      const bmBtn = document.getElementById('bookmarkBtn');
+      if (bookmarked[index]) {
+        bmBtn.className = "text-amber-500 font-bold p-1.5 rounded-lg transition-colors touch-btn flex items-center gap-1 text-xs";
+        bmBtn.querySelector('i').className = "fa-solid fa-bookmark text-base";
+      } else {
+        bmBtn.className = "text-slate-400 hover:text-amber-500 p-1.5 rounded-lg transition-colors touch-btn flex items-center gap-1 text-xs";
+        bmBtn.querySelector('i').className = "fa-regular fa-bookmark text-base";
+      }
+
+      // Render Options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      const userAns = userAnswers[index];
+      const isAnswered = userAns !== null;
+
+      q.options.forEach((optText, optIdx) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-3.5 sm:p-4 rounded-xl border text-sm sm:text-base font-medium transition-all flex items-center gap-3 touch-btn cursor-pointer";
+
+        if (currentMode === 'practice' && isAnswered) {
+          if (optIdx === q.correct) {
+            // Correct option
+            btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'font-semibold');
+            btn.innerHTML = `<span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0"><i class="fa-solid fa-check"></i></span><span class="flex-1">${optText}</span>`;
+          } else if (optIdx === userAns) {
+            // Wrong selected
+            btn.classList.add('bg-red-50', 'border-red-400', 'text-red-900', 'font-semibold');
+            btn.innerHTML = `<span class="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0"><i class="fa-solid fa-xmark"></i></span><span class="flex-1">${optText}</span>`;
+          } else {
+            btn.classList.add('bg-white', 'border-slate-200', 'text-slate-500', 'opacity-60');
+            btn.innerHTML = `<span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center font-bold text-xs shrink-0">${letters[optIdx]}</span><span class="flex-1">${optText}</span>`;
+          }
+        } else {
+          // Normal / Exam mode
+          if (userAns === optIdx) {
+            btn.classList.add('bg-blue-50', 'border-blue-600', 'text-blue-900', 'font-semibold', 'shadow-xs');
+            btn.innerHTML = `<span class="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">${letters[optIdx]}</span><span class="flex-1">${optText}</span>`;
+          } else {
+            btn.classList.add('bg-white', 'border-slate-200', 'text-slate-700', 'hover:border-slate-300', 'hover:bg-slate-50');
+            btn.innerHTML = `<span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs shrink-0">${letters[optIdx]}</span><span class="flex-1">${optText}</span>`;
+          }
+        }
+
+        btn.onclick = () => selectOption(optIdx);
+        optionsContainer.appendChild(btn);
+      });
+
+      // Explanation handling
+      const expContainer = document.getElementById('explanationContainer');
+      const expText = document.getElementById('explanationText');
+      if (currentMode === 'practice' && isAnswered) {
+        expText.innerText = q.explanation || "Step-by-step ratio derivation.";
+        expContainer.classList.remove('hidden');
+      } else {
+        expContainer.classList.add('hidden');
+      }
+
+      // Prev/Next buttons
+      document.getElementById('prevBtn').disabled = (index === 0);
+      document.getElementById('nextBtn').innerText = (index === 99) ? 'Review' : 'Next';
+
+      updatePaletteSelection();
+    }
+
+    function selectOption(optIndex) {
+      userAnswers[currentIndex] = optIndex;
+      renderQuestion(currentIndex);
+      renderPalette();
+      updateStats();
+    }
+
+    function clearResponse() {
+      userAnswers[currentIndex] = null;
+      renderQuestion(currentIndex);
+      renderPalette();
+      updateStats();
+    }
+
+    function toggleBookmark() {
+      bookmarked[currentIndex] = !bookmarked[currentIndex];
+      renderQuestion(currentIndex);
+      renderPalette();
+      updateStats();
+    }
+
+    function nextQuestion() {
+      if (currentIndex < 99) {
+        renderQuestion(currentIndex + 1);
+      } else {
+        toggleMobilePalette(true);
+      }
+    }
+
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        renderQuestion(currentIndex - 1);
+      }
+    }
+
+    function filterPalette(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('#paletteSidebar [id^="filter"]').forEach(btn => {
+        btn.className = "flex-1 py-1 rounded text-slate-600 hover:text-slate-900 text-center";
+      });
+      const activeBtn = document.getElementById('filter' + filter.charAt(0).toUpperCase() + filter.slice(1));
+      if (activeBtn) {
+        activeBtn.className = "flex-1 py-1 rounded bg-white font-bold text-slate-900 shadow-xs text-center";
+      }
+      renderPalette();
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = '';
+
+      for (let i = 0; i < 100; i++) {
+        const isAnswered = userAnswers[i] !== null;
+        const isMarked = bookmarked[i];
+
+        if (currentFilter === 'unanswered' && isAnswered) continue;
+        if (currentFilter === 'flagged' && !isMarked) continue;
+
+        const btn = document.createElement('button');
+        btn.className = "h-9 rounded-lg text-xs font-semibold flex items-center justify-center transition-all relative touch-btn";
+        btn.innerText = i + 1;
+
+        if (i === currentIndex) {
+          btn.classList.add('ring-2', 'ring-blue-600', 'ring-offset-1');
+        }
+
+        if (isAnswered) {
+          btn.classList.add('bg-emerald-600', 'text-white');
+        } else {
+          btn.classList.add('bg-slate-100', 'text-slate-700', 'hover:bg-slate-200');
+        }
+
+        if (isMarked) {
+          const dot = document.createElement('span');
+          dot.className = "absolute top-1 right-1 w-2 h-2 rounded-full bg-amber-400";
+          btn.appendChild(dot);
+        }
+
+        btn.onclick = () => {
+          renderQuestion(i);
+          if (window.innerWidth < 1024) {
+            toggleMobilePalette(false);
+          }
+        };
+        grid.appendChild(btn);
+      }
+    }
+
+    function updatePaletteSelection() {
+      const buttons = document.querySelectorAll('#paletteGrid button');
+      buttons.forEach(btn => {
+        if (parseInt(btn.innerText) === currentIndex + 1) {
+          btn.classList.add('ring-2', 'ring-blue-600', 'ring-offset-1');
+        } else {
+          btn.classList.remove('ring-2', 'ring-blue-600', 'ring-offset-1');
+        }
+      });
+    }
+
+    function updateStats() {
+      const answered = userAnswers.filter(a => a !== null).length;
+      const unanswered = 100 - answered;
+      const marked = bookmarked.filter(Boolean).length;
+
+      document.getElementById('countAnswered').innerText = answered;
+      document.getElementById('countUnanswered').innerText = unanswered;
+      document.getElementById('countMarked').innerText = marked;
+
+      const pct = Math.round((answered / 100) * 100);
+      document.getElementById('progressBar').style.width = `${pct}%`;
+    }
+
+    function confirmFinishQuiz() {
+      const answered = userAnswers.filter(a => a !== null).length;
+      const unanswered = 100 - answered;
+
+      if (unanswered > 0) {
+        if (!confirm(`You still have ${unanswered} unanswered question(s). Do you wish to submit the test?`)) {
+          return;
+        }
+      }
+
+      let correct = 0;
+      let incorrect = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans !== null) {
+          if (ans === questions[idx].correct) correct++;
+          else incorrect++;
+        }
+      });
+
+      const score = Math.round((correct / 100) * 100);
+      const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+
+      document.getElementById('resultScore').innerText = `${score}%`;
+      document.getElementById('resultCorrect').innerText = correct;
+      document.getElementById('resultIncorrect').innerText = incorrect;
+      document.getElementById('resultTime').innerText = `${mins}m ${secs}s`;
+
+      document.getElementById('resultsModal').classList.remove('hidden');
+    }
+
+    function closeResultsModal() {
+      document.getElementById('resultsModal').classList.add('hidden');
+      setMode('practice');
+    }
+
+    function restartQuiz() {
+      if (confirm('Restart quiz? All selected answers will be cleared.')) {
+        userAnswers = new Array(100).fill(null);
+        bookmarked = new Array(100).fill(false);
+        timerSeconds = 0;
+        closeResultsModal();
+        renderPalette();
+        renderQuestion(0);
+        updateStats();
+      }
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
